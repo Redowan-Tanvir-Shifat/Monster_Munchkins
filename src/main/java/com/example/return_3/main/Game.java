@@ -35,7 +35,7 @@ public class Game extends Application {
     int spriteNum=1;
 
     String direction="down1";
-
+    public Scene scene;
 
 
 
@@ -49,7 +49,7 @@ public class Game extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Pane root = new Pane(); //Pane is work as a panel
-        Scene scene = new Scene(root,1000,600);
+         scene = new Scene(root,1000,600);
         stage.setScene(scene);
         stage.show();
         //Add a background color
@@ -63,16 +63,17 @@ public class Game extends Application {
         root.getChildren().add(imageView);
 
 
-        keyHandler= new KeyHandler(this,scene);
+        keyHandler= new KeyHandler(this);
 
         lastNanoTime=System.nanoTime();
 
-        GameAnimationTimer gameTimer= new GameAnimationTimer(this,scene);
+        GameAnimationTimer gameTimer= new GameAnimationTimer(this);
         gameTimer.start();
     }
 
 
     public void update( double deltaTime) {
+        System.out.println("This is update function");
 
         spriteCounter++;
         if (spriteCounter > 10) {
@@ -103,9 +104,9 @@ public class Game extends Application {
         }
 
         // Update player sprite based on direction
-        if(keyHandler.isMoveUp() || keyHandler.isMoveDown() || keyHandler.isMoveRight() || keyHandler.isMoveLeft()) {
-            updatePlayerSprite();
-        }
+//        if(keyHandler.isMoveUp() || keyHandler.isMoveDown() || keyHandler.isMoveRight() || keyHandler.isMoveLeft()) {
+//            updatePlayerSprite();
+//        }
 
 //        // Reset player sprite counter if needed
 //        if (spriteCounter >= 2)
@@ -158,7 +159,12 @@ public class Game extends Application {
         }
     }
 
-    public void render(){}
+    public void render(){
+        System.out.println("This is render function");
+        if(keyHandler.isMoveUp() || keyHandler.isMoveDown() || keyHandler.isMoveRight() || keyHandler.isMoveLeft()) {
+            updatePlayerSprite();
+        }
+    }
 
 
     public static void main(String[] args) {

@@ -8,10 +8,10 @@ public class KeyHandler {
     Game game;
     private boolean moveUp, moveDown, moveLeft, moveRight;
 
-    public KeyHandler(Game game, Scene scene) {
+    public KeyHandler(Game game) {
         this.game = game;
-        scene.setOnKeyPressed(event -> handleKeyPress(event.getCode()));
-        scene.setOnKeyReleased(event -> handleKeyRelease(event.getCode()));
+        game.scene.setOnKeyPressed(event -> handleKeyPress(event.getCode()));
+        game.scene.setOnKeyReleased(event -> handleKeyRelease(event.getCode()));
     }
 
     private void handleKeyPress(KeyCode code) {
