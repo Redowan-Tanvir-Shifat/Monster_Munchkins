@@ -4,5 +4,5 @@ module com.example.return_3 {
 
 
     opens com.example.return_3 to javafx.fxml;
-    exports com.example.return_3;
+    exports com.example.return_3.main;
 }
