@@ -7,9 +7,9 @@ public class GameAnimationTimer extends AnimationTimer {
 
     Game  game;
     Scene scene;
-    public GameAnimationTimer(Game game, Scene scene) {
+    public GameAnimationTimer(Game game) {
         this.game = game;
-        this.scene =scene;
+
     }
 
     @Override
