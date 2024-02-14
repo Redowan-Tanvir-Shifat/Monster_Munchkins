@@ -4,13 +4,24 @@ package com.example.return_3.main;
 import com.example.return_3.entity.Player;
 import com.example.return_3.tile.TileManager;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class Game extends Application {
+    // GAME SETTINGS
+
+    private static Stage primaryStage;
+    private static Scene menuScene;
+    private static Scene gameScene;
+
+
     //SCREEN SETTINGS
     public final int tileSize =32; //SO everytiles will be 32 pixels
     public final int maxScreenCol=30; //here will be 20 column of titles  =>1024 pixel width
@@ -60,27 +71,103 @@ public class Game extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Pane root = new Pane(); //Pane is work as a panel
-         scene = new Scene(root,screenWidth,screenHeight);
-        stage.setScene(scene);
-        stage.show();
-        //Add a background color
-       // root.setStyle("-fx-background-color: black");
+//        Pane root = new Pane();
+//        scene = new Scene(root,screenWidth,screenHeight);
+//        stage.setScene(scene);
+//        stage.show();
+//        //Add a background color
+//       // root.setStyle("-fx-background-color: black");
+//
+//
+//        keyHandler= new KeyHandler(this);
+//
+//        // Initialize player
+//        player = new Player(this, new KeyHandler(this));
+//        // Add player's ImageView to the root pane
+//        root.getChildren().add(canvas);
+//
+//
+//        lastNanoTime=System.nanoTime();
+//
+//        GameAnimationTimer gameTimer= new GameAnimationTimer(this);
+//        gameTimer.start();
 
 
-        keyHandler= new KeyHandler(this);
-
-        // Initialize player
-        player = new Player(this, new KeyHandler(this));
-        // Add player's ImageView to the root pane
-        root.getChildren().add(canvas);
 
 
-        lastNanoTime=System.nanoTime();
+        primaryStage = stage;
+        loadMenuScene();
+        primaryStage.setTitle("Game Menu");
+        primaryStage.setScene(menuScene);
+        primaryStage.show();
 
-        GameAnimationTimer gameTimer= new GameAnimationTimer(this);
-        gameTimer.start();
     }
+
+
+    private void loadMenuScene() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/menu.fxml"));
+        //loader.setController(new MenuController());
+        Parent menuRoot = loader.load();
+        menuScene = new Scene(menuRoot, screenWidth, screenHeight);
+    }
+
+    public static void showGameScene() {
+        if (gameScene == null) {
+            System.out.println("GameScene is null");
+            try {
+                Game game = new Game();
+                game.startGame();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            primaryStage.setScene(gameScene);
+        }
+    }
+
+
+//    private void startGame() throws Exception {
+//        Pane root = new Pane();
+//        gameScene = new Scene(root, screenWidth, screenHeight);
+//        player = new Player(this, new KeyHandler(this));
+//        root.getChildren().add(canvas);
+//        lastNanoTime = System.nanoTime();
+//        GameAnimationTimer gameTimer = new GameAnimationTimer(this);
+//        gameTimer.start();
+//        primaryStage.setScene(gameScene);
+//    }
+
+
+//    private void startGame() throws Exception {
+//        Pane root = new Pane();
+//        gameScene = new Scene(root, screenWidth, screenHeight);
+//        player = new Player(this, new KeyHandler(this)); // KeyHandler depends on game.scene
+//        root.getChildren().add(canvas);
+//        lastNanoTime = System.nanoTime();
+//
+//        // Set the scene before creating KeyHandler
+//        scene = gameScene;
+//
+//        GameAnimationTimer gameTimer = new GameAnimationTimer(this);
+//        gameTimer.start();
+//
+//        primaryStage.setScene(gameScene);
+//    }
+
+
+    private void startGame() throws Exception {
+        Pane root = new Pane();
+        scene = new Scene(root, screenWidth, screenHeight); // Set the scene before creating KeyHandler
+        player = new Player(this, new KeyHandler(this)); // KeyHandler depends on game.scene
+        root.getChildren().add(canvas);
+        lastNanoTime = System.nanoTime();
+
+        GameAnimationTimer gameTimer = new GameAnimationTimer(this);
+        gameTimer.start();
+
+        primaryStage.setScene(scene);
+    }
+
 
 
     public void update() {
