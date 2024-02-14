@@ -2,6 +2,7 @@ package com.example.return_3.entity;
 
 import com.example.return_3.main.Game;
 import com.example.return_3.main.KeyHandler;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -14,7 +15,7 @@ import java.util.Objects;
 public class Player extends Entity{
     //VARIABLES
     KeyHandler keyHandler;
-    private double playerSpeed=120; //pixel per second
+    private double speed=120*game.targetFrameTime; //pixel per second
 
     public final int screenX;
     public final int screenY;
@@ -22,7 +23,6 @@ public class Player extends Entity{
 //    public  int hasKey=0;
     //part 8 Object Interaction part ends
 
-    private ImageView playerImageView;
     public boolean attackCanceled=false;
     public Player(Game game, KeyHandler keyHandler) {
         super(game);
@@ -35,15 +35,15 @@ public class Player extends Entity{
         screenY = (int) (screenHeight / 2);
         // Load player images and initialize ImageView
         loadPlayerImages();
-        playerImageView = new ImageView();
-        playerImageView.setImage(down1); // Default image
-        // Set initial position of the player image view
-        playerImageView.setX(screenX);
-        playerImageView.setY(screenY);
+//        playerImageView = new ImageView();
+//        playerImageView.setImage(down1); // Default image
+//        // Set initial position of the player image view
+//        playerImageView.setX(screenX);
+//        playerImageView.setY(screenY);
 
-        // Set initial position of the player image view
-//        playerImageView.setX(screenX - playerImageView.getImage().getWidth() / 2);
-//        playerImageView.setY(screenY - playerImageView.getImage().getHeight() / 2);
+
+        setDefaultValues();
+
 
     }
 
@@ -69,92 +69,145 @@ public class Player extends Entity{
         System.out.println("Player loaded");
     }
 
-    public ImageView getPlayerImageView() {
-        return playerImageView;
+
+
+    public void setDefaultValues(){
+        setDefaultPositions();
+        speed=4;
+
+
+        //Player Status;
+        level=1;
+        maxLife=6;
+        life=maxLife;
+        maxMana=4;
+        mana=maxMana;
+        //ammo=10;
+        strength=1; //the more strength he has the more damage he gives
+        dexterity=1;// the more dexterity he has the less damage he receives
+        exp=0;
+        nextLevelExp=5;
+        coin=0;
+        //currentWeapon=new OBJ_Sword_normal(gp);
+//        currentWeapon=new OBJ_Axe(gp);
+//        currentShield= new OBJ_Shield_Wood(gp);
+//        projectile= new OBJ_Fireball(gp);
+//        //this is for testing that you can use anything to throw .
+//        //projectile= new OBJ_Rock(gp);
+//        attack=getAttack(); //the total attack value is decided by the strength and weapon
+//        defense=getDefense();// the total defense value is decided by the dexterity and shield
     }
 
-
-    public void update(double deltaTime){
-
-        spriteCounter++;
-        if (spriteCounter > 10) {
-            if (spriteNum == 1) {
-                spriteNum = 2;
-            } else if (spriteNum == 2) {
-                spriteNum = 1;
-            }
-            spriteCounter = 0;
-        }
-
-        // Move player based on key inputs
-        if (keyHandler.isMoveUp()) {
-            playerImageView.setY(playerImageView.getY() - (playerSpeed*deltaTime));
-            direction = "up";
-        }
-        if (keyHandler.isMoveDown()) {
-            playerImageView.setY(playerImageView.getY() + (playerSpeed*deltaTime));
-            direction = "down";
-        }
-        if (keyHandler.isMoveRight()) {
-            playerImageView.setX(playerImageView.getX() + (playerSpeed*deltaTime));
-            direction = "right";
-        }
-        if (keyHandler.isMoveLeft()) {
-            playerImageView.setX(playerImageView.getX() - (playerSpeed*deltaTime));
-            direction = "left";
-        }
+    public void setDefaultPositions(){
+        worldX=game.tileSize*59;
+        worldY=game.tileSize*85;
+        direction="down";
     }
 
-
-    public void draw(){
+    public void update(){
         if(keyHandler.isMoveUp() || keyHandler.isMoveDown() || keyHandler.isMoveRight() || keyHandler.isMoveLeft()) {
-            updatePlayerSprite();
+            // Move player based on key inputs
+            if (keyHandler.isMoveUp()) {
+                direction = "up";
+            }
+            if (keyHandler.isMoveDown()) {
+                direction = "down";
+            }
+            if (keyHandler.isMoveRight()) {
+                direction = "right";
+            }
+            if (keyHandler.isMoveLeft()) {
+                direction = "left";
+            }
+
+            collisionOn = false;
+
+            //Now check for the colliosion here.
+            //new code
+
+
+            if (collisionOn == false) {
+                switch (direction) {
+                    case "up":
+                        worldY -= speed;
+                        break;
+                    case "down":
+                        worldY += speed;
+                        break;
+                    case "left":
+                        worldX -= speed;
+                        break;
+                    case "right":
+                        worldX += speed;
+                        break;
+                }
+            }
+
+//        playerImageView.setX(playerImageView.getX() - (playerSpeed*deltaTime));
+
+            spriteCounter++;
+            if (spriteCounter > 10) {
+                if (spriteNum == 1) {
+                    spriteNum = 2;
+                } else if (spriteNum == 2) {
+                    spriteNum = 1;
+                }
+                spriteCounter = 0;
+            }
+
         }
     }
 
 
-    private void updatePlayerSprite() {
+    public void draw(GraphicsContext gc){
+        Image image= null;
+
+        //temp variable
+        int tempScreenX=screenX;
+        int tempScreenY=screenY;
+
         switch (direction) {
             case "up":
                 if (spriteNum == 1){
 
-                    playerImageView.setImage(up1);
+                    //playerImageView.setImage(up1);
+                    image=up1;
                 }
                 else if(spriteNum == 2){
-                    playerImageView.setImage(up2);
+                    image=(up2);
                 }
                 break;
             case "down":
                 if (spriteNum == 1){
 
-                    playerImageView.setImage(down1);
+                    image=(down1);
                 }
                 else if(spriteNum == 2){
-                    playerImageView.setImage(down2);
+                    image=(down2);
                 }
                 break;
             case "right":
                 if (spriteNum == 1){
 
-                    playerImageView.setImage(right1);
+                    image=(right1);
                 }
                 else if(spriteNum == 2){
-                    playerImageView.setImage(right2);
+                    image=(right2);
                 }
                 break;
 
             case "left":
                 if (spriteNum == 1){
 
-                    playerImageView.setImage(left1);
+                    image=(left1);
                 }
                 else if(spriteNum == 2){
-                    playerImageView.setImage(left2);
+                    image=(left2);
                 }
                 break;
             // Handle other directions similarly
         }
+
+        gc.drawImage(image,tempScreenX,tempScreenY);
     }
-
-
 }

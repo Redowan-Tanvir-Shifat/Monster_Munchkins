@@ -21,8 +21,8 @@ public class GameAnimationTimer extends AnimationTimer {
 
         //Update the game loop until it catches up with the target frame time
         while(game.accumulatedTime>=game.targetFrameTime){
-  //          game.update(); //update the game state
-            game.update(game.targetFrameTime); //update the game state
+            game.update(); //update the game state
+            //game.update(game.targetFrameTime); //update the game state
             game.accumulatedTime-=game.targetFrameTime;
         }
         game.render(); //Render the game;
