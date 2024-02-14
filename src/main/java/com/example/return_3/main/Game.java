@@ -2,21 +2,21 @@ package com.example.return_3.main;
 
 
 import com.example.return_3.entity.Player;
+import com.example.return_3.tile.TileManager;
 import javafx.application.Application;
-import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class Game extends Application {
     //SCREEN SETTINGS
     public final int tileSize =32; //SO everytiles will be 32 pixels
-//    public final int maxScreenCol=32; //here will be 20 column of titles  =>1024 pixel width
-//    public final int maxScreenRow=25; //here will be 25 row of titles => 800 pixel height
-//    public final int screenWidth= tileSize*maxScreenCol; //1024 pixel width
-//    public final int screenHeight= tileSize*maxScreenRow; //800 pixel height
+    public final int maxScreenCol=30; //here will be 20 column of titles  =>1024 pixel width
+    public final int maxScreenRow=18; //here will be 25 row of titles => 800 pixel height
+    public final int screenWidth= tileSize*maxScreenCol; //1024 pixel width
+    public final int screenHeight= tileSize*maxScreenRow; //800 pixel height
 
 
     // $$$$$$$$$  World Setting $$$$$$$$$
@@ -34,9 +34,13 @@ public class Game extends Application {
     public long lastNanoTime;
 
 
-    int playerCounter=0;
+    // $$$$$$$$$ System $$$$$$$$$
+    //instantiates new instances
+    Canvas canvas = new Canvas(screenWidth, screenHeight);
+    GraphicsContext gc = canvas.getGraphicsContext2D();
+    TileManager tileM= new TileManager(this);
     KeyHandler keyHandler;
-    Player player ;
+    public Player player ;
     public Scene scene;
 
     int spriteCounter=0;
@@ -57,11 +61,11 @@ public class Game extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Pane root = new Pane(); //Pane is work as a panel
-         scene = new Scene(root,1000,600);
+         scene = new Scene(root,screenWidth,screenHeight);
         stage.setScene(scene);
         stage.show();
         //Add a background color
-        root.setStyle("-fx-background-color: black");
+       // root.setStyle("-fx-background-color: black");
 
 
         keyHandler= new KeyHandler(this);
@@ -69,7 +73,7 @@ public class Game extends Application {
         // Initialize player
         player = new Player(this, new KeyHandler(this));
         // Add player's ImageView to the root pane
-        root.getChildren().add(player.getPlayerImageView());
+        root.getChildren().add(canvas);
 
 
         lastNanoTime=System.nanoTime();
@@ -79,15 +83,16 @@ public class Game extends Application {
     }
 
 
-    public void update( double deltaTime) {
-        player.update(deltaTime);
+    public void update() {
+        player.update();
+
     }
 
     // Method to update player sprite based on direction
 
     public void render(){
-        player.draw();
-
+        tileM.draw(gc);
+        player.draw(gc);
     }
 
 
