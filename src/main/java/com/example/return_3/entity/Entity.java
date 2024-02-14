@@ -3,7 +3,10 @@ package com.example.return_3.entity;
 import com.example.return_3.main.Game;
 import javafx.scene.image.Image;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 public class Entity {
@@ -175,5 +178,8 @@ public class Entity {
             shotAvailableCounter++;
         }
 
+    }
+    Image loadImage(String imagePath, int width, int height) {
+        return new Image(Objects.requireNonNull(getClass().getResourceAsStream(imagePath)), width, height, true, true);
     }
 }
