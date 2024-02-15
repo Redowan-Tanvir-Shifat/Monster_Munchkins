@@ -28,8 +28,8 @@ public class Game extends Application {
 
     //SCREEN SETTINGS
     public final int tileSize =32; //SO everytiles will be 32 pixels
-    public final int maxScreenCol=30; //here will be 20 column of titles  =>1024 pixel width
-    public final int maxScreenRow=18; //here will be 25 row of titles => 800 pixel height
+    public final int maxScreenCol=40; //here will be 20 column of titles  =>1024 pixel width
+    public final int maxScreenRow=23; //here will be 25 row of titles => 800 pixel height
     public final int screenWidth= tileSize*maxScreenCol; //1024 pixel width
     public final int screenHeight= tileSize*maxScreenRow; //800 pixel height
 
@@ -96,9 +96,6 @@ public class Game extends Application {
 //
 //        GameAnimationTimer gameTimer= new GameAnimationTimer(this);
 //        gameTimer.start();
-
-
-
 
         primaryStage = stage;
         loadMenuScene();
@@ -190,6 +187,9 @@ public class Game extends Application {
     static void exitGame() {
         Platform.exit();
     }
+
+
+
 
 
 
