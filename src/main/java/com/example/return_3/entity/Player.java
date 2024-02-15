@@ -5,6 +5,8 @@ import com.example.return_3.main.KeyHandler;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.shape.Rectangle;
+
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -15,7 +17,6 @@ import java.util.Objects;
 public class Player extends Entity{
     //VARIABLES
     KeyHandler keyHandler;
-    private double speed=120*game.targetFrameTime; //pixel per second
 
     public final int screenX;
     public final int screenY;
@@ -33,6 +34,22 @@ public class Player extends Entity{
         // Calculate the middle point
         screenX = (int) (screenWidth / 2);
         screenY = (int) (screenHeight / 2);
+
+        //part 6 collision part starts
+        solidArea= new Rectangle(); //we can skip this session. (as we already make it in Entity class)
+        solidArea.setX(8);
+        solidArea.setY(16);
+
+        //part 8 Object Interaction part starts
+        solidAreaDefaultX=(int)(solidArea.getX());
+        solidAreaDefaultY=(int)(solidArea.getY());
+        //part 8 Object Interaction part  ends
+
+        solidArea.setWidth(32);
+        solidArea.setHeight(32);
+        //part 6 collision part ends
+
+
         // Load player images and initialize ImageView
         loadPlayerImages();
 //        playerImageView = new ImageView();
@@ -73,7 +90,7 @@ public class Player extends Entity{
 
     public void setDefaultValues(){
         setDefaultPositions();
-        speed=4;
+         speed=(int) (120*game.targetFrameTime); //pixel per second
 
 
         //Player Status;
@@ -99,7 +116,7 @@ public class Player extends Entity{
     }
 
     public void setDefaultPositions(){
-        worldX=game.tileSize*59;
+        worldX=game.tileSize*65;
         worldY=game.tileSize*85;
         direction="down";
     }
@@ -123,6 +140,11 @@ public class Player extends Entity{
             collisionOn = false;
 
             //Now check for the colliosion here.
+
+            game.cChecker.checkTile(this);
+            System.out.println("Collision: " + collisionOn);
+
+
             //new code
 
 

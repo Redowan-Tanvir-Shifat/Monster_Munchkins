@@ -50,6 +50,7 @@ public class Game extends Application {
     Canvas canvas = new Canvas(screenWidth, screenHeight);
     GraphicsContext gc = canvas.getGraphicsContext2D();
     TileManager tileM= new TileManager(this);
+    public CollisionChecker cChecker = new CollisionChecker(this);
     KeyHandler keyHandler;
     public Player player ;
     public Scene scene;

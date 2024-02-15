@@ -2,6 +2,7 @@ package com.example.return_3.entity;
 
 import com.example.return_3.main.Game;
 import javafx.scene.image.Image;
+import javafx.scene.shape.Rectangle;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -23,11 +24,11 @@ public class Entity {
     public int spriteCounter=0;
     public  int spriteNum=1;
 
-    //COLLision
-    //part 6 collision
-    //public Rectangle solidArea = new Rectangle(0,0,48,48);
+  //  COLLision
+  //  part 6 collision
+    public Rectangle solidArea = new Rectangle(0,0,48,48);
     //part 8 Object Interaction part starts
-    //public Rectangle attackArea = new Rectangle(0,0,0,0);
+    public Rectangle attackArea = new Rectangle(0,0,0,0);
     public int solidAreaDefaultX,solidAreaDefaultY;
     //part 8 Object Interaction part  ends
     public boolean collisionOn= false;
@@ -128,7 +129,7 @@ public class Entity {
         setAction();
         collisionOn=false;
         //CHeching part of collision so that entity got collision and can not move
-//        gp.cChecker.checkTile(this);
+        game.cChecker.checkTile(this);
 //        gp.cChecker.checkObject(this,false); //its not player so its remain false
 //        gp.cChecker.checkEntity(this,gp.npc);
 //        gp.cChecker.checkEntity(this,gp.monster);
