@@ -38,7 +38,7 @@ public class Game extends Application {
     public  int maxWorldRow;
     public  int maxWorldCol;
     public final int maxMap=10;
-    public int currentMap=1;
+    public int currentMap=0;
 
 
 
