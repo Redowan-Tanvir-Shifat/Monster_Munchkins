@@ -37,16 +37,16 @@ public class Player extends Entity{
 
         //part 6 collision part starts
         solidArea= new Rectangle(); //we can skip this session. (as we already make it in Entity class)
-        solidArea.setX(8);
-        solidArea.setY(16);
+        solidArea.setX(5);
+        solidArea.setY(10);
 
         //part 8 Object Interaction part starts
         solidAreaDefaultX=(int)(solidArea.getX());
         solidAreaDefaultY=(int)(solidArea.getY());
         //part 8 Object Interaction part  ends
 
-        solidArea.setWidth(32);
-        solidArea.setHeight(32);
+        solidArea.setWidth(22);
+        solidArea.setHeight(22);
         //part 6 collision part ends
 
 
@@ -116,7 +116,7 @@ public class Player extends Entity{
     }
 
     public void setDefaultPositions(){
-        worldX=game.tileSize*65;
+        worldX=game.tileSize*59;
         worldY=game.tileSize*85;
         direction="down";
     }

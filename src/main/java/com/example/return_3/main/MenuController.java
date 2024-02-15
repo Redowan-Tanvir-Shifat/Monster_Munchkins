@@ -9,4 +9,8 @@ public class MenuController {
     private void startGame(ActionEvent event) {
         Game.showGameScene();
     }
+    @FXML
+    private void exitGame(ActionEvent event) {
+        Game.exitGame();
+    }
 }

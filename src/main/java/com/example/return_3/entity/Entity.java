@@ -11,6 +11,7 @@ import java.util.Objects;
 
 
 public class Entity {
+    Game game;
     //VARIABLES
     public Image image,image2,image3;
     public String name;
@@ -26,9 +27,9 @@ public class Entity {
 
   //  COLLision
   //  part 6 collision
-    public Rectangle solidArea = new Rectangle(0,0,48,48);
+    public Rectangle solidArea = new Rectangle(0,0,32,32);
     //part 8 Object Interaction part starts
-    public Rectangle attackArea = new Rectangle(0,0,0,0);
+    //public Rectangle attackArea = new Rectangle(0,0,0,0);
     public int solidAreaDefaultX,solidAreaDefaultY;
     //part 8 Object Interaction part  ends
     public boolean collisionOn= false;
@@ -90,7 +91,7 @@ public class Entity {
     int dyingCounter=0;
     int hpBarCounter=0;
     public int shotAvailableCounter=0;
-    Game game;
+
     Entity(Game game){
         this.game=game;
     }
