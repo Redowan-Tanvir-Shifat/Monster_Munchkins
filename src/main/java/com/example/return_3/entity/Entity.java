@@ -26,7 +26,7 @@ public class Entity {
 
   //  COLLision
   //  part 6 collision
-    public Rectangle solidArea = new Rectangle(0,0,48,48);
+    public Rectangle solidArea = new Rectangle(0,0,32,32);
     //part 8 Object Interaction part starts
     public Rectangle attackArea = new Rectangle(0,0,0,0);
     public int solidAreaDefaultX,solidAreaDefaultY;
