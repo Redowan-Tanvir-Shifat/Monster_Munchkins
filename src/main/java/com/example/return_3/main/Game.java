@@ -4,11 +4,15 @@ package com.example.return_3.main;
 import com.example.return_3.entity.Player;
 import com.example.return_3.tile.TileManager;
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -101,6 +105,18 @@ public class Game extends Application {
         primaryStage.setTitle("Game Menu");
         primaryStage.setScene(menuScene);
         primaryStage.show();
+        primaryStage.setOnCloseRequest(windowEvent -> exit(primaryStage));
+    }
+
+    void exit(Stage stage) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Exit");
+        alert.setHeaderText("You are about to exit");
+        alert.setContentText("Do you want to exit?");
+
+        if (alert.showAndWait().get() == ButtonType.OK) {
+            Game.exitGame();
+        }
 
     }
 
@@ -125,6 +141,8 @@ public class Game extends Application {
             primaryStage.setScene(gameScene);
         }
     }
+
+
 
 
 //    private void startGame() throws Exception {
@@ -169,6 +187,10 @@ public class Game extends Application {
         primaryStage.setScene(scene);
     }
 
+    static void exitGame() {
+        Platform.exit();
+    }
+
 
 
     public void update() {
@@ -182,6 +204,8 @@ public class Game extends Application {
         tileM.draw(gc);
         player.draw(gc);
     }
+
+
 
 
     public static void main(String[] args) {
