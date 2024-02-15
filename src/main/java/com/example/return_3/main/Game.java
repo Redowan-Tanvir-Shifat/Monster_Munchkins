@@ -97,9 +97,6 @@ public class Game extends Application {
 //        GameAnimationTimer gameTimer= new GameAnimationTimer(this);
 //        gameTimer.start();
 
-
-
-
         primaryStage = stage;
         loadMenuScene();
         primaryStage.setTitle("Game Menu");
@@ -190,6 +187,9 @@ public class Game extends Application {
     static void exitGame() {
         Platform.exit();
     }
+
+
+
 
 
 
