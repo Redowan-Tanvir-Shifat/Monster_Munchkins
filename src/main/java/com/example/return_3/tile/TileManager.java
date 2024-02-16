@@ -40,7 +40,7 @@ public class TileManager {
         getTileImage();
 
         // Get the max world col and row
-        is = getClass().getResourceAsStream("/maps/newMap.txt");
+        is = getClass().getResourceAsStream("/maps/new_map01.txt");
         br = new BufferedReader(new InputStreamReader(is));
         try{
             String line2 = br.readLine();
@@ -53,7 +53,7 @@ public class TileManager {
             e.printStackTrace();
         }
 
-        loadMap("/maps/newMap.txt",0);
+        loadMap("/maps/new_map01.txt",0);
        // loadMap("/maps/map01.txt",1);
        // loadMap("/maps/map03.txt",2);
     }
