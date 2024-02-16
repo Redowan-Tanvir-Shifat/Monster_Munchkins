@@ -40,7 +40,7 @@ public class TileManager {
         getTileImage();
 
         // Get the max world col and row
-        is = getClass().getResourceAsStream("/maps/map01.txt");
+        is = getClass().getResourceAsStream("/maps/newMap.txt");
         br = new BufferedReader(new InputStreamReader(is));
         try{
             String line2 = br.readLine();
@@ -53,9 +53,9 @@ public class TileManager {
             e.printStackTrace();
         }
 
-        loadMap("/maps/MyMap01.txt",0);
-        loadMap("/maps/map01.txt",1);
-        loadMap("/maps/map03.txt",2);
+        loadMap("/maps/newMap.txt",0);
+       // loadMap("/maps/map01.txt",1);
+       // loadMap("/maps/map03.txt",2);
     }
 
     public void getTileImage(){
@@ -115,14 +115,42 @@ public class TileManager {
 //    }
 
 
+//    public void loadMap(String filePath, int map) {
+//        try {
+//            InputStream is = getClass().getResourceAsStream(filePath);
+//            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+//            int col = 0;
+//            int row = 0;
+//            while (row < game.maxWorldRow) {
+//                String line = br.readLine();
+//                String numbers[] = line.split(" ");
+//                for (String number : numbers) {
+//                    int num = Integer.parseInt(number);
+//                    mapTileNum[map][col][row] = num;
+//                    col++;
+//                    if (col == game.maxWorldCol) {
+//                        col = 0;
+//                        row++;
+//                        if (row == game.maxWorldRow) {
+//                            break;
+//                        }
+//                    }
+//                }
+//            }
+//            br.close();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
+
     public void loadMap(String filePath, int map) {
         try {
             InputStream is = getClass().getResourceAsStream(filePath);
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
             int col = 0;
             int row = 0;
-            while (row < game.maxWorldRow) {
-                String line = br.readLine();
+            String line;
+            while ((line = br.readLine()) != null) { // Check if line is not null
                 String numbers[] = line.split(" ");
                 for (String number : numbers) {
                     int num = Integer.parseInt(number);

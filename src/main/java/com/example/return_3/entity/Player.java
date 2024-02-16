@@ -116,8 +116,8 @@ public class Player extends Entity{
     }
 
     public void setDefaultPositions(){
-        worldX=game.tileSize*15;
-        worldY=game.tileSize*5;
+        worldX=game.tileSize*28;
+        worldY=game.tileSize*25;
         direction="down";
     }
 

@@ -15,6 +15,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -27,9 +28,9 @@ public class Game extends Application {
 
 
     //SCREEN SETTINGS
-    public final int tileSize =32; //SO everytiles will be 32 pixels
-    public final int maxScreenCol=40; //here will be 20 column of titles  =>1024 pixel width
-    public final int maxScreenRow=23; //here will be 25 row of titles => 800 pixel height
+    public final int tileSize = 32; //SO every tile will be 32 pixels
+    public final int maxScreenCol = 30; //here will be 20 column of titles  =>1024 pixel width
+    public final int maxScreenRow = 18; //here will be 25 row of titles => 800 pixel height
     public final int screenWidth= tileSize*maxScreenCol; //1024 pixel width
     public final int screenHeight= tileSize*maxScreenRow; //800 pixel height
 
@@ -38,7 +39,7 @@ public class Game extends Application {
     public  int maxWorldRow;
     public  int maxWorldCol;
     public final int maxMap=10;
-    public int currentMap=0;
+    public int currentMap = 0;
 
 
 
@@ -100,6 +101,7 @@ public class Game extends Application {
         primaryStage = stage;
         loadMenuScene();
         primaryStage.setTitle("Game Menu");
+        primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setScene(menuScene);
         primaryStage.show();
         primaryStage.setOnCloseRequest(windowEvent -> exit(primaryStage));
@@ -118,7 +120,7 @@ public class Game extends Application {
     }
 
 
-    private void loadMenuScene() throws IOException {
+    public void loadMenuScene() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/menu.fxml"));
         //loader.setController(new MenuController());
         Parent menuRoot = loader.load();
@@ -171,7 +173,7 @@ public class Game extends Application {
 //    }
 
 
-    private void startGame() throws Exception {
+    public void startGame() throws Exception {
         Pane root = new Pane();
         scene = new Scene(root, screenWidth, screenHeight); // Set the scene before creating KeyHandler
         player = new Player(this, new KeyHandler(this)); // KeyHandler depends on game.scene

@@ -1,11 +1,16 @@
 package com.example.return_3.main;
 
 
+import javafx.application.Platform;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyCode;
+import javafx.stage.Stage;
 
 public class KeyHandler {
     Game game;
+    Stage stage;
     private boolean moveUp, moveDown, moveLeft, moveRight;
 
     public KeyHandler(Game game) {
@@ -20,6 +25,21 @@ public class KeyHandler {
             case DOWN: moveDown = true; break;
             case LEFT: moveLeft = true; break;
             case RIGHT: moveRight = true; break;
+            case W: moveUp = true; break;
+            case S: moveDown = true; break;
+            case A: moveLeft = true; break;
+            case D: moveRight = true; break;
+            case ESCAPE: try {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Exit");
+                alert.setHeaderText("You are about to exit");
+                alert.setContentText("Do you want to exit?");
+                if (alert.showAndWait().get() == ButtonType.OK) {
+                    Game.exitGame();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
     }
@@ -30,6 +50,10 @@ public class KeyHandler {
             case DOWN: moveDown = false; break;
             case LEFT: moveLeft = false; break;
             case RIGHT: moveRight = false; break;
+            case W: moveUp = false; break;
+            case S: moveDown = false; break;
+            case A: moveLeft = false; break;
+            case D: moveRight = false; break;
         }
 
     }
@@ -40,10 +64,12 @@ public class KeyHandler {
     }
 
     public boolean isMoveDown() {
+
         return moveDown;
     }
 
     public boolean isMoveLeft() {
+
         return moveLeft;
     }
 
