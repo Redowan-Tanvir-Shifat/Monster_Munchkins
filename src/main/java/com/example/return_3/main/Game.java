@@ -22,7 +22,7 @@ import java.io.IOException;
 public class Game extends Application {
     // GAME SETTINGS
 
-    private static Stage primaryStage;
+    public static Stage primaryStage;
     private static Scene menuScene;
     private static Scene gameScene;
 
@@ -56,6 +56,7 @@ public class Game extends Application {
     GraphicsContext gc = canvas.getGraphicsContext2D();
     TileManager tileM= new TileManager(this);
     public CollisionChecker cChecker = new CollisionChecker(this);
+    public EventHandler eventHandler= new EventHandler(this);
     KeyHandler keyHandler;
     public Player player ;
     public Scene scene;
@@ -129,7 +130,7 @@ public class Game extends Application {
 
     public static void showGameScene() {
         if (gameScene == null) {
-            System.out.println("GameScene is null");
+//            System.out.println("GameScene is null");
             try {
                 Game game = new Game();
                 game.startGame();

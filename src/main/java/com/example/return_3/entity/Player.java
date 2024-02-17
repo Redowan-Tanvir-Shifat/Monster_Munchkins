@@ -1,5 +1,6 @@
 package com.example.return_3.entity;
 
+import com.example.return_3.main.EventHandler;
 import com.example.return_3.main.Game;
 import com.example.return_3.main.KeyHandler;
 import javafx.scene.canvas.GraphicsContext;
@@ -17,6 +18,8 @@ import java.util.Objects;
 public class Player extends Entity{
     //VARIABLES
     KeyHandler keyHandler;
+
+
 
     public final int screenX;
     public final int screenY;
@@ -142,7 +145,7 @@ public class Player extends Entity{
             //Now check for the colliosion here.
 
             game.cChecker.checkTile(this);
-            System.out.println("Collision: " + collisionOn);
+//            System.out.println("Collision: " + collisionOn);
 
 
             //new code
@@ -178,6 +181,15 @@ public class Player extends Entity{
             }
 
         }
+
+        try{
+
+        game.eventHandler.checkEvent();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+
+
     }
 
 

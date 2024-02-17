@@ -23,7 +23,7 @@ public class CollisionChecker {
         //checking for the direction
         switch (entity.direction){
             case "up":
-                System.out.println(" speed"+ entity.speed);
+//                System.out.println(" speed"+ entity.speed);
                 entityTopRow=(entityTopWorldY-entity.speed)/game.tileSize;
                 // in above case what will happen is that we kind of predict where the player will be after he movied
                 // in there subtract the speed because in up direction y value will be less as much we go up.
@@ -37,7 +37,7 @@ public class CollisionChecker {
                 }
                 break;
             case "down":
-                System.out.println("speed"+ entity.speed);
+//                System.out.println("speed"+ entity.speed);
 
                 entityBottomRow=(entityBottomWorldY+entity.speed)/game.tileSize;
                 tileNum1= game.tileM.mapTileNum[game.currentMap][entityLeftCol][entityBottomRow];
@@ -47,7 +47,7 @@ public class CollisionChecker {
                 }
                 break;
             case "left":
-                System.out.println("speed"+ entity.speed);
+//                System.out.println("speed"+ entity.speed);
 
                 entityLeftCol=(entityLeftWorldX-entity.speed)/game.tileSize;
                 tileNum1= game.tileM.mapTileNum[game.currentMap][entityLeftCol][entityTopRow];
@@ -57,7 +57,7 @@ public class CollisionChecker {
                 }
                 break;
             case "right":
-                System.out.println("speed"+ entity.speed);
+//                System.out.println("speed"+ entity.speed);
 
                 entityRightCol=(entityRightWorldX+entity.speed)/game.tileSize;
                 tileNum1= game.tileM.mapTileNum[game.currentMap][entityRightCol][entityTopRow];
