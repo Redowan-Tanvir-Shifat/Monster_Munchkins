@@ -1,6 +1,7 @@
 package com.example.return_3.main;
 
 
+import com.example.return_3.entity.Entity;
 import com.example.return_3.entity.Player;
 import com.example.return_3.tile.TileManager;
 import javafx.application.Application;
@@ -21,10 +22,25 @@ import java.io.IOException;
 
 public class Game extends Application {
     // GAME SETTINGS
+    private static Game gameInstance;
 
-    private static Stage primaryStage;
+    public static Stage primaryStage;
     private static Scene menuScene;
     private static Scene gameScene;
+
+
+    // $$$$$$$$$  GAME STATE $$$$$$$$$
+    public int gameState;
+    public final int schoolState=0;
+    public final int playState=1;
+    public final int pauseState=2;
+    public final int dialogueState=3;
+    public final int characterState=4;
+    public final int optionState=5;
+    public final int gameOverState=6;
+    public final int transitionState=7;
+    public final int tradeState=8;
+
 
 
     //SCREEN SETTINGS
@@ -56,6 +72,11 @@ public class Game extends Application {
     GraphicsContext gc = canvas.getGraphicsContext2D();
     TileManager tileM= new TileManager(this);
     public CollisionChecker cChecker = new CollisionChecker(this);
+    public EventHandler eventHandler= new EventHandler(this);
+    public AssetSetter assetSetter= new AssetSetter(this);
+    public GameAnimationTimer gameTimer;
+    public Entity npc[][]= new Entity[maxMap][10]; //set the number of 10
+
     KeyHandler keyHandler;
     public Player player ;
     public Scene scene;
@@ -101,7 +122,7 @@ public class Game extends Application {
         primaryStage = stage;
         loadMenuScene();
         primaryStage.setTitle("Game Menu");
-        primaryStage.initStyle(StageStyle.UNDECORATED);
+       // primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setScene(menuScene);
         primaryStage.show();
         primaryStage.setOnCloseRequest(windowEvent -> exit(primaryStage));
@@ -129,7 +150,7 @@ public class Game extends Application {
 
     public static void showGameScene() {
         if (gameScene == null) {
-            System.out.println("GameScene is null");
+//            System.out.println("GameScene is null");
             try {
                 Game game = new Game();
                 game.startGame();
@@ -142,6 +163,28 @@ public class Game extends Application {
     }
 
 
+    public static void showReturnGameScene() {
+        if (gameScene == null) {
+            System.out.println("GameScene is null");
+            return;
+        }
+
+        // Update the scene to the game scene
+        primaryStage.setScene(gameScene);
+
+        // Notify the existing Game instance to resume
+        if (gameInstance != null) {
+            gameInstance.resumeGame();
+        }
+    }
+
+
+
+
+public void resumeGame(){
+    primaryStage.setScene(gameScene);
+        this.gameTimer.start();
+}
 
 
 //    private void startGame() throws Exception {
@@ -174,9 +217,32 @@ public class Game extends Application {
 
 
     public void startGame() throws Exception {
+        gameInstance = this;
         Pane root = new Pane();
         scene = new Scene(root, screenWidth, screenHeight); // Set the scene before creating KeyHandler
         player = new Player(this, new KeyHandler(this)); // KeyHandler depends on game.scene
+        root.getChildren().add(canvas);
+        lastNanoTime = System.nanoTime();
+//        assetSetter.setNPC();
+        gameTimer = new GameAnimationTimer(this);
+        gameTimer.start();
+
+        primaryStage.setScene(scene);
+    }
+
+
+
+
+
+
+    static void exitGame() {
+        Platform.exit();
+    }
+
+     public void returnGame() throws Exception {
+        Pane root = new Pane();
+        scene = new Scene(root, screenWidth, screenHeight); // Set the scene before creating KeyHandler
+//        player = new Player(this, new KeyHandler(this)); // KeyHandler depends on game.scene
         root.getChildren().add(canvas);
         lastNanoTime = System.nanoTime();
 
@@ -185,12 +251,6 @@ public class Game extends Application {
 
         primaryStage.setScene(scene);
     }
-
-    static void exitGame() {
-        Platform.exit();
-    }
-
-
 
 
 
