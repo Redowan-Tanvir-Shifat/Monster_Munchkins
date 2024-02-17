@@ -137,11 +137,16 @@ package com.example.return_3.main;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.shape.Rectangle;
 
 import java.io.IOException;
 
 public class EventHandler {
+    //test code
+    int counter=0;
+    boolean  tl=true;
     Game gp;
     int previousEventX, previousEventY;
     boolean canTouchEvent = true;
@@ -190,21 +195,56 @@ public class EventHandler {
             // Event happened
             // Handle JavaFX events here
             if(hit(gp.currentMap,42,10,"up")){
-                System.out.println("welcome to school");
-                //
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/school.fxml"));
-                    Parent root = loader.load();
-                    Scene scene= new Scene(root);
-                    Game.primaryStage.setScene(scene);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    System.err.println("Error loading school.fxml: " + e.getMessage());
+
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/school.fxml"));
+                        Parent root = loader.load();
+                        Scene scene= new Scene(root);
+                        gp.gameTimer.stop();
+                        Game.primaryStage.setScene(scene);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        System.err.println("Error loading school.fxml: " + e.getMessage());
+
                 }
 
+
+                System.out.println("welcome to school");
+                //
+
+
+            }
+            if(hit(gp.currentMap,11,47,"right")){
+
+               if(tl){
+                   teleport(gp.currentMap,24,20);
+                   tl=false;
+               }
+                System.out.println("hit teleport");
+            }
+
+            if(hit(gp.currentMap,24,20,"right")){
+
+               ; if(tl){
+                    teleport(gp.currentMap,11,47);
+                    tl=false;
+                }
+                System.out.println("hit teleport");
             }
 
         }
+
+
+
+        counter++;
+        if(counter>2300){
+            counter=0;
+            if(tl==false){
+                tl=true;
+            }
+        }
+
+
     }
 
     public boolean hit(int map, int col, int row, String reqDirection) {
@@ -231,9 +271,15 @@ public class EventHandler {
     }
 
     public void teleport(int map, int col, int row) {
-        tempMap = map;
-        tempCol = col;
-        tempRow = row;
-        canTouchEvent = false;
+//        tempMap = map;
+//        tempCol = col;
+//        tempRow = row;
+//        canTouchEvent = false;
+        gp.currentMap=map;
+        gp.player.worldX=gp.tileSize*col;
+        gp.player.worldY=gp.tileSize*row;
+        previousEventX=gp.player.worldX;
+        previousEventY=gp.player.worldY;
+
     }
 }

@@ -5,17 +5,18 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.return_3.main.SchoolController">
+<AnchorPane prefHeight="576.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.return_3.main.SchoolController">
    <children>
-      <Label layoutX="128.0" layoutY="48.0" text="Welcome to School">
+      <Label layoutX="316.0" layoutY="50.0" text="Welcome to School">
          <font>
             <Font name="System Italic" size="40.0" />
          </font>
       </Label>
-      <Button fx:id="backButton" layoutX="253.0" layoutY="175.0" mnemonicParsing="false" onAction="#back" text="Back">
+      <Button fx:id="backButton" layoutX="432.0" layoutY="215.0" mnemonicParsing="false" onAction="#back" text="Back">
          <font>
             <Font size="23.0" />
          </font>
       </Button>
+      <Button fx:id="mathButton" layoutX="445.0" layoutY="342.0" mnemonicParsing="false" onAction="#goToMath" text="Math" />
    </children>
 </AnchorPane>

@@ -4,6 +4,9 @@ import com.example.return_3.main.EventHandler;
 import com.example.return_3.main.Game;
 import com.example.return_3.main.KeyHandler;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
@@ -93,7 +96,7 @@ public class Player extends Entity{
 
     public void setDefaultValues(){
         setDefaultPositions();
-         speed=(int) (120*game.targetFrameTime); //pixel per second
+         speed=(int) (250*game.targetFrameTime); //pixel per second
 
 
         //Player Status;
@@ -182,12 +185,14 @@ public class Player extends Entity{
 
         }
 
-        try{
 
-        game.eventHandler.checkEvent();
+
+        try{
+            game.eventHandler.checkEvent();
         }catch(IOException e){
             e.printStackTrace();
         }
+
 
 
     }
