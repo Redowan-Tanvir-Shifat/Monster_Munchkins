@@ -146,6 +146,7 @@ public class Game extends Application {
         //loader.setController(new MenuController());
         Parent menuRoot = loader.load();
         menuScene = new Scene(menuRoot, screenWidth, screenHeight);
+
     }
 
     public static void showGameScene() {

@@ -200,8 +200,10 @@ public class EventHandler {
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/school.fxml"));
                         Parent root = loader.load();
                         Scene scene= new Scene(root);
+//                        scene.getStylesheets().add(getClass().getResource("school.css").toExternalForm());
                         gp.gameTimer.stop();
                         Game.primaryStage.setScene(scene);
+
                     } catch (IOException e) {
                         e.printStackTrace();
                         System.err.println("Error loading school.fxml: " + e.getMessage());
@@ -237,10 +239,10 @@ public class EventHandler {
 
 
         counter++;
-        if(counter>2300){
+        if(counter > 1800){
             counter=0;
-            if(tl==false){
-                tl=true;
+            if(tl == false){
+                tl = true;
             }
         }
 

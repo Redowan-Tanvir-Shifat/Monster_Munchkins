@@ -16,6 +16,7 @@ public class SchoolController {
 
     @FXML
     void back(ActionEvent event) {
+
         Game.showGameScene();
     }
 
