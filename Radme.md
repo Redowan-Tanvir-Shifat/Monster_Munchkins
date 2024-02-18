@@ -1,5 +1,10 @@
 
+19-20:
+21-25;
 
+ march 4-- project show... (scene builder) -- page er ui . 
+
+# Learning System
 
 
 # Game Center
