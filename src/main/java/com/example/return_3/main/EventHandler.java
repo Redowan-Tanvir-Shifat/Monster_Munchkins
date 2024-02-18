@@ -197,18 +197,21 @@ public class EventHandler {
             if(hit(gp.currentMap,42,10,"up")){
 
                     try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/school.fxml"));
-                        Parent root = loader.load();
-                        Scene scene= new Scene(root);
-//                        scene.getStylesheets().add(getClass().getResource("school.css").toExternalForm());
-                        gp.gameTimer.stop();
-                        Game.primaryStage.setScene(scene);
+//                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/school.fxml"));
+//                        Parent root = loader.load();
+//                        Scene scene= new Scene(root);
+////                        scene.getStylesheets().add(getClass().getResource("school.css").toExternalForm());
+//                        gp.gameTimer.stop();
+//                        Game.primaryStage.setScene(scene);
+
+                        gp.showSchoolScene();
 
                     } catch (IOException e) {
                         e.printStackTrace();
                         System.err.println("Error loading school.fxml: " + e.getMessage());
-
-                }
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
 
 
                 System.out.println("welcome to school");

@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class Game extends Application {
     // GAME SETTINGS
@@ -231,7 +232,14 @@ public void resumeGame(){
         primaryStage.setScene(scene);
     }
 
-
+    public void showSchoolScene() throws Exception{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/school.fxml"));
+        Parent root = loader.load();
+        Scene scene= new Scene(root);
+        //scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("school.css")).toExternalForm());
+        gameTimer.stop();
+        Game.primaryStage.setScene(scene);
+    }
 
 
 
