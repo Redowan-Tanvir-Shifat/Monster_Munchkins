@@ -135,7 +135,7 @@ public class Entity {
 //        gp.cChecker.checkEntity(this,gp.npc);
 //        gp.cChecker.checkEntity(this,gp.monster);
 //        gp.cChecker.checkEntity(this,gp.iTile);
-//        boolean contactPlayer= gp.cChecker.checkPlayer(this);
+        boolean contactPlayer= game.cChecker.checkPlayer(this);
 //
 //        if(this.type ==type_monster && contactPlayer==true){
 //            damagePlayer(attack);

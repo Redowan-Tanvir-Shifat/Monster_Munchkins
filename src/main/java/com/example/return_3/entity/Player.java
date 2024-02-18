@@ -150,6 +150,10 @@ public class Player extends Entity{
             game.cChecker.checkTile(this);
 //            System.out.println("Collision: " + collisionOn);
 
+            //CHeck NPC collision
+            int npcIndex=game.cChecker.checkEntity(this,game.npc);
+            interactNPC(npcIndex);
+
 
             //new code
 
@@ -249,4 +253,12 @@ public class Player extends Entity{
 
         gc.drawImage(image,tempScreenX,tempScreenY);
     }
+
+
+
+
+    public void interactNPC(int i){
+       // code if we need to handle the interact npc like contact them when pressing enter
+    }
+
 }

@@ -132,88 +132,103 @@ public class CollisionChecker {
 
     // This method is for check NPC or Monster Collision
     //this is identical of checkObject method
-//    public int checkEntity(Entity entity,Entity[][] target) {
-//        int index =999;
-//
-//        for(int i=0; i<target[gp.currentMap].length;i++){
-//            if(target[gp.currentMap][i]!= null){
-//                //Get entity solid Area Position
-//                entity.solidArea.x=entity.worldX + entity.solidArea.x;
-//                entity.solidArea.y=entity.worldY + entity.solidArea.y;
-//                //Get the object's solid Area position
-//                target[gp.currentMap][i].solidArea.x=target[gp.currentMap][i].worldX + target[gp.currentMap][i].solidArea.x;
-//                target[gp.currentMap][i].solidArea.y=target[gp.currentMap][i].worldY + target[gp.currentMap][i].solidArea.y;
-//
-//                switch (entity.direction){
-//                    case "up":
-//                        entity.solidArea.y-=entity.speed;
-//                        break;
-//                    case "down":
-//                        entity.solidArea.y+=entity.speed;
-//                        break;
-//                    case "left":
-//                        entity.solidArea.x-=entity.speed;
-//                        break;
-//                    case "right":
-//                        entity.solidArea.x+=entity.speed;
-//                        break;
-//                }
-//                if(entity.solidArea.intersects(target[gp.currentMap][i].solidArea)){
-//
-//                    if(target[gp.currentMap][i]!= entity){
-//                        //check the object is solid or not
-//                        entity.collisionOn=true;
-//                        index=i;
-//                    }
-//                }
-//                // reset the value
-//                entity.solidArea.x= entity.solidAreaDefaultX;
-//                entity.solidArea.y= entity.solidAreaDefaultY;
-//
-//                target[gp.currentMap][i].solidArea.x=target[gp.currentMap][i].solidAreaDefaultX;
-//                target[gp.currentMap][i].solidArea.y=target[gp.currentMap][i].solidAreaDefaultY ;
-//            }
-//        }
-//
-//        return index;
-//    }
+    public int checkEntity(Entity entity,Entity[][] target) {
+        int index =999;
 
-//    public boolean checkPlayer(Entity entity){
-//        boolean contactPlayer=false;
-//        //Get entity solid Area Position
-//        entity.solidArea.x=entity.worldX + entity.solidArea.x;
-//        entity.solidArea.y=entity.worldY + entity.solidArea.y;
-//        //Get the object's solid Area position
-//        gp.player.solidArea.x=gp.player.worldX + gp.player.solidArea.x;
-//        gp.player.solidArea.y=gp.player.worldY + gp.player.solidArea.y;
-//
-//        switch (entity.direction){
-//            case "up":
-//                entity.solidArea.y-=entity.speed;
-//                break;
-//            case "down":
-//                entity.solidArea.y+=entity.speed;
-//                break;
-//            case "left":
-//                entity.solidArea.x-=entity.speed;
-//                break;
-//            case "right":
-//                entity.solidArea.x+=entity.speed;
-//                break;
-//        }
-//        if(entity.solidArea.intersects(gp.player.solidArea)){
-//            entity.collisionOn=true;
-//            contactPlayer=true;
-//        }
-//        // reset the value
-//        entity.solidArea.x= entity.solidAreaDefaultX;
-//        entity.solidArea.y= entity.solidAreaDefaultY;
-//
-//        gp.player.solidArea.x=gp.player.solidAreaDefaultX;
-//        gp.player.solidArea.y=gp.player.solidAreaDefaultY ;
-//
-//        return contactPlayer;
-//    }
+        for(int i=0; i<target[game.currentMap].length;i++){
+            if(target[game.currentMap][i]!= null){
+                //Get entity solid Area Position
+                entity.solidArea.setX(entity.worldX + entity.solidArea.getX());
+                entity.solidArea.setY(entity.worldY + entity.solidArea.getY());
+
+                //Get the object's solid Area position
+                target[game.currentMap][i].solidArea.setX(target[game.currentMap][i].worldX + target[game.currentMap][i].solidArea.getX());
+                target[game.currentMap][i].solidArea.setY(target[game.currentMap][i].worldY + target[game.currentMap][i].solidArea.getY());
+
+
+                switch (entity.direction){
+                    case "up":
+                        entity.solidArea.setY(entity.solidArea.getY()-entity.speed);
+
+                        break;
+                    case "down":
+                        entity.solidArea.setY(entity.solidArea.getY()+entity.speed);
+                        break;
+                    case "left":
+                        entity.solidArea.setX(entity.solidArea.getX()-entity.speed);
+
+                        break;
+                    case "right":
+                        entity.solidArea.setX(entity.solidArea.getX()+entity.speed);
+
+                        break;
+                }
+                if(entity.solidArea.intersects(target[game.currentMap][i].solidArea.getBoundsInLocal())){
+
+                    if(target[game.currentMap][i]!= entity){
+                        //check the object is solid or not
+                        entity.collisionOn=true;
+                        index=i;
+                    }
+                }
+
+
+                // reset the value
+                entity.solidArea.setX(entity.solidAreaDefaultX);
+                entity.solidArea.setY(entity.solidAreaDefaultY);
+
+                target[game.currentMap][i].solidArea.setX(target[game.currentMap][i].solidAreaDefaultX);
+                target[game.currentMap][i].solidArea.setY(target[game.currentMap][i].solidAreaDefaultY) ;
+            }
+        }
+
+        return index;
+    }
+
+
+
+
+    public boolean checkPlayer(Entity entity){
+        boolean contactPlayer=false;
+        //Get entity solid Area Position
+        entity.solidArea.setX(entity.worldX + entity.solidArea.getX());
+        entity.solidArea.setY(entity.worldY + entity.solidArea.getY());
+        //Get the object's solid Area position
+        game.player.solidArea.setX(game.player.worldX + game.player.solidArea.getX());
+        game.player.solidArea.setY(game.player.worldY + game.player.solidArea.getY());
+
+        switch (entity.direction){
+            case "up":
+                entity.solidArea.setY(entity.solidArea.getY()-entity.speed);
+
+                break;
+            case "down":
+                entity.solidArea.setY(entity.solidArea.getY()+entity.speed);
+                break;
+            case "left":
+                entity.solidArea.setX(entity.solidArea.getX()-entity.speed);
+
+                break;
+            case "right":
+                entity.solidArea.setX(entity.solidArea.getX()+entity.speed);
+
+                break;
+        }
+        if(entity.solidArea.intersects(game.player.solidArea.getBoundsInLocal())){
+            entity.collisionOn=true;
+            contactPlayer=true;
+        }
+
+
+        // reset the value
+        entity.solidArea.setX(entity.solidAreaDefaultX);
+        entity.solidArea.setY(entity.solidAreaDefaultY);
+
+        game.player.solidArea.setX(game.player.solidAreaDefaultX);
+        game.player.solidArea.setY(game.player.solidAreaDefaultY) ;
+
+        return contactPlayer;
+    }
 
 
 }
