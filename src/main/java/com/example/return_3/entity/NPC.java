@@ -1,18 +1,16 @@
 package com.example.return_3.entity;
 
-
 import com.example.return_3.main.Game;
 
 import java.util.Random;
 
-
-public class NPC_OldMan extends Entity{
-    Game gp;
-    public NPC_OldMan(Game gp){
-        super(gp);
-        this.gp=gp;
+public class NPC extends Entity{
+    Game game;
+    NPC(Game game) {
+        super(game);
+        this.game=game;
         direction ="down";
-        speed=2;
+        speed=(int) (100*game.targetFrameTime);
         //set the collision part
         solidArea.setX(0);
         solidArea.setY(10);
@@ -21,22 +19,20 @@ public class NPC_OldMan extends Entity{
         solidAreaDefaultX=(int)(solidArea.getX());
         solidAreaDefaultY=(int)(solidArea.getY());
 
-        getNPCImage();
+        //getNPCImage();
         setDialogue();
     }
     public void getNPCImage(){
 
-        up1=loadImage( "/npc/oldman_up_1.png",gp.tileSize,gp.tileSize);
-        up2= loadImage("/npc/oldman_up_2.png",gp.tileSize,gp.tileSize);
-        down1= loadImage("/npc/oldman_down_1.png",gp.tileSize,gp.tileSize);
-        down2= loadImage("/npc/oldman_down_2.png",gp.tileSize,gp.tileSize);
-        left1=loadImage ("/npc/oldman_left_1.png",gp.tileSize,gp.tileSize);
-        left2= loadImage("/npc/oldman_left_2.png",gp.tileSize,gp.tileSize);
-        right1= loadImage("/npc/oldman_right_1.png",gp.tileSize,gp.tileSize);
-        right2= loadImage("/npc/oldman_right_2.png",gp.tileSize,gp.tileSize);
+//        up1=loadImage( "/npc/oldman_up_1.png",game.tileSize,game.tileSize);
+//        up2= loadImage("/npc/oldman_up_2.png",game.tileSize,game.tileSize);
+//        down1= loadImage("/npc/oldman_down_1.png",game.tileSize,game.tileSize);
+//        down2= loadImage("/npc/oldman_down_2.png",game.tileSize,game.tileSize);
+//        left1=loadImage ("/npc/oldman_left_1.png",game.tileSize,game.tileSize);
+//        left2= loadImage("/npc/oldman_left_2.png",game.tileSize,game.tileSize);
+//        right1= loadImage("/npc/oldman_right_1.png",game.tileSize,game.tileSize);
+//        right2= loadImage("/npc/oldman_right_2.png",game.tileSize,game.tileSize);
     }
-
-    //set dialogue
     public void setDialogue(){
         dialogue[0]="Hello";
         dialogue[1]="So, you've come to this island to \nfind the treasure";
@@ -44,7 +40,6 @@ public class NPC_OldMan extends Entity{
         dialogue[3]="Well, good luck on you.";
     }
 
-    //this is kind of AI work
     public void setAction(){
         actionLookCounter++;
         if(actionLookCounter==100){//for two seconds it means
@@ -66,12 +61,7 @@ public class NPC_OldMan extends Entity{
         }
     }
 
-
-
-
-
-//    public void speak(){
+//        public void speak(){
 //        super.speak();
-//    }
-
+//        }
 }

@@ -19,6 +19,9 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Game extends Application {
     // GAME SETTINGS
@@ -75,7 +78,9 @@ public class Game extends Application {
     public EventHandler eventHandler= new EventHandler(this);
     public AssetSetter assetSetter= new AssetSetter(this);
     public GameAnimationTimer gameTimer;
-    public Entity npc[][]= new Entity[maxMap][10]; //set the number of 10
+    public Entity npc[][]= new Entity[maxMap][10]; //set the number of 10 NPC Number
+
+    ArrayList<Entity> entityList = new ArrayList<>();
 
     KeyHandler keyHandler;
     public Player player ;
@@ -125,7 +130,7 @@ public class Game extends Application {
        // primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setScene(menuScene);
         primaryStage.show();
-        primaryStage.setOnCloseRequest(windowEvent -> exit(primaryStage));
+        //primaryStage.setOnCloseRequest(windowEvent -> exit(primaryStage));
     }
 
     void exit(Stage stage) {
@@ -258,8 +263,16 @@ public void resumeGame(){
 
 
     public void update() {
+        //Player UPDATE
         player.update();
-        npc[currentMap][0].update();
+
+        //NPC UPDATE
+        for(int i=0; i<npc[currentMap].length; i++){
+            if(npc[currentMap][i] !=null){
+                npc[currentMap][i].update();
+            }
+        }
+
 
 
 
@@ -269,8 +282,33 @@ public void resumeGame(){
 
     public void render(){
         tileM.draw(gc);
-        player.draw(gc);
-        npc[currentMap][0].draw(gc);
+        //add player
+        entityList.add(player);
+
+        //add npc entity TO the list.
+        for(int i=0; i<npc[currentMap].length; i++){
+            if(npc[currentMap][i]!=null){
+                entityList.add(npc[currentMap][i]);
+            }
+        }
+
+
+        //Sorting before draw to draw in perfect layer thinking z index so that it draws the accurate position not over drawing
+        Collections.sort(entityList, new Comparator<Entity>() {
+            @Override
+            public int compare(Entity e1, Entity e2) {
+                int result=Integer.compare(e1.worldY, e2.worldY);
+                return result;
+            }
+        });
+        //Finally we will draw the entity
+        for(int i=0;i<entityList.size();i++){
+            entityList.get(i).draw(gc);
+        }
+
+        //Empty the entity list because when this will render again the entity will added to the list again
+        entityList.clear();
+
     }
 
 
