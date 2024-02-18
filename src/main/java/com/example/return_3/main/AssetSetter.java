@@ -1,13 +1,15 @@
 package com.example.return_3.main;
 
 
+import com.example.return_3.entity.NPC_GameCenter;
 import com.example.return_3.entity.NPC_OldMan;
+import com.example.return_3.entity.NPC_School;
 
 //This class is made for setting Asset to the Game map.
 public class AssetSetter {
-    Game gp;
-    public AssetSetter(Game gp ){
-        this.gp = gp;
+    Game game;
+    public AssetSetter(Game game ){
+        this.game = game;
     }
 
     //HERE IS SOME METHOD OF
@@ -29,11 +31,14 @@ public class AssetSetter {
     public void setNPC(){
         int mapNum=0;
         int i=0;
-        gp.npc[0][0]= new NPC_OldMan(gp);
-        gp.npc[0][0].worldX=gp.tileSize*38;
-        gp.npc[0][0].worldY=gp.tileSize*14;
+        game.npc[mapNum][i]= new NPC_School(game);
+        game.npc[mapNum][i].worldX=game.tileSize*38;
+        game.npc[mapNum][i].worldY=game.tileSize*14;
 
         i++;
+        game.npc[mapNum][i]= new NPC_GameCenter(game);
+        game.npc[mapNum][i].worldX=game.tileSize*38;
+        game.npc[mapNum][i].worldY=game.tileSize*14;
 
         //New Map;
 //        mapNum=1;
