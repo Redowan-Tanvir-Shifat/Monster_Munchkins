@@ -194,7 +194,15 @@ public class EventHandler {
         if (canTouchEvent) {
             // Event happened
             // Handle JavaFX events here
-            if(hit(gp.currentMap,42,10,"up")){
+
+            if(hit(gp.currentMap,6,7,"any")){
+//                    gp.currentMap = 1;
+                    teleport(1, 22,12);
+
+                System.out.println("welcome to Castle");
+            }
+
+            if(hit(gp.currentMap,42,10,"any")){
 
                     try {
 //                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/school.fxml"));
@@ -219,6 +227,32 @@ public class EventHandler {
 
 
             }
+
+            if(hit(gp.currentMap,23,42,"any")){
+
+                try {
+//                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/school.fxml"));
+//                        Parent root = loader.load();
+//                        Scene scene= new Scene(root);
+////                        scene.getStylesheets().add(getClass().getResource("school.css").toExternalForm());
+//                        gp.gameTimer.stop();
+//                        Game.primaryStage.setScene(scene);
+
+                    gp.showStoreScene();
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    System.err.println("Error loading store.fxml: " + e.getMessage());
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+
+
+                System.out.println("welcome to Store");
+                //
+
+            }
+
             if(hit(gp.currentMap,11,47,"right")){
 
                if(tl){

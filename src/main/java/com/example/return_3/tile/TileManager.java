@@ -21,7 +21,7 @@ public class TileManager {
         this.game=game;
 
         // Read the tile data file first
-        InputStream is = getClass().getResourceAsStream("/maps/demoMap_data.txt");
+        InputStream is = getClass().getResourceAsStream("/maps/demoMap3_data.txt");
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
         // Getting Tile data and collision q from the file
@@ -40,7 +40,7 @@ public class TileManager {
         getTileImage();
 
         // Get the max world col and row
-        is = getClass().getResourceAsStream("/maps/demoMap1.txt");
+        is = getClass().getResourceAsStream("/maps/demoMap3.txt");
         br = new BufferedReader(new InputStreamReader(is));
         try{
             String line2 = br.readLine();
@@ -53,8 +53,8 @@ public class TileManager {
             e.printStackTrace();
         }
 
-        loadMap("/maps/demoMap1.txt",0);
-       // loadMap("/maps/map01.txt",1);
+         loadMap("/maps/demoMap3.txt",0);
+         loadMap("/maps/gameMap.txt",1);
        // loadMap("/maps/map03.txt",2);
     }
 

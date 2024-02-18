@@ -123,7 +123,7 @@ public class Game extends Application {
         primaryStage = stage;
         loadMenuScene();
         primaryStage.setTitle("Game Menu");
-       // primaryStage.initStyle(StageStyle.UNDECORATED);
+        primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setScene(menuScene);
         primaryStage.show();
         primaryStage.setOnCloseRequest(windowEvent -> exit(primaryStage));
@@ -241,6 +241,14 @@ public void resumeGame(){
         gameTimer.stop();
         Game.primaryStage.setScene(scene);
     }
+    public void showStoreScene() throws Exception{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/store.fxml"));
+        Parent root = loader.load();
+        Scene scene= new Scene(root);
+        //scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("school.css")).toExternalForm());
+        gameTimer.stop();
+        Game.primaryStage.setScene(scene);
+    }
 
 
 
@@ -267,7 +275,7 @@ public void resumeGame(){
 
     public void update() {
         player.update();
-        npc[currentMap][0].update();
+//      npc[currentMap][0].update();
 
 
 
@@ -278,7 +286,7 @@ public void resumeGame(){
     public void render(){
         tileM.draw(gc);
         player.draw(gc);
-        npc[currentMap][0].draw(gc);
+//        npc[currentMap][0].draw(gc);
     }
 
 
