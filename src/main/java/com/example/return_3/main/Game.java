@@ -222,6 +222,7 @@ public void resumeGame(){
         scene = new Scene(root, screenWidth, screenHeight); // Set the scene before creating KeyHandler
         player = new Player(this, new KeyHandler(this)); // KeyHandler depends on game.scene
         root.getChildren().add(canvas);
+        assetSetter.setNPC();
         lastNanoTime = System.nanoTime();
 //        assetSetter.setNPC();
         gameTimer = new GameAnimationTimer(this);
@@ -257,6 +258,9 @@ public void resumeGame(){
 
     public void update() {
         player.update();
+        npc[currentMap][0].update();
+
+
 
     }
 
@@ -265,6 +269,7 @@ public void resumeGame(){
     public void render(){
         tileM.draw(gc);
         player.draw(gc);
+        npc[currentMap][0].draw(gc);
     }
 
 
