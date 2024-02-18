@@ -1,7 +1,9 @@
 package com.example.return_3.entity;
 
 import com.example.return_3.main.Game;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.shape.Rectangle;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -23,11 +25,11 @@ public class Entity {
     public int spriteCounter=0;
     public  int spriteNum=1;
 
-    //COLLision
-    //part 6 collision
-    //public Rectangle solidArea = new Rectangle(0,0,48,48);
+  //  COLLision
+  //  part 6 collision
+    public Rectangle solidArea = new Rectangle(0,0,32,32);
     //part 8 Object Interaction part starts
-    //public Rectangle attackArea = new Rectangle(0,0,0,0);
+    public Rectangle attackArea = new Rectangle(0,0,0,0);
     public int solidAreaDefaultX,solidAreaDefaultY;
     //part 8 Object Interaction part  ends
     public boolean collisionOn= false;
@@ -128,7 +130,7 @@ public class Entity {
         setAction();
         collisionOn=false;
         //CHeching part of collision so that entity got collision and can not move
-//        gp.cChecker.checkTile(this);
+        game.cChecker.checkTile(this);
 //        gp.cChecker.checkObject(this,false); //its not player so its remain false
 //        gp.cChecker.checkEntity(this,gp.npc);
 //        gp.cChecker.checkEntity(this,gp.monster);
@@ -167,18 +169,106 @@ public class Entity {
             spriteCounter = 0;
         }
 
-        if(invincible==true){
-            invincibleCounter++;
-            if(invincibleCounter>40){
-                invincible=false;
-                invincibleCounter=0;
-            }
-        }
-        if(shotAvailableCounter<30){
-            shotAvailableCounter++;
-        }
+//        if(invincible==true){
+//            invincibleCounter++;
+//            if(invincibleCounter>40){
+//                invincible=false;
+//                invincibleCounter=0;
+//            }
+//        }
+//        if(shotAvailableCounter<30){
+//            shotAvailableCounter++;
+//        }
 
     }
+
+
+    public void draw(GraphicsContext gc){
+        Image image= null;
+        int screenX= worldX-game.player.worldX + game.player.screenX;
+        int screenY= worldY-game.player.worldY + game.player.screenY;
+
+
+        //this process is for not drawing the whole world map but the map tiles we needed only
+        if(worldX+ game.tileSize>game.player.worldX-game.player.screenX&&
+                worldX-game.tileSize<game.player.worldX+game.player.screenX&&
+                worldY+ game.tileSize>game.player.worldY-game.player.screenY&&
+                worldY- game.tileSize<game.player.worldY+game.player.screenY
+        ){
+            switch (direction){
+                case"up":
+                    if(spriteNum==1){
+                        image= up1;
+                    }
+                    if(spriteNum==2){
+                        image=up2;
+                    }
+                    break;
+                case"down":
+                    if(spriteNum==1){
+                        image= down1;
+                    }
+                    if(spriteNum==2){
+                        image=down2;
+                    }
+                    break;
+                case"left":
+                    if(spriteNum==1){
+                        image= left1;
+                    }
+                    if(spriteNum==2){
+                        image=left2;
+                    }
+                    break;
+                case"right":
+                    if(spriteNum==1){
+                        image= right1;
+                    }
+                    if(spriteNum==2){
+                        image=right2;
+                    }
+                    break;
+            }
+
+            //MONSTER HEALTH BAR
+//            if(type==type_monster && hpBarOn==true){ //type 2 for monster
+//                double oneScale= (double)game.tileSize/maxLife;
+//                double hpPerValue=oneScale*life;
+//
+//                //set background color
+//                g2.setColor(new Color(35,35,35));
+//                g2.fillRect(screenX-1,screenY-16,gp.tileSize+2,12);
+//
+//                g2.setColor(new Color(255,0,30));
+//                g2.fillRect(screenX,screenY-15,(int)hpPerValue,10);
+//                hpBarCounter++;
+//                if(hpBarCounter>600){
+//                    hpBarCounter=0;
+//                    hpBarOn=false;
+//
+//                }
+//            }
+
+
+//
+//            if(invincible==true){
+//                hpBarOn=true;
+//                hpBarCounter=0;
+//                changeAlpha(g2,0.4F);
+//            }
+//            if(dying==true){
+//                dyingAnimation(g2);
+//            }
+            gc.drawImage(image,screenX,screenY);
+
+            //Reset opacity
+//            changeAlpha(g2,1F);
+        }
+    }
+
+
+
+
     Image loadImage(String imagePath, int width, int height) {
         return new Image(Objects.requireNonNull(getClass().getResourceAsStream(imagePath)), width, height, true, true);
     }

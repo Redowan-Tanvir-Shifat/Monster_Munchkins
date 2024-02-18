@@ -1,10 +1,16 @@
 package com.example.return_3.entity;
 
+import com.example.return_3.main.EventHandler;
 import com.example.return_3.main.Game;
 import com.example.return_3.main.KeyHandler;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.shape.Rectangle;
+
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -15,7 +21,8 @@ import java.util.Objects;
 public class Player extends Entity{
     //VARIABLES
     KeyHandler keyHandler;
-    private double speed=120*game.targetFrameTime; //pixel per second
+
+
 
     public final int screenX;
     public final int screenY;
@@ -33,6 +40,22 @@ public class Player extends Entity{
         // Calculate the middle point
         screenX = (int) (screenWidth / 2);
         screenY = (int) (screenHeight / 2);
+
+        //part 6 collision part starts
+        solidArea= new Rectangle(); //we can skip this session. (as we already make it in Entity class)
+        solidArea.setX(5);
+        solidArea.setY(10);
+
+        //part 8 Object Interaction part starts
+        solidAreaDefaultX=(int)(solidArea.getX());
+        solidAreaDefaultY=(int)(solidArea.getY());
+        //part 8 Object Interaction part  ends
+
+        solidArea.setWidth(22);
+        solidArea.setHeight(22);
+        //part 6 collision part ends
+
+
         // Load player images and initialize ImageView
         loadPlayerImages();
 //        playerImageView = new ImageView();
@@ -73,7 +96,7 @@ public class Player extends Entity{
 
     public void setDefaultValues(){
         setDefaultPositions();
-        speed=4;
+         speed=(int) (250*game.targetFrameTime); //pixel per second
 
 
         //Player Status;
@@ -99,8 +122,8 @@ public class Player extends Entity{
     }
 
     public void setDefaultPositions(){
-        worldX=game.tileSize*59;
-        worldY=game.tileSize*85;
+        worldX=game.tileSize*28;
+        worldY=game.tileSize*25;
         direction="down";
     }
 
@@ -123,6 +146,11 @@ public class Player extends Entity{
             collisionOn = false;
 
             //Now check for the colliosion here.
+
+            game.cChecker.checkTile(this);
+//            System.out.println("Collision: " + collisionOn);
+
+
             //new code
 
 
@@ -156,6 +184,17 @@ public class Player extends Entity{
             }
 
         }
+
+
+
+        try{
+            game.eventHandler.checkEvent();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+
+
+
     }
 
 
