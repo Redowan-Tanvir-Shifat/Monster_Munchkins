@@ -89,6 +89,11 @@ public class Game extends Application {
 
 
 
+    public void loginPage() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/return_3/login.fxml"));
+        menuScene = new Scene(fxmlLoader.load());
+        primaryStage.setScene(menuScene);
+    }
 
 
 
@@ -121,10 +126,11 @@ public class Game extends Application {
 //        gameTimer.start();
 
         primaryStage = stage;
-        loadMenuScene();
-        primaryStage.setTitle("Game Menu");
+        loginPage();
+//        loadMenuScene();
+        primaryStage.setTitle("Powered By return_3;");
         primaryStage.initStyle(StageStyle.UNDECORATED);
-        primaryStage.setScene(menuScene);
+//        primaryStage.setScene(menuScene);
         primaryStage.show();
         primaryStage.setOnCloseRequest(windowEvent -> exit(primaryStage));
     }
