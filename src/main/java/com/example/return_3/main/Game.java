@@ -236,7 +236,11 @@ public void resumeGame(){
         gameTimer = new GameAnimationTimer(this);
         gameTimer.start();
 
+        primaryStage.setX(300);
+        primaryStage.setY(120);
+
         primaryStage.setScene(scene);
+
     }
 
     public void showSchoolScene() throws Exception{
