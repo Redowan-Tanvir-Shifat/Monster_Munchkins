@@ -11,6 +11,7 @@ public class LoginController {
     TextField username;
     @FXML
     TextField password;
+    @FXML
     Label failedText;
     public Button closeButtion;
     public Button loginButton;
@@ -30,7 +31,7 @@ public class LoginController {
         if (Objects.equals(username.getText(), "redowan19") && Objects.equals(password.getText(), "return_3;")) {
             Game.showGameScene();
         } else {
-            failedText.setText("Password does not match!");
+            failedText.setText("Please enter right password!");
         }
 
     }
