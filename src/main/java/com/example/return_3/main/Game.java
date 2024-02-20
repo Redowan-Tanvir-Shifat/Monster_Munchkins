@@ -34,7 +34,7 @@ public class Game extends Application {
 
     // $$$$$$$$$  GAME STATE $$$$$$$$$
     public int gameState;
-    public final int schoolState=0;
+    public final int titleState=0;
     public final int playState=1;
     public final int pauseState=2;
     public final int dialogueState=3;
@@ -77,12 +77,14 @@ public class Game extends Application {
     public CollisionChecker cChecker = new CollisionChecker(this);
     public EventHandler eventHandler= new EventHandler(this);
     public AssetSetter assetSetter= new AssetSetter(this);
-    public GameAnimationTimer gameTimer;
+    public UI ui= new UI(this);
+    public static GameAnimationTimer gameTimer;
+
     public Entity npc[][]= new Entity[maxMap][10]; //set the number of 10 NPC Number
 
     ArrayList<Entity> entityList = new ArrayList<>();
 
-    KeyHandler keyHandler;
+   // public KeyHandler keyHandler;
     public Player player ;
     public Scene scene;
 
@@ -95,40 +97,15 @@ public class Game extends Application {
 
     public void loginPage() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/return_3/login.fxml"));
+
         menuScene = new Scene(fxmlLoader.load());
         primaryStage.setScene(menuScene);
     }
 
 
 
-
-
-
-
-
     @Override
     public void start(Stage stage) throws Exception {
-//        Pane root = new Pane();
-//        scene = new Scene(root,screenWidth,screenHeight);
-//        stage.setScene(scene);
-//        stage.show();
-//        //Add a background color
-//       // root.setStyle("-fx-background-color: black");
-//
-//
-//        keyHandler= new KeyHandler(this);
-//
-//        // Initialize player
-//        player = new Player(this, new KeyHandler(this));
-//        // Add player's ImageView to the root pane
-//        root.getChildren().add(canvas);
-//
-//
-//        lastNanoTime=System.nanoTime();
-//
-//        GameAnimationTimer gameTimer= new GameAnimationTimer(this);
-//        gameTimer.start();
-
         primaryStage = stage;
         loginPage();
 //        loadMenuScene();
@@ -170,7 +147,9 @@ public class Game extends Application {
                 e.printStackTrace();
             }
         } else {
+
             primaryStage.setScene(gameScene);
+            //gameTimer.start();
         }
     }
 
@@ -232,6 +211,7 @@ public void resumeGame(){
         gameInstance = this;
         Pane root = new Pane();
         scene = new Scene(root, screenWidth, screenHeight); // Set the scene before creating KeyHandler
+        gameScene=scene;
         player = new Player(this, new KeyHandler(this)); // KeyHandler depends on game.scene
         root.getChildren().add(canvas);
         assetSetter.setNPC();
@@ -242,6 +222,8 @@ public void resumeGame(){
 
         primaryStage.setX(300);
         primaryStage.setY(120);
+        //When the game is starting then gameState will be PlayeState
+        gameState=playState;
 
         primaryStage.setScene(scene);
 
@@ -298,14 +280,21 @@ public void resumeGame(){
 
     public void update() {
         //Player UPDATE
-        player.update();
+        if(gameState==playState){
 
-        //NPC UPDATE
-        for(int i=0; i<npc[currentMap].length; i++){
-            if(npc[currentMap][i] !=null){
-                npc[currentMap][i].update();
+            player.update();
+
+            //NPC UPDATE
+            for(int i=0; i<npc[currentMap].length; i++){
+                if(npc[currentMap][i] !=null){
+                    npc[currentMap][i].update();
+                }
             }
+
+            player.keyHandler.setEnterPressed(false);
+
         }
+
 
 
 
@@ -315,33 +304,40 @@ public void resumeGame(){
     // Method to update player sprite based on direction
 
     public void render(){
-        tileM.draw(gc);
-        //add player
-        entityList.add(player);
+       // ui.draw(gc);
+        if(gameState==playState) {
 
-        //add npc entity TO the list.
-        for(int i=0; i<npc[currentMap].length; i++){
-            if(npc[currentMap][i]!=null){
-                entityList.add(npc[currentMap][i]);
+
+            tileM.draw(gc);
+            //add player
+            entityList.add(player);
+
+            //add npc entity TO the list.
+            for (int i = 0; i < npc[currentMap].length; i++) {
+                if (npc[currentMap][i] != null) {
+                    entityList.add(npc[currentMap][i]);
+                }
             }
-        }
 
 
-        //Sorting before draw to draw in perfect layer thinking z index so that it draws the accurate position not over drawing
-        Collections.sort(entityList, new Comparator<Entity>() {
-            @Override
-            public int compare(Entity e1, Entity e2) {
-                int result=Integer.compare(e1.worldY, e2.worldY);
-                return result;
+            //Sorting before draw to draw in perfect layer thinking z index so that it draws the accurate position not over drawing
+            Collections.sort(entityList, new Comparator<Entity>() {
+                @Override
+                public int compare(Entity e1, Entity e2) {
+                    int result = Integer.compare(e1.worldY, e2.worldY);
+                    return result;
+                }
+            });
+            //Finally we will draw the entity
+            for (int i = 0; i < entityList.size(); i++) {
+                entityList.get(i).draw(gc);
             }
-        });
-        //Finally we will draw the entity
-        for(int i=0;i<entityList.size();i++){
-            entityList.get(i).draw(gc);
-        }
 
-        //Empty the entity list because when this will render again the entity will added to the list again
-        entityList.clear();
+            //Empty the entity list because when this will render again the entity will added to the list again
+            entityList.clear();
+        }else if(gameState==dialogueState){
+            ui.draw(gc);
+        }
 
     }
 
