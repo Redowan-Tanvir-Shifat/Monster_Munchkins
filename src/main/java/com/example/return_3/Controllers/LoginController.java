@@ -29,7 +29,7 @@ public class LoginController {
     }
 
     public void startGame(ActionEvent event) {
-        if (Objects.equals(username.getText(), "redowan19") && Objects.equals(password.getText(), "return_3;")) {
+        if (Objects.equals(username.getText(), "0") && Objects.equals(password.getText(), "0")) {
             Game.showGameScene();
         } else {
             failedText.setText("Please enter right password!");

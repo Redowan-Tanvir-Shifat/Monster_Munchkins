@@ -19,4 +19,8 @@ Game game;
         right1= loadImage("/npc/oldman_right_1.png",game.tileSize,game.tileSize);
         right2= loadImage("/npc/oldman_right_2.png",game.tileSize,game.tileSize);
     }
+
+    public void speak(){
+        super.speak();
+    }
 }

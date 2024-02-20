@@ -70,8 +70,8 @@ public class NPC_OldMan extends Entity{
 
 
 
-//    public void speak(){
-//        super.speak();
-//    }
+    public void speak(){
+        super.speak();
+    }
 
 }

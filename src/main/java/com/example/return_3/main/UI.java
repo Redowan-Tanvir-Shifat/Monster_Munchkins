@@ -1,76 +1,77 @@
-//package com.example.return_3.main;
-//
-//import com.example.return_3.entity.Entity;
-//import javafx.scene.canvas.GraphicsContext;
-//import javafx.scene.image.Image;
-//import javafx.scene.paint.Color;
-//import javafx.scene.text.Font;
-//
-//
-//import java.util.ArrayList;
-//
-//public class UI {
-//    Game game;
-//     GraphicsContext gc;
-//    Font arial_40, arial_80B;
-//    Image heartFull,heartHalf,heartBlank,crystalFull,crystalBlank;
-//    public boolean messageOn=false;
-//    //    public String message="";
-////    int messageCounter=0; //to set timer so that the message will be disappear after some moment
-//    ArrayList<String> message = new ArrayList<>();
-//    ArrayList<Integer> messageCounter = new ArrayList<>();
-//
-//    public boolean gameFinished=false; // if game is finished then the message will be shown
-//    public String currentDialogue=""; //for setting the dialogue
-//    public int commandNum=0; // this is for showing our menu specific commands
-//
-//    //INVENTORY
-//    public int playerSlotCol=0;
-//    public int playerSlotRow=0;
-//    public int npcSlotCol=0;
-//    public int npcSlotRow=0;
-//    public int subState=0;
-//
-//    int counter=0;
-//
-//    public Entity npc;
-//    //
-//
-//    //CONSTRUCTOR START
-//
-//    public UI(Game game){
-//        this.game = game;
-//        arial_40 = new Font("Arial",40);
-//        arial_80B = new Font("Arial",80);
-//        //       OBJ_Key key = new OBJ_Key(game);
-//        //     keyImage =key.image;
-//
-//        //Create Heart Object
-////        Entity heart= new OBJ_Heart(game);
-////        heartFull=heart.image;
-////        heartHalf=heart.image2;
-////        heartBlank=heart.image3;
-////        Entity crystal=new OBJ_ManaCrystal(game);
-////        crystalFull=crystal.image;
-////        crystalBlank=crystal.image2;
-//    }
-//    public void addMessage(String text){
-////        message = text;
-////        messageOn = true;
-//        message.add(text);
-//        messageCounter.add(0);
-//    }
-//    public void draw(GraphicsContext gc){
-//        //we did this because we need to use this gc in other methods also
-//        this.gc=gc;
-//
-//        gc.setFont(arial_40);
-//        gc.setFill(Color.WHITE);
-//        //TITLE STATE
+package com.example.return_3.main;
+
+import com.example.return_3.entity.Entity;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.StrokeLineCap;
+import javafx.scene.text.Font;
+
+
+import java.util.ArrayList;
+
+public class UI {
+    Game game;
+     GraphicsContext gc;
+    Font arial_40, arial_80B;
+    Image heartFull,heartHalf,heartBlank,crystalFull,crystalBlank;
+    public boolean messageOn=false;
+    //    public String message="";
+//    int messageCounter=0; //to set timer so that the message will be disappear after some moment
+    ArrayList<String> message = new ArrayList<>();
+    ArrayList<Integer> messageCounter = new ArrayList<>();
+
+    public boolean gameFinished=false; // if game is finished then the message will be shown
+    public String currentDialogue=""; //for setting the dialogue
+    public int commandNum=0; // this is for showing our menu specific commands
+
+    //INVENTORY
+    public int playerSlotCol=0;
+    public int playerSlotRow=0;
+    public int npcSlotCol=0;
+    public int npcSlotRow=0;
+    public int subState=0;
+
+    int counter=0;
+
+    public Entity npc;
+    //
+
+    //CONSTRUCTOR START
+
+    public UI(Game game){
+        this.game = game;
+        arial_40 = new Font("Arial",40);
+        arial_80B = new Font("Arial",80);
+        //       OBJ_Key key = new OBJ_Key(game);
+        //     keyImage =key.image;
+
+        //Create Heart Object
+//        Entity heart= new OBJ_Heart(game);
+//        heartFull=heart.image;
+//        heartHalf=heart.image2;
+//        heartBlank=heart.image3;
+//        Entity crystal=new OBJ_ManaCrystal(game);
+//        crystalFull=crystal.image;
+//        crystalBlank=crystal.image2;
+    }
+    public void addMessage(String text){
+//        message = text;
+//        messageOn = true;
+        message.add(text);
+        messageCounter.add(0);
+    }
+    public void draw(GraphicsContext gc){
+        //we did this because we need to use this gc in other methods also
+        this.gc=gc;
+
+        gc.setFont(arial_40);
+        gc.setFill(Color.WHITE);
+        //TITLE STATE
 //        if(game.gameState==game.titleState){
 //            drawTitleScreen();
 //        }
-//        //PLAY STATE
+        //PLAY STATE
 //        if(game.gameState == game.playState){
 //            //Do PlayState stuff
 //            //Drawing Heart for player life
@@ -85,13 +86,13 @@
 //            drawPlayerLife();
 //            drawMana();
 //        }
-//        //DIALOGUE STATE
-//        if(game.gameState == game.dialogueState){
+        //DIALOGUE STATE
+        if(game.gameState == game.dialogueState){
 //            drawPlayerLife();
 //            drawMana();
-//            drawDialogueScreen();
-//        }
-//        //CHARACTER STATE
+            drawDialogueScreen();
+        }
+        //CHARACTER STATE
 //        if(game.gameState == game.characterState){
 //            drawCharacterScreen();
 //            drawInventory(game.player,true);
@@ -114,8 +115,8 @@
 //        if(game.gameState == game.tradeState){
 //            drawTradeScreen();
 //        }
-//
-//    }
+
+    }
 //    public void drawPlayerLife(){
 //        //game.player.life=4;
 //        int x= game.tileSize/2;
@@ -163,14 +164,17 @@
 //            x+=35;
 //        }
 //    }
+
+
+
 //    public void drawMessage(){
 //        int messageX=game.tileSize;
 //        int messageY=game.tileSize*4;
-//        gc.setFont(gc.getFont().deriveFont(Font.BOLD,32F));
+//        //gc.setFont(gc.getFont().deriveFont(Font.BOLD,32F));
 //        for(int i=0;i<message.size();i++){
 //            if(message.get(i)!=null){
 //
-//                gc.setColor(Color.black);
+//                gc.setFill(Color.BLACK);
 //                gc.drawString(message.get(i),messageX+2,messageY+2);
 //
 //                gc.setColor(Color.white);
@@ -185,6 +189,9 @@
 //            }
 //        }
 //    }
+//
+
+
 //    public void drawTitleScreen(){
 //        //to color Background [THough default is black but by chance if we want to change the background color]
 //        gc.setColor(new Color(0,0,0));
@@ -235,6 +242,8 @@
 //        }
 //
 //    }
+//
+
 //    public void drawPauseScreen(){
 //        gc.setFont(gc.getFont().deriveFont(Font.PLAIN,80F));
 //        String text = "PAUSED";
@@ -243,27 +252,27 @@
 //        //now drawing
 //        gc.drawString(text, x, y);
 //    }
-//
-//    public void drawDialogueScreen(){
-//        //  CREATING A DIALOGUE WINDOW
-//        //set parameter for window
-//        int x=game.tileSize*3;
-//        int y=game.tileSize/2;
-//        int width=game.screenWidth-(game.tileSize*6);
-//        int height=game.tileSize*4;
-//        drawSubWindow(x, y, width, height);
-//        gc.setFont(gc.getFont().deriveFont(Font.PLAIN,28F));
-//        x+= game.tileSize;
-//        y+= game.tileSize;
-//
-//        //to create new line
-//        for(String line: currentDialogue.split("\n")){
-//            gc.drawString(line,x,y);
-//            y+=40;
-//        }
-//
-//    }
-//
+
+    public void drawDialogueScreen(){
+        //  CREATING A DIALOGUE WINDOW
+        //set parameter for window
+        int x=game.tileSize*3;
+        int y=game.tileSize/2;
+        int width=game.screenWidth-(game.tileSize*6);
+        int height=game.tileSize*4;
+        drawSubWindow(x, y, width, height);
+        //gc.setFont(gc.getFont().deriveFont(Font.PLAIN,28F));
+        x+= game.tileSize;
+        y+= game.tileSize;
+
+        //to create new line
+        for(String line: currentDialogue.split("\n")){
+            gc.fillText(line,x,y);
+            y+=40;
+        }
+
+    }
+
 //    public void drawCharacterScreen(){
 //        //CREATE A FRAME
 //        final int frameX=game.tileSize;
@@ -696,7 +705,7 @@
 //            game.eHandler.previousEventY=game.player.worldY;
 //        }
 //    }
-//
+
 //    public void drawTradeScreen(){
 //        switch (subState){
 //            case 0:trade_select();break;
@@ -790,16 +799,21 @@
 //        return itemIndex;
 //    }
 //
-//    public void drawSubWindow(int x, int y, int width, int height){
-//        Color c= new Color(0,0,0,210);
-//        gc.setColor(c);
-//        gc.fillRoundRect(x,y,width,height,35,35);
-//
-//        c=new Color(255,255,255);
-//        gc.setColor(c);
-//        gc.setStroke(new BasicStroke(5));
-//        gc.drawRoundRect(x+5,y+5,width-10,height-10,25,25);
-//    }
+    public void drawSubWindow(int x, int y, int width, int height){
+        Color c=Color.BLACK;
+        gc.setFill(c);
+        gc.fillRoundRect(x,y,width,height,35,35);
+
+        c=Color.WHITE;
+        gc.setFill(c);
+        //gc.setStroke(Color.WHITE);
+
+
+        gc.setLineWidth(5); // Setting stroke width
+        gc.setLineDashes(0); // Setting line dashes to 0 (solid line)
+        gc.setLineCap(StrokeLineCap.ROUND); // Setting line cap to round
+        gc.strokeRoundRect(x + 5, y + 5, width - 10, height - 10, 25, 25);
+    }
 //
 //
 //    //creating a method to get the middle position of x co ordinate as dependign the text
@@ -812,4 +826,4 @@
 //        int x=tailX-length;
 //        return x;
 //    }
-//}
+}

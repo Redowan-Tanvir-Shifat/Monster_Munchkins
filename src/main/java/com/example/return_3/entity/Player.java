@@ -20,7 +20,7 @@ import java.util.Objects;
 
 public class Player extends Entity{
     //VARIABLES
-    KeyHandler keyHandler;
+    public KeyHandler keyHandler;
 
 
 
@@ -128,7 +128,7 @@ public class Player extends Entity{
     }
 
     public void update(){
-        if(keyHandler.isMoveUp() || keyHandler.isMoveDown() || keyHandler.isMoveRight() || keyHandler.isMoveLeft()) {
+        if(keyHandler.isMoveUp() || keyHandler.isMoveDown() || keyHandler.isMoveRight() || keyHandler.isMoveLeft() || keyHandler.isEnterPressed()) {
             // Move player based on key inputs
             if (keyHandler.isMoveUp()) {
                 direction = "up";
@@ -258,7 +258,17 @@ public class Player extends Entity{
 
 
     public void interactNPC(int i){
-       // code if we need to handle the interact npc like contact them when pressing enter
+        if(keyHandler.isEnterPressed() ==true){
+            if(i!=999){
+                //attackCanceled=true;
+                game.gameState=game.dialogueState;
+                game.npc[game.currentMap][i].speak();
+            }
+//            else {
+//                gp.playSE(7);
+//                attacking=true;
+//            }
+        }
     }
 
 }

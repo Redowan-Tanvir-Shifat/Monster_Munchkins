@@ -136,6 +136,7 @@ public class Entity {
 //        gp.cChecker.checkEntity(this,gp.monster);
 //        gp.cChecker.checkEntity(this,gp.iTile);
         boolean contactPlayer= game.cChecker.checkPlayer(this);
+
 //
 //        if(this.type ==type_monster && contactPlayer==true){
 //            damagePlayer(attack);
@@ -266,6 +267,29 @@ public class Entity {
         }
     }
 
+
+
+    public void speak(){
+        if(dialogue[dialogueIndex]==null){
+            dialogueIndex=0;
+        }
+        game.ui.currentDialogue=dialogue[dialogueIndex];
+        dialogueIndex++;
+        switch (game.player.direction){
+            case "up":
+                direction="down";
+                break;
+            case "left":
+                direction="right";
+                break;
+            case "right":
+                direction="left";
+                break;
+            case "down":
+                direction="up";
+                break;
+        }
+    }
 
 
 

@@ -8,10 +8,12 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
+import java.awt.event.KeyEvent;
+
 public class KeyHandler {
     Game game;
     Stage stage;
-    private boolean moveUp, moveDown, moveLeft, moveRight;
+    private boolean moveUp, moveDown, moveLeft, moveRight,enterPressed;
 
     public KeyHandler(Game game) {
         this.game = game;
@@ -20,6 +22,34 @@ public class KeyHandler {
     }
 
     private void handleKeyPress(KeyCode code) {
+
+
+        //This is for PlayState
+         if(game.gameState== game.playState){
+            playState(code);
+        }
+        //PAUSE state
+//        else if(game.gameState==game.pauseState) {
+//            pauseState(code);
+//        }
+        //DIALOGUE state
+        else if(game.gameState==game.dialogueState){
+            dialogueState(code);
+        }
+
+
+
+
+
+
+
+
+    }
+
+
+
+    public void playState(KeyCode code){
+
         switch (code) {
             case UP: moveUp = true; break;
             case DOWN: moveDown = true; break;
@@ -29,6 +59,8 @@ public class KeyHandler {
             case S: moveDown = true; break;
             case A: moveLeft = true; break;
             case D: moveRight = true; break;
+            case ENTER: enterPressed=true; break;
+
             case ESCAPE: try {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Exit");
@@ -41,8 +73,23 @@ public class KeyHandler {
                 e.printStackTrace();
             }
         }
-
     }
+
+    public void dialogueState(KeyCode code){
+        if(code== KeyCode.ENTER){ //VK_ENTER means if user press ENTER then
+            game.gameState=game.playState;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
 
     private void handleKeyRelease(KeyCode code) {
         switch (code) {
@@ -54,6 +101,8 @@ public class KeyHandler {
             case S: moveDown = false; break;
             case A: moveLeft = false; break;
             case D: moveRight = false; break;
+            case ENTER: enterPressed=false; break;
+
         }
 
     }
@@ -75,5 +124,12 @@ public class KeyHandler {
 
     public boolean isMoveRight() {
         return moveRight;
+    }
+    public boolean isEnterPressed(){
+        return enterPressed;
+    }
+
+    public void setEnterPressed(boolean enterPressed) {
+        this.enterPressed = enterPressed;
     }
 }
