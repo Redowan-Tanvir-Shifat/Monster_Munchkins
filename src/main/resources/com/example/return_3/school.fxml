@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="576.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.return_3.main.SchoolController">
+            fx:controller="com.example.return_3.Controllers.SchoolController">
    <Label layoutX="123.0" layoutY="24.0" text="Welcome to School">
       <font>
          <Font name="Book Antiqua Bold" size="35.0"/>

@@ -264,10 +264,19 @@ public void resumeGame(){
         Game.primaryStage.setScene(scene);
     }
 
+    public void showGameCenter() throws Exception{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/gameCenter.fxml"));
+        Parent root = loader.load();
+        Scene scene= new Scene(root);
+        //scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("school.css")).toExternalForm());
+        gameTimer.stop();
+        Game.primaryStage.setScene(scene);
+    }
 
 
 
-    static void exitGame() {
+
+    public static void exitGame() {
         Platform.exit();
     }
 

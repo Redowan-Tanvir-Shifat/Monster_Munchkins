@@ -1,5 +1,6 @@
-package com.example.return_3.main;
+package com.example.return_3.Controllers;
 
+import com.example.return_3.main.Game;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;

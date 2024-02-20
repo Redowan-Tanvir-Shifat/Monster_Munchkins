@@ -1,5 +1,6 @@
-package com.example.return_3.main;
+package com.example.return_3.Controllers;
 
+import com.example.return_3.main.Game;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,7 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 
-public class MathController {
+public class EnglishController {
     Game game;
 
     @FXML
