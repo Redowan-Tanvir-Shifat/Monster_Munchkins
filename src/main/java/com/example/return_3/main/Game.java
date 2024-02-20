@@ -34,7 +34,7 @@ public class Game extends Application {
 
     // $$$$$$$$$  GAME STATE $$$$$$$$$
     public int gameState;
-    public final int schoolState=0;
+    public final int titleState=0;
     public final int playState=1;
     public final int pauseState=2;
     public final int dialogueState=3;
@@ -77,7 +77,7 @@ public class Game extends Application {
     public CollisionChecker cChecker = new CollisionChecker(this);
     public EventHandler eventHandler= new EventHandler(this);
     public AssetSetter assetSetter= new AssetSetter(this);
-    public GameAnimationTimer gameTimer;
+    public static GameAnimationTimer gameTimer;
     public Entity npc[][]= new Entity[maxMap][10]; //set the number of 10 NPC Number
 
     ArrayList<Entity> entityList = new ArrayList<>();
@@ -170,7 +170,9 @@ public class Game extends Application {
                 e.printStackTrace();
             }
         } else {
+
             primaryStage.setScene(gameScene);
+            //gameTimer.start();
         }
     }
 
@@ -232,6 +234,7 @@ public void resumeGame(){
         gameInstance = this;
         Pane root = new Pane();
         scene = new Scene(root, screenWidth, screenHeight); // Set the scene before creating KeyHandler
+        gameScene=scene;
         player = new Player(this, new KeyHandler(this)); // KeyHandler depends on game.scene
         root.getChildren().add(canvas);
         assetSetter.setNPC();
