@@ -195,11 +195,27 @@ public class EventHandler {
             // Event happened
             // Handle JavaFX events here
 
-            if(hit(gp.currentMap,6,7,"any")){
+            if(hit(0,6,7,"any")){
 //                    gp.currentMap = 1;
-                    teleport(1, 22,12);
+                try {
+//                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/school.fxml"));
+//                        Parent root = loader.load();
+//                        Scene scene= new Scene(root);
+////                        scene.getStylesheets().add(getClass().getResource("school.css").toExternalForm());
+//                        gp.gameTimer.stop();
+//                        Game.primaryStage.setScene(scene);
 
-                System.out.println("welcome to Castle");
+                    gp.showGameCenter();
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    System.err.println("Error loading gameCenter.fxml: " + e.getMessage());
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+
+
+                System.out.println("welcome to Game Center");
             }
 
             if(hit(gp.currentMap,42,10,"any")){
