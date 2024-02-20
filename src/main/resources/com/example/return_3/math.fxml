@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="576.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.return_3.main.MathController">
+            fx:controller="com.example.return_3.Controllers.MathController">
    <Label layoutX="283.0" layoutY="29.0" text="Welcome to Math Course">
       <font>
          <Font name="Book Antiqua" size="35.0"/>
