@@ -1,6 +1,8 @@
-package com.example.return_3.main;
+package com.example.return_3.test;
 
 
+
+import com.example.return_3.main.Game;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -10,22 +12,22 @@ import javafx.stage.Stage;
 
 import java.awt.event.KeyEvent;
 
-public class KeyHandler {
-    Game game;
+public class TestKeyHandler {
+    TestGame game;
     Stage stage;
     private boolean moveUp, moveDown, moveLeft, moveRight,enterPressed;
 
-    public KeyHandler(Game game) {
+    public TestKeyHandler(TestGame game) {
         this.game = game;
-        Game.gameScene.setOnKeyPressed(event -> handleKeyPress(event.getCode()));
-        Game.gameScene.setOnKeyReleased(event -> handleKeyRelease(event.getCode()));
+        game.scene.setOnKeyPressed(event -> handleKeyPress(event.getCode()));
+        game.scene.setOnKeyReleased(event -> handleKeyRelease(event.getCode()));
     }
 
     private void handleKeyPress(KeyCode code) {
 
 
         //This is for PlayState
-         if(game.gameState== game.playState){
+        if(game.gameState== game.playState){
             playState(code);
         }
         //PAUSE state
@@ -133,3 +135,4 @@ public class KeyHandler {
         this.enterPressed = enterPressed;
     }
 }
+

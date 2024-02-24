@@ -35,8 +35,8 @@ public class Player extends Entity{
         super(game);
         this.keyHandler = keyHandler;
         // Get the width and height of the screen
-        double screenWidth = game.scene.getWidth();
-        double screenHeight = game.scene.getHeight();
+        double screenWidth = Game.gameScene.getWidth();
+        double screenHeight = Game.gameScene.getHeight();
         // Calculate the middle point
         screenX = (int) (screenWidth / 2);
         screenY = (int) (screenHeight / 2);
@@ -58,11 +58,7 @@ public class Player extends Entity{
 
         // Load player images and initialize ImageView
         loadPlayerImages();
-//        playerImageView = new ImageView();
-//        playerImageView.setImage(down1); // Default image
-//        // Set initial position of the player image view
-//        playerImageView.setX(screenX);
-//        playerImageView.setY(screenY);
+
 
 
         setDefaultValues();
