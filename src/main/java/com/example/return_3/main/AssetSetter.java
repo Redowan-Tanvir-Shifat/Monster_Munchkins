@@ -5,6 +5,8 @@ import com.example.return_3.entity.NPC_GameCenter;
 import com.example.return_3.entity.NPC_OldMan;
 import com.example.return_3.entity.NPC_School;
 
+import java.util.Random;
+
 //This class is made for setting Asset to the Game map.
 public class AssetSetter {
     Game game;

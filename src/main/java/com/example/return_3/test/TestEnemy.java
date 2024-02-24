@@ -1,25 +1,15 @@
 package com.example.return_3.test;
 
 
-import com.example.return_3.entity.Entity;
-import com.example.return_3.gameCenter.spaceInvaders.GameSpaceInvaders;
-import com.example.return_3.main.Game;
-import com.example.return_3.main.KeyHandler;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.shape.Rectangle;
 
-import java.io.IOException;
 import java.util.Objects;
+import java.util.Random;
 
-public class TestPlayer {
-    public TestKeyHandler keyHandler;
-//    public int gameState;
-//    public final int titleState=0;
-//    public final int playState=1;
-//    public final int pauseState=2;
-//    public final int dialogueState=3;
-//    public final int characterState=4;
+public class TestEnemy {
+
+    boolean bottomTouched=false;
 
     TestGame game;
     public final int tileSize = 32; //SO every tile will be 32 pixels
@@ -36,39 +26,31 @@ public class TestPlayer {
     int posX,posY;
     public int spriteCounter=0;
     public  int spriteNum=1;
+    public int actionLookCounter=0;
 
-    public TestPlayer(TestGame game,TestKeyHandler keyHandler) {
+    public TestEnemy(TestGame game) {
         this.game=game;
-        this.keyHandler=keyHandler;
         double screenWidth = game.scene.getWidth();
         double screenHeight = game.scene.getHeight();
-
         loadPlayerImages();
-
-
-
         setDefaultValues();
-
-
-
-
     }
 
 
 
     private void loadPlayerImages() {
-        up1 = loadImage("/gameCenter/spaceInvaders/player/playerShip1_blue.png", game.tileSize, game.tileSize);
-        up2 = loadImage("/gameCenter/spaceInvaders/player/playerShip1_blue.png", game.tileSize, game.tileSize);
-        down1 = loadImage("/gameCenter/spaceInvaders/player/playerShip1_blue.png", game.tileSize, game.tileSize);
-        down2 = loadImage("/gameCenter/spaceInvaders/player/playerShip1_blue.png", game.tileSize, game.tileSize);
-        left1 = loadImage("/gameCenter/spaceInvaders/player/playerShip1_blue.png", game.tileSize, game.tileSize);
-        left2 = loadImage("/gameCenter/spaceInvaders/player/playerShip1_blue.png", game.tileSize, game.tileSize);
-        right1 = loadImage("/gameCenter/spaceInvaders/player/playerShip1_blue.png", game.tileSize, game.tileSize);
-        right2 = loadImage("/gameCenter/spaceInvaders/player/playerShip1_blue.png", game.tileSize, game.tileSize);
+        up1 = loadImage("/gameCenter/spaceInvaders/enemy/enemyBlue1.png", game.tileSize, game.tileSize);
+        up2 = loadImage("/gameCenter/spaceInvaders/enemy/enemyBlue1.png", game.tileSize, game.tileSize);
+        down1 = loadImage("/gameCenter/spaceInvaders/enemy/enemyBlue1.png", game.tileSize, game.tileSize);
+        down2 = loadImage("/gameCenter/spaceInvaders/enemy/enemyBlue1.png", game.tileSize, game.tileSize);
+        left1 = loadImage("/gameCenter/spaceInvaders/enemy/enemyBlue1.png", game.tileSize, game.tileSize);
+        left2 = loadImage("/gameCenter/spaceInvaders/enemy/enemyBlue1.png", game.tileSize, game.tileSize);
+        right1 = loadImage("/gameCenter/spaceInvaders/enemy/enemyBlue1.png", game.tileSize, game.tileSize);
+        right2 = loadImage("/gameCenter/spaceInvaders/enemy/enemyBlue1.png", game.tileSize, game.tileSize);
     }
     public void setDefaultValues(){
         setDefaultPositions();
-        speed=(int) (250*game.targetFrameTime); //pixel per second
+        speed=(int) (100*game.targetFrameTime); //pixel per second
 
 
 
@@ -76,27 +58,14 @@ public class TestPlayer {
     }
 
     public void setDefaultPositions(){
-        posX = (game.screenWidth - game.tileSize) / 2; // Center X position
-        posY = game.screenHeight - game.tileSize; // Bottom Y position
+        //worldX=game.tileSize*28;
+        //worldY=game.tileSize*25;
         direction="down";
     }
 
 
     public void update(){
-        if(keyHandler.isMoveUp() || keyHandler.isMoveDown() || keyHandler.isMoveRight() || keyHandler.isMoveLeft() || keyHandler.isEnterPressed()) {
-            // Move player based on key inputs
-            if (keyHandler.isMoveUp()) {
-                direction = "up";
-            }
-            if (keyHandler.isMoveDown()) {
-                direction = "down";
-            }
-            if (keyHandler.isMoveRight()) {
-                direction = "right";
-            }
-            if (keyHandler.isMoveLeft()) {
-                direction = "left";
-            }
+        setAction();
 
             collisionOn = false;
 
@@ -138,7 +107,8 @@ public class TestPlayer {
             if (posY < 0) {
                 posY = 0; // Prevent player from moving beyond the top boundary
             } else if (posY + game.tileSize > screenHeight) {
-                posY = screenHeight - game.tileSize; // Prevent player from moving beyond the bottom boundary
+                bottomTouched=true;
+               // posY = screenHeight - game.tileSize; // Prevent player from moving beyond the bottom boundary
             }
 
 
@@ -154,7 +124,7 @@ public class TestPlayer {
                 spriteCounter = 0;
             }
 
-        }
+
 
 
 
@@ -166,6 +136,24 @@ public class TestPlayer {
 
 
 
+    }
+
+    public void setAction(){
+        actionLookCounter++;
+        if(actionLookCounter==100){//for two seconds it means
+            Random random= new Random();
+            int i=random.nextInt(100)+1; //we add 1 because otherwise it will catch 0 to 99.. we want to avoid 0 here
+            if(i<=50){
+                direction="down";
+            }
+            if(i>50&&i<=75){
+                direction="left";
+            }
+            if(i>75&&i<=100){
+                direction="right";
+            }
+            actionLookCounter=0;
+        }
     }
 
 
@@ -230,5 +218,6 @@ public class TestPlayer {
     }
 
 }
+
 
 

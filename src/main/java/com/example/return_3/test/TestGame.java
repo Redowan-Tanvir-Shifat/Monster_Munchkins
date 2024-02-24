@@ -43,6 +43,9 @@ public class TestGame extends Application {
     TestPlayer testPlayer;
     Image backgroundImage;
 
+    TestEnemy[] enemies = new TestEnemy[10];
+    TestAssetSetter assetSetter;
+
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -52,14 +55,15 @@ public class TestGame extends Application {
         testKeyHandler=new TestKeyHandler(this);
          testPlayer=new TestPlayer(this,testKeyHandler);
          backgroundImage = testPlayer.loadImage("/gameCenter/spaceInvaders/background_1.jpg", screenWidth, screenHeight);
-
-
+         assetSetter= new TestAssetSetter(this);
+        assetSetter.setEnemy();
         root.getChildren().add(canvas);
         lastNanoTime = System.nanoTime();
         testGameTimer= new TestAnimationTimer(this);
         testGameTimer.start();
         gameState=playState;
         stage.setScene(scene);
+
         stage.setTitle("Powered By return_3;");
         stage.initStyle(StageStyle.UNDECORATED);
         stage.show();
@@ -70,10 +74,25 @@ public class TestGame extends Application {
     }
     public void update(){
         testPlayer.update();
+
+        for(int i=0; i<enemies.length;i++){
+            if(enemies[i]!=null){
+                if(enemies[i].bottomTouched==false){
+                enemies[i].update();
+                }else if(enemies[i].bottomTouched==true){
+                    enemies[i]=null;
+                }
+            }
+        }
     }
     public void render(){
 
         gc.drawImage(backgroundImage, 0, 0);
+        for(int i=0; i<enemies.length;i++){
+            if(enemies[i]!=null){
+                enemies[i].draw(gc);
+            }
+        }
         testPlayer.draw(gc);
     }
 
