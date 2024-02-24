@@ -12,6 +12,7 @@ import java.io.IOException;
 public class SpaceShip extends Entity {
     public KeyHandler keyHandler;
     GameSpaceInvaders gameSpaceInvaders;
+    Image bcPic;
     Game game;
     public int posX,posY;
 
@@ -25,6 +26,7 @@ public class SpaceShip extends Entity {
         this.keyHandler=keyHandler;
         double screenWidth = Game.gameScene.getWidth();
         double screenHeight = Game.gameScene.getHeight();
+        bcPic=  loadImage("/gameCenter/spaceInvaders/background_1.jpg", 896, 576);
 
 
 
@@ -150,6 +152,8 @@ public class SpaceShip extends Entity {
     public void draw(GraphicsContext gc){
         Image image= null;
 
+        Image backgroundImage =bcPic;
+
         switch (direction) {
             case "up":
                 if (spriteNum == 1){
@@ -191,6 +195,7 @@ public class SpaceShip extends Entity {
                 break;
             // Handle other directions similarly
         }
+        gc.drawImage(bcPic,0,0);
 
         gc.drawImage(image,posX,posY);
     }

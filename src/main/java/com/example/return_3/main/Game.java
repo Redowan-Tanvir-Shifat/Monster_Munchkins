@@ -26,7 +26,6 @@ import java.util.Objects;
 
 public class Game extends Application {
 
-     Image backgroundImage ;
 
     // GAME SETTINGS
 
@@ -109,9 +108,8 @@ public class Game extends Application {
     public void start(Stage stage) throws Exception {
         primaryStage = stage;
         //backgroundImage = new Image("/gameCenter/spaceInvaders/background_1.jpg");
-        backgroundImage = loadImage("/gameCenter/spaceInvaders/background_1.jpg",screenWidth,screenHeight);
         gameInstance=this;
-        Game.showGameScene();
+        gameInstance.showGameScene();
         //loginPage();
 //        loadMenuScene();
         primaryStage.setTitle("Powered By return_3;");
@@ -158,7 +156,7 @@ public class Game extends Application {
 //            System.out.println("GameScene is null");
             try {
 //                Game game = new Game();
-                //game.startGame();
+                //gameInstance.startGame();
                 gameSpaceInvaders =new GameSpaceInvaders(gameInstance);
                 gameSpaceInvaders.startGameSpaceInvaders();
 
@@ -300,7 +298,6 @@ public class Game extends Application {
             } else if (gameState == dialogueState) {
                 ui.draw(gc);
             } else if (gameStatus == gameSpaceInvadersStatus) {
-                gc.drawImage(backgroundImage,0,0);
                 gameSpaceInvaders.draw(gc);
 
 
@@ -311,9 +308,7 @@ public class Game extends Application {
 
 
 
-    public Image loadImage(String imagePath, int width, int height) {
-        return new Image(Objects.requireNonNull(getClass().getResourceAsStream(imagePath)), width, height, true, true);
-    }
+
     public static void main(String[] args) {
         launch(args);
     }

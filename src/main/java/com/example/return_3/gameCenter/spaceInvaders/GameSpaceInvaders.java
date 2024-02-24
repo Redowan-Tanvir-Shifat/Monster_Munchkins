@@ -10,6 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 
 import java.awt.*;
+import java.util.Objects;
 
 public class GameSpaceInvaders {
 
@@ -47,7 +48,6 @@ public class GameSpaceInvaders {
         //gameScene=scene;
 //        player = new Player(this, new KeyHandler(this)); // KeyHandler depends on game.scene
         spaceShip=new SpaceShip(game,new KeyHandler(game));
-        backgroundImage = spaceShip.loadImage("/gameCenter/spaceInvaders/background_1.jpg", screenWidth, screenHeight);
 
 
         root.getChildren().add(canvas);
@@ -73,10 +73,13 @@ public class GameSpaceInvaders {
         System.out.println("GameSpaceInvaders Class: `drawMethod`  draw working");
         //Now drawing the background
 
-       // gc.drawImage(backgroundImage, 0, 0);
+
         //Drawing spaceShip
         spaceShip.draw(this.gc);
     }
 
+    public Image loadImage(String imagePath, int width, int height) {
+        return new Image(Objects.requireNonNull(getClass().getResourceAsStream(imagePath)), width, height, true, true);
+    }
 
 }
