@@ -9,16 +9,18 @@ public class TestShot {
     public Rectangle solidArea;
     public int solidAreaDefaultX,solidAreaDefaultY;
 
-    private double posX;
-    private double posY;
-    private double speed;
-    private String direction;
+    public double posX;
+    public double posY;
+    public double speed;
+    public String direction;
     private Image image;
     private final int screenWidth;
     private final int screenHeight;
     private boolean active;
+    TestGame game;
 
-    public TestShot(double posX, double posY, double speed, String direction, Image image, int screenWidth, int screenHeight) {
+    public TestShot(TestGame game,double posX, double posY, double speed, String direction, Image image, int screenWidth, int screenHeight) {
+        this.game=game;
         this.posX = posX;
         this.posY = posY;
         this.speed = speed;
@@ -43,6 +45,12 @@ public class TestShot {
     }
 
     public void update() {
+
+        if(game.collisionChecker.checkPlayerShot(this)){
+            game.testPlayer.destroyed=true;
+            active=false;
+        }
+
         switch (direction) {
             case "up":
                 posY += speed;
@@ -57,6 +65,8 @@ public class TestShot {
                 posY += speed;
                 break;
         }
+
+
 
         // Check if shot is out of bounds
         if (posX < 0 || posX > screenWidth || posY < 0 || posY > screenHeight) {

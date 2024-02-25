@@ -4,16 +4,18 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
-public class TestEnemyBlack extends TestEnemy{
+public class TestEnemyBlack extends TestEntity {
 
     Image shotImage;
     int shotSpeed;
 
     public TestEnemyBlack(TestGame game) {
         super(game);
+        loadPlayerImages();
+        setDefaultValues();
+        speed=(int) (130*game.targetFrameTime);
         shots = new ArrayList<>();
         shotSpeed=(int) (130*game.targetFrameTime);
 
@@ -81,6 +83,9 @@ public class TestEnemyBlack extends TestEnemy{
         shots.removeIf(shot -> !shot.isActive());
         // Shoot at player
         shootAtPlayer();
+//        System.out.println("enemyBlack posX: "+posX + " posY: "+posY);
+//        System.out.println("enemyBlack solidX: "+solidAreaDefaultX + " solidY: "+solidAreaDefaultY);
+
     }
 
     private void shootAtPlayer() {
@@ -91,7 +96,7 @@ public class TestEnemyBlack extends TestEnemy{
         // Example:
         int i=new Random().nextInt(100)+1;
         if (i>99&&shotAvailableCounter>50) {
-            TestShot shot = new TestShot(posX, posY, shotSpeed, direction, shotImage, screenWidth, screenHeight);
+            TestShot shot = new TestShot(game,posX, posY, shotSpeed, direction, shotImage, screenWidth, screenHeight);
             shots.add(shot);
             shotAvailableCounter=0;
         }

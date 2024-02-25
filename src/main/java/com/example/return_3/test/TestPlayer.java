@@ -12,7 +12,7 @@ import javafx.scene.shape.Rectangle;
 import java.io.IOException;
 import java.util.Objects;
 
-public class TestPlayer {
+public class TestPlayer extends TestEntity{
     public TestKeyHandler keyHandler;
 //    public int gameState;
 //    public final int titleState=0;
@@ -31,9 +31,7 @@ public class TestPlayer {
     public Image up1,up2,down1, down2,left1,left2,right1,right2;
 
     int speed;
-    String direction;
     boolean collisionOn=false;
-    int posX,posY;
     public int spriteCounter=0;
     public  int spriteNum=1;
 
@@ -41,13 +39,13 @@ public class TestPlayer {
     public  int life;
     public int maxLife=4;
 
-    boolean destroyed=false;
 
     public Rectangle solidArea;
 
     public int solidAreaDefaultX,solidAreaDefaultY;
 
     public TestPlayer(TestGame game,TestKeyHandler keyHandler) {
+        super(game);
 
         this.game=game;
         this.keyHandler=keyHandler;
@@ -79,7 +77,7 @@ public class TestPlayer {
 
 
 
-    private void loadPlayerImages() {
+    public void loadPlayerImages() {
         up1 = loadImage("/gameCenter/spaceInvaders/player/playerShip1_blue.png", game.tileSize, game.tileSize);
         up2 = loadImage("/gameCenter/spaceInvaders/player/playerShip1_blue.png", game.tileSize, game.tileSize);
         down1 = loadImage("/gameCenter/spaceInvaders/player/playerShip1_blue.png", game.tileSize, game.tileSize);
@@ -106,6 +104,9 @@ public class TestPlayer {
 
 
     public void update(){
+
+
+
         if(keyHandler.isMoveUp() || keyHandler.isMoveDown() || keyHandler.isMoveRight() || keyHandler.isMoveLeft() || keyHandler.isEnterPressed()) {
             // Move player based on key inputs
             if (keyHandler.isMoveUp()) {
@@ -129,8 +130,11 @@ public class TestPlayer {
 //            System.out.println("Collision: " + collisionOn);
 
             //CHeck NPC collision
-//            int npcIndex=game.cChecker.checkEntity(this,game.npc);
-//            interactNPC(npcIndex);
+            int npcIndex=game.collisionChecker.checkEntity(this,game.enemies);
+            if(npcIndex!=999){
+                System.out.println(npcIndex);
+            }
+            interactNPC(npcIndex);
 
 
             //new code
@@ -182,6 +186,10 @@ public class TestPlayer {
         }
 
 
+        if(destroyed){
+            System.out.println("TestPlayer 188: destroy method: player died");
+        }
+        destroyed=false;
 
 //        try{
 //            //game.eventHandler.checkEvent();
@@ -189,7 +197,8 @@ public class TestPlayer {
 //            e.printStackTrace();
 //        }
 
-
+//        System.out.println("player posX: "+posX + " posY: "+posY);
+//        System.out.println("player solidX: "+solidAreaDefaultX + " solidY: "+solidAreaDefaultY);
 
     }
 
@@ -248,14 +257,14 @@ public class TestPlayer {
 
 
 
-    public void reduceHealth(){
-        life--;
-        System.out.println("life:"+life);
-        if(life<=0){
-            destroyed=true;
-
+ public void interactNPC(int i){
+        if(i!=999){
+            game.enemies[i]=null;
+            life--;
+            System.out.println("Life:"+life);
         }
-    }
+
+ }
 
     public Image loadImage(String imagePath, int width, int height) {
         return new Image(Objects.requireNonNull(getClass().getResourceAsStream(imagePath)), width, height, true, true);

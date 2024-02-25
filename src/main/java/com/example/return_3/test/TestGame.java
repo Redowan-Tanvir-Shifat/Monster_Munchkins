@@ -14,7 +14,7 @@ import java.util.List;
 
 public class TestGame extends Application {
     TestAnimationTimer testGameTimer;
-
+public TestCollisionChecker collisionChecker;
     public int gameState;
 
     public final int titleState=0;
@@ -44,11 +44,11 @@ public class TestGame extends Application {
     GraphicsContext gc = canvas.getGraphicsContext2D();
 
     TestKeyHandler testKeyHandler;
-    TestPlayer testPlayer;
+    TestEntity testPlayer;
     Image backgroundImage;
 
-    TestEnemy[] enemies = new TestEnemy[20];
-    List<TestEnemy> enemiesList = new ArrayList<TestEnemy>();
+    TestEntity[] enemies = new TestEntity[20];
+    List<TestEntity> enemiesList = new ArrayList<TestEntity>();
     TestAssetSetter assetSetter;
 
 
@@ -58,6 +58,7 @@ public class TestGame extends Application {
         Pane root = new Pane();
          scene = new Scene(root, screenWidth, screenHeight); // Set the scene before creating KeyHandler
         testKeyHandler=new TestKeyHandler(this);
+        collisionChecker= new TestCollisionChecker(this);
 
          testPlayer=new TestPlayer(this,testKeyHandler);
          backgroundImage = testPlayer.loadImage("/gameCenter/spaceInvaders/background_1.jpg", screenWidth, screenHeight);
@@ -79,6 +80,7 @@ public class TestGame extends Application {
         launch(args);
     }
     public void update(){
+
         testPlayer.update();
 
         for(int i=0; i<enemies.length;i++){

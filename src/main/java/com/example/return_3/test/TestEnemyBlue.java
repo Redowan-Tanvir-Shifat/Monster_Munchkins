@@ -2,9 +2,11 @@ package com.example.return_3.test;
 
 import java.util.Random;
 
-public class TestEnemyBlue extends TestEnemy{
+public class TestEnemyBlue extends TestEntity {
     public TestEnemyBlue(TestGame game) {
         super(game);
+        loadPlayerImages();
+        setDefaultValues();
     }
 
 
@@ -33,6 +35,56 @@ public class TestEnemyBlue extends TestEnemy{
                 direction="right";
             }
             actionLookCounter=0;
+        }
+    }
+    public void update(){
+        setAction();
+        collisionOn=false;
+        //            //collision related code
+            if(game.collisionChecker.checkPlayer(this)){
+                game.testPlayer.destroyed=true;
+            }
+
+        if (collisionOn == false) {
+            switch (direction) {
+                case "up":
+                    posY -= speed;
+                    break;
+                case "down":
+                    posY += speed;
+                    break;
+                case "left":
+                    posX -= speed;
+                    break;
+                case "right":
+                    posX += speed;
+                    break;
+            }
+        }
+        if (posX < 0) {
+            posX = 0; // Prevent player from moving beyond the left boundary
+        } else if (posX + game.tileSize > (screenWidth-(2*game.tileSize))) {
+            posX = (screenWidth-(2*game.tileSize)) - game.tileSize; // Prevent player from moving beyond the right boundary
+        }
+
+        if (posY < 0) {
+            posY = 0; // Prevent player from moving beyond the top boundary
+        } else if (posY + game.tileSize > screenHeight) {
+            bottomTouched=true;
+            // posY = screenHeight - game.tileSize; // Prevent player from moving beyond the bottom boundary
+        }
+
+
+//        playerImageView.setX(playerImageView.getX() - (playerSpeed*deltaTime));
+
+        spriteCounter++;
+        if (spriteCounter > 10) {
+            if (spriteNum == 1) {
+                spriteNum = 2;
+            } else if (spriteNum == 2) {
+                spriteNum = 1;
+            }
+            spriteCounter = 0;
         }
     }
 }

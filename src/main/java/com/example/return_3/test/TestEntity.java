@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
-public class TestEnemy {
+public class TestEntity {
     public List<TestShot> shots;
     //public Rectangle solidArea = new Rectangle(0,0,32,32);
     public Rectangle solidArea;
@@ -33,14 +33,15 @@ public class TestEnemy {
     public Image up1,up2,down1, down2,left1,left2,right1,right2;
 
     int speed;
-    String direction;
+    String direction="down";
     boolean collisionOn=false;
     int posX,posY;
     public int spriteCounter=0;
     public  int spriteNum=1;
     public int actionLookCounter=0;
+    public boolean destroyed=false;
 
-    public TestEnemy(TestGame game) {
+    public TestEntity(TestGame game) {
         this.game=game;
         double screenWidth = game.scene.getWidth();
         double screenHeight = game.scene.getHeight();
@@ -57,21 +58,21 @@ public class TestEnemy {
         solidArea.setWidth(22);
         solidArea.setHeight(22);
         //part 6 collision part ends
-        loadPlayerImages();
-        setDefaultValues();
+//        loadPlayerImages();
+
     }
 
 
 
     public void loadPlayerImages() {
-        up1 = loadImage("/gameCenter/spaceInvaders/enemy/enemyBlue1.png", game.tileSize, game.tileSize);
-        up2 = loadImage("/gameCenter/spaceInvaders/enemy/enemyBlue1.png", game.tileSize, game.tileSize);
-        down1 = loadImage("/gameCenter/spaceInvaders/enemy/enemyBlue1.png", game.tileSize, game.tileSize);
-        down2 = loadImage("/gameCenter/spaceInvaders/enemy/enemyBlue1.png", game.tileSize, game.tileSize);
-        left1 = loadImage("/gameCenter/spaceInvaders/enemy/enemyBlue1.png", game.tileSize, game.tileSize);
-        left2 = loadImage("/gameCenter/spaceInvaders/enemy/enemyBlue1.png", game.tileSize, game.tileSize);
-        right1 = loadImage("/gameCenter/spaceInvaders/enemy/enemyBlue1.png", game.tileSize, game.tileSize);
-        right2 = loadImage("/gameCenter/spaceInvaders/enemy/enemyBlue1.png", game.tileSize, game.tileSize);
+//        up1 = loadImage("/gameCenter/spaceInvaders/enemy/enemyBlue1.png", game.tileSize, game.tileSize);
+//        up2 = loadImage("/gameCenter/spaceInvaders/enemy/enemyBlue1.png", game.tileSize, game.tileSize);
+//        down1 = loadImage("/gameCenter/spaceInvaders/enemy/enemyBlue1.png", game.tileSize, game.tileSize);
+//        down2 = loadImage("/gameCenter/spaceInvaders/enemy/enemyBlue1.png", game.tileSize, game.tileSize);
+//        left1 = loadImage("/gameCenter/spaceInvaders/enemy/enemyBlue1.png", game.tileSize, game.tileSize);
+//        left2 = loadImage("/gameCenter/spaceInvaders/enemy/enemyBlue1.png", game.tileSize, game.tileSize);
+//        right1 = loadImage("/gameCenter/spaceInvaders/enemy/enemyBlue1.png", game.tileSize, game.tileSize);
+//        right2 = loadImage("/gameCenter/spaceInvaders/enemy/enemyBlue1.png", game.tileSize, game.tileSize);
     }
     public void setDefaultValues(){
         direction="down";
@@ -80,8 +81,15 @@ public class TestEnemy {
     }
 
     public void update(){
+
         setAction();
             collisionOn = false;
+
+//            //collision related code
+//            if(game.collisionChecker.checkPlayer(this)){
+//                game.testPlayer.destroyed=true;
+//            }
+
             if (collisionOn == false) {
                 switch (direction) {
                     case "up":

@@ -2,9 +2,11 @@ package com.example.return_3.test;
 
 import java.util.Random;
 
-public class TestEnemyGreen extends TestEnemy{
+public class TestEnemyGreen extends TestEntity {
     public TestEnemyGreen(TestGame game) {
         super(game);
+        loadPlayerImages();
+        setDefaultValues();
     }
     public void loadPlayerImages() {
         up1 = loadImage("/gameCenter/spaceInvaders/enemy/enemyGreen1.png", game.tileSize, game.tileSize);
