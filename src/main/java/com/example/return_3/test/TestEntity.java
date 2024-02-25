@@ -40,6 +40,8 @@ public class TestEntity {
     public  int spriteNum=1;
     public int actionLookCounter=0;
     public boolean destroyed=false;
+    Image shotImage;
+    int shotSpeed;
 
     public TestEntity(TestGame game) {
         this.game=game;
@@ -165,6 +167,13 @@ public class TestEntity {
             }
             actionLookCounter=0;
         }
+        for (TestShot shot : shots) {
+            shot.update();
+        }
+        // Remove inactive shots
+        shots.removeIf(shot -> !shot.isActive());
+        // Shoot at player
+        shootAtPlayer();
     }
 
 
@@ -217,11 +226,27 @@ public class TestEntity {
             // Handle other directions similarly
         }
 
+        for (TestShot shot : shots) {
+            shot.draw(gc);
+        }
+
         gc.drawImage(image,posX,posY);
     }
 
 
+    public void shootAtPlayer() {
+        shotAvailableCounter++;
 
+        // Logic to determine when to shoot at the player
+        // Create shot instances and add them to the shots list
+        // Example:
+        int i=new Random().nextInt(100)+1;
+        if (i>99&&shotAvailableCounter>50) {
+            TestShot shot = new TestShot(game,posX, posY, shotSpeed, direction, shotImage, screenWidth, screenHeight);
+            shots.add(shot);
+            shotAvailableCounter=0;
+        }
+    }
 
 
     public Image loadImage(String imagePath, int width, int height) {

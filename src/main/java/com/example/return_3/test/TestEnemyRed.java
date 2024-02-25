@@ -1,11 +1,14 @@
 package com.example.return_3.test;
 
+import java.util.ArrayList;
+
 public class TestEnemyRed extends TestEntity {
     public TestEnemyRed(TestGame game) {
         super(game);
         loadPlayerImages();
         setDefaultValues();
-
+        shots = new ArrayList<>();
+        shotSpeed=(int) (130*game.targetFrameTime);
     }
 
 
@@ -18,6 +21,7 @@ public class TestEnemyRed extends TestEntity {
         left2 = loadImage("/gameCenter/spaceInvaders/enemy/enemyRed1.png", game.tileSize, game.tileSize);
         right1 = loadImage("/gameCenter/spaceInvaders/enemy/enemyRed1.png", game.tileSize, game.tileSize);
         right2 = loadImage("/gameCenter/spaceInvaders/enemy/enemyRed1.png", game.tileSize, game.tileSize);
+        shotImage=loadImage("/gameCenter/spaceInvaders/fire/fire19.png", game.tileSize, game.tileSize);
     }
     public void setAction(){
         actionLookCounter++;
@@ -90,6 +94,14 @@ public class TestEnemyRed extends TestEntity {
             }
             spriteCounter = 0;
         }
+
+        for (TestShot shot : shots) {
+            shot.update();
+        }
+        // Remove inactive shots
+        shots.removeIf(shot -> !shot.isActive());
+        // Shoot at player
+        shootAtPlayer();
     }
 }
 

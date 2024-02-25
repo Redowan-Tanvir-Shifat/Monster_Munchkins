@@ -8,14 +8,13 @@ import java.util.Random;
 
 public class TestEnemyBlack extends TestEntity {
 
-    Image shotImage;
-    int shotSpeed;
+
 
     public TestEnemyBlack(TestGame game) {
         super(game);
         loadPlayerImages();
         setDefaultValues();
-        speed=(int) (130*game.targetFrameTime);
+        speed=(int) (80*game.targetFrameTime);
         shots = new ArrayList<>();
         shotSpeed=(int) (130*game.targetFrameTime);
 
@@ -88,19 +87,7 @@ public class TestEnemyBlack extends TestEntity {
 
     }
 
-    private void shootAtPlayer() {
-        shotAvailableCounter++;
 
-        // Logic to determine when to shoot at the player
-        // Create shot instances and add them to the shots list
-        // Example:
-        int i=new Random().nextInt(100)+1;
-        if (i>99&&shotAvailableCounter>50) {
-            TestShot shot = new TestShot(game,posX, posY, shotSpeed, direction, shotImage, screenWidth, screenHeight);
-            shots.add(shot);
-            shotAvailableCounter=0;
-        }
-    }
 
 
     public void draw(GraphicsContext gc) {
