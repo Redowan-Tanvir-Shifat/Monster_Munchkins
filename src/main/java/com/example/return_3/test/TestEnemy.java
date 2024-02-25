@@ -3,11 +3,23 @@ package com.example.return_3.test;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.shape.Rectangle;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
 public class TestEnemy {
+    public List<TestShot> shots;
+    //public Rectangle solidArea = new Rectangle(0,0,32,32);
+    public Rectangle solidArea;
+    public int solidAreaDefaultX,solidAreaDefaultY;
+
+
+
+
+    public  int shotAvailableCounter=0;
+
 
     boolean bottomTouched=false;
 
@@ -32,13 +44,26 @@ public class TestEnemy {
         this.game=game;
         double screenWidth = game.scene.getWidth();
         double screenHeight = game.scene.getHeight();
+        //part 6 collision part starts
+        solidArea= new Rectangle(); //we can skip this session. (as we already make it in Entity class)
+        solidArea.setX(5);
+        solidArea.setY(10);
+
+        //part 8 Object Interaction part starts
+        solidAreaDefaultX=(int)(solidArea.getX());
+        solidAreaDefaultY=(int)(solidArea.getY());
+        //part 8 Object Interaction part  ends
+
+        solidArea.setWidth(22);
+        solidArea.setHeight(22);
+        //part 6 collision part ends
         loadPlayerImages();
         setDefaultValues();
     }
 
 
 
-    private void loadPlayerImages() {
+    public void loadPlayerImages() {
         up1 = loadImage("/gameCenter/spaceInvaders/enemy/enemyBlue1.png", game.tileSize, game.tileSize);
         up2 = loadImage("/gameCenter/spaceInvaders/enemy/enemyBlue1.png", game.tileSize, game.tileSize);
         down1 = loadImage("/gameCenter/spaceInvaders/enemy/enemyBlue1.png", game.tileSize, game.tileSize);
@@ -49,39 +74,14 @@ public class TestEnemy {
         right2 = loadImage("/gameCenter/spaceInvaders/enemy/enemyBlue1.png", game.tileSize, game.tileSize);
     }
     public void setDefaultValues(){
-        setDefaultPositions();
+        direction="down";
         speed=(int) (100*game.targetFrameTime); //pixel per second
 
-
-
-
     }
-
-    public void setDefaultPositions(){
-        //worldX=game.tileSize*28;
-        //worldY=game.tileSize*25;
-        direction="down";
-    }
-
 
     public void update(){
         setAction();
-
             collisionOn = false;
-
-            //Now check for the colliosion here.
-
-            //game.cChecker.checkTile(this);
-//            System.out.println("Collision: " + collisionOn);
-
-            //CHeck NPC collision
-//            int npcIndex=game.cChecker.checkEntity(this,game.npc);
-//            interactNPC(npcIndex);
-
-
-            //new code
-
-
             if (collisionOn == false) {
                 switch (direction) {
                     case "up":
@@ -143,7 +143,10 @@ public class TestEnemy {
         if(actionLookCounter==100){//for two seconds it means
             Random random= new Random();
             int i=random.nextInt(100)+1; //we add 1 because otherwise it will catch 0 to 99.. we want to avoid 0 here
-            if(i<=50){
+            if(i<=25){
+                direction="up";
+            }
+            if(i>25&&i<=50){
                 direction="down";
             }
             if(i>50&&i<=75){

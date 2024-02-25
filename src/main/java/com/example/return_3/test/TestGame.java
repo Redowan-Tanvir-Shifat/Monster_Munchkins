@@ -9,8 +9,12 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TestGame extends Application {
     TestAnimationTimer testGameTimer;
+
     public int gameState;
 
     public final int titleState=0;
@@ -43,7 +47,8 @@ public class TestGame extends Application {
     TestPlayer testPlayer;
     Image backgroundImage;
 
-    TestEnemy[] enemies = new TestEnemy[10];
+    TestEnemy[] enemies = new TestEnemy[20];
+    List<TestEnemy> enemiesList = new ArrayList<TestEnemy>();
     TestAssetSetter assetSetter;
 
 
@@ -53,10 +58,11 @@ public class TestGame extends Application {
         Pane root = new Pane();
          scene = new Scene(root, screenWidth, screenHeight); // Set the scene before creating KeyHandler
         testKeyHandler=new TestKeyHandler(this);
+
          testPlayer=new TestPlayer(this,testKeyHandler);
          backgroundImage = testPlayer.loadImage("/gameCenter/spaceInvaders/background_1.jpg", screenWidth, screenHeight);
          assetSetter= new TestAssetSetter(this);
-        assetSetter.setEnemy();
+        assetSetter.start();
         root.getChildren().add(canvas);
         lastNanoTime = System.nanoTime();
         testGameTimer= new TestAnimationTimer(this);
@@ -78,12 +84,16 @@ public class TestGame extends Application {
         for(int i=0; i<enemies.length;i++){
             if(enemies[i]!=null){
                 if(enemies[i].bottomTouched==false){
+
+
                 enemies[i].update();
                 }else if(enemies[i].bottomTouched==true){
                     enemies[i]=null;
                 }
             }
         }
+
+
     }
     public void render(){
 
@@ -93,7 +103,10 @@ public class TestGame extends Application {
                 enemies[i].draw(gc);
             }
         }
+//        if(testPlayer.destroyed==false){
+//        }
         testPlayer.draw(gc);
+
     }
 
 }

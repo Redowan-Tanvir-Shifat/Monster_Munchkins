@@ -37,12 +37,35 @@ public class TestPlayer {
     public int spriteCounter=0;
     public  int spriteNum=1;
 
+
+    public  int life;
+    public int maxLife=4;
+
+    boolean destroyed=false;
+
+    public Rectangle solidArea;
+
+    public int solidAreaDefaultX,solidAreaDefaultY;
+
     public TestPlayer(TestGame game,TestKeyHandler keyHandler) {
+
         this.game=game;
         this.keyHandler=keyHandler;
         double screenWidth = game.scene.getWidth();
         double screenHeight = game.scene.getHeight();
+//part 6 collision part starts
+        solidArea= new Rectangle(); //we can skip this session. (as we already make it in Entity class)
+        solidArea.setX(5);
+        solidArea.setY(10);
 
+        //part 8 Object Interaction part starts
+        solidAreaDefaultX=(int)(solidArea.getX());
+        solidAreaDefaultY=(int)(solidArea.getY());
+        //part 8 Object Interaction part  ends
+
+        solidArea.setWidth(22);
+        solidArea.setHeight(22);
+        //part 6 collision part ends
         loadPlayerImages();
 
 
@@ -69,7 +92,7 @@ public class TestPlayer {
     public void setDefaultValues(){
         setDefaultPositions();
         speed=(int) (250*game.targetFrameTime); //pixel per second
-
+        life=maxLife;
 
 
 
@@ -111,6 +134,8 @@ public class TestPlayer {
 
 
             //new code
+
+
 
 
             if (collisionOn == false) {
@@ -223,7 +248,14 @@ public class TestPlayer {
 
 
 
+    public void reduceHealth(){
+        life--;
+        System.out.println("life:"+life);
+        if(life<=0){
+            destroyed=true;
 
+        }
+    }
 
     public Image loadImage(String imagePath, int width, int height) {
         return new Image(Objects.requireNonNull(getClass().getResourceAsStream(imagePath)), width, height, true, true);
