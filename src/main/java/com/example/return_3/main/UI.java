@@ -1,13 +1,16 @@
 package com.example.return_3.main;
 
 import com.example.return_3.entity.Entity;
+import com.example.return_3.object.OBJ_Heart;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.StrokeLineCap;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class UI {
@@ -31,7 +34,7 @@ public class UI {
     public int npcSlotCol=0;
     public int npcSlotRow=0;
     public int subState=0;
-
+    public Entity heart;
     int counter=0;
 
     public Entity npc;
@@ -47,10 +50,10 @@ public class UI {
         //     keyImage =key.image;
 
         //Create Heart Object
-//        Entity heart= new OBJ_Heart(game);
-//        heartFull=heart.image;
-//        heartHalf=heart.image2;
-//        heartBlank=heart.image3;
+         heart= new OBJ_Heart(game);
+        heartFull=heart.image;
+        heartHalf=heart.image2;
+        heartBlank=heart.image3;
 //        Entity crystal=new OBJ_ManaCrystal(game);
 //        crystalFull=crystal.image;
 //        crystalBlank=crystal.image2;
@@ -71,14 +74,16 @@ public class UI {
 //        if(game.gameState==game.titleState){
 //            drawTitleScreen();
 //        }
-        //PLAY STATE
-//        if(game.gameState == game.playState){
-//            //Do PlayState stuff
-//            //Drawing Heart for player life
-//            drawPlayerLife();
-//            drawMana();
-//            drawMessage();
-//        }
+//        PLAY STATE
+        if(game.gameState == game.playState){
+            //Do PlayState stuff
+            //Drawing Heart for player life
+            drawPlayerLife();
+            //drawMana();
+            drawMessage();
+            drawExp();
+            //drawEnergy();
+        }
 //        //PAUSE STATE
 //        if(game.gameState == game.pauseState){
 //            //Do pauseState stuff
@@ -117,34 +122,66 @@ public class UI {
 //        }
 
     }
-//    public void drawPlayerLife(){
-//        //game.player.life=4;
-//        int x= game.tileSize/2;
-//        int y=game.tileSize/2;
-//        int i=0;
-//        //DRAW BLANK HEART
-//        while(i<(game.player.maxLife/2)){
-//            gc.drawImage(heartBlank,x,y);
-//            i++;
-//            x+=game.tileSize;
-//        }
-//        //RESET THE values
-//        x= game.tileSize/2;
-//        y=game.tileSize/2;
-//        i=0;
-//
-//        //Draw Current LIFE
-//        while(i<game.player.life){
-//            gc.drawImage(heartHalf,x,y);
-//            i++;
-//            if(i<game.player.life){
-//                gc.drawImage(heartFull,x,y);
-//            }
-//            i++;
-//            x+=game.tileSize;
-//        }
-//
-//    }
+    public void drawPlayerLife(){
+        game.player.life=4;
+        int x= game.tileSize/2;
+        int y=game.tileSize/2;
+        int i=0;
+        //DRAW BLANK HEART
+        while(i<(game.player.maxLife/2)){
+            gc.drawImage(heartBlank,x,y);
+            i++;
+            x+=game.tileSize;
+        }
+        //RESET THE values
+        x= game.tileSize/2;
+        y=game.tileSize/2;
+        i=0;
+
+        //Draw Current LIFE
+        while(i<game.player.life){
+            gc.drawImage(heartHalf,x,y);
+            i++;
+            if(i<game.player.life){
+                gc.drawImage(heartFull,x,y);
+            }
+            i++;
+            x+=game.tileSize;
+        }
+
+    }
+    public void drawExp(){
+        int x = game.screenWidth - game.tileSize * 3;
+        int y = game.tileSize / 2;
+
+        // Dark yellow outline
+        gc.setStroke(Color.rgb(204, 204, 0)); // Dark yellow color
+        gc.setLineWidth(2); // Width of the outline
+        gc.strokeRect(x, y, game.tileSize * 2, game.tileSize / 4); // Outline of the bar
+
+        // Calculate width of yellow bar based on energy and maxEnergy
+        double energyWidth = ((double) game.player.energy / game.player.maxEnergy) * game.tileSize * 2;
+
+        // Fill yellow bar
+        gc.setFill(Color.YELLOW);
+        gc.fillRect(x, y, energyWidth, game.tileSize / 4);
+
+        // Set font for text
+        gc.setFont(Font.getDefault());
+
+        // Draw "Energy" text
+        gc.setFill(Color.WHITE);
+        String text = "Energy: " + game.player.energy + "/" + game.player.maxEnergy;
+
+        // Create a temporary Text node to measure the width
+        Text textNode = new Text(text);
+        textNode.setFont(gc.getFont());
+        double textWidth = textNode.getBoundsInLocal().getWidth();
+
+        // Draw text at adjusted x position
+        gc.fillText(text, x - (textWidth+5), y+5);
+
+    }
 //    public void drawMana(){
 //        int x=(game.tileSize/2)-5;
 //        int y=(int)(game.tileSize*1.5);
@@ -167,29 +204,29 @@ public class UI {
 
 
 
-//    public void drawMessage(){
-//        int messageX=game.tileSize;
-//        int messageY=game.tileSize*4;
-//        //gc.setFont(gc.getFont().deriveFont(Font.BOLD,32F));
-//        for(int i=0;i<message.size();i++){
-//            if(message.get(i)!=null){
-//
-//                gc.setFill(Color.BLACK);
-//                gc.drawString(message.get(i),messageX+2,messageY+2);
-//
-//                gc.setColor(Color.white);
-//                gc.drawString(message.get(i),messageX,messageY);
-//                int counter= messageCounter.get(i)+1;
-//                messageCounter.set(i,counter); //set the counter to the array;
-//                messageY+=50;
-//                if(messageCounter.get(i)>180){
-//                    message.remove(i);
-//                    messageCounter.remove(i);
-//                }
-//            }
-//        }
-//    }
-//
+    public void drawMessage(){
+        int messageX=game.tileSize;
+        int messageY=game.tileSize*4;
+        //gc.setFont(gc.getFont().deriveFont(Font.BOLD,32F));
+        for(int i=0;i<message.size();i++){
+            if(message.get(i)!=null){
+
+                gc.setFill(Color.BLACK);
+                gc.fillText(message.get(i),messageX+2,messageY+2);
+
+                //gc.setColor(Color.white);
+                gc.fillText(message.get(i),messageX,messageY);
+                int counter= messageCounter.get(i)+1;
+                messageCounter.set(i,counter); //set the counter to the array;
+                messageY+=50;
+                if(messageCounter.get(i)>180){
+                    message.remove(i);
+                    messageCounter.remove(i);
+                }
+            }
+        }
+    }
+
 
 
 //    public void drawTitleScreen(){

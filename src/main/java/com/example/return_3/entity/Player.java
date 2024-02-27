@@ -107,6 +107,8 @@ public class Player extends Entity{
         exp=0;
         nextLevelExp=5;
         coin=0;
+        energy=180;
+        maxEnergy=200;
         //currentWeapon=new OBJ_Sword_normal(gp);
 //        currentWeapon=new OBJ_Axe(gp);
 //        currentShield= new OBJ_Shield_Wood(gp);
@@ -128,9 +130,11 @@ public class Player extends Entity{
             // Move player based on key inputs
             if (keyHandler.isMoveUp()) {
                 direction = "up";
+                System.out.println("Up pressing from player");
             }
             if (keyHandler.isMoveDown()) {
                 direction = "down";
+                System.out.println("Down pressing from player");
             }
             if (keyHandler.isMoveRight()) {
                 direction = "right";
@@ -138,7 +142,9 @@ public class Player extends Entity{
             if (keyHandler.isMoveLeft()) {
                 direction = "left";
             }
-
+            if (keyHandler.isEnterPressed()) {
+                game.ui.heart.use(game.ui.heart);
+            }
             collisionOn = false;
 
             //Now check for the colliosion here.

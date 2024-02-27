@@ -81,8 +81,8 @@ public class Game extends Application {
 
     // $$$$$$$$$ INSTANTIATE $$$$$$$$$
     //instantiates new instances
-    Canvas mainGameCanvas = new Canvas(screenWidth, screenHeight);
-    GraphicsContext gc = mainGameCanvas.getGraphicsContext2D();
+    public Canvas mainGameCanvas = new Canvas(screenWidth, screenHeight);
+    public GraphicsContext gc = mainGameCanvas.getGraphicsContext2D();
     TileManager tileM= new TileManager(this);
     public CollisionChecker cChecker = new CollisionChecker(this);
     public EventHandler eventHandler= new EventHandler(this);
@@ -294,6 +294,7 @@ public class Game extends Application {
 
                 //Empty the entity list because when this will render again the entity will added to the list again
                 entityList.clear();
+                ui.draw(gc);
             } else if (gameState == dialogueState) {
                 ui.draw(gc);
             } else if (gameStatus == gameSpaceInvadersStatus) {
