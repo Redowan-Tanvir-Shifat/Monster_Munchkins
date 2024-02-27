@@ -92,7 +92,7 @@ public class Entity {
     int hpBarCounter=0;
     public int shotAvailableCounter=0;
     Game game;
-    Entity(Game game){
+    public Entity(Game game){
         this.game=game;
     }
 
@@ -293,7 +293,7 @@ public class Entity {
 
 
 
-    Image loadImage(String imagePath, int width, int height) {
+    public Image loadImage(String imagePath, int width, int height) {
         return new Image(Objects.requireNonNull(getClass().getResourceAsStream(imagePath)), width, height, true, true);
     }
 }
