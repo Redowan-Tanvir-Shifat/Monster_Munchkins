@@ -7,8 +7,10 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.StrokeLineCap;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class UI {
@@ -79,6 +81,8 @@ public class UI {
             drawPlayerLife();
             //drawMana();
             drawMessage();
+            drawExp();
+            //drawEnergy();
         }
 //        //PAUSE STATE
 //        if(game.gameState == game.pauseState){
@@ -144,6 +148,38 @@ public class UI {
             i++;
             x+=game.tileSize;
         }
+
+    }
+    public void drawExp(){
+        int x = game.screenWidth - game.tileSize * 3;
+        int y = game.tileSize / 2;
+
+        // Dark yellow outline
+        gc.setStroke(Color.rgb(204, 204, 0)); // Dark yellow color
+        gc.setLineWidth(2); // Width of the outline
+        gc.strokeRect(x, y, game.tileSize * 2, game.tileSize / 4); // Outline of the bar
+
+        // Calculate width of yellow bar based on energy and maxEnergy
+        double energyWidth = ((double) game.player.energy / game.player.maxEnergy) * game.tileSize * 2;
+
+        // Fill yellow bar
+        gc.setFill(Color.YELLOW);
+        gc.fillRect(x, y, energyWidth, game.tileSize / 4);
+
+        // Set font for text
+        gc.setFont(Font.getDefault());
+
+        // Draw "Energy" text
+        gc.setFill(Color.WHITE);
+        String text = "Energy: " + game.player.energy + "/" + game.player.maxEnergy;
+
+        // Create a temporary Text node to measure the width
+        Text textNode = new Text(text);
+        textNode.setFont(gc.getFont());
+        double textWidth = textNode.getBoundsInLocal().getWidth();
+
+        // Draw text at adjusted x position
+        gc.fillText(text, x - (textWidth+5), y+5);
 
     }
 //    public void drawMana(){

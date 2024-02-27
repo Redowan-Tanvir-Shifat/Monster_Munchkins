@@ -107,6 +107,8 @@ public class Player extends Entity{
         exp=0;
         nextLevelExp=5;
         coin=0;
+        energy=180;
+        maxEnergy=200;
         //currentWeapon=new OBJ_Sword_normal(gp);
 //        currentWeapon=new OBJ_Axe(gp);
 //        currentShield= new OBJ_Shield_Wood(gp);
