@@ -54,12 +54,13 @@ public class Entity {
     public int dexterity;
     public int attack;
     public int defense;
+    public int energy;
+    public int maxEnergy;
     public int exp;
     public int nextLevelExp;
     public int coin;
     public Entity currentWeapon;
     public Entity currentShield;
-    //public Projectile projectile;
 
     //ITEM ATTRIBUTES
     public ArrayList<Entity> inventory= new ArrayList<>();

@@ -40,15 +40,15 @@ public class GameSpaceInvaders {
     public void startGameSpaceInvaders() throws Exception {
         game.gameStatus=game.gameSpaceInvadersStatus; //change the GameStatus  as our new gameStatus so that update and render method will work in that such crieteria
         game.gameState=game.playState; //change the GameState as play state
-        Pane root = new Pane();
-        Game.gameScene = new Scene(root, screenWidth, screenHeight); // Set the scene before creating KeyHandler
-        game.keyHandler= new KeyHandler(game);
-        spaceShip=new SpaceShip(game,game.keyHandler);
+        Pane gameSpaceInvadersRoot = new Pane();
+        Game.gameScene = new Scene(gameSpaceInvadersRoot, screenWidth, screenHeight); // Set the scene before creating KeyHandler
+        //game.keyHandler= new KeyHandler(game);
+        spaceShip=new SpaceShip(game,new KeyHandler(game));
 //        bcPic=  loadImage("/gameCenter/spaceInvaders/background_1.jpg", Game.gameSpaceInvaders.screenWidth, Game.gameSpaceInvaders.screenHeight);
 
-        root.getChildren().add(canvas); //Now we added the root created in gameSpaceInvaders
-        game.lastNanoTime = System.nanoTime();
-        Game.gameTimer = new GameAnimationTimer(game);
+        gameSpaceInvadersRoot.getChildren().add(canvas); //Now we added the root created in gameSpaceInvaders
+        //game.lastNanoTime = System.nanoTime();
+       // Game.gameTimer = new GameAnimationTimer(game);
         Game.gameTimer.start();
         Game.primaryStage.setScene(Game.gameScene);
     }

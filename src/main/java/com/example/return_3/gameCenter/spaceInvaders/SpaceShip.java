@@ -22,7 +22,7 @@ public class SpaceShip extends Entity {
     public SpaceShip(Game game,KeyHandler keyHandler) {
         super(game);
         this.game=game;
-        gameSpaceInvaders= new GameSpaceInvaders(game);
+        gameSpaceInvaders= Game.gameSpaceInvaders;
         this.keyHandler=keyHandler;
         double screenWidth = Game.gameScene.getWidth();
         double screenHeight = Game.gameScene.getHeight();
@@ -86,9 +86,12 @@ public class SpaceShip extends Entity {
             // Move player based on key inputs
             if (keyHandler.isMoveUp()) {
                 direction = "up";
+                System.out.println("up pressing from spaceship");
             }
             if (keyHandler.isMoveDown()) {
                 direction = "down";
+                System.out.println("Down pressing from spaceShip");
+
             }
             if (keyHandler.isMoveRight()) {
                 direction = "right";

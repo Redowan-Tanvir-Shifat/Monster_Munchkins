@@ -1,6 +1,7 @@
 package com.example.return_3.main;
 
 import com.example.return_3.entity.Entity;
+import com.example.return_3.object.OBJ_Heart;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
@@ -31,7 +32,7 @@ public class UI {
     public int npcSlotCol=0;
     public int npcSlotRow=0;
     public int subState=0;
-
+    public Entity heart;
     int counter=0;
 
     public Entity npc;
@@ -47,10 +48,10 @@ public class UI {
         //     keyImage =key.image;
 
         //Create Heart Object
-//        Entity heart= new OBJ_Heart(game);
-//        heartFull=heart.image;
-//        heartHalf=heart.image2;
-//        heartBlank=heart.image3;
+         heart= new OBJ_Heart(game);
+        heartFull=heart.image;
+        heartHalf=heart.image2;
+        heartBlank=heart.image3;
 //        Entity crystal=new OBJ_ManaCrystal(game);
 //        crystalFull=crystal.image;
 //        crystalBlank=crystal.image2;
@@ -71,14 +72,14 @@ public class UI {
 //        if(game.gameState==game.titleState){
 //            drawTitleScreen();
 //        }
-        //PLAY STATE
-//        if(game.gameState == game.playState){
-//            //Do PlayState stuff
-//            //Drawing Heart for player life
-//            drawPlayerLife();
-//            drawMana();
-//            drawMessage();
-//        }
+//        PLAY STATE
+        if(game.gameState == game.playState){
+            //Do PlayState stuff
+            //Drawing Heart for player life
+            drawPlayerLife();
+            //drawMana();
+            drawMessage();
+        }
 //        //PAUSE STATE
 //        if(game.gameState == game.pauseState){
 //            //Do pauseState stuff
@@ -117,34 +118,34 @@ public class UI {
 //        }
 
     }
-//    public void drawPlayerLife(){
-//        //game.player.life=4;
-//        int x= game.tileSize/2;
-//        int y=game.tileSize/2;
-//        int i=0;
-//        //DRAW BLANK HEART
-//        while(i<(game.player.maxLife/2)){
-//            gc.drawImage(heartBlank,x,y);
-//            i++;
-//            x+=game.tileSize;
-//        }
-//        //RESET THE values
-//        x= game.tileSize/2;
-//        y=game.tileSize/2;
-//        i=0;
-//
-//        //Draw Current LIFE
-//        while(i<game.player.life){
-//            gc.drawImage(heartHalf,x,y);
-//            i++;
-//            if(i<game.player.life){
-//                gc.drawImage(heartFull,x,y);
-//            }
-//            i++;
-//            x+=game.tileSize;
-//        }
-//
-//    }
+    public void drawPlayerLife(){
+        game.player.life=4;
+        int x= game.tileSize/2;
+        int y=game.tileSize/2;
+        int i=0;
+        //DRAW BLANK HEART
+        while(i<(game.player.maxLife/2)){
+            gc.drawImage(heartBlank,x,y);
+            i++;
+            x+=game.tileSize;
+        }
+        //RESET THE values
+        x= game.tileSize/2;
+        y=game.tileSize/2;
+        i=0;
+
+        //Draw Current LIFE
+        while(i<game.player.life){
+            gc.drawImage(heartHalf,x,y);
+            i++;
+            if(i<game.player.life){
+                gc.drawImage(heartFull,x,y);
+            }
+            i++;
+            x+=game.tileSize;
+        }
+
+    }
 //    public void drawMana(){
 //        int x=(game.tileSize/2)-5;
 //        int y=(int)(game.tileSize*1.5);
@@ -167,29 +168,29 @@ public class UI {
 
 
 
-//    public void drawMessage(){
-//        int messageX=game.tileSize;
-//        int messageY=game.tileSize*4;
-//        //gc.setFont(gc.getFont().deriveFont(Font.BOLD,32F));
-//        for(int i=0;i<message.size();i++){
-//            if(message.get(i)!=null){
-//
-//                gc.setFill(Color.BLACK);
-//                gc.drawString(message.get(i),messageX+2,messageY+2);
-//
-//                gc.setColor(Color.white);
-//                gc.drawString(message.get(i),messageX,messageY);
-//                int counter= messageCounter.get(i)+1;
-//                messageCounter.set(i,counter); //set the counter to the array;
-//                messageY+=50;
-//                if(messageCounter.get(i)>180){
-//                    message.remove(i);
-//                    messageCounter.remove(i);
-//                }
-//            }
-//        }
-//    }
-//
+    public void drawMessage(){
+        int messageX=game.tileSize;
+        int messageY=game.tileSize*4;
+        //gc.setFont(gc.getFont().deriveFont(Font.BOLD,32F));
+        for(int i=0;i<message.size();i++){
+            if(message.get(i)!=null){
+
+                gc.setFill(Color.BLACK);
+                gc.fillText(message.get(i),messageX+2,messageY+2);
+
+                //gc.setColor(Color.white);
+                gc.fillText(message.get(i),messageX,messageY);
+                int counter= messageCounter.get(i)+1;
+                messageCounter.set(i,counter); //set the counter to the array;
+                messageY+=50;
+                if(messageCounter.get(i)>180){
+                    message.remove(i);
+                    messageCounter.remove(i);
+                }
+            }
+        }
+    }
+
 
 
 //    public void drawTitleScreen(){

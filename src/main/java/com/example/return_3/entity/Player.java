@@ -128,9 +128,11 @@ public class Player extends Entity{
             // Move player based on key inputs
             if (keyHandler.isMoveUp()) {
                 direction = "up";
+                System.out.println("Up pressing from player");
             }
             if (keyHandler.isMoveDown()) {
                 direction = "down";
+                System.out.println("Down pressing from player");
             }
             if (keyHandler.isMoveRight()) {
                 direction = "right";
@@ -138,7 +140,9 @@ public class Player extends Entity{
             if (keyHandler.isMoveLeft()) {
                 direction = "left";
             }
-
+            if (keyHandler.isEnterPressed()) {
+                game.ui.heart.use(game.ui.heart);
+            }
             collisionOn = false;
 
             //Now check for the colliosion here.
