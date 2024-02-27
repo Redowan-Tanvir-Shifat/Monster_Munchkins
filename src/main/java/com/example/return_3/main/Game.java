@@ -263,8 +263,8 @@ public class Game extends Application {
 
     public void render(){
        // ui.draw(gc);
-        if(gameState==playState) {
-            if (gameStatus == gameMainStatus) {
+        if(gameStatus == gameMainStatus) {
+            if (gameState==playState) {
 
 
                 tileM.draw(gc);
@@ -297,12 +297,11 @@ public class Game extends Application {
                 ui.draw(gc);
             } else if (gameState == dialogueState) {
                 ui.draw(gc);
-            } else if (gameStatus == gameSpaceInvadersStatus) {
-                gameSpaceInvaders.draw(gc);
-
-
+                System.out.println("update to dialoge state");
             }
 
+        } else if (gameStatus == gameSpaceInvadersStatus) {
+            gameSpaceInvaders.draw(gc);
         }
     }
 

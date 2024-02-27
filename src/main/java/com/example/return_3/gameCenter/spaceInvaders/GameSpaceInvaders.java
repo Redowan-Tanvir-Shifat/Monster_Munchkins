@@ -28,7 +28,7 @@ public class GameSpaceInvaders {
     GraphicsContext gc = canvas.getGraphicsContext2D();
 
     SpaceShip spaceShip ;
-    Image backgroundImage;
+    Image bcPic;
 
 
     public GameSpaceInvaders( Game game){
@@ -44,7 +44,7 @@ public class GameSpaceInvaders {
         Game.gameScene = new Scene(gameSpaceInvadersRoot, screenWidth, screenHeight); // Set the scene before creating KeyHandler
         //game.keyHandler= new KeyHandler(game);
         spaceShip=new SpaceShip(game,new KeyHandler(game));
-//        bcPic=  loadImage("/gameCenter/spaceInvaders/background_1.jpg", Game.gameSpaceInvaders.screenWidth, Game.gameSpaceInvaders.screenHeight);
+        bcPic=  loadImage("/gameCenter/spaceInvaders/background_1.jpg", Game.gameSpaceInvaders.screenWidth, Game.gameSpaceInvaders.screenHeight);
 
         gameSpaceInvadersRoot.getChildren().add(canvas); //Now we added the root created in gameSpaceInvaders
         //game.lastNanoTime = System.nanoTime();

@@ -104,8 +104,8 @@ public class Player extends Entity{
         //ammo=10;
         strength=1; //the more strength he has the more damage he gives
         dexterity=1;// the more dexterity he has the less damage he receives
-        exp=0;
-        nextLevelExp=5;
+        exp=20;
+        nextLevelExp=50;
         coin=0;
         energy=180;
         maxEnergy=200;
@@ -130,11 +130,10 @@ public class Player extends Entity{
             // Move player based on key inputs
             if (keyHandler.isMoveUp()) {
                 direction = "up";
-                System.out.println("Up pressing from player");
+
             }
             if (keyHandler.isMoveDown()) {
                 direction = "down";
-                System.out.println("Down pressing from player");
             }
             if (keyHandler.isMoveRight()) {
                 direction = "right";
@@ -142,9 +141,7 @@ public class Player extends Entity{
             if (keyHandler.isMoveLeft()) {
                 direction = "left";
             }
-            if (keyHandler.isEnterPressed()) {
-                game.ui.heart.use(game.ui.heart);
-            }
+
             collisionOn = false;
 
             //Now check for the colliosion here.
