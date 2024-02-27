@@ -26,7 +26,7 @@ public class SpaceShip extends Entity {
         this.keyHandler=keyHandler;
         double screenWidth = Game.gameScene.getWidth();
         double screenHeight = Game.gameScene.getHeight();
-        bcPic=  loadImage("/gameCenter/spaceInvaders/background_1.jpg", 896, 576);
+        bcPic=  loadImage("/gameCenter/spaceInvaders/background_1.jpg", Game.gameSpaceInvaders.screenWidth, Game.gameSpaceInvaders.screenHeight);
 
 
 
@@ -59,26 +59,24 @@ public class SpaceShip extends Entity {
 
 
     private void loadPlayerImages() {
-        up1 = loadImage("/gameCenter/spaceInvaders/player/playerShip1_blue.png", game.tileSize, game.tileSize);
-        up2 = loadImage("/gameCenter/spaceInvaders/player/playerShip1_blue.png", game.tileSize, game.tileSize);
-        down1 = loadImage("/gameCenter/spaceInvaders/player/playerShip1_blue.png", game.tileSize, game.tileSize);
-        down2 = loadImage("/gameCenter/spaceInvaders/player/playerShip1_blue.png", game.tileSize, game.tileSize);
-        left1 = loadImage("/gameCenter/spaceInvaders/player/playerShip1_blue.png", game.tileSize, game.tileSize);
-        left2 = loadImage("/gameCenter/spaceInvaders/player/playerShip1_blue.png", game.tileSize, game.tileSize);
-        right1 = loadImage("/gameCenter/spaceInvaders/player/playerShip1_blue.png", game.tileSize, game.tileSize);
-        right2 = loadImage("/gameCenter/spaceInvaders/player/playerShip1_blue.png", game.tileSize, game.tileSize);
+        up1 = loadImage("/gameCenter/spaceInvaders/player/playerShip1_blue.png", game.tileSize*5, game.tileSize);
+        up2 = loadImage("/gameCenter/spaceInvaders/player/playerShip1_blue.png", game.tileSize*5, game.tileSize);
+        down1 = loadImage("/gameCenter/spaceInvaders/player/playerShip1_blue.png", game.tileSize*5, game.tileSize);
+        down2 = loadImage("/gameCenter/spaceInvaders/player/playerShip1_blue.png", game.tileSize*5, game.tileSize);
+        left1 = loadImage("/gameCenter/spaceInvaders/player/playerShip1_blue.png", game.tileSize*5, game.tileSize);
+        left2 = loadImage("/gameCenter/spaceInvaders/player/playerShip1_blue.png", game.tileSize*5, game.tileSize);
+        right1 = loadImage("/gameCenter/spaceInvaders/player/playerShip1_blue.png", game.tileSize*5, game.tileSize);
+        right2 = loadImage("/gameCenter/spaceInvaders/player/playerShip1_blue.png", game.tileSize*5, game.tileSize);
     }
     public void setDefaultValues(){
         setDefaultPositions();
-        speed=(int) (250*game.targetFrameTime); //pixel per second
-
-
+        speed=(int) (150*game.targetFrameTime); //pixel per second
 
     }
 
     public void setDefaultPositions(){
-        //worldX=game.tileSize*28;
-        //worldY=game.tileSize*25;
+        posX = (game.screenWidth - game.tileSize) / 2; // Center X position
+        posY = game.screenHeight - game.tileSize; // Bottom Y position
         direction="down";
     }
 

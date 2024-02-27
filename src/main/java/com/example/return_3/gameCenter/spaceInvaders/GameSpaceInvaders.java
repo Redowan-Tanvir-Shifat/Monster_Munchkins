@@ -8,23 +8,19 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
-
-import java.awt.*;
 import java.util.Objects;
 
 public class GameSpaceInvaders {
 
     Game game;
+//    Image bcPic;
     //SCREEN SETTINGS
     public final int tileSize = 32; //SO every tile will be 32 pixels
     public final int maxScreenCol = 28; //here will be 20 column of titles  =>1024 pixel width
     public final int maxScreenRow = 18; //here will be 25 row of titles => 800 pixel height
     public final int screenWidth= tileSize*maxScreenCol; //1024 pixel width
     public final int screenHeight= tileSize*maxScreenRow; //800 pixel height
-    public static final double targetFrameRate=60.0;
-    public static final double targetFrameTime=1/targetFrameRate; //0.01666666666 it means per second e frame 60. so 0.01666666666 second e ekbar frame change
-    public double accumulatedTime=0.0; // accumulated time
-    public long lastNanoTime;
+
 
     // $$$$$$$$$ System $$$$$$$$$
     //instantiates new instances
@@ -42,24 +38,19 @@ public class GameSpaceInvaders {
 
 
     public void startGameSpaceInvaders() throws Exception {
-        game.gameStatus=game.gameSpaceInvadersStatus;
+        game.gameStatus=game.gameSpaceInvadersStatus; //change the GameStatus  as our new gameStatus so that update and render method will work in that such crieteria
+        game.gameState=game.playState; //change the GameState as play state
         Pane root = new Pane();
         Game.gameScene = new Scene(root, screenWidth, screenHeight); // Set the scene before creating KeyHandler
-        //gameScene=scene;
-//        player = new Player(this, new KeyHandler(this)); // KeyHandler depends on game.scene
-        spaceShip=new SpaceShip(game,new KeyHandler(game));
+        game.keyHandler= new KeyHandler(game);
+        spaceShip=new SpaceShip(game,game.keyHandler);
+//        bcPic=  loadImage("/gameCenter/spaceInvaders/background_1.jpg", Game.gameSpaceInvaders.screenWidth, Game.gameSpaceInvaders.screenHeight);
 
-
-        root.getChildren().add(canvas);
-//        assetSetter.setNPC();
-        lastNanoTime = System.nanoTime();
-//        assetSetter.setNPC();
+        root.getChildren().add(canvas); //Now we added the root created in gameSpaceInvaders
+        game.lastNanoTime = System.nanoTime();
         Game.gameTimer = new GameAnimationTimer(game);
         Game.gameTimer.start();
-
-        game.gameState=game.playState;
-
-        game.primaryStage.setScene(Game.gameScene);
+        Game.primaryStage.setScene(Game.gameScene);
     }
 
 
@@ -70,8 +61,12 @@ public class GameSpaceInvaders {
     }
 
     public void draw( GraphicsContext gc){
-        System.out.println("GameSpaceInvaders Class: `drawMethod`  draw working");
+        //System.out.println("GameSpaceInvaders Class: `drawMethod`  draw working");
         //Now drawing the background
+
+//        Image backgroundImage =null;
+//         backgroundImage =bcPic;
+//        gc.drawImage(backgroundImage,0,0);
 
 
         //Drawing spaceShip

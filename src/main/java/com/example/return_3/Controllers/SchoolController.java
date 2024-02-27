@@ -17,8 +17,8 @@ public class SchoolController {
 
     @FXML
     void back(ActionEvent event) {
-
-       // Game.showGameScene();
+        Game.gameInstance.keyHandler.setBooleanAll(false);
+        Game.showGameScene();
     }
 
     @FXML

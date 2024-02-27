@@ -132,4 +132,14 @@ public class KeyHandler {
     public void setEnterPressed(boolean enterPressed) {
         this.enterPressed = enterPressed;
     }
+
+
+    public void setBooleanAll(boolean value){
+        this.moveUp = value;
+        this.moveDown=value;
+        this.moveLeft=value;
+        this.moveRight=value;
+        this.enterPressed=value;
+    }
+
 }

@@ -81,8 +81,8 @@ public class Game extends Application {
 
     // $$$$$$$$$ INSTANTIATE $$$$$$$$$
     //instantiates new instances
-    Canvas canvas = new Canvas(screenWidth, screenHeight);
-    GraphicsContext gc = canvas.getGraphicsContext2D();
+    Canvas mainGameCanvas = new Canvas(screenWidth, screenHeight);
+    GraphicsContext gc = mainGameCanvas.getGraphicsContext2D();
     TileManager tileM= new TileManager(this);
     public CollisionChecker cChecker = new CollisionChecker(this);
     public EventHandler eventHandler= new EventHandler(this);
@@ -94,7 +94,7 @@ public class Game extends Application {
     ArrayList<Entity> entityList = new ArrayList<>();
 
     public Player player ;
-    KeyHandler keyHandler;
+    public KeyHandler keyHandler;
     public static GameSpaceInvaders gameSpaceInvaders;
 
     int spriteCounter=0;
@@ -106,16 +106,16 @@ public class Game extends Application {
     //-------------------------- --- IN this start method our Application is running ----------------------------------------------------------------
     @Override
     public void start(Stage stage) throws Exception {
-        primaryStage = stage;
-        //backgroundImage = new Image("/gameCenter/spaceInvaders/background_1.jpg");
-        gameInstance=this;
-        gameInstance.showGameScene();
+
+        primaryStage = stage; //as we have a static Stage variable . we initialize the value as game stage of start method
+        gameInstance= new Game(); // we create a
+        showGameScene(); // now we are redirecting the showGameScene method
         //loginPage();
 //        loadMenuScene();
-        primaryStage.setTitle("Powered By return_3;");
-        primaryStage.initStyle(StageStyle.UNDECORATED);
+        primaryStage.setTitle("Powered By return_3;"); //set the title of the stage
+        primaryStage.initStyle(StageStyle.UNDECORATED); //create un decorated style
 //        primaryStage.setScene(menuScene);
-        primaryStage.show();
+        primaryStage.show(); //by this show method we are now showing the stage
         //primaryStage.setOnCloseRequest(windowEvent -> exit(primaryStage));
     }
 
@@ -152,20 +152,20 @@ public class Game extends Application {
 
     //----------------------------- IN this `showGameScene` method our Application will direct you to the main game  ----------------------------------------------------------------
     public static void showGameScene() {
-        if (gameScene == null) {
+        if (gameScene == null) {   // if there is no Scene initialize then
 //            System.out.println("GameScene is null");
             try {
 //                Game game = new Game();
-                //gameInstance.startGame();
-                gameSpaceInvaders =new GameSpaceInvaders(gameInstance);
-                gameSpaceInvaders.startGameSpaceInvaders();
+                gameInstance.startGame();
+//                gameSpaceInvaders =new GameSpaceInvaders(gameInstance); // initialize gameSpaceInvaders instance
+//                gameSpaceInvaders.startGameSpaceInvaders();  //called this start method for start the game
 
             } catch (Exception e) {
                 e.printStackTrace();
             }
         } else {
             primaryStage.setScene(gameScene);
-            //gameTimer.start();
+            gameTimer.start();
         }
     }
 
@@ -175,24 +175,23 @@ public class Game extends Application {
     public void startGame() throws Exception {
         //gameInstance = this;
         gameStatus=gameMainStatus;
-        Pane root = new Pane();
-        gameScene = new Scene(root, screenWidth, screenHeight); // Set the scene before creating KeyHandler
+        Pane mainGameroot = new Pane();
+        gameScene = new Scene(mainGameroot, screenWidth, screenHeight); // Set the scene before creating KeyHandler
         //gameScene=scene;
          keyHandler= new KeyHandler(this);
         player = new Player(this, keyHandler); // KeyHandler depends on game.scene
-        root.getChildren().add(canvas);
+        mainGameroot.getChildren().add(mainGameCanvas);
         assetSetter.setNPC();
         lastNanoTime = System.nanoTime();
-//        assetSetter.setNPC();
         gameTimer = new GameAnimationTimer(this);
         gameTimer.start();
-
-        primaryStage.setX(300);
-        primaryStage.setY(120);
+        primaryStage.setScene(gameScene);
         //When the game is starting then gameState will be PlayState
         gameState=playState;
 
-        primaryStage.setScene(gameScene);
+//        primaryStage.setX(300);
+//        primaryStage.setY(120);
+
 
     }
 
