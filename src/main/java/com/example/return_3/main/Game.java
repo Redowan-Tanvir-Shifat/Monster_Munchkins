@@ -297,7 +297,6 @@ public class Game extends Application {
                 ui.draw(gc);
             } else if (gameState == dialogueState) {
                 ui.draw(gc);
-                System.out.println("update to dialoge state");
             }
 
         } else if (gameStatus == gameSpaceInvadersStatus) {
