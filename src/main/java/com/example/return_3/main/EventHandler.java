@@ -206,6 +206,7 @@ public class EventHandler {
 //                        Game.primaryStage.setScene(scene);
 
                     gp.showGameCenter();
+                    canTouchEvent=false;
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -229,6 +230,7 @@ public class EventHandler {
 //                        Game.primaryStage.setScene(scene);
 
                         gp.showSchoolScene();
+                        canTouchEvent=false;
 
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -314,7 +316,7 @@ public class EventHandler {
                     row * gp.tileSize + eventRect[map][col][row].getY(), eventRect[map][col][row].getWidth(),
                     eventRect[map][col][row].getHeight());
 
-            if (playerArea.intersects(eventRectangle.getBoundsInLocal()) && !eventRect[map][col][row].eventDone) {
+            if (playerArea.intersects(eventRectangle.getBoundsInLocal()) && eventRect[map][col][row].eventDone==false) {
                 if (gp.player.direction.equals(reqDirection) || reqDirection.equals("any")) {
                     hit = true;
                     previousEventX = gp.player.worldX;

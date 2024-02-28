@@ -54,12 +54,13 @@ public class Entity {
     public int dexterity;
     public int attack;
     public int defense;
+    public int energy;
+    public int maxEnergy;
     public int exp;
     public int nextLevelExp;
     public int coin;
     public Entity currentWeapon;
     public Entity currentShield;
-    //public Projectile projectile;
 
     //ITEM ATTRIBUTES
     public ArrayList<Entity> inventory= new ArrayList<>();
@@ -92,7 +93,7 @@ public class Entity {
     int hpBarCounter=0;
     public int shotAvailableCounter=0;
     Game game;
-    Entity(Game game){
+    public Entity(Game game){
         this.game=game;
     }
 
@@ -293,7 +294,7 @@ public class Entity {
 
 
 
-    Image loadImage(String imagePath, int width, int height) {
+    public Image loadImage(String imagePath, int width, int height) {
         return new Image(Objects.requireNonNull(getClass().getResourceAsStream(imagePath)), width, height, true, true);
     }
 }
