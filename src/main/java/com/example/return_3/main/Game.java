@@ -8,6 +8,7 @@ import com.example.return_3.tile.TileManager;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -176,6 +177,9 @@ public class Game extends Application {
         //gameInstance = this;
         gameStatus=gameMainStatus;
         Pane mainGameroot = new Pane();
+        mainGameroot.setOnMouseEntered(event -> {
+            mainGameroot.setCursor(Cursor.HAND);
+        });
         gameScene = new Scene(mainGameroot, screenWidth, screenHeight); // Set the scene before creating KeyHandler
         //gameScene=scene;
          keyHandler= new KeyHandler(this);
