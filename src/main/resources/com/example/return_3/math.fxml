@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="576.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.return_3.Controllers.MathController">
+   <Label layoutX="283.0" layoutY="29.0" text="Welcome to Math Course">
+      <font>
+         <Font name="Book Antiqua" size="35.0"/>
+      </font>
+   </Label>
+   <Button fx:id="backButton" layoutX="801.0" layoutY="482.0" mnemonicParsing="false" onAction="#back" prefHeight="55.0"
+           prefWidth="119.0" text="Back">
+      <font>
+         <Font name="Book Antiqua Bold" size="25.0"/>
+      </font>
+   </Button>
+</AnchorPane>
