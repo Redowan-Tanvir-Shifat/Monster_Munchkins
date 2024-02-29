@@ -15,9 +15,9 @@ public class NPC_OldMan extends Entity{
         speed=2;
         //set the collision part
         solidArea.setX(0);
-        solidArea.setY(16);
-        solidArea.setWidth(48);
-        solidArea.setHeight(32);
+        solidArea.setY(10);
+        solidArea.setWidth(32);
+        solidArea.setHeight(22);
         solidAreaDefaultX=(int)(solidArea.getX());
         solidAreaDefaultY=(int)(solidArea.getY());
 
@@ -70,8 +70,8 @@ public class NPC_OldMan extends Entity{
 
 
 
-//    public void speak(){
-//        super.speak();
-//    }
+    public void speak(){
+        super.speak();
+    }
 
 }

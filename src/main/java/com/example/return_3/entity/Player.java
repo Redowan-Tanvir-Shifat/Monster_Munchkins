@@ -20,7 +20,7 @@ import java.util.Objects;
 
 public class Player extends Entity{
     //VARIABLES
-    KeyHandler keyHandler;
+    public KeyHandler keyHandler;
 
 
 
@@ -35,8 +35,8 @@ public class Player extends Entity{
         super(game);
         this.keyHandler = keyHandler;
         // Get the width and height of the screen
-        double screenWidth = game.scene.getWidth();
-        double screenHeight = game.scene.getHeight();
+        double screenWidth = Game.gameScene.getWidth();
+        double screenHeight = Game.gameScene.getHeight();
         // Calculate the middle point
         screenX = (int) (screenWidth / 2);
         screenY = (int) (screenHeight / 2);
@@ -58,11 +58,7 @@ public class Player extends Entity{
 
         // Load player images and initialize ImageView
         loadPlayerImages();
-//        playerImageView = new ImageView();
-//        playerImageView.setImage(down1); // Default image
-//        // Set initial position of the player image view
-//        playerImageView.setX(screenX);
-//        playerImageView.setY(screenY);
+
 
 
         setDefaultValues();
@@ -108,9 +104,11 @@ public class Player extends Entity{
         //ammo=10;
         strength=1; //the more strength he has the more damage he gives
         dexterity=1;// the more dexterity he has the less damage he receives
-        exp=0;
-        nextLevelExp=5;
+        exp=20;
+        nextLevelExp=50;
         coin=0;
+        energy=180;
+        maxEnergy=200;
         //currentWeapon=new OBJ_Sword_normal(gp);
 //        currentWeapon=new OBJ_Axe(gp);
 //        currentShield= new OBJ_Shield_Wood(gp);
@@ -128,10 +126,11 @@ public class Player extends Entity{
     }
 
     public void update(){
-        if(keyHandler.isMoveUp() || keyHandler.isMoveDown() || keyHandler.isMoveRight() || keyHandler.isMoveLeft()) {
+        if(keyHandler.isMoveUp() || keyHandler.isMoveDown() || keyHandler.isMoveRight() || keyHandler.isMoveLeft() || keyHandler.isEnterPressed()) {
             // Move player based on key inputs
             if (keyHandler.isMoveUp()) {
                 direction = "up";
+
             }
             if (keyHandler.isMoveDown()) {
                 direction = "down";
@@ -149,6 +148,10 @@ public class Player extends Entity{
 
             game.cChecker.checkTile(this);
 //            System.out.println("Collision: " + collisionOn);
+
+            //CHeck NPC collision
+            int npcIndex=game.cChecker.checkEntity(this,game.npc);
+            interactNPC(npcIndex);
 
 
             //new code
@@ -249,4 +252,22 @@ public class Player extends Entity{
 
         gc.drawImage(image,tempScreenX,tempScreenY);
     }
+
+
+
+
+    public void interactNPC(int i){
+        if(keyHandler.isEnterPressed() ==true){
+            if(i!=999){
+                //attackCanceled=true;
+                game.gameState=game.dialogueState;
+                game.npc[game.currentMap][i].speak();
+            }
+//            else {
+//                gp.playSE(7);
+//                attacking=true;
+//            }
+        }
+    }
+
 }
