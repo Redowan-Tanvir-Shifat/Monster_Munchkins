@@ -1,28 +1,22 @@
 package com.example.return_3.Controllers;
 
 import com.example.return_3.main.Game;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 
-public class EnglishController {
-    Game game;
+import java.io.IOException;
 
-    @FXML
-    private Button backButton;
+public class HistoryController {
+    public Button backButton;
 
-    @FXML
-    void back(ActionEvent event) throws Exception {
-
+    public void back(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/school.fxml"));
         Parent root = loader.load();
         Scene scene= new Scene(root);
         //scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("school.css")).toExternalForm());
         Game.primaryStage.setScene(scene);
     }
-
 }

@@ -181,6 +181,38 @@ public class UI {
         // Draw text at adjusted x position
         gc.fillText(text, x - (textWidth+5), y+5);
 
+
+        // Reset coordinates
+        x = game.screenWidth - game.tileSize * 3;
+        y = (game.tileSize / 2)*2;
+
+        // Light blue outline for exp bar
+        gc.setStroke(Color.LIGHTBLUE);
+        gc.setLineWidth(2); // Width of the outline
+        gc.strokeRect(x, y + 20, game.tileSize * 2, game.tileSize / 4); // Outline of the exp bar
+
+        // Calculate width of light blue bar based on exp and maxExp
+        double expWidth = ((double) game.player.exp / game.player.nextLevelExp) * game.tileSize * 2;
+
+        // Fill light blue exp bar
+        gc.setFill(Color.BLUE);
+        gc.fillRect(x, y + 20, expWidth, game.tileSize / 4);
+
+        // Set font for exp text
+        gc.setFont(Font.getDefault());
+
+        // Draw "Exp" text
+        gc.setFill(Color.WHITE);
+        String expText = "Exp: " + game.player.exp + "/" + game.player.nextLevelExp;
+
+        // Create a temporary Text node to measure the width of exp text
+        Text expTextNode = new Text(expText);
+        expTextNode.setFont(gc.getFont());
+        double expTextWidth = expTextNode.getBoundsInLocal().getWidth();
+
+        // Draw exp text at adjusted x position
+        gc.fillText(expText, x - (expTextWidth + 5), y + 20 + 5);
+
     }
 //    public void drawMana(){
 //        int x=(game.tileSize/2)-5;
@@ -293,6 +325,7 @@ public class UI {
     public void drawDialogueScreen(){
         //  CREATING A DIALOGUE WINDOW
         //set parameter for window
+        System.out.println("dialogue screen");
         int x=game.tileSize*3;
         int y=game.tileSize/2;
         int width=game.screenWidth-(game.tileSize*6);
