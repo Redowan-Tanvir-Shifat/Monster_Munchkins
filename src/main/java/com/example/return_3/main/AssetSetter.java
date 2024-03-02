@@ -37,10 +37,10 @@ public class AssetSetter {
         game.npc[mapNum][i].worldX=game.tileSize*38;
         game.npc[mapNum][i].worldY=game.tileSize*14;
 
-        i++;
-        game.npc[mapNum][i]= new NPC_GameCenter(game);
-        game.npc[mapNum][i].worldX=game.tileSize*38;
-        game.npc[mapNum][i].worldY=game.tileSize*14;
+//        i++;
+//        game.npc[mapNum][i]= new NPC_GameCenter(game);
+//        game.npc[mapNum][i].worldX=game.tileSize*38;
+//        game.npc[mapNum][i].worldY=game.tileSize*14;
 
         //New Map;
 //        mapNum=1;

@@ -196,7 +196,7 @@ public class SpaceShip extends Entity {
                 break;
             // Handle other directions similarly
         }
-        gc.drawImage(bcPic,0,0);
+       // gc.drawImage(bcPic,0,0);
 
         gc.drawImage(image,posX,posY);
     }

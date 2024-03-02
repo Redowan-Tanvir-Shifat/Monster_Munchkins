@@ -88,6 +88,8 @@ public class Entity {
     public boolean alive= true;
     public boolean dying= false;
     public boolean hpBarOn=false;
+    public boolean onPath= false;
+
 
     int dyingCounter=0;
     int hpBarCounter=0;
@@ -127,8 +129,7 @@ public class Entity {
     public void setAction(){}
 
     public void damageReaction(){}
-    public void update(){
-        setAction();
+    public void checkCollision(){
         collisionOn=false;
         //CHeching part of collision so that entity got collision and can not move
         game.cChecker.checkTile(this);
@@ -143,7 +144,11 @@ public class Entity {
 //            damagePlayer(attack);
 //        }
 
+    }
+    public void update(){
+        setAction();
 
+        checkCollision();
         //if collisionOn is false then player can be able to move
         if(collisionOn==false){
             switch (direction){

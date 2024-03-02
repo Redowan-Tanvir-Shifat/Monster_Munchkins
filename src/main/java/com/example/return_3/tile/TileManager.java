@@ -4,6 +4,7 @@ import com.example.return_3.main.Game;
 import com.example.return_3.main.UtilityTool;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -17,6 +18,7 @@ public class TileManager {
     public int mapTileNum[][][];
     ArrayList<String> filenames=new ArrayList<String>();
     ArrayList<String> collisionStatus=new ArrayList<String>();
+    boolean drawPath= true;
     public TileManager(Game game){
         this.game=game;
 
@@ -210,6 +212,19 @@ public class TileManager {
 //                x=0;
                 worldRow++;
 //                y+=gp.tileSize;
+            }
+        }
+        if (drawPath==true){
+            gc.setFill(Color.rgb(255, 0, 0, .70));
+            //Color c=Color.BLACK;
+            //gc.setFill(c);
+            for(int i=0;i<game.pFinder.pathList.size();i++){
+                int worldX=game.pFinder.pathList.get(i).col*game.tileSize;
+                int worldY=game.pFinder.pathList.get(i).row*game.tileSize;
+                int screenY=worldY-game.player.worldY+game.player.screenY;
+                int screenX=worldX-game.player.worldX+game.player.screenX;
+
+                gc.fillRect(screenX,screenY,game.tileSize,game.tileSize);
             }
         }
     }

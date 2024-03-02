@@ -22,5 +22,6 @@ public class NPC_School extends NPC{
 
     public void speak(){
         super.speak();
+        onPath=true;
     }
 }
