@@ -215,7 +215,7 @@ public class TileManager {
             }
         }
         if (drawPath==true){
-            gc.setFill(Color.rgb(255, 0, 0, .70));
+            gc.setFill(Color.rgb(255, 0, 0, .20));
             //Color c=Color.BLACK;
             //gc.setFill(c);
             for(int i=0;i<game.pFinder.pathList.size();i++){
