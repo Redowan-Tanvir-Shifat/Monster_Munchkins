@@ -9,199 +9,76 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="576.0" prefWidth="960.0" styleClass="main-container" stylesheets="@math.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.return_3.Controllers.MathController">
-   <AnchorPane layoutY="-2.0" prefHeight="33.0" prefWidth="200.0" styleClass="close-btn_container"
-               AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-      <Button fx:id="backButton" layoutX="917.0" layoutY="3.0" mnemonicParsing="false" onAction="#back"
-              prefHeight="20.0" prefWidth="36.0" styleClass="close-btn" text="X">
+   <AnchorPane layoutY="-2.0" prefHeight="33.0" prefWidth="200.0" styleClass="close-btn_container" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Button fx:id="backButton" layoutX="917.0" layoutY="3.0" mnemonicParsing="false" onAction="#back" prefHeight="20.0" prefWidth="36.0" styleClass="close-btn" text="X">
          <font>
-            <Font name="Arial Bold" size="12.0"/>
+            <Font name="Arial Bold" size="12.0" />
          </font>
       </Button>
    </AnchorPane>
-   <AnchorPane layoutY="33.0" prefHeight="543.0" prefWidth="960.0" styleClass="course-container"
-               AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-               AnchorPane.topAnchor="33.0">
-      <Button fx:id="addBtn" alignment="CENTER" layoutX="29.0" layoutY="165.0" mnemonicParsing="false"
-              onAction="#goToAdd_sub" prefHeight="30.0" prefWidth="154.0" styleClass="course-btn"
-              text="Addition &amp; Subtraction" textAlignment="JUSTIFY" textFill="WHITE" AnchorPane.rightAnchor="777.0"
-              AnchorPane.topAnchor="165.0">
+   <AnchorPane layoutY="33.0" prefHeight="543.0" prefWidth="960.0" styleClass="course-container" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="33.0">
+      <Button fx:id="addBtn" alignment="CENTER" layoutX="31.0" layoutY="177.0" mnemonicParsing="false" onAction="#goToAdd_sub" prefHeight="45.0" prefWidth="307.0" styleClass="course-btn" text="Addition &amp; Subtraction" textAlignment="JUSTIFY" textFill="#222121" AnchorPane.rightAnchor="622.0" AnchorPane.topAnchor="177.0">
          <font>
-            <Font name="Book Antiqua Bold" size="12.0"/>
+            <Font name="Book Antiqua Bold" size="25.0" />
          </font>
       </Button>
-      <Button fx:id="multiplicationBtn" alignment="CENTER" layoutX="29.0" layoutY="312.0" mnemonicParsing="false"
-              onAction="#goToMultiplication" prefHeight="30.0" prefWidth="154.0" styleClass="course-btn"
-              text="Multiplication table" textAlignment="JUSTIFY" textFill="WHITE" AnchorPane.rightAnchor="777.0"
-              AnchorPane.topAnchor="312.0">
+      <Button fx:id="algebraBtn" alignment="CENTER" layoutX="417.0" layoutY="177.0" mnemonicParsing="false" onAction="#goToAlgebra" prefHeight="45.0" prefWidth="307.0" styleClass="course-btn" text="Algebra" textAlignment="JUSTIFY" textFill="#252323" AnchorPane.rightAnchor="236.0" AnchorPane.topAnchor="177.0">
          <font>
-            <Font name="Book Antiqua Bold" size="12.0"/>
+            <Font name="Book Antiqua Bold" size="25.0" />
          </font>
       </Button>
-      <Button fx:id="exponentsBtn" alignment="TOP_CENTER" layoutX="29.0" layoutY="459.0" mnemonicParsing="false"
-              onAction="#goToExponents" prefHeight="30.0" prefWidth="154.0" styleClass="course-btn"
-              text="Exponents &amp; roots" textAlignment="JUSTIFY" textFill="WHITE" AnchorPane.rightAnchor="777.0"
-              AnchorPane.topAnchor="459.0">
+      <Button fx:id="geometryBtn" alignment="CENTER" layoutX="31.0" layoutY="343.0" mnemonicParsing="false" onAction="#goToGeometry" prefHeight="45.0" prefWidth="307.0" styleClass="course-btn" text="Geometry" textAlignment="JUSTIFY" textFill="#141414" AnchorPane.rightAnchor="622.0" AnchorPane.topAnchor="343.0">
          <font>
-            <Font name="Book Antiqua Bold" size="12.0"/>
+            <Font name="Book Antiqua Bold" size="25.0" />
          </font>
       </Button>
-      <Button fx:id="decimalBtn" alignment="CENTER" layoutX="215.0" layoutY="165.0" mnemonicParsing="false"
-              onAction="#goToDecimals" prefHeight="30.0" prefWidth="154.0" styleClass="course-btn"
-              text="Decimals, fractions" textAlignment="JUSTIFY" textFill="WHITE" AnchorPane.rightAnchor="591.0"
-              AnchorPane.topAnchor="165.0">
-         <font>
-            <Font name="Book Antiqua Bold" size="12.0"/>
-         </font>
-      </Button>
-      <Button fx:id="algebraBtn" alignment="CENTER" layoutX="215.0" layoutY="312.0" mnemonicParsing="false"
-              onAction="#goToAlgebra" prefHeight="30.0" prefWidth="154.0" styleClass="course-btn" text="Algebra"
-              textAlignment="JUSTIFY" textFill="WHITE" AnchorPane.rightAnchor="591.0" AnchorPane.topAnchor="312.0">
-         <font>
-            <Font name="Book Antiqua Bold" size="12.0"/>
-         </font>
-      </Button>
-      <Button fx:id="numbersBtn" alignment="CENTER" layoutX="215.0" layoutY="459.0" mnemonicParsing="false"
-              onAction="#goToNumbers" prefHeight="30.0" prefWidth="154.0" styleClass="course-btn"
-              text="Numbers, operations" textAlignment="JUSTIFY" textFill="WHITE" AnchorPane.rightAnchor="591.0"
-              AnchorPane.topAnchor="459.0">
-         <font>
-            <Font name="Book Antiqua Bold" size="12.0"/>
-         </font>
-      </Button>
-      <Button fx:id="geometryBtn" alignment="CENTER" layoutX="403.0" layoutY="165.0" mnemonicParsing="false"
-              onAction="#goToGeometry" prefHeight="30.0" prefWidth="154.0" styleClass="course-btn" text="Geometry"
-              textAlignment="JUSTIFY" textFill="WHITE" AnchorPane.rightAnchor="403.0" AnchorPane.topAnchor="165.0">
-         <font>
-            <Font name="Book Antiqua Bold" size="12.0"/>
-         </font>
-      </Button>
-      <Button fx:id="geometricBtn" alignment="CENTER" layoutX="403.0" layoutY="312.0" mnemonicParsing="false"
-              onAction="#goToGeometric" prefHeight="30.0" prefWidth="154.0" styleClass="course-btn"
-              text="Geometric solids" textAlignment="JUSTIFY" textFill="WHITE" AnchorPane.rightAnchor="403.0"
-              AnchorPane.topAnchor="312.0">
-         <font>
-            <Font name="Book Antiqua Bold" size="12.0"/>
-         </font>
-      </Button>
-      <Button fx:id="conversionBtn" alignment="CENTER" layoutX="403.0" layoutY="459.0" mnemonicParsing="false"
-              onAction="#goToConversion" prefHeight="30.0" prefWidth="154.0" styleClass="course-btn"
-              text="Conversion of units" textAlignment="JUSTIFY" textFill="WHITE" AnchorPane.rightAnchor="403.0"
-              AnchorPane.topAnchor="459.0">
-         <font>
-            <Font name="Book Antiqua Bold" size="12.0"/>
-         </font>
-      </Button>
-      <Button fx:id="percentagesBtn" alignment="CENTER" layoutX="591.0" layoutY="165.0" mnemonicParsing="false"
-              onAction="#goToPercentages" prefHeight="30.0" prefWidth="154.0" styleClass="course-btn" text="Percentages"
-              textAlignment="JUSTIFY" textFill="WHITE" AnchorPane.rightAnchor="215.0" AnchorPane.topAnchor="165.0">
-         <font>
-            <Font name="Book Antiqua Bold" size="12.0"/>
-         </font>
-      </Button>
-      <Button fx:id="absoluteBtn" alignment="CENTER" layoutX="591.0" layoutY="312.0" mnemonicParsing="false"
-              onAction="#goToAbsolute" prefHeight="30.0" prefWidth="154.0" styleClass="course-btn" text="Absolute value"
-              textAlignment="JUSTIFY" textFill="WHITE" AnchorPane.rightAnchor="215.0" AnchorPane.topAnchor="312.0">
-         <font>
-            <Font name="Book Antiqua Bold" size="12.0"/>
-         </font>
-      </Button>
-      <Button fx:id="setsbtn" alignment="CENTER" layoutX="591.0" layoutY="459.0" mnemonicParsing="false"
-              onAction="#goToSets" prefHeight="30.0" prefWidth="154.0" styleClass="course-btn"
-              text="Sets &amp; intervals" textAlignment="JUSTIFY" textFill="WHITE" AnchorPane.rightAnchor="215.0"
-              AnchorPane.topAnchor="459.0">
-         <font>
-            <Font name="Book Antiqua Bold" size="12.0"/>
-         </font>
-      </Button>
-      <Button fx:id="divisibilityBtn" alignment="CENTER" layoutX="777.0" layoutY="165.0" mnemonicParsing="false"
-              onAction="#goTodivisibility" prefHeight="30.0" prefWidth="154.0" styleClass="course-btn"
-              text="Divisibility rules" textAlignment="JUSTIFY" textFill="WHITE" AnchorPane.rightAnchor="29.0"
-              AnchorPane.topAnchor="165.0">
-         <font>
-            <Font name="Book Antiqua Bold" size="12.0"/>
-         </font>
-      </Button>
-      <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="71.0" layoutY="88.0" pickOnBounds="true"
-                 preserveRatio="true">
-         <Image url="@../../../math/additionAndSubtraction.jpg"/>
+      <ImageView fitHeight="102.0" fitWidth="95.0" layoutX="144.0" layoutY="240.0" pickOnBounds="true" preserveRatio="true">
+         <Image url="@../../../math/additionAndSubtraction.jpg" />
       </ImageView>
       <Label layoutX="279.0" text="Learn &amp; Test Yourself">
          <font>
-            <Font name="Book Antiqua Bold" size="40.0"/>
+            <Font name="Book Antiqua Bold" size="40.0" />
          </font>
       </Label>
-      <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="71.0" layoutY="233.0" pickOnBounds="true"
-                 preserveRatio="true">
-         <Image url="@../../../math/multiplicationTable.jpg"/>
+      <ImageView fitHeight="95.0" fitWidth="103.0" layoutX="523.0" layoutY="240.0" pickOnBounds="true" preserveRatio="true">
+         <Image url="@../../../math/algebra.jpg" />
       </ImageView>
-      <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="71.0" layoutY="380.0" pickOnBounds="true"
-                 preserveRatio="true">
-         <Image url="@../../../math/exponentsAndroots.jpg"/>
+      <ImageView fitHeight="95.0" fitWidth="120.0" layoutX="140.0" layoutY="409.0" pickOnBounds="true" preserveRatio="true">
+         <Image url="@../../../math/geometry.jpg" />
       </ImageView>
-      <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="257.0" layoutY="88.0" pickOnBounds="true"
-                 preserveRatio="true">
-         <Image url="@../../../math/decimalsAndFractions.jpg"/>
-      </ImageView>
-      <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="257.0" layoutY="233.0" pickOnBounds="true"
-                 preserveRatio="true">
-         <Image url="@../../../math/algebra.jpg"/>
-      </ImageView>
-      <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="257.0" layoutY="378.0" pickOnBounds="true"
-                 preserveRatio="true">
-         <Image url="@../../../math/numbers,operations.jpg"/>
-      </ImageView>
-      <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="445.0" layoutY="91.0" pickOnBounds="true"
-                 preserveRatio="true">
-         <Image url="@../../../math/geometry.jpg"/>
-      </ImageView>
-      <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="445.0" layoutY="237.0" pickOnBounds="true"
-                 preserveRatio="true">
-         <Image url="@../../../math/geometricSolids.jpg"/>
-      </ImageView>
-      <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="445.0" layoutY="380.0" pickOnBounds="true"
-                 preserveRatio="true">
-         <Image url="@../../../math/conversionOfUnits.jpg"/>
-      </ImageView>
-      <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="633.0" layoutY="88.0" pickOnBounds="true"
-                 preserveRatio="true">
-         <Image url="@../../../math/percentages.jpg"/>
-      </ImageView>
-      <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="633.0" layoutY="233.0" pickOnBounds="true"
-                 preserveRatio="true">
-         <Image url="@../../../math/absoluteValue.jpg"/>
-      </ImageView>
-      <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="633.0" layoutY="380.0" pickOnBounds="true"
-                 preserveRatio="true">
-         <Image url="@../../../math/setsAndIntervals.jpg"/>
-      </ImageView>
-      <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="819.0" layoutY="89.0" pickOnBounds="true"
-                 preserveRatio="true">
-         <Image url="@../../../math/divisibilityRule.jpg"/>
-      </ImageView>
-      <Label layoutX="819.0" layoutY="241.0" text="Thank">
+      <Label layoutX="819.0" layoutY="203.0" prefHeight="33.0" prefWidth="103.0" text="Thank">
          <font>
-            <Font name="Book Antiqua Bold" size="24.0"/>
+            <Font name="Book Antiqua Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="817.0" layoutY="342.0" text="Happy">
+      <Label layoutX="817.0" layoutY="304.0" text="Happy">
          <font>
-            <Font name="Book Antiqua Bold" size="24.0"/>
+            <Font name="Book Antiqua Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="805.0" layoutY="378.0" text="Learning">
+      <Label layoutX="805.0" layoutY="340.0" text="Learning">
          <font>
-            <Font name="Book Antiqua Bold" size="24.0"/>
+            <Font name="Book Antiqua Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="832.0" layoutY="272.0" text="You">
+      <Label layoutX="832.0" layoutY="234.0" prefHeight="39.0" prefWidth="52.0" text="You">
          <font>
-            <Font name="Book Antiqua Bold" size="24.0"/>
+            <Font name="Book Antiqua Bold" size="24.0" />
          </font>
       </Label>
-      <ImageView fitHeight="70.0" fitWidth="120.0" layoutX="795.0" layoutY="432.0" pickOnBounds="true"
-                 preserveRatio="true">
-         <Image url="@../../../school/MathLogo.jpg"/>
+      <ImageView fitHeight="70.0" fitWidth="120.0" layoutX="795.0" layoutY="394.0" pickOnBounds="true" preserveRatio="true">
+         <Image url="@../../../school/MathLogo.jpg" />
       </ImageView>
-      <Separator layoutX="774.0" layoutY="233.0" orientation="VERTICAL" prefHeight="267.0" prefWidth="6.0"/>
+      <Separator layoutX="774.0" layoutY="188.0" orientation="VERTICAL" prefHeight="267.0" prefWidth="6.0" />
+      <Button fx:id="algebraBtn1" alignment="CENTER" layoutX="416.0" layoutY="343.0" mnemonicParsing="false" onAction="#goToAlgebra" prefHeight="45.0" prefWidth="307.0" styleClass="course-btn" text="Trigonometry" textAlignment="JUSTIFY" textFill="#252323">
+         <font>
+            <Font name="Book Antiqua Bold" size="25.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="95.0" fitWidth="120.0" layoutX="515.0" layoutY="404.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../school/WhatsApp%20Image%202024-03-04%20at%2000.32.27_42c2a42c.jpg" />
+         </image>
+      </ImageView>
    </AnchorPane>
 </AnchorPane>

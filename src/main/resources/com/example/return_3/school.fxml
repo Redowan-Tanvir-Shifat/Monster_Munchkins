@@ -11,11 +11,7 @@
 
 <AnchorPane prefHeight="587.0" prefWidth="975.0" styleClass="main-container" stylesheets="@school.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.return_3.Controllers.SchoolController">
    <children>
-      <ImageView fitHeight="595.0" fitWidth="994.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../school/pngtree-blue-postgraduate-theme-background-picture-image_958535.png" />
-         </image>
-      </ImageView>
+      <ImageView fitHeight="595.0" fitWidth="994.0" layoutX="-6.0" layoutY="-9.0" pickOnBounds="true" preserveRatio="true" />
       <Button fx:id="mathButton" layoutX="134.0" layoutY="319.0" mnemonicParsing="false" onAction="#goToMath" prefHeight="30.0" prefWidth="250.0" text="Let's go to 'Math'" textFill="#222121">
          <font>
             <Font name="Book Antiqua Bold" size="21.0" />
@@ -45,24 +41,24 @@
             <Font name="Book Antiqua Bold" size="21.0" />
          </font>
       </Button>
-      <ImageView fitHeight="57.0" fitWidth="119.0" layoutX="199.0" layoutY="267.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="57.0" fitWidth="112.0" layoutX="199.0" layoutY="266.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../school/math-logo-182-15623.png" />
+            <Image url="@../../../school/students-character-on-math-logo-vector-23091572.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="69.0" fitWidth="126.0" layoutX="654.0" layoutY="263.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="44.0" fitWidth="138.0" layoutX="654.0" layoutY="276.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../school/english-word-for-education-with-icons-flat-design-vector-19600445.jpg" />
+            <Image url="@../../../school/1000_F_227268299_liM3oGuQApMjXf23x7rSeFJxLgV6bMcC.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="57.0" fitWidth="138.0" layoutX="187.0" layoutY="432.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="57.0" fitWidth="138.0" layoutX="187.0" layoutY="444.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../school/history-logo-261-5350.png" />
+            <Image url="@../../../school/7703_Sr.Secondary%20_%20History%20(315).jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="65.0" fitWidth="119.0" layoutX="658.0" layoutY="429.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="44.0" fitWidth="137.0" layoutX="655.0" layoutY="445.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../school/1000_F_227268678_m1dwpEu0KeA4EmL5789UJWrlSTJNEq2q.jpg" />
+            <Image url="@../../../school/125842275-design-concept-of-word-geography-website-banner.jpg" />
          </image>
       </ImageView>
       <Label layoutX="795.0" layoutY="569.0" text="Powered by return-3;" textFill="#33bf5e">
@@ -73,10 +69,10 @@
       <Separator layoutX="495.0" layoutY="319.0" orientation="VERTICAL" prefHeight="200.0" />
       <ImageView fitHeight="144.0" fitWidth="264.0" layoutX="370.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../school/9f732c0a0cfd337c324c53d8ab917651.jpg" />
+            <Image url="@../../../school/schoolRed.jpg" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="-1.0" layoutY="-1.0" prefHeight="29.0" prefWidth="982.0" styleClass="close-btn_container">
+      <AnchorPane layoutY="-1.0" prefHeight="29.0" prefWidth="982.0" styleClass="close-btn_container">
          <children>
             <Button fx:id="backButton" layoutX="946.0" layoutY="1.0" mnemonicParsing="false" onAction="#back" prefHeight="20.0" prefWidth="36.0" styleClass="close-btn" text="X">
                <font>
