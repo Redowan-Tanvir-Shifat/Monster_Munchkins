@@ -31,7 +31,7 @@ public class LoginController {
     //-------------------------- --- IN this `startGame` method our Application will direct you `showGameScene` and then game will start  ----------------------------------------------------------------
 
     public void startGame(ActionEvent event) {
-        if (Objects.equals(username.getText(), "0") && Objects.equals(password.getText(), "0")) {
+        if (Objects.equals(username.getText(), "redowan") && Objects.equals(password.getText(), "0020")) {
             Game.showGameScene();
         } else {
             failedText.setText("Please enter right password!");
