@@ -9,7 +9,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 
 
 import java.io.FileInputStream;
@@ -96,11 +98,11 @@ public class Player extends Entity{
 
 
         //Player Status;
-        level=1;
-        maxLife=6;
-        life=maxLife;
-        maxMana=4;
-        mana=maxMana;
+        level = 1;
+        maxLife = 6;
+        life = maxLife;
+        maxMana = 4;
+        mana = maxMana;
         //ammo=10;
         strength=1; //the more strength he has the more damage he gives
         dexterity=1;// the more dexterity he has the less damage he receives
@@ -201,12 +203,22 @@ public class Player extends Entity{
         }
 
 
+        if (invincible == true) {
+            invincibleCounter++;
+            if (invincibleCounter > 60) {
+                invincible = false;
+                invincibleCounter = 0;
+            }
+        }
 
     }
 
     private void contactMonster(int i) {
         if (i != 999) {
-            life -= 1;
+            if (invincible == false) {
+                life -= 1;
+                invincible = true;
+            }
         }
     }
 
@@ -261,6 +273,12 @@ public class Player extends Entity{
         }
 
         gc.drawImage(image,tempScreenX,tempScreenY);
+
+        //DEBUG...
+        gc.setFont(new Font("Arial", 26.0));
+        gc.setFill(Color.WHITE);
+        String text = "Invincible: " + invincibleCounter;
+        gc.fillText(text, 10, 400);
     }
 
 

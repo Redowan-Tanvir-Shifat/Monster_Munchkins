@@ -178,7 +178,7 @@ public class CollisionChecker {
 
 
     public boolean checkPlayer(Entity entity){
-        boolean contactPlayer=false;
+        boolean contactPlayer = false;
         //Get entity solid Area Position
         entity.solidArea.setX(entity.worldX + entity.solidArea.getX());
         entity.solidArea.setY(entity.worldY + entity.solidArea.getY());
@@ -187,25 +187,14 @@ public class CollisionChecker {
         game.player.solidArea.setY(game.player.worldY + game.player.solidArea.getY());
 
         switch (entity.direction){
-            case "up":
-                entity.solidArea.setY(entity.solidArea.getY()-entity.speed);
-
-                break;
-            case "down":
-                entity.solidArea.setY(entity.solidArea.getY()+entity.speed);
-                break;
-            case "left":
-                entity.solidArea.setX(entity.solidArea.getX()-entity.speed);
-
-                break;
-            case "right":
-                entity.solidArea.setX(entity.solidArea.getX()+entity.speed);
-
-                break;
+            case "up": entity.solidArea.setY(entity.solidArea.getY()-entity.speed); break;
+            case "down": entity.solidArea.setY(entity.solidArea.getY()+entity.speed); break;
+            case "left": entity.solidArea.setX(entity.solidArea.getX()-entity.speed); break;
+            case "right": entity.solidArea.setX(entity.solidArea.getX()+entity.speed); break;
         }
         if(entity.solidArea.intersects(game.player.solidArea.getBoundsInLocal())){
-            entity.collisionOn=true;
-            contactPlayer=true;
+            entity.collisionOn = true;
+            contactPlayer = true;
         }
 
 

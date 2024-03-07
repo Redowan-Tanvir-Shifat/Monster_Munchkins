@@ -50,10 +50,12 @@ public class UI {
         //     keyImage =key.image;
 
         //Create Heart Object
-         heart= new OBJ_Heart(game);
-        heartFull=heart.image;
-        heartHalf=heart.image2;
-        heartBlank=heart.image3;
+         heart = new OBJ_Heart(game);
+         heartFull = heart.image1;
+         heartHalf = heart.image2;
+         heartBlank = heart.image3;
+
+
 //        Entity crystal=new OBJ_ManaCrystal(game);
 //        crystalFull=crystal.image;
 //        crystalBlank=crystal.image2;
@@ -93,7 +95,7 @@ public class UI {
 //        }
         //DIALOGUE STATE
         if(game.gameState == game.dialogueState){
-//            drawPlayerLife();
+            drawPlayerLife();
 //            drawMana();
             drawDialogueScreen();
         }
@@ -123,30 +125,30 @@ public class UI {
 
     }
     public void drawPlayerLife(){
-        game.player.life=4;
-        int x= game.tileSize/2;
-        int y=game.tileSize/2;
-        int i=0;
-        //DRAW BLANK HEART
-        while(i<(game.player.maxLife/2)){
-            gc.drawImage(heartBlank,x,y);
+        int x = game.tileSize / 2;
+        int y = game.tileSize / 2;
+        int i = 0;
+
+        //DRAW Max life
+        while(i < (game.player.maxLife / 2)){
+            gc.drawImage(heartBlank, x, y);
             i++;
-            x+=game.tileSize;
+            x += game.tileSize;
         }
         //RESET THE values
-        x= game.tileSize/2;
-        y=game.tileSize/2;
-        i=0;
+        x = game.tileSize / 2;
+        y = game.tileSize / 2;
+        i = 0;
 
         //Draw Current LIFE
-        while(i<game.player.life){
-            gc.drawImage(heartHalf,x,y);
+        while(i < game.player.life){
+            gc.drawImage(heartHalf, x, y);
             i++;
-            if(i<game.player.life){
-                gc.drawImage(heartFull,x,y);
+            if(i < game.player.life){
+                gc.drawImage(heartFull, x, y);
             }
             i++;
-            x+=game.tileSize;
+            x += game.tileSize;
         }
 
     }

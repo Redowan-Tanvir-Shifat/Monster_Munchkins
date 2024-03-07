@@ -14,7 +14,7 @@ import java.util.Objects;
 
 public class Entity {
     //VARIABLES
-    public Image image,image2,image3;
+    public Image image1, image2, image3;
     public String name;
     public boolean collision = false;
     public int worldX,worldY;
@@ -49,8 +49,8 @@ public class Entity {
     public int mana;
     public  int ammo;
 
-    public boolean invincible=false;
-    public int invincibleCounter=0;
+    public boolean invincible = false;
+    public int invincibleCounter = 0;
     //Character ATributes
     public int level;
     public int strength;
@@ -144,26 +144,26 @@ public class Entity {
         boolean contactPlayer= game.cChecker.checkPlayer(this);
 
 //
-//        if(this.type ==type_monster && contactPlayer==true){
+        if(this.type == type_monster && contactPlayer == true){
 //            damagePlayer(attack);
-//        }
+            if (game.player.invincible == false) {
+                game.player.life -= 1;
+                game.player.invincible = true;
+            }
+        }
 
     }
     public void update(){
         setAction();
-
         checkCollision();
+
         //if collisionOn is false then player can be able to move
-        if(collisionOn==false){
+        if(collisionOn == false){
             switch (direction){
-                case "up":worldY -= speed;
-                    break;
-                case "down":worldY+= speed;
-                    break;
-                case "left":worldX -= speed;
-                    break;
-                case "right":worldX += speed;
-                    break;
+                case "up":worldY -= speed; break;
+                case "down":worldY+= speed; break;
+                case "left":worldX -= speed; break;
+                case "right":worldX += speed; break;
             }
         }
 
