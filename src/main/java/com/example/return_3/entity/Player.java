@@ -120,8 +120,8 @@ public class Player extends Entity{
     }
 
     public void setDefaultPositions(){
-        worldX= game.tileSize * 84;
-        worldY= game.tileSize * 113;
+        worldX= game.tileSize * 82;
+        worldY= game.tileSize * 148;
         direction="down";
     }
 
@@ -153,6 +153,10 @@ public class Player extends Entity{
             int npcIndex=game.cChecker.checkEntity(this,game.npc);
             interactNPC(npcIndex);
 
+            //CHECK MONSTER COLLISION
+            int monsterIndex = game.cChecker.checkEntity(this,game.monster);
+            contactMonster(monsterIndex);
+            //interactMo(monsterIndex);
 
             //new code
 
@@ -198,6 +202,12 @@ public class Player extends Entity{
 
 
 
+    }
+
+    private void contactMonster(int i) {
+        if (i != 999) {
+            life -= 1;
+        }
     }
 
 

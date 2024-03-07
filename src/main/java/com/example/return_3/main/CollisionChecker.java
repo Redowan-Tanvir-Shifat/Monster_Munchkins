@@ -133,10 +133,10 @@ public class CollisionChecker {
     // This method is for check NPC or Monster Collision
     //this is identical of checkObject method
     public int checkEntity(Entity entity,Entity[][] target) {
-        int index =999;
+        int index = 999;
 
-        for(int i=0; i<target[game.currentMap].length;i++){
-            if(target[game.currentMap][i]!= null){
+        for(int i = 0; i<target[game.currentMap].length;i++){
+            if(target[game.currentMap][i] != null){
                 //Get entity solid Area Position
                 entity.solidArea.setX(entity.worldX + entity.solidArea.getX());
                 entity.solidArea.setY(entity.worldY + entity.solidArea.getY());
@@ -147,28 +147,17 @@ public class CollisionChecker {
 
 
                 switch (entity.direction){
-                    case "up":
-                        entity.solidArea.setY(entity.solidArea.getY()-entity.speed);
-
-                        break;
-                    case "down":
-                        entity.solidArea.setY(entity.solidArea.getY()+entity.speed);
-                        break;
-                    case "left":
-                        entity.solidArea.setX(entity.solidArea.getX()-entity.speed);
-
-                        break;
-                    case "right":
-                        entity.solidArea.setX(entity.solidArea.getX()+entity.speed);
-
-                        break;
+                    case "up": entity.solidArea.setY(entity.solidArea.getY()-entity.speed); break;
+                    case "down": entity.solidArea.setY(entity.solidArea.getY()+entity.speed); break;
+                    case "left": entity.solidArea.setX(entity.solidArea.getX()-entity.speed); break;
+                    case "right": entity.solidArea.setX(entity.solidArea.getX()+entity.speed); break;
                 }
-                if(entity.solidArea.intersects(target[game.currentMap][i].solidArea.getBoundsInLocal())){
 
-                    if(target[game.currentMap][i]!= entity){
+                if(entity.solidArea.intersects(target[game.currentMap][i].solidArea.getBoundsInLocal())){
+                    if(target[game.currentMap][i] != entity){
                         //check the object is solid or not
-                        entity.collisionOn=true;
-                        index=i;
+                        entity.collisionOn = true;
+                        index = i;
                     }
                 }
 

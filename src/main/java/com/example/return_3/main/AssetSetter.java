@@ -4,6 +4,7 @@ package com.example.return_3.main;
 import com.example.return_3.entity.NPC_GameCenter;
 import com.example.return_3.entity.NPC_OldMan;
 import com.example.return_3.entity.NPC_School;
+import com.example.return_3.monster.Mon_GreenSlime;
 
 import java.util.Random;
 
@@ -31,11 +32,11 @@ public class AssetSetter {
 
     }
     public void setNPC(){
-        int mapNum=0;
-        int i=0;
-        game.npc[mapNum][i]= new NPC_School(game);
-        game.npc[mapNum][i].worldX=game.tileSize*79;
-        game.npc[mapNum][i].worldY=game.tileSize*113;
+        int mapNum = 0;
+        int i = 0;
+        game.npc[mapNum][i] = new NPC_School(game);
+        game.npc[mapNum][i].worldX = game.tileSize * 82;
+        game.npc[mapNum][i].worldY = game.tileSize * 144;
 
 //        i++;
 //        game.npc[mapNum][i]= new NPC_GameCenter(game);
@@ -52,13 +53,16 @@ public class AssetSetter {
 
     }
     public void setMonster(){
-//        int mapNum=0;
-//        int i=0;
-//        gp.monster[mapNum][i]= new MON_GreenSlime(gp);
-//        gp.monster[mapNum][i].worldX=gp.tileSize*65;
-//        gp.monster[mapNum][i].worldY=gp.tileSize*90;
-//        i++;
+        int mapNum=0;
+        int i=0;
+        game.monster[mapNum][0] = new Mon_GreenSlime(game);
+        game.monster[mapNum][0].worldX = game.tileSize * 80;
+        game.monster[mapNum][0].worldY = game.tileSize * 144;
 
+        game.monster[mapNum][1] = new Mon_GreenSlime(game);
+        game.monster[mapNum][1].worldX = game.tileSize * 84;
+        game.monster[mapNum][1].worldY = game.tileSize * 144;
+        i++;
     }
     //For Interactive Tile
     public void setInteractiveTile(){

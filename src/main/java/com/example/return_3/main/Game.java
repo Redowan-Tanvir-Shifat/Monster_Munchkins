@@ -95,6 +95,7 @@ public class Game extends Application {
     public static GameAnimationTimer gameTimer;
 
     public Entity npc[][]= new Entity[maxMap][10]; //set the number of 10 NPC Number
+    public Entity[][] monster = new Entity[maxMap][20];
 
     public InteractiveTile iTile[][]= new InteractiveTile[maxMap][50];
     ArrayList<Entity> entityList = new ArrayList<>();
@@ -196,6 +197,7 @@ public class Game extends Application {
         player = new Player(this, keyHandler); // KeyHandler depends on game.scene
         mainGameroot.getChildren().add(mainGameCanvas);
         assetSetter.setNPC();
+        assetSetter.setMonster();
         lastNanoTime = System.nanoTime();
         gameTimer = new GameAnimationTimer(this);
         gameTimer.start();
@@ -259,8 +261,15 @@ public class Game extends Application {
                     }
                 }
 
+                //Monster
+                for (int i = 0; i < monster.length; i++) {
+                    if (monster[currentMap][i] != null) {
+                        monster[currentMap][i].update();
+                    }
+                }
+
                 //Interactive TILEs  UPDATE
-                for(int i=0;i<iTile[currentMap].length;i++) {
+                for(int i = 0;i<iTile[currentMap].length;i++) {
                     if(iTile[currentMap][i] != null){
                         iTile[currentMap][i].update();
                     }
@@ -303,6 +312,12 @@ public class Game extends Application {
                 for (int i = 0; i < npc[currentMap].length; i++) {
                     if (npc[currentMap][i] != null) {
                         entityList.add(npc[currentMap][i]);
+                    }
+                }
+                //ADD MONSTER TO THE LIST
+                for (int i = 0; i < monster[currentMap].length; i++) {
+                    if (monster[currentMap][i] != null) {
+                        entityList.add(monster[currentMap][i]);
                     }
                 }
 

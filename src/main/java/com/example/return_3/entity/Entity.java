@@ -138,8 +138,8 @@ public class Entity {
         //CHeching part of collision so that entity got collision and can not move
         game.cChecker.checkTile(this);
 //        gp.cChecker.checkObject(this,false); //its not player so its remain false
-//        gp.cChecker.checkEntity(this,gp.npc);
-//        gp.cChecker.checkEntity(this,gp.monster);
+        game.cChecker.checkEntity(this,game.npc);
+        game.cChecker.checkEntity(this,game.monster);
 //        gp.cChecker.checkEntity(this,gp.iTile);
         boolean contactPlayer= game.cChecker.checkPlayer(this);
 
