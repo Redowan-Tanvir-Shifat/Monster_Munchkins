@@ -64,13 +64,14 @@ public class GameSpaceInvaders {
         //System.out.println("GameSpaceInvaders Class: `drawMethod`  draw working");
         //Now drawing the background
 
-//        Image backgroundImage =null;
-//         backgroundImage =bcPic;
-//        gc.drawImage(backgroundImage,0,0);
+        Image backgroundImage =null;
+         backgroundImage =bcPic;
+        gc.drawImage(backgroundImage,0,0);
+        //new CheckedThread(bcPic,gc).start();
 
 
         //Drawing spaceShip
-        spaceShip.draw(this.gc);
+       // spaceShip.draw(this.gc);
     }
 
     public Image loadImage(String imagePath, int width, int height) {

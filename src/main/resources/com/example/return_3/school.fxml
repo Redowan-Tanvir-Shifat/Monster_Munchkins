@@ -10,62 +10,75 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="576.0" prefWidth="960.0" styleClass="main-container" stylesheets="@school.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.return_3.Controllers.SchoolController">
-   <AnchorPane layoutX="666.0" layoutY="-14.0" prefHeight="33.0" prefWidth="960.0" styleClass="close-btn_container" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-      <Button fx:id="backButton" layoutX="918.0" layoutY="4.0" mnemonicParsing="false" onAction="#back" prefHeight="20.0" prefWidth="36.0" styleClass="close-btn" text="X">
+   <children>
+      <AnchorPane layoutY="6.0" prefHeight="33.0" prefWidth="960.0" styleClass="close-btn_container" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button fx:id="backButton" layoutX="925.0" layoutY="4.0" mnemonicParsing="false" onAction="#back" prefHeight="20.0" prefWidth="36.0" styleClass="close-btn" text="X">
+               <font>
+                  <Font name="Arial Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <Button fx:id="mathButton" layoutX="134.0" layoutY="319.0" mnemonicParsing="false" onAction="#goToMath" prefHeight="30.0" prefWidth="250.0" text="Let's go to 'Math'" textFill="#222121">
          <font>
-            <Font name="Arial Bold" size="12.0" />
+            <Font name="Book Antiqua Bold" size="21.0" />
+         </font>
+         <styleClass>
+            <String fx:value="btn" />
+            <String fx:value="button" />
+         </styleClass>
+      </Button>
+      <Label layoutX="292.0" layoutY="189.0" prefHeight="48.0" prefWidth="417.0" text="Welcome To School">
+         <font>
+            <Font name="Book Antiqua Bold" size="45.0" />
+         </font>
+      </Label>
+      <Button fx:id="histryButton" layoutX="134.0" layoutY="488.0" mnemonicParsing="false" onAction="#goTohistory" prefHeight="30.0" prefWidth="250.0" styleClass="btn" text="Let's go to 'History'" textFill="#1e1e1e">
+         <font>
+            <Font name="Book Antiqua Bold" size="21.0" />
          </font>
       </Button>
-   </AnchorPane>
-   <Button fx:id="mathButton" layoutX="124.0" layoutY="309.0" mnemonicParsing="false" onAction="#goToMath" prefHeight="30.0" prefWidth="250.0" text="Let's go to 'Math'" textFill="WHITE">
-      <font>
-         <Font name="Book Antiqua Bold" size="21.0" />
-      </font>
-      <styleClass>
-         <String fx:value="btn" />
-         <String fx:value="button" />
-      </styleClass>
-   </Button>
-   <Label layoutX="280.0" layoutY="187.0" prefHeight="48.0" prefWidth="417.0" text="Welcome To School">
-      <font>
-         <Font name="Book Antiqua Bold" size="45.0" />
-      </font>
-   </Label>
-   <Button fx:id="histryButton" layoutX="124.0" layoutY="478.0" mnemonicParsing="false" onAction="#goTohistory" prefHeight="30.0" prefWidth="250.0" styleClass="btn" text="Let's go to 'History'" textFill="WHITE">
-      <font>
-         <Font name="Book Antiqua Bold" size="21.0" />
-      </font>
-   </Button>
-   <Button fx:id="geographybutton" layoutX="582.0" layoutY="478.0" mnemonicParsing="false" onAction="#goToGeography" prefHeight="30.0" prefWidth="250.0" styleClass="btn" text="Let's go to 'Geography'" textFill="WHITE">
-      <font>
-         <Font name="Book Antiqua Bold" size="21.0" />
-      </font>
-   </Button>
-   <Button fx:id="englishButton" layoutX="582.0" layoutY="309.0" mnemonicParsing="false" onAction="#goToEnlish" prefHeight="30.0" prefWidth="250.0" styleClass="btn" text="Let's go to 'English'" textFill="WHITE">
-      <font>
-         <Font name="Book Antiqua Bold" size="21.0" />
-      </font>
-   </Button>
-   <ImageView fitHeight="151.0" fitWidth="240.0" layoutX="368.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
-      <Image url="@../../../school/schoolRed.jpg" />
-   </ImageView>
-   <ImageView fitHeight="57.0" fitWidth="136.0" layoutX="180.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true">
-      <Image url="@../../../school/MathLogo.jpg" />
-   </ImageView>
-   <ImageView fitHeight="57.0" fitWidth="80.0" layoutX="668.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true">
-      <Image url="@../../../school/EnlishLogo.jpg" />
-   </ImageView>
-   <ImageView fitHeight="92.0" fitWidth="172.0" layoutX="163.0" layoutY="425.0" pickOnBounds="true" preserveRatio="true">
-      <Image url="@../../../school/HistoryLogo.jpg" />
-   </ImageView>
-   <ImageView fitHeight="69.0" fitWidth="165.0" layoutX="638.0" layoutY="409.0" pickOnBounds="true" preserveRatio="true">
-      <Image url="@../../../school/GeographyLogo.jpg" />
-   </ImageView>
-
-   <Label layoutX="830.0" layoutY="553.0" text="Powered by return-3;" textFill="#33bf5e">
-      <font>
-         <Font name="System Bold Italic" size="12.0" />
-      </font>
-   </Label>
-   <Separator layoutX="485.0" layoutY="309.0" orientation="VERTICAL" prefHeight="200.0" />
+      <Button fx:id="geographybutton" layoutX="592.0" layoutY="488.0" mnemonicParsing="false" onAction="#goToGeography" prefHeight="30.0" prefWidth="250.0" styleClass="btn" text="Let's go to 'Geography'" textFill="#1e1d1d">
+         <font>
+            <Font name="Book Antiqua Bold" size="21.0" />
+         </font>
+      </Button>
+      <Button fx:id="englishButton" layoutX="592.0" layoutY="319.0" mnemonicParsing="false" onAction="#goToEnlish" prefHeight="30.0" prefWidth="250.0" styleClass="btn" text="Let's go to 'English'" textFill="#282727">
+         <font>
+            <Font name="Book Antiqua Bold" size="21.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="57.0" fitWidth="119.0" layoutX="199.0" layoutY="265.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../school/MathLogo.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="67.0" fitWidth="94.0" layoutX="678.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../school/EnlishLogo.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="57.0" fitWidth="138.0" layoutX="187.0" layoutY="443.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../school/History%20Logo.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="65.0" fitWidth="119.0" layoutX="658.0" layoutY="428.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../school/GeographyLogo.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="835.0" layoutY="553.0" text="Powered by return-3;" textFill="#33bf5e">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Label>
+      <Separator layoutX="495.0" layoutY="319.0" orientation="VERTICAL" prefHeight="200.0" />
+      <ImageView fitHeight="135.0" fitWidth="226.0" layoutX="388.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../school/schoolRed.jpg" />
+         </image>
+      </ImageView>
+   </children>
 </AnchorPane>

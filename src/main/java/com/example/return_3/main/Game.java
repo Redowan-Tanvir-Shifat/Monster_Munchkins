@@ -1,9 +1,11 @@
 package com.example.return_3.main;
 
 
+import com.example.return_3.ai.PathFinder;
 import com.example.return_3.entity.Entity;
 import com.example.return_3.entity.Player;
 import com.example.return_3.gameCenter.spaceInvaders.GameSpaceInvaders;
+import com.example.return_3.interactiveTile.InteractiveTile;
 import com.example.return_3.tile.TileManager;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -59,6 +61,7 @@ public class Game extends Application {
     public int gameSpaceInvadersStatus=1;
 
 
+
     //SCREEN SETTINGS
     public final int tileSize = 32; //SO every tile will be 32 pixels
     public final int maxScreenCol = 30; //here will be 20 column of titles  =>1024 pixel width
@@ -84,7 +87,7 @@ public class Game extends Application {
     //instantiates new instances
     public Canvas mainGameCanvas = new Canvas(screenWidth, screenHeight);
     public GraphicsContext gc = mainGameCanvas.getGraphicsContext2D();
-    TileManager tileM= new TileManager(this);
+    public TileManager tileM= new TileManager(this);
     public CollisionChecker cChecker = new CollisionChecker(this);
     public EventHandler eventHandler= new EventHandler(this);
     public AssetSetter assetSetter= new AssetSetter(this);
@@ -92,11 +95,18 @@ public class Game extends Application {
     public static GameAnimationTimer gameTimer;
 
     public Entity npc[][]= new Entity[maxMap][10]; //set the number of 10 NPC Number
+
+    public InteractiveTile iTile[][]= new InteractiveTile[maxMap][50];
     ArrayList<Entity> entityList = new ArrayList<>();
 
     public Player player ;
     public KeyHandler keyHandler;
     public static GameSpaceInvaders gameSpaceInvaders;
+
+    public PathFinder pFinder= new PathFinder(this);
+
+
+
 
     int spriteCounter=0;
     int spriteNum=1;
@@ -249,6 +259,14 @@ public class Game extends Application {
                     }
                 }
 
+                //Interactive TILEs  UPDATE
+                for(int i=0;i<iTile[currentMap].length;i++) {
+                    if(iTile[currentMap][i] != null){
+                        iTile[currentMap][i].update();
+                    }
+                }
+
+
                 player.keyHandler.setEnterPressed(false);
             } else if (gameStatus==gameSpaceInvadersStatus) {
                 gameSpaceInvaders.update();
@@ -272,6 +290,12 @@ public class Game extends Application {
 
 
                 tileM.draw(gc);
+                //draw Interactive tile
+                for(int i=0;i< iTile[currentMap].length;i++){
+                    if(iTile[currentMap][i]!=null){
+                        iTile[currentMap][i].draw(gc);
+                    }
+                }
                 //add player
                 entityList.add(player);
 

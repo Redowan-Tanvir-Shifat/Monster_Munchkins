@@ -43,16 +43,16 @@ public class Player extends Entity{
 
         //part 6 collision part starts
         solidArea= new Rectangle(); //we can skip this session. (as we already make it in Entity class)
-        solidArea.setX(5);
-        solidArea.setY(10);
+        solidArea.setX(9);
+        solidArea.setY(14);
 
         //part 8 Object Interaction part starts
         solidAreaDefaultX=(int)(solidArea.getX());
         solidAreaDefaultY=(int)(solidArea.getY());
         //part 8 Object Interaction part  ends
 
-        solidArea.setWidth(22);
-        solidArea.setHeight(22);
+        solidArea.setWidth(14);
+        solidArea.setHeight(10);
         //part 6 collision part ends
 
 

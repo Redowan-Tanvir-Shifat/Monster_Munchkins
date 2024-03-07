@@ -41,27 +41,105 @@ public class NPC extends Entity{
     }
 
     public void setAction(){
-        actionLookCounter++;
-        if(actionLookCounter==100){//for two seconds it means
-            Random random= new Random();
-            int i=random.nextInt(100)+1; //we add 1 because otherwise it will catch 0 to 99.. we want to avoid 0 here
-            if(i<=25){
-                direction="up";
+        if(onPath==true){
+            int goalCol=6;
+            int goalRow=10;
+            searchPath(goalCol, goalRow);
+        } else  {
+            actionLookCounter++;
+            if(actionLookCounter==100){//for two seconds it means
+                Random random= new Random();
+                int i=random.nextInt(100)+1; //we add 1 because otherwise it will catch 0 to 99.. we want to avoid 0 here
+                if(i<=25){
+                    direction="up";
+                }
+                if(i>25&&i<=50){
+                    direction="down";
+                }
+                if(i>50&&i<=75){
+                    direction="left";
+                }
+                if(i>75&&i<=100){
+                    direction="right";
+                }
+                actionLookCounter=0;
             }
-            if(i>25&&i<=50){
-                direction="down";
-            }
-            if(i>50&&i<=75){
-                direction="left";
-            }
-            if(i>75&&i<=100){
-                direction="right";
-            }
-            actionLookCounter=0;
         }
+
+
     }
 
 //        public void speak(){
 //        super.speak();
 //        }
+
+    public void searchPath(int goalCol, int goalRow){
+
+        int startCol=(int)(worldX+solidArea.getX())/game.tileSize;
+        int startRow=(int)(worldY+solidArea.getY())/game.tileSize;
+
+        game.pFinder.setNodes(startCol, startRow, goalCol,goalRow);
+
+        if(game.pFinder.search()==true){
+            //Next worldX & worldY
+            int nextX= game.pFinder.pathList.get(0).col *game.tileSize;
+            int nextY= game.pFinder.pathList.get(0).row *game.tileSize;
+
+            //Entity's solidArea position
+            int enleftX=(int)(worldX + solidArea.getX());
+            int enRightX=(int)(worldX + solidArea.getX()+solidArea.getWidth());
+            int enTopY=(int)(worldY+solidArea.getY());
+            int enBottomY=(int)(worldY+solidArea.getY()+solidArea.getHeight());
+
+            if(enTopY>nextY && enleftX>=nextX && enRightX< nextX+game.tileSize){
+                direction= "up";
+            }else if(enTopY<nextY && enleftX>=nextX && enRightX< nextX+game.tileSize){
+                direction= "down";
+            }else if(enTopY>= nextY && enBottomY<nextY+game.tileSize){
+                //left or right
+                if(enleftX>nextX){
+                    direction="left";
+                }if(enleftX<nextX){
+                    direction="right";
+                }
+            } else if (enTopY>nextY && enleftX> nextX) {
+                //up or left
+                direction="up";
+                checkCollision();
+                if(collisionOn==true){
+                    direction="left";
+                }
+            } else if (enTopY > nextY && enleftX < nextX) {
+                //up or right
+                direction="up";
+                checkCollision();
+                if(collisionOn==true){
+                    direction="right";
+                }
+            }else if(enTopY< nextY && enleftX>nextX) {
+                //down or left
+                direction="down";
+                checkCollision();
+                if(collisionOn==true){
+                    direction="left";
+                }
+            }else if(enTopY< nextY && enleftX<nextX) {
+                //down or right
+                direction="down";
+                checkCollision();
+                if(collisionOn==true){
+                    direction="right";
+                }
+            }
+            int nextCol=game.pFinder.pathList.get(0).col;
+            int nextRow=game.pFinder.pathList.get(0).row;
+
+            if(nextCol==goalCol&& nextRow==goalRow){
+                onPath=false;
+            }
+
+        }
+    }
+
+
 }

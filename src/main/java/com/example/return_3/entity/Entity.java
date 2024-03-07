@@ -1,6 +1,7 @@
 package com.example.return_3.entity;
 
 import com.example.return_3.main.Game;
+import com.example.return_3.object.OBJ_ChatBox;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.shape.Rectangle;
@@ -23,7 +24,9 @@ public class Entity {
     public Image attackUp1,attackUp2,attackDown1, attackDown2,attackLeft1,attackLeft2,attackRight1,attackRight2;
     public String direction="down";
     public int spriteCounter=0;
+    public int chatCounter=0;
     public  int spriteNum=1;
+    public int chatNum=1;
 
   //  COLLision
   //  part 6 collision
@@ -88,6 +91,9 @@ public class Entity {
     public boolean alive= true;
     public boolean dying= false;
     public boolean hpBarOn=false;
+    public boolean onPath= false;
+    public boolean chatOnStatus=false;
+
 
     int dyingCounter=0;
     int hpBarCounter=0;
@@ -127,8 +133,7 @@ public class Entity {
     public void setAction(){}
 
     public void damageReaction(){}
-    public void update(){
-        setAction();
+    public void checkCollision(){
         collisionOn=false;
         //CHeching part of collision so that entity got collision and can not move
         game.cChecker.checkTile(this);
@@ -143,7 +148,11 @@ public class Entity {
 //            damagePlayer(attack);
 //        }
 
+    }
+    public void update(){
+        setAction();
 
+        checkCollision();
         //if collisionOn is false then player can be able to move
         if(collisionOn==false){
             switch (direction){
@@ -169,6 +178,40 @@ public class Entity {
                 spriteNum = 1;
             }
             spriteCounter = 0;
+        }
+        if(type==type_npc){
+
+            int xDistance=Math.abs(worldX-game.player.worldX);
+            int yDistance=Math.abs(worldY-game.player.worldY);
+            int tileDistance=(xDistance+yDistance)/game.tileSize;
+
+            if(tileDistance<3){
+                chatOnStatus=true;
+            }else{
+                chatOnStatus=false;
+            }
+
+
+            if( chatOnStatus==true){
+                chatCounter++;
+                if (chatCounter <15 ) {
+                    chatNum=1;
+
+
+                } else if (chatCounter >=15&& chatCounter<30 ) {
+                    chatNum=2;
+
+                } else if (chatCounter >=30&& chatCounter<45 ) {
+                    chatNum=3;
+
+                } else if (chatCounter >=45&& chatCounter<60 ) {
+                    chatNum=4;
+
+                }else {
+                    chatCounter = 0;
+                }
+            }
+
         }
 
 //        if(invincible==true){
@@ -252,6 +295,7 @@ public class Entity {
 //            }
 
 
+
 //
 //            if(invincible==true){
 //                hpBarOn=true;
@@ -262,6 +306,7 @@ public class Entity {
 //                dyingAnimation(g2);
 //            }
             gc.drawImage(image,screenX,screenY);
+
 
             //Reset opacity
 //            changeAlpha(g2,1F);
