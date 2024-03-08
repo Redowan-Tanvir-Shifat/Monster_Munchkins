@@ -17,6 +17,7 @@ import javafx.scene.text.Font;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.HttpURLConnection;
 import java.util.Objects;
 
 
@@ -58,12 +59,15 @@ public class Player extends Entity{
         //part 6 collision part ends
 
 
-        // Load player images and initialize ImageView
-        loadPlayerImages();
-
-
+        attackArea.setWidth(32);
+        attackArea.setHeight(28);
 
         setDefaultValues();
+        loadPlayerImages();    // Load player images and initialize ImageView
+        loadPlayerAttackImages();
+
+
+
 
 
     }
@@ -78,17 +82,22 @@ public class Player extends Entity{
         left2 = loadImage("/player/boy_left_2.png", game.tileSize, game.tileSize);
         right1 = loadImage("/player/boy_right_1.png", game.tileSize, game.tileSize);
         right2 = loadImage("/player/boy_right_2.png", game.tileSize, game.tileSize);
-//        up1 = new Image(Objects.requireNonNull(getClass().getResource("/player/boy_up_1.png")).toString());
-//        up2 = new Image(Objects.requireNonNull(getClass().getResource("/player/boy_up_2.png")).toString());
-//        down1 = new Image(Objects.requireNonNull(getClass().getResource("/player/boy_down_1.png")).toString());
-//        down2 = new Image(Objects.requireNonNull(getClass().getResource("/player/boy_down_2.png")).toString());
-//        left1 = new Image(Objects.requireNonNull(getClass().getResource("/player/boy_left_1.png")).toString());
-//        left2 = new Image(Objects.requireNonNull(getClass().getResource("/player/boy_left_2.png")).toString());
-//        right1 = new Image(Objects.requireNonNull(getClass().getResource("/player/boy_right_1.png")).toString());
-//        right2 = new Image(Objects.requireNonNull(getClass().getResource("/player/boy_right_2.png")).toString());
-        //
-        System.out.println("Player loaded");
+
+        //System.out.println("Player loaded");
     }
+    private void loadPlayerAttackImages() {
+        attackUp1 = loadImage("/player/attacking_up_1.png", game.tileSize, game.tileSize*2);
+        attackUp2 = loadImage("/player/attacking_up_2.png", game.tileSize, game.tileSize*2);
+        attackDown1 = loadImage("/player/attacking_down_1.png", game.tileSize, game.tileSize*2);
+        attackDown2 = loadImage("/player/attacking_down_2.png", game.tileSize, game.tileSize*2);
+        attackLeft2 = loadImage("/player/attacking_left_1.png", game.tileSize*2, game.tileSize);
+        attackLeft2 = loadImage("/player/attacking_left_2.png", game.tileSize*2, game.tileSize);
+        attackRight1 = loadImage("/player/attacking_right_1.png", game.tileSize*2, game.tileSize);
+        attackRight2 = loadImage("/player/attacking_right_2.png", game.tileSize*2, game.tileSize);
+
+        //System.out.println("Player loaded");
+    }
+
 
 
 
@@ -128,20 +137,22 @@ public class Player extends Entity{
     }
 
     public void update(){
-        if(keyHandler.isMoveUp() || keyHandler.isMoveDown() || keyHandler.isMoveRight() || keyHandler.isMoveLeft() || keyHandler.isEnterPressed()) {
+        if (attacking == true) {
+            attacking();
+        }
+        else if (keyHandler.isMoveUp() || keyHandler.isMoveDown() || keyHandler.isMoveRight() || keyHandler.isMoveLeft() || keyHandler.isEnterPressed() || keyHandler.isSpacePressed()) {
             // Move player based on key inputs
             if (keyHandler.isMoveUp()) {
                 direction = "up";
-
             }
-            if (keyHandler.isMoveDown()) {
+            else if (keyHandler.isMoveDown()) {
                 direction = "down";
             }
-            if (keyHandler.isMoveRight()) {
-                direction = "right";
-            }
-            if (keyHandler.isMoveLeft()) {
+            else if (keyHandler.isMoveLeft()) {
                 direction = "left";
+            }
+            else if (keyHandler.isMoveRight()) {
+                direction = "right";
             }
 
             collisionOn = false;
@@ -158,12 +169,12 @@ public class Player extends Entity{
             //CHECK MONSTER COLLISION
             int monsterIndex = game.cChecker.checkEntity(this,game.monster);
             contactMonster(monsterIndex);
-            //interactMo(monsterIndex);
+            interactMonster(monsterIndex);
 
             //new code
 
 
-            if (collisionOn == false) {
+            if (collisionOn == false && keyHandler.isEnterPressed() == false && keyHandler.isSpacePressed() == false) {
                 switch (direction) {
                     case "up":
                         worldY -= speed;
@@ -179,6 +190,8 @@ public class Player extends Entity{
                         break;
                 }
             }
+              game.keyHandler.setEnterPressed(false);
+              game.keyHandler.setSpacePressed(false);
 
 //        playerImageView.setX(playerImageView.getX() - (playerSpeed*deltaTime));
 
@@ -213,6 +226,62 @@ public class Player extends Entity{
 
     }
 
+
+
+    private void attacking() {
+        spriteCounter++;
+        if (spriteCounter <= 5) {
+            spriteNum = 1;
+        }
+        if (spriteCounter > 5 && spriteCounter <= 25) {
+            spriteNum = 2;
+
+            // SAVE THE CURRENT DATA......
+            int currentWorldX = worldX;
+            int currentWorldY = worldY;
+            int solidAreaWidth = (int) solidArea.getWidth();
+            int solidAreaHeight = (int) solidArea.getHeight();
+
+            // ADJUST PLAYRER S WORLD X/Y FOR THE ATTACK AREA
+            switch (direction) {
+                case "up" : worldY -= (int) attackArea.getHeight(); break;
+                case "down" : worldY += (int) attackArea.getHeight(); break;
+                case "left" : worldX -= (int) attackArea.getWidth(); break;
+                case "right" : worldX += (int) attackArea.getWidth(); break;
+            }
+            // ATTACK BECOME SOLID AREA
+            solidArea.setWidth(attackArea.getWidth());
+            solidArea.setHeight(attackArea.getHeight());
+            //CHECK monster collision with the updated worldX, worldY and solidArea....
+            int monsterIndex = game.cChecker.checkEntity(this, game.monster);
+            damagedMonster(monsterIndex);
+
+            // After checking collision restore the original data...
+            worldX = currentWorldX;
+            worldY = currentWorldY;
+            solidArea.setWidth(solidAreaWidth);
+            solidArea.setHeight(solidAreaHeight);
+
+
+
+
+        }
+        if (spriteCounter > 25) {
+            spriteNum = 1;
+            spriteCounter = 0;
+            attacking = false;
+        }
+    }
+
+    private void damagedMonster(int i) {
+        if (i != 999) {
+            System.out.println("Hit");
+        }else {
+            System.out.println("miss");
+        }
+    }
+
+
     private void contactMonster(int i) {
         if (i != 999) {
             if (invincible == false) {
@@ -220,82 +289,135 @@ public class Player extends Entity{
                 invincible = true;
             }
         }
+
+
+    }
+
+    private void interactMonster(int i) {
+        if (game.keyHandler.isSpacePressed() == true) {
+            attacking = true;
+        }
+    }
+
+    public void interactNPC(int i){
+        if(keyHandler.isEnterPressed() == true){
+            if(i != 999){
+                //attackCanceled=true;
+                game.gameState = game.dialogueState;
+                game.npc[game.currentMap][i].speak();
+            }
+            //gp.playSE(7);
+        }
     }
 
 
     public void draw(GraphicsContext gc){
-        Image image= null;
+        Image image = null;
 
         //temp variable
-        int tempScreenX=screenX;
-        int tempScreenY=screenY;
+        int tempScreenX = screenX;
+        int tempScreenY = screenY;
 
         switch (direction) {
             case "up":
-                if (spriteNum == 1){
-
-                    //playerImageView.setImage(up1);
-                    image=up1;
+                if (attacking == false) {
+                    if (spriteNum == 1){
+                        //playerImageView.setImage(up1);
+                        image = up1;
+                    }
+                    else if(spriteNum == 2){
+                        image = up2;
+                    }
                 }
-                else if(spriteNum == 2){
-                    image=(up2);
+                if (attacking == true) {
+                    tempScreenY = screenY - game.tileSize;
+                    if (spriteNum == 1){
+                        image = attackUp1;
+                    }
+                    else if(spriteNum == 2){
+                        image = attackUp2;
+                    }
                 }
                 break;
             case "down":
-                if (spriteNum == 1){
+                if (attacking == false) {
+                    if (spriteNum == 1){
 
-                    image=(down1);
+                        image = down1;
+                    }
+                    else if(spriteNum == 2){
+                        image = down2;
+                    }
                 }
-                else if(spriteNum == 2){
-                    image=(down2);
+                if (attacking == true) {
+                    if (spriteNum == 1){
+
+                        image = attackDown1;
+                    }
+                    else if(spriteNum == 2){
+                        image = attackDown2;
+                    }
                 }
                 break;
             case "right":
-                if (spriteNum == 1){
+                if (attacking == false) {
+                    if (spriteNum == 1){
 
-                    image=(right1);
+                        image = right1;
+                    }
+                    else if(spriteNum == 2){
+                        image = right2;
+                    }
                 }
-                else if(spriteNum == 2){
-                    image=(right2);
+                if (attacking == true) {
+                    if (spriteNum == 1){
+
+                        image = attackRight1;
+                    }
+                    else if(spriteNum == 2){
+                        image = attackRight2;
+                    }
                 }
                 break;
-
             case "left":
-                if (spriteNum == 1){
+                if (attacking == false) {
+                    if (spriteNum == 1){
 
-                    image=(left1);
+                        image = left1;
+                    }
+                    else if(spriteNum == 2){
+                        image = left2;
+                    }
                 }
-                else if(spriteNum == 2){
-                    image=(left2);
+                if (attacking == true) {
+                    tempScreenX = screenX - game.tileSize;
+                    if (spriteNum == 1){
+
+                        image = attackLeft1;
+                    }
+                    else if(spriteNum == 2){
+                        image = attackLeft2;
+                    }
                 }
                 break;
             // Handle other directions similarly
         }
 
-        gc.drawImage(image,tempScreenX,tempScreenY);
+        if (invincible == true) {
+            gc.setGlobalAlpha(0.3);
+        }
+        gc.drawImage(image, tempScreenX, tempScreenY);
+
+        //RESET ALPHA
+        gc.setGlobalAlpha(1);
+
 
         //DEBUG...
-        gc.setFont(new Font("Arial", 26.0));
-        gc.setFill(Color.WHITE);
-        String text = "Invincible: " + invincibleCounter;
-        gc.fillText(text, 10, 400);
+//        gc.setFont(new Font("Arial", 26.0));
+//        gc.setFill(Color.WHITE);
+//        String text = "Invincible: " + invincibleCounter;
+//        gc.fillText(text, 10, 400);
     }
-
-
-
-
-    public void interactNPC(int i){
-        if(keyHandler.isEnterPressed() ==true){
-            if(i!=999){
-                //attackCanceled=true;
-                game.gameState=game.dialogueState;
-                game.npc[game.currentMap][i].speak();
-            }
-//            else {
-//                gp.playSE(7);
-//                attacking=true;
-//            }
-        }
-    }
-
 }
+
+

@@ -13,7 +13,7 @@ import java.awt.event.KeyEvent;
 public class KeyHandler {
     Game game;
     Stage stage;
-    private boolean moveUp, moveDown, moveLeft, moveRight,enterPressed;
+    private boolean moveUp, moveDown, moveLeft, moveRight,enterPressed, spacePressed;
 
     public KeyHandler(Game game) {
         this.game = game;
@@ -25,7 +25,7 @@ public class KeyHandler {
 
 
         //This is for PlayState
-         if(game.gameState== game.playState){
+         if(game.gameState == game.playState){
             playState(code);
         }
         //PAUSE state
@@ -33,7 +33,7 @@ public class KeyHandler {
 //            pauseState(code);
 //        }
         //DIALOGUE state
-        else if(game.gameState==game.dialogueState){
+        else if(game.gameState == game.dialogueState){
             dialogueState(code);
         }
 
@@ -59,7 +59,8 @@ public class KeyHandler {
             case S: moveDown = true; break;
             case A: moveLeft = true; break;
             case D: moveRight = true; break;
-            case ENTER: enterPressed=true; break;
+            case ENTER: enterPressed = true; break;
+            case SPACE: spacePressed = true; break;
 
             case ESCAPE: try {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -76,10 +77,12 @@ public class KeyHandler {
     }
 
     public void dialogueState(KeyCode code){
-        if(code== KeyCode.ENTER){ //VK_ENTER means if user press ENTER then
-            game.gameState=game.playState;
+        if(code == KeyCode.ENTER){ //VK_ENTER means if user press ENTER then
+            game.gameState = game.playState;
         }
+
     }
+
 
 
 
@@ -102,6 +105,7 @@ public class KeyHandler {
             case A: moveLeft = false; break;
             case D: moveRight = false; break;
             case ENTER: enterPressed=false; break;
+            case SPACE:spacePressed = false; break;
 
         }
 
@@ -128,9 +132,15 @@ public class KeyHandler {
     public boolean isEnterPressed(){
         return enterPressed;
     }
+    public boolean isSpacePressed() {
+        return spacePressed;
+    }
 
     public void setEnterPressed(boolean enterPressed) {
         this.enterPressed = enterPressed;
+    }
+    public void setSpacePressed(boolean spacePressed) {
+        this.spacePressed = spacePressed;
     }
 
 
@@ -140,6 +150,7 @@ public class KeyHandler {
         this.moveLeft=value;
         this.moveRight=value;
         this.enterPressed=value;
+        this.spacePressed = value;
     }
 
 }

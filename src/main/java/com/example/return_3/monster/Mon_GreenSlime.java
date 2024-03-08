@@ -22,12 +22,12 @@ public class Mon_GreenSlime extends Entity {
         //projectile=new OBJ_Rock(game);
 
         //set the SOLID AREA for  collision part
-        solidArea.setX(3);
-        solidArea.setY(14);
+        solidArea.setX(1);
+        solidArea.setY(10);
 //        solidArea.width=42;
 //        solidArea.height=30;
-        solidArea.setWidth(26);
-        solidArea.setHeight(18);
+        solidArea.setWidth(30);
+        solidArea.setHeight(23);
         solidAreaDefaultX = (int)(solidArea.getX());
         solidAreaDefaultY = (int)(solidArea.getY());
 

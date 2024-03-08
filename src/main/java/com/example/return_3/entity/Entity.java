@@ -17,16 +17,16 @@ public class Entity {
     public Image image1, image2, image3;
     public String name;
     public boolean collision = false;
-    public int worldX,worldY;
+    public int worldX, worldY;
     public int speed;
 
-    public Image up1,up2,down1, down2,left1,left2,right1,right2;
-    public Image attackUp1,attackUp2,attackDown1, attackDown2,attackLeft1,attackLeft2,attackRight1,attackRight2;
-    public String direction="down";
-    public int spriteCounter=0;
-    public int chatCounter=0;
-    public  int spriteNum=1;
-    public int chatNum=1;
+    public Image up1, up2, down1, down2, left1, left2, right1, right2;
+    public Image attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1, attackRight2;
+    public String direction = "down";
+    public int spriteCounter = 0;
+    public int chatCounter = 0;
+    public  int spriteNum = 1;
+    public int chatNum = 1;
 
   //  COLLision
   //  part 6 collision
@@ -35,7 +35,7 @@ public class Entity {
     public Rectangle attackArea = new Rectangle(0,0,0,0);
     public int solidAreaDefaultX,solidAreaDefaultY;
     //part 8 Object Interaction part  ends
-    public boolean collisionOn= false;
+    public boolean collisionOn = false;
     //to move npc good way
     public int actionLookCounter=0;
     String[] dialogue =new String[20];
@@ -86,8 +86,10 @@ public class Entity {
     public final int type_pickupOnly=7;
 
     //Monster
-    //Attack
-    public boolean attacking= false;
+
+
+    //   Attack
+    public boolean attacking = false;
     public boolean alive= true;
     public boolean dying= false;
     public boolean hpBarOn=false;
