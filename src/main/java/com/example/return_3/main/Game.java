@@ -264,7 +264,11 @@ public class Game extends Application {
                 //Monster
                 for (int i = 0; i < monster.length; i++) {
                     if (monster[currentMap][i] != null) {
-                        monster[currentMap][i].update();
+                        if (monster[currentMap][i].alive == true && monster[currentMap][i].dying == false) {
+                            monster[currentMap][i].update();
+                        }
+                        if (monster[currentMap][i].alive == false) {
+                            monster[currentMap][i] = null;                      }
                     }
                 }
 

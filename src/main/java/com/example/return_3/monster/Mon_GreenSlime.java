@@ -64,6 +64,12 @@ public class Mon_GreenSlime extends Entity {
             actionLookCounter=0;
         }
 
+
+
+
+
+
+
         //AI method for throwing rock
 //        int i=new Random().nextInt(100)+1;
 //        if(i>99 && projectile.alive==false&&shotAvailableCounter==30){
@@ -74,8 +80,8 @@ public class Mon_GreenSlime extends Entity {
 //        }
     }
     public void damageReaction(){
-        actionLookCounter=0;
-        direction=game.player.direction;
+        actionLookCounter = 0;
+        direction = game.player.direction;
 
 //        if(actionLookCounter<50){
 //            speed=4;

@@ -4,8 +4,10 @@ import com.example.return_3.main.Game;
 import com.example.return_3.object.OBJ_ChatBox;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
+import javax.swing.*;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -90,15 +92,15 @@ public class Entity {
 
     //   Attack
     public boolean attacking = false;
-    public boolean alive= true;
-    public boolean dying= false;
-    public boolean hpBarOn=false;
-    public boolean onPath= false;
-    public boolean chatOnStatus=false;
+    public boolean alive = true;
+    public boolean dying = false;
+    public boolean hpBarOn = false;
+    public boolean onPath = false;
+    public boolean chatOnStatus = false;
 
 
-    int dyingCounter=0;
-    int hpBarCounter=0;
+    int dyingCounter = 0;
+    int hpBarCounter = 0;
     public int shotAvailableCounter=0;
     Game game;
     public Entity(Game game){
@@ -133,7 +135,6 @@ public class Entity {
 
     //create two method for running our NPC
     public void setAction(){}
-
     public void damageReaction(){}
     public void checkCollision(){
         collisionOn=false;
@@ -181,6 +182,15 @@ public class Entity {
             }
             spriteCounter = 0;
         }
+
+        if (invincible == true) {
+            invincibleCounter++;
+            if (invincibleCounter > 40) {
+                invincible = false;
+                invincibleCounter = 0;
+            }
+        }
+
         if(type==type_npc){
 
             int xDistance=Math.abs(worldX-game.player.worldX);
@@ -245,76 +255,94 @@ public class Entity {
             switch (direction){
                 case"up":
                     if(spriteNum==1){
-                        image= up1;
+                        image = up1;
                     }
                     if(spriteNum==2){
-                        image=up2;
+                        image = up2;
                     }
                     break;
                 case"down":
                     if(spriteNum==1){
-                        image= down1;
+                        image = down1;
                     }
                     if(spriteNum==2){
-                        image=down2;
+                        image = down2;
                     }
                     break;
                 case"left":
                     if(spriteNum==1){
-                        image= left1;
+                        image = left1;
                     }
                     if(spriteNum==2){
-                        image=left2;
+                        image = left2;
                     }
                     break;
                 case"right":
                     if(spriteNum==1){
-                        image= right1;
+                        image = right1;
                     }
                     if(spriteNum==2){
-                        image=right2;
+                        image = right2;
                     }
                     break;
             }
 
-            //MONSTER HEALTH BAR
-//            if(type==type_monster && hpBarOn==true){ //type 2 for monster
-//                double oneScale= (double)game.tileSize/maxLife;
-//                double hpPerValue=oneScale*life;
-//
-//                //set background color
-//                g2.setColor(new Color(35,35,35));
-//                g2.fillRect(screenX-1,screenY-16,gp.tileSize+2,12);
-//
-//                g2.setColor(new Color(255,0,30));
-//                g2.fillRect(screenX,screenY-15,(int)hpPerValue,10);
-//                hpBarCounter++;
-//                if(hpBarCounter>600){
-//                    hpBarCounter=0;
-//                    hpBarOn=false;
-//
-//                }
-//            }
+            //Monster HP Bar......
+            if (type == 2 && hpBarOn == true) {
+                double oneScale = (double)game.tileSize/maxLife;
+                double hpBarValue = oneScale*life;
+
+
+                gc.setFill(Color.RED);
+                gc.fillRect(screenX, screenY - 5, (int)hpBarValue, 10);
+                gc.setStroke(Color.BLACK);
+                gc.setLineWidth(1); // Width of the outline
+                gc.strokeRect(screenX, screenY - 5, game.tileSize, 10);
+
+                hpBarCounter++;
+                if (hpBarCounter > 600) {
+                    hpBarCounter = 0;
+                    hpBarOn = false;
+                }
+            }
+
+
+            if (invincible == true) {
+                hpBarOn = true;
+                hpBarCounter = 0;
+                gc.setGlobalAlpha(0.4);
+            }
+            if (dying == true) {
+                dyingAnimation(gc);
+            }
+
+            gc.drawImage(image,screenX,screenY, game.tileSize, game.tileSize);
+
+            //<<<<<RESET ALPHA>>>>>
+            gc.setGlobalAlpha(1);
 
 
 
-//
-//            if(invincible==true){
-//                hpBarOn=true;
-//                hpBarCounter=0;
-//                changeAlpha(g2,0.4F);
-//            }
-//            if(dying==true){
-//                dyingAnimation(g2);
-//            }
-            gc.drawImage(image,screenX,screenY);
 
-
-            //Reset opacity
-//            changeAlpha(g2,1F);
         }
     }
 
+    private void dyingAnimation(GraphicsContext gc) {
+        dyingCounter++;
+        int i = 5;
+        if (dyingCounter <= i) {gc.setGlobalAlpha(0);}
+        if (dyingCounter > i && dyingCounter <= i*2) {gc.setGlobalAlpha(1);}
+        if (dyingCounter > i*2 && dyingCounter <= i*3) {gc.setGlobalAlpha(0);}
+        if (dyingCounter > i*3 && dyingCounter <= i*4) {gc.setGlobalAlpha(1);}
+        if (dyingCounter > i*4 && dyingCounter <= i*5) {gc.setGlobalAlpha(0);}
+        if (dyingCounter > i*5 && dyingCounter <= i*6) {gc.setGlobalAlpha(1);}
+        if (dyingCounter > i*6 && dyingCounter <= i*7) {gc.setGlobalAlpha(0);}
+        if (dyingCounter > i*7 && dyingCounter <= i*8) {gc.setGlobalAlpha(1);}
+        if (dyingCounter > i*8) {
+            dying = false;
+            alive = false;
+        }
+    }
 
 
     public void speak(){

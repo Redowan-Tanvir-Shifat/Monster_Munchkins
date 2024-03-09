@@ -90,7 +90,7 @@ public class Player extends Entity{
         attackUp2 = loadImage("/player/attacking_up_2.png", game.tileSize, game.tileSize*2);
         attackDown1 = loadImage("/player/attacking_down_1.png", game.tileSize, game.tileSize*2);
         attackDown2 = loadImage("/player/attacking_down_2.png", game.tileSize, game.tileSize*2);
-        attackLeft2 = loadImage("/player/attacking_left_1.png", game.tileSize*2, game.tileSize);
+        attackLeft1 = loadImage("/player/attacking_left_1.png", game.tileSize*2, game.tileSize);
         attackLeft2 = loadImage("/player/attacking_left_2.png", game.tileSize*2, game.tileSize);
         attackRight1 = loadImage("/player/attacking_right_1.png", game.tileSize*2, game.tileSize);
         attackRight2 = loadImage("/player/attacking_right_2.png", game.tileSize*2, game.tileSize);
@@ -275,9 +275,16 @@ public class Player extends Entity{
 
     private void damagedMonster(int i) {
         if (i != 999) {
-            System.out.println("Hit");
-        }else {
-            System.out.println("miss");
+            if (game.monster[game.currentMap][i].invincible == false) {
+                game.monster[game.currentMap][i].life -= 1;
+                game.monster[game.currentMap][i].invincible = true;
+                game.monster[game.currentMap][i].damageReaction();
+
+                if (game.monster[game.currentMap][i].life <= 0) {
+                    game.monster[game.currentMap][i].dying = true;
+                }
+            }
+
         }
     }
 
@@ -325,7 +332,7 @@ public class Player extends Entity{
                         //playerImageView.setImage(up1);
                         image = up1;
                     }
-                    else if(spriteNum == 2){
+                    if(spriteNum == 2){
                         image = up2;
                     }
                 }
@@ -334,7 +341,7 @@ public class Player extends Entity{
                     if (spriteNum == 1){
                         image = attackUp1;
                     }
-                    else if(spriteNum == 2){
+                    if(spriteNum == 2){
                         image = attackUp2;
                     }
                 }
@@ -345,7 +352,7 @@ public class Player extends Entity{
 
                         image = down1;
                     }
-                    else if(spriteNum == 2){
+                    if(spriteNum == 2){
                         image = down2;
                     }
                 }
@@ -354,28 +361,8 @@ public class Player extends Entity{
 
                         image = attackDown1;
                     }
-                    else if(spriteNum == 2){
+                    if(spriteNum == 2){
                         image = attackDown2;
-                    }
-                }
-                break;
-            case "right":
-                if (attacking == false) {
-                    if (spriteNum == 1){
-
-                        image = right1;
-                    }
-                    else if(spriteNum == 2){
-                        image = right2;
-                    }
-                }
-                if (attacking == true) {
-                    if (spriteNum == 1){
-
-                        image = attackRight1;
-                    }
-                    else if(spriteNum == 2){
-                        image = attackRight2;
                     }
                 }
                 break;
@@ -385,21 +372,41 @@ public class Player extends Entity{
 
                         image = left1;
                     }
-                    else if(spriteNum == 2){
+                    if(spriteNum == 2){
                         image = left2;
                     }
                 }
                 if (attacking == true) {
                     tempScreenX = screenX - game.tileSize;
                     if (spriteNum == 1){
-
                         image = attackLeft1;
                     }
-                    else if(spriteNum == 2){
+                    if(spriteNum == 2){
                         image = attackLeft2;
                     }
                 }
                 break;
+            case "right":
+                if (attacking == false) {
+                    if (spriteNum == 1){
+
+                        image = right1;
+                    }
+                    if(spriteNum == 2){
+                        image = right2;
+                    }
+                }
+                if (attacking == true) {
+                    if (spriteNum == 1){
+
+                        image = attackRight1;
+                    }
+                    if(spriteNum == 2){
+                        image = attackRight2;
+                    }
+                }
+                break;
+
             // Handle other directions similarly
         }
 
