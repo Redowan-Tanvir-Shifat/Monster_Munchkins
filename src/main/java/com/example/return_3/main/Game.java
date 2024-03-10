@@ -32,8 +32,7 @@ public class Game extends Application {
 
     // GAME SETTINGS
 
-
-
+    
     //STATIC VARIABLES
     public static Game gameInstance;
     public static Stage primaryStage;
@@ -285,8 +284,6 @@ public class Game extends Application {
             } else if (gameStatus==gameSpaceInvadersStatus) {
                 gameSpaceInvaders.update();
             }
-
-
         }
 
 
@@ -311,7 +308,7 @@ public class Game extends Application {
                     }
                 }
                 //add player
-                entityList.add(player);
+                entityList.add(player);      
 
                 //add npc entity TO the list.
                 for (int i = 0; i < npc[currentMap].length; i++) {

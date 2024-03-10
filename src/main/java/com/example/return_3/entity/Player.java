@@ -3,6 +3,8 @@ package com.example.return_3.entity;
 import com.example.return_3.main.EventHandler;
 import com.example.return_3.main.Game;
 import com.example.return_3.main.KeyHandler;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -12,6 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import javafx.util.Duration;
 
 
 import java.io.FileInputStream;
@@ -282,6 +285,14 @@ public class Player extends Entity{
 
                 if (game.monster[game.currentMap][i].life <= 0) {
                     game.monster[game.currentMap][i].dying = true;
+
+                    Timeline timeline = new Timeline(new KeyFrame(Duration.minutes(0.5), event -> {
+                        game.assetSetter.setMonster();
+                    }));
+
+                    timeline.play();
+
+
                 }
             }
 

@@ -5,6 +5,9 @@ import com.example.return_3.entity.NPC_GameCenter;
 import com.example.return_3.entity.NPC_OldMan;
 import com.example.return_3.entity.NPC_School;
 import com.example.return_3.monster.Mon_GreenSlime;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.util.Duration;
 
 import java.util.Random;
 
@@ -20,9 +23,9 @@ public class AssetSetter {
     //setNPC
     //setMonster
     //setInteractiveTile [dry tree, breakable tree, trunk.]
-    public void setObject(){
-        int mapNum=0; //For map 1  //to create object for map 2 then we need to ser mapNum 2 under the code.
-        int i=0;
+    public void setObject() {
+        int mapNum = 0; //For map 1  //to create object for map 2 then we need to ser mapNum 2 under the code.
+        int i = 0;
 //        gp.obj[mapNum][i]=new OBJ_Key(gp);
 //        gp.obj[mapNum][i].worldX=gp.tileSize*76;
 //        gp.obj[mapNum][i].worldY=gp.tileSize*90;
@@ -53,19 +56,20 @@ public class AssetSetter {
 
     }
     public void setMonster(){
-        int mapNum=0;
-        int i=0;
-        game.monster[mapNum][i] = new Mon_GreenSlime(game);
-        game.monster[mapNum][i].worldX = game.tileSize * 80;
-        game.monster[mapNum][i].worldY = game.tileSize * 144;
+        int i = 0;
+
+        game.monster[game.currentMap][i] = new Mon_GreenSlime(game);
+        game.monster[game.currentMap][i].worldX = game.tileSize * 80;
+        game.monster[game.currentMap][i].worldY = game.tileSize * 144;
         i++;
 
-        game.monster[mapNum][i] = new Mon_GreenSlime(game);
-        game.monster[mapNum][i].worldX = game.tileSize * 84;
-        game.monster[mapNum][i].worldY = game.tileSize * 144;
+        game.monster[game.currentMap][i] = new Mon_GreenSlime(game);
+        game.monster[game.currentMap][i].worldX = game.tileSize * 84;
+        game.monster[game.currentMap][i].worldY = game.tileSize * 144;
         i++;
-
     }
+
+
     //For Interactive Tile
     public void setInteractiveTile(){
 //        int mapNum=0;

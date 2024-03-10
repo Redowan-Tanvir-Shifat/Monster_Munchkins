@@ -98,9 +98,8 @@ public class Entity {
     public boolean onPath = false;
     public boolean chatOnStatus = false;
 
-
-    int dyingCounter = 0;
-    int hpBarCounter = 0;
+    public int dyingCounter = 0;
+    public int hpBarCounter = 0;
     public int shotAvailableCounter=0;
     Game game;
     public Entity(Game game){
