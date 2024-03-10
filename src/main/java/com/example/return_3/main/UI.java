@@ -48,8 +48,8 @@ public class UI {
         heartFull=heart.image1;
         heartHalf=heart.image2;
         heartBlank=heart.image3;
-        starImage=uTool.loadImage("/objects/star.png",game.tileSize,game.tileSize);
-        energyImage=uTool.loadImage("/objects/energy.png",game.tileSize-10,game.tileSize-10);
+        starImage=uTool.loadImage("/objects/star1.png",game.tileSize,game.tileSize);
+        energyImage=uTool.loadImage("/objects/coin3.png",game.tileSize-10,game.tileSize-10);
 
     }
     public void addMessage(String text){
@@ -66,31 +66,136 @@ public class UI {
         gc.setFill(Color.WHITE);
 
 
-//        PLAY STATE
+        // <------PLAY STATE------>
         if(game.gameState == game.playState){
-
             drawPlayerLife();
             drawPlayerLevel();
             drawMessage();
             drawEnergy();
             drawCoin();
-
         }
 
-        //DIALOGUE STATE
+
+        // <-------DIALOGUE STATE------->
         if(game.gameState == game.dialogueState){
 
             drawDialogueScreen();
         }
-        //WizConversationState STATE
+
+
+        // <--------WizConversationState STATE-------->
         if(game.gameState == game.wizConversationState){
-
-
             drawWizConversationScreen();
         }
 
 
+        // <-------Character State------->
+        if (game.gameState == game.characterState) {
+            drawCharacterScreen();
+        }
+
+
     }
+
+    private void drawCharacterScreen() {
+        // Create a Frame...
+        final int frameX = game.tileSize * 2;
+        final int frameY = game.tileSize * 3;
+        final int frameWidth = game.tileSize * 6;
+        final int frameHeight = game.tileSize * 12;
+
+        Color c = Color.rgb(255, 209, 184);
+        drawSubWindow(frameX, frameY, frameWidth, frameHeight);
+
+        // Text....
+        gc.setFill(Color.rgb(255, 255, 255));
+        gc.setFont(Font.font("Arial", 18));
+
+        int textX = frameX + game.tileSize/2;
+        int textY = frameY + game.tileSize+8;
+        final int lineGap = 32;
+
+        // NAMES....
+        gc.fillText("Level: ", textX, textY);
+        textY += lineGap;
+        gc.fillText("Life: ", textX, textY);
+        textY += lineGap;
+        gc.fillText("Strength: ", textX, textY);
+        textY += lineGap;
+        gc.fillText("Dexterity: ", textX, textY);
+        textY += lineGap;
+        gc.fillText("Attack: ", textX, textY);
+        textY += lineGap;
+        gc.fillText("EXP: ", textX, textY);
+        textY += lineGap;
+        gc.fillText("Next Level: ", textX, textY);
+        textY += lineGap;
+        gc.fillText("Coin: ", textX, textY);
+        textY += lineGap + 8;
+        gc.fillText("Weapon: ", textX, textY);
+        textY += lineGap + 8;
+        gc.fillText("Shield: ", textX, textY);
+
+        // VALUES....
+        int tailX = (frameX + frameWidth) - 18;
+        // RESET textY...
+        textY = frameY + game.tileSize+8;
+        String value;
+
+        value = String.valueOf(game.player.life + "/" + game.player.maxLife);
+        textX = getXForAlignToRightText(value, tailX);
+        gc.fillText(value, textX, textY);
+        textY += lineGap;
+
+        value = String.valueOf(game.player.strength);
+        textX = getXForAlignToRightText(value, tailX);
+        gc.fillText(value, textX, textY);
+        textY += lineGap;
+
+        value = String.valueOf(game.player.dexterity);
+        textX = getXForAlignToRightText(value, tailX);
+        gc.fillText(value, textX, textY);
+        textY += lineGap;
+
+        value = String.valueOf(game.player.attack);
+        textX = getXForAlignToRightText(value, tailX);
+        gc.fillText(value, textX, textY);
+        textY += lineGap;
+
+        value = String.valueOf(game.player.defense);
+        textX = getXForAlignToRightText(value, tailX);
+        gc.fillText(value, textX, textY);
+        textY += lineGap;
+
+        value = String.valueOf(game.player.exp);
+        textX = getXForAlignToRightText(value, tailX);
+        gc.fillText(value, textX, textY);
+        textY += lineGap;
+
+        value = String.valueOf(game.player.nextLevelExp);
+        textX = getXForAlignToRightText(value, tailX);
+        gc.fillText(value, textX, textY);
+        textY += lineGap;
+
+        value = String.valueOf(game.player.coin);
+        textX = getXForAlignToRightText(value, tailX);
+        gc.fillText(value, textX, textY);
+        textY += lineGap - 16;
+
+        gc.drawImage(game.player.currentWeapon.down1, tailX-game.tileSize, textY);
+        textY += lineGap + 8;
+
+        gc.drawImage(game.player.currentShield.down1, tailX-game.tileSize, textY);
+    }
+
+    public int getXForAlignToRightText(String text, int tailX) {
+        Text textNode = new Text(text);
+        textNode.setFont(gc.getFont());
+        int length = (int)textNode.getBoundsInLocal().getWidth();
+        int x = tailX - length;
+        return x;
+    }
+
     public void drawPlayerLife(){
 //        game.player.life=4;
 //        int x= game.tileSize/2;
@@ -244,6 +349,8 @@ public class UI {
     }
 
 
+
+
     public void drawMessage(){
         int messageX=game.tileSize;
         int messageY=game.tileSize*4;
@@ -291,13 +398,28 @@ public class UI {
     }
 
     public void drawSubWindow(int x, int y, int width, int height){
-        Color c=Color.rgb(0, 0, 0, .20);
+        Color c = Color.rgb(0, 0, 0, .20);
         gc.setFill(c);
         gc.fillRoundRect(x,y,width,height,35,35);
 
-        c=Color.WHITE;
-        gc.setFill(c);
+        //c=Color.WHITE;
+       // gc.setFill(c);
         //gc.setStroke(Color.WHITE);
+
+
+        gc.setLineWidth(5); // Setting stroke width
+        gc.setLineDashes(0); // Setting line dashes to 0 (solid line)
+        gc.setLineCap(StrokeLineCap.ROUND); // Setting line cap to round
+        gc.strokeRoundRect(x + 5, y + 5, width - 10, height - 10, 25, 25);
+    }
+
+    public void drawSubWindow(int x, int y, int width, int height, Color c){
+        gc.setFill(c);
+        gc.fillRoundRect(x,y,width,height,35,35);
+
+        c = Color.BLACK;
+        //gc.setFill(c);
+        gc.setStroke(c);
 
 
         gc.setLineWidth(5); // Setting stroke width

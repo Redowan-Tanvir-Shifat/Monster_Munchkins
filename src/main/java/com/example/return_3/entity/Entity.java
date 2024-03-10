@@ -15,37 +15,54 @@ import java.util.Objects;
 
 
 public class Entity {
-    //VARIABLES
-    public Image image1, image2, image3;
-    public String name;
-    public boolean collision = false;
-    public int worldX, worldY;
-    public int speed;
+    Game game;
 
-    public Image up1, up2, down1, down2, left1, left2, right1, right2;
-    public Image attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1, attackRight2;
+    // <----------VARIABLES---------->
+    public String name;
+    public int speed;
+    public int worldX, worldY;
     public String direction = "down";
-    public int spriteCounter = 0;
-    public int chatCounter = 0;
     public  int spriteNum = 1;
     public int chatNum = 1;
     public int goalCol;
     public int goalRow;
-
-  //  COLLision
-  //  part 6 collision
-    public Rectangle solidArea = new Rectangle(0,0,32,32);
-    //part 8 Object Interaction part starts
-    public Rectangle attackArea = new Rectangle(0,0,0,0);
-    public int solidAreaDefaultX,solidAreaDefaultY;
-    //part 8 Object Interaction part  ends
-    public boolean collisionOn = false;
-    //to move npc good way
-    public int actionLookCounter=0;
+    public int dialogueIndex = 0;
     public String[] dialogue =new String[20];
-    public int dialogueIndex=0;
 
-    //CHARACTER STATUS
+
+
+    // <----------IMAGE--------->
+    public Image image1, image2, image3;
+    public Image up1, up2, down1, down2, left1, left2, right1, right2;
+    public Image attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1, attackRight2;
+
+
+
+    // <--------Boolean-------->
+    public boolean collision = false;
+    public boolean collisionOn = false;
+    public boolean invincible = false;
+    public boolean attacking = false;
+    public boolean alive = true;
+    public boolean dying = false;
+    public boolean hpBarOn = false;
+    public boolean onPath = false;
+    public boolean chatOnStatus = false;
+
+
+
+    // <---------COUNTER--------->
+    public int spriteCounter = 0;
+    public int chatCounter = 0;
+    public int actionLookCounter=0;
+    public int invincibleCounter = 0;
+    public int dyingCounter = 0;
+    public int hpBarCounter = 0;
+    public int shotAvailableCounter = 0;
+
+
+
+    // <---------CHARACTER STATUS---------->
     public int maxLife;
     public int life;
 
@@ -53,9 +70,9 @@ public class Entity {
     public int mana;
     public  int ammo;
 
-    public boolean invincible = false;
-    public int invincibleCounter = 0;
-    //Character ATributes
+
+
+    // <------------CHARACTER ATTRIBUTES----------->
     public int level;
     public int strength;
     public int dexterity;
@@ -69,67 +86,41 @@ public class Entity {
     public Entity currentWeapon;
     public Entity currentShield;
 
-    //ITEM ATTRIBUTES
-    public ArrayList<Entity> inventory= new ArrayList<>();
-    public final int maxInventorySize=20;
+
+
+    // <----------ITEM ATTRIBUTES---------->
     public int attackValue;
     public int defenseValue;
-    public String description="";
+    public ArrayList<Entity> inventory = new ArrayList<>();
+    public final int maxInventorySize = 20;
+    public String description = "";
     public int useCost;
     public int value;
 
-    //Type of character;
+
+
+    // <---------Type of All Element--------->
     public int type; // 0 for player, 1 for npc, 2 for monster
-    public final int type_player=0;
-    public final int type_npc=1;
-    public final int type_wizard=2;
-    public final int type_monster=3;
-    public final int type_axe=4;
-    public final int type_shield=5;
-    public final int type_consumable=6;
-    public final int type_pickupOnly=7;
-
-    //Monster
+    public final int type_player = 0;
+    public final int type_npc = 1;
+    public final int type_wizard = 2;
+    public final int type_monster = 3;
+    public final int type_axe = 4;
+    public final int type_shield = 5;
+    public final int type_consumable = 6;
+    public final int type_pickupOnly = 7;
 
 
-    //   Attack
-    public boolean attacking = false;
-    public boolean alive = true;
-    public boolean dying = false;
-    public boolean hpBarOn = false;
-    public boolean onPath = false;
-    public boolean chatOnStatus = false;
+  // <-------------COLLiSION------------->
+    public Rectangle solidArea = new Rectangle(0,0,32,32);
+    public Rectangle attackArea = new Rectangle(0,0,0,0);
+    public int solidAreaDefaultX,solidAreaDefaultY;
 
-    public int dyingCounter = 0;
-    public int hpBarCounter = 0;
-    public int shotAvailableCounter=0;
-    Game game;
+
+
     public Entity(Game game){
         this.game=game;
     }
-
-//    public void speak(){
-//        if(dialogue[dialogueIndex]==null){
-//            dialogueIndex=0;
-//        }
-//       // gp.ui.currentDialogue=dialogue[dialogueIndex];
-//        dialogueIndex++;
-//        switch (game.player.direction){
-//            case "up":
-//                direction="down";
-//                break;
-//            case "left":
-//                direction="right";
-//                break;
-//            case "right":
-//                direction="left";
-//                break;
-//            case "down":
-//                direction="up";
-//                break;
-//        }
-//    }
-//
 
     public void use(Entity entity){}
     public void checkDrop(){}
