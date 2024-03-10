@@ -15,6 +15,7 @@ import java.util.Objects;
 public class TileManager {
     Game game;
     public Tile[] tile;
+    boolean asadMapEnabled=false;
     public int mapTileNum[][][];
     ArrayList<String> filenames=new ArrayList<String>();
     ArrayList<String> collisionStatus=new ArrayList<String>();
@@ -41,27 +42,28 @@ public class TileManager {
         tile= new Tile[filenames.size()];
         getTileImage();
 
-        // Get the max world col and row
+        if(asadMapEnabled){
+            loadMap("/maps/finalMap.txt",0,200);
+        }else{
+            // Get the max world col and row
 
-//        is = getClass().getResourceAsStream("/maps/finalMap.txt");
-//        br = new BufferedReader(new InputStreamReader(is));
-//        try{
-//            String line2 = br.readLine();
-//            String maxTile[]=line2.split(" ");
-//            game.maxWorldCol=maxTile.length;
-//            game.maxWorldRow=maxTile.length;
-//            mapTileNum= new int[game.maxMap][game.maxWorldCol][game.maxWorldRow];
-//            br.close();
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
-//         loadMap("/maps/finalMap.txt",0);
-
-
-
-         loadMap("/maps/finalMap.txt",0,200);
+        is = getClass().getResourceAsStream("/maps/finalMap.txt");
+        br = new BufferedReader(new InputStreamReader(is));
+        try{
+            String line2 = br.readLine();
+            String maxTile[]=line2.split(" ");
+            game.maxWorldCol=maxTile.length;
+            game.maxWorldRow=maxTile.length;
+            mapTileNum= new int[game.maxMap][game.maxWorldCol][game.maxWorldRow];
+            br.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+         loadMap("/maps/finalMap.txt",0);
+        }
 
     }
+
 
     public void getTileImage(){
         for(int i=0; i<filenames.size();i++){
