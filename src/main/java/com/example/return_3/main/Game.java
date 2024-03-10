@@ -83,6 +83,8 @@ public class Game extends Application {
     public double accumulatedTime=0.0; // accumulated time
     public long lastNanoTime;
 
+    public boolean isDialogueToGameState = false;
+
     // $$$$$$$$$ INSTANTIATE $$$$$$$$$
     //instantiates new instances
     public Canvas mainGameCanvas = new Canvas(screenWidth, screenHeight);

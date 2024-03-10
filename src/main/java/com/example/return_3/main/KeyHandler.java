@@ -25,7 +25,7 @@ public class KeyHandler {
 
 
         //This is for PlayState
-         if(game.gameState == game.playState){
+        if(game.gameState == game.playState){
             playState(code);
         }
         //PAUSE state
@@ -33,10 +33,13 @@ public class KeyHandler {
 //            pauseState(code);
 //        }
         //DIALOGUE state
-        else if(game.gameState == game.dialogueState){
+        else if(game.gameState==game.dialogueState){
             dialogueState(code);
         }
-
+        //WizConversation state
+        else if(game.gameState==game.wizConversationState){
+            wizConversationState(code);
+        }
 
 
 
@@ -77,11 +80,47 @@ public class KeyHandler {
     }
 
     public void dialogueState(KeyCode code){
-        if(code == KeyCode.ENTER){ //VK_ENTER means if user press ENTER then
-            game.gameState = game.playState;
-        }
+        if(code== KeyCode.ENTER ){ //VK_ENTER means if user press ENTER then
+            game.ui.npc.dialogueIndex++;
+            if(game.ui.npc.dialogue[game.ui.npc.dialogueIndex]==null){
+                game.isDialogueToGameState=true;
+                game.ui.npc.dialogueIndex=0;
+            }
+            if( game.isDialogueToGameState==true){
+                game.gameState=game.playState;
+                //game.ui.npc.onPath=true;
+                game.isDialogueToGameState=false;
+            }else {
 
+
+                game.ui.npc.speak();
+                System.out.println(game.ui.npc.dialogue[game.ui.npc.dialogueIndex]);
+
+                System.out.println(game.ui.npc.dialogueIndex);
+            }
+        }
     }
+
+
+    public void wizConversationState(KeyCode code){
+        if(code== KeyCode.ENTER ){
+            enterPressed=true;
+        }
+        if(code== KeyCode.W || code== KeyCode.UP){
+            game.ui.commandNum--;
+            if(game.ui.commandNum<0){
+                game.ui.commandNum=3;
+            }
+        }
+        if(code== KeyCode.S || code== KeyCode.DOWN){
+            game.ui.commandNum++;
+            if(game.ui.commandNum>3){
+                game.ui.commandNum=0;
+            }
+        }
+    }
+
+
 
 
 
