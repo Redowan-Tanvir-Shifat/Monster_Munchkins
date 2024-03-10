@@ -111,7 +111,7 @@ public class Player extends Entity{
 
         //Player Status;
         level = 1;
-        maxLife = 6;
+        maxLife = 100;
         life = maxLife;
         maxMana = 4;
         mana = maxMana;
@@ -303,7 +303,7 @@ public class Player extends Entity{
     private void contactMonster(int i) {
         if (i != 999) {
             if (invincible == false) {
-                life -= 1;
+                life -= game.monster[game.currentMap][i].attack;
                 invincible = true;
             }
         }

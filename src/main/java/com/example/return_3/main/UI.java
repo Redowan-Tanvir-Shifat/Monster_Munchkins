@@ -48,9 +48,9 @@ public class UI {
         heartFull=heart.image1;
         heartHalf=heart.image2;
         heartBlank=heart.image3;
-        starImage=uTool.loadImage("/objects/star.png",game.tileSize+10,game.tileSize+10);
+        starImage=uTool.loadImage("/objects/star1.png",game.tileSize+10,game.tileSize+10);
         energyImage=uTool.loadImage("/objects/energy.png",game.tileSize-7,game.tileSize-7);
-        coinImage=uTool.loadImage("/objects/coin.png",game.tileSize-10,game.tileSize-10);
+        coinImage=uTool.loadImage("/objects/coin3.png",game.tileSize-7,game.tileSize-7);
 
     }
     public void addMessage(String text){
@@ -145,7 +145,7 @@ public class UI {
         gc.fillRoundRect(x, tempY, energyWidth, game.tileSize / 2,10,10);
 
         // Set font for text
-        gc.setFont(Font.font("Arial", FontWeight.BOLD, 14));
+        gc.setFont(Font.font("Arial", FontWeight.BOLD, 12));
 
         // Draw "Energy" text
         gc.setFill(Color.WHITE);
@@ -157,7 +157,7 @@ public class UI {
         double textWidth = textNode.getBoundsInLocal().getWidth();
 
         // Draw text at adjusted x position
-       // gc.fillText(text, x - (textWidth+5), y+(game.tileSize/2.2));
+        gc.fillText(text, x+12, tempY+12);
         gc.drawImage(energyImage,x-15,y);
 
 
@@ -167,37 +167,38 @@ public class UI {
 
     public void drawCoin(){
 
-        double x = game.screenWidth - (game.tileSize*5);
-        double y = game.tileSize *1.8;
-        int tempY=25;
-        gc.drawImage(coinImage,x,y);
-        x+=game.tileSize-10;
+        int x = game.screenWidth - game.tileSize * 3;
+        double y = 20+game.tileSize;
+        double tempY=25+game.tileSize;
+
+//        x+=game.tileSize-10;
         // Dark yellow outline
         gc.setStroke(Color.rgb(129, 61, 57)); // Dark yellow color
         gc.setLineWidth(2); // Width of the outline
-        gc.strokeRoundRect(x, y,game.tileSize*3 , game.tileSize/1.5,10,10); // Outline of the bar
+        gc.strokeRoundRect(x, tempY, game.tileSize * 2.5, game.tileSize / 2,10,10); // Outline of the bar
 
         // Fill yellow bar
         gc.setFill(Color.rgb(255,209,184));
 //        gc.setFill(Color.rgb(252, 190, 69));
-        gc.fillRoundRect(x, y, game.tileSize*3 , game.tileSize/1.5,10,10);
+        gc.fillRoundRect(x, tempY, game.tileSize * 2.5, game.tileSize / 2,10,10);
 
         // Set font for text
-        gc.setFont(Font.font("Arial", FontWeight.BOLD, 16));
+        gc.setFont(Font.font("Arial", FontWeight.BOLD, 12));
 
         // Draw "Energy" text
         gc.setFill(Color.rgb(125,89,9));
         String text = "" + game.player.coin;
 
         // Draw text at adjusted x position
-        gc.fillText(text, x +10, y+15);
+        gc.fillText(text, x +15, y+17);
+        gc.drawImage(coinImage,x-15,y);
 
     }
 
     public void drawPlayerLevel() {
         int x =game.tileSize/2;
         int y = 10;
-        int tempX=x+10;
+        int tempX=x+30;
         int tempY=25;
 
         gc.setStroke(Color.rgb(129, 61, 57)); // Dark yellow color
@@ -212,12 +213,12 @@ public class UI {
 
 
         // Calculate width of yellow bar based on energy and maxEnergy
-        double expWidth = ((double) game.player.exp / game.player.nextLevelExp) * game.tileSize * 2;
+        double expWidth = ((double) game.player.exp / game.player.nextLevelExp) * game.tileSize * 3;
 
         // Fill yellow bar
         gc.setFill(Color.rgb(252, 190, 69));
-        gc.fillRoundRect(tempX, tempY, expWidth, game.tileSize / 2,10,10);
 
+        gc.fillRoundRect(tempX, tempY, expWidth, game.tileSize / 2,10,10);
 
 
 
@@ -229,14 +230,15 @@ public class UI {
         int level = game.player.level;
         gc.setFill(Color.WHITE);
         gc.setFont(Font.font("Arial", FontWeight.BOLD, 15)); // Customize font as needed
-        //gc.fillText(""+ level, 10 + x, 8 + (y*2)); // Adjust position as needed
+        gc.fillText("50", 13 + x, tempY+12); // Adjust position as needed
 
         //Draw Player EXP
-        String expText = "Exp: " + game.player.exp + "/" + game.player.nextLevelExp;
+        String expText= game.player.exp + "/" + game.player.nextLevelExp;
         gc.setFont(Font.font("Arial", FontWeight.BOLD, 14)); // Customize font as needed
 
         // Draw exp text at adjusted x position
        // gc.fillText(expText, tempX+10, tempY+5 );
+        gc.fillText(expText, x+(game.tileSize+10), tempY+12);
 
 
     }
