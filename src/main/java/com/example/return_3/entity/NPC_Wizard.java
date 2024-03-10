@@ -28,7 +28,7 @@ public class NPC_Wizard extends NPC{
     public void speak(){
         super.speak();
         game.gameState=game.wizConversationState;
-        //game.ui.npc=this;
+        game.ui.npc=this;
         //onPath=true;
     }
 

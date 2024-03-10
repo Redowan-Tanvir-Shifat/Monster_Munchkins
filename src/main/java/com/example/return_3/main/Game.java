@@ -345,10 +345,11 @@ public class Game extends Application {
 
                 //Empty the entity list because when this will render again the entity will added to the list again
                 entityList.clear();
-                ui.draw(gc);
-            } else if (gameState == dialogueState) {
-                ui.draw(gc);
+
             }
+                ui.draw(gc);
+                gameInstance.keyHandler.setEnterPressed(false);
+
 
         } else if (gameStatus == gameSpaceInvadersStatus) {
             gameSpaceInvaders.draw(gc);
