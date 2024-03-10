@@ -8,7 +8,9 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.beans.XMLEncoder;
 
 public class KeyHandler {
     Game game;
@@ -23,47 +25,73 @@ public class KeyHandler {
 
     private void handleKeyPress(KeyCode code) {
 
-        if (code == KeyCode.ESCAPE) {
-            try {
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Exit");
-                alert.setHeaderText("You are about to exit");
-                alert.setContentText("Do you want to exit?");
-                if (alert.showAndWait().get() == ButtonType.OK) {
-                    Game.exitGame();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+//        if (code == KeyCode.Q) {
+//            try {
+//                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+//                alert.setTitle("Exit");
+//                alert.setHeaderText("You are about to exit");
+//                alert.setContentText("Do you want to exit?");
+//                if (alert.showAndWait().get() == ButtonType.OK) {
+//                    Game.exitGame();
+//                }
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        }
 
 
         //This is for PlayState
         if(game.gameState == game.playState){
             playState(code);
-
         }
         //PAUSE state
 //        else if(game.gameState==game.pauseState) {
 //            pauseState(code);
 //        }
         //DIALOGUE state
-        else if(game.gameState==game.dialogueState){
+        else if(game.gameState == game.dialogueState){
             dialogueState(code);
         }
         //WizConversation state
-        else if(game.gameState==game.wizConversationState){
+        else if(game.gameState == game.wizConversationState){
             wizConversationState(code);
         }
         else if (game.gameState == game.characterState) {
             characterState(code);
+        }else if (game.gameState == game.menuBarState) {
+            menuBarState(code);
         }
-
     }
 
     private void characterState(KeyCode code) {
         if (code == KeyCode.C) {
             game.gameState = game.playState;
+        }
+    }
+    private void menuBarState(KeyCode code) {
+        if (code == KeyCode.ESCAPE) {
+            escapePressed = true;
+        }
+        if(code== KeyCode.W || code== KeyCode.UP){
+            game.ui.commandNum--;
+            if(game.ui.commandNum < 0){
+                game.ui.commandNum = 1;
+            }
+        }
+        if(code== KeyCode.S || code== KeyCode.DOWN){
+            game.ui.commandNum++;
+            if(game.ui.commandNum > 1){
+                game.ui.commandNum=0;
+            }
+        }
+        if (code == KeyCode.ENTER) {
+            if (game.ui.commandNum == 0) {
+                game.gameState = game.playState;
+                game.player.setDefaultPositions();
+            }
+            if (game.ui.commandNum == 1) {
+                Game.exitGame();
+            }
         }
     }
 
@@ -81,6 +109,7 @@ public class KeyHandler {
             case ENTER: enterPressed = true; break;
             case SPACE: spacePressed = true; break;
             case C: game.gameState = game.characterState; break;
+            case ESCAPE: game.gameState = game.menuBarState; break;
 
         }
     }
@@ -138,8 +167,9 @@ public class KeyHandler {
             case S: moveDown = false; break;
             case A: moveLeft = false; break;
             case D: moveRight = false; break;
-            case ENTER: enterPressed=false; break;
+            case ENTER: enterPressed = false; break;
             case SPACE:spacePressed = false; break;
+            case ESCAPE:escapePressed = false; break;
         }
 
     }
@@ -191,7 +221,6 @@ public class KeyHandler {
         this.enterPressed = value;
         this.spacePressed = value;
         this.escapePressed = value;
-
     }
 
 }

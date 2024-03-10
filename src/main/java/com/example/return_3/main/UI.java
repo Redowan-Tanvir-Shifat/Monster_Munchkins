@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 public class UI {
     Game game;
+    Entity entity;
     GraphicsContext gc;
     Font arial_40, arial_80B;
     Image heartFull, starImage, energyImage, coinImage;
@@ -27,7 +28,7 @@ public class UI {
 
     public boolean gameFinished=false; // if game is finished then the message will be shown
     public String currentDialogue=""; //for setting the dialogue
-    public int commandNum=0; // this is for showing our menu specific commands
+    public int commandNum = 0; // this is for showing our menu specific commands
 
 
     public Entity heart;
@@ -74,9 +75,15 @@ public class UI {
         }
 
 
+        // <-------MenuBar State------>
+        if (game.gameState == game.menuBarState) {
+            menuBarScreen();
+        }
+
+
+
         // <-------DIALOGUE STATE------->
         if(game.gameState == game.dialogueState){
-
             drawDialogueScreen();
         }
 
@@ -94,6 +101,8 @@ public class UI {
 
 
     }
+
+
 
     public void drawPlayerLife() {
         int x = (game.screenWidth / 2) - game.tileSize * 3;
@@ -240,6 +249,45 @@ public class UI {
 
 
 
+    private void menuBarScreen() {
+        // Create a Frame...
+        final int frameX = game.tileSize * 5;
+        final int frameY = game.tileSize * 2;
+        final int frameWidth = game.tileSize * 20;
+        final int frameHeight = game.tileSize * 14;
+
+        Color c = Color.rgb(255, 209, 184);
+        drawSubWindow(frameX, frameY, frameWidth, frameHeight);
+
+        String text = "Game Name";
+        int textX = getXForCenteredText(text);
+        int textY = frameY + game.tileSize + 16;
+
+        gc.setFill(Color.rgb(255, 255, 255));
+        gc.setFont(Font.font("Arial", 40));
+        gc.fillText(text, textX, textY);
+
+        // Menu...
+        gc.setFill(Color.rgb(255, 255, 255));
+        gc.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+
+        text = "Back To Town hall";
+        textX = getXForCenteredText(text);
+        textY = game.tileSize * 6;
+        gc.fillText(text, textX, textY);
+        if (commandNum == 0) {
+            gc.fillText(">", textX-game.tileSize, textY);
+        }
+
+        text = "Exit Game";
+        textX = getXForCenteredText(text);
+        textY = game.tileSize * 7;
+        gc.fillText(text, textX, textY);
+        if (commandNum == 1) {
+            gc.fillText(">", textX-game.tileSize, textY);
+        }
+    }
+
     private void drawCharacterScreen() {
         // Create a Frame...
         final int frameX = game.tileSize * 2;
@@ -337,6 +385,14 @@ public class UI {
         textNode.setFont(gc.getFont());
         int length = (int)textNode.getBoundsInLocal().getWidth();
         int x = tailX - length;
+        return x;
+    }
+
+    public int getXForCenteredText(String text) {
+        Text textNode = new Text(text);
+        textNode.setFont(gc.getFont());
+        int length = (int)textNode.getBoundsInLocal().getWidth();
+        int x = game.screenWidth/2 - length/2;
         return x;
     }
 
