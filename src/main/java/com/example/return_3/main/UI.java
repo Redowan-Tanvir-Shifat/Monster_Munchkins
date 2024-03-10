@@ -19,7 +19,7 @@ public class UI {
     Game game;
     GraphicsContext gc;
     Font arial_40, arial_80B;
-    Image heartFull,heartHalf,heartBlank,crystalFull,crystalBlank,starImage,energyImage;
+    Image heartFull,heartHalf,heartBlank,crystalFull,crystalBlank,starImage,energyImage,coinImage;
     public boolean messageOn=false;
     //    public String message="";
 //    int messageCounter=0; //to set timer so that the message will be disappear after some moment
@@ -48,8 +48,9 @@ public class UI {
         heartFull=heart.image1;
         heartHalf=heart.image2;
         heartBlank=heart.image3;
-        starImage=uTool.loadImage("/objects/star.png",game.tileSize,game.tileSize);
-        energyImage=uTool.loadImage("/objects/energy.png",game.tileSize-10,game.tileSize-10);
+        starImage=uTool.loadImage("/objects/star.png",game.tileSize+10,game.tileSize+10);
+        energyImage=uTool.loadImage("/objects/energy.png",game.tileSize-7,game.tileSize-7);
+        coinImage=uTool.loadImage("/objects/coin.png",game.tileSize-10,game.tileSize-10);
 
     }
     public void addMessage(String text){
@@ -92,39 +93,19 @@ public class UI {
 
     }
     public void drawPlayerLife(){
-//        game.player.life=4;
-//        int x= game.tileSize/2;
-//        int y=game.tileSize/2;
-//        int i=0;
-//        //DRAW BLANK HEART
-//        while(i<(game.player.maxLife/2)){
-//            gc.drawImage(heartBlank,x,y);
-//            i++;
-//            x+=game.tileSize;
-//        }
-//        //RESET THE values
-//        x= game.tileSize/2;
-//        y=game.tileSize/2;
-//        i=0;
-//
-//        //Draw Current LIFE
-//        while(i<game.player.life){
-//            gc.drawImage(heartHalf,x,y);
-//            i++;
-//            if(i<game.player.life){
-//                gc.drawImage(heartFull,x,y);
-//            }
-//            i++;
-//            x+=game.tileSize;
-//        }
         int x = (game.screenWidth/2) - game.tileSize * 3;
-        int y = game.tileSize / 2;
+        double y = game.tileSize / 1.5;
+        int tempY=25;
+        // Fill yellow bar
+        gc.setFill(Color.rgb(255,209,184));
+        //gc.fillRect(x, y, lifeWidth, game.tileSize);
+        gc.fillRoundRect(x, tempY, game.tileSize * 6, game.tileSize/2,10,10);
 
         // Dark yellow outline
         gc.setStroke(Color.rgb(26, 3, 5)); // Dark yellow color
         gc.setLineWidth(2); // Width of the outline
-       // gc.strokeRect(x, y, game.tileSize * 6, game.tileSize); // Outline of the bar
-        gc.strokeRoundRect(x, y, game.tileSize * 6, game.tileSize/2,10,10); // Outline of the bar
+
+        gc.strokeRoundRect(x, tempY, game.tileSize * 6, game.tileSize/2,10,10); // Outline of the bar
 
         // Calculate width of yellow bar based on energy and maxEnergy
         double lifeWidth = ((double) game.player.life / game.player.maxLife) * game.tileSize * 6;
@@ -132,31 +113,36 @@ public class UI {
         // Fill yellow bar
         gc.setFill(Color.rgb(238,26,49));
         //gc.fillRect(x, y, lifeWidth, game.tileSize);
-        gc.fillRoundRect(x, y, lifeWidth, game.tileSize/2,10,10);
+        gc.fillRoundRect(x, tempY, lifeWidth, game.tileSize/2,10,10);
 
         // Set font for text
         gc.setFont(Font.getDefault());
 
-        gc.drawImage(heartFull,x-(1.5*game.tileSize),y/2);
+        gc.drawImage(heartFull,x-(game.tileSize-8),y-5);
 
 
 
     }
     public void drawEnergy(){
         int x = game.screenWidth - game.tileSize * 3;
-        int y = game.tileSize / 2;
-
+        double y = game.tileSize / 1.5;
+        int tempY=25;
         // Dark yellow outline
         gc.setStroke(Color.rgb(129, 61, 57)); // Dark yellow color
         gc.setLineWidth(2); // Width of the outline
-        gc.strokeRoundRect(x, y, game.tileSize * 2, game.tileSize / 2,10,10); // Outline of the bar
+        gc.strokeRoundRect(x, tempY, game.tileSize * 2.5, game.tileSize / 2,10,10); // Outline of the bar
+        // Fill yellow bar
+        gc.setFill(Color.rgb(255,209,184));
+        //gc.fillRect(x, y, lifeWidth, game.tileSize);
+        gc.fillRoundRect(x, tempY, game.tileSize * 2.5, game.tileSize/2,10,10);
+
 
         // Calculate width of yellow bar based on energy and maxEnergy
         double energyWidth = ((double) game.player.energy / game.player.maxEnergy) * game.tileSize * 2;
 
         // Fill yellow bar
         gc.setFill(Color.rgb(252, 190, 69));
-        gc.fillRoundRect(x, y, energyWidth, game.tileSize / 2,10,10);
+        gc.fillRoundRect(x, tempY, energyWidth, game.tileSize / 2,10,10);
 
         // Set font for text
         gc.setFont(Font.font("Arial", FontWeight.BOLD, 14));
@@ -171,8 +157,8 @@ public class UI {
         double textWidth = textNode.getBoundsInLocal().getWidth();
 
         // Draw text at adjusted x position
-        gc.fillText(text, x - (textWidth+5), y+(game.tileSize/2.2));
-        gc.drawImage(energyImage,x-(textWidth+game.tileSize+5),y);
+       // gc.fillText(text, x - (textWidth+5), y+(game.tileSize/2.2));
+        gc.drawImage(energyImage,x-15,y);
 
 
 
@@ -181,48 +167,60 @@ public class UI {
 
     public void drawCoin(){
 
-
-        // Set font for text
-        gc.setFont(Font.font("Arial", FontWeight.BOLD, 14));
-
-        // Draw "Energy" text
-        gc.setFill(Color.WHITE);
-        String text = "" + game.player.coin;
-
-        // Create a temporary Text node to measure the width
-        Text textNode = new Text(text);
-        textNode.setFont(gc.getFont());
-        double textWidth = textNode.getBoundsInLocal().getWidth();
-        double textHeight = textNode.getBoundsInLocal().getHeight();
-
-        double x = game.screenWidth - (game.tileSize+textWidth);
-        double y = game.tileSize *2;
-
+        double x = game.screenWidth - (game.tileSize*5);
+        double y = game.tileSize *1.8;
+        int tempY=25;
+        gc.drawImage(coinImage,x,y);
+        x+=game.tileSize-10;
         // Dark yellow outline
         gc.setStroke(Color.rgb(129, 61, 57)); // Dark yellow color
         gc.setLineWidth(2); // Width of the outline
-        gc.strokeRoundRect(x, y, textWidth+10, textHeight+10,10,10); // Outline of the bar
-
-        // Calculate width of yellow bar based on energy and maxEnergy
+        gc.strokeRoundRect(x, y,game.tileSize*3 , game.tileSize/1.5,10,10); // Outline of the bar
 
         // Fill yellow bar
-        gc.setFill(Color.rgb(252, 190, 69));
-        gc.fillRoundRect(x, y, textWidth+10, textHeight+10,10,10);
+        gc.setFill(Color.rgb(255,209,184));
+//        gc.setFill(Color.rgb(252, 190, 69));
+        gc.fillRoundRect(x, y, game.tileSize*3 , game.tileSize/1.5,10,10);
 
+        // Set font for text
+        gc.setFont(Font.font("Arial", FontWeight.BOLD, 16));
 
+        // Draw "Energy" text
+        gc.setFill(Color.rgb(125,89,9));
+        String text = "" + game.player.coin;
 
         // Draw text at adjusted x position
-        gc.fillText(text, x - (textWidth+5), y+(game.tileSize/2.2));
-        gc.drawImage(energyImage,x+10,y+5);
-
-
-
+        gc.fillText(text, x +10, y+15);
 
     }
 
     public void drawPlayerLevel() {
-        int x =game.tileSize;
-        int y = game.tileSize / 2;
+        int x =game.tileSize/2;
+        int y = 10;
+        int tempX=x+10;
+        int tempY=25;
+
+        gc.setStroke(Color.rgb(129, 61, 57)); // Dark yellow color
+        gc.setLineWidth(2); // Width of the outline
+        gc.strokeRoundRect(tempX, tempY, game.tileSize * 3, game.tileSize / 2,10,10); // Outline of the bar
+
+        // Fill yellow bar
+        gc.setFill(Color.rgb(255,209,184));
+        //gc.fillRect(x, y, lifeWidth, game.tileSize);
+        gc.fillRoundRect(tempX, tempY, game.tileSize * 3, game.tileSize/2,10,10);
+        // Dark yellow outline
+
+
+        // Calculate width of yellow bar based on energy and maxEnergy
+        double expWidth = ((double) game.player.exp / game.player.nextLevelExp) * game.tileSize * 2;
+
+        // Fill yellow bar
+        gc.setFill(Color.rgb(252, 190, 69));
+        gc.fillRoundRect(tempX, tempY, expWidth, game.tileSize / 2,10,10);
+
+
+
+
 
        gc.drawImage(starImage,x,y);
 
@@ -231,14 +229,14 @@ public class UI {
         int level = game.player.level;
         gc.setFill(Color.WHITE);
         gc.setFont(Font.font("Arial", FontWeight.BOLD, 15)); // Customize font as needed
-        gc.fillText(""+ level, 10 + x, 8 + (y*2)); // Adjust position as needed
+        //gc.fillText(""+ level, 10 + x, 8 + (y*2)); // Adjust position as needed
 
         //Draw Player EXP
         String expText = "Exp: " + game.player.exp + "/" + game.player.nextLevelExp;
         gc.setFont(Font.font("Arial", FontWeight.BOLD, 14)); // Customize font as needed
-        y=y*4;
+
         // Draw exp text at adjusted x position
-        gc.fillText(expText, x/2, y );
+       // gc.fillText(expText, tempX+10, tempY+5 );
 
 
     }
