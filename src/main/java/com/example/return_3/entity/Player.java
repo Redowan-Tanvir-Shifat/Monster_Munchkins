@@ -321,12 +321,14 @@ public class Player extends Entity{
         if(keyHandler.isEnterPressed() == true){
             if(i != 999){
                 //attackCanceled=true;
-                game.gameState = game.dialogueState;
+                game.gameState=game.dialogueState;
+
                 game.npc[game.currentMap][i].speak();
             }
             //gp.playSE(7);
         }
     }
+
 
 
     public void draw(GraphicsContext gc){

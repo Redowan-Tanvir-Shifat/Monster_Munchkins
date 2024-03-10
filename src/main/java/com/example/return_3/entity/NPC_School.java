@@ -14,6 +14,7 @@ public class NPC_School extends NPC{
         this.game=game;
         type= type_npc;
         getNPCImage();
+        setDialogue();
     }
     public void getNPCImage(){
         up1=loadImage( "/npc/oldman_up_1.png",game.tileSize,game.tileSize);
@@ -25,10 +26,15 @@ public class NPC_School extends NPC{
         right1= loadImage("/npc/oldman_right_1.png",game.tileSize,game.tileSize);
         right2= loadImage("/npc/oldman_right_2.png",game.tileSize,game.tileSize);
     }
-
+    //set dialogue
+    public void setDialogue(){
+        dialogue[0]="Hello Lad! \nWelcome to the Mysterious Island";
+        dialogue[1]="In this Island you are now facing lots \nof exciting things";
+        dialogue[2]="Let me help you to take you a tour\ni'm a bit too old for taking an adventure though.";
+        dialogue[3]="Where you want to go?";
+    }
     public void speak(){
         super.speak();
-        onPath=true;
     }
     public void draw(GraphicsContext gc){
         super.draw(gc);
@@ -50,4 +56,5 @@ public class NPC_School extends NPC{
             gc.drawImage(image,screenX,screenY-(game.tileSize/2));
         }
     }
+
 }

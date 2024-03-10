@@ -10,12 +10,12 @@ public class NPC extends Entity{
         super(game);
         this.game=game;
         direction ="down";
-        speed=(int) (100*game.targetFrameTime);
+        speed=(int) (120*game.targetFrameTime);
         //set the collision part
-        solidArea.setX(0);
-        solidArea.setY(10);
-        solidArea.setWidth(32);
-        solidArea.setHeight(22);
+        solidArea.setX(7);
+        solidArea.setY(14);
+        solidArea.setWidth(18);
+        solidArea.setHeight(16);
         solidAreaDefaultX=(int)(solidArea.getX());
         solidAreaDefaultY=(int)(solidArea.getY());
 
@@ -42,8 +42,6 @@ public class NPC extends Entity{
 
     public void setAction(){
         if(onPath==true){
-            int goalCol=6;
-            int goalRow=10;
             searchPath(goalCol, goalRow);
         } else  {
             actionLookCounter++;

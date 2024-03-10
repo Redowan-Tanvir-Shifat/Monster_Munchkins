@@ -32,7 +32,8 @@ public class Game extends Application {
 
     // GAME SETTINGS
 
-    
+
+
     //STATIC VARIABLES
     public static Game gameInstance;
     public static Stage primaryStage;
@@ -47,7 +48,7 @@ public class Game extends Application {
     public final int playState=1;
     public final int pauseState=2;
     public final int dialogueState=3;
-    public final int characterState=4;
+    public final int wizConversationState=4;
     public final int optionState=5;
     public final int gameOverState=6;
     public final int transitionState=7;
@@ -263,11 +264,12 @@ public class Game extends Application {
                 //Monster
                 for (int i = 0; i < monster.length; i++) {
                     if (monster[currentMap][i] != null) {
-                        if (monster[currentMap][i].alive == true && monster[currentMap][i].dying == false) {
+                        if (monster[currentMap][i].alive == true) {
                             monster[currentMap][i].update();
                         }
                         if (monster[currentMap][i].alive == false) {
-                            monster[currentMap][i] = null;                      }
+                            monster[currentMap][i] = null;
+                        }
                     }
                 }
 
@@ -284,6 +286,8 @@ public class Game extends Application {
             } else if (gameStatus==gameSpaceInvadersStatus) {
                 gameSpaceInvaders.update();
             }
+
+
         }
 
 
@@ -308,7 +312,7 @@ public class Game extends Application {
                     }
                 }
                 //add player
-                entityList.add(player);      
+                entityList.add(player);
 
                 //add npc entity TO the list.
                 for (int i = 0; i < npc[currentMap].length; i++) {

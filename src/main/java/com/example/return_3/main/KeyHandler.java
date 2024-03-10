@@ -84,6 +84,16 @@ public class KeyHandler {
     }
 
 
+
+
+
+
+
+
+
+
+
+
     private void handleKeyRelease(KeyCode code) {
         switch (code) {
             case UP: moveUp = false; break;

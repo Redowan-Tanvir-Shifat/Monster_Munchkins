@@ -42,6 +42,7 @@ public class TileManager {
         getTileImage();
 
         // Get the max world col and row
+
         is = getClass().getResourceAsStream("/maps/finalMap.txt");
         br = new BufferedReader(new InputStreamReader(is));
         try{
@@ -54,10 +55,12 @@ public class TileManager {
         }catch (Exception e){
             e.printStackTrace();
         }
-
          loadMap("/maps/finalMap.txt",0);
-         //loadMap("/maps/gameMap.txt",1);
-       // loadMap("/maps/map03.txt",2);
+
+
+
+         //loadMap("/maps/finalMap.txt",0,200);
+
     }
 
     public void getTileImage(){
@@ -89,61 +92,7 @@ public class TileManager {
             e.printStackTrace();
         }
     }
-//
-//    public void loadMap(String filePath, int map){
-//        try{
-//            InputStream is = getClass().getResourceAsStream(filePath);
-//            BufferedReader br = new BufferedReader(new InputStreamReader(is));
-//            int col=0;
-//            int row=0;
-//            while (col<game.maxWorldCol && row<game.maxWorldRow){
-//                String line= br.readLine();
-//                while(col<game.maxWorldCol){
-//                    String numbers[]= line.split(" ");
-//                    int num= Integer.parseInt(numbers[col]);
-//                    mapTileNum[map][col][row]=num;
-//                    col++;
-//                }
-//
-//                if(col==game.maxWorldCol){
-//                    col=0;
-//                    row++;
-//                }
-//            }
-//            br.close();
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
-//    }
 
-
-//    public void loadMap(String filePath, int map) {
-//        try {
-//            InputStream is = getClass().getResourceAsStream(filePath);
-//            BufferedReader br = new BufferedReader(new InputStreamReader(is));
-//            int col = 0;
-//            int row = 0;
-//            while (row < game.maxWorldRow) {
-//                String line = br.readLine();
-//                String numbers[] = line.split(" ");
-//                for (String number : numbers) {
-//                    int num = Integer.parseInt(number);
-//                    mapTileNum[map][col][row] = num;
-//                    col++;
-//                    if (col == game.maxWorldCol) {
-//                        col = 0;
-//                        row++;
-//                        if (row == game.maxWorldRow) {
-//                            break;
-//                        }
-//                    }
-//                }
-//            }
-//            br.close();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     public void loadMap(String filePath, int map) {
         try {
@@ -173,6 +122,39 @@ public class TileManager {
         }
     }
 
+    public void loadMap(String filePath, int map,int size) {
+        game.maxWorldCol=size;
+        game.maxWorldRow=size;
+        mapTileNum= new int[game.maxMap][game.maxWorldCol][game.maxWorldRow];
+
+        try {
+            InputStream is = getClass().getResourceAsStream(filePath);
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            int col = 0;
+            int row = 0;
+            String line;
+            while ((line = br.readLine()) != null && row < game.maxWorldRow) { // Check if line is not null and if we have reached the maximum rows
+                String numbers[] = line.split(" ");
+                for (int i  =0 ; i < size;i++) {
+                    if (col < game.maxWorldCol) { // Check if we have reached the maximum columns
+                        int num = Integer.parseInt(numbers[i]);
+                        mapTileNum[map][col][row] = num;
+                        col++;
+                        if (col == game.maxWorldCol) { // If we have reached the maximum columns, move to the next row
+                            col = 0;
+                            row++;
+                            if (row == game.maxWorldRow) { // Check if we have reached the maximum rows
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            br.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 
 

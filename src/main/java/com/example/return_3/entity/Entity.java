@@ -29,6 +29,8 @@ public class Entity {
     public int chatCounter = 0;
     public  int spriteNum = 1;
     public int chatNum = 1;
+    public int goalCol;
+    public int goalRow;
 
   //  COLLision
   //  part 6 collision
@@ -40,8 +42,8 @@ public class Entity {
     public boolean collisionOn = false;
     //to move npc good way
     public int actionLookCounter=0;
-    String[] dialogue =new String[20];
-    int dialogueIndex=0;
+    public String[] dialogue =new String[20];
+    public int dialogueIndex=0;
 
     //CHARACTER STATUS
     public int maxLife;
@@ -80,8 +82,8 @@ public class Entity {
     public int type; // 0 for player, 1 for npc, 2 for monster
     public final int type_player=0;
     public final int type_npc=1;
-    public final int type_monster=2;
-    public final int type_sword=3;
+    public final int type_wizard=2;
+    public final int type_monster=3;
     public final int type_axe=4;
     public final int type_shield=5;
     public final int type_consumable=6;
@@ -287,7 +289,7 @@ public class Entity {
             }
 
             //Monster HP Bar......
-            if (type == 2 && hpBarOn == true) {
+            if (type == type_monster && hpBarOn == true) {
                 double oneScale = (double)game.tileSize/maxLife;
                 double hpBarValue = oneScale*life;
 
@@ -345,11 +347,9 @@ public class Entity {
 
 
     public void speak(){
-        if(dialogue[dialogueIndex]==null){
-            dialogueIndex=0;
-        }
+        game.ui.npc=this;
         game.ui.currentDialogue=dialogue[dialogueIndex];
-        dialogueIndex++;
+        // dialogueIndex++;
         switch (game.player.direction){
             case "up":
                 direction="down";

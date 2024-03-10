@@ -5,6 +5,8 @@ import javafx.scene.image.PixelReader;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 
+import java.util.Objects;
+
 public class UtilityTool {
     public Image scaleImage(Image original, int width, int height) {
         WritableImage scaledImage = new WritableImage(width, height);
@@ -24,5 +26,8 @@ public class UtilityTool {
         }
 
         return scaledImage;
+    }
+    public Image loadImage(String imagePath, int width, int height) {
+        return new Image(Objects.requireNonNull(getClass().getResourceAsStream(imagePath)), width, height, true, true);
     }
 }

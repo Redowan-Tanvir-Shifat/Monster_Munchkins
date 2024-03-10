@@ -101,4 +101,27 @@ Players can unlock hidden areas by reaching certain levels. These areas contain 
 
 
 
-## Explanation of whole of our code is written here:  
+## Explanation of whole of our code is written here:
+
+
+
+
+
+
+
+
+
+
+## Database Code:
+1. create Database
+```roomsql
+CREATE SCHEMA `game` ;
+```
+2. create table `users` in `game` database
+```roomsql
+CREATE TABLE `game`.`users` (
+    id INT NOT NULL AUTO_INCREMENT,
+   `username` VARCHAR(45) NOT NULL,
+    `password` VARCHAR(45) NOT NULL,
+    PRIMARY KEY (`id`));
+```
