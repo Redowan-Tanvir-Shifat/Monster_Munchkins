@@ -7,6 +7,7 @@ import com.example.return_3.entity.Player;
 import com.example.return_3.gameCenter.spaceInvaders.GameSpaceInvaders;
 import com.example.return_3.interactiveTile.InteractiveTile;
 import com.example.return_3.tile.TileManager;
+import com.example.return_3.ui.UI;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -17,7 +18,6 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -25,7 +25,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Objects;
 
 public class Game extends Application {
 
@@ -353,6 +352,7 @@ public class Game extends Application {
 
         } else if (gameStatus == gameSpaceInvadersStatus) {
             gameSpaceInvaders.draw(gc);
+            ui.draw(gc);
         }
     }
 

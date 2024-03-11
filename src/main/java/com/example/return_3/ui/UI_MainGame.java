@@ -1,21 +1,20 @@
-package com.example.return_3.main;
+package com.example.return_3.ui;
 
 import com.example.return_3.entity.Entity;
+import com.example.return_3.main.Game;
+import com.example.return_3.main.UtilityTool;
 import com.example.return_3.object.OBJ_Heart;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.StrokeLineCap;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
-
-import java.awt.*;
 import java.util.ArrayList;
 
-public class UI {
+public class UI_MainGame {
     Game game;
     Entity entity;
     GraphicsContext gc;
@@ -35,12 +34,9 @@ public class UI {
     int counter=0;
 
     public Entity npc;
-    //
-
-    //CONSTRUCTOR START
-
-    public UI(Game game){
+    public UI_MainGame(Game game) {
         this.game = game;
+        this.gc = game.gc;
         arial_40 = new Font("Arial",40);
         arial_80B = new Font("Arial",80);
         UtilityTool uTool= new UtilityTool();
@@ -49,59 +45,7 @@ public class UI {
         starImage = uTool.loadImage("/objects/star1.png",game.tileSize+10,game.tileSize+10);
         energyImage = uTool.loadImage("/objects/energy.png",game.tileSize-7,game.tileSize-7);
         coinImage = uTool.loadImage("/objects/coin3.png",game.tileSize-7,game.tileSize-7);
-
     }
-    public void addMessage(String text){
-//        message = text;
-//        messageOn = true;
-        message.add(text);
-        messageCounter.add(0);
-    }
-    public void draw(GraphicsContext gc){
-        //we did this because we need to use this gc in other methods also
-        this.gc=gc;
-
-        gc.setFont(arial_40);
-        gc.setFill(Color.WHITE);
-
-
-        // <------PLAY STATE------>
-        if(game.gameState == game.playState){
-            drawPlayerLife();
-            drawPlayerLevel();
-            drawMessage();
-            drawEnergy();
-            drawCoin();
-        }
-
-
-        // <-------MenuBar State------>
-        if (game.gameState == game.menuBarState) {
-            menuBarScreen();
-        }
-
-
-
-        // <-------DIALOGUE STATE------->
-        if(game.gameState == game.dialogueState){
-            drawDialogueScreen();
-        }
-
-
-        // <--------WizConversationState STATE-------->
-        if(game.gameState == game.wizConversationState){
-            drawWizConversationScreen();
-        }
-
-
-        // <-------Character State------->
-        if (game.gameState == game.characterState) {
-            drawCharacterScreen();
-        }
-
-
-    }
-
 
 
     public void drawPlayerLife() {
@@ -249,7 +193,7 @@ public class UI {
 
 
 
-    private void menuBarScreen() {
+    public void menuBarScreen() {
         // Create a Frame...
         final int frameX = game.tileSize * 5;
         final int frameY = game.tileSize * 2;
@@ -288,7 +232,7 @@ public class UI {
         }
     }
 
-    private void drawCharacterScreen() {
+    public void drawCharacterScreen() {
         // Create a Frame...
         final int frameX = game.tileSize * 2;
         final int frameY = game.tileSize * 3;
@@ -449,7 +393,7 @@ public class UI {
         gc.fillRoundRect(x,y,width,height,35,35);
 
         //c=Color.WHITE;
-       // gc.setFill(c);
+        // gc.setFill(c);
         //gc.setStroke(Color.WHITE);
 
 
@@ -526,11 +470,10 @@ public class UI {
         }
     }
 
-    public void showPath(int goalCol,int goalRow){
-        game.ui.npc.onPath=true;
+    public void showPath(int goalCol,int goalRow) {
+        game.ui.npc.onPath = true;
         game.ui.npc.goalCol = goalCol;
         game.ui.npc.goalRow = goalRow;
-        game.gameState=game.playState;
+        game.gameState = game.playState;
     }
-
 }
