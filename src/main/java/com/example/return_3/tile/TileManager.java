@@ -15,7 +15,7 @@ import java.util.Objects;
 public class TileManager {
     Game game;
     public Tile[] tile;
-    boolean asadMapEnabled=false;
+    boolean asadMapEnabled=true;
     public int mapTileNum[][][];
     ArrayList<String> filenames=new ArrayList<String>();
     ArrayList<String> collisionStatus=new ArrayList<String>();

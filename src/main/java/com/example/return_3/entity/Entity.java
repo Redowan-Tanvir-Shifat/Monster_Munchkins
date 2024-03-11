@@ -21,9 +21,10 @@ public class Entity {
     public boolean collision = false;
     public int worldX, worldY;
     public int speed;
-
     public Image up1, up2, down1, down2, left1, left2, right1, right2;
     public Image attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1, attackRight2;
+    //For SpaceInvaders
+    public Image shotImage;
     public String direction = "down";
     public int spriteCounter = 0;
     public int chatCounter = 0;
@@ -99,11 +100,16 @@ public class Entity {
     public boolean hpBarOn = false;
     public boolean onPath = false;
     public boolean chatOnStatus = false;
+    //For SpaceInvadors
+    public boolean destroyed=false;
+    public boolean bottomTouched=false;
 
     public int dyingCounter = 0;
     public int hpBarCounter = 0;
     public int shotAvailableCounter=0;
     Game game;
+    //for space invaders
+    public int posX,posY;
     public Entity(Game game){
         this.game=game;
     }

@@ -26,7 +26,7 @@ public class SpaceShip extends Entity {
         this.keyHandler=keyHandler;
         double screenWidth = Game.gameScene.getWidth();
         double screenHeight = Game.gameScene.getHeight();
-        bcPic=  loadImage("/gameCenter/spaceInvaders/background_1.jpg", Game.gameSpaceInvaders.screenWidth, Game.gameSpaceInvaders.screenHeight);
+       // bcPic=  loadImage("/gameCenter/spaceInvaders/background_1.jpg", game.screenWidth, game.screenHeight);
 
 
 
@@ -86,11 +86,9 @@ public class SpaceShip extends Entity {
             // Move player based on key inputs
             if (keyHandler.isMoveUp()) {
                 direction = "up";
-                System.out.println("up pressing from spaceship");
             }
             if (keyHandler.isMoveDown()) {
                 direction = "down";
-                System.out.println("Down pressing from spaceShip");
 
             }
             if (keyHandler.isMoveRight()) {
@@ -101,6 +99,13 @@ public class SpaceShip extends Entity {
             }
 
             collisionOn = false;
+
+            //CHeck NPC collision
+            int npcIndex=game.cChecker.checkEnemy(this,Game.gameSpaceInvaders.enemies);
+            if(npcIndex!=999){
+                System.out.println(npcIndex);
+            }
+            interactNPC(npcIndex);
 
 
 
@@ -122,14 +127,14 @@ public class SpaceShip extends Entity {
             }
             if (posX < 0) {
                 posX = 0; // Prevent player from moving beyond the left boundary
-            } else if (posX + game.tileSize > gameSpaceInvaders.screenWidth) {
-                posX = gameSpaceInvaders.screenWidth - game.tileSize; // Prevent player from moving beyond the right boundary
+            } else if (posX + game.tileSize > game.screenWidth) {
+                posX = game.screenWidth - game.tileSize; // Prevent player from moving beyond the right boundary
             }
 
             if (posY < 0) {
                 posY = 0; // Prevent player from moving beyond the top boundary
-            } else if (posY + game.tileSize > gameSpaceInvaders.screenHeight) {
-                posY = gameSpaceInvaders.screenHeight - game.tileSize; // Prevent player from moving beyond the bottom boundary
+            } else if (posY + game.tileSize > game.screenHeight) {
+                posY = game.screenHeight - game.tileSize; // Prevent player from moving beyond the bottom boundary
             }
 
             spriteCounter++;
@@ -146,6 +151,14 @@ public class SpaceShip extends Entity {
 
 
 
+
+    }
+    public void interactNPC(int i){
+        if(i!=999){
+            Game.gameSpaceInvaders.enemies[i]=null;
+            life--;
+            System.out.println("Life:"+life);
+        }
 
     }
 

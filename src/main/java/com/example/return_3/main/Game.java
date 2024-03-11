@@ -32,8 +32,6 @@ public class Game extends Application {
 
     // GAME SETTINGS
 
-
-
     //STATIC VARIABLES
     public static Game gameInstance;
     public static Stage primaryStage;
@@ -102,8 +100,12 @@ public class Game extends Application {
     public InteractiveTile iTile[][]= new InteractiveTile[maxMap][50];
     ArrayList<Entity> entityList = new ArrayList<>();
 
+
+
+
     public Player player ;
     public KeyHandler keyHandler;
+    //Static instance of gameSpaceInvaders;
     public static GameSpaceInvaders gameSpaceInvaders;
 
     public PathFinder pFinder= new PathFinder(this);
