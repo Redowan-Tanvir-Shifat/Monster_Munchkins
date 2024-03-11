@@ -8,12 +8,14 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.beans.XMLEncoder;
 
 public class KeyHandler {
     Game game;
     Stage stage;
-    private boolean moveUp, moveDown, moveLeft, moveRight,enterPressed, spacePressed;
+    private boolean moveUp, moveDown, moveLeft, moveRight,enterPressed, spacePressed, escapePressed;
 
     public KeyHandler(Game game) {
         this.game = game;
@@ -22,6 +24,20 @@ public class KeyHandler {
     }
 
     private void handleKeyPress(KeyCode code) {
+
+//        if (code == KeyCode.Q) {
+//            try {
+//                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+//                alert.setTitle("Exit");
+//                alert.setHeaderText("You are about to exit");
+//                alert.setContentText("Do you want to exit?");
+//                if (alert.showAndWait().get() == ButtonType.OK) {
+//                    Game.exitGame();
+//                }
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        }
 
 
         //This is for PlayState
@@ -33,23 +49,51 @@ public class KeyHandler {
 //            pauseState(code);
 //        }
         //DIALOGUE state
-        else if(game.gameState==game.dialogueState){
+        else if(game.gameState == game.dialogueState){
             dialogueState(code);
         }
         //WizConversation state
-        else if(game.gameState==game.wizConversationState){
+        else if(game.gameState == game.wizConversationState){
             wizConversationState(code);
         }
-
-
-
-
-
-
-
+        else if (game.gameState == game.characterState) {
+            characterState(code);
+        }else if (game.gameState == game.menuBarState) {
+            menuBarState(code);
+        }
     }
 
-
+    private void characterState(KeyCode code) {
+        if (code == KeyCode.C) {
+            game.gameState = game.playState;
+        }
+    }
+    private void menuBarState(KeyCode code) {
+        if (code == KeyCode.ESCAPE) {
+            escapePressed = true;
+        }
+        if(code== KeyCode.W || code== KeyCode.UP){
+            game.ui.commandNum--;
+            if(game.ui.commandNum < 0){
+                game.ui.commandNum = 1;
+            }
+        }
+        if(code== KeyCode.S || code== KeyCode.DOWN){
+            game.ui.commandNum++;
+            if(game.ui.commandNum > 1){
+                game.ui.commandNum=0;
+            }
+        }
+        if (code == KeyCode.ENTER) {
+            if (game.ui.commandNum == 0) {
+                game.gameState = game.playState;
+                game.player.setDefaultPositions();
+            }
+            if (game.ui.commandNum == 1) {
+                Game.exitGame();
+            }
+        }
+    }
 
     public void playState(KeyCode code){
 
@@ -64,18 +108,9 @@ public class KeyHandler {
             case D: moveRight = true; break;
             case ENTER: enterPressed = true; break;
             case SPACE: spacePressed = true; break;
+            case C: game.gameState = game.characterState; break;
+            case ESCAPE: game.gameState = game.menuBarState; break;
 
-            case ESCAPE: try {
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Exit");
-                alert.setHeaderText("You are about to exit");
-                alert.setContentText("Do you want to exit?");
-                if (alert.showAndWait().get() == ButtonType.OK) {
-                    Game.exitGame();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
         }
     }
 
@@ -122,17 +157,6 @@ public class KeyHandler {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     private void handleKeyRelease(KeyCode code) {
         switch (code) {
             case UP: moveUp = false; break;
@@ -143,9 +167,9 @@ public class KeyHandler {
             case S: moveDown = false; break;
             case A: moveLeft = false; break;
             case D: moveRight = false; break;
-            case ENTER: enterPressed=false; break;
+            case ENTER: enterPressed = false; break;
             case SPACE:spacePressed = false; break;
-
+            case ESCAPE:escapePressed = false; break;
         }
 
     }
@@ -174,6 +198,9 @@ public class KeyHandler {
     public boolean isSpacePressed() {
         return spacePressed;
     }
+    public boolean isEscapePressed() {
+        return escapePressed;
+    }
 
     public void setEnterPressed(boolean enterPressed) {
         this.enterPressed = enterPressed;
@@ -181,15 +208,19 @@ public class KeyHandler {
     public void setSpacePressed(boolean spacePressed) {
         this.spacePressed = spacePressed;
     }
+    public void setEscapePressed(boolean escapePressed) {
+        this.escapePressed = escapePressed;
+    }
 
 
     public void setBooleanAll(boolean value){
         this.moveUp = value;
-        this.moveDown=value;
-        this.moveLeft=value;
-        this.moveRight=value;
-        this.enterPressed=value;
+        this.moveDown = value;
+        this.moveLeft = value;
+        this.moveRight = value;
+        this.enterPressed = value;
         this.spacePressed = value;
+        this.escapePressed = value;
     }
 
 }

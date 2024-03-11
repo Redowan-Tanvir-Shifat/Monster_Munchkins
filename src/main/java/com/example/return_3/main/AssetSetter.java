@@ -69,6 +69,7 @@ public class AssetSetter {
         game.monster[game.currentMap][i].worldX = game.tileSize * 84;
         game.monster[game.currentMap][i].worldY = game.tileSize * 144;
         i++;
+
         game.monster[game.currentMap][i] = new Mon_RedSlime(game);
         game.monster[game.currentMap][i].worldX = game.tileSize * 81;
         game.monster[game.currentMap][i].worldY = game.tileSize * 144;

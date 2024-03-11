@@ -24,13 +24,10 @@ public class Mon_GreenSlime extends Entity {
         //set the SOLID AREA for  collision part
         solidArea.setX(1);
         solidArea.setY(10);
-//        solidArea.width=42;
-//        solidArea.height=30;
         solidArea.setWidth(30);
         solidArea.setHeight(23);
         solidAreaDefaultX = (int)(solidArea.getX());
         solidAreaDefaultY = (int)(solidArea.getY());
-
         getImage();
     }
 

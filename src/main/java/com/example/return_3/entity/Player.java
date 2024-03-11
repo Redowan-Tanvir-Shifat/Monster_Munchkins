@@ -3,6 +3,8 @@ package com.example.return_3.entity;
 import com.example.return_3.main.EventHandler;
 import com.example.return_3.main.Game;
 import com.example.return_3.main.KeyHandler;
+import com.example.return_3.object.OBJ_Shield_Wood;
+import com.example.return_3.object.OBJ_Sword_Normal;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.canvas.GraphicsContext;
@@ -109,28 +111,40 @@ public class Player extends Entity{
          speed=(int) (250*game.targetFrameTime); //pixel per second
 
 
-        //Player Status;
+        // <---------Player Status--------->
         level = 1;
         maxLife = 100;
         life = maxLife;
+        strength = 1;    //The more strength he has, the more damage he gives...
+        dexterity = 1;   // The more dexterity he has, the less damage he receives...
+        exp = 20;
+        nextLevelExp = 50;
+        coin = 0;
+        currentWeapon = new OBJ_Sword_Normal(game);
+        currentShield = new OBJ_Shield_Wood(game);
+        attack = getAttack();    // The total attack value is decided by strength and weapon...
+        defense = getDefense();   // The total defence value is decided by dexterity and shield...
+
+        energy = 180;
+        maxEnergy = 200;
         maxMana = 4;
         mana = maxMana;
         //ammo=10;
-        strength=1; //the more strength he has the more damage he gives
-        dexterity=1;// the more dexterity he has the less damage he receives
-        exp=20;
-        nextLevelExp=50;
-        coin=0;
-        energy=180;
-        maxEnergy=200;
-        //currentWeapon=new OBJ_Sword_normal(gp);
+
+
 //        currentWeapon=new OBJ_Axe(gp);
-//        currentShield= new OBJ_Shield_Wood(gp);
 //        projectile= new OBJ_Fireball(gp);
 //        //this is for testing that you can use anything to throw .
 //        //projectile= new OBJ_Rock(gp);
 //        attack=getAttack(); //the total attack value is decided by the strength and weapon
 //        defense=getDefense();// the total defense value is decided by the dexterity and shield
+    }
+
+    private int getDefense() {
+        return defense = dexterity * currentShield.defenseValue;
+    }
+    private int getAttack() {
+        return attack = strength * currentWeapon.attackValue;
     }
 
     public void setDefaultPositions(){
@@ -264,10 +278,6 @@ public class Player extends Entity{
             worldY = currentWorldY;
             solidArea.setWidth(solidAreaWidth);
             solidArea.setHeight(solidAreaHeight);
-
-
-
-
         }
         if (spriteCounter > 25) {
             spriteNum = 1;
@@ -279,14 +289,14 @@ public class Player extends Entity{
     private void damagedMonster(int i) {
         if (i != 999) {
             if (game.monster[game.currentMap][i].invincible == false) {
-                game.monster[game.currentMap][i].life -= 1;
+                game.monster[game.currentMap][i].life -= game.player.attack;
                 game.monster[game.currentMap][i].invincible = true;
                 game.monster[game.currentMap][i].damageReaction();
 
                 if (game.monster[game.currentMap][i].life <= 0) {
                     game.monster[game.currentMap][i].dying = true;
 
-                    Timeline timeline = new Timeline(new KeyFrame(Duration.minutes(0.5), event -> {
+                    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(30), event -> {
                         game.assetSetter.setMonster();
                     }));
 
@@ -307,8 +317,6 @@ public class Player extends Entity{
                 invincible = true;
             }
         }
-
-
     }
 
     private void interactMonster(int i) {

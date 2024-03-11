@@ -104,4 +104,3 @@ public class Mon_RedSlime extends Entity {
 //    }
 }
 
-
