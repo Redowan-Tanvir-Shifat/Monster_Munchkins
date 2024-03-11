@@ -11,7 +11,7 @@ public class GameController {
 
     public void goTosnakey(ActionEvent event) {
         System.out.println("ENterign space invaders game");
-        Game.gameSpaceInvaders = new GameSpaceInvaders(Game.gameInstance);
+        Game.gameSpaceInvaders = new GameSpaceInvaders(Game.gameInstance, Game.gameInstance.gc);
         //Game.gameInstance.keyHandler.setBooleanAll(false);
         try {
             Game.gameSpaceInvaders.startGameSpaceInvaders();

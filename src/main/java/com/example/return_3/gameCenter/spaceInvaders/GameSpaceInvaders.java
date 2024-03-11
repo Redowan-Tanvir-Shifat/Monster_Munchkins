@@ -1,38 +1,56 @@
 package com.example.return_3.gameCenter.spaceInvaders;
 
+import com.example.return_3.entity.Entity;
+import com.example.return_3.gameCenter.spaceInvaders.enemy.Enemy;
 import com.example.return_3.main.Game;
 import com.example.return_3.main.GameAnimationTimer;
 import com.example.return_3.main.KeyHandler;
+import com.example.return_3.main.UtilityTool;
+import com.example.return_3.test.TestAssetSetter;
+import com.example.return_3.test.TestEntity;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class GameSpaceInvaders {
 
     Game game;
-//    Image bcPic;
     //SCREEN SETTINGS
-    public final int tileSize = 32; //SO every tile will be 32 pixels
-    public final int maxScreenCol = 28; //here will be 20 column of titles  =>1024 pixel width
-    public final int maxScreenRow = 18; //here will be 25 row of titles => 800 pixel height
-    public final int screenWidth= tileSize*maxScreenCol; //1024 pixel width
-    public final int screenHeight= tileSize*maxScreenRow; //800 pixel height
+//    public final int tileSize = 32; //SO every tile will be 32 pixels
+//    public final int maxScreenCol = 28; //here will be 20 column of titles  =>1024 pixel width
+//    public final int maxScreenRow = 18; //here will be 25 row of titles => 800 pixel height
+//    public final int screenWidth= tileSize*maxScreenCol; //1024 pixel width
+//    public final int screenHeight= tileSize*maxScreenRow; //800 pixel height
 
 
     // $$$$$$$$$ System $$$$$$$$$
     //instantiates new instances
-    Canvas canvas = new Canvas(screenWidth, screenHeight);
-    GraphicsContext gc = canvas.getGraphicsContext2D();
+//    Canvas canvas = new Canvas(screenWidth, screenHeight);
+//    GraphicsContext gc = canvas.getGraphicsContext2D();
+    Canvas canvas;
+    GraphicsContext gc;
 
-    SpaceShip spaceShip ;
+    public SpaceShip spaceShip ;
     Image bcPic;
+    UtilityTool uTool;
 
 
-    public GameSpaceInvaders( Game game){
+    public Entity[] enemies = new Entity[20];
+    public List<Enemy> enemiesList = new ArrayList<>();
+    SpaceAssetSetter assetSetter;
+
+
+    public GameSpaceInvaders( Game game,GraphicsContext gc){
         this.game = game;
+        this.gc = gc;
+        this.canvas=game.mainGameCanvas;
+         uTool= new UtilityTool();
     }
 
 
@@ -41,14 +59,17 @@ public class GameSpaceInvaders {
         game.gameStatus=game.gameSpaceInvadersStatus; //change the GameStatus  as our new gameStatus so that update and render method will work in that such crieteria
         game.gameState=game.playState; //change the GameState as play state
         Pane gameSpaceInvadersRoot = new Pane();
-        Game.gameScene = new Scene(gameSpaceInvadersRoot, screenWidth, screenHeight); // Set the scene before creating KeyHandler
+        Game.gameScene = new Scene(gameSpaceInvadersRoot, game.screenWidth, game.screenHeight); // Set the scene before creating KeyHandler
         //game.keyHandler= new KeyHandler(game);
         spaceShip=new SpaceShip(game,new KeyHandler(game));
-        bcPic=  loadImage("/gameCenter/spaceInvaders/background_1.jpg", Game.gameSpaceInvaders.screenWidth, Game.gameSpaceInvaders.screenHeight);
+        bcPic=  uTool.loadImage("/gameCenter/spaceInvaders/level1.png", game.screenWidth, game.screenHeight);
 
         gameSpaceInvadersRoot.getChildren().add(canvas); //Now we added the root created in gameSpaceInvaders
         //game.lastNanoTime = System.nanoTime();
        // Game.gameTimer = new GameAnimationTimer(game);
+        assetSetter= new SpaceAssetSetter(game);
+
+        assetSetter.start();
         Game.gameTimer.start();
         Game.primaryStage.setScene(Game.gameScene);
     }
@@ -58,6 +79,17 @@ public class GameSpaceInvaders {
     public void update(){
         //System.out.println("update working");
         spaceShip.update();
+        for(int i=0; i<enemies.length;i++){
+            if(enemies[i]!=null){
+                if(enemies[i].bottomTouched==false){
+
+
+                    enemies[i].update();
+                }else if(enemies[i].bottomTouched==true){
+                    enemies[i]=null;
+                }
+            }
+        }
     }
 
     public void draw( GraphicsContext gc){
@@ -69,13 +101,14 @@ public class GameSpaceInvaders {
         gc.drawImage(backgroundImage,0,0);
         //new CheckedThread(bcPic,gc).start();
 
-
+        for(int i=0; i<enemies.length;i++){
+            if(enemies[i]!=null){
+                enemies[i].draw(gc);
+            }
+        }
         //Drawing spaceShip
-       // spaceShip.draw(this.gc);
-    }
+        spaceShip.draw(this.gc);
 
-    public Image loadImage(String imagePath, int width, int height) {
-        return new Image(Objects.requireNonNull(getClass().getResourceAsStream(imagePath)), width, height, true, true);
     }
 
 }

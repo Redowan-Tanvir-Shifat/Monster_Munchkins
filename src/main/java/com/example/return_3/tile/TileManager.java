@@ -15,6 +15,7 @@ import java.util.Objects;
 public class TileManager {
     Game game;
     public Tile[] tile;
+    boolean asadMapEnabled=true;
     public int mapTileNum[][][];
     ArrayList<String> filenames=new ArrayList<String>();
     ArrayList<String> collisionStatus=new ArrayList<String>();
@@ -41,7 +42,10 @@ public class TileManager {
         tile= new Tile[filenames.size()];
         getTileImage();
 
-        // Get the max world col and row
+        if(asadMapEnabled){
+            loadMap("/maps/finalMap.txt",0,200);
+        }else{
+            // Get the max world col and row
 
         is = getClass().getResourceAsStream("/maps/finalMap.txt");
         br = new BufferedReader(new InputStreamReader(is));
@@ -56,12 +60,10 @@ public class TileManager {
             e.printStackTrace();
         }
          loadMap("/maps/finalMap.txt",0);
-
-
-
-         //loadMap("/maps/finalMap.txt",0,200);
+        }
 
     }
+
 
     public void getTileImage(){
         for(int i=0; i<filenames.size();i++){

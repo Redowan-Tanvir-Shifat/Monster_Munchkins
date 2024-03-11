@@ -195,7 +195,7 @@ public class EventHandler {
             // Event happened
             // Handle JavaFX events here
 
-            if(hit(0,6,7,"any")){
+            if(hit(0,82,143,"any")){
 //                    gp.currentMap = 1;
                 try {
 //                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/school.fxml"));
@@ -219,7 +219,7 @@ public class EventHandler {
                 System.out.println("welcome to Game Center");
             }
 
-            if(hit(gp.currentMap,82,143,"any")){
+            if(hit(1,82,143,"any")){
 
                     try {
 //                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/school.fxml"));

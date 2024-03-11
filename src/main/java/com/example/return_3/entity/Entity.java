@@ -29,6 +29,9 @@ public class Entity {
     public int dialogueIndex = 0;
     public String[] dialogue =new String[20];
 
+    //for space invaders
+    public int posX,posY;
+
 
 
     // <----------IMAGE--------->
@@ -48,6 +51,10 @@ public class Entity {
     public boolean hpBarOn = false;
     public boolean onPath = false;
     public boolean chatOnStatus = false;
+
+    //For SpaceInvadors
+    public boolean destroyed=false;
+    public boolean bottomTouched=false;
 
 
 
