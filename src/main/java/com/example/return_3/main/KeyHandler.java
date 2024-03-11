@@ -44,12 +44,9 @@ public class KeyHandler {
         if(game.gameState == game.playState){
             playState(code);
         }
-        //PAUSE state
-//        else if(game.gameState==game.pauseState) {
-//            pauseState(code);
-//        }
+        
         //DIALOGUE state
-        else if(game.gameState == game.dialogueState){
+        else if(game.gameState == game.dialogueState) {
             dialogueState(code);
         }
         //WizConversation state
@@ -58,8 +55,14 @@ public class KeyHandler {
         }
         else if (game.gameState == game.characterState) {
             characterState(code);
-        }else if (game.gameState == game.menuBarState) {
-            menuBarState(code);
+        }
+        else if (game.gameState == game.menuBarState) {
+            if (game.gameStatus == game.gameMainStatus) {
+                menuBarState(code);
+            }
+            if (game.gameStatus == game.gameSpaceInvadersStatus) {
+                menuBarState(code);
+            }
         }
     }
 
@@ -73,23 +76,24 @@ public class KeyHandler {
             escapePressed = true;
         }
         if(code== KeyCode.W || code== KeyCode.UP){
-            game.ui.commandNum--;
-            if(game.ui.commandNum < 0){
-                game.ui.commandNum = 1;
+
+            game.ui.uiMainGame.commandNum--;
+            if(game.ui.uiMainGame.commandNum < 0){
+                game.ui.uiMainGame.commandNum = 1;
             }
         }
         if(code== KeyCode.S || code== KeyCode.DOWN){
-            game.ui.commandNum++;
-            if(game.ui.commandNum > 1){
-                game.ui.commandNum=0;
+            game.ui.uiMainGame.commandNum++;
+            if(game.ui.uiMainGame.commandNum > 1){
+                game.ui.uiMainGame.commandNum=0;
             }
         }
         if (code == KeyCode.ENTER) {
-            if (game.ui.commandNum == 0) {
+            if (game.ui.uiMainGame.commandNum == 0) {
                 game.gameState = game.playState;
                 game.player.setDefaultPositions();
             }
-            if (game.ui.commandNum == 1) {
+            if (game.ui.uiMainGame.commandNum == 1) {
                 Game.exitGame();
             }
         }
