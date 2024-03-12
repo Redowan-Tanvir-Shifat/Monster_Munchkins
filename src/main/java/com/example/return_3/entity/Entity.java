@@ -1,6 +1,7 @@
 package com.example.return_3.entity;
 
 import com.example.return_3.main.Game;
+import com.example.return_3.main.UtilityTool;
 import com.example.return_3.object.OBJ_ChatBox;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -117,16 +118,21 @@ public class Entity {
     public final int type_consumable = 6;
     public final int type_pickupOnly = 7;
 
+    // <---------Type of NPC--------->
+    public int npc_area;
+    public final int area_village=1;
+
 
   // <-------------COLLiSION------------->
     public Rectangle solidArea = new Rectangle(0,0,32,32);
     public Rectangle attackArea = new Rectangle(0,0,0,0);
     public int solidAreaDefaultX,solidAreaDefaultY;
 
-
+ public UtilityTool uTool;
 
     public Entity(Game game){
         this.game=game;
+         uTool=new UtilityTool();
     }
 
     public void use(Entity entity){}
@@ -176,6 +182,8 @@ public class Entity {
         }
 
         //part 6 collision part ends
+
+        set_Area(); //
 
 
         spriteCounter++;
@@ -372,6 +380,12 @@ public class Entity {
     }
 
 
+    public void set_Area(){ // we use different area here  for different position
+        switch (npc_area){ //x is for map starting position and y is for map ending position
+            //width and height give us the expected recatngular area for us
+            case area_village:uTool.areaSetup(this,75,120,50,40);   ;break;
+        }
+    }
 
     public Image loadImage(String imagePath, int width, int height) {
         return new Image(Objects.requireNonNull(getClass().getResourceAsStream(imagePath)), width, height, true, true);
