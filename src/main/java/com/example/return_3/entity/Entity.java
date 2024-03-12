@@ -149,8 +149,14 @@ public class Entity {
         if(this.type == type_monster && contactPlayer == true){
 //            damagePlayer(attack);
             if (game.player.invincible == false) {
-                game.player.life -= 1;
+                int damage = attack - game.player.defense;
+                if (damage < 0) {
+                    damage = 0;
+                }
+                game.player.life -= damage;
                 game.player.invincible = true;
+
+
             }
         }
 
@@ -286,6 +292,7 @@ public class Entity {
                     break;
             }
 
+
             //Monster HP Bar......
             if (type == type_monster && hpBarOn == true) {
                 double oneScale = (double)game.tileSize/maxLife;
@@ -326,7 +333,7 @@ public class Entity {
         }
     }
 
-    private void dyingAnimation(GraphicsContext gc) {
+    public void dyingAnimation(GraphicsContext gc) {
         dyingCounter++;
         int i = 5;
         if (dyingCounter <= i) {gc.setGlobalAlpha(0);}

@@ -30,10 +30,10 @@ public class Player extends Entity{
     //VARIABLES
     public KeyHandler keyHandler;
 
-
-
     public final int screenX;
     public final int screenY;
+
+
     //part 8 Object Interaction part starts
 //    public  int hasKey=0;
     //part 8 Object Interaction part ends
@@ -117,8 +117,8 @@ public class Player extends Entity{
         life = maxLife;
         strength = 1;    //The more strength he has, the more damage he gives...
         dexterity = 1;   // The more dexterity he has, the less damage he receives...
-        exp = 20;
-        nextLevelExp = 50;
+        exp = 0;
+        nextLevelExp = 20;
         coin = 0;
         currentWeapon = new OBJ_Sword_Normal(game);
         currentShield = new OBJ_Shield_Wood(game);
@@ -289,12 +289,23 @@ public class Player extends Entity{
     private void damagedMonster(int i) {
         if (i != 999) {
             if (game.monster[game.currentMap][i].invincible == false) {
-                game.monster[game.currentMap][i].life -= game.player.attack;
+
+                int damage = attack - game.monster[game.currentMap][i].defense;
+                if (damage < 0) {
+                    damage = 0;
+                }
+
+                game.monster[game.currentMap][i].life -= damage;
                 game.monster[game.currentMap][i].invincible = true;
                 game.monster[game.currentMap][i].damageReaction();
 
                 if (game.monster[game.currentMap][i].life <= 0) {
                     game.monster[game.currentMap][i].dying = true;
+
+
+                    game.ui.uiMainGame.addMessage("Killed the " + game.monster[game.currentMap][i].name + "!");
+                    exp += game.monster[game.currentMap][i].exp;
+                    game.ui.uiMainGame.addMessage(" EXP + " + game.monster[game.currentMap][i].exp);
 
                     Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(30), event -> {
                         game.assetSetter.setMonster();
@@ -313,8 +324,21 @@ public class Player extends Entity{
     private void contactMonster(int i) {
         if (i != 999) {
             if (invincible == false) {
-                life -= game.monster[game.currentMap][i].attack;
+
+                int damage = game.monster[game.currentMap][i].attack - defense;
+                if (damage < 0) {
+                    damage = 0;
+                }
+
+                life -= damage;
                 invincible = true;
+
+                if (life >= 0 && life <= 20) {
+                    game.ui.uiMainGame.addMessage( "Careful, " + life + " % Life left!");
+                }
+                if (life <= 0) {
+                    dying = true;
+                }
             }
         }
     }
@@ -329,11 +353,23 @@ public class Player extends Entity{
         if(keyHandler.isEnterPressed() == true){
             if(i != 999){
                 //attackCanceled=true;
-                game.gameState=game.dialogueState;
-
+                game.gameState = game.dialogueState;
                 game.npc[game.currentMap][i].speak();
             }
             //gp.playSE(7);
+        }
+    }
+
+    public void checkLevelUp() {
+        if (exp >= nextLevelExp) {
+            level++;
+            nextLevelExp = nextLevelExp + 30;   // We will use fibonacci series
+            strength++;
+            dexterity++;
+            attack = getAttack();
+            defense = getDefense();
+            game.gameState = game.dialogueState;
+            game.ui.uiMainGame.currentDialogue = " Congratulations! \nYou are level in " + level + " now.";
         }
     }
 
@@ -428,11 +464,18 @@ public class Player extends Entity{
                 }
                 break;
 
+
+
             // Handle other directions similarly
         }
 
         if (invincible == true) {
             gc.setGlobalAlpha(0.3);
+        }
+        if (dying == true) {
+            dyingAnimation(game.gc);
+            setDefaultPositions();
+
         }
         gc.drawImage(image, tempScreenX, tempScreenY);
 

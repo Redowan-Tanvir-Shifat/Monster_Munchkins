@@ -20,13 +20,13 @@ public class UI_MainGame {
     GraphicsContext gc;
     Font arial_40, arial_80B;
     Image heartFull, starImage, energyImage, coinImage;
-    public boolean messageOn=false;
+    public boolean messageOn = false;
 
     ArrayList<String> message = new ArrayList<>();
     ArrayList<Integer> messageCounter = new ArrayList<>();
 
     public boolean gameFinished=false; // if game is finished then the message will be shown
-    public String currentDialogue=""; //for setting the dialogue
+    public String currentDialogue = ""; //for setting the dialogue
     public int commandNum = 0; // this is for showing our menu specific commands
 
 
@@ -46,6 +46,9 @@ public class UI_MainGame {
         energyImage = uTool.loadImage("/objects/energy.png",game.tileSize-7,game.tileSize-7);
         coinImage = uTool.loadImage("/objects/coin3.png",game.tileSize-7,game.tileSize-7);
     }
+
+
+
 
 
     public void drawPlayerLife() {
@@ -244,7 +247,7 @@ public class UI_MainGame {
 
         // Text....
         gc.setFill(Color.rgb(255, 255, 255));
-        gc.setFont(Font.font("Arial", 18));
+        gc.setFont(Font.font("Arial", 16));
 
         int textX = frameX + game.tileSize/2;
         int textY = frameY + game.tileSize+8;
@@ -263,7 +266,7 @@ public class UI_MainGame {
         textY += lineGap;
         gc.fillText("EXP: ", textX, textY);
         textY += lineGap;
-        gc.fillText("Next Level: ", textX, textY);
+        gc.fillText("Next Level EXP: ", textX, textY);
         textY += lineGap;
         gc.fillText("Coin: ", textX, textY);
         textY += lineGap + 8;
@@ -341,22 +344,30 @@ public class UI_MainGame {
     }
 
 
+    public void addMessage(String text){
+//        message = text;
+//        messageOn = true;
+        message.add(text);
+        messageCounter.add(0);
+    }
+
     public void drawMessage(){
-        int messageX=game.tileSize;
-        int messageY=game.tileSize*4;
-        //gc.setFont(gc.getFont().deriveFont(Font.BOLD,32F));
-        for(int i=0;i<message.size();i++){
-            if(message.get(i)!=null){
+        int messageX = game.tileSize;
+        int messageY = game.tileSize * 5;
 
-                gc.setFill(Color.BLACK);
-                gc.fillText(message.get(i),messageX+2,messageY+2);
+        gc.setFont(Font.font("Arial", FontWeight.BOLD, 15));
+        gc.setFill(Color.WHITE);
+        for(int i = 0; i < message.size(); i++){
 
-                //gc.setColor(Color.white);
-                gc.fillText(message.get(i),messageX,messageY);
-                int counter= messageCounter.get(i)+1;
-                messageCounter.set(i,counter); //set the counter to the array;
-                messageY+=50;
-                if(messageCounter.get(i)>180){
+            if(message.get(i) != null){
+
+                gc.fillText(message.get(i), messageX, messageY);
+
+                int counter = messageCounter.get(i) + 1;
+                messageCounter.set(i, counter);     //set the counter to the array;
+                messageY += 50;
+
+                if(messageCounter.get(i) > 180){
                     message.remove(i);
                     messageCounter.remove(i);
                 }
@@ -370,14 +381,14 @@ public class UI_MainGame {
         //  CREATING A DIALOGUE WINDOW
         //set parameter for window
 //        System.out.println("UI: drawDialogueScreen() method called");
-        int x=game.tileSize*3;
-        int y=game.tileSize/2;
-        int width=game.screenWidth-(game.tileSize*6);
-        int height=game.tileSize*4;
+        int x = game.tileSize * 3;
+        int y = game.tileSize / 2;
+        int width = game.screenWidth-(game.tileSize*6);
+        int height = game.tileSize * 4;
         drawSubWindow(x, y, width, height);
         //gc.setFont(gc.getFont().deriveFont(Font.PLAIN,28F));
-        x+= game.tileSize;
-        y+= game.tileSize;
+        x += game.tileSize;
+        y += game.tileSize;
 
         //to create new line
         for(String line: currentDialogue.split("\n")){

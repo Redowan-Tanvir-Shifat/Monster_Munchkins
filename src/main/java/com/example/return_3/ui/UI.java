@@ -56,12 +56,7 @@ public class UI {
 //        coinImage = uTool.loadImage("/objects/coin3.png",game.tileSize-7,game.tileSize-7);
 
     }
-    public void addMessage(String text){
-//        message = text;
-//        messageOn = true;
-        message.add(text);
-        messageCounter.add(0);
-    }
+
     public void draw(GraphicsContext gc){
         //we did this because we need to use this gc in other methods also
         this.gc=gc;
@@ -77,6 +72,7 @@ public class UI {
                 uiMainGame.drawMessage();
                 uiMainGame.drawEnergy();
                 uiMainGame.drawCoin();
+
             }
 
 
