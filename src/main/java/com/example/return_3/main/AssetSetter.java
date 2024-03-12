@@ -43,21 +43,21 @@ public class AssetSetter {
         int mapNum = 0;
         int i = 0;
         game.npc[mapNum][i] = new NPC_School(game);
-        game.npc[mapNum][i].worldX = game.tileSize * 82;
-        game.npc[mapNum][i].worldY = game.tileSize * 144;
+        game.npc[mapNum][i].worldX = game.tileSize * 40;
+        game.npc[mapNum][i].worldY = game.tileSize * 134;
 
         i++;
         game.npc[mapNum][i]= new NPC_OldMan2(game);
-        game.npc[mapNum][i].worldX=game.tileSize*82;
-        game.npc[mapNum][i].worldY=game.tileSize*143;
+        game.npc[mapNum][i].worldX=game.tileSize*45;
+        game.npc[mapNum][i].worldY=game.tileSize*133;
 i++;
         game.npc[mapNum][i]= new NPC_Pig(game);
-        game.npc[mapNum][i].worldX=game.tileSize*84;
-        game.npc[mapNum][i].worldY=game.tileSize*143;
+        game.npc[mapNum][i].worldX=game.tileSize*46;
+        game.npc[mapNum][i].worldY=game.tileSize*135;
         i++;
         game.npc[mapNum][i]= new NPC_Girl(game);
-        game.npc[mapNum][i].worldX=game.tileSize*83;
-        game.npc[mapNum][i].worldY=game.tileSize*143;
+        game.npc[mapNum][i].worldX=game.tileSize*43;
+        game.npc[mapNum][i].worldY=game.tileSize*133;
 
         //New Map;
 //        mapNum=1;
