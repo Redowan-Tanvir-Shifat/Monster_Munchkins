@@ -11,7 +11,7 @@ public class NPC_OldMan2 extends NPC{
     public NPC_OldMan2(Game game) {
         super(game);
         this.game=game;
-        type= type_npc;
+        npc_area=area_village;
         speed=(int) (65*game.targetFrameTime);        getNPCImage();
         setDialogue();
     }
