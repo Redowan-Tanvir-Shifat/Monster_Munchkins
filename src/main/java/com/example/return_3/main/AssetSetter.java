@@ -7,6 +7,8 @@ import com.example.return_3.entity.NPC_School;
 import com.example.return_3.entity.NPC_Wizard;
 import com.example.return_3.monster.Mon_GreenSlime;
 import com.example.return_3.monster.Mon_RedSlime;
+import com.example.return_3.npc.NPC_OldMan2;
+import com.example.return_3.npc.NPC_Pig;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
@@ -44,9 +46,13 @@ public class AssetSetter {
         game.npc[mapNum][i].worldY = game.tileSize * 144;
 
         i++;
-        game.npc[mapNum][i]= new NPC_Wizard(game);
-        game.npc[mapNum][i].worldX=game.tileSize*74;
-        game.npc[mapNum][i].worldY=game.tileSize*153;
+        game.npc[mapNum][i]= new NPC_OldMan2(game);
+        game.npc[mapNum][i].worldX=game.tileSize*82;
+        game.npc[mapNum][i].worldY=game.tileSize*143;
+i++;
+        game.npc[mapNum][i]= new NPC_Pig(game);
+        game.npc[mapNum][i].worldX=game.tileSize*84;
+        game.npc[mapNum][i].worldY=game.tileSize*143;
 
         //New Map;
 //        mapNum=1;
