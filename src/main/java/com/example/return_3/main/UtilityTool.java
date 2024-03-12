@@ -35,14 +35,14 @@ public class UtilityTool {
     public void areaSetup(Entity entity, int x, int y, int width, int height){
         if (entity.worldX < x) {
             entity.worldX = x; // Prevent player from moving beyond the left boundary
-        } else if (entity.worldX + Game.gameInstance.tileSize > Game.gameInstance.screenWidth) {
-            entity.worldX = Game.gameInstance.screenWidth - Game.gameInstance.tileSize; // Prevent player from moving beyond the right boundary
+        } else if (entity.worldX + Game.gameInstance.tileSize > x+width) {
+            entity.worldX =x+ width - Game.gameInstance.tileSize; // Prevent player from moving beyond the right boundary
         }
 
         if (entity.worldY < y) {
             entity.worldY = y; // Prevent player from moving beyond the top boundary
-        } else if (entity.worldY + Game.gameInstance.tileSize > Game.gameInstance.screenHeight) {
-            entity.worldY = Game.gameInstance.screenHeight - Game.gameInstance.tileSize; // Prevent player from moving beyond the bottom boundary
+        } else if (entity.worldY + Game.gameInstance.tileSize >y+ height) {
+            entity.worldY = y+height- Game.gameInstance.tileSize; // Prevent player from moving beyond the bottom boundary
         }
     }
 }

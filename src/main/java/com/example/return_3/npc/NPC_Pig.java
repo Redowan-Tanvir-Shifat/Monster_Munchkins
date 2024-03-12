@@ -13,6 +13,7 @@ public class NPC_Pig extends NPC {
         super(game);
         this.game=game;
         //type= type_npc;
+        npc_area=area_village;
         speed=(int) (65*game.targetFrameTime);
         getNPCImage();
         setDialogue();

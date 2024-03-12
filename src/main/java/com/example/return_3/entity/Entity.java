@@ -383,11 +383,27 @@ public class Entity {
     public void set_Area(){ // we use different area here  for different position
         switch (npc_area){ //x is for map starting position and y is for map ending position
             //width and height give us the expected recatngular area for us
-            case area_village:uTool.areaSetup(this,75,120,50,40);   ;break;
+            case area_village:uTool.areaSetup(this,36*game.tileSize,133*game.tileSize,12*game.tileSize,4*game.tileSize);   ;break;
+//            case area_village:        areaSetup(36*game.tileSize,133*game.tileSize,12*game.tileSize,4*game.tileSize);   ;break;
         }
     }
 
     public Image loadImage(String imagePath, int width, int height) {
         return new Image(Objects.requireNonNull(getClass().getResourceAsStream(imagePath)), width, height, true, true);
     }
+
+    // Method to restrict entity movement within a specified area
+//    public void areaSetup(int x, int y, int width, int height) {
+//        if (worldX < x) {
+//            worldX = x; // Prevent entity from moving beyond the left boundary
+//        } else if (worldX + game.tileSize > x + width) {
+//            worldX = x + width - game.tileSize; // Prevent entity from moving beyond the right boundary
+//        }
+//
+//        if (worldY < y) {
+//            worldY = y; // Prevent entity from moving beyond the top boundary
+//        } else if (worldY + game.tileSize > y + height) {
+//            worldY = y + height - game.tileSize; // Prevent entity from moving beyond the bottom boundary
+//        }
+//    }
 }
