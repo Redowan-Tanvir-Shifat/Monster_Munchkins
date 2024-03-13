@@ -326,11 +326,11 @@ public class UI_MainGame {
         gc.drawImage(game.player.currentShield.down1, tailX-game.tileSize, textY);
     }
     public void drawTradeScreen(){
-        switch (subState){
-            case 0: select();break;
-            case 1: buy();break;
-            case 2: sell();break;
-        }
+//        switch (subState){
+//            case 0: select();break;
+//            case 1: buy();break;
+//            case 2: sell();break;
+//        }
         game.keyHandler.setEnterPressed(false);
     }
 
