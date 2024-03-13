@@ -36,7 +36,23 @@ Game game;
         inventory.add(new OBJ_Heart(game));
     }
     public void speak(){
-        super.speak();
-        System.out.println("TRADE NPC SPEAK METHOD");
+        game.gameState = game.tradeState;
+        game.ui.uiMainGame.npc=this;
+        game.ui.uiMainGame.currentDialogue=dialogue[dialogueIndex];
+        // dialogueIndex++;
+        switch (game.player.direction){
+            case "up":
+                direction="down";
+                break;
+            case "left":
+                direction="right";
+                break;
+            case "right":
+                direction="left";
+                break;
+            case "down":
+                direction="up";
+                break;
+        }
     }
 }

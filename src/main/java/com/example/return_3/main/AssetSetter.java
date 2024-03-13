@@ -49,16 +49,16 @@ public class AssetSetter {
         game.npc[mapNum][i].worldX=game.tileSize*45;
         game.npc[mapNum][i].worldY=game.tileSize*133;
 i++;
-//        game.npc[mapNum][i]= new NPC_Pig(game);
-//        game.npc[mapNum][i].worldX=game.tileSize*46;
-//        game.npc[mapNum][i].worldY=game.tileSize*135;
-//        i++;
-//        game.npc[mapNum][i]= new NPC_Girl(game);
-//        game.npc[mapNum][i].worldX=game.tileSize*43;
-//        game.npc[mapNum][i].worldY=game.tileSize*133;
+        game.npc[mapNum][i]= new NPC_Pig(game);
+        game.npc[mapNum][i].worldX=game.tileSize*46;
+        game.npc[mapNum][i].worldY=game.tileSize*135;
+        i++;
+        game.npc[mapNum][i]= new NPC_Girl(game);
+        game.npc[mapNum][i].worldX=game.tileSize*43;
+        game.npc[mapNum][i].worldY=game.tileSize*133;
 
 
-        //New Map;
+//        New Map;
 //        mapNum=1;
 //        i=0;
 //        gp.npc[mapNum][i]= new NPC_Merchant(gp);

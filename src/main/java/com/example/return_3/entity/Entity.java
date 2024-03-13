@@ -360,6 +360,7 @@ public class Entity {
 
 
     public void speak(){
+        game.gameState = game.dialogueState;
         game.ui.uiMainGame.npc=this;
         game.ui.uiMainGame.currentDialogue=dialogue[dialogueIndex];
         // dialogueIndex++;

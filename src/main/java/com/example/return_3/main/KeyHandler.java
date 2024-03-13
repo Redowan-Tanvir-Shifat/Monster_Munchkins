@@ -55,6 +55,8 @@ public class KeyHandler {
         }
         else if (game.gameState == game.characterState) {
             characterState(code);
+        }else if (game.gameState == game.tradeState) {
+            tradeState(code);
         }
         else if (game.gameState == game.menuBarState) {
             if (game.gameStatus == game.gameMainStatus) {
@@ -159,7 +161,23 @@ public class KeyHandler {
         }
     }
 
-
+    public void tradeState(KeyCode code){
+        if(code== KeyCode.ENTER ){
+            enterPressed=true;
+        }
+        if(code== KeyCode.W || code== KeyCode.UP){
+            game.ui.uiMainGame.commandNum--;
+            if(game.ui.uiMainGame.commandNum<0){
+                game.ui.uiMainGame.commandNum=2;
+            }
+        }
+        if(code== KeyCode.S || code== KeyCode.DOWN){
+            game.ui.uiMainGame.commandNum++;
+            if(game.ui.uiMainGame.commandNum>2){
+                game.ui.uiMainGame.commandNum=0;
+            }
+        }
+    }
 
     private void handleKeyRelease(KeyCode code) {
         switch (code) {
