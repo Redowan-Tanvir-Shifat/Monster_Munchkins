@@ -23,6 +23,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.HttpURLConnection;
+import java.util.ArrayList;
 import java.util.Objects;
 
 
@@ -32,6 +33,7 @@ public class Player extends Entity{
 
     public final int screenX;
     public final int screenY;
+
 
 
     //part 8 Object Interaction part starts
@@ -353,7 +355,7 @@ public class Player extends Entity{
         if(keyHandler.isEnterPressed() == true){
             if(i != 999){
                 //attackCanceled=true;
-                game.gameState = game.dialogueState;
+
                 game.npc[game.currentMap][i].speak();
             }
             //gp.playSE(7);

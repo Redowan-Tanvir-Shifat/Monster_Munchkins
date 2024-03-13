@@ -360,8 +360,9 @@ public class Entity {
 
 
     public void speak(){
-        game.ui.npc=this;
-        game.ui.currentDialogue=dialogue[dialogueIndex];
+        game.gameState = game.dialogueState;
+        game.ui.uiMainGame.npc=this;
+        game.ui.uiMainGame.currentDialogue=dialogue[dialogueIndex];
         // dialogueIndex++;
         switch (game.player.direction){
             case "up":

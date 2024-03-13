@@ -134,6 +134,7 @@
 
 package com.example.return_3.main;
 
+import com.example.return_3.entity.Entity;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -288,6 +289,10 @@ public class EventHandler {
                 }
                 System.out.println("hit teleport");
             }
+            if(hit(gp.currentMap,128,146,"any")||hit(gp.currentMap,29,146,"any")){
+                speak(gp.npc[gp.currentMap][0]);
+                System.out.println("Trade Place hit");
+            }
 
         }
 
@@ -338,5 +343,11 @@ public class EventHandler {
         previousEventX=gp.player.worldX;
         previousEventY=gp.player.worldY;
 
+    }
+    public void speak(Entity entity){
+        if(gp.keyHandler.isEnterPressed()==true){
+            gp.gameState=gp.dialogueState;
+            entity.speak();
+        }
     }
 }
