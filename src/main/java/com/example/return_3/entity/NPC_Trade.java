@@ -8,7 +8,7 @@ Game game;
     public NPC_Trade(Game game) {
         super(game);
         this.game=game;
-
+        npc_area=area_village;
         getNPCImage();
         setDialogue();
         setItems();
@@ -35,9 +35,8 @@ Game game;
         inventory.add(new OBJ_Heart(game));
         inventory.add(new OBJ_Heart(game));
     }
-
-
     public void speak(){
         super.speak();
+        System.out.println("TRADE NPC SPEAK METHOD");
     }
 }

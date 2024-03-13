@@ -325,6 +325,26 @@ public class UI_MainGame {
 
         gc.drawImage(game.player.currentShield.down1, tailX-game.tileSize, textY);
     }
+    public void drawTradeScreen(){
+        switch (subState){
+            case 0: select();break;
+            case 1: buy();break;
+            case 2: sell();break;
+        }
+        game.keyHandler.setEnterPressed(false);
+    }
+
+    public void select(){
+        drawDialogueScreen();
+        //draw window
+//        int x=gp.tileSize
+    }
+    public void buy(){
+
+    }
+    public void sell(){
+
+    }
 
 
     public int getXForAlignToRightText(String text, int tailX) {
@@ -381,19 +401,22 @@ public class UI_MainGame {
         //  CREATING A DIALOGUE WINDOW
         //set parameter for window
 //        System.out.println("UI: drawDialogueScreen() method called");
+
         int x = game.tileSize * 3;
         int y = game.tileSize / 2;
         int width = game.screenWidth-(game.tileSize*6);
         int height = game.tileSize * 4;
         drawSubWindow(x, y, width, height);
+        gc.setFill(Color.rgb(255,255,255));
         //gc.setFont(gc.getFont().deriveFont(Font.PLAIN,28F));
         x += game.tileSize;
         y += game.tileSize;
-
+        //System.out.println(currentDialogue);
         //to create new line
         for(String line: currentDialogue.split("\n")){
             gc.fillText(line,x,y);
             y+=40;
+
         }
 
     }
@@ -431,7 +454,8 @@ public class UI_MainGame {
 
 
     public void drawWizConversationScreen(){
-        System.out.println("drawWizConversationScreen draw working");
+        System.out.println("Command num: "+commandNum);
+        //System.out.println("drawWizConversationScreen draw working");
 
         drawDialogueScreen();
         int x=game.tileSize*15;
@@ -440,10 +464,12 @@ public class UI_MainGame {
         int height=game.tileSize*4;
         drawSubWindow(x, y, width, height);
         //Draw Text
+        gc.setFill(Color.rgb(255,255,255));
         x+=game.tileSize;
         y+=game.tileSize;
         gc.fillText("School",x,y);
         if(commandNum==0){
+            System.out.println("command num 2 ");
             gc.fillText(">",x-24,y);
             if(game.keyHandler.isEnterPressed()){
                 showPath(84,115);
@@ -453,6 +479,7 @@ public class UI_MainGame {
         y+=game.tileSize;
         gc.fillText("Game Center",x,y);
         if(commandNum==1){
+            System.out.println("command num 1 ");
             gc.fillText(">",x-24,y);
             if(game.keyHandler.isEnterPressed()){
                 showPath(176,166);
@@ -462,6 +489,7 @@ public class UI_MainGame {
         y+=game.tileSize;
         gc.fillText("Shop",x,y);
         if(commandNum==2){
+            System.out.println("command num 2 ");
             gc.fillText(">",x-24,y);
             if(game.keyHandler.isEnterPressed()){
                 showPath(118,153);
@@ -485,9 +513,9 @@ public class UI_MainGame {
 
 
     public void showPath(int goalCol,int goalRow) {
-        game.ui.npc.onPath = true;
-        game.ui.npc.goalCol = goalCol;
-        game.ui.npc.goalRow = goalRow;
+        npc.onPath = true;
+        npc.goalCol = goalCol;
+        npc.goalRow = goalRow;
         game.gameState = game.playState;
     }
 }

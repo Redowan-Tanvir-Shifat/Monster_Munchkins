@@ -120,10 +120,10 @@ public class KeyHandler {
 
     public void dialogueState(KeyCode code){
         if(code== KeyCode.ENTER ){ //VK_ENTER means if user press ENTER then
-            game.ui.npc.dialogueIndex++;
-            if(game.ui.npc.dialogue[game.ui.npc.dialogueIndex]==null){
+            game.ui.uiMainGame.npc.dialogueIndex++;
+            if(game.ui.uiMainGame.npc.dialogue[game.ui.uiMainGame.npc.dialogueIndex]==null){
                 game.isDialogueToGameState=true;
-                game.ui.npc.dialogueIndex=0;
+                game.ui.uiMainGame.npc.dialogueIndex=0;
             }
             if( game.isDialogueToGameState==true){
                 game.gameState=game.playState;
@@ -132,10 +132,10 @@ public class KeyHandler {
             }else {
 
 
-                game.ui.npc.speak();
-                System.out.println(game.ui.npc.dialogue[game.ui.npc.dialogueIndex]);
+                game.ui.uiMainGame.npc.speak();
+                System.out.println(game.ui.uiMainGame.npc.dialogue[game.ui.uiMainGame.npc.dialogueIndex]);
 
-                System.out.println(game.ui.npc.dialogueIndex);
+                System.out.println(game.ui.uiMainGame.npc.dialogueIndex);
             }
         }
     }
@@ -146,15 +146,15 @@ public class KeyHandler {
             enterPressed=true;
         }
         if(code== KeyCode.W || code== KeyCode.UP){
-            game.ui.commandNum--;
-            if(game.ui.commandNum<0){
-                game.ui.commandNum=3;
+            game.ui.uiMainGame.commandNum--;
+            if(game.ui.uiMainGame.commandNum<0){
+                game.ui.uiMainGame.commandNum=3;
             }
         }
         if(code== KeyCode.S || code== KeyCode.DOWN){
-            game.ui.commandNum++;
-            if(game.ui.commandNum>3){
-                game.ui.commandNum=0;
+            game.ui.uiMainGame.commandNum++;
+            if(game.ui.uiMainGame.commandNum>3){
+                game.ui.uiMainGame.commandNum=0;
             }
         }
     }

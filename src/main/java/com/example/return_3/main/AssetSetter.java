@@ -36,6 +36,10 @@ public class AssetSetter {
     public void setNPC(){
         int mapNum = 0;
         int i = 0;
+        game.npc[mapNum][i]= new NPC_Trade(game);
+        game.npc[mapNum][i].worldX=game.tileSize*48;
+        game.npc[mapNum][i].worldY=game.tileSize*135;
+        i++;
         game.npc[mapNum][i] = new NPC_School(game);
         game.npc[mapNum][i].worldX = game.tileSize * 40;
         game.npc[mapNum][i].worldY = game.tileSize * 134;
@@ -52,10 +56,7 @@ i++;
 //        game.npc[mapNum][i]= new NPC_Girl(game);
 //        game.npc[mapNum][i].worldX=game.tileSize*43;
 //        game.npc[mapNum][i].worldY=game.tileSize*133;
-//        i++;
-//        game.npc[mapNum][i]= new NPC_Trade(game);
-//        game.npc[mapNum][i].worldX=game.tileSize*48;
-//        game.npc[mapNum][i].worldY=game.tileSize*135;
+
 
         //New Map;
 //        mapNum=1;
