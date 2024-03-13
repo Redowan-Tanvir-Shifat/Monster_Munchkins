@@ -11,6 +11,7 @@ public class NPC_Wizard extends NPC{
         name="wizard";
         getNPCImage();
         setDialogue();
+        npc_area=area_village;
     }
     public void getNPCImage(){
         up1=loadImage( "/npc/npc1_up_1.png",game.tileSize,game.tileSize);

@@ -481,6 +481,9 @@ public class UI_MainGame {
         }
     }
 
+
+
+
     public void showPath(int goalCol,int goalRow) {
         game.ui.npc.onPath = true;
         game.ui.npc.goalCol = goalCol;
