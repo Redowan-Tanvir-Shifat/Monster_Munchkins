@@ -360,6 +360,8 @@ public class UI_MainGame {
 
         //Draw the frame
         drawSubWindow(frameX, frameY, frameWidth, frameHeight);
+        gc.setFill(Color.rgb(255, 255, 255));
+        gc.setFont(Font.font("Arial", 16));
 
         //SLOT
         final int slotXStart=frameX+20;
@@ -482,9 +484,9 @@ public class UI_MainGame {
     }
     public void buy(){
 //        //Draw player Inventory
-//        drawInventory(game.player,false);
+        drawInventory(game.player,false);
 //        //Draw NPC inventory
-//        drawInventory(npc,true);
+        drawInventory(npc,true);
 
         //DRAW HINT WINDOWS
         int x= game.tileSize*2;
@@ -506,14 +508,14 @@ public class UI_MainGame {
 
 
         //DRAW PRICE WINDOWS
-//        int itemIndex = getItemIndexOnSlot(npcSlotCol,npcSlotRow);
-//        if(itemIndex<npc.inventory.size()){
-//            x=(int)(game.tileSize*5.5);
-//            y=(int)(game.tileSize*5.5);
-//            width=(int)(game.tileSize*2.5);
-//            height=game.tileSize;
-//            drawSubWindow(x,y,width,height);
-//        }
+        int itemIndex = getItemIndexOnSlot(npcSlotCol,npcSlotRow);
+        if(itemIndex<npc.inventory.size()){
+            x=(int)(game.tileSize*5.5);
+            y=(int)(game.tileSize*5.5);
+            width=(int)(game.tileSize*2.5);
+            height=game.tileSize;
+            drawSubWindow(x,y,width,height);
+        }
     }
     public void sell(){
 

@@ -93,16 +93,18 @@ public class Player extends Entity{
         //System.out.println("Player loaded");
     }
     private void loadPlayerAttackImages() {
-        attackUp1 = loadImage("/player/attacking_up_1.png", game.tileSize, game.tileSize*2);
-        attackUp2 = loadImage("/player/attacking_up_2.png", game.tileSize, game.tileSize*2);
-        attackDown1 = loadImage("/player/attacking_down_1.png", game.tileSize, game.tileSize*2);
-        attackDown2 = loadImage("/player/attacking_down_2.png", game.tileSize, game.tileSize*2);
-        attackLeft1 = loadImage("/player/attacking_left_1.png", game.tileSize*2, game.tileSize);
-        attackLeft2 = loadImage("/player/attacking_left_2.png", game.tileSize*2, game.tileSize);
-        attackRight1 = loadImage("/player/attacking_right_1.png", game.tileSize*2, game.tileSize);
-        attackRight2 = loadImage("/player/attacking_right_2.png", game.tileSize*2, game.tileSize);
+        if(currentWeapon.type==type_sword) {
+            attackUp1 = loadImage("/player/attacking_up_1.png", game.tileSize, game.tileSize * 2);
+            attackUp2 = loadImage("/player/attacking_up_2.png", game.tileSize, game.tileSize * 2);
+            attackDown1 = loadImage("/player/attacking_down_1.png", game.tileSize, game.tileSize * 2);
+            attackDown2 = loadImage("/player/attacking_down_2.png", game.tileSize, game.tileSize * 2);
+            attackLeft1 = loadImage("/player/attacking_left_1.png", game.tileSize * 2, game.tileSize);
+            attackLeft2 = loadImage("/player/attacking_left_2.png", game.tileSize * 2, game.tileSize);
+            attackRight1 = loadImage("/player/attacking_right_1.png", game.tileSize * 2, game.tileSize);
+            attackRight2 = loadImage("/player/attacking_right_2.png", game.tileSize * 2, game.tileSize);
 
-        //System.out.println("Player loaded");
+            //System.out.println("Player loaded");
+        }
     }
 
 
@@ -373,6 +375,31 @@ public class Player extends Entity{
             game.gameState = game.dialogueState;
             game.ui.uiMainGame.currentDialogue = " Congratulations! \nYou are level in " + level + " now.";
         }
+    }
+
+    public void selectItem(){
+        int itemIndex=game.ui.uiMainGame.getItemIndexOnSlot(game.ui.uiMainGame.playerSlotCol,game.ui.uiMainGame.playerSlotRow);
+        if(itemIndex<inventory.size()){
+            Entity selectedItem=inventory.get(itemIndex);
+            //We need to fix this type_sword or something else
+            if(selectedItem.type==type_sword|| selectedItem.type==type_axe){
+                currentWeapon=selectedItem;
+                //update the attack method with proper power
+                attack=getAttack();
+                loadPlayerAttackImages();
+            }
+            if(selectedItem.type==type_shield){
+                currentShield=selectedItem;
+                //update the defense method with proper defense power
+                defense=getDefense();
+            }
+            if(selectedItem.type==type_consumable){
+                //WE are gonna use this later
+                selectedItem.use(this);
+                inventory.remove(itemIndex);
+            }
+        }
+
     }
 
 
