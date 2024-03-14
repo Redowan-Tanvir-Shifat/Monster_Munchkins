@@ -103,6 +103,7 @@ public class Entity {
     public final int maxInventorySize = 20;
     public String description = "";
     public int useCost;
+    public int price;
     public int value;
 
 

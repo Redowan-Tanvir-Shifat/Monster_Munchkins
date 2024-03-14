@@ -3,6 +3,8 @@ package com.example.return_3.entity;
 import com.example.return_3.main.EventHandler;
 import com.example.return_3.main.Game;
 import com.example.return_3.main.KeyHandler;
+import com.example.return_3.object.OBJ_Helmet;
+import com.example.return_3.object.OBJ_Ladi;
 import com.example.return_3.object.OBJ_Shield_Wood;
 import com.example.return_3.object.OBJ_Sword_Normal;
 import javafx.animation.KeyFrame;
@@ -73,7 +75,8 @@ public class Player extends Entity{
         loadPlayerImages();    // Load player images and initialize ImageView
         loadPlayerAttackImages();
 
-
+        inventory.add(new OBJ_Helmet(game));
+        inventory.add(new OBJ_Ladi(game));
 
 
 
