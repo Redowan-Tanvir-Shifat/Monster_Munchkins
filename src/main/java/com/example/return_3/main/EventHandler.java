@@ -272,6 +272,16 @@ public class EventHandler {
 
             }
 
+            // <---------Hospital--------->
+            if(hit(gp.currentMap, 155, 135, "any")) {
+                //gp.player.life = gp.player.maxLife;
+                gp.gameState = gp.hospitalState;
+                System.out.println("Hit");
+                canTouchEvent = false;
+            }
+
+
+
             if(hit(gp.currentMap,11,47,"right")){
 
                if(tl){

@@ -72,6 +72,65 @@ public class KeyHandler {
                 menuBarState(code);
             }
         }
+        else if (game.gameState == game.hospitalState) {
+            hospitalState(code);
+        }
+    }
+
+    private void hospitalState(KeyCode code) {
+        if(code== KeyCode.W || code== KeyCode.UP){
+
+            game.ui.uiMainGame.commandNum--;
+            if(game.ui.uiMainGame.commandNum < 0){
+                game.ui.uiMainGame.commandNum = 1;
+            }
+        }
+        if(code== KeyCode.S || code== KeyCode.DOWN){
+            game.ui.uiMainGame.commandNum++;
+            if(game.ui.uiMainGame.commandNum > 2){
+                game.ui.uiMainGame.commandNum=0;
+            }
+        }
+        if (code == KeyCode.ENTER) {
+            if (game.ui.uiMainGame.commandNum == 0) {
+                if (game.player.coin >= 300 && game.player.life < game.player.maxLife) {
+                    game.player.life = game.player.maxLife;
+                    game.player.coin -= 300;
+                    game.gameState = game.playState;
+                    game.ui.uiMainGame.addMessage("Healing SuccessFull!");
+                }
+                else {
+                    System.out.println("Don't have coin ");
+
+                    if (game.player.coin < 300) {
+                        game.gameState = game.playState;
+                        game.ui.uiMainGame.addMessage("You don't have much coin!");
+                    }
+                    else if (game.player.life >= game.player.maxLife) {
+                        game.gameState = game.playState;
+                        game.ui.uiMainGame.addMessage("You already have max life!");
+                    }
+
+                }
+
+            }
+            if (game.ui.uiMainGame.commandNum == 1) {
+                if (game.player.coin >= 500) {
+                    game.player.maxLife += 20;
+                    game.player.coin -= 500;
+                    game.gameState = game.playState;
+                    game.ui.uiMainGame.addMessage("Increasing life successful!");
+                }
+                else {
+                    System.out.println("Don't have coin ");
+                    game.gameState = game.playState;
+                    game.ui.uiMainGame.addMessage("You don't have much coin!");
+                }
+            }
+            if (game.ui.uiMainGame.commandNum == 2) {
+                game.gameState = game.playState;
+            }
+        }
     }
 
     private void characterState(KeyCode code) {
