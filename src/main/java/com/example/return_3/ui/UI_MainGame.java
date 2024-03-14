@@ -548,7 +548,63 @@ public class UI_MainGame {
         }
     }
     public void sell(){
+//        //Draw player Inventory
+        drawInventory(game.player,true);
+//        //Draw NPC inventory
+      //  drawInventory(npc,true);
 
+        //DRAW HINT WINDOWS
+        int x= game.tileSize*2;
+        int y=game.tileSize*9;
+        int width=game.tileSize*6;
+        int height=game.tileSize*2;
+        drawSubWindow(x,y,width,height);
+        //drawing text
+        gc.fillText("[ESC] back",x+24,y+60);
+
+
+        //DRAW PLAYER COIN WINDOWs
+        x= game.tileSize*12;
+        y=game.tileSize*9;
+        width=game.tileSize*6;
+        height=game.tileSize*2;
+        drawSubWindow(x, y, width, height);
+        gc.setFont(Font.font("Arial", 16));
+        gc.fillText("Your Coin: "+game.player.coin,x+24,y+60);
+
+
+        //DRAW PRICE WINDOWS
+        int itemIndex = getItemIndexOnSlot(playerSlotCol,playerSlotRow);
+        if(itemIndex<game.player.inventory.size()){
+            x=(int)(game.tileSize*15.5);
+            y=(int)(game.tileSize*5.5);
+            width=(int)(game.tileSize*2.5);
+            height=game.tileSize;
+            drawSubWindow(x,y,width,height);
+            //draw
+            gc.drawImage(coinImage,x+10,y+10,25,25);
+
+            int price= game.player.inventory.get(itemIndex).price;
+
+            String text=""+price;
+            x=getXForAlignToRightText(text,game.tileSize*8-20);
+            gc.fillText(text,x,y+20);
+
+            //IF Sell an ITEM
+            if(game.keyHandler.isEnterPressed()==true){
+                if(game.player.inventory.get(itemIndex)==game.player.currentWeapon||game.player.inventory.get(itemIndex)==game.player.currentShield){
+                    commandNum=0;
+                    subState=0;
+                    game.gameState=game.dialogueState;
+                    currentDialogue="you can not sell an equiped items";
+                }else{
+                    game.player.inventory.remove(itemIndex);
+                    game.player.coin+=price;
+                }
+
+
+            }
+        }
     }
 
 
