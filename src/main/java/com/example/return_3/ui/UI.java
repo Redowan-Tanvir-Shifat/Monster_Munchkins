@@ -75,6 +75,11 @@ public class UI {
 
             }
 
+            // <-------Hospital State------->
+            if (game.gameState == game.hospitalState) {
+                uiMainGame.hospitalScreen();
+            }
+
 
             // <-------MenuBar State------>
             if (game.gameState == game.menuBarState) {

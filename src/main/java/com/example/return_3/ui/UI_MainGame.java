@@ -204,6 +204,53 @@ public class UI_MainGame {
     }
 
 
+    public void hospitalScreen() {
+        // Create a Frame...
+        final int frameX = game.tileSize * 5;
+        final int frameY = game.tileSize * 2;
+        final int frameWidth = game.tileSize * 20;
+        final int frameHeight = game.tileSize * 14;
+
+        Color c = Color.rgb(255, 209, 184);
+        drawSubWindow(frameX, frameY, frameWidth, frameHeight);
+
+        String text = "Welcome To Hospital";
+        int textX = getXForCenteredText(text);
+        int textY = frameY + game.tileSize + 16;
+
+        gc.setFill(Color.rgb(255, 255, 255));
+        gc.setFont(Font.font("Arial", 30));
+        gc.fillText(text, textX, textY);
+
+        // Menu...
+        gc.setFill(Color.rgb(255, 255, 255));
+        gc.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+
+        text = "You need 300 coin to heal yourself.";
+        textX = game.tileSize * 8;
+        textY = game.tileSize * 6;
+        gc.fillText(text, textX, textY);
+        if (commandNum == 0) {
+            gc.fillText(">", textX-game.tileSize, textY);
+        }
+
+        text = "You need 1000 coin to increase 20% of life.";
+        textX = game.tileSize * 8;
+        textY = game.tileSize * 7;
+        gc.fillText(text, textX, textY);
+        if (commandNum == 1) {
+            gc.fillText(">", textX-game.tileSize, textY);
+        }
+
+        text = "Back";
+        textX = game.tileSize * 8;
+        textY = game.tileSize * 9;
+        gc.fillText(text, textX, textY);
+        if (commandNum == 2) {
+            gc.fillText(">", textX-game.tileSize, textY);
+        }
+    }
+
 
     public void menuBarScreen() {
         // Create a Frame...
@@ -334,6 +381,7 @@ public class UI_MainGame {
 
         gc.drawImage(game.player.currentShield.down1, tailX-game.tileSize, textY);
     }
+
     public void drawInventory(Entity entity, boolean cursor){
         //Initial value
         int frameX=0;
