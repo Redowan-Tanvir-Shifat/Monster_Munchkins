@@ -103,6 +103,7 @@ public class Entity {
     public final int maxInventorySize = 20;
     public String description = "";
     public int useCost;
+    public int price;
     public int value;
 
 
@@ -114,9 +115,10 @@ public class Entity {
     public final int type_wizard = 2;
     public final int type_monster = 3;
     public final int type_axe = 4;
-    public final int type_shield = 5;
-    public final int type_consumable = 6;
-    public final int type_pickupOnly = 7;
+    public final int type_sword = 5;
+    public final int type_shield = 6;
+    public final int type_consumable = 7;
+    public final int type_pickupOnly = 8;
 
     // <---------Type of NPC--------->
     public int npc_area;

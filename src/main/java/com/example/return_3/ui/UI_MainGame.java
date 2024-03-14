@@ -3,7 +3,9 @@ package com.example.return_3.ui;
 import com.example.return_3.entity.Entity;
 import com.example.return_3.main.Game;
 import com.example.return_3.main.UtilityTool;
+import com.example.return_3.object.OBJ_Coin;
 import com.example.return_3.object.OBJ_Heart;
+import com.example.return_3.object.OBJ_Ladi;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
@@ -50,7 +52,8 @@ public class UI_MainGame {
         heartFull = heart.image1;
         starImage = uTool.loadImage("/objects/star1.png",game.tileSize+10,game.tileSize+10);
         energyImage = uTool.loadImage("/objects/energy.png",game.tileSize-7,game.tileSize-7);
-        coinImage = uTool.loadImage("/objects/coin3.png",game.tileSize-7,game.tileSize-7);
+        Entity coin= new OBJ_Coin(game);
+        coinImage = coin.down1;
     }
 
 
@@ -361,6 +364,7 @@ public class UI_MainGame {
         //Draw the frame
         drawSubWindow(frameX, frameY, frameWidth, frameHeight);
 
+
         //SLOT
         final int slotXStart=frameX+20;
         final int slotYStart=frameY+20;
@@ -395,12 +399,13 @@ public class UI_MainGame {
             int cursorWidth=game.tileSize;
             int cursorHeight=game.tileSize;
             //Draw cursor
-            gc.setFill(Color.rgb(255, 255, 255));
-            gc.setFont(Font.font("Arial", 16));
+            gc.setStroke(Color.rgb(255, 255, 255));
+            //gc.setFont(Font.font("Arial", 16));
            // gc.setStroke(new BasicStroke(3));
-            gc.setStroke(Color.rgb(26, 3, 5)); // Dark yellow color
+            //gc.setLineWidth(3);
+            //gc.setStroke(Color.rgb(26, 3, 5)); // Dark yellow color
             gc.setLineWidth(3); // Width of the outline
-            gc.fillRoundRect(cursorX, cursorY, cursorWidth, cursorHeight,10,10);
+            gc.strokeRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10); // Stroke the round rectangle
 
             //Another subwindow to show the description
             //DESCRIPTION FRAME
@@ -412,7 +417,9 @@ public class UI_MainGame {
             int textX=dFrameX+20;
             int textY=dFrameY+game.tileSize;
 
-            gc.setFont(Font.font("Arial", 28));
+           // gc.setFill(Color.rgb(255, 255, 255));
+            //gc.setFont(Font.font("Arial", 16));
+            //this is for setting description TEXT
             int itemIndex=getItemIndexOnSlot(slotCol,slotRow);
             if(itemIndex<entity.inventory.size()) {
                 drawSubWindow(dFrameX,dFrameY,dFrameWidth,dFrameHeight);
@@ -482,9 +489,9 @@ public class UI_MainGame {
     }
     public void buy(){
 //        //Draw player Inventory
-//        drawInventory(game.player,false);
+        drawInventory(game.player,false);
 //        //Draw NPC inventory
-//        drawInventory(npc,true);
+        drawInventory(npc,true);
 
         //DRAW HINT WINDOWS
         int x= game.tileSize*2;
@@ -501,19 +508,44 @@ public class UI_MainGame {
         y=game.tileSize*9;
         width=game.tileSize*6;
         height=game.tileSize*2;
-        drawSubWindow(x,y,width,height);
+        drawSubWindow(x, y, width, height);
+        gc.setFont(Font.font("Arial", 16));
         gc.fillText("Your Coin: "+game.player.coin,x+24,y+60);
 
 
         //DRAW PRICE WINDOWS
-//        int itemIndex = getItemIndexOnSlot(npcSlotCol,npcSlotRow);
-//        if(itemIndex<npc.inventory.size()){
-//            x=(int)(game.tileSize*5.5);
-//            y=(int)(game.tileSize*5.5);
-//            width=(int)(game.tileSize*2.5);
-//            height=game.tileSize;
-//            drawSubWindow(x,y,width,height);
-//        }
+        int itemIndex = getItemIndexOnSlot(npcSlotCol,npcSlotRow);
+        if(itemIndex<npc.inventory.size()){
+            x=(int)(game.tileSize*5.5);
+            y=(int)(game.tileSize*5.5);
+            width=(int)(game.tileSize*2.5);
+            height=game.tileSize;
+            drawSubWindow(x,y,width,height);
+            //draw
+            gc.drawImage(coinImage,x+10,y+10,25,25);
+            int price= npc.inventory.get(itemIndex).price;
+
+            String text=""+price;
+            x=getXForAlignToRightText(text,game.tileSize*8);
+            gc.fillText(text,x,y+20);
+
+            //IF BUY an ITEM
+            if(game.keyHandler.isEnterPressed()==true){
+                if(npc.inventory.get(itemIndex).price>game.player.coin){
+                    subState=0;
+                    game.gameState=game.dialogueState;
+                    currentDialogue="You need more coin to buy that";
+                    drawDialogueScreen();
+                } else if (game.player.inventory.size()==game.player.maxInventorySize) {
+                    subState=0;
+                    game.gameState=game.dialogueState;
+                    currentDialogue="You can not carry any more items";
+                }else{
+                    game.player.coin-=npc.inventory.get(itemIndex).price;
+                    game.player.inventory.add(npc.inventory.get(itemIndex));
+                }
+            }
+        }
     }
     public void sell(){
 
@@ -608,6 +640,8 @@ public class UI_MainGame {
         gc.setLineDashes(0); // Setting line dashes to 0 (solid line)
         gc.setLineCap(StrokeLineCap.ROUND); // Setting line cap to round
         gc.strokeRoundRect(x + 5, y + 5, width - 10, height - 10, 25, 25);
+        gc.setFill(Color.rgb(255, 255, 255));
+        gc.setFont(Font.font("Arial", 16));
     }
 
     public void drawSubWindow(int x, int y, int width, int height, Color c){
@@ -686,6 +720,18 @@ public class UI_MainGame {
     public int getItemIndexOnSlot(int slotCol,int slotRow){
         int itemIndex=slotCol+(slotRow*5);
         return itemIndex;
+    }
+    public double getWidthOfText(String text){
+        // Create a temporary Text node to measure the width
+        Text textNode = new Text(text);
+        textNode.setFont(gc.getFont());
+        double textWidth = textNode.getBoundsInLocal().getWidth();
+        return textWidth;
+    }
+    public double getXforAlignRightText(String text, int tailX){
+        double width=getWidthOfText(text);
+        double x=tailX-width;
+        return x;
     }
 
     public void showPath(int goalCol,int goalRow) {

@@ -2,6 +2,9 @@ package com.example.return_3.entity;
 
 import com.example.return_3.main.Game;
 import com.example.return_3.object.OBJ_Heart;
+import com.example.return_3.object.OBJ_Helmet;
+import com.example.return_3.object.OBJ_Ladi;
+import com.example.return_3.object.OBJ_Shield_Wood;
 
 public class NPC_Trade extends NPC {
 Game game;
@@ -29,11 +32,11 @@ Game game;
     }
 
     public void setItems(){
-        inventory.add(new OBJ_Heart(game));
-        inventory.add(new OBJ_Heart(game));
-        inventory.add(new OBJ_Heart(game));
-        inventory.add(new OBJ_Heart(game));
-        inventory.add(new OBJ_Heart(game));
+        inventory.add(new OBJ_Ladi(game));
+        inventory.add(new OBJ_Ladi(game));
+        inventory.add(new OBJ_Helmet(game));
+        inventory.add(new OBJ_Shield_Wood(game));
+        inventory.add(new OBJ_Ladi(game));
     }
     public void speak(){
         game.gameState = game.tradeState;
