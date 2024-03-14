@@ -1,5 +1,6 @@
 package com.example.return_3.main;
 
+import com.example.return_3.entity.Entity;
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.PixelWriter;
@@ -29,5 +30,19 @@ public class UtilityTool {
     }
     public Image loadImage(String imagePath, int width, int height) {
         return new Image(Objects.requireNonNull(getClass().getResourceAsStream(imagePath)), width, height, true, true);
+    }
+
+    public void areaSetup(Entity entity, int x, int y, int width, int height){
+        if (entity.worldX < x) {
+            entity.worldX = x; // Prevent player from moving beyond the left boundary
+        } else if (entity.worldX + Game.gameInstance.tileSize > x+width) {
+            entity.worldX =x+ width - Game.gameInstance.tileSize; // Prevent player from moving beyond the right boundary
+        }
+
+        if (entity.worldY < y) {
+            entity.worldY = y; // Prevent player from moving beyond the top boundary
+        } else if (entity.worldY + Game.gameInstance.tileSize >y+ height) {
+            entity.worldY = y+height- Game.gameInstance.tileSize; // Prevent player from moving beyond the bottom boundary
+        }
     }
 }

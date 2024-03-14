@@ -1,31 +1,32 @@
-package com.example.return_3.entity;
+package com.example.return_3.npc;
 
+import com.example.return_3.entity.NPC;
 import com.example.return_3.main.Game;
 import com.example.return_3.object.OBJ_ChatBox;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-import java.awt.*;
 
-public class NPC_School extends NPC{
+public class NPC_Pig extends NPC {
     Game game;
-    public NPC_School(Game game) {
+    public NPC_Pig(Game game) {
         super(game);
         this.game=game;
-        type= type_npc;
-
+        //type= type_npc;
+        npc_area=area_village;
+        speed=(int) (65*game.targetFrameTime);
         getNPCImage();
         setDialogue();
     }
     public void getNPCImage(){
-        up1=loadImage( "/npc/oldman_up_1.png",game.tileSize,game.tileSize);
-        up2= loadImage("/npc/oldman_up_2.png",game.tileSize,game.tileSize);
-        down1= loadImage("/npc/oldman_down_1.png",game.tileSize,game.tileSize);
-        down2= loadImage("/npc/oldman_down_2.png",game.tileSize,game.tileSize);
-        left1=loadImage ("/npc/oldman_left_1.png",game.tileSize,game.tileSize);
-        left2= loadImage("/npc/oldman_left_2.png",game.tileSize,game.tileSize);
-        right1= loadImage("/npc/oldman_right_1.png",game.tileSize,game.tileSize);
-        right2= loadImage("/npc/oldman_right_2.png",game.tileSize,game.tileSize);
+        up1=loadImage( "/npc/npc_pig_up_1.png",game.tileSize,game.tileSize);
+        up2= loadImage("/npc/npc_pig_up_2.png",game.tileSize,game.tileSize);
+        down1= loadImage("/npc/npc_pig_down_1.png",game.tileSize,game.tileSize);
+        down2= loadImage("/npc/npc_pig_down_2.png",game.tileSize,game.tileSize);
+        left1=loadImage ("/npc/npc_pig_left_1.png",game.tileSize,game.tileSize);
+        left2= loadImage("/npc/npc_pig_left_2.png",game.tileSize,game.tileSize);
+        right1= loadImage("/npc/npc_pig_right_1.png",game.tileSize,game.tileSize);
+        right2= loadImage("/npc/npc_pig_right_2.png",game.tileSize,game.tileSize);
     }
     //set dialogue
     public void setDialogue(){

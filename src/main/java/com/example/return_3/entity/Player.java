@@ -3,6 +3,8 @@ package com.example.return_3.entity;
 import com.example.return_3.main.EventHandler;
 import com.example.return_3.main.Game;
 import com.example.return_3.main.KeyHandler;
+import com.example.return_3.object.OBJ_Helmet;
+import com.example.return_3.object.OBJ_Ladi;
 import com.example.return_3.object.OBJ_Shield_Wood;
 import com.example.return_3.object.OBJ_Sword_Normal;
 import javafx.animation.KeyFrame;
@@ -23,6 +25,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.HttpURLConnection;
+import java.util.ArrayList;
 import java.util.Objects;
 
 
@@ -30,10 +33,11 @@ public class Player extends Entity{
     //VARIABLES
     public KeyHandler keyHandler;
 
-
-
     public final int screenX;
     public final int screenY;
+
+
+
     //part 8 Object Interaction part starts
 //    public  int hasKey=0;
     //part 8 Object Interaction part ends
@@ -71,7 +75,8 @@ public class Player extends Entity{
         loadPlayerImages();    // Load player images and initialize ImageView
         loadPlayerAttackImages();
 
-
+        inventory.add(new OBJ_Helmet(game));
+        inventory.add(new OBJ_Ladi(game));
 
 
 
@@ -91,16 +96,18 @@ public class Player extends Entity{
         //System.out.println("Player loaded");
     }
     private void loadPlayerAttackImages() {
-        attackUp1 = loadImage("/player/attacking_up_1.png", game.tileSize, game.tileSize*2);
-        attackUp2 = loadImage("/player/attacking_up_2.png", game.tileSize, game.tileSize*2);
-        attackDown1 = loadImage("/player/attacking_down_1.png", game.tileSize, game.tileSize*2);
-        attackDown2 = loadImage("/player/attacking_down_2.png", game.tileSize, game.tileSize*2);
-        attackLeft1 = loadImage("/player/attacking_left_1.png", game.tileSize*2, game.tileSize);
-        attackLeft2 = loadImage("/player/attacking_left_2.png", game.tileSize*2, game.tileSize);
-        attackRight1 = loadImage("/player/attacking_right_1.png", game.tileSize*2, game.tileSize);
-        attackRight2 = loadImage("/player/attacking_right_2.png", game.tileSize*2, game.tileSize);
+        if(currentWeapon.type==type_sword) {
+            attackUp1 = loadImage("/player/attacking_up_1.png", game.tileSize, game.tileSize * 2);
+            attackUp2 = loadImage("/player/attacking_up_2.png", game.tileSize, game.tileSize * 2);
+            attackDown1 = loadImage("/player/attacking_down_1.png", game.tileSize, game.tileSize * 2);
+            attackDown2 = loadImage("/player/attacking_down_2.png", game.tileSize, game.tileSize * 2);
+            attackLeft1 = loadImage("/player/attacking_left_1.png", game.tileSize * 2, game.tileSize);
+            attackLeft2 = loadImage("/player/attacking_left_2.png", game.tileSize * 2, game.tileSize);
+            attackRight1 = loadImage("/player/attacking_right_1.png", game.tileSize * 2, game.tileSize);
+            attackRight2 = loadImage("/player/attacking_right_2.png", game.tileSize * 2, game.tileSize);
 
-        //System.out.println("Player loaded");
+            //System.out.println("Player loaded");
+        }
     }
 
 
@@ -117,9 +124,9 @@ public class Player extends Entity{
         life = maxLife;
         strength = 1;    //The more strength he has, the more damage he gives...
         dexterity = 1;   // The more dexterity he has, the less damage he receives...
-        exp = 20;
-        nextLevelExp = 50;
-        coin = 0;
+        exp = 0;
+        nextLevelExp = 20;
+        coin = 800;
         currentWeapon = new OBJ_Sword_Normal(game);
         currentShield = new OBJ_Shield_Wood(game);
         attack = getAttack();    // The total attack value is decided by strength and weapon...
@@ -148,8 +155,8 @@ public class Player extends Entity{
     }
 
     public void setDefaultPositions(){
-        worldX= game.tileSize * 82;
-        worldY= game.tileSize * 148;
+        worldX= game.tileSize * 41;
+        worldY= game.tileSize * 135;
         direction="down";
     }
 
@@ -289,12 +296,23 @@ public class Player extends Entity{
     private void damagedMonster(int i) {
         if (i != 999) {
             if (game.monster[game.currentMap][i].invincible == false) {
-                game.monster[game.currentMap][i].life -= game.player.attack;
+
+                int damage = attack - game.monster[game.currentMap][i].defense;
+                if (damage < 0) {
+                    damage = 0;
+                }
+
+                game.monster[game.currentMap][i].life -= damage;
                 game.monster[game.currentMap][i].invincible = true;
                 game.monster[game.currentMap][i].damageReaction();
 
                 if (game.monster[game.currentMap][i].life <= 0) {
                     game.monster[game.currentMap][i].dying = true;
+
+
+                    game.ui.uiMainGame.addMessage("Killed the " + game.monster[game.currentMap][i].name + "!");
+                    exp += game.monster[game.currentMap][i].exp;
+                    game.ui.uiMainGame.addMessage(" EXP + " + game.monster[game.currentMap][i].exp);
 
                     Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(30), event -> {
                         game.assetSetter.setMonster();
@@ -313,8 +331,21 @@ public class Player extends Entity{
     private void contactMonster(int i) {
         if (i != 999) {
             if (invincible == false) {
-                life -= game.monster[game.currentMap][i].attack;
+
+                int damage = game.monster[game.currentMap][i].attack - defense;
+                if (damage < 0) {
+                    damage = 0;
+                }
+
+                life -= damage;
                 invincible = true;
+
+                if (life >= 0 && life <= 20) {
+                    game.ui.uiMainGame.addMessage( "Careful, " + life + " % Life left!");
+                }
+                if (life <= 0) {
+                    dying = true;
+                }
             }
         }
     }
@@ -329,12 +360,49 @@ public class Player extends Entity{
         if(keyHandler.isEnterPressed() == true){
             if(i != 999){
                 //attackCanceled=true;
-                game.gameState=game.dialogueState;
 
                 game.npc[game.currentMap][i].speak();
             }
             //gp.playSE(7);
         }
+    }
+
+    public void checkLevelUp() {
+        if (exp >= nextLevelExp) {
+            level++;
+            nextLevelExp = nextLevelExp + 30;   // We will use fibonacci series
+            strength++;
+            dexterity++;
+            attack = getAttack();
+            defense = getDefense();
+            game.gameState = game.dialogueState;
+            game.ui.uiMainGame.currentDialogue = " Congratulations! \nYou are level in " + level + " now.";
+        }
+    }
+
+    public void selectItem(){
+        int itemIndex=game.ui.uiMainGame.getItemIndexOnSlot(game.ui.uiMainGame.playerSlotCol,game.ui.uiMainGame.playerSlotRow);
+        if(itemIndex<inventory.size()){
+            Entity selectedItem=inventory.get(itemIndex);
+            //We need to fix this type_sword or something else
+            if(selectedItem.type==type_sword|| selectedItem.type==type_axe){
+                currentWeapon=selectedItem;
+                //update the attack method with proper power
+                attack=getAttack();
+                loadPlayerAttackImages();
+            }
+            if(selectedItem.type==type_shield){
+                currentShield=selectedItem;
+                //update the defense method with proper defense power
+                defense=getDefense();
+            }
+            if(selectedItem.type==type_consumable){
+                //WE are gonna use this later
+                selectedItem.use(this);
+                inventory.remove(itemIndex);
+            }
+        }
+
     }
 
 
@@ -428,11 +496,18 @@ public class Player extends Entity{
                 }
                 break;
 
+
+
             // Handle other directions similarly
         }
 
         if (invincible == true) {
             gc.setGlobalAlpha(0.3);
+        }
+        if (dying == true) {
+            dyingAnimation(game.gc);
+            setDefaultPositions();
+
         }
         gc.drawImage(image, tempScreenX, tempScreenY);
 

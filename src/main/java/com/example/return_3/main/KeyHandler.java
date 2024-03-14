@@ -53,9 +53,17 @@ public class KeyHandler {
         else if(game.gameState == game.wizConversationState){
             wizConversationState(code);
         }
+        //characterState state
         else if (game.gameState == game.characterState) {
+//            game.ui.uiMainGame.playerSlotCol=0;
+//            game.ui.uiMainGame.playerSlotRow=0;
             characterState(code);
         }
+        //TRADE state
+        else if (game.gameState == game.tradeState) {
+            tradeState(code);
+        }
+        //MENUBAR state
         else if (game.gameState == game.menuBarState) {
             if (game.gameStatus == game.gameMainStatus) {
                 menuBarState(code);
@@ -70,7 +78,64 @@ public class KeyHandler {
         if (code == KeyCode.C) {
             game.gameState = game.playState;
         }
+        if(code==KeyCode.ENTER){
+            game.player.selectItem();
+        }
+        playerInventory(code);
     }
+    public void playerInventory(KeyCode code){
+        if(code== KeyCode.W || code== KeyCode.UP){ //VK_W means if user press W then
+            if(game.ui.uiMainGame.playerSlotRow!=0){
+                game.ui.uiMainGame.playerSlotRow--;
+               // gp.playSE(9);
+            }
+        }
+        if(code== KeyCode.S || code== KeyCode.DOWN){ //VK_S means if user press S then
+            if(game.ui.uiMainGame.playerSlotRow!=3) {
+                game.ui.uiMainGame.playerSlotRow++;
+                //gp.playSE(9);
+            }
+        }
+        if(code==KeyCode.A || code== KeyCode.LEFT){ //VK_A means if user press A then
+            if(game.ui.uiMainGame.playerSlotCol!=0) {
+                game.ui.uiMainGame.playerSlotCol--;
+                //gp.playSE(9);
+            }
+        }
+        if(code==KeyCode.D || code== KeyCode.RIGHT){ //VK_D means if user press D then
+            if(game.ui.uiMainGame.playerSlotCol!=4) {
+                game.ui.uiMainGame.playerSlotCol++;
+                //gp.playSE(9);
+            }
+        }
+    }
+    public void npcInventory(KeyCode code){
+        if(code== KeyCode.W || code== KeyCode.UP){ //VK_W means if user press W then
+            if(game.ui.uiMainGame.npcSlotRow!=0){
+                game.ui.uiMainGame.npcSlotRow--;
+                // gp.playSE(9);
+            }
+        }
+        if(code== KeyCode.S || code== KeyCode.DOWN){ //VK_S means if user press S then
+            if(game.ui.uiMainGame.npcSlotRow!=3) {
+                game.ui.uiMainGame.npcSlotRow++;
+                //gp.playSE(9);
+            }
+        }
+        if(code==KeyCode.A || code== KeyCode.LEFT){ //VK_A means if user press A then
+            if(game.ui.uiMainGame.npcSlotCol!=0) {
+                game.ui.uiMainGame.npcSlotCol--;
+                //gp.playSE(9);
+            }
+        }
+        if(code==KeyCode.D || code== KeyCode.RIGHT){ //VK_D means if user press D then
+            if(game.ui.uiMainGame.npcSlotCol!=4) {
+                game.ui.uiMainGame.npcSlotCol++;
+                //gp.playSE(9);
+            }
+        }
+    };
+
     private void menuBarState(KeyCode code) {
         if (code == KeyCode.ESCAPE) {
             escapePressed = true;
@@ -120,10 +185,10 @@ public class KeyHandler {
 
     public void dialogueState(KeyCode code){
         if(code== KeyCode.ENTER ){ //VK_ENTER means if user press ENTER then
-            game.ui.npc.dialogueIndex++;
-            if(game.ui.npc.dialogue[game.ui.npc.dialogueIndex]==null){
+            game.ui.uiMainGame.npc.dialogueIndex++;
+            if(game.ui.uiMainGame.npc.dialogue[game.ui.uiMainGame.npc.dialogueIndex]==null){
                 game.isDialogueToGameState=true;
-                game.ui.npc.dialogueIndex=0;
+                game.ui.uiMainGame.npc.dialogueIndex=0;
             }
             if( game.isDialogueToGameState==true){
                 game.gameState=game.playState;
@@ -132,10 +197,10 @@ public class KeyHandler {
             }else {
 
 
-                game.ui.npc.speak();
-                System.out.println(game.ui.npc.dialogue[game.ui.npc.dialogueIndex]);
+                game.ui.uiMainGame.npc.speak();
+                System.out.println(game.ui.uiMainGame.npc.dialogue[game.ui.uiMainGame.npc.dialogueIndex]);
 
-                System.out.println(game.ui.npc.dialogueIndex);
+                System.out.println(game.ui.uiMainGame.npc.dialogueIndex);
             }
         }
     }
@@ -146,20 +211,51 @@ public class KeyHandler {
             enterPressed=true;
         }
         if(code== KeyCode.W || code== KeyCode.UP){
-            game.ui.commandNum--;
-            if(game.ui.commandNum<0){
-                game.ui.commandNum=3;
+            game.ui.uiMainGame.commandNum--;
+            if(game.ui.uiMainGame.commandNum<0){
+                game.ui.uiMainGame.commandNum=3;
             }
         }
         if(code== KeyCode.S || code== KeyCode.DOWN){
-            game.ui.commandNum++;
-            if(game.ui.commandNum>3){
-                game.ui.commandNum=0;
+            game.ui.uiMainGame.commandNum++;
+            if(game.ui.uiMainGame.commandNum>3){
+                game.ui.uiMainGame.commandNum=0;
             }
         }
     }
 
+    public void tradeState(KeyCode code){
+        if(code== KeyCode.ENTER ){
+            enterPressed=true;
+        }
+        if(game.ui.uiMainGame.subState==0){
 
+            if(code== KeyCode.W || code== KeyCode.UP){
+                game.ui.uiMainGame.commandNum--;
+                if(game.ui.uiMainGame.commandNum<0){
+                    game.ui.uiMainGame.commandNum=2;
+                }
+            }
+            if(code== KeyCode.S || code== KeyCode.DOWN){
+                game.ui.uiMainGame.commandNum++;
+                if(game.ui.uiMainGame.commandNum>2){
+                    game.ui.uiMainGame.commandNum=0;
+                }
+            }
+        }
+        if(game.ui.uiMainGame.subState==1){
+            npcInventory(code);
+            if(code==KeyCode.ESCAPE){
+                game.ui.uiMainGame.subState=0;
+            }
+        }if(game.ui.uiMainGame.subState==2){
+            playerInventory(code);
+            if(code==KeyCode.ESCAPE){
+                game.ui.uiMainGame.subState=0;
+            }
+        }
+
+    }
 
     private void handleKeyRelease(KeyCode code) {
         switch (code) {

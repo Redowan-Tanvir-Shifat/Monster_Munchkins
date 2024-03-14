@@ -21,24 +21,24 @@ public class UI {
     Game game;
     //public UI_MainGame uiMainGame = new UI_MainGame(Game.gameInstance);
     public UI_MainGame uiMainGame;
-    Entity entity;
+    //Entity entity;
     GraphicsContext gc;
-    Font arial_40, arial_80B;
-    Image heartFull, starImage, energyImage, coinImage;
-    public boolean messageOn=false;
+//    Font arial_40, arial_80B;
+    //Image heartFull, starImage, energyImage, coinImage;
+    //public boolean messageOn=false;
 
-    ArrayList<String> message = new ArrayList<>();
-    ArrayList<Integer> messageCounter = new ArrayList<>();
+    //ArrayList<String> message = new ArrayList<>();
+    //ArrayList<Integer> messageCounter = new ArrayList<>();
 
-    public boolean gameFinished=false; // if game is finished then the message will be shown
-    public String currentDialogue=""; //for setting the dialogue
-    public int commandNum = 0; // this is for showing our menu specific commands
+    //public boolean gameFinished=false; // if game is finished then the message will be shown
+    //public String currentDialogue=""; //for setting the dialogue
+    //public int commandNum = 0; // this is for showing our menu specific commands
 
 
-    public Entity heart;
-    int counter=0;
+//    public Entity heart;
+//    int counter=0;
 
-    public Entity npc;
+//    public Entity npc;
     //
 
     //CONSTRUCTOR START
@@ -56,18 +56,13 @@ public class UI {
 //        coinImage = uTool.loadImage("/objects/coin3.png",game.tileSize-7,game.tileSize-7);
 
     }
-    public void addMessage(String text){
-//        message = text;
-//        messageOn = true;
-        message.add(text);
-        messageCounter.add(0);
-    }
+
     public void draw(GraphicsContext gc){
         //we did this because we need to use this gc in other methods also
         this.gc=gc;
 
-        gc.setFont(arial_40);
-        gc.setFill(Color.WHITE);
+//        gc.setFont(arial_40);
+//        gc.setFill(Color.WHITE);
 
         if (game.gameStatus == game.gameMainStatus) {
             // <------PLAY STATE------>
@@ -77,6 +72,7 @@ public class UI {
                 uiMainGame.drawMessage();
                 uiMainGame.drawEnergy();
                 uiMainGame.drawCoin();
+
             }
 
 
@@ -102,6 +98,10 @@ public class UI {
             // <-------Character State------->
             if (game.gameState == game.characterState) {
                 uiMainGame.drawCharacterScreen();
+                uiMainGame.drawInventory(game.player,true);
+            }
+            if (game.gameState == game.tradeState) {
+                uiMainGame.drawTradeScreen();
             }
         }
         else if (game.gameStatus == game.gameSpaceInvadersStatus) {

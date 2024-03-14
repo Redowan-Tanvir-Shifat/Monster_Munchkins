@@ -11,6 +11,7 @@ public class NPC_Wizard extends NPC{
         name="wizard";
         getNPCImage();
         setDialogue();
+
     }
     public void getNPCImage(){
         up1=loadImage( "/npc/npc1_up_1.png",game.tileSize,game.tileSize);
@@ -28,7 +29,7 @@ public class NPC_Wizard extends NPC{
     public void speak(){
         super.speak();
         game.gameState=game.wizConversationState;
-        game.ui.npc=this;
+        game.ui.uiMainGame.npc=this;
         //onPath=true;
     }
 

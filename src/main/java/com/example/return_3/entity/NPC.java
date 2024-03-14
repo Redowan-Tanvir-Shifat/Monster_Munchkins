@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class NPC extends Entity{
     Game game;
-    NPC(Game game) {
+    public NPC(Game game) {
         super(game);
         this.game=game;
         direction ="down";

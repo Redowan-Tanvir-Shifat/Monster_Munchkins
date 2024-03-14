@@ -1,17 +1,14 @@
 package com.example.return_3.main;
 
 
-import com.example.return_3.entity.NPC_GameCenter;
-import com.example.return_3.entity.NPC_OldMan;
 import com.example.return_3.entity.NPC_School;
+import com.example.return_3.entity.NPC_Trade;
 import com.example.return_3.entity.NPC_Wizard;
 import com.example.return_3.monster.Mon_GreenSlime;
 import com.example.return_3.monster.Mon_RedSlime;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.util.Duration;
-
-import java.util.Random;
+import com.example.return_3.npc.NPC_Girl;
+import com.example.return_3.npc.NPC_OldMan2;
+import com.example.return_3.npc.NPC_Pig;
 
 //This class is made for setting Asset to the Game map.
 public class AssetSetter {
@@ -39,16 +36,29 @@ public class AssetSetter {
     public void setNPC(){
         int mapNum = 0;
         int i = 0;
+        game.npc[mapNum][i]= new NPC_Trade(game);
+        game.npc[mapNum][i].worldX=game.tileSize*48;
+        game.npc[mapNum][i].worldY=game.tileSize*135;
+        i++;
         game.npc[mapNum][i] = new NPC_School(game);
-        game.npc[mapNum][i].worldX = game.tileSize * 82;
-        game.npc[mapNum][i].worldY = game.tileSize * 144;
+        game.npc[mapNum][i].worldX = game.tileSize * 40;
+        game.npc[mapNum][i].worldY = game.tileSize * 134;
 
         i++;
         game.npc[mapNum][i]= new NPC_Wizard(game);
-        game.npc[mapNum][i].worldX=game.tileSize*74;
-        game.npc[mapNum][i].worldY=game.tileSize*153;
+        game.npc[mapNum][i].worldX=game.tileSize*45;
+        game.npc[mapNum][i].worldY=game.tileSize*133;
+i++;
+        game.npc[mapNum][i]= new NPC_Pig(game);
+        game.npc[mapNum][i].worldX=game.tileSize*46;
+        game.npc[mapNum][i].worldY=game.tileSize*135;
+        i++;
+        game.npc[mapNum][i]= new NPC_Girl(game);
+        game.npc[mapNum][i].worldX=game.tileSize*43;
+        game.npc[mapNum][i].worldY=game.tileSize*133;
 
-        //New Map;
+
+//        New Map;
 //        mapNum=1;
 //        i=0;
 //        gp.npc[mapNum][i]= new NPC_Merchant(gp);

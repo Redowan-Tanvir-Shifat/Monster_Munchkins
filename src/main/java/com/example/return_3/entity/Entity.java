@@ -1,6 +1,7 @@
 package com.example.return_3.entity;
 
 import com.example.return_3.main.Game;
+import com.example.return_3.main.UtilityTool;
 import com.example.return_3.object.OBJ_ChatBox;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -102,6 +103,7 @@ public class Entity {
     public final int maxInventorySize = 20;
     public String description = "";
     public int useCost;
+    public int price;
     public int value;
 
 
@@ -113,9 +115,14 @@ public class Entity {
     public final int type_wizard = 2;
     public final int type_monster = 3;
     public final int type_axe = 4;
-    public final int type_shield = 5;
-    public final int type_consumable = 6;
-    public final int type_pickupOnly = 7;
+    public final int type_sword = 5;
+    public final int type_shield = 6;
+    public final int type_consumable = 7;
+    public final int type_pickupOnly = 8;
+
+    // <---------Type of NPC--------->
+    public int npc_area;
+    public final int area_village=1;
 
 
   // <-------------COLLiSION------------->
@@ -123,10 +130,11 @@ public class Entity {
     public Rectangle attackArea = new Rectangle(0,0,0,0);
     public int solidAreaDefaultX,solidAreaDefaultY;
 
-
+ public UtilityTool uTool;
 
     public Entity(Game game){
         this.game=game;
+         uTool=new UtilityTool();
     }
 
     public void use(Entity entity){}
@@ -149,8 +157,14 @@ public class Entity {
         if(this.type == type_monster && contactPlayer == true){
 //            damagePlayer(attack);
             if (game.player.invincible == false) {
-                game.player.life -= 1;
+                int damage = attack - game.player.defense;
+                if (damage < 0) {
+                    damage = 0;
+                }
+                game.player.life -= damage;
                 game.player.invincible = true;
+
+
             }
         }
 
@@ -170,6 +184,8 @@ public class Entity {
         }
 
         //part 6 collision part ends
+
+        set_Area(); //
 
 
         spriteCounter++;
@@ -286,6 +302,7 @@ public class Entity {
                     break;
             }
 
+
             //Monster HP Bar......
             if (type == type_monster && hpBarOn == true) {
                 double oneScale = (double)game.tileSize/maxLife;
@@ -326,7 +343,7 @@ public class Entity {
         }
     }
 
-    private void dyingAnimation(GraphicsContext gc) {
+    public void dyingAnimation(GraphicsContext gc) {
         dyingCounter++;
         int i = 5;
         if (dyingCounter <= i) {gc.setGlobalAlpha(0);}
@@ -345,8 +362,9 @@ public class Entity {
 
 
     public void speak(){
-        game.ui.npc=this;
-        game.ui.currentDialogue=dialogue[dialogueIndex];
+        game.gameState = game.dialogueState;
+        game.ui.uiMainGame.npc=this;
+        game.ui.uiMainGame.currentDialogue=dialogue[dialogueIndex];
         // dialogueIndex++;
         switch (game.player.direction){
             case "up":
@@ -365,8 +383,30 @@ public class Entity {
     }
 
 
+    public void set_Area(){ // we use different area here  for different position
+        switch (npc_area){ //x is for map starting position and y is for map ending position
+            //width and height give us the expected recatngular area for us
+            case area_village:uTool.areaSetup(this,36*game.tileSize,133*game.tileSize,12*game.tileSize,4*game.tileSize);   ;break;
+//            case area_village:        areaSetup(36*game.tileSize,133*game.tileSize,12*game.tileSize,4*game.tileSize);   ;break;
+        }
+    }
 
     public Image loadImage(String imagePath, int width, int height) {
         return new Image(Objects.requireNonNull(getClass().getResourceAsStream(imagePath)), width, height, true, true);
     }
+
+    // Method to restrict entity movement within a specified area
+//    public void areaSetup(int x, int y, int width, int height) {
+//        if (worldX < x) {
+//            worldX = x; // Prevent entity from moving beyond the left boundary
+//        } else if (worldX + game.tileSize > x + width) {
+//            worldX = x + width - game.tileSize; // Prevent entity from moving beyond the right boundary
+//        }
+//
+//        if (worldY < y) {
+//            worldY = y; // Prevent entity from moving beyond the top boundary
+//        } else if (worldY + game.tileSize > y + height) {
+//            worldY = y + height - game.tileSize; // Prevent entity from moving beyond the bottom boundary
+//        }
+//    }
 }
