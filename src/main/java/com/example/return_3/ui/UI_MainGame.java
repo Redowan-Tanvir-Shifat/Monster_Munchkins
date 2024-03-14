@@ -525,7 +525,26 @@ public class UI_MainGame {
             gc.drawImage(coinImage,x+10,y+10,25,25);
             int price= npc.inventory.get(itemIndex).price;
 
+            String text=""+price;
+            x=getXForAlignToRightText(text,game.tileSize*8);
+            gc.fillText(text,x,y+20);
 
+            //IF BUY an ITEM
+            if(game.keyHandler.isEnterPressed()==true){
+                if(npc.inventory.get(itemIndex).price>game.player.coin){
+                    subState=0;
+                    game.gameState=game.dialogueState;
+                    currentDialogue="You need more coin to buy that";
+                    drawDialogueScreen();
+                } else if (game.player.inventory.size()==game.player.maxInventorySize) {
+                    subState=0;
+                    game.gameState=game.dialogueState;
+                    currentDialogue="You can not carry any more items";
+                }else{
+                    game.player.coin-=npc.inventory.get(itemIndex).price;
+                    game.player.inventory.add(npc.inventory.get(itemIndex));
+                }
+            }
         }
     }
     public void sell(){
@@ -708,6 +727,11 @@ public class UI_MainGame {
         textNode.setFont(gc.getFont());
         double textWidth = textNode.getBoundsInLocal().getWidth();
         return textWidth;
+    }
+    public double getXforAlignRightText(String text, int tailX){
+        double width=getWidthOfText(text);
+        double x=tailX-width;
+        return x;
     }
 
     public void showPath(int goalCol,int goalRow) {
