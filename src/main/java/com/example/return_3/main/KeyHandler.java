@@ -245,7 +245,12 @@ public class KeyHandler {
         }
         if(game.ui.uiMainGame.subState==1){
             npcInventory(code);
-            if(code==KeyCode.B){
+            if(code==KeyCode.ESCAPE){
+                game.ui.uiMainGame.subState=0;
+            }
+        }if(game.ui.uiMainGame.subState==2){
+            playerInventory(code);
+            if(code==KeyCode.ESCAPE){
                 game.ui.uiMainGame.subState=0;
             }
         }
