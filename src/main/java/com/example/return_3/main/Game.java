@@ -303,7 +303,7 @@ public class Game extends Application {
     public void render(){
        // ui.draw(gc);
         if(gameStatus == gameMainStatus) {
-            if (gameState==playState) {
+
                 tileM.draw(gc);
                 //draw Interactive tile
                 for(int i=0;i< iTile[currentMap].length;i++){
@@ -344,8 +344,6 @@ public class Game extends Application {
 
                 //Empty the entity list because when this will render again the entity will added to the list again
                 entityList.clear();
-
-            }
                 ui.draw(gc);
                 gameInstance.keyHandler.setEnterPressed(false);
 
