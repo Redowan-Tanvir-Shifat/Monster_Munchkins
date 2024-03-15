@@ -63,7 +63,7 @@ public class KeyHandler {
         else if (game.gameState == game.tradeState) {
             tradeState(code);
         }
-        //MENUBAR state
+        //MENU BAR state
         else if (game.gameState == game.menuBarState) {
             if (game.gameStatus == game.gameMainStatus) {
                 menuBarState(code);
@@ -198,6 +198,7 @@ public class KeyHandler {
     private void menuBarState(KeyCode code) {
         if (code == KeyCode.ESCAPE) {
             escapePressed = true;
+            game.gameState=game.playState;
         }
         if(code== KeyCode.W || code== KeyCode.UP){
 
