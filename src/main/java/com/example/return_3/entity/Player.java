@@ -159,6 +159,11 @@ public class Player extends Entity{
         worldY= game.tileSize * 135;
         direction="down";
     }
+    public void setHospitalPosition() {
+        worldX = game.tileSize * 151;
+        worldY = game.tileSize * 136;
+        direction = "down";
+    }
 
     public void update(){
         if (attacking == true) {
@@ -345,6 +350,15 @@ public class Player extends Entity{
                 }
                 if (life <= 0) {
                     dying = true;
+                    setHospitalPosition();
+                    keyHandler.setBooleanAll(false);
+                    life = maxLife;
+                    if (coin >= 300) {
+                        coin -= 300;
+                    }
+                    else {
+                        coin = 0;
+                    }
                 }
             }
         }
@@ -506,8 +520,6 @@ public class Player extends Entity{
         }
         if (dying == true) {
             dyingAnimation(game.gc);
-            setDefaultPositions();
-
         }
         gc.drawImage(image, tempScreenX, tempScreenY);
 
