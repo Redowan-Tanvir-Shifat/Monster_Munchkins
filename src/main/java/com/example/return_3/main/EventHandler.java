@@ -164,10 +164,10 @@ public class EventHandler {
         int row = 0;
         while (map < gp.maxMap && col < gp.maxWorldCol && row < gp.maxWorldRow) {
             eventRect[map][col][row] = new EventRect();
-            eventRect[map][col][row].setX(23);
-            eventRect[map][col][row].setY(23);
-            eventRect[map][col][row].setWidth(2);
-            eventRect[map][col][row].setHeight(2);
+            eventRect[map][col][row].setX(12);
+            eventRect[map][col][row].setY(12);
+            eventRect[map][col][row].setWidth(8);
+            eventRect[map][col][row].setHeight(8);
             eventRect[map][col][row].eventRectDefaultX = (int) (eventRect[map][col][row].getX());
             eventRect[map][col][row].eventRectDefaultY = (int) (eventRect[map][col][row].getY());
             col++;
@@ -188,7 +188,8 @@ public class EventHandler {
         int xDistance = Math.abs(gp.player.worldX - previousEventX);
         int yDistance = Math.abs(gp.player.worldY - previousEventY);
         int distance = Math.max(xDistance, yDistance);
-        if (distance > gp.tileSize) {
+        // check the distance `(distance > gp.tileSize*3)` so if distance from the event is greater than 3 tile size then the canTouchEvent will be true
+        if (distance > gp.tileSize*3) {
             canTouchEvent = true;
         }
 

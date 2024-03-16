@@ -446,7 +446,6 @@ public class UI_MainGame {
                 gc.setFill(Color.rgb(240, 190, 90));
                 gc.fillRoundRect(slotX,slotY,game.tileSize,game.tileSize,10,10);
             }
-
             gc.drawImage(entity.inventory.get(i).down1, slotX, slotY);
             slotX+=slotSize;
             if(i==4 ||i==9||i==14){
@@ -455,7 +454,6 @@ public class UI_MainGame {
                 slotX=slotXStart;
             }
         }
-
         //CURSOR
         if(cursor==true){
             int cursorX=slotXStart+(slotSize*slotCol);
@@ -747,7 +745,7 @@ public class UI_MainGame {
     }
 
     public void drawSubWindow(int x, int y, int width, int height){
-        Color c = Color.rgb(0, 0, 0, .20);
+        Color c = Color.rgb(0, 0, 0, .80);
         gc.setFill(c);
         gc.fillRoundRect(x,y,width,height,35,35);
 
