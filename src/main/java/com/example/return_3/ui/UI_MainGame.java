@@ -430,7 +430,6 @@ public class UI_MainGame {
                 gc.setFill(Color.rgb(240, 190, 90));
                 gc.fillRoundRect(slotX,slotY,game.tileSize,game.tileSize,10,10);
             }
-
             gc.drawImage(entity.inventory.get(i).down1, slotX, slotY);
             slotX+=slotSize;
             if(i==4 ||i==9||i==14){
@@ -439,7 +438,6 @@ public class UI_MainGame {
                 slotX=slotXStart;
             }
         }
-
         //CURSOR
         if(cursor==true){
             int cursorX=slotXStart+(slotSize*slotCol);
