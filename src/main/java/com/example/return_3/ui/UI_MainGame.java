@@ -226,7 +226,8 @@ public class UI_MainGame {
         gc.setFill(Color.rgb(255, 255, 255));
         gc.setFont(Font.font("Arial", FontWeight.BOLD, 20));
 
-        text = "You need 300 coin to heal yourself.";
+        int calCoin = (game.player.maxLife - game.player.life) * 20;
+        text = "You need " + calCoin + " coin to heal yourself.";
         textX = game.tileSize * 8;
         textY = game.tileSize * 6;
         gc.fillText(text, textX, textY);
@@ -234,7 +235,7 @@ public class UI_MainGame {
             gc.fillText(">", textX-game.tileSize, textY);
         }
 
-        text = "You need 1000 coin to increase 20% of life.";
+        text = "You need 2000 coin to increase 20% of life.";
         textX = game.tileSize * 8;
         textY = game.tileSize * 7;
         gc.fillText(text, textX, textY);
@@ -242,11 +243,19 @@ public class UI_MainGame {
             gc.fillText(">", textX-game.tileSize, textY);
         }
 
+        text = "You need 500 coin to get 10% energy";
+        textX = game.tileSize * 8;
+        textY = game.tileSize * 8;
+        gc.fillText(text, textX, textY);
+        if (commandNum == 2) {
+            gc.fillText(">", textX-game.tileSize, textY);
+        }
+
         text = "Back";
         textX = game.tileSize * 8;
         textY = game.tileSize * 9;
         gc.fillText(text, textX, textY);
-        if (commandNum == 2) {
+        if (commandNum == 3) {
             gc.fillText(">", textX-game.tileSize, textY);
         }
     }
@@ -320,6 +329,8 @@ public class UI_MainGame {
         textY += lineGap;
         gc.fillText("Attack: ", textX, textY);
         textY += lineGap;
+        gc.fillText("Defence: ", textX, textY);
+        textY += lineGap;
         gc.fillText("EXP: ", textX, textY);
         textY += lineGap;
         gc.fillText("Next Level EXP: ", textX, textY);
@@ -336,7 +347,12 @@ public class UI_MainGame {
         textY = frameY + game.tileSize+8;
         String value;
 
-        value = String.valueOf(game.player.life + "/" + game.player.maxLife);
+        value = String.valueOf(game.player.level);
+        textX = getXForAlignToRightText(value, tailX);
+        gc.fillText(value, textX, textY);
+        textY += lineGap;
+
+        value = String.valueOf(game.player.life);
         textX = getXForAlignToRightText(value, tailX);
         gc.fillText(value, textX, textY);
         textY += lineGap;
@@ -696,7 +712,7 @@ public class UI_MainGame {
                 messageCounter.set(i, counter);     //set the counter to the array;
                 messageY += 50;
 
-                if(messageCounter.get(i) > 180){
+                if(messageCounter.get(i) > 240){
                     message.remove(i);
                     messageCounter.remove(i);
                 }
