@@ -745,7 +745,7 @@ public class UI_MainGame {
     }
 
     public void drawSubWindow(int x, int y, int width, int height){
-        Color c = Color.rgb(0, 0, 0, .20);
+        Color c = Color.rgb(0, 0, 0, .80);
         gc.setFill(c);
         gc.fillRoundRect(x,y,width,height,35,35);
 
