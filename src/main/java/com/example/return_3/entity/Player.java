@@ -3,10 +3,7 @@ package com.example.return_3.entity;
 import com.example.return_3.main.EventHandler;
 import com.example.return_3.main.Game;
 import com.example.return_3.main.KeyHandler;
-import com.example.return_3.object.OBJ_Helmet;
-import com.example.return_3.object.OBJ_Ladi;
-import com.example.return_3.object.OBJ_Shield_Wood;
-import com.example.return_3.object.OBJ_Sword_Normal;
+import com.example.return_3.object.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.canvas.GraphicsContext;
@@ -129,6 +126,7 @@ public class Player extends Entity{
         coin = 8000;
         currentWeapon = new OBJ_Sword_Normal(game);
         currentShield = new OBJ_Shield_Wood(game);
+        projectile = new OBJ_Fireball(game);
         attack = getAttack();    // The total attack value is decided by strength and weapon...
         defense = getDefense();   // The total defence value is decided by dexterity and shield...
 
@@ -234,7 +232,19 @@ public class Player extends Entity{
                 spriteCounter = 0;
             }
 
+        }//END  of IF statement
+
+        if(game.keyHandler.isFKeyPressed()==true && projectile.alive==false && shotAvailableCounter==30){
+            //Set default COORDINATES, DIRECTION AND USER
+            projectile.set(worldX,worldY,direction, true, this);
+
+            // ADD IT TO THE LIST
+            game.projectileList.add(projectile);
+
+            shotAvailableCounter=0;
         }
+
+
 
 
 
@@ -251,6 +261,9 @@ public class Player extends Entity{
                 invincible = false;
                 invincibleCounter = 0;
             }
+        }
+        if(shotAvailableCounter<30){
+            shotAvailableCounter++;
         }
 
     }
@@ -283,8 +296,7 @@ public class Player extends Entity{
             solidArea.setHeight(attackArea.getHeight());
             //CHECK monster collision with the updated worldX, worldY and solidArea....
             int monsterIndex = game.cChecker.checkEntity(this, game.monster);
-            damagedMonster(monsterIndex);
-
+            damagedMonster(monsterIndex,attack);
             // After checking collision restore the original data...
             worldX = currentWorldX;
             worldY = currentWorldY;
@@ -298,7 +310,7 @@ public class Player extends Entity{
         }
     }
 
-    private void damagedMonster(int i) {
+    public void damagedMonster(int i,int attack) {
         if (i != 999) {
             if (game.monster[game.currentMap][i].invincible == false) {
 
@@ -335,7 +347,7 @@ public class Player extends Entity{
 
     private void contactMonster(int i) {
         if (i != 999) {
-            if (invincible == false) {
+            if (invincible == false && game.monster[game.currentMap][i].dying==false) {
 
                 int damage = game.monster[game.currentMap][i].attack - defense;
                 if (damage < 0) {
