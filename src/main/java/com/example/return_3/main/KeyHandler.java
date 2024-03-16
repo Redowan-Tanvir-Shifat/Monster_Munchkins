@@ -87,22 +87,23 @@ public class KeyHandler {
         }
         if(code== KeyCode.S || code== KeyCode.DOWN){
             game.ui.uiMainGame.commandNum++;
-            if(game.ui.uiMainGame.commandNum > 2){
+            if(game.ui.uiMainGame.commandNum > 3){
                 game.ui.uiMainGame.commandNum=0;
             }
         }
         if (code == KeyCode.ENTER) {
             if (game.ui.uiMainGame.commandNum == 0) {
-                if (game.player.coin >= 300 && game.player.life < game.player.maxLife) {
+                int calCoin = (game.player.maxLife - game.player.life) * 20;
+                if (game.player.coin >= calCoin && game.player.life < game.player.maxLife) {
                     game.player.life = game.player.maxLife;
-                    game.player.coin -= 300;
+                    game.player.coin -= calCoin;
                     game.gameState = game.playState;
                     game.ui.uiMainGame.addMessage("Healing SuccessFull!");
                 }
                 else {
                     System.out.println("Don't have coin ");
 
-                    if (game.player.coin < 300) {
+                    if (game.player.coin < calCoin) {
                         game.gameState = game.playState;
                         game.ui.uiMainGame.addMessage("You don't have much coin!");
                     }
@@ -115,9 +116,9 @@ public class KeyHandler {
 
             }
             if (game.ui.uiMainGame.commandNum == 1) {
-                if (game.player.coin >= 500) {
+                if (game.player.coin >= 2000) {
                     game.player.maxLife += 20;
-                    game.player.coin -= 500;
+                    game.player.coin -= 2000;
                     game.gameState = game.playState;
                     game.ui.uiMainGame.addMessage("Increasing life successful!");
                 }
@@ -127,7 +128,22 @@ public class KeyHandler {
                     game.ui.uiMainGame.addMessage("You don't have much coin!");
                 }
             }
+
             if (game.ui.uiMainGame.commandNum == 2) {
+                if (game.player.coin >= 500) {
+                    game.player.energy += 10;
+                    game.player.coin -= 500;
+                    game.gameState = game.playState;
+                    game.ui.uiMainGame.addMessage("Increasing energy successful!");
+                }
+                else {
+                    System.out.println("Don't have coin ");
+                    game.gameState = game.playState;
+                    game.ui.uiMainGame.addMessage("You don't have much coin!");
+                }
+            }
+
+            if (game.ui.uiMainGame.commandNum == 3) {
                 game.gameState = game.playState;
             }
         }
