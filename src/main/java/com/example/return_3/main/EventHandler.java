@@ -170,8 +170,8 @@ public class EventHandler {
             eventRect[map][col][row].setHeight(8);
             eventRect[map][col][row].eventRectDefaultX = (int) (eventRect[map][col][row].getX());
             eventRect[map][col][row].eventRectDefaultY = (int) (eventRect[map][col][row].getY());
-
             col++;
+            
             if (col == gp.maxWorldCol) {
                 col = 0;
                 row++;
@@ -194,45 +194,12 @@ public class EventHandler {
         }
 
         if (canTouchEvent) {
-            // Event happened
-            // Handle JavaFX events here
 
+            // <--------School-------->
             if(hit(0,82,143,"any")){
-//                    gp.currentMap = 1;
-                try {
-//                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/school.fxml"));
-//                        Parent root = loader.load();
-//                        Scene scene= new Scene(root);
-////                        scene.getStylesheets().add(getClass().getResource("school.css").toExternalForm());
-//                        gp.gameTimer.stop();
-//                        Game.primaryStage.setScene(scene);
-
-                    gp.showGameCenter();
-                    canTouchEvent=false;
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    System.err.println("Error loading gameCenter.fxml: " + e.getMessage());
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-
-
-                System.out.println("welcome to Game Center");
-            }
-
-            if(hit(1,82,143,"any")){
-
                     try {
-//                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/school.fxml"));
-//                        Parent root = loader.load();
-//                        Scene scene= new Scene(root);
-////                        scene.getStylesheets().add(getClass().getResource("school.css").toExternalForm());
-//                        gp.gameTimer.stop();
-//                        Game.primaryStage.setScene(scene);
-
                         gp.showSchoolScene();
-                        canTouchEvent=false;
+                        canTouchEvent = false;
 
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -241,12 +208,29 @@ public class EventHandler {
                         throw new RuntimeException(e);
                     }
 
-
                 System.out.println("welcome to school");
-                //
-
-
             }
+
+
+            // <--------Game Center-------->
+            if(hit(0,28,154,"any") || hit(0,29,154,"any")){
+                try {
+                    gp.showGameCenter();
+                    canTouchEvent = false;
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    System.err.println("Error loading gameCenter.fxml: " + e.getMessage());
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+
+                System.out.println("welcome to Game Center");
+            }
+
+
+
+
 
             if(hit(gp.currentMap,23,42,"any")){
 
@@ -273,9 +257,10 @@ public class EventHandler {
 
             }
 
+
+
             // <---------Hospital--------->
-            if(hit(gp.currentMap, 155, 135, "any")) {
-                //gp.player.life = gp.player.maxLife;
+            if(hit(gp.currentMap, 154, 135, "any") || hit(0,155,135,"any")) {
                 gp.gameState = gp.hospitalState;
                 System.out.println("Hit");
                 canTouchEvent = false;
