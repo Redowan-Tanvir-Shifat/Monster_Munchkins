@@ -126,7 +126,7 @@ public class Player extends Entity{
         dexterity = 1;   // The more dexterity he has, the less damage he receives...
         exp = 0;
         nextLevelExp = 20;
-        coin = 800;
+        coin = 8000;
         currentWeapon = new OBJ_Sword_Normal(game);
         currentShield = new OBJ_Shield_Wood(game);
         attack = getAttack();    // The total attack value is decided by strength and weapon...
