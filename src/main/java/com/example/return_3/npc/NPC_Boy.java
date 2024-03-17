@@ -62,8 +62,5 @@ public class NPC_Boy extends NPC {
         }
     }
 
-
-
-
 }
 
