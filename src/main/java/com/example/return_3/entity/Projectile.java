@@ -39,6 +39,7 @@ public class Projectile extends Entity{
 //            }
         }
 
+
         switch (direction){
             case "up":worldY-=speed;break;
             case "down":worldY+=speed;break;

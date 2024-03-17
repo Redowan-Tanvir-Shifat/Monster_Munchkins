@@ -6,25 +6,30 @@ import com.example.return_3.object.OBJ_ChatBox;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-public class NPC_Girl extends NPC {
+
+
+public class NPC_Boy extends NPC {
     Game game;
-    public NPC_Girl(Game game) {
+    String name;
+    public NPC_Boy(Game game, String name) {
         super(game);
         this.game=game;
+        this.name=name;
 
         //type= type_npc;
         speed=(int) (65*game.targetFrameTime);        getNPCImage();
         setDialogue();
     }
     public void getNPCImage(){
-        up1=loadImage( "/npc/npc_girl_up_1.png",game.tileSize,game.tileSize);
-        up2= loadImage("/npc/npc_girl_up_2.png",game.tileSize,game.tileSize);
-        down1= loadImage("/npc/npc_girl_down_1.png",game.tileSize,game.tileSize);
-        down2= loadImage("/npc/npc_girl_down_2.png",game.tileSize,game.tileSize);
-        left1=loadImage ("/npc/npc_girl_left_1.png",game.tileSize,game.tileSize);
-        left2= loadImage("/npc/npc_girl_left_2.png",game.tileSize,game.tileSize);
-        right1= loadImage("/npc/npc_girl_right_1.png",game.tileSize,game.tileSize);
-        right2= loadImage("/npc/npc_girl_right_2.png",game.tileSize,game.tileSize);
+        int size=game.tileSize-8;
+        up1=loadImage( "/npc/npc_"+name+"_up_1.png",size,size);
+        up2= loadImage("/npc/npc_"+name+"_up_2.png",size,size);
+        down1= loadImage("/npc/npc_"+name+"_down_1.png",size,size);
+        down2= loadImage("/npc/npc_"+name+"_down_2.png",size,size);
+        left1=loadImage ("/npc/npc_"+name+"_left_1.png",size,size);
+        left2= loadImage("/npc/npc_"+name+"_left_2.png",size,size);
+        right1= loadImage("/npc/npc_"+name+"_right_1.png",size,size);
+        right2= loadImage("/npc/npc_"+name+"_right_2.png",size,size);
     }
     //set dialogue
     public void setDialogue(){
