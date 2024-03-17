@@ -68,14 +68,13 @@ public class Player extends Entity{
         attackArea.setWidth(32);
         attackArea.setHeight(28);
 
-        setDefaultValues();
-        loadPlayerImages();    // Load player images and initialize ImageView
-        loadPlayerAttackImages();
 
         inventory.add(new OBJ_Helmet(game));
         inventory.add(new OBJ_Ladi(game));
 
-
+        setDefaultValues();
+        loadPlayerImages();    // Load player images and initialize ImageView
+        loadPlayerAttackImages();
 
     }
 
@@ -93,18 +92,26 @@ public class Player extends Entity{
         //System.out.println("Player loaded");
     }
     private void loadPlayerAttackImages() {
-        if(currentWeapon.type==type_sword) {
-            attackUp1 = loadImage("/player/attacking_up_1.png", game.tileSize, game.tileSize * 2);
-            attackUp2 = loadImage("/player/attacking_up_2.png", game.tileSize, game.tileSize * 2);
-            attackDown1 = loadImage("/player/attacking_down_1.png", game.tileSize, game.tileSize * 2);
-            attackDown2 = loadImage("/player/attacking_down_2.png", game.tileSize, game.tileSize * 2);
-            attackLeft1 = loadImage("/player/attacking_left_1.png", game.tileSize * 2, game.tileSize);
-            attackLeft2 = loadImage("/player/attacking_left_2.png", game.tileSize * 2, game.tileSize);
-            attackRight1 = loadImage("/player/attacking_right_1.png", game.tileSize * 2, game.tileSize);
-            attackRight2 = loadImage("/player/attacking_right_2.png", game.tileSize * 2, game.tileSize);
-
-            //System.out.println("Player loaded");
-        }
+//        if(currentWeapon.type==type_sword) {
+//            attackUp1 = loadImage("/player/attacking_up_1.png", game.tileSize, game.tileSize * 2);
+//            attackUp2 = loadImage("/player/attacking_up_2.png", game.tileSize, game.tileSize * 2);
+//            attackDown1 = loadImage("/player/attacking_down_1.png", game.tileSize, game.tileSize * 2);
+//            attackDown2 = loadImage("/player/attacking_down_2.png", game.tileSize, game.tileSize * 2);
+//            attackLeft1 = loadImage("/player/attacking_left_1.png", game.tileSize * 2, game.tileSize);
+//            attackLeft2 = loadImage("/player/attacking_left_2.png", game.tileSize * 2, game.tileSize);
+//            attackRight1 = loadImage("/player/attacking_right_1.png", game.tileSize * 2, game.tileSize);
+//            attackRight2 = loadImage("/player/attacking_right_2.png", game.tileSize * 2, game.tileSize);
+//
+//            //System.out.println("Player loaded");
+//        }
+        attackUp1 = loadImage("/player/attacking_up_1.png", game.tileSize, game.tileSize * 2);
+        attackUp2 = loadImage("/player/attacking_up_2.png", game.tileSize, game.tileSize * 2);
+        attackDown1 = loadImage("/player/attacking_down_1.png", game.tileSize, game.tileSize * 2);
+        attackDown2 = loadImage("/player/attacking_down_2.png", game.tileSize, game.tileSize * 2);
+        attackLeft1 = loadImage("/player/attacking_left_1.png", game.tileSize * 2, game.tileSize);
+        attackLeft2 = loadImage("/player/attacking_left_2.png", game.tileSize * 2, game.tileSize);
+        attackRight1 = loadImage("/player/attacking_right_1.png", game.tileSize * 2, game.tileSize);
+        attackRight2 = loadImage("/player/attacking_right_2.png", game.tileSize * 2, game.tileSize);
     }
 
 
@@ -419,7 +426,7 @@ public class Player extends Entity{
                 currentWeapon=selectedItem;
                 //update the attack method with proper power
                 attack=getAttack();
-                loadPlayerAttackImages();
+                //loadPlayerAttackImages();
             }
             if(selectedItem.type==type_shield){
                 currentShield=selectedItem;
