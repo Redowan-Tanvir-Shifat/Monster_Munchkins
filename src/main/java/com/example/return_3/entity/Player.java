@@ -234,9 +234,13 @@ public class Player extends Entity{
 
         }//END  of IF statement
 
-        if(game.keyHandler.isFKeyPressed()==true && projectile.alive==false && shotAvailableCounter==30){
+        if(game.keyHandler.isFKeyPressed()==true && projectile.alive==false
+                && shotAvailableCounter==30 && projectile.haveResource(this)==true){
             //Set default COORDINATES, DIRECTION AND USER
             projectile.set(worldX,worldY,direction, true, this);
+
+            //SUBTRACT THE COST MANA/ AMMO ETC
+            projectile.subtractResource(this);
 
             // ADD IT TO THE LIST
             game.projectileList.add(projectile);
