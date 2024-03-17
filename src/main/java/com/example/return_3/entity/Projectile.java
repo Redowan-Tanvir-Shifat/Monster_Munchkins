@@ -26,7 +26,7 @@ public class Projectile extends Entity{
             int monsterIndex=game.cChecker.checkEntity(this,game.monster);
             if(monsterIndex!=999){
                 game.player.damagedMonster(monsterIndex,attack);
-               // generateParticle(user.projectile,gp.monster[gp.currentMap][monsterIndex]);
+                // generateParticle(user.projectile,gp.monster[gp.currentMap][monsterIndex]);
                 alive=false; //projectile disapear.
             }
         }
@@ -44,6 +44,7 @@ public class Projectile extends Entity{
         if(collisionOn){
             alive=false;
         }
+
         switch (direction){
             case "up":worldY-=speed;break;
             case "down":worldY+=speed;break;
