@@ -409,8 +409,12 @@ public class Player extends Entity{
 
     public void damageInteractiveTiles(int i){
         if(i!=999 && game.iTile[game.currentMap][i].destructible==true
-        && game.iTile[game.currentMap][i].isCorrectItem(this)==true){
-            game.iTile[game.currentMap][i].getDestryoedForm();
+        && game.iTile[game.currentMap][i].isCorrectItem(this)==true &&game.iTile[game.currentMap][i].invincible==false){
+            game.iTile[game.currentMap][i].life--;
+            game.iTile[game.currentMap][i].invincible=true;
+            if(game.iTile[game.currentMap][i].life<1){
+            game.iTile[game.currentMap][i]=game.iTile[game.currentMap][i].getDestryoedForm();
+            }
         }
     }
     private void contactMonster(int i) {

@@ -15,6 +15,7 @@ public class CuttableTree extends InteractiveTile{
         this.worldY=game.tileSize*row;
         down1=loadImage("/tiles_interactive/drytree.png",game.tileSize,game.tileSize);
         destructible=true;
+        life=3;
     }
 
 
