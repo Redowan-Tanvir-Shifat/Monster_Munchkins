@@ -275,6 +275,7 @@ public final int messageState=10;
                             monster[currentMap][i].update();
                         }
                         if (monster[currentMap][i].alive == false) {
+                            monster[currentMap][i].checkDrop();
                             monster[currentMap][i] = null;
                         }
                     }

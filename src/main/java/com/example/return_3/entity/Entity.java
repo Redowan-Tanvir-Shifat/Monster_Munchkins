@@ -140,6 +140,16 @@ public class Entity {
 
     public void use(Entity entity){}
     public void checkDrop(){}
+    public void dropItem(Entity droppedItem){
+        for (int i=0; i<game.obj[0].length;i++){
+            if(game.obj[game.currentMap][i]==null){
+                game.obj[game.currentMap][i]=droppedItem;
+                game.obj[game.currentMap][i].worldX=worldX; //DEAD MONSTERS X POSITION
+                game.obj[game.currentMap][i].worldY=worldY; //DEAD MONSTERS Y POSITION
+                break;
+            }
+        }
+    }
 
     //create two method for running our NPC
     public void setAction(){}
@@ -334,7 +344,7 @@ public class Entity {
                 dyingAnimation(gc);
             }
 
-            gc.drawImage(image,screenX,screenY, game.tileSize, game.tileSize);
+            gc.drawImage(image,screenX,screenY);
 
             //<<<<<RESET ALPHA>>>>>
             gc.setGlobalAlpha(1);

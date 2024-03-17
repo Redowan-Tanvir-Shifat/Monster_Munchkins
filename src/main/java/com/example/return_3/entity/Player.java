@@ -290,6 +290,14 @@ public class Player extends Entity{
         if(shotAvailableCounter<30){
             shotAvailableCounter++;
         }
+        //Check if the life is greater than max life then life will set max life not more than that
+        if(life>maxLife){
+            life=maxLife;
+        }
+        //Check if the mana is greater than max mana then mana will set max life not more than that
+        if(mana>maxMana){
+            mana=maxMana;
+        }
 
     }
 
