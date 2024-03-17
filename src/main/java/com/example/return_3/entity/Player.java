@@ -203,7 +203,7 @@ public class Player extends Entity{
             //CHECK MONSTER COLLISION
             int monsterIndex = game.cChecker.checkEntity(this,game.monster);
             contactMonster(monsterIndex);
-            interactMonster(monsterIndex);
+            useWeapon(monsterIndex);
 
             //new code
 
@@ -387,7 +387,7 @@ public class Player extends Entity{
         }
     }
 
-    private void interactMonster(int i) {
+    private void useWeapon(int i) {
         if (game.keyHandler.isSpacePressed() == true) {
             attacking = true;
         }
