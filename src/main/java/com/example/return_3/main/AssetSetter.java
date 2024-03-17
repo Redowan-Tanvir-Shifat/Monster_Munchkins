@@ -8,6 +8,10 @@ import com.example.return_3.interactiveTile.CuttableTree;
 import com.example.return_3.monster.Mon_GreenSlime;
 import com.example.return_3.monster.Mon_RedSlime;
 import com.example.return_3.npc.*;
+import com.example.return_3.object.OBJ_Coin;
+import com.example.return_3.object.OBJ_Heart;
+import com.example.return_3.object.OBJ_Potion_Red;
+import com.example.return_3.object.OBJ_Sword_Normal;
 
 //This class is made for setting Asset to the Game map.
 public class AssetSetter {
@@ -24,10 +28,34 @@ public class AssetSetter {
     public void setObject() {
         int mapNum = 0; //For map 1  //to create object for map 2 then we need to ser mapNum 2 under the code.
         int i = 0;
-//        gp.obj[mapNum][i]=new OBJ_Key(gp);
-//        gp.obj[mapNum][i].worldX=gp.tileSize*76;
-//        gp.obj[mapNum][i].worldY=gp.tileSize*90;
-//        i++;
+        game.obj[mapNum][i]=new OBJ_Coin(game);
+        game.obj[mapNum][i].worldX=game.tileSize*42;
+        game.obj[mapNum][i].worldY=game.tileSize*140;
+        i++;
+        game.obj[mapNum][i]=new OBJ_Heart(game);
+        game.obj[mapNum][i].worldX=game.tileSize*44;
+        game.obj[mapNum][i].worldY=game.tileSize*140;
+        i++;
+        game.obj[mapNum][i]=new OBJ_Potion_Red(game);
+        game.obj[mapNum][i].worldX=game.tileSize*47;
+        game.obj[mapNum][i].worldY=game.tileSize*140;
+        i++;
+        game.obj[mapNum][i]=new OBJ_Sword_Normal(game);
+        game.obj[mapNum][i].worldX=game.tileSize*49;
+        game.obj[mapNum][i].worldY=game.tileSize*140;
+        i++;
+        game.obj[mapNum][i]=new OBJ_Coin(game);
+        game.obj[mapNum][i].worldX=game.tileSize*41;
+        game.obj[mapNum][i].worldY=game.tileSize*142;
+        i++;
+        game.obj[mapNum][i]=new OBJ_Coin(game);
+        game.obj[mapNum][i].worldX=game.tileSize*42;
+        game.obj[mapNum][i].worldY=game.tileSize*145;
+        i++;
+        game.obj[mapNum][i]=new OBJ_Potion_Red(game);
+        game.obj[mapNum][i].worldX=game.tileSize*44;
+        game.obj[mapNum][i].worldY=game.tileSize*142;
+        i++;
 
 
 

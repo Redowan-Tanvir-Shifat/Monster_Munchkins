@@ -11,9 +11,14 @@ public class OBJ_Coin extends Entity {
         super(game);
         this.game = game;
         //Type will erite here later
+        type= type_pickupOnly;
         name="Coin";
-        value =5;
+        value =1;
         down1=uTool.loadImage("/objects/coin3.png",game.tileSize-7,game.tileSize-7);
         description="this is "+name;
+    }
+    public void use(Entity entity){
+        game.ui.uiMainGame.addMessage("Coint: "+value);
+        game.player.coin+=value;
     }
 }

@@ -195,6 +195,9 @@ public class Player extends Entity{
             game.cChecker.checkTile(this);
 //            System.out.println("Collision: " + collisionOn);
 
+            //Check Object collision
+            int objIndex=game.cChecker.checkObject(this,true);
+            pickUpObject(objIndex);
             //CHeck NPC collision
             int npcIndex=game.cChecker.checkEntity(this,game.npc);
             interactNPC(npcIndex);
@@ -324,6 +327,32 @@ public class Player extends Entity{
             spriteNum = 1;
             spriteCounter = 0;
             attacking = false;
+        }
+    }
+
+    public void pickUpObject(int i){
+        if(i!=999){
+            //PICKUP ONLY ITEMS
+            if(game.obj[game.currentMap][i].type==type_pickupOnly){
+
+                game.obj[game.currentMap][i].use(this);
+                game.obj[game.currentMap][i]=null;
+
+            }
+            //INVENTORY ITEMS
+            else{
+                String text;
+                if(inventory.size()!=maxInventorySize){
+                    inventory.add(game.obj[game.currentMap][i]);
+                   // game.playSE(1);
+                    text="Got a "+ game.obj[game.currentMap][i].name+" !";
+                }else {
+                    text="You can not carry any more!";
+                }
+                game.ui.uiMainGame.addMessage(text);
+                game.obj[game.currentMap][i]=null;
+
+            }
         }
     }
 
