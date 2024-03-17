@@ -64,15 +64,14 @@ public class Player extends Entity{
         solidArea.setHeight(10);
         //part 6 collision part ends
 
+        //We are handling the attack area in the weapon class
+//        attackArea.setWidth(32);
+//        attackArea.setHeight(28);
 
-        attackArea.setWidth(32);
-        attackArea.setHeight(28);
 
-
-        inventory.add(new OBJ_Helmet(game));
-        inventory.add(new OBJ_Ladi(game));
 
         setDefaultValues();
+        setItems();
         loadPlayerImages();    // Load player images and initialize ImageView
         loadPlayerAttackImages();
 
@@ -104,18 +103,34 @@ public class Player extends Entity{
 //
 //            //System.out.println("Player loaded");
 //        }
-        attackUp1 = loadImage("/player/attacking_up_1.png", game.tileSize, game.tileSize * 2);
-        attackUp2 = loadImage("/player/attacking_up_2.png", game.tileSize, game.tileSize * 2);
-        attackDown1 = loadImage("/player/attacking_down_1.png", game.tileSize, game.tileSize * 2);
-        attackDown2 = loadImage("/player/attacking_down_2.png", game.tileSize, game.tileSize * 2);
-        attackLeft1 = loadImage("/player/attacking_left_1.png", game.tileSize * 2, game.tileSize);
-        attackLeft2 = loadImage("/player/attacking_left_2.png", game.tileSize * 2, game.tileSize);
-        attackRight1 = loadImage("/player/attacking_right_1.png", game.tileSize * 2, game.tileSize);
-        attackRight2 = loadImage("/player/attacking_right_2.png", game.tileSize * 2, game.tileSize);
+        if(currentWeapon.type==type_sword) {
+            attackUp1 = loadImage("/player/attacking_up_1.png", game.tileSize, game.tileSize * 2);
+            attackUp2 = loadImage("/player/attacking_up_2.png", game.tileSize, game.tileSize * 2);
+            attackDown1 = loadImage("/player/attacking_down_1.png", game.tileSize, game.tileSize * 2);
+            attackDown2 = loadImage("/player/attacking_down_2.png", game.tileSize, game.tileSize * 2);
+            attackLeft1 = loadImage("/player/attacking_left_1.png", game.tileSize * 2, game.tileSize);
+            attackLeft2 = loadImage("/player/attacking_left_2.png", game.tileSize * 2, game.tileSize);
+            attackRight1 = loadImage("/player/attacking_right_1.png", game.tileSize * 2, game.tileSize);
+            attackRight2 = loadImage("/player/attacking_right_2.png", game.tileSize * 2, game.tileSize);
+        }
+         else if(currentWeapon.type==type_axe){
+            attackUp1=loadImage( "/player/boy_axe_up_1.png",game.tileSize,game.tileSize*2);
+            attackUp2= loadImage("/player/boy_axe_up_2.png",game.tileSize,game.tileSize*2);
+            attackDown1= loadImage("/player/boy_axe_down_1.png",game.tileSize,game.tileSize*2);
+            attackDown2= loadImage("/player/boy_axe_down_2.png",game.tileSize,game.tileSize*2);
+            attackLeft1=loadImage ("/player/boy_axe_left_1.png",game.tileSize*2,game.tileSize);
+            attackLeft2= loadImage("/player/boy_axe_left_2.png",game.tileSize*2,game.tileSize);
+            attackRight1= loadImage("/player/boy_axe_right_1.png",game.tileSize*2,game.tileSize);
+            attackRight2= loadImage("/player/boy_axe_right_2.png",game.tileSize*2,game.tileSize);
+        }
     }
 
 
-
+    public void setItems(){
+        inventory.clear();
+        inventory.add(currentWeapon);
+        inventory.add(currentShield);
+    }
 
     public void setDefaultValues(){
         setDefaultPositions();
@@ -143,19 +158,13 @@ public class Player extends Entity{
         mana = maxMana;
         //ammo=10;
 
-
-//        currentWeapon=new OBJ_Axe(gp);
-//        projectile= new OBJ_Fireball(gp);
-//        //this is for testing that you can use anything to throw .
-//        //projectile= new OBJ_Rock(gp);
-//        attack=getAttack(); //the total attack value is decided by the strength and weapon
-//        defense=getDefense();// the total defense value is decided by the dexterity and shield
     }
 
     private int getDefense() {
         return defense = dexterity * currentShield.defenseValue;
     }
     private int getAttack() {
+        attackArea=currentWeapon.attackArea;
         return attack = strength * currentWeapon.attackValue;
     }
 
@@ -466,7 +475,7 @@ public class Player extends Entity{
                 currentWeapon=selectedItem;
                 //update the attack method with proper power
                 attack=getAttack();
-                //loadPlayerAttackImages();
+                loadPlayerAttackImages();
             }
             if(selectedItem.type==type_shield){
                 currentShield=selectedItem;

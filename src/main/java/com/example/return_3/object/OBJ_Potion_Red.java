@@ -17,8 +17,11 @@ public class OBJ_Potion_Red extends Entity {
     }
 
     public void use(Entity entity) {
-        game.gameState=game.dialogueState;
+        game.gameState=game.messageState;
         game.ui.uiMainGame.currentDialogue="You drink the "+name+"!\nYour life has been recovered by "+value+",";
         entity.life+=value;
+        if(game.player.life>game.player.maxLife){
+            game.player.life=game.player.maxLife;
+        }
     }
 }
