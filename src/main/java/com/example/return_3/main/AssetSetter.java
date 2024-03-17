@@ -4,6 +4,7 @@ package com.example.return_3.main;
 import com.example.return_3.entity.NPC_School;
 import com.example.return_3.entity.NPC_Trade;
 import com.example.return_3.entity.NPC_Wizard;
+import com.example.return_3.interactiveTile.CuttableTree;
 import com.example.return_3.monster.Mon_GreenSlime;
 import com.example.return_3.monster.Mon_RedSlime;
 import com.example.return_3.npc.*;
@@ -104,11 +105,11 @@ i++;
 
     //For Interactive Tile
     public void setInteractiveTile(){
-//        int mapNum=0;
-//        int i=0;
-//        gp.iTile[mapNum][i]=new IT_DryTree(gp,79,83);i++;
-//        gp.iTile[mapNum][i]=new IT_DryTree(gp,81,83);i++;
-//        gp.iTile[mapNum][i]=new IT_DryTree(gp,69,54);i++;
-//        gp.iTile[mapNum][i]=new IT_DryTree(gp,69,56);i++;
+        int mapNum=0;
+        int i=0;
+        game.iTile[mapNum][i]=new CuttableTree(game,45,138);i++;
+        game.iTile[mapNum][i]=new CuttableTree(game,46,138);i++;
+        game.iTile[mapNum][i]=new CuttableTree(game,47,137);i++;
+        game.iTile[mapNum][i]=new CuttableTree(game,48,137);i++;
     }
 }

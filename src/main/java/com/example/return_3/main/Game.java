@@ -204,6 +204,7 @@ public class Game extends Application {
         mainGameroot.getChildren().add(mainGameCanvas);
         assetSetter.setNPC();
         assetSetter.setMonster();
+        assetSetter.setInteractiveTile();
         lastNanoTime = System.nanoTime();
         gameTimer = new GameAnimationTimer(this);
         gameTimer.start();

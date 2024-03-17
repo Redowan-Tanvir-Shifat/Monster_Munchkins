@@ -132,7 +132,7 @@ public class Player extends Entity{
 
         energy = 180;
         maxEnergy = 200;
-        maxMana = 4;
+        maxMana = 100;
         mana = maxMana;
         //ammo=10;
 
@@ -166,8 +166,7 @@ public class Player extends Entity{
     public void update(){
         if (attacking == true) {
             attacking();
-        }
-        else if (keyHandler.isMoveUp() || keyHandler.isMoveDown() || keyHandler.isMoveRight() || keyHandler.isMoveLeft() || keyHandler.isEnterPressed() || keyHandler.isSpacePressed()) {
+        } else if (keyHandler.isMoveUp() || keyHandler.isMoveDown() || keyHandler.isMoveRight() || keyHandler.isMoveLeft() || keyHandler.isEnterPressed() || keyHandler.isSpacePressed()) {
             // Move player based on key inputs
             if (keyHandler.isMoveUp()) {
                 direction = "up";
@@ -197,6 +196,9 @@ public class Player extends Entity{
             int monsterIndex = game.cChecker.checkEntity(this,game.monster);
             contactMonster(monsterIndex);
             interactMonster(monsterIndex);
+
+            //CHECK INTERACTIVE TILE COLLISION
+            game.cChecker.checkEntity(this,game.iTile);
 
             //new code
 
@@ -301,6 +303,10 @@ public class Player extends Entity{
             //CHECK monster collision with the updated worldX, worldY and solidArea....
             int monsterIndex = game.cChecker.checkEntity(this, game.monster);
             damagedMonster(monsterIndex,attack);
+
+            //CHECK INTERACTIVE TILES COLLSION AND GET ATTACK
+            int iTileIndex= game.cChecker.checkEntity(this,game.iTile);
+            damageInteractiveTiles(iTileIndex);
             // After checking collision restore the original data...
             worldX = currentWorldX;
             worldY = currentWorldY;
@@ -348,7 +354,12 @@ public class Player extends Entity{
         }
     }
 
-
+    public void damageInteractiveTiles(int i){
+        if(i!=999 && game.iTile[game.currentMap][i].destructible==true
+        && game.iTile[game.currentMap][i].isCorrectItem(this)==true){
+            game.iTile[game.currentMap][i].getDestryoedForm();
+        }
+    }
     private void contactMonster(int i) {
         if (i != 999) {
             if (invincible == false && game.monster[game.currentMap][i].dying==false) {
