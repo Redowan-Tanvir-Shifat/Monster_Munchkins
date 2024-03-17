@@ -15,7 +15,7 @@ import java.beans.XMLEncoder;
 public class KeyHandler {
     Game game;
     Stage stage;
-    private boolean moveUp, moveDown, moveLeft, moveRight,enterPressed, spacePressed, escapePressed;
+    private boolean moveUp, moveDown, moveLeft, moveRight,enterPressed, spacePressed, escapePressed,FKeyPressed;
 
     public KeyHandler(Game game) {
         this.game = game;
@@ -251,6 +251,7 @@ public class KeyHandler {
             case S: moveDown = true; break;
             case A: moveLeft = true; break;
             case D: moveRight = true; break;
+            case F: FKeyPressed=true;break;
             case ENTER: enterPressed = true; break;
             case SPACE: spacePressed = true; break;
             case C: game.gameState = game.characterState; break;
@@ -343,6 +344,7 @@ public class KeyHandler {
             case S: moveDown = false; break;
             case A: moveLeft = false; break;
             case D: moveRight = false; break;
+            case F: FKeyPressed=false;break;
             case ENTER: enterPressed = false; break;
             case SPACE:spacePressed = false; break;
             case ESCAPE:escapePressed = false; break;
@@ -376,6 +378,9 @@ public class KeyHandler {
     }
     public boolean isEscapePressed() {
         return escapePressed;
+    }
+    public  boolean isFKeyPressed(){
+        return FKeyPressed;
     }
 
     public void setEnterPressed(boolean enterPressed) {

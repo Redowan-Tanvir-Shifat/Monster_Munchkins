@@ -93,6 +93,7 @@ public class Entity {
     public int coin;
     public Entity currentWeapon;
     public Entity currentShield;
+    public Projectile projectile;
 
 
 
@@ -355,7 +356,6 @@ public class Entity {
         if (dyingCounter > i*6 && dyingCounter <= i*7) {gc.setGlobalAlpha(0);}
         if (dyingCounter > i*7 && dyingCounter <= i*8) {gc.setGlobalAlpha(1);}
         if (dyingCounter > i*8) {
-            dying = false;
             alive = false;
         }
     }
