@@ -12,7 +12,7 @@ public class Mon_RedSlime extends Entity {
     public Mon_RedSlime(Game game) {
         super(game);
         this.game=game;
-        name = "Green Slime";
+        name = "Red Slime";
         speed = 2;
         type = type_monster;
         maxLife = 8;
