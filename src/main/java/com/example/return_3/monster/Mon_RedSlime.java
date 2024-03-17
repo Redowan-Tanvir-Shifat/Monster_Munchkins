@@ -2,6 +2,7 @@ package com.example.return_3.monster;
 
 import com.example.return_3.entity.Entity;
 import com.example.return_3.main.Game;
+import com.example.return_3.object.OBJ_Rock;
 
 import java.util.Random;
 
@@ -20,7 +21,7 @@ public class Mon_RedSlime extends Entity {
         attack = 50;
         defense = 0;
         exp = 2;
-        //projectile=new OBJ_Rock(game);
+        projectile=new OBJ_Rock(game);
 
         //set the SOLID AREA for  collision part
         solidArea.setX(1);
@@ -71,14 +72,14 @@ public class Mon_RedSlime extends Entity {
 
 
 
-        //AI method for throwing rock
-//        int i=new Random().nextInt(100)+1;
-//        if(i>99 && projectile.alive==false&&shotAvailableCounter==30){
-//            projectile.set(worldX,worldY,direction,true,this);
-//            gp.projectileList.add(projectile);
-//            shotAvailableCounter=0;
-//
-//        }
+ //       AI method for throwing rock
+        int i=new Random().nextInt(100)+1;
+        if(i>99 && projectile.alive==false&&shotAvailableCounter==30){
+            projectile.set(worldX,worldY,direction,true,this);
+            game.projectileList.add(projectile);
+            shotAvailableCounter=0;
+
+        }
     }
     public void damageReaction(){
         actionLookCounter = 0;
