@@ -12,9 +12,9 @@ public class OBJ_Heart extends Entity {
         this.gp = gp;
         type = type_pickupOnly;
         name="Heart";
-        value=2;
+        value=30;
 
-        //down1 = loadImage("/objects/heart_full.png",gp.tileSize,gp.tileSize);
+        down1 = loadImage("/objects/heart_full.png",gp.tileSize,gp.tileSize);
         image1 = loadImage("/objects/heart_full.png",gp.tileSize,gp.tileSize);
         image2 = loadImage("/objects/heart_half.png",gp.tileSize,gp.tileSize);
         image3 = loadImage("/objects/heart_blank.png",gp.tileSize,gp.tileSize);

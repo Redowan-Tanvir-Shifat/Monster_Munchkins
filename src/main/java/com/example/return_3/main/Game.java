@@ -96,7 +96,8 @@ public class Game extends Application {
     public UI ui= new UI(this);
     public static GameAnimationTimer gameTimer;
 
-    public Entity npc[][]= new Entity[maxMap][10]; //set the number of 10 NPC Number
+    public Entity obj[][]= new Entity[maxMap][20];
+    public Entity npc[][]= new Entity[maxMap][20]; //set the number of 10 NPC Number
     public Entity[][] monster = new Entity[maxMap][20];
 
     public InteractiveTile iTile[][]= new InteractiveTile[maxMap][50];
@@ -202,8 +203,10 @@ public class Game extends Application {
          keyHandler= new KeyHandler(this);
         player = new Player(this, keyHandler); // KeyHandler depends on game.scene
         mainGameroot.getChildren().add(mainGameCanvas);
+        assetSetter.setObject();
         assetSetter.setNPC();
         assetSetter.setMonster();
+        assetSetter.setInteractiveTile();
         lastNanoTime = System.nanoTime();
         gameTimer = new GameAnimationTimer(this);
         gameTimer.start();
@@ -338,7 +341,14 @@ public class Game extends Application {
                     if (monster[currentMap][i] != null) {
                         entityList.add(monster[currentMap][i]);
                     }
-                }//ADD projectile TO THE LIST
+                }
+                //add object to list
+                for(int i=0; i<obj[currentMap].length; i++){
+                    if(obj[currentMap][i]!=null){
+                        entityList.add(obj[currentMap][i]);
+                    }
+                }
+                //ADD projectile TO THE LIST
                 for (int i = 0; i < projectileList.size(); i++) {
                     if (projectileList.get(i) != null) {
                         entityList.add(projectileList.get(i));

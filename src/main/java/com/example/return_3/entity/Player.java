@@ -139,7 +139,7 @@ public class Player extends Entity{
 
         energy = 180;
         maxEnergy = 200;
-        maxMana = 4;
+        maxMana = 100;
         mana = maxMana;
         //ammo=10;
 
@@ -173,8 +173,7 @@ public class Player extends Entity{
     public void update(){
         if (attacking == true) {
             attacking();
-        }
-        else if (keyHandler.isMoveUp() || keyHandler.isMoveDown() || keyHandler.isMoveRight() || keyHandler.isMoveLeft() || keyHandler.isEnterPressed() || keyHandler.isSpacePressed()) {
+        } else if (keyHandler.isMoveUp() || keyHandler.isMoveDown() || keyHandler.isMoveRight() || keyHandler.isMoveLeft() || keyHandler.isEnterPressed() || keyHandler.isSpacePressed()) {
             // Move player based on key inputs
             if (keyHandler.isMoveUp()) {
                 direction = "up";
@@ -196,6 +195,9 @@ public class Player extends Entity{
             game.cChecker.checkTile(this);
 //            System.out.println("Collision: " + collisionOn);
 
+            //Check Object collision
+            int objIndex=game.cChecker.checkObject(this,true);
+            pickUpObject(objIndex);
             //CHeck NPC collision
             int npcIndex=game.cChecker.checkEntity(this,game.npc);
             interactNPC(npcIndex);
@@ -204,6 +206,9 @@ public class Player extends Entity{
             int monsterIndex = game.cChecker.checkEntity(this,game.monster);
             contactMonster(monsterIndex);
             useWeapon(monsterIndex);
+
+            //CHECK INTERACTIVE TILE COLLISION
+            game.cChecker.checkEntity(this,game.iTile);
 
             //new code
 
@@ -308,6 +313,10 @@ public class Player extends Entity{
             //CHECK monster collision with the updated worldX, worldY and solidArea....
             int monsterIndex = game.cChecker.checkEntity(this, game.monster);
             damagedMonster(monsterIndex,attack);
+
+            //CHECK INTERACTIVE TILES COLLSION AND GET ATTACK
+            int iTileIndex= game.cChecker.checkEntity(this,game.iTile);
+            damageInteractiveTiles(iTileIndex);
             // After checking collision restore the original data...
             worldX = currentWorldX;
             worldY = currentWorldY;
@@ -318,6 +327,32 @@ public class Player extends Entity{
             spriteNum = 1;
             spriteCounter = 0;
             attacking = false;
+        }
+    }
+
+    public void pickUpObject(int i){
+        if(i!=999){
+            //PICKUP ONLY ITEMS
+            if(game.obj[game.currentMap][i].type==type_pickupOnly){
+
+                game.obj[game.currentMap][i].use(this);
+                game.obj[game.currentMap][i]=null;
+
+            }
+            //INVENTORY ITEMS
+            else{
+                String text;
+                if(inventory.size()!=maxInventorySize){
+                    inventory.add(game.obj[game.currentMap][i]);
+                   // game.playSE(1);
+                    text="Got a "+ game.obj[game.currentMap][i].name+" !";
+                }else {
+                    text="You can not carry any more!";
+                }
+                game.ui.uiMainGame.addMessage(text);
+                game.obj[game.currentMap][i]=null;
+
+            }
         }
     }
 
@@ -355,7 +390,12 @@ public class Player extends Entity{
         }
     }
 
-
+    public void damageInteractiveTiles(int i){
+        if(i!=999 && game.iTile[game.currentMap][i].destructible==true
+        && game.iTile[game.currentMap][i].isCorrectItem(this)==true){
+            game.iTile[game.currentMap][i].getDestryoedForm();
+        }
+    }
     private void contactMonster(int i) {
         if (i != 999) {
             if (invincible == false && game.monster[game.currentMap][i].dying==false) {
