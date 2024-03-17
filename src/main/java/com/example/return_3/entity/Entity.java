@@ -420,4 +420,44 @@ public class Entity {
 //            worldY = y + height - game.tileSize; // Prevent entity from moving beyond the bottom boundary
 //        }
 //    }
+
+    public Color getParticleColor(){ //this indicates the color of the particle
+         Color color=  null;
+        return color;
+    }
+    public int getParticleSize(){// this indicates the size of the particle
+        int size=0;
+        return size;
+    }
+    public int getParticleSpeed(){ //this indicates the speed of the particle
+        int speed=0;
+        return speed;
+    }
+
+    public int getParticleMaxLife(){ //this indicates how long the particle will last
+        int maxLife=0;
+        return maxLife;
+    }
+
+    public void generateParticle(Entity generator,Entity target){
+        //We will do it later
+        Color color= generator.getParticleColor();
+        int size= generator.getParticleSize();
+        int speed= generator.getParticleSpeed();
+        int maxLife= generator.getParticleMaxLife();
+
+
+
+        //creating particle
+        Particle p1= new Particle(game,target,color,size,speed,maxLife,-2,-1 );
+        Particle p2= new Particle(game,target,color,size,speed,maxLife,2,-1 );
+        Particle p3= new Particle(game,target,color,size,speed,maxLife,-2,1 );
+        Particle p4= new Particle(game,target,color,size,speed,maxLife,2,1 );
+        game.particleList.add(p1);
+        game.particleList.add(p2);
+        game.particleList.add(p3);
+        game.particleList.add(p4);
+    }
+
+
 }

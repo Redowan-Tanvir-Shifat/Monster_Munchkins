@@ -2,8 +2,8 @@ package com.example.return_3.interactiveTile;
 
 import com.example.return_3.entity.Entity;
 import com.example.return_3.main.Game;
+import javafx.scene.paint.Color;
 
-import java.awt.*;
 
 public class CuttableTree extends InteractiveTile{
     Game game;
@@ -35,7 +35,7 @@ public class CuttableTree extends InteractiveTile{
         return tile;
     }
     public Color getParticleColor(){ //this indicates the color of the particle
-        Color color= new Color(65,50,30);
+        Color color= Color.rgb(65,50,30);
         return color;
     }
     public int getParticleSize(){// this indicates the size of the particle

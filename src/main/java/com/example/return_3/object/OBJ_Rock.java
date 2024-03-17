@@ -4,6 +4,7 @@ package com.example.return_3.object;
 import com.example.return_3.entity.Entity;
 import com.example.return_3.entity.Projectile;
 import com.example.return_3.main.Game;
+import javafx.scene.paint.Color;
 
 public class OBJ_Rock extends Projectile {
     Game game;
@@ -41,10 +42,10 @@ public class OBJ_Rock extends Projectile {
     public void subtractResource(Entity user){
         user.ammo -= useCost;
     }
-//    public Color getParticleColor(){ //this indicates the color of the particle
-//        Color color= new Color(40,50,0);
-//        return color;
-//    }
+    public Color getParticleColor(){ //this indicates the color of the particle
+        Color color= Color.rgb(40,50,0);
+        return color;
+    }
     public int getParticleSize(){// this indicates the size of the particle
         int size=10;
         return size;

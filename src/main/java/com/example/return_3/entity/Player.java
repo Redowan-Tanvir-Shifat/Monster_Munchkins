@@ -412,6 +412,9 @@ public class Player extends Entity{
         && game.iTile[game.currentMap][i].isCorrectItem(this)==true &&game.iTile[game.currentMap][i].invincible==false){
             game.iTile[game.currentMap][i].life--;
             game.iTile[game.currentMap][i].invincible=true;
+
+            generateParticle(game.iTile[game.currentMap][i],game.iTile[game.currentMap][i]);
+
             if(game.iTile[game.currentMap][i].life<1){
             game.iTile[game.currentMap][i]=game.iTile[game.currentMap][i].getDestryoedForm();
             }
