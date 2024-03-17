@@ -6,9 +6,7 @@ import com.example.return_3.entity.NPC_Trade;
 import com.example.return_3.entity.NPC_Wizard;
 import com.example.return_3.monster.Mon_GreenSlime;
 import com.example.return_3.monster.Mon_RedSlime;
-import com.example.return_3.npc.NPC_Girl;
-import com.example.return_3.npc.NPC_OldMan2;
-import com.example.return_3.npc.NPC_Pig;
+import com.example.return_3.npc.*;
 
 //This class is made for setting Asset to the Game map.
 public class AssetSetter {
@@ -56,6 +54,18 @@ i++;
         game.npc[mapNum][i]= new NPC_Girl(game);
         game.npc[mapNum][i].worldX=game.tileSize*43;
         game.npc[mapNum][i].worldY=game.tileSize*133;
+        i++;
+        game.npc[mapNum][i]= new NPC_Girl2(game);
+        game.npc[mapNum][i].worldX=game.tileSize*43;
+        game.npc[mapNum][i].worldY=game.tileSize*132;
+        i++;
+        game.npc[mapNum][i]= new NPC_Boy(game,"boy");
+        game.npc[mapNum][i].worldX=game.tileSize*50;
+        game.npc[mapNum][i].worldY=game.tileSize*132;
+        i++;
+        game.npc[mapNum][i]= new NPC_Boy(game,"boy2");
+        game.npc[mapNum][i].worldX=game.tileSize*52;
+        game.npc[mapNum][i].worldY=game.tileSize*132;
 
 
 //        New Map;
