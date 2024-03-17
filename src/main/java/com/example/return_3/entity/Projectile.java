@@ -39,12 +39,6 @@ public class Projectile extends Entity{
 //            }
         }
 
-        //CHECK COLLISION ON SOLID TILES
-        collisionOn=false;
-        game.cChecker.checkTile(this);
-        if(collisionOn){
-            alive=false;
-        }
 
         switch (direction){
             case "up":worldY-=speed;break;
