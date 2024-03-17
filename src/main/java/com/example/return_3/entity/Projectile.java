@@ -31,12 +31,12 @@ public class Projectile extends Entity{
             }
         }
         if(user!=game.player){
-//            boolean contactPlayer=game.cChecker.checkPlayer(this);
-//            if(game.player.invincible==false&& contactPlayer==true){
-//                damagePlayer(attack);
-//                generateParticle(user.projectile,gp.player);
-//                alive=false;
-//            }
+            boolean contactPlayer=game.cChecker.checkPlayer(this);
+            if(game.player.invincible==false&& contactPlayer==true){
+                damagePlayer(attack);
+                //generateParticle(user.projectile,gp.player);
+                alive=false;
+            }
         }
         //CHECK COLLISION ON SOLID TILES
         collisionOn=false;

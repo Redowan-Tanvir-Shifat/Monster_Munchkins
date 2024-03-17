@@ -152,28 +152,18 @@ public class Entity {
         game.cChecker.checkEntity(this,game.npc);
         game.cChecker.checkEntity(this,game.monster);
 //        gp.cChecker.checkEntity(this,gp.iTile);
-        boolean contactPlayer= game.cChecker.checkPlayer(this);
 
-//
-        if(this.type == type_monster && contactPlayer == true){
-//            damagePlayer(attack);
-            if (game.player.invincible == false) {
-                int damage = attack - game.player.defense;
-                if (damage < 0) {
-                    damage = 0;
-                }
-                game.player.life -= damage;
-                game.player.invincible = true;
-
-
-            }
-        }
 
     }
     public void update(){
         setAction();
         checkCollision();
 
+        //MONSTER ATTACK ON PLAYER.
+        boolean contactPlayer= game.cChecker.checkPlayer(this);
+        if(this.type == type_monster && contactPlayer == true){
+            damagePlayer(attack);
+        }
         //if collisionOn is false then player can be able to move
         if(collisionOn == false){
             switch (direction){
@@ -206,7 +196,9 @@ public class Entity {
                 invincibleCounter = 0;
             }
         }
-
+        if(shotAvailableCounter<30){
+            shotAvailableCounter++;
+        }
         if(type==type_npc){
 
             int xDistance=Math.abs(worldX-game.player.worldX);
@@ -249,10 +241,19 @@ public class Entity {
 //                invincibleCounter=0;
 //            }
 //        }
-//        if(shotAvailableCounter<30){
-//            shotAvailableCounter++;
-//        }
 
+
+    }
+
+    public void damagePlayer(int attack){
+        if (game.player.invincible == false) {
+                int damage = attack - game.player.defense;
+                if (damage < 0) {
+                    damage = 0;
+                }
+                game.player.life -= damage;
+                game.player.invincible = true;
+        }
     }
 
 
