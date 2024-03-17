@@ -48,6 +48,9 @@ public class KeyHandler {
         //DIALOGUE state
         else if(game.gameState == game.dialogueState) {
             dialogueState(code);
+        }//MESSAGE state
+        else if(game.gameState == game.messageState) {
+            messageState(code);
         }
         //WizConversation state
         else if(game.gameState == game.wizConversationState){
@@ -262,7 +265,9 @@ public class KeyHandler {
 
     public void dialogueState(KeyCode code){
         if(code== KeyCode.ENTER ){ //VK_ENTER means if user press ENTER then
-            game.ui.uiMainGame.npc.dialogueIndex++;
+
+
+           // game.ui.uiMainGame.npc.dialogueIndex++;
             if(game.ui.uiMainGame.npc.dialogue[game.ui.uiMainGame.npc.dialogueIndex]==null){
                 game.isDialogueToGameState=true;
                 game.ui.uiMainGame.npc.dialogueIndex=0;
@@ -272,16 +277,17 @@ public class KeyHandler {
                 //game.ui.npc.onPath=true;
                 game.isDialogueToGameState=false;
             }else {
-
-
                 game.ui.uiMainGame.npc.speak();
-                System.out.println(game.ui.uiMainGame.npc.dialogue[game.ui.uiMainGame.npc.dialogueIndex]);
 
-                System.out.println(game.ui.uiMainGame.npc.dialogueIndex);
             }
         }
     }
 
+    public void messageState(KeyCode code){
+        if(code== KeyCode.ENTER ){ //VK_ENTER means if user press ENTER then
+            game.gameState=game.playState;
+        }
+    }
 
     public void wizConversationState(KeyCode code){
         if(code== KeyCode.ENTER ){

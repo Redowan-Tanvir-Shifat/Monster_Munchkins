@@ -89,7 +89,10 @@ public class UI {
 
 
             // <-------DIALOGUE STATE------->
-            if(game.gameState == game.dialogueState){
+            if(game.gameState == game.dialogueState ){
+                uiMainGame.drawDialogueScreen();
+            }// <-------Message STATE------->
+            if(game.gameState == game.messageState ){
                 uiMainGame.drawDialogueScreen();
             }
 

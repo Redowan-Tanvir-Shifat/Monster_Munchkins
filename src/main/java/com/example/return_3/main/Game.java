@@ -53,7 +53,7 @@ public class Game extends Application {
 //    public final int transitionState=7;
     public final int tradeState=8;
     public final int hospitalState = 9;
-
+public final int messageState=10;
 
     // $$$$$$$$$  GAME STATUS $$$$$$$$$
     public int gameStatus;
