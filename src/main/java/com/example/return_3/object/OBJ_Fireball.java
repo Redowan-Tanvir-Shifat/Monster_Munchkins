@@ -3,8 +3,8 @@ package com.example.return_3.object;
 import com.example.return_3.entity.Entity;
 import com.example.return_3.entity.Projectile;
 import com.example.return_3.main.Game;
+import javafx.scene.paint.Color;
 
-import java.awt.*;
 
 public class OBJ_Fireball extends Projectile {
     Game game;
@@ -45,8 +45,7 @@ public class OBJ_Fireball extends Projectile {
     }
 
     public Color getParticleColor(){ //this indicates the color of the particle
-        Color color= new Color(240,50,0);
-        return color;
+        return Color.rgb(240,50,0);
     }
     public int getParticleSize(){// this indicates the size of the particle
         int size=10;

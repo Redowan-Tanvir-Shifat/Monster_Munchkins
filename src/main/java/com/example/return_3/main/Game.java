@@ -103,6 +103,7 @@ public final int messageState=10;
     public InteractiveTile iTile[][]= new InteractiveTile[maxMap][50];
     ArrayList<Entity> entityList = new ArrayList<>();
     public  ArrayList<Entity> projectileList = new ArrayList<>();
+    public ArrayList<Entity> particleList = new ArrayList<>();
 
 
 
@@ -275,6 +276,7 @@ public final int messageState=10;
                             monster[currentMap][i].update();
                         }
                         if (monster[currentMap][i].alive == false) {
+                            monster[currentMap][i].checkDrop();
                             monster[currentMap][i] = null;
                         }
                     }
@@ -288,6 +290,17 @@ public final int messageState=10;
                         }
                         if (projectileList.get(i).alive == false) {
                             projectileList.remove(i) ;
+                        }
+                    }
+                }
+                //PARTICLE
+                for (int i = 0; i < particleList.size(); i++) {
+                    if (particleList.get(i)!= null) {
+                        if (particleList.get(i).alive == true) {
+                            particleList.get(i).update();
+                        }
+                        if (particleList.get(i).alive == false) {
+                            particleList.remove(i) ;
                         }
                     }
                 }
@@ -352,6 +365,13 @@ public final int messageState=10;
                 for (int i = 0; i < projectileList.size(); i++) {
                     if (projectileList.get(i) != null) {
                         entityList.add(projectileList.get(i));
+                    }
+                }
+
+                //ADD PARTICLE TO THE LIST
+                for (int i = 0; i < particleList.size(); i++) {
+                    if (particleList.get(i) != null) {
+                        entityList.add(particleList.get(i));
                     }
                 }
 

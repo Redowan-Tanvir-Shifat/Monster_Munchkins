@@ -2,6 +2,9 @@ package com.example.return_3.monster;
 
 import com.example.return_3.entity.Entity;
 import com.example.return_3.main.Game;
+import com.example.return_3.object.OBJ_Coin;
+import com.example.return_3.object.OBJ_Heart;
+import com.example.return_3.object.OBJ_Potion_Red;
 import com.example.return_3.object.OBJ_Rock;
 
 import java.util.Random;
@@ -91,17 +94,17 @@ public class Mon_RedSlime extends Entity {
 //            speed=1;
 //        }
     }
-//    public void checkDrop(){
-//        //CAST A DIE
-//        int i=new Random().nextInt(100)+1;
-//        //SET THE MONSTER DROP
-//        if(i<50){
-//            dropItem(new OBJ_Coin_Bronze(gp));
-//        }if(i>=50&&i<75){
-//            dropItem(new OBJ_Heart(gp));
-//        }if(i>=75&&i<100){
-//            dropItem(new OBJ_ManaCrystal(gp));
-//        }
-//    }
+    public void checkDrop(){
+        //CAST A DIE
+        int i=new Random().nextInt(100)+1;
+        //SET THE MONSTER DROP
+        if(i<50){
+            dropItem(new OBJ_Coin(game));
+        }if(i>=50&&i<75){
+            dropItem(new OBJ_Heart(game));
+        }if(i>=75&&i<100){
+            dropItem(new OBJ_Potion_Red(game));
+        }
+    }
 }
 
