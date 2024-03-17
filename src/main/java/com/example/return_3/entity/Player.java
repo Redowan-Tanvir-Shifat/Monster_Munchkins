@@ -68,14 +68,13 @@ public class Player extends Entity{
         attackArea.setWidth(32);
         attackArea.setHeight(28);
 
-        setDefaultValues();
-        loadPlayerImages();    // Load player images and initialize ImageView
-        loadPlayerAttackImages();
 
         inventory.add(new OBJ_Helmet(game));
         inventory.add(new OBJ_Ladi(game));
 
-
+        setDefaultValues();
+        loadPlayerImages();    // Load player images and initialize ImageView
+        loadPlayerAttackImages();
 
     }
 
@@ -419,7 +418,7 @@ public class Player extends Entity{
                 currentWeapon=selectedItem;
                 //update the attack method with proper power
                 attack=getAttack();
-                loadPlayerAttackImages();
+                //loadPlayerAttackImages();
             }
             if(selectedItem.type==type_shield){
                 currentShield=selectedItem;
