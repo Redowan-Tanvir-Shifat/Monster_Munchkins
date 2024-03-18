@@ -51,8 +51,10 @@ public class Mon_RedSlime extends Entity {
     }
     public void setAction(){
         actionLookCounter++;
-        if(actionLookCounter == 120){//for two seconds it means
-            Random random= new Random();
+        Random random= new Random();
+        int actionLookCounterLimit =random.nextInt(40)+100;
+        if(actionLookCounter > actionLookCounterLimit){//for two seconds it means
+
             int i = random.nextInt(100) + 1; //we add 1 because otherwise it will catch 0 to 99.. we want to avoid 0 here
             if(i <= 25){
                 direction = "up";
