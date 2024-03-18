@@ -3,7 +3,10 @@ package com.example.return_3.entity;
 import com.example.return_3.main.EventHandler;
 import com.example.return_3.main.Game;
 import com.example.return_3.main.KeyHandler;
+import com.example.return_3.monster.Mon_GreenSlime;
+import com.example.return_3.monster.Mon_RedSlime;
 import com.example.return_3.object.*;
+import com.example.return_3.thread.MonsterSetterThread;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.canvas.GraphicsContext;
@@ -391,6 +394,7 @@ public class Player extends Entity{
                 game.monster[game.currentMap][i].damageReaction();
 
                 if (game.monster[game.currentMap][i].life <= 0) {
+                    String name= game.monster[game.currentMap][i].name;
                     game.monster[game.currentMap][i].dying = true;
 
 
@@ -398,11 +402,19 @@ public class Player extends Entity{
                     exp += game.monster[game.currentMap][i].exp;
                     game.ui.uiMainGame.addMessage(" EXP + " + game.monster[game.currentMap][i].exp);
 
-                    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(30), event -> {
-                        game.assetSetter.setMonster();
-                    }));
-
-                    timeline.play();
+//                    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(5), event -> {
+//                        if(name.equals("Red Slime")){
+//                        game.monster[game.currentMap][i] = new Mon_RedSlime(game);
+//                        }else if(name.equals("Green Slime")){
+//                            game.monster[game.currentMap][i] = new Mon_GreenSlime(game);
+//                        }
+//                        game.monster[game.currentMap][i].worldX = game.tileSize * 80;
+//                        game.monster[game.currentMap][i].worldY = game.tileSize * 144;
+////                        game.assetSetter.setMonster();
+//                    }));
+//
+//                    timeline.play();
+                    new MonsterSetterThread(game,i,name).start();
 
 
                 }
