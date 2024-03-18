@@ -71,9 +71,10 @@ public class Player extends Entity{
 
 
         setDefaultValues();
-        setItems();
+        //setItems(); //as in the initial stage we will not set any weapon for our game so we are not using this right now
         loadPlayerImages();    // Load player images and initialize ImageView
-        loadPlayerAttackImages();
+        //loadPlayerAttackImages(); // Load player attack images only work when player will choose different weapon
+        //that is why we handle it in select items method
 
     }
 
@@ -146,11 +147,13 @@ public class Player extends Entity{
         exp = 0;
         nextLevelExp = 20;
         coin = 8000;
-        currentWeapon = new OBJ_Sword_Normal(game);
-        currentShield = new OBJ_Shield_Wood(game);
+        //as we are not setting current weapon and sheild at the beginning so that is why we commented it
+        //currentWeapon = new OBJ_Sword_Normal(game);
+        //currentShield = new OBJ_Shield_Wood(game);
         projectile = new OBJ_Fireball(game);
-        attack = getAttack();    // The total attack value is decided by strength and weapon...
-        defense = getDefense();   // The total defence value is decided by dexterity and shield...
+        //as there is not current weapon and shield at the beginning so we do not need to calculate attack or sheild defense
+        //attack = getAttack();    // The total attack value is decided by strength and weapon...
+        //defense = getDefense();   // The total defence value is decided by dexterity and shield...
 
         energy = 180;
         maxEnergy = 200;
@@ -214,7 +217,8 @@ public class Player extends Entity{
             //CHECK MONSTER COLLISION
             int monsterIndex = game.cChecker.checkEntity(this,game.monster);
             contactMonster(monsterIndex);
-            useWeapon(monsterIndex);
+            //in useWeapon method are making player attack status true or false
+            useWeapon();
 
             //CHECK INTERACTIVE TILE COLLISION
             game.cChecker.checkEntity(this,game.iTile);
@@ -451,8 +455,9 @@ public class Player extends Entity{
         }
     }
 
-    private void useWeapon(int i) {
-        if (game.keyHandler.isSpacePressed() == true) {
+    private void useWeapon() {
+        //we set the condition when player equip a weapon only then time he or she can attack
+        if (currentWeapon!=null &&game.keyHandler.isSpacePressed() == true) {
             attacking = true;
         }
     }
