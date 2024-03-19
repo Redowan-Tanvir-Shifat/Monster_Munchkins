@@ -52,6 +52,7 @@ public class Entity {
     public boolean hpBarOn = false;
     public boolean onPath = false;
     public boolean chatOnStatus = false;
+    public boolean knockBack = false;
 
     //For SpaceInvadors
     public boolean destroyed=false;
@@ -67,6 +68,7 @@ public class Entity {
     public int dyingCounter = 0;
     public int hpBarCounter = 0;
     public int shotAvailableCounter = 0;
+    public int knockBackCounter = 0;
 
 
 
@@ -94,6 +96,7 @@ public class Entity {
     public Entity currentWeapon;
     public Entity currentShield;
     public Projectile projectile;
+    public int defaultSpeed;
 
 
 
@@ -106,6 +109,7 @@ public class Entity {
     public int useCost;
     public int price;
     public int value;
+    public int knockBackPower = 0;
 
 
 
@@ -166,23 +170,67 @@ public class Entity {
 
     }
     public void update(){
-        setAction();
-        checkCollision();
+        if (knockBack == true) {
+
+            checkCollision();
+
+            if (collisionOn == true) {
+                knockBackCounter = 0;
+                knockBack = false;
+                speed = defaultSpeed;
+            }
+            else if (collisionOn == false) {
+
+                switch (game.player.direction) {
+                    case "up":worldY -= speed; break;
+                    case "down":worldY+= speed; break;
+                    case "left":worldX -= speed; break;
+                    case "right":worldX += speed; break;
+                }
+            }
+
+            knockBackCounter++;
+            if (knockBackCounter == 2) {  // KnockBack distance....
+                knockBackCounter = 0;
+                knockBack = false;
+                speed = defaultSpeed;
+            }
+
+        }
+        else {
+            setAction();
+            checkCollision();
+
+            //if collisionOn is false then player can be able to move
+            if(collisionOn == false){
+
+                switch (direction){
+                    case "up":worldY -= speed; break;
+                    case "down":worldY+= speed; break;
+                    case "left":worldX -= speed; break;
+                    case "right":worldX += speed; break;
+                }
+            }
+        }
+
+//        setAction();
+//        checkCollision();
 
         //MONSTER ATTACK ON PLAYER.
         boolean contactPlayer= game.cChecker.checkPlayer(this);
         if(this.type == type_monster && contactPlayer == true){
             damagePlayer(attack);
         }
-        //if collisionOn is false then player can be able to move
-        if(collisionOn == false){
-            switch (direction){
-                case "up":worldY -= speed; break;
-                case "down":worldY+= speed; break;
-                case "left":worldX -= speed; break;
-                case "right":worldX += speed; break;
-            }
-        }
+        
+//        //if collisionOn is false then player can be able to move
+//        if(collisionOn == false){
+//            switch (direction){
+//                case "up":worldY -= speed; break;
+//                case "down":worldY+= speed; break;
+//                case "left":worldX -= speed; break;
+//                case "right":worldX += speed; break;
+//            }
+//        }
 
         //part 6 collision part ends
 
@@ -243,16 +291,6 @@ public class Entity {
             }
 
         }
-
-//        if(invincible==true){
-//            invincibleCounter++;
-//            if(invincibleCounter>40){
-//                invincible=false;
-//                invincibleCounter=0;
-//            }
-//        }
-
-
     }
 
     public void damagePlayer(int attack){

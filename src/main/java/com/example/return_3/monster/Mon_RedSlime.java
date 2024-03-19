@@ -17,7 +17,8 @@ public class Mon_RedSlime extends Entity {
         super(game);
         this.game=game;
         name = "Red Slime";
-        speed = 2;
+        defaultSpeed = 1;
+        speed = defaultSpeed;
         type = type_monster;
         maxLife = 8;
         life = maxLife;
@@ -72,16 +73,19 @@ public class Mon_RedSlime extends Entity {
         }
 
 
-
-
-
-
-
  //       AI method for throwing rock
         int i=new Random().nextInt(100)+1;
         if(i>99 && projectile.alive==false&&shotAvailableCounter==30){
             projectile.set(worldX,worldY,direction,true,this);
-            game.projectileList.add(projectile);
+            //game.projectileList.add(projectile);
+
+            for (int ii = 0; ii < game.projectile[game.currentMap].length; ii++) {
+                if (game.projectile[game.currentMap][ii] == null) {
+                    game.projectile[game.currentMap][ii] = projectile;
+                    break;
+                }
+            }
+
             shotAvailableCounter=0;
 
         }
