@@ -497,5 +497,73 @@ public class Entity {
         game.particleList.add(p4);
     }
 
+    public void searchPath(int goalCol, int goalRow){
+
+        int startCol=(int)(worldX+solidArea.getX())/game.tileSize;
+        int startRow=(int)(worldY+solidArea.getY())/game.tileSize;
+
+        game.pFinder.setNodes(startCol, startRow, goalCol,goalRow);
+
+        if(game.pFinder.search()==true){
+            //Next worldX & worldY
+            int nextX= game.pFinder.pathList.get(0).col *game.tileSize;
+            int nextY= game.pFinder.pathList.get(0).row *game.tileSize;
+
+            //Entity's solidArea position
+            int enleftX=(int)(worldX + solidArea.getX());
+            int enRightX=(int)(worldX + solidArea.getX()+solidArea.getWidth());
+            int enTopY=(int)(worldY+solidArea.getY());
+            int enBottomY=(int)(worldY+solidArea.getY()+solidArea.getHeight());
+
+            if(enTopY>nextY && enleftX>=nextX && enRightX< nextX+game.tileSize){
+                direction= "up";
+            }else if(enTopY<nextY && enleftX>=nextX && enRightX< nextX+game.tileSize){
+                direction= "down";
+            }else if(enTopY>= nextY && enBottomY<nextY+game.tileSize){
+                //left or right
+                if(enleftX>nextX){
+                    direction="left";
+                }if(enleftX<nextX){
+                    direction="right";
+                }
+            } else if (enTopY>nextY && enleftX> nextX) {
+                //up or left
+                direction="up";
+                checkCollision();
+                if(collisionOn==true){
+                    direction="left";
+                }
+            } else if (enTopY > nextY && enleftX < nextX) {
+                //up or right
+                direction="up";
+                checkCollision();
+                if(collisionOn==true){
+                    direction="right";
+                }
+            }else if(enTopY< nextY && enleftX>nextX) {
+                //down or left
+                direction="down";
+                checkCollision();
+                if(collisionOn==true){
+                    direction="left";
+                }
+            }else if(enTopY< nextY && enleftX<nextX) {
+                //down or right
+                direction="down";
+                checkCollision();
+                if(collisionOn==true){
+                    direction="right";
+                }
+            }
+            int nextCol=game.pFinder.pathList.get(0).col;
+            int nextRow=game.pFinder.pathList.get(0).row;
+
+            if(nextCol==goalCol&& nextRow==goalRow){
+                onPath=false;
+            }
+
+        }
+    }
+
 
 }
