@@ -391,11 +391,15 @@ public class UI_MainGame {
         textX = getXForAlignToRightText(value, tailX);
         gc.fillText(value, textX, textY);
         textY += lineGap - 16;
-
+        //In the initaial stage player will have no weapon so
+        //when he do not have weapon and sheild then there will draw nothing
+        if(game.player.currentWeapon!=null){
         gc.drawImage(game.player.currentWeapon.down1, tailX-game.tileSize, textY);
+        } //we can draw something instead of nothing [for weapon]
         textY += lineGap + 8;
-
-        gc.drawImage(game.player.currentShield.down1, tailX-game.tileSize, textY);
+        if(game.player.currentShield!=null) {
+            gc.drawImage(game.player.currentShield.down1, tailX - game.tileSize, textY);
+        }//we can draw something instead of nothing [for weapon]
     }
 
     public void drawInventory(Entity entity, boolean cursor){

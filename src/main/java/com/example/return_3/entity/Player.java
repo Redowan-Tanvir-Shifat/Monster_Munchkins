@@ -3,7 +3,10 @@ package com.example.return_3.entity;
 import com.example.return_3.main.EventHandler;
 import com.example.return_3.main.Game;
 import com.example.return_3.main.KeyHandler;
+import com.example.return_3.monster.Mon_GreenSlime;
+import com.example.return_3.monster.Mon_RedSlime;
 import com.example.return_3.object.*;
+import com.example.return_3.thread.MonsterSetterThread;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.canvas.GraphicsContext;
@@ -71,9 +74,10 @@ public class Player extends Entity{
 
 
         setDefaultValues();
-        setItems();
+        //setItems(); //as in the initial stage we will not set any weapon for our game so we are not using this right now
         loadPlayerImages();    // Load player images and initialize ImageView
-        loadPlayerAttackImages();
+        //loadPlayerAttackImages(); // Load player attack images only work when player will choose different weapon
+        //that is why we handle it in select items method
 
     }
 
@@ -146,11 +150,13 @@ public class Player extends Entity{
         exp = 0;
         nextLevelExp = 20;
         coin = 8000;
-        currentWeapon = new OBJ_Sword_Normal(game);
-        currentShield = new OBJ_Shield_Wood(game);
+        //as we are not setting current weapon and sheild at the beginning so that is why we commented it
+        //currentWeapon = new OBJ_Sword_Normal(game);
+        //currentShield = new OBJ_Shield_Wood(game);
         projectile = new OBJ_Fireball(game);
-        attack = getAttack();    // The total attack value is decided by strength and weapon...
-        defense = getDefense();   // The total defence value is decided by dexterity and shield...
+        //as there is not current weapon and shield at the beginning so we do not need to calculate attack or sheild defense
+        //attack = getAttack();    // The total attack value is decided by strength and weapon...
+        //defense = getDefense();   // The total defence value is decided by dexterity and shield...
 
         energy = 180;
         maxEnergy = 200;
@@ -214,7 +220,8 @@ public class Player extends Entity{
             //CHECK MONSTER COLLISION
             int monsterIndex = game.cChecker.checkEntity(this,game.monster);
             contactMonster(monsterIndex);
-            useWeapon(monsterIndex);
+            //in useWeapon method are making player attack status true or false
+            useWeapon();
 
             //CHECK INTERACTIVE TILE COLLISION
             game.cChecker.checkEntity(this,game.iTile);
@@ -387,6 +394,7 @@ public class Player extends Entity{
                 game.monster[game.currentMap][i].damageReaction();
 
                 if (game.monster[game.currentMap][i].life <= 0) {
+                    String name= game.monster[game.currentMap][i].name;
                     game.monster[game.currentMap][i].dying = true;
 
 
@@ -394,11 +402,19 @@ public class Player extends Entity{
                     exp += game.monster[game.currentMap][i].exp;
                     game.ui.uiMainGame.addMessage(" EXP + " + game.monster[game.currentMap][i].exp);
 
-                    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(30), event -> {
-                        game.assetSetter.setMonster();
-                    }));
-
-                    timeline.play();
+//                    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(5), event -> {
+//                        if(name.equals("Red Slime")){
+//                        game.monster[game.currentMap][i] = new Mon_RedSlime(game);
+//                        }else if(name.equals("Green Slime")){
+//                            game.monster[game.currentMap][i] = new Mon_GreenSlime(game);
+//                        }
+//                        game.monster[game.currentMap][i].worldX = game.tileSize * 80;
+//                        game.monster[game.currentMap][i].worldY = game.tileSize * 144;
+////                        game.assetSetter.setMonster();
+//                    }));
+//
+//                    timeline.play();
+                    new MonsterSetterThread(game,i,name).start();
 
 
                 }
@@ -451,8 +467,9 @@ public class Player extends Entity{
         }
     }
 
-    private void useWeapon(int i) {
-        if (game.keyHandler.isSpacePressed() == true) {
+    private void useWeapon() {
+        //we set the condition when player equip a weapon only then time he or she can attack
+        if (currentWeapon!=null &&game.keyHandler.isSpacePressed() == true) {
             attacking = true;
         }
     }
