@@ -19,14 +19,15 @@ public class NPC_Pig extends NPC {
         setDialogue();
     }
     public void getNPCImage(){
-        up1=loadImage( "/npc/npc_pig_up_1.png",game.tileSize,game.tileSize);
-        up2= loadImage("/npc/npc_pig_up_2.png",game.tileSize,game.tileSize);
-        down1= loadImage("/npc/npc_pig_down_1.png",game.tileSize,game.tileSize);
-        down2= loadImage("/npc/npc_pig_down_2.png",game.tileSize,game.tileSize);
-        left1=loadImage ("/npc/npc_pig_left_1.png",game.tileSize,game.tileSize);
-        left2= loadImage("/npc/npc_pig_left_2.png",game.tileSize,game.tileSize);
-        right1= loadImage("/npc/npc_pig_right_1.png",game.tileSize,game.tileSize);
-        right2= loadImage("/npc/npc_pig_right_2.png",game.tileSize,game.tileSize);
+        int size=game.tileSize-8;
+        up1=loadImage( "/npc/npc_pig_up_1.png",size,size);
+        up2= loadImage("/npc/npc_pig_up_2.png",size,size);
+        down1= loadImage("/npc/npc_pig_down_1.png",size,size);
+        down2= loadImage("/npc/npc_pig_down_2.png",size,size);
+        left1=loadImage ("/npc/npc_pig_left_1.png",size,size);
+        left2= loadImage("/npc/npc_pig_left_2.png",size,size);
+        right1= loadImage("/npc/npc_pig_right_1.png",size,size);
+        right2= loadImage("/npc/npc_pig_right_2.png",size,size);
     }
     //set dialogue
     public void setDialogue(){

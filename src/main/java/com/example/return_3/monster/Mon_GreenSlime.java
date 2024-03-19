@@ -12,7 +12,8 @@ public class Mon_GreenSlime extends Entity {
         super(game);
         this.game=game;
         name = "Green Slime";
-        speed = 1;
+        defaultSpeed = 1;
+        speed = defaultSpeed;
         type = type_monster;
         maxLife = 4;
         life = maxLife;
@@ -43,8 +44,10 @@ public class Mon_GreenSlime extends Entity {
     }
     public void setAction(){
         actionLookCounter++;
-        if(actionLookCounter == 120){//for two seconds it means
-            Random random= new Random();
+        Random random= new Random();
+        int actionLookCounterLimit =random.nextInt(40)+100;
+        if(actionLookCounter > actionLookCounterLimit){//for two seconds apromixately;\
+
             int i = random.nextInt(100) + 1; //we add 1 because otherwise it will catch 0 to 99.. we want to avoid 0 here
             if(i <= 25){
                 direction = "up";

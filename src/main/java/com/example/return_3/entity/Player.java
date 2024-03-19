@@ -3,7 +3,10 @@ package com.example.return_3.entity;
 import com.example.return_3.main.EventHandler;
 import com.example.return_3.main.Game;
 import com.example.return_3.main.KeyHandler;
+import com.example.return_3.monster.Mon_GreenSlime;
+import com.example.return_3.monster.Mon_RedSlime;
 import com.example.return_3.object.*;
+import com.example.return_3.thread.MonsterSetterThread;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.canvas.GraphicsContext;
@@ -71,9 +74,10 @@ public class Player extends Entity{
 
 
         setDefaultValues();
-        setItems();
+        //setItems(); //as in the initial stage we will not set any weapon for our game so we are not using this right now
         loadPlayerImages();    // Load player images and initialize ImageView
-        loadPlayerAttackImages();
+        //loadPlayerAttackImages(); // Load player attack images only work when player will choose different weapon
+        //that is why we handle it in select items method
 
     }
 
@@ -134,7 +138,9 @@ public class Player extends Entity{
 
     public void setDefaultValues(){
         setDefaultPositions();
-         speed=(int) (250*game.targetFrameTime); //pixel per second
+        //defaultSpeed = (int) (250*game.targetFrameTime);  //pixel per second
+        defaultSpeed = 4;
+        speed = defaultSpeed;
 
 
         // <---------Player Status--------->
@@ -146,11 +152,13 @@ public class Player extends Entity{
         exp = 0;
         nextLevelExp = 20;
         coin = 8000;
-        currentWeapon = new OBJ_Sword_Normal(game);
-        currentShield = new OBJ_Shield_Wood(game);
+        //as we are not setting current weapon and sheild at the beginning so that is why we commented it
+        //currentWeapon = new OBJ_Sword_Normal(game);
+        //currentShield = new OBJ_Shield_Wood(game);
         projectile = new OBJ_Fireball(game);
-        attack = getAttack();    // The total attack value is decided by strength and weapon...
-        defense = getDefense();   // The total defence value is decided by dexterity and shield...
+        //as there is not current weapon and shield at the beginning so we do not need to calculate attack or sheild defense
+        //attack = getAttack();    // The total attack value is decided by strength and weapon...
+        //defense = getDefense();   // The total defence value is decided by dexterity and shield...
 
         energy = 180;
         maxEnergy = 200;
@@ -171,13 +179,14 @@ public class Player extends Entity{
     public void setDefaultPositions(){
         worldX= game.tileSize * 41;
         worldY= game.tileSize * 135;
-        direction="down";
+        direction = "down";
     }
     public void setHospitalPosition() {
         worldX = game.tileSize * 151;
         worldY = game.tileSize * 136;
         direction = "down";
     }
+
 
     public void update(){
         if (attacking == true) {
@@ -214,7 +223,8 @@ public class Player extends Entity{
             //CHECK MONSTER COLLISION
             int monsterIndex = game.cChecker.checkEntity(this,game.monster);
             contactMonster(monsterIndex);
-            useWeapon(monsterIndex);
+            //in useWeapon method are making player attack status true or false
+            useWeapon();
 
             //CHECK INTERACTIVE TILE COLLISION
             game.cChecker.checkEntity(this,game.iTile);
@@ -264,7 +274,12 @@ public class Player extends Entity{
             projectile.subtractResource(this);
 
             // ADD IT TO THE LIST
-            game.projectileList.add(projectile);
+            for (int i = 0; i < game.projectile[game.currentMap].length; i++) {
+                if (game.projectile[game.currentMap][i] == null) {
+                    game.projectile[game.currentMap][i] = projectile;
+                    break;
+                }
+            }
 
             shotAvailableCounter=0;
         }
@@ -303,6 +318,17 @@ public class Player extends Entity{
 
 
 
+
+    public void interactNPC(int i){
+        if(keyHandler.isEnterPressed() == true){
+            if(i != 999){
+                //attackCanceled=true;
+
+                game.npc[game.currentMap][i].speak();
+            }
+            //gp.playSE(7);
+        }
+    }
     private void attacking() {
         spriteCounter++;
         if (spriteCounter <= 5) {
@@ -329,11 +355,16 @@ public class Player extends Entity{
             solidArea.setHeight(attackArea.getHeight());
             //CHECK monster collision with the updated worldX, worldY and solidArea....
             int monsterIndex = game.cChecker.checkEntity(this, game.monster);
-            damagedMonster(monsterIndex,attack);
+            damagedMonster(monsterIndex,attack, currentWeapon.knockBackPower);
 
             //CHECK INTERACTIVE TILES COLLSION AND GET ATTACK
             int iTileIndex= game.cChecker.checkEntity(this,game.iTile);
             damageInteractiveTiles(iTileIndex);
+
+            int projectileIndex = game.cChecker.checkEntity(this, game.projectile);
+            damageProjectile(projectileIndex);
+
+
             // After checking collision restore the original data...
             worldX = currentWorldX;
             worldY = currentWorldY;
@@ -346,36 +377,15 @@ public class Player extends Entity{
             attacking = false;
         }
     }
-
-    public void pickUpObject(int i){
-        if(i!=999){
-            //PICKUP ONLY ITEMS
-            if(game.obj[game.currentMap][i].type==type_pickupOnly){
-
-                game.obj[game.currentMap][i].use(this);
-                game.obj[game.currentMap][i]=null;
-
-            }
-            //INVENTORY ITEMS
-            else{
-                String text;
-                if(inventory.size()!=maxInventorySize){
-                    inventory.add(game.obj[game.currentMap][i]);
-                   // game.playSE(1);
-                    text="Got a "+ game.obj[game.currentMap][i].name+" !";
-                }else {
-                    text="You can not carry any more!";
-                }
-                game.ui.uiMainGame.addMessage(text);
-                game.obj[game.currentMap][i]=null;
-
-            }
-        }
-    }
-
-    public void damagedMonster(int i,int attack) {
+    public void damagedMonster(int i,int attack, int knockBackPower) {
         if (i != 999) {
             if (game.monster[game.currentMap][i].invincible == false) {
+
+                if (knockBackPower > 0) {
+                    knockBack(game.monster[game.currentMap][i], knockBackPower);
+                }
+
+
 
                 int damage = attack - game.monster[game.currentMap][i].defense;
                 if (damage < 0) {
@@ -387,6 +397,7 @@ public class Player extends Entity{
                 game.monster[game.currentMap][i].damageReaction();
 
                 if (game.monster[game.currentMap][i].life <= 0) {
+                    String name= game.monster[game.currentMap][i].name;
                     game.monster[game.currentMap][i].dying = true;
 
 
@@ -394,30 +405,24 @@ public class Player extends Entity{
                     exp += game.monster[game.currentMap][i].exp;
                     game.ui.uiMainGame.addMessage(" EXP + " + game.monster[game.currentMap][i].exp);
 
-                    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(30), event -> {
-                        game.assetSetter.setMonster();
-                    }));
-
-                    timeline.play();
+//                    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(5), event -> {
+//                        if(name.equals("Red Slime")){
+//                        game.monster[game.currentMap][i] = new Mon_RedSlime(game);
+//                        }else if(name.equals("Green Slime")){
+//                            game.monster[game.currentMap][i] = new Mon_GreenSlime(game);
+//                        }
+//                        game.monster[game.currentMap][i].worldX = game.tileSize * 80;
+//                        game.monster[game.currentMap][i].worldY = game.tileSize * 144;
+////                        game.assetSetter.setMonster();
+//                    }));
+//
+//                    timeline.play();
+                    new MonsterSetterThread(game,i,name).start();
 
 
                 }
             }
 
-        }
-    }
-
-    public void damageInteractiveTiles(int i){
-        if(i!=999 && game.iTile[game.currentMap][i].destructible==true
-        && game.iTile[game.currentMap][i].isCorrectItem(this)==true &&game.iTile[game.currentMap][i].invincible==false){
-            game.iTile[game.currentMap][i].life--;
-            game.iTile[game.currentMap][i].invincible=true;
-
-            generateParticle(game.iTile[game.currentMap][i],game.iTile[game.currentMap][i]);
-
-            if(game.iTile[game.currentMap][i].life<1){
-            game.iTile[game.currentMap][i]=game.iTile[game.currentMap][i].getDestryoedForm();
-            }
         }
     }
     private void contactMonster(int i) {
@@ -450,24 +455,62 @@ public class Player extends Entity{
             }
         }
     }
-
-    private void useWeapon(int i) {
-        if (game.keyHandler.isSpacePressed() == true) {
+    private void useWeapon() {
+        //we set the condition when player equip a weapon only then time he or she can attack
+        if (currentWeapon!=null &&game.keyHandler.isSpacePressed() == true) {
             attacking = true;
         }
     }
-
-    public void interactNPC(int i){
-        if(keyHandler.isEnterPressed() == true){
-            if(i != 999){
-                //attackCanceled=true;
-
-                game.npc[game.currentMap][i].speak();
-            }
-            //gp.playSE(7);
+    private void damageProjectile(int i) {
+        if (i != 999) {
+            Entity projectile = game.projectile[game.currentMap][i];
+            projectile.alive = false;
+            generateParticle(projectile, projectile);
         }
     }
+    public void knockBack(Entity entity, int knockBackPower) {
+        entity.direction = direction;
+        entity.speed += knockBackPower;
+        entity.knockBack = true;
+    }
+    public void damageInteractiveTiles(int i){
+        if(i!=999 && game.iTile[game.currentMap][i].destructible==true
+                && game.iTile[game.currentMap][i].isCorrectItem(this)==true &&game.iTile[game.currentMap][i].invincible==false){
+            game.iTile[game.currentMap][i].life--;
+            game.iTile[game.currentMap][i].invincible=true;
 
+            generateParticle(game.iTile[game.currentMap][i],game.iTile[game.currentMap][i]);
+
+            if(game.iTile[game.currentMap][i].life<1){
+                game.iTile[game.currentMap][i]=game.iTile[game.currentMap][i].getDestryoedForm();
+            }
+        }
+    }
+    public void pickUpObject(int i){
+        if(i!=999){
+            //PICKUP ONLY ITEMS
+            if(game.obj[game.currentMap][i].type==type_pickupOnly){
+
+                game.obj[game.currentMap][i].use(this);
+                game.obj[game.currentMap][i]=null;
+
+            }
+            //INVENTORY ITEMS
+            else{
+                String text;
+                if(inventory.size()!=maxInventorySize){
+                    inventory.add(game.obj[game.currentMap][i]);
+                    // game.playSE(1);
+                    text="Got a "+ game.obj[game.currentMap][i].name+" !";
+                }else {
+                    text="You can not carry any more!";
+                }
+                game.ui.uiMainGame.addMessage(text);
+                game.obj[game.currentMap][i]=null;
+
+            }
+        }
+    }
     public void checkLevelUp() {
         if (exp >= nextLevelExp) {
             level++;
@@ -480,7 +523,6 @@ public class Player extends Entity{
             game.ui.uiMainGame.currentDialogue = " Congratulations! \nYou are level in " + level + " now.";
         }
     }
-
     public void selectItem(){
         int itemIndex=game.ui.uiMainGame.getItemIndexOnSlot(game.ui.uiMainGame.playerSlotCol,game.ui.uiMainGame.playerSlotRow);
         if(itemIndex<inventory.size()){
@@ -505,7 +547,6 @@ public class Player extends Entity{
         }
 
     }
-
 
 
     public void draw(GraphicsContext gc){
