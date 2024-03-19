@@ -17,7 +17,7 @@ public class Mon_GreenSlime extends Entity {
         type = type_monster;
         maxLife = 4;
         life = maxLife;
-        attack = 50;
+        attack = 30;
         defense = 0;
         exp = 2;
         //projectile=new OBJ_Rock(game);
@@ -81,7 +81,13 @@ public class Mon_GreenSlime extends Entity {
     }
     public void damageReaction(){
         actionLookCounter = 0;
-        direction = game.player.direction;
+        switch (game.player.direction){
+            case "up": direction="down"; break;
+            case "left": direction="right"; break;
+            case "right": direction="left"; break;
+            case "down": direction="up"; break;
+        }
+//        direction = game.player.direction;
 
 //        if(actionLookCounter<50){
 //            speed=4;

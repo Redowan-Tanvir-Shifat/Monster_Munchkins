@@ -22,7 +22,7 @@ public class Mon_RedSlime extends Entity {
         type = type_monster;
         maxLife = 8;
         life = maxLife;
-        attack = 50;
+        attack = 20;
         defense = 0;
         exp = 2;
         projectile=new OBJ_Rock(game);
