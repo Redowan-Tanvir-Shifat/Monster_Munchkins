@@ -15,13 +15,15 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 import java.awt.*;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 public class UI_MainGame {
     Game game;
+    Color cream, darkCream, darkDarkCream;
     Entity entity;
     GraphicsContext gc;
-    Font arial_40, arial_80B;
+    Font pixelSport;
     Image heartFull, starImage, energyImage, coinImage;
     public boolean messageOn = false;
 
@@ -45,8 +47,10 @@ public class UI_MainGame {
     public UI_MainGame(Game game) {
         this.game = game;
         this.gc = game.gc;
-        arial_40 = new Font("Arial",40);
-        arial_80B = new Font("Arial",80);
+//        arial_40 = new Font("Arial",40);
+//        arial_80B = new Font("Arial",80);
+        //pixelSport= Font.loadFont(getClass().getResourceAsStream("/font/PixelSport-nRVRV.ttf"), 14);
+        pixelSport= Font.loadFont(getClass().getResourceAsStream("/font/CubicPixel-lgEmy.otf"), 14);
         UtilityTool uTool= new UtilityTool();
         heart = new OBJ_Heart(game);
         heartFull = heart.image1;
@@ -54,6 +58,9 @@ public class UI_MainGame {
         energyImage = uTool.loadImage("/objects/energy.png",game.tileSize-7,game.tileSize-7);
         Entity coin= new OBJ_Coin(game);
         coinImage = coin.down1;
+        cream= Color.rgb(246,202,156);
+        darkCream= Color.rgb(172,128,83);
+        darkDarkCream= Color.rgb(97,70,42);
     }
 
 
@@ -413,32 +420,42 @@ public class UI_MainGame {
 
         if(entity==game.player){
             //FRAME
-            frameX=game.tileSize*9;
-            frameY=game.tileSize;
-            frameWidth=game.tileSize*6;
-            frameHeight=game.tileSize*5;
+            frameX=game.tileSize*6;
+            frameY=game.tileSize*4;
+            frameWidth=game.tileSize*7;
+            frameHeight=game.tileSize*6;
             slotCol=playerSlotCol;
             slotRow=playerSlotRow;
         }else{
             //FRAME
-            frameX=game.tileSize*2;
-            frameY=game.tileSize;
-            frameWidth=game.tileSize*6;
-            frameHeight=game.tileSize*5;
+            frameX=game.tileSize*18;
+            frameY=game.tileSize*4;
+            frameWidth=game.tileSize*7;
+            frameHeight=game.tileSize*6;
             slotCol=npcSlotCol;
             slotRow=npcSlotRow;
         }
 
         //Draw the frame
-        drawSubWindow(frameX, frameY, frameWidth, frameHeight);
+        drawSubWindow(frameX, frameY, frameWidth, frameHeight,cream,darkCream);
+        if(entity==game.player){
+            //Title for player
 
+        }else{
+            //Title
+            String titleText="Stuff parts";
+            double titlewidth= getWidthOfText(titleText);
+            gc.setFill(darkDarkCream);
+            gc.fillText(titleText,frameX+((frameWidth-titlewidth)/2),frameY+24);
+        }
 
         //SLOT
-        final int slotXStart=frameX+20;
-        final int slotYStart=frameY+20;
+        final int slotXStart=frameX+21;
+        final int slotYStart=frameY+36;
         int slotX=slotXStart;
         int slotY=slotYStart;
         int slotSize=game.tileSize+3;
+
 
         //Draw Players new Items
         for(int i=0; i<entity.inventory.size(); i++){
@@ -451,9 +468,9 @@ public class UI_MainGame {
                 gc.fillRoundRect(slotX,slotY,game.tileSize,game.tileSize,10,10);
             }
             gc.drawImage(entity.inventory.get(i).down1, slotX, slotY);
-            slotX+=slotSize;
+            slotX+=slotSize+1;
             if(i==4 ||i==9||i==14){
-                slotY+=slotSize;
+                slotY+=slotSize+2;
                 //reset SlotX
                 slotX=slotXStart;
             }
@@ -465,7 +482,7 @@ public class UI_MainGame {
             int cursorWidth=game.tileSize;
             int cursorHeight=game.tileSize;
             //Draw cursor
-            gc.setStroke(Color.rgb(255, 255, 255));
+            gc.setStroke(darkCream);
             //gc.setFont(Font.font("Arial", 16));
            // gc.setStroke(new BasicStroke(3));
             //gc.setLineWidth(3);
@@ -476,9 +493,9 @@ public class UI_MainGame {
             //Another subwindow to show the description
             //DESCRIPTION FRAME
             int dFrameX= frameX;
-            int dFrameY= frameY+ frameHeight;
+            int dFrameY= frameY+ frameHeight+8;
             int dFrameWidth= frameWidth;
-            int dFrameHeight= game.tileSize*3;
+            int dFrameHeight= game.tileSize*4;
             //DRAW DESCRIPTION TEXT
             int textX=dFrameX+20;
             int textY=dFrameY+game.tileSize;
@@ -488,9 +505,9 @@ public class UI_MainGame {
             //this is for setting description TEXT
             int itemIndex=getItemIndexOnSlot(slotCol,slotRow);
             if(itemIndex<entity.inventory.size()) {
-                drawSubWindow(dFrameX,dFrameY,dFrameWidth,dFrameHeight);
+                drawSubWindow(dFrameX,dFrameY,dFrameWidth,dFrameHeight,cream,darkCream);
                 for(String line : entity.inventory.get(itemIndex).description.split("\n")) {
-
+                    gc.setFill(darkDarkCream);
                     gc.fillText(line, textX,textY);
                     textY+=32;
                 }
@@ -512,17 +529,18 @@ public class UI_MainGame {
     }
 
     public void select(){
-        drawDialogueScreen();
 
         //Draw Window
-        int x=game.tileSize*15;
+        int x=game.tileSize*8;
         int y=game.tileSize*4;
-        int width=game.tileSize*3;
-        int height=(int)(game.tileSize*3.5);
-        drawSubWindow(x, y, width, height);
+        int width=game.tileSize*14;
+        int height=(int)(game.tileSize*8);
+        drawSubWindow(x, y, width, height,cream,darkCream);
         // Text....
-        gc.setFill(Color.rgb(255, 255, 255));
-        gc.setFont(Font.font("Arial", 16));
+        gc.setFill(darkDarkCream);
+        pixelSport=Font.font(pixelSport.getFamily(),FontWeight.LIGHT,30);
+        gc.setFont(pixelSport);
+
         //DRAW TEXT
         x+= game.tileSize;
         y+= game.tileSize;
@@ -556,44 +574,72 @@ public class UI_MainGame {
     public void buy(){
 //        //Draw player Inventory
         drawInventory(game.player,false);
+//        frameX=game.tileSize*6;
+//        frameY=game.tileSize*4;
+//        frameWidth=game.tileSize*7;
+//        frameHeight=game.tileSize*6;
 //        //Draw NPC inventory
         drawInventory(npc,true);
 
-        //DRAW HINT WINDOWS
-        int x= game.tileSize*2;
-        int y=game.tileSize*9;
+//        //DRAW HINT WINDOWS
+        int x= game.tileSize*13;
+        int y=game.tileSize*3;
         int width=game.tileSize*6;
         int height=game.tileSize*2;
-        drawSubWindow(x,y,width,height);
+        drawSubWindow(x, y, y, 40,cream,darkCream);
         //drawing text
-        gc.fillText("[ESC] back",x+24,y+60);
+        gc.setFill(darkDarkCream);
+        gc.fillText("[ESC] back",x+15,y+20);
 
 
         //DRAW PLAYER COIN WINDOWs
-        x= game.tileSize*12;
+        x= game.tileSize*7+2;
         y=game.tileSize*9;
-        width=game.tileSize*6;
-        height=game.tileSize*2;
-        drawSubWindow(x, y, width, height);
-        gc.setFont(Font.font("Arial", 16));
-        gc.fillText("Your Coin: "+game.player.coin,x+24,y+60);
+        width=(game.tileSize*2)-10;
+        height=game.tileSize-16;
+//        drawSubWindow(x, y, width, height,cream,darkCream);
+        gc.setFill(darkCream);
+        gc.fillRoundRect(x,y,width,height,20,20);
+
+        gc.setFont(Font.font("Arial", 12));
+        gc.drawImage(coinImage,x-5,y,19,19);
+        gc.setFill(Color.WHITE);
+        gc.fillText(""+game.player.coin,x+14,y+12);
 
 
         //DRAW PRICE WINDOWS
         int itemIndex = getItemIndexOnSlot(npcSlotCol,npcSlotRow);
         if(itemIndex<npc.inventory.size()){
-            x=(int)(game.tileSize*5.5);
-            y=(int)(game.tileSize*5.5);
-            width=(int)(game.tileSize*2.5);
-            height=game.tileSize;
-            drawSubWindow(x,y,width,height);
+
+            //FRAME
+//            frameX=game.tileSize*18;
+//            frameY=game.tileSize*4;
+//            frameWidth=game.tileSize*7;
+//            frameHeight=game.tileSize*6;
+//            slotCol=npcSlotCol;
+//            slotRow=npcSlotRow;
+
+
+            x=(int)(game.tileSize*23);
+            y=(int)(game.tileSize*10)+28;
+            width=(game.tileSize*2)-10;
+            height=game.tileSize-16;
+//            drawSubWindow(x,y,width,height);
+            gc.setFill(darkCream);
+            gc.fillRoundRect(x,y,width,height,20,20);
             //draw
-            gc.drawImage(coinImage,x+10,y+10,25,25);
+
+            gc.setFont(Font.font("Arial", 12));
+            gc.setFill(Color.WHITE);
+
+
+
+            gc.drawImage(coinImage,x-5,y,19,19);
             int price= npc.inventory.get(itemIndex).price;
 
             String text=""+price;
-            x=getXForAlignToRightText(text,game.tileSize*8);
-            gc.fillText(text,x,y+20);
+            x=getXForAlignToRightText(text,(x+width));
+            gc.fillText(text,x-6,y+14);
 
             //IF BUY an ITEM
             if(game.keyHandler.isEnterPressed()==true){
@@ -766,18 +812,18 @@ public class UI_MainGame {
         gc.setFont(Font.font("Arial", 16));
     }
 
-    public void drawSubWindow(int x, int y, int width, int height, Color c){
-        gc.setFill(c);
+    public void drawSubWindow(int x, int y, int width, int height, Color color,Color strokeColor){
+        gc.setFill(color);
         gc.fillRoundRect(x,y,width,height,35,35);
 
-        c = Color.BLACK;
+//        c = Color.BLACK;
         //gc.setFill(c);
-        gc.setStroke(c);
+        gc.setStroke(strokeColor);
 
 
-        gc.setLineWidth(5); // Setting stroke width
-        gc.setLineDashes(0); // Setting line dashes to 0 (solid line)
-        gc.setLineCap(StrokeLineCap.ROUND); // Setting line cap to round
+        gc.setLineWidth(4); // Setting stroke width
+        //gc.setLineDashes(5); // Setting line dashes to 0 (solid line)
+        //gc.setLineCap(StrokeLineCap.ROUND); // Setting line cap to round
         gc.strokeRoundRect(x + 5, y + 5, width - 10, height - 10, 25, 25);
     }
 
