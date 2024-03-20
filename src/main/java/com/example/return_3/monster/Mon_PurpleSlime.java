@@ -17,7 +17,7 @@ public class Mon_PurpleSlime extends Entity {
         type = type_monster;
         maxLife = 8;
         life = maxLife;
-        attack = 20;
+        attack = 2;
         defense = 0;
         exp = 2;
         projectile=new OBJ_Rock(game);
@@ -54,11 +54,10 @@ public class Mon_PurpleSlime extends Entity {
                 onPath =true;
             }
         }
-
-//        if(onPath=true && tileDistance>20){
-//            System.out.println("distance is more than 20");
-//            onPath=false;
-//        }
+        if(onPath==true && tileDistance>10){
+            System.out.println("distance is more than 20");
+            onPath=false;
+        }
     }
     public void setAction(){
         if(onPath==true){
