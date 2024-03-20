@@ -548,8 +548,8 @@ public class UI_MainGame {
             gc.fillText(">",x-24,y);
             if(game.keyHandler.isEnterPressed()==true){
                 commandNum=0;
-                game.gameState=game.dialogueState;
-                currentDialogue="Come again bitch!";
+                game.gameState=game.playState;
+
             }
         }
     }
