@@ -17,7 +17,7 @@ public class Mon_GreenSlime extends Entity {
         type = type_monster;
         maxLife = 4;
         life = maxLife;
-        attack = 30;
+        attack = 3;
         defense = 0;
         exp = 2;
         //projectile=new OBJ_Rock(game);
