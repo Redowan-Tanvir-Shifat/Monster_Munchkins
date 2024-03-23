@@ -1,6 +1,7 @@
 package com.example.return_3.main;
 
 
+import com.example.return_3.entity.NPC_Trade;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -43,6 +44,9 @@ public class KeyHandler {
         //This is for PlayState
         if(game.gameState == game.playState){
             playState(code);
+            if(code==KeyCode.L){
+                new NPC_Trade(game).speak();
+            }
         }
         
         //DIALOGUE state
