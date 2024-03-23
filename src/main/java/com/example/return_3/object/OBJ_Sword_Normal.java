@@ -8,7 +8,7 @@ public class OBJ_Sword_Normal extends Entity {
     public OBJ_Sword_Normal(Game game) {
         super(game);
         type=type_sword;
-        name = "Normal Sword";
+        name = "Sword_Normal";
         down1 = loadImage("/objects/sword_normal.png", game.tileSize, game.tileSize);
         attackValue = 1;
         attackArea.setWidth(32);
