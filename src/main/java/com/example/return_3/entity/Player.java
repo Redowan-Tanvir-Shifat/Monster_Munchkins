@@ -43,9 +43,9 @@ public class Player extends Entity{
     //part 8 Object Interaction part ends
 
     public boolean attackCanceled=false;
-    public Player(Game game, KeyHandler keyHandler) {
+    public Player(Game game) {
         super(game);
-        this.keyHandler = keyHandler;
+        this.keyHandler = game.keyHandler;
         // Get the width and height of the screen
         double screenWidth = Game.gameScene.getWidth();
         double screenHeight = Game.gameScene.getHeight();
@@ -144,14 +144,14 @@ public class Player extends Entity{
 
 
         // <---------Player Status--------->
-        level = 1;
-        maxLife = 100;
-        life = maxLife;
-        strength = 1;    //The more strength he has, the more damage he gives...
-        dexterity = 1;   // The more dexterity he has, the less damage he receives...
-        exp = 0;
-        nextLevelExp = 20;
-        coin = 8000;
+        level = game.user.getLevel();
+        maxLife = game.user.getMaxLife();
+        life = game.user.getLife();
+        strength = game.user.getStrength();    //The more strength he has, the more damage he gives...
+        dexterity = game.user.getDexterity();   // The more dexterity he has, the less damage he receives...
+        exp = game.user.getExp();
+        nextLevelExp = game.user.getNextLevelExp();
+        coin = game.user.getCoin();
         //as we are not setting current weapon and sheild at the beginning so that is why we commented it
         //currentWeapon = new OBJ_Sword_Normal(game);
         //currentShield = new OBJ_Shield_Wood(game);
@@ -160,10 +160,10 @@ public class Player extends Entity{
         //attack = getAttack();    // The total attack value is decided by strength and weapon...
         //defense = getDefense();   // The total defence value is decided by dexterity and shield...
 
-        energy = 180;
-        maxEnergy = 200;
-        maxMana = 100;
-        mana = maxMana;
+        energy = game.user.getEnergy();
+        maxEnergy = game.user.getMaxEnergy();
+        maxMana = game.user.getBullet();
+        mana = game.user.getMaxBullet();
         //ammo=10;
 
     }

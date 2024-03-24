@@ -1,5 +1,7 @@
 package com.example.return_3.Controllers;
 
+import com.example.return_3.db.MyJDBC;
+import com.example.return_3.db.User;
 import com.example.return_3.main.Game;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -30,11 +32,19 @@ public class LoginController {
 
 
     public void login(ActionEvent event) {
-        if (Objects.equals(username.getText(), "Nashrah") && Objects.equals(password.getText(), "1234")) {
+        //Validate Login
+        Game.gameInstance.user= MyJDBC.validateLogin(username.getText(),password.getText());
+        if (Game.gameInstance.user!=null){
             Game.showGameScene();
-        } else {
+        }else{
             failedText.setText("Please enter correct password!");
         }
+
+//        if (Objects.equals(username.getText(), "Nashrah") && Objects.equals(password.getText(), "1234")) {
+//            Game.showGameScene();
+//        } else {
+//            failedText.setText("Please enter correct password!");
+//        }
     }
     public void close(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

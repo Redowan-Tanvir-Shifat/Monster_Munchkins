@@ -2,6 +2,7 @@ package com.example.return_3.main;
 
 
 import com.example.return_3.ai.PathFinder;
+import com.example.return_3.db.User;
 import com.example.return_3.entity.Entity;
 import com.example.return_3.entity.Player;
 import com.example.return_3.gameCenter.spaceInvaders.GameSpaceInvaders;
@@ -109,6 +110,7 @@ public final int messageState=10;
 
 
     public Player player ;
+    public User user;
     public KeyHandler keyHandler;
     //Static instance of gameSpaceInvaders;
     public static GameSpaceInvaders gameSpaceInvaders;
@@ -129,7 +131,7 @@ public final int messageState=10;
     public void start(Stage stage) throws Exception {
 
         primaryStage = stage; //as we have a static Stage variable . we initialize the value as game stage of start method
-        gameInstance= new Game(); // we create a
+        gameInstance= this; // we create a
         //showGameScene(); // now we are redirecting the showGameScene method
         loginPage();
 //        loadMenuScene();
@@ -204,7 +206,7 @@ public final int messageState=10;
         gameScene = new Scene(mainGameroot, screenWidth, screenHeight); // Set the scene before creating KeyHandler
         //gameScene=scene;
          keyHandler= new KeyHandler(this);
-        player = new Player(this, keyHandler); // KeyHandler depends on game.scene
+        player = new Player(this); // KeyHandler depends on game.scene
         mainGameroot.getChildren().add(mainGameCanvas);
         assetSetter.setObject();
         assetSetter.setNPC();
