@@ -5,10 +5,7 @@ import com.example.return_3.entity.NPC_School;
 import com.example.return_3.entity.NPC_Trade;
 import com.example.return_3.entity.NPC_Wizard;
 import com.example.return_3.interactiveTile.CuttableTree;
-import com.example.return_3.monster.Mon_BlueSlime;
-import com.example.return_3.monster.Mon_GreenSlime;
-import com.example.return_3.monster.Mon_PurpleSlime;
-import com.example.return_3.monster.Mon_RedSlime;
+import com.example.return_3.monster.*;
 import com.example.return_3.npc.*;
 import com.example.return_3.object.*;
 
@@ -113,41 +110,17 @@ i++;
         int i = 0;
 
         game.monster[game.currentMap][i] = new Mon_GreenSlime(game);
-        game.monster[game.currentMap][i].worldX = game.tileSize * 80;
-        game.monster[game.currentMap][i].worldY = game.tileSize * 144;
-        i++;
-
-        game.monster[game.currentMap][i] = new Mon_GreenSlime(game);
-        game.monster[game.currentMap][i].worldX = game.tileSize * 84;
-        game.monster[game.currentMap][i].worldY = game.tileSize * 144;
-        i++;
-
-        game.monster[game.currentMap][i] = new Mon_RedSlime(game);
-        game.monster[game.currentMap][i].worldX = game.tileSize * 81;
-        game.monster[game.currentMap][i].worldY = game.tileSize * 144;
-        i++;
-
-        game.monster[game.currentMap][i] = new Mon_RedSlime(game);
-        game.monster[game.currentMap][i].worldX = game.tileSize * 84;
-        game.monster[game.currentMap][i].worldY = game.tileSize * 142;
-        i++;
-        game.monster[game.currentMap][i] = new Mon_BlueSlime(game);
-        game.monster[game.currentMap][i].worldX = game.tileSize * 81;
+        game.monster[game.currentMap][i].worldX = game.tileSize * 85;
         game.monster[game.currentMap][i].worldY = game.tileSize * 143;
         i++;
 
-        game.monster[game.currentMap][i] = new Mon_BlueSlime(game);
-        game.monster[game.currentMap][i].worldX = game.tileSize * 82;
-        game.monster[game.currentMap][i].worldY = game.tileSize * 144;
-        i++;
-
-        game.monster[game.currentMap][i] = new Mon_PurpleSlime(game);
+        game.monster[game.currentMap][i] = new Mon_RedSlime(game);
         game.monster[game.currentMap][i].worldX = game.tileSize * 83;
-        game.monster[game.currentMap][i].worldY = game.tileSize * 145;
+        game.monster[game.currentMap][i].worldY = game.tileSize * 143;
         i++;
 
-        game.monster[game.currentMap][i] = new Mon_PurpleSlime(game);
-        game.monster[game.currentMap][i].worldX = game.tileSize * 85;
+        game.monster[game.currentMap][i] = new Mon_ORC(game);
+        game.monster[game.currentMap][i].worldX = game.tileSize * 87;
         game.monster[game.currentMap][i].worldY = game.tileSize * 143;
         i++;
     }

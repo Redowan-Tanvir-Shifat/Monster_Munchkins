@@ -130,8 +130,8 @@ public final int messageState=10;
 
         primaryStage = stage; //as we have a static Stage variable . we initialize the value as game stage of start method
         gameInstance= new Game(); // we create a
-        //showGameScene(); // now we are redirecting the showGameScene method
-        loginPage();
+        showGameScene(); // now we are redirecting the showGameScene method
+       // loginPage();
 //        loadMenuScene();
         primaryStage.setTitle("Powered By return_3;"); //set the title of the stage
         primaryStage.initStyle(StageStyle.UNDECORATED); //create un decorated style
