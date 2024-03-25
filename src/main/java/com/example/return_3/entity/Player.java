@@ -144,6 +144,7 @@ public class Player extends Entity{
 
 
         // <---------Player Status--------->
+        playerId=game.user.getUserId();
         level = game.user.getLevel();
         maxLife = game.user.getMaxLife();
         life = game.user.getLife();
