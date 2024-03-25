@@ -1,5 +1,7 @@
 package com.example.return_3.db;
 
+import com.example.return_3.entity.Entity;
+
 import java.sql.*;
 
 //JDBC class is used to interact with our MYSQL database to perform activites such as retrieving and updatin our db
@@ -98,6 +100,46 @@ public class MyJDBC {
             e.printStackTrace();
         }
         return true;
+    }
+
+    //Update users table before exit the game.
+    public static void updateUser(Entity user) {
+        try {
+            //establish a connection to the database using configuration
+            Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+
+            //create sql query
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "UPDATE users SET coin = ?, energy = ?, maxEnergy = ?, life = ?, maxLife = ?, " +
+                            "exp = ?, nextLevelExp = ?, level = ?, strength = ?, dexterity = ?, " +
+                            "bullet = ?, maxBullet = ? WHERE user_id = ?"
+            );
+
+            //replace the placeholders with values
+            preparedStatement.setInt(1, user.coin);
+            preparedStatement.setInt(2, user.energy);
+            preparedStatement.setInt(3, user.maxEnergy);
+            preparedStatement.setInt(4, user.life);
+            preparedStatement.setInt(5, user.maxLife);
+            preparedStatement.setInt(6, user.exp);
+            preparedStatement.setInt(7, user.nextLevelExp);
+            preparedStatement.setInt(8, user.level);
+            preparedStatement.setInt(9, user.strength);
+            preparedStatement.setInt(10, user.dexterity);
+            preparedStatement.setInt(11, user.mana);
+            preparedStatement.setInt(12, user.maxMana);
+            preparedStatement.setInt(13, user.playerId); // user_id for WHERE clause
+
+            //execute the update query
+            int rowsAffected = preparedStatement.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("User data updated successfully.");
+            } else {
+                System.out.println("No user found with the given ID.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }
