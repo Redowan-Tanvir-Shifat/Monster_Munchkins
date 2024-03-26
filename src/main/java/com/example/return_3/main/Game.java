@@ -5,6 +5,7 @@ import com.example.return_3.ai.PathFinder;
 import com.example.return_3.db.User;
 import com.example.return_3.entity.Entity;
 import com.example.return_3.entity.Player;
+import com.example.return_3.gameCenter.snakey.Snakey;
 import com.example.return_3.gameCenter.spaceInvaders.GameSpaceInvaders;
 import com.example.return_3.interactiveTile.InteractiveTile;
 import com.example.return_3.tile.Map;
@@ -60,8 +61,10 @@ public final int messageState=10;
 
     // $$$$$$$$$  GAME STATUS $$$$$$$$$
     public int gameStatus;
-    public int gameMainStatus=0;
-    public int gameSpaceInvadersStatus=1;
+    public int gameFXMLStatus=0;
+    public int gameMainStatus=1;
+    public int gameSpaceInvadersStatus=2;
+    public int gameSnakeyStatus=3;
 
 
 
@@ -117,6 +120,7 @@ public final int messageState=10;
     public KeyHandler keyHandler;
     //Static instance of gameSpaceInvaders;
     public static GameSpaceInvaders gameSpaceInvaders;
+    public static Snakey gameSnakey;
 
     public PathFinder pFinder= new PathFinder(this);
 
@@ -192,6 +196,7 @@ public final int messageState=10;
             }
         } else {
             primaryStage.setScene(gameScene);
+            //I confused that should i comment that or not
             gameTimer.start();
         }
     }
@@ -322,6 +327,8 @@ public final int messageState=10;
                 player.keyHandler.setSpacePressed(false);
             } else if (gameStatus==gameSpaceInvadersStatus) {
                 gameSpaceInvaders.update();
+            }else if(gameStatus==gameSnakeyStatus){
+                gameSnakey.update();
             }
 
 
@@ -408,7 +415,11 @@ public final int messageState=10;
         } else if (gameStatus == gameSpaceInvadersStatus) {
             gameSpaceInvaders.draw(gc);
             ui.draw(gc);
+        } else if (gameStatus == gameSnakeyStatus) {
+            gameSnakey.draw(gc);
+            ui.draw(gc);
         }
+
     }
 
 

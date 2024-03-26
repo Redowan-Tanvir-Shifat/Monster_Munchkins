@@ -11,7 +11,7 @@
           <Font size="29.0" />
         </font>
     </Text>
-    <Button fx:id="snakey" layoutX="97.0" layoutY="160.0" mnemonicParsing="false" onAction="#goTosnakey" prefHeight="40.0" prefWidth="438.0" text="Snakey">
+    <Button fx:id="snakey" layoutX="111.0" layoutY="179.0" mnemonicParsing="false" onAction="#goTosnakey" prefHeight="40.0" prefWidth="438.0" text="Snakey">
         <font>
           <Font size="18.0" />
         </font>
@@ -21,9 +21,24 @@
           <Font size="21.0" />
         </font>
     </Text>
-   <Button fx:id="backButton" layoutX="494.0" layoutY="329.0" mnemonicParsing="false" onAction="#back" text="Back">
+   <Button fx:id="backButton" layoutX="535.0" layoutY="503.0" mnemonicParsing="false" onAction="#back" text="Back">
       <font>
          <Font size="17.0" />
+      </font>
+   </Button>
+   <Button fx:id="puzzle" layoutX="111.0" layoutY="241.0" mnemonicParsing="false" onAction="#goToPuzzle" prefHeight="40.0" prefWidth="438.0" text="Puzzle">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </Button>
+   <Button fx:id="spaceInvaders" layoutX="111.0" layoutY="303.0" mnemonicParsing="false" onAction="#goToSpaceInvaders" prefHeight="40.0" prefWidth="438.0" text="SpaceInvaders">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </Button>
+   <Button fx:id="tictactoe" layoutX="111.0" layoutY="368.0" mnemonicParsing="false" onAction="#goToTicTacToe" prefHeight="40.0" prefWidth="438.0" text="TicTacToe">
+      <font>
+         <Font size="18.0" />
       </font>
    </Button>
 </AnchorPane>
