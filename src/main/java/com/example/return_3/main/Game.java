@@ -7,6 +7,7 @@ import com.example.return_3.entity.Entity;
 import com.example.return_3.entity.Player;
 import com.example.return_3.gameCenter.spaceInvaders.GameSpaceInvaders;
 import com.example.return_3.interactiveTile.InteractiveTile;
+import com.example.return_3.tile.Map;
 import com.example.return_3.tile.TileManager;
 import com.example.return_3.ui.UI;
 import javafx.application.Application;
@@ -49,8 +50,9 @@ public class Game extends Application {
     public final int wizConversationState = 4;
     public final int characterState = 5;
 
+
 //    public final int optionState=5;
-//    public final int gameOverState=6;
+    public final int mapState=6;
 //    public final int transitionState=7;
     public final int tradeState=8;
     public final int hospitalState = 9;
@@ -91,6 +93,7 @@ public final int messageState=10;
     public Canvas mainGameCanvas = new Canvas(screenWidth, screenHeight);
     public GraphicsContext gc = mainGameCanvas.getGraphicsContext2D();
     public TileManager tileM= new TileManager(this);
+    //public Map map= new Map(this);
     public CollisionChecker cChecker = new CollisionChecker(this);
     public EventHandler eventHandler= new EventHandler(this);
     public AssetSetter assetSetter= new AssetSetter(this);
@@ -337,6 +340,9 @@ public final int messageState=10;
         if(gameStatus == gameMainStatus) {
 
                 tileM.draw(gc);
+//                if(gameState== mapState){
+//                    map.drawFullMapScreen(gc);
+//                }
                 //draw Interactive tile
                 for(int i=0;i< iTile[currentMap].length;i++){
                     if(iTile[currentMap][i]!=null){

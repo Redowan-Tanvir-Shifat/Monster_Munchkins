@@ -48,6 +48,9 @@ public class KeyHandler {
             if(code==KeyCode.L){
                 new NPC_Trade(game).speak();
             }
+            if(code==KeyCode.M){
+                game.gameState=game.mapState;
+            }
         }
         
         //DIALOGUE state
@@ -82,6 +85,8 @@ public class KeyHandler {
         }
         else if (game.gameState == game.hospitalState) {
             hospitalState(code);
+        }else if (game.gameState == game.mapState) {
+            mapState(code);
         }
     }
 
@@ -344,6 +349,11 @@ public class KeyHandler {
             }
         }
 
+    }
+    public void mapState(KeyCode code) {
+        if(code==KeyCode.M){
+            game.gameState=game.mapState;
+        }
     }
 
     private void handleKeyRelease(KeyCode code) {
