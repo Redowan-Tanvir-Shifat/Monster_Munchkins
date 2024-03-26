@@ -26,10 +26,10 @@ public class Snakey {
     KeyHandler keyHandler;
     int k=0;
 
-    private static final int WIDTH = 640;
-    private static final int HEIGHT = WIDTH;
-    private static final int ROWS = 16;
-    private static final int COLUMNS = ROWS;
+    private static final int WIDTH = 960;
+    private static final int HEIGHT = 576;
+    private static final int ROWS = Game.gameInstance.maxScreenRow;
+    private static final int COLUMNS = Game.gameInstance.maxScreenCol;
     private static final int SQUARE_SIZE = WIDTH / ROWS;
     private static final String[] FOODS_IMAGE = new String[]{"/gameCenter/snakey/ic_orange.png", "/gameCenter/snakey/ic_apple.png", "/gameCenter/snakey/ic_cherry.png",
             "/gameCenter/snakey/ic_berry.png", "/gameCenter/snakey/ic_coconut_.png", "/gameCenter/snakey/ic_peach.png", "/gameCenter/snakey/ic_watermelon.png", "/gameCenter/snakey/ic_orange.png",
