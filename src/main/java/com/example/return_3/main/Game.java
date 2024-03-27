@@ -131,7 +131,7 @@ public final int messageState=10;
     public void start(Stage stage) throws Exception {
 
         primaryStage = stage; //as we have a static Stage variable . we initialize the value as game stage of start method
-        gameInstance= this; // we create a
+        gameInstance= this;  // we create a
         //showGameScene(); // now we are redirecting the showGameScene method
         loginPage();
 //        loadMenuScene();

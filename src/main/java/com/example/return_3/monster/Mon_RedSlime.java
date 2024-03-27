@@ -20,18 +20,16 @@ public class Mon_RedSlime extends Entity {
         defaultSpeed = 1;
         speed = defaultSpeed;
         type = type_monster;
-        maxLife = 8;
+        maxLife = 10;
         life = maxLife;
-        attack = 2;
+        attack = 4;
         defense = 0;
-        exp = 2;
-        projectile=new OBJ_Rock(game);
+        exp = 3;
+        projectile = new OBJ_Rock(game);
 
         //set the SOLID AREA for  collision part
         solidArea.setX(1);
         solidArea.setY(10);
-//        solidArea.width=42;
-//        solidArea.height=30;
         solidArea.setWidth(30);
         solidArea.setHeight(23);
         solidAreaDefaultX = (int)(solidArea.getX());
@@ -39,7 +37,6 @@ public class Mon_RedSlime extends Entity {
 
         getImage();
     }
-
     public void getImage(){
         up1 = loadImage( "/monster/redslime_down_1.png",game.tileSize,game.tileSize);
         up2 = loadImage("/monster/redslime_down_2.png",game.tileSize,game.tileSize);
@@ -50,67 +47,57 @@ public class Mon_RedSlime extends Entity {
         right1 = loadImage("/monster/redslime_down_1.png",game.tileSize,game.tileSize);
         right2 = loadImage("/monster/redslime_down_2.png",game.tileSize,game.tileSize);
     }
+
+
     public void setAction(){
-        actionLookCounter++;
-        Random random= new Random();
-        int actionLookCounterLimit =random.nextInt(40)+100;
-        if(actionLookCounter > actionLookCounterLimit){//for two seconds it means
 
-            int i = random.nextInt(100) + 1; //we add 1 because otherwise it will catch 0 to 99.. we want to avoid 0 here
-            if(i <= 25){
-                direction = "up";
-            }
-            if(i > 25 && i <= 50){
-                direction="down";
-            }
-            if(i > 50 && i<= 75){
-                direction="left";
-            }
-            if(i > 75 && i <= 100){
-                direction="right";
-            }
-            actionLookCounter=0;
+        if (onPath == true) {
+
+            // Check if stop chasing...
+            checkStopChasingOrNot(game.player, 10, 100);
+
+            // Search the direction to go...
+            searchPath(getGoalCol(game.player), getGoalRow(game.player));
+
+            // Check if shoot a projectile...
+            checkShootOrNot(100, 30);
+
         }
+        else {
 
+            // Check if it starts chasing...
+            checkStartChasingOrNot(game.player, 5, 100);
 
- //       AI method for throwing rock
-        int i=new Random().nextInt(100)+1;
-        if(i>99 && projectile.alive==false&&shotAvailableCounter==30){
-            projectile.set(worldX,worldY,direction,true,this);
-            //game.projectileList.add(projectile);
-
-            for (int ii = 0; ii < game.projectile[game.currentMap].length; ii++) {
-                if (game.projectile[game.currentMap][ii] == null) {
-                    game.projectile[game.currentMap][ii] = projectile;
-                    break;
-                }
-            }
-
-            shotAvailableCounter=0;
-
+            // Get a random direction...
+            getRandomDirection();
         }
     }
+
+
     public void damageReaction(){
         actionLookCounter = 0;
-        direction = game.player.direction;
-
-//        if(actionLookCounter<50){
-//            speed=4;
-//        }else{
-//            speed=1;
-//        }
+        switch (game.player.direction){
+            case "up": direction = "down"; break;
+            case "left": direction = "right"; break;
+            case "right": direction = "left"; break;
+            case "down": direction = "up"; break;
+        }
     }
+
     public void checkDrop(){
-        //CAST A DIE
-        int i=new Random().nextInt(100)+1;
-        //SET THE MONSTER DROP
-        if(i<50){
+        // CAST A DIE
+        int i = new Random().nextInt(100)+1;
+        // SET THE MONSTER DROP
+        if (i < 50){
             dropItem(new OBJ_Coin(game));
-        }if(i>=50&&i<75){
+        }
+        if (i >= 50 && i < 75){
             dropItem(new OBJ_Heart(game));
-        }if(i>=75&&i<100){
+        }
+        if (i >= 75 && i < 100){
             dropItem(new OBJ_Potion_Red(game));
         }
     }
+
 }
 

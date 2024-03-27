@@ -17,7 +17,7 @@ import java.beans.XMLEncoder;
 public class KeyHandler {
     Game game;
     Stage stage;
-    private boolean moveUp, moveDown, moveLeft, moveRight,enterPressed, spacePressed, escapePressed,FKeyPressed;
+    private boolean moveUp, moveDown, moveLeft, moveRight,enterPressed, spacePressed, vKeyPressed, escapePressed,FKeyPressed;
 
     public KeyHandler(Game game) {
         this.game = game;
@@ -263,6 +263,7 @@ public class KeyHandler {
             case F: FKeyPressed=true;break;
             case ENTER: enterPressed = true; break;
             case SPACE: spacePressed = true; break;
+            case V: vKeyPressed = true; break;
             case C: game.gameState = game.characterState; break;
             case ESCAPE: game.gameState = game.menuBarState; break;
 
@@ -359,6 +360,7 @@ public class KeyHandler {
             case F: FKeyPressed=false;break;
             case ENTER: enterPressed = false; break;
             case SPACE:spacePressed = false; break;
+            case V: vKeyPressed = false; break;
             case ESCAPE:escapePressed = false; break;
         }
 
@@ -388,6 +390,9 @@ public class KeyHandler {
     public boolean isSpacePressed() {
         return spacePressed;
     }
+    public boolean isVKeyPressed() {
+        return vKeyPressed;
+    }
     public boolean isEscapePressed() {
         return escapePressed;
     }
@@ -400,6 +405,9 @@ public class KeyHandler {
     }
     public void setSpacePressed(boolean spacePressed) {
         this.spacePressed = spacePressed;
+    }
+    public void setVKeyPressed(boolean vKeyPressed) {
+        this.vKeyPressed = vKeyPressed;
     }
     public void setEscapePressed(boolean escapePressed) {
         this.escapePressed = escapePressed;
@@ -414,6 +422,7 @@ public class KeyHandler {
         this.enterPressed = value;
         this.spacePressed = value;
         this.escapePressed = value;
+        this.vKeyPressed = value;
     }
 
 }
