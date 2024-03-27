@@ -11,5 +11,6 @@ public class OBJ_Shield_Blue extends Entity {
         down1=loadImage("/objects/shield_blue.png",game.tileSize,game.tileSize);
         defenseValue=2;
         description="["+name+"]\nA Shiny blue shield";
+        knockBackPower = 25;
     }
 }

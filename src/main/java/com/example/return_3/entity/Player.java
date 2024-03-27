@@ -79,6 +79,8 @@ public class Player extends Entity{
         //loadPlayerAttackImages(); // Load player attack images only work when player will choose different weapon
         //that is why we handle it in select items method
 
+
+
     }
 
 
@@ -95,18 +97,7 @@ public class Player extends Entity{
         //System.out.println("Player loaded");
     }
     private void loadPlayerAttackImages() {
-//        if(currentWeapon.type==type_sword) {
-//            attackUp1 = loadImage("/player/attacking_up_1.png", game.tileSize, game.tileSize * 2);
-//            attackUp2 = loadImage("/player/attacking_up_2.png", game.tileSize, game.tileSize * 2);
-//            attackDown1 = loadImage("/player/attacking_down_1.png", game.tileSize, game.tileSize * 2);
-//            attackDown2 = loadImage("/player/attacking_down_2.png", game.tileSize, game.tileSize * 2);
-//            attackLeft1 = loadImage("/player/attacking_left_1.png", game.tileSize * 2, game.tileSize);
-//            attackLeft2 = loadImage("/player/attacking_left_2.png", game.tileSize * 2, game.tileSize);
-//            attackRight1 = loadImage("/player/attacking_right_1.png", game.tileSize * 2, game.tileSize);
-//            attackRight2 = loadImage("/player/attacking_right_2.png", game.tileSize * 2, game.tileSize);
-//
-//            //System.out.println("Player loaded");
-//        }
+
         if(currentWeapon.type==type_sword) {
             attackUp1 = loadImage("/player/attacking_up_1.png", game.tileSize, game.tileSize * 2);
             attackUp2 = loadImage("/player/attacking_up_2.png", game.tileSize, game.tileSize * 2);
@@ -129,6 +120,15 @@ public class Player extends Entity{
         }
     }
 
+    public void loadPlayerGuardImages() {
+        if (currentShield.type == type_shield) {
+            guardUp = loadImage("/player/boy_guard_up.png", game.tileSize, game.tileSize);
+            guardDown = loadImage("/player/boy_guard_down.png", game.tileSize, game.tileSize);
+            guardLeft = loadImage("/player/boy_guard_left.png", game.tileSize, game.tileSize);
+            guardRight = loadImage("/player/boy_guard_right.png", game.tileSize, game.tileSize);
+        }
+
+    }
 
     public void setItems(){
         inventory.clear();
@@ -174,6 +174,8 @@ public class Player extends Entity{
     }
     private int getAttack() {
         attackArea=currentWeapon.attackArea;
+        motion1_duration = currentWeapon.motion1_duration;
+        motion2_duration = currentWeapon.motion2_duration;
         return attack = strength * currentWeapon.attackValue;
     }
 
@@ -190,9 +192,48 @@ public class Player extends Entity{
 
 
     public void update(){
-        if (attacking == true) {
+
+        if (knockBack == true) {
+
+            //Now check for the colliosion here.
+            collisionOn = false;
+            game.cChecker.checkTile(this);
+            game.cChecker.checkObject(this,true);
+            game.cChecker.checkEntity(this,game.npc);
+            game.cChecker.checkEntity(this,game.monster);
+            game.cChecker.checkEntity(this,game.iTile);
+
+            if (collisionOn == true) {
+                knockBackCounter = 0;
+                knockBack = false;
+                speed = defaultSpeed;
+            }
+            else if (collisionOn == false) {
+
+                switch (knockBackDirection) {
+                    case "up":worldY -= speed; break;
+                    case "down":worldY+= speed; break;
+                    case "left":worldX -= speed; break;
+                    case "right":worldX += speed; break;
+                }
+            }
+
+            knockBackCounter++;
+            if (knockBackCounter == 2) {  // KnockBack distance....
+                knockBackCounter = 0;
+                knockBack = false;
+                speed = defaultSpeed;
+            }
+
+        }
+        else if (attacking == true) {
             attacking();
-        } else if (keyHandler.isMoveUp() || keyHandler.isMoveDown() || keyHandler.isMoveRight() || keyHandler.isMoveLeft() || keyHandler.isEnterPressed() || keyHandler.isSpacePressed()) {
+        }
+        else if (currentShield != null && keyHandler.isVKeyPressed()) {
+            guarding = true;
+            guardCounter++;
+        }
+        else if (keyHandler.isMoveUp() || keyHandler.isMoveDown() || keyHandler.isMoveRight() || keyHandler.isMoveLeft() || keyHandler.isEnterPressed() || keyHandler.isSpacePressed()) {
             // Move player based on key inputs
             if (keyHandler.isMoveUp()) {
                 direction = "up";
@@ -207,16 +248,18 @@ public class Player extends Entity{
                 direction = "right";
             }
 
-            collisionOn = false;
+            guarding = false;
+            guardCounter = 0;
+
 
             //Now check for the colliosion here.
-
+            collisionOn = false;
             game.cChecker.checkTile(this);
-//            System.out.println("Collision: " + collisionOn);
 
             //Check Object collision
             int objIndex=game.cChecker.checkObject(this,true);
             pickUpObject(objIndex);
+
             //CHeck NPC collision
             int npcIndex=game.cChecker.checkEntity(this,game.npc);
             interactNPC(npcIndex);
@@ -224,11 +267,13 @@ public class Player extends Entity{
             //CHECK MONSTER COLLISION
             int monsterIndex = game.cChecker.checkEntity(this,game.monster);
             contactMonster(monsterIndex);
-            //in useWeapon method are making player attack status true or false
-            useWeapon();
 
             //CHECK INTERACTIVE TILE COLLISION
             game.cChecker.checkEntity(this,game.iTile);
+
+            //in useWeapon method are making player attack status true or false
+            useWeapon();
+
 
             //new code
 
@@ -264,7 +309,14 @@ public class Player extends Entity{
                 spriteCounter = 0;
             }
 
-        }//END  of IF statement
+        }
+        else {
+            guarding = false;
+            guardCounter = 0;
+        }
+
+
+            //END  of IF statement
 
         if(game.keyHandler.isFKeyPressed()==true && projectile.alive==false
                 && shotAvailableCounter==30 && projectile.haveResource(this)==true){
@@ -300,6 +352,7 @@ public class Player extends Entity{
             invincibleCounter++;
             if (invincibleCounter > 60) {
                 invincible = false;
+                transparent = false;
                 invincibleCounter = 0;
             }
         }
@@ -330,63 +383,19 @@ public class Player extends Entity{
             //gp.playSE(7);
         }
     }
-    private void attacking() {
-        spriteCounter++;
-        if (spriteCounter <= 5) {
-            spriteNum = 1;
-        }
-        if (spriteCounter > 5 && spriteCounter <= 25) {
-            spriteNum = 2;
-
-            // SAVE THE CURRENT DATA......
-            int currentWorldX = worldX;
-            int currentWorldY = worldY;
-            int solidAreaWidth = (int) solidArea.getWidth();
-            int solidAreaHeight = (int) solidArea.getHeight();
-
-            // ADJUST PLAYRER S WORLD X/Y FOR THE ATTACK AREA
-            switch (direction) {
-                case "up" : worldY -= (int) attackArea.getHeight(); break;
-                case "down" : worldY += (int) attackArea.getHeight(); break;
-                case "left" : worldX -= (int) attackArea.getWidth(); break;
-                case "right" : worldX += (int) attackArea.getWidth(); break;
-            }
-            // ATTACK BECOME SOLID AREA
-            solidArea.setWidth(attackArea.getWidth());
-            solidArea.setHeight(attackArea.getHeight());
-            //CHECK monster collision with the updated worldX, worldY and solidArea....
-            int monsterIndex = game.cChecker.checkEntity(this, game.monster);
-            damagedMonster(monsterIndex,attack, currentWeapon.knockBackPower);
-
-            //CHECK INTERACTIVE TILES COLLSION AND GET ATTACK
-            int iTileIndex= game.cChecker.checkEntity(this,game.iTile);
-            damageInteractiveTiles(iTileIndex);
-
-            int projectileIndex = game.cChecker.checkEntity(this, game.projectile);
-            damageProjectile(projectileIndex);
 
 
-            // After checking collision restore the original data...
-            worldX = currentWorldX;
-            worldY = currentWorldY;
-            solidArea.setWidth(solidAreaWidth);
-            solidArea.setHeight(solidAreaHeight);
-        }
-        if (spriteCounter > 25) {
-            spriteNum = 1;
-            spriteCounter = 0;
-            attacking = false;
-        }
-    }
-    public void damagedMonster(int i,int attack, int knockBackPower) {
+    public void damagedMonster(int i, Entity attacker, int attack, int knockBackPower) {
         if (i != 999) {
             if (game.monster[game.currentMap][i].invincible == false) {
 
                 if (knockBackPower > 0) {
-                    knockBack(game.monster[game.currentMap][i], knockBackPower);
+                    setKnockBack(game.monster[game.currentMap][i], attacker, knockBackPower);
                 }
 
-
+                if (game.monster[game.currentMap][i].offBalance == true) {
+                    attack *= 5;
+                }
 
                 int damage = attack - game.monster[game.currentMap][i].defense;
                 if (damage < 0) {
@@ -406,20 +415,7 @@ public class Player extends Entity{
                     exp += game.monster[game.currentMap][i].exp;
                     game.ui.uiMainGame.addMessage(" EXP + " + game.monster[game.currentMap][i].exp);
 
-//                    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(5), event -> {
-//                        if(name.equals("Red Slime")){
-//                        game.monster[game.currentMap][i] = new Mon_RedSlime(game);
-//                        }else if(name.equals("Green Slime")){
-//                            game.monster[game.currentMap][i] = new Mon_GreenSlime(game);
-//                        }
-//                        game.monster[game.currentMap][i].worldX = game.tileSize * 80;
-//                        game.monster[game.currentMap][i].worldY = game.tileSize * 144;
-////                        game.assetSetter.setMonster();
-//                    }));
-//
-//                    timeline.play();
                     new MonsterSetterThread(game,i,name).start();
-
 
                 }
             }
@@ -437,43 +433,27 @@ public class Player extends Entity{
 
                 life -= damage;
                 invincible = true;
+                transparent = true;
 
-                if (life >= 0 && life <= 20) {
-                    game.ui.uiMainGame.addMessage( "Careful, " + life + " % Life left!");
-                }
-                if (life <= 0) {
-                    dying = true;
-                    setHospitalPosition();
-                    keyHandler.setBooleanAll(false);
-                    life = maxLife;
-                    if (coin >= 300) {
-                        coin -= 300;
-                    }
-                    else {
-                        coin = 0;
-                    }
-                }
             }
         }
     }
-    private void useWeapon() {
+    public void useWeapon() {
         //we set the condition when player equip a weapon only then time he or she can attack
-        if (currentWeapon!=null &&game.keyHandler.isSpacePressed() == true) {
+        if (currentWeapon !=null && game.keyHandler.isSpacePressed()) {
             attacking = true;
         }
     }
-    private void damageProjectile(int i) {
+
+
+    public void damageProjectile(int i) {
         if (i != 999) {
             Entity projectile = game.projectile[game.currentMap][i];
             projectile.alive = false;
             generateParticle(projectile, projectile);
         }
     }
-    public void knockBack(Entity entity, int knockBackPower) {
-        entity.direction = direction;
-        entity.speed += knockBackPower;
-        entity.knockBack = true;
-    }
+
     public void damageInteractiveTiles(int i){
         if(i!=999 && game.iTile[game.currentMap][i].destructible==true
                 && game.iTile[game.currentMap][i].isCorrectItem(this)==true &&game.iTile[game.currentMap][i].invincible==false){
@@ -539,6 +519,7 @@ public class Player extends Entity{
                 currentShield=selectedItem;
                 //update the defense method with proper defense power
                 defense=getDefense();
+                loadPlayerGuardImages();
             }
             if(selectedItem.type==type_consumable){
                 //WE are gonna use this later
@@ -577,6 +558,9 @@ public class Player extends Entity{
                         image = attackUp2;
                     }
                 }
+                if (guarding == true) {
+                    image = guardUp;
+                }
                 break;
             case "down":
                 if (attacking == false) {
@@ -596,6 +580,9 @@ public class Player extends Entity{
                     if(spriteNum == 2){
                         image = attackDown2;
                     }
+                }
+                if (guarding == true) {
+                    image = guardDown;
                 }
                 break;
             case "left":
@@ -617,6 +604,9 @@ public class Player extends Entity{
                         image = attackLeft2;
                     }
                 }
+                if (guarding == true) {
+                    image = guardLeft;
+                }
                 break;
             case "right":
                 if (attacking == false) {
@@ -637,6 +627,9 @@ public class Player extends Entity{
                         image = attackRight2;
                     }
                 }
+                if (guarding == true) {
+                    image = guardRight;
+                }
                 break;
 
 
@@ -644,7 +637,7 @@ public class Player extends Entity{
             // Handle other directions similarly
         }
 
-        if (invincible == true) {
+        if (transparent == true) {
             gc.setGlobalAlpha(0.3);
         }
         if (dying == true) {
