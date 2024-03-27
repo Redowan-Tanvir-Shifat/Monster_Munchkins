@@ -356,7 +356,7 @@ public class KeyHandler {
     }
     public void mapState(KeyCode code) {
         if(code==KeyCode.M){
-            game.gameState=game.mapState;
+            game.gameState=game.playState;
         }
     }
 
