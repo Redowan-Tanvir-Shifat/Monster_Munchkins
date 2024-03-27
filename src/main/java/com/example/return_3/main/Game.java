@@ -2,6 +2,7 @@ package com.example.return_3.main;
 
 
 import com.example.return_3.ai.PathFinder;
+import com.example.return_3.db.MyJDBC;
 import com.example.return_3.db.User;
 import com.example.return_3.entity.Entity;
 import com.example.return_3.entity.Player;
@@ -24,7 +25,8 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import java.io.IOException;
+
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -140,14 +142,45 @@ public class Game extends Application {
 
         primaryStage = stage; //as we have a static Stage variable . we initialize the value as game stage of start method
         gameInstance= this;  // we create a
-        //showGameScene(); // now we are redirecting the showGameScene method
-        loginPage();
-//        loadMenuScene();
+        // Check login status
+        int loginStatus = readLoginStatusFromFile();
+        if (loginStatus < 0) {
+            // Negative number indicates logout, so display login page
+            loginPage();
+        } else {
+            // Positive number indicates login, load user data and start the game
+            User user = loadUserData(loginStatus);
+            if (user != null) {
+                Game.gameInstance.user = user;
+                showGameScene();
+            } else {
+                // Error loading user data, revert to login page
+                loginPage();
+            }
+        }
         primaryStage.setTitle("Powered By return_3;"); //set the title of the stage
         primaryStage.initStyle(StageStyle.UNDECORATED); //create un decorated style
 //        primaryStage.setScene(menuScene);
         primaryStage.show(); //by this show method we are now showing the stage
         //primaryStage.setOnCloseRequest(windowEvent -> exit(primaryStage));
+    }
+
+    private int readLoginStatusFromFile() {
+        try (BufferedReader reader = new BufferedReader(new FileReader("loginStatus.txt"))) {
+            String line = reader.readLine();
+            if (line != null) {
+                return Integer.parseInt(line);
+            }
+        } catch (IOException | NumberFormatException e) {
+            e.printStackTrace();
+        }
+        return -1; // Default to negative number if file reading fails
+    }
+
+    private User loadUserData(int userId) {
+        // Load user data from database or file based on userId
+        // Example code to load user data
+        return MyJDBC.getUserData(userId);
     }
 
     //----------------------------- IN this Exit method our Application will close ----------------------------------------------------------------
@@ -305,6 +338,26 @@ public class Game extends Application {
 
     public static void exitGame() {
         Platform.exit();
+    }
+
+    public void logout(){
+        try {
+            // Write negative number to indicate logout
+            BufferedWriter writer = new BufferedWriter(new FileWriter("loginStatus.txt"));
+            writer.write("-1");
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        // Optionally, you can reset user data
+        Game.gameInstance.user = null;
+        // Redirect to login page
+        try {
+            loginPage();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     public void update() {

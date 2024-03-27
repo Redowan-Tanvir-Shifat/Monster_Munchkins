@@ -60,6 +60,42 @@ public class MyJDBC {
         return  null;
     }
 
+    public static User getUserData(int userId) {
+        try {
+            Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM users WHERE user_id = ?"
+            );
+            preparedStatement.setInt(1, userId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                // Retrieve user data from the result set
+                String username = resultSet.getString("username");
+                String password = resultSet.getString("password");
+                int coin = resultSet.getInt("coin");
+                int energy = resultSet.getInt("energy");
+                int maxEnergy = resultSet.getInt("maxEnergy");
+                int life = resultSet.getInt("life");
+                int maxLife = resultSet.getInt("maxLife");
+                int exp = resultSet.getInt("exp");
+                int nextLevelExp = resultSet.getInt("nextLevelExp");
+                int level = resultSet.getInt("level");
+                int strength = resultSet.getInt("strength");
+                int dexterity = resultSet.getInt("dexterity");
+                int bullet = resultSet.getInt("bullet");
+                int maxBullet = resultSet.getInt("maxBullet");
+
+                // Create and return a User object
+                return new User(userId, username, password, coin, energy, maxEnergy, life, maxLife, exp, nextLevelExp,
+                        level, strength, dexterity, bullet, maxBullet);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null; // User not found or error occurred
+    }
+
     //true - register success
     //false - register failed
     public static boolean register(String username,String password){
