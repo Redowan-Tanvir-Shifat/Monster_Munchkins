@@ -53,14 +53,14 @@ public class Mon_RedSlime extends Entity {
 
         if (onPath == true) {
 
-            // Check if id stop chasing...
+            // Check if stop chasing...
             checkStopChasingOrNot(game.player, 10, 100);
 
             // Search the direction to go...
             searchPath(getGoalCol(game.player), getGoalRow(game.player));
 
             // Check if shoot a projectile...
-            //checkShootOrNot(200, 30);
+            checkShootOrNot(100, 30);
 
         }
         else {

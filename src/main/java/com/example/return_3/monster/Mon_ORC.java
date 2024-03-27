@@ -25,6 +25,7 @@ public class Mon_ORC extends Entity {
         attack = 10;
         defense = 0;
         exp = 5;
+        knockBackPower = 5;
         projectile=new OBJ_Rock(game);
 
         //set the SOLID AREA for  collision part
@@ -37,8 +38,8 @@ public class Mon_ORC extends Entity {
         attackArea.setWidth(32);
         attackArea.setHeight(32);
 
-        motion1_duration = 30;
-        motion2_duration = 50;
+        motion1_duration = 40;
+        motion2_duration = 85;
 
         loadMonsterImages();
         loadMonsterAttackImages();
@@ -90,8 +91,8 @@ public class Mon_ORC extends Entity {
             getRandomDirection();
 
             // Check if it attacks...
-            if (attacking == false) {
-                checkAttackOrNot(10, game.tileSize * 4, game.tileSize);
+            if (attacking == false) {   // make monster aggressive by deceasing the rate...
+                checkAttackOrNot(30, game.tileSize * 4, game.tileSize);
             }
         }
     }

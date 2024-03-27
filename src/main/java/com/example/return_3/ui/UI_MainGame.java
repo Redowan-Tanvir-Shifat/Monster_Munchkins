@@ -420,7 +420,7 @@ public class UI_MainGame {
 
         if(entity==game.player){
             //FRAME
-            frameX=game.tileSize*6;
+            frameX=game.tileSize*18;
             frameY=game.tileSize*4;
             frameWidth=game.tileSize*7;
             frameHeight=game.tileSize*6;

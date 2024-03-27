@@ -79,6 +79,8 @@ public class Player extends Entity{
         //loadPlayerAttackImages(); // Load player attack images only work when player will choose different weapon
         //that is why we handle it in select items method
 
+
+
     }
 
 
@@ -118,6 +120,15 @@ public class Player extends Entity{
         }
     }
 
+    public void loadPlayerGuardImages() {
+        if (currentShield.type == type_shield) {
+            guardUp = loadImage("/player/boy_guard_up.png", game.tileSize, game.tileSize);
+            guardDown = loadImage("/player/boy_guard_down.png", game.tileSize, game.tileSize);
+            guardLeft = loadImage("/player/boy_guard_left.png", game.tileSize, game.tileSize);
+            guardRight = loadImage("/player/boy_guard_right.png", game.tileSize, game.tileSize);
+        }
+
+    }
 
     public void setItems(){
         inventory.clear();
@@ -180,9 +191,48 @@ public class Player extends Entity{
 
 
     public void update(){
-        if (attacking == true) {
+
+        if (knockBack == true) {
+
+            //Now check for the colliosion here.
+            collisionOn = false;
+            game.cChecker.checkTile(this);
+            game.cChecker.checkObject(this,true);
+            game.cChecker.checkEntity(this,game.npc);
+            game.cChecker.checkEntity(this,game.monster);
+            game.cChecker.checkEntity(this,game.iTile);
+
+            if (collisionOn == true) {
+                knockBackCounter = 0;
+                knockBack = false;
+                speed = defaultSpeed;
+            }
+            else if (collisionOn == false) {
+
+                switch (knockBackDirection) {
+                    case "up":worldY -= speed; break;
+                    case "down":worldY+= speed; break;
+                    case "left":worldX -= speed; break;
+                    case "right":worldX += speed; break;
+                }
+            }
+
+            knockBackCounter++;
+            if (knockBackCounter == 2) {  // KnockBack distance....
+                knockBackCounter = 0;
+                knockBack = false;
+                speed = defaultSpeed;
+            }
+
+        }
+        else if (attacking == true) {
             attacking();
-        } else if (keyHandler.isMoveUp() || keyHandler.isMoveDown() || keyHandler.isMoveRight() || keyHandler.isMoveLeft() || keyHandler.isEnterPressed() || keyHandler.isSpacePressed()) {
+        }
+        else if (currentShield != null && keyHandler.isVKeyPressed()) {
+            guarding = true;
+            guardCounter++;
+        }
+        else if (keyHandler.isMoveUp() || keyHandler.isMoveDown() || keyHandler.isMoveRight() || keyHandler.isMoveLeft() || keyHandler.isEnterPressed() || keyHandler.isSpacePressed()) {
             // Move player based on key inputs
             if (keyHandler.isMoveUp()) {
                 direction = "up";
@@ -197,16 +247,18 @@ public class Player extends Entity{
                 direction = "right";
             }
 
-            collisionOn = false;
+            guarding = false;
+            guardCounter = 0;
+
 
             //Now check for the colliosion here.
-
+            collisionOn = false;
             game.cChecker.checkTile(this);
-//            System.out.println("Collision: " + collisionOn);
 
             //Check Object collision
             int objIndex=game.cChecker.checkObject(this,true);
             pickUpObject(objIndex);
+
             //CHeck NPC collision
             int npcIndex=game.cChecker.checkEntity(this,game.npc);
             interactNPC(npcIndex);
@@ -214,11 +266,13 @@ public class Player extends Entity{
             //CHECK MONSTER COLLISION
             int monsterIndex = game.cChecker.checkEntity(this,game.monster);
             contactMonster(monsterIndex);
-            //in useWeapon method are making player attack status true or false
-            useWeapon();
 
             //CHECK INTERACTIVE TILE COLLISION
             game.cChecker.checkEntity(this,game.iTile);
+
+            //in useWeapon method are making player attack status true or false
+            useWeapon();
+
 
             //new code
 
@@ -254,7 +308,14 @@ public class Player extends Entity{
                 spriteCounter = 0;
             }
 
-        }//END  of IF statement
+        }
+        else {
+            guarding = false;
+            guardCounter = 0;
+        }
+
+
+            //END  of IF statement
 
         if(game.keyHandler.isFKeyPressed()==true && projectile.alive==false
                 && shotAvailableCounter==30 && projectile.haveResource(this)==true){
@@ -290,6 +351,7 @@ public class Player extends Entity{
             invincibleCounter++;
             if (invincibleCounter > 60) {
                 invincible = false;
+                transparent = false;
                 invincibleCounter = 0;
             }
         }
@@ -330,6 +392,10 @@ public class Player extends Entity{
                     setKnockBack(game.monster[game.currentMap][i], attacker, knockBackPower);
                 }
 
+                if (game.monster[game.currentMap][i].offBalance == true) {
+                    attack *= 5;
+                }
+
                 int damage = attack - game.monster[game.currentMap][i].defense;
                 if (damage < 0) {
                     damage = 0;
@@ -357,7 +423,7 @@ public class Player extends Entity{
     }
     private void contactMonster(int i) {
         if (i != 999) {
-            if (invincible == false && game.monster[game.currentMap][i].dying==false && Objects.equals(game.monster[game.currentMap][i].name, "Green Slime")) {
+            if (invincible == false && game.monster[game.currentMap][i].dying==false) {
 
                 int damage = game.monster[game.currentMap][i].attack - defense;
                 if (damage < 0) {
@@ -366,31 +432,19 @@ public class Player extends Entity{
 
                 life -= damage;
                 invincible = true;
+                transparent = true;
 
-                if (life >= 0 && life <= 20) {
-                    game.ui.uiMainGame.addMessage( "Careful, " + life + " % Life left!");
-                }
-                if (life <= 0) {
-                    dying = true;
-                    setHospitalPosition();
-                    keyHandler.setBooleanAll(false);
-                    life = maxLife;
-                    if (coin >= 300) {
-                        coin -= 300;
-                    }
-                    else {
-                        coin = 0;
-                    }
-                }
             }
         }
     }
     public void useWeapon() {
         //we set the condition when player equip a weapon only then time he or she can attack
-        if (currentWeapon!=null &&game.keyHandler.isSpacePressed() == true) {
+        if (currentWeapon !=null && game.keyHandler.isSpacePressed()) {
             attacking = true;
         }
     }
+
+
     public void damageProjectile(int i) {
         if (i != 999) {
             Entity projectile = game.projectile[game.currentMap][i];
@@ -464,6 +518,7 @@ public class Player extends Entity{
                 currentShield=selectedItem;
                 //update the defense method with proper defense power
                 defense=getDefense();
+                loadPlayerGuardImages();
             }
             if(selectedItem.type==type_consumable){
                 //WE are gonna use this later
@@ -502,6 +557,9 @@ public class Player extends Entity{
                         image = attackUp2;
                     }
                 }
+                if (guarding == true) {
+                    image = guardUp;
+                }
                 break;
             case "down":
                 if (attacking == false) {
@@ -521,6 +579,9 @@ public class Player extends Entity{
                     if(spriteNum == 2){
                         image = attackDown2;
                     }
+                }
+                if (guarding == true) {
+                    image = guardDown;
                 }
                 break;
             case "left":
@@ -542,6 +603,9 @@ public class Player extends Entity{
                         image = attackLeft2;
                     }
                 }
+                if (guarding == true) {
+                    image = guardLeft;
+                }
                 break;
             case "right":
                 if (attacking == false) {
@@ -562,6 +626,9 @@ public class Player extends Entity{
                         image = attackRight2;
                     }
                 }
+                if (guarding == true) {
+                    image = guardRight;
+                }
                 break;
 
 
@@ -569,7 +636,7 @@ public class Player extends Entity{
             // Handle other directions similarly
         }
 
-        if (invincible == true) {
+        if (transparent == true) {
             gc.setGlobalAlpha(0.3);
         }
         if (dying == true) {

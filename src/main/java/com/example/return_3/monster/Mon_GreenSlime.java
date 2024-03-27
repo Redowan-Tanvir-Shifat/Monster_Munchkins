@@ -52,10 +52,10 @@ public class Mon_GreenSlime extends Entity {
         if (onPath == true) {
 
             // Check if id stop chasing...
-            checkStopChasingOrNot(game.player, 10, 100);
+            //checkStopChasingOrNot(game.player, 10, 100);
 
             // Search the direction to go...
-            searchPath(getGoalCol(game.player), getGoalRow(game.player));
+            //searchPath(getGoalCol(game.player), getGoalRow(game.player));
 
             // Check if shoot a projectile...
             //checkShootOrNot(200, 30);

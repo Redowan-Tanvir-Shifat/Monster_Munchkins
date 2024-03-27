@@ -42,7 +42,7 @@ public class Entity {
     // <----------IMAGE--------->
     public Image image1, image2, image3;
     public Image up1, up2, down1, down2, left1, left2, right1, right2;
-    public Image attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1, attackRight2;
+    public Image attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1, attackRight2, guardUp, guardDown, guardLeft, guardRight;
 
 
 
@@ -50,13 +50,16 @@ public class Entity {
     public boolean collision = false;
     public boolean collisionOn = false;
     public boolean invincible = false;
+    public boolean transparent = false;
     public boolean attacking = false;
+    public boolean guarding  = false;
     public boolean alive = true;
     public boolean dying = false;
     public boolean hpBarOn = false;
     public boolean onPath = false;
     public boolean chatOnStatus = false;
     public boolean knockBack = false;
+    public boolean offBalance;
 
     //For SpaceInvadors
     public boolean destroyed=false;
@@ -73,6 +76,8 @@ public class Entity {
     public int hpBarCounter = 0;
     public int shotAvailableCounter = 0;
     public int knockBackCounter = 0;
+    public int guardCounter = 0;
+    public  int offBalanceCounter = 0;
 
 
 
@@ -272,8 +277,17 @@ public class Entity {
         if(shotAvailableCounter<30){
             shotAvailableCounter++;
         }
-        if(type==type_npc){
 
+        if (offBalance == true) {
+            offBalanceCounter++;
+            if (offBalanceCounter > 60) {
+                offBalance = false;
+                offBalanceCounter = 0;
+            }
+        }
+
+
+        if(type==type_npc){
             int xDistance=Math.abs(worldX-game.player.worldX);
             int yDistance=Math.abs(worldY-game.player.worldY);
             int tileDistance=(xDistance+yDistance)/game.tileSize;
@@ -367,6 +381,18 @@ public class Entity {
             }
             actionLookCounter=0;
         }
+    }
+
+
+    public String getOppositeDirection(String direction) {
+        String oppositeDirection = "";
+        switch (direction) {
+            case "up" : oppositeDirection = "down"; break;
+            case "down" : oppositeDirection = "up"; break;
+            case "left" : oppositeDirection = "right"; break;
+            case "right" : oppositeDirection = "left"; break;
+        }
+        return oppositeDirection;
     }
 
 
@@ -469,12 +495,52 @@ public class Entity {
 
     public void damagePlayer(int attack){
         if (game.player.invincible == false) {
-                int damage = attack - game.player.defense;
+            int damage = attack - game.player.defense;
+
+            // Get and opposite direction of an attacker...
+            String canGuardDirection = getOppositeDirection(direction);
+            if (game.player.guarding == true && game.player.direction.equals(canGuardDirection)) {
+                // Parry : // if you parry 10 frame before monsters attack you can parry monster...if you increase the value the parry became easier...
+                if (game.player.guardCounter < 10) {
+                    damage = 0;
+                    setKnockBack(this, game.player, game.player.currentShield.knockBackPower);
+                    offBalance = true;
+                    spriteCounter -= 60;
+                }
+
+                // Normal guard...
+                damage /= 3;
+            }
+            else {
+                // Not Guarding...
                 if (damage < 0) {
                     damage = 0;
                 }
-                game.player.life -= damage;
-                game.player.invincible = true;
+            }
+
+            if (damage != 0) {
+                game.player.transparent = true;
+                setKnockBack(game.player, this, knockBackPower);
+            }
+
+            game.player.life -= damage;
+            game.player.invincible = true;
+
+            if (game.player.life >= 0 && game.player.life <= 20) {
+                game.ui.uiMainGame.addMessage( "Careful, " + game.player.life + " % Life left!");
+            }
+            if (game.player.life <= 0) {
+                game.player.dying = true;
+                game.player.setHospitalPosition();
+                game.keyHandler.setBooleanAll(false);
+                game.player.life = game.player.maxLife;
+                if (game.player.coin >= 300) {
+                    game.player.coin -= 300;
+                }
+                else {
+                    game.player.coin = 0;
+                }
+            }
         }
     }
 
