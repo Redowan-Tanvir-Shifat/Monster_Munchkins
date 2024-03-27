@@ -1,6 +1,7 @@
 package com.example.return_3.main;
 
 
+import com.example.return_3.db.MyJDBC;
 import com.example.return_3.entity.NPC_Trade;
 import javafx.application.Platform;
 import javafx.scene.Scene;
@@ -242,6 +243,7 @@ public class KeyHandler {
                 game.player.setDefaultPositions();
             }
             if (game.ui.uiMainGame.commandNum == 1) {
+                MyJDBC.updateUser(game.player);
                 Game.exitGame();
             }
         }

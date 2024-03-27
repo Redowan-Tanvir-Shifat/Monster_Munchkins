@@ -92,6 +92,7 @@ public class Entity {
 
 
     // <------------CHARACTER ATTRIBUTES----------->
+    public int playerId;
     public int level;
     public int strength;
     public int dexterity;

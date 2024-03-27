@@ -593,18 +593,18 @@ public class UI_MainGame {
 
 
         //DRAW PLAYER COIN WINDOWs
-        x= game.tileSize*7+2;
-        y=game.tileSize*9;
-        width=(game.tileSize*2)-10;
-        height=game.tileSize-16;
-//        drawSubWindow(x, y, width, height,cream,darkCream);
-        gc.setFill(darkCream);
-        gc.fillRoundRect(x,y,width,height,20,20);
-
-        gc.setFont(Font.font("Arial", 12));
-        gc.drawImage(coinImage,x-5,y,19,19);
-        gc.setFill(Color.WHITE);
-        gc.fillText(""+game.player.coin,x+14,y+12);
+//        x= game.tileSize*7+2;
+//        y=game.tileSize*9;
+//        width=(game.tileSize*2)-10;
+//        height=game.tileSize-16;
+////        drawSubWindow(x, y, width, height,cream,darkCream);
+//        gc.setFill(darkCream);
+//        gc.fillRoundRect(x,y,width,height,20,20);
+//
+//        gc.setFont(Font.font("Arial", 12));
+//        gc.drawImage(coinImage,x-5,y,19,19);
+//        gc.setFill(Color.WHITE);
+//        gc.fillText(""+game.player.coin,x+14,y+12);
 
 
         //DRAW PRICE WINDOWS
