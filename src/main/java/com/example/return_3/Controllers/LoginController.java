@@ -10,6 +10,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -29,22 +31,23 @@ public class LoginController {
     String password1;
 
     //-------------------------- --- IN this `startGame` method our Application will direct you `showGameScene` and then game will start  ----------------------------------------------------------------
-
-
     public void login(ActionEvent event) {
         //Validate Login
         Game.gameInstance.user= MyJDBC.validateLogin(username.getText(),password.getText());
         if (Game.gameInstance.user!=null){
+            try {
+                // Write user ID to file to indicate login
+                BufferedWriter writer = new BufferedWriter(new FileWriter("loginStatus.txt"));
+                writer.write(String.valueOf(Game.gameInstance.user.getUserId()));
+                writer.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             Game.showGameScene();
         }else{
             failedText.setText("Please enter correct password!");
         }
 
-//        if (Objects.equals(username.getText(), "Nashrah") && Objects.equals(password.getText(), "1234")) {
-//            Game.showGameScene();
-//        } else {
-//            failedText.setText("Please enter correct password!");
-//        }
     }
     public void close(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -56,7 +59,6 @@ public class LoginController {
             Game.exitGame();
         }
     }
-
     public void signUp(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/signUp.fxml"));
         //loader.setController(new MenuController());
@@ -64,7 +66,4 @@ public class LoginController {
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
     }
-
-
-
 }

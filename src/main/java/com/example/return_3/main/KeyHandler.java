@@ -236,12 +236,12 @@ public class KeyHandler {
 
             game.ui.uiMainGame.commandNum--;
             if(game.ui.uiMainGame.commandNum < 0){
-                game.ui.uiMainGame.commandNum = 1;
+                game.ui.uiMainGame.commandNum = 2;
             }
         }
         if(code== KeyCode.S || code== KeyCode.DOWN){
             game.ui.uiMainGame.commandNum++;
-            if(game.ui.uiMainGame.commandNum > 1){
+            if(game.ui.uiMainGame.commandNum > 2){
                 game.ui.uiMainGame.commandNum=0;
             }
         }
@@ -251,6 +251,11 @@ public class KeyHandler {
                 game.player.setDefaultPositions();
             }
             if (game.ui.uiMainGame.commandNum == 1) {
+                MyJDBC.updateUser(game.player);
+                game.logout();
+
+
+            }if (game.ui.uiMainGame.commandNum == 2) {
                 MyJDBC.updateUser(game.player);
                 Game.exitGame();
             }
@@ -356,7 +361,7 @@ public class KeyHandler {
     }
     public void mapState(KeyCode code) {
         if(code==KeyCode.M){
-            game.gameState=game.mapState;
+            game.gameState=game.playState;
         }
     }
 

@@ -298,11 +298,17 @@ public class UI_MainGame {
             gc.fillText(">", textX-game.tileSize, textY);
         }
 
-        text = "Exit Game";
+        text = "Log Out";
         textX = getXForCenteredText(text);
         textY = game.tileSize * 7;
         gc.fillText(text, textX, textY);
         if (commandNum == 1) {
+            gc.fillText(">", textX-game.tileSize, textY);
+        }text = "Exit Game";
+        textX = getXForCenteredText(text);
+        textY = game.tileSize * 8;
+        gc.fillText(text, textX, textY);
+        if (commandNum == 2) {
             gc.fillText(">", textX-game.tileSize, textY);
         }
     }
