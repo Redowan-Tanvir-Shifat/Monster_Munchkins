@@ -3,6 +3,7 @@ package com.example.return_3.main;
 
 import com.example.return_3.db.MyJDBC;
 import com.example.return_3.entity.NPC_Trade;
+import com.example.return_3.shop.StuffShop;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -46,7 +47,7 @@ public class KeyHandler {
         if(game.gameState == game.playState){
             playState(code);
             if(code==KeyCode.L){
-                new NPC_Trade(game).speak();
+                new StuffShop(game).use();
             }
             if(code==KeyCode.M){
                 game.gameState=game.mapState;
@@ -202,26 +203,26 @@ public class KeyHandler {
     }
     public void npcInventory(KeyCode code){
         if(code== KeyCode.W || code== KeyCode.UP){ //VK_W means if user press W then
-            if(game.ui.uiMainGame.npcSlotRow!=0){
-                game.ui.uiMainGame.npcSlotRow--;
+            if(game.ui.uiMainGame.shopSlotRow!=0){
+                game.ui.uiMainGame.shopSlotRow--;
                 // gp.playSE(9);
             }
         }
         if(code== KeyCode.S || code== KeyCode.DOWN){ //VK_S means if user press S then
-            if(game.ui.uiMainGame.npcSlotRow!=3) {
-                game.ui.uiMainGame.npcSlotRow++;
+            if(game.ui.uiMainGame.shopSlotRow!=3) {
+                game.ui.uiMainGame.shopSlotRow++;
                 //gp.playSE(9);
             }
         }
         if(code==KeyCode.A || code== KeyCode.LEFT){ //VK_A means if user press A then
-            if(game.ui.uiMainGame.npcSlotCol!=0) {
-                game.ui.uiMainGame.npcSlotCol--;
+            if(game.ui.uiMainGame.shopSlotCol!=0) {
+                game.ui.uiMainGame.shopSlotCol--;
                 //gp.playSE(9);
             }
         }
         if(code==KeyCode.D || code== KeyCode.RIGHT){ //VK_D means if user press D then
-            if(game.ui.uiMainGame.npcSlotCol!=4) {
-                game.ui.uiMainGame.npcSlotCol++;
+            if(game.ui.uiMainGame.shopSlotCol!=4) {
+                game.ui.uiMainGame.shopSlotCol++;
                 //gp.playSE(9);
             }
         }
@@ -283,6 +284,7 @@ public class KeyHandler {
         }
     }
 
+
     public void dialogueState(KeyCode code){
         if(code== KeyCode.ENTER ){ //VK_ENTER means if user press ENTER then
 
@@ -305,6 +307,7 @@ public class KeyHandler {
 
     public void messageState(KeyCode code){
         if(code== KeyCode.ENTER ){ //VK_ENTER means if user press ENTER then
+//            game.ui.uiMainGame.currentDialogue=dialogue[dialogueIndex];
             game.gameState=game.playState;
         }
     }

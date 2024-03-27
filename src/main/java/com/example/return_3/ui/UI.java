@@ -105,7 +105,7 @@ public class UI {
             // <-------Character State------->
             if (game.gameState == game.characterState) {
                 uiMainGame.drawCharacterScreen();
-                uiMainGame.drawInventory(game.player, true);
+                uiMainGame.drawInventory(game.player, true,18);
             }
             if (game.gameState == game.tradeState) {
                 uiMainGame.drawTradeScreen();
