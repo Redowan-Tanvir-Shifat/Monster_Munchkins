@@ -28,7 +28,7 @@ public class UtilityTool {
 
         return scaledImage;
     }
-    public Image loadImage(String imagePath, int width, int height) {
+    public  Image loadImage(String imagePath, int width, int height) {
         return new Image(Objects.requireNonNull(getClass().getResourceAsStream(imagePath)), width, height, true, true);
     }
 

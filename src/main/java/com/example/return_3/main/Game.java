@@ -5,8 +5,10 @@ import com.example.return_3.ai.PathFinder;
 import com.example.return_3.db.User;
 import com.example.return_3.entity.Entity;
 import com.example.return_3.entity.Player;
+import com.example.return_3.gameCenter.snakey.Snakey;
 import com.example.return_3.gameCenter.spaceInvaders.GameSpaceInvaders;
 import com.example.return_3.interactiveTile.InteractiveTile;
+import com.example.return_3.tile.Map;
 import com.example.return_3.tile.TileManager;
 import com.example.return_3.ui.UI;
 import javafx.application.Application;
@@ -49,17 +51,21 @@ public class Game extends Application {
     public final int wizConversationState = 4;
     public final int characterState = 5;
 
+
 //    public final int optionState=5;
-//    public final int gameOverState=6;
+    public final int mapState=6;
 //    public final int transitionState=7;
     public final int tradeState=8;
     public final int hospitalState = 9;
-public final int messageState=10;
+    public final int titleState = 10;
+    public final int messageState=11;
 
     // $$$$$$$$$  GAME STATUS $$$$$$$$$
     public int gameStatus;
-    public int gameMainStatus=0;
-    public int gameSpaceInvadersStatus=1;
+    public int gameFXMLStatus=0;
+    public int gameMainStatus=1;
+    public int gameSpaceInvadersStatus=2;
+    public int gameSnakeyStatus=3;
 
 
 
@@ -91,6 +97,7 @@ public final int messageState=10;
     public Canvas mainGameCanvas = new Canvas(screenWidth, screenHeight);
     public GraphicsContext gc = mainGameCanvas.getGraphicsContext2D();
     public TileManager tileM= new TileManager(this);
+    //public Map map= new Map(this);
     public CollisionChecker cChecker = new CollisionChecker(this);
     public EventHandler eventHandler= new EventHandler(this);
     public AssetSetter assetSetter= new AssetSetter(this);
@@ -111,9 +118,10 @@ public final int messageState=10;
 
     public Player player ;
     public User user;
-    public KeyHandler keyHandler;
+    public static KeyHandler keyHandler;
     //Static instance of gameSpaceInvaders;
     public static GameSpaceInvaders gameSpaceInvaders;
+    public static Snakey gameSnakey;
 
     public PathFinder pFinder= new PathFinder(this);
 
@@ -175,7 +183,7 @@ public final int messageState=10;
 
 
     //----------------------------- IN this `showGameScene` method our Application will direct you to the main game  ----------------------------------------------------------------
-    public static void showGameScene() {
+    public static void showGameScene()  {
         if (gameScene == null) {   // if there is no Scene initialize then
 //            System.out.println("GameScene is null");
             try {
@@ -188,8 +196,20 @@ public final int messageState=10;
                 e.printStackTrace();
             }
         } else {
-            primaryStage.setScene(gameScene);
+
+//            primaryStage.setScene(gameScene);
+            //I confused that should i comment that or not
             gameTimer.start();
+            try {
+                gameInstance.reStartGame();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+//            try {
+//                gameInstance.startGame();
+//            } catch (Exception e) {
+//                throw new RuntimeException(e);
+//            }
         }
     }
 
@@ -224,7 +244,35 @@ public final int messageState=10;
 
 
     }
+    public void reStartGame() throws Exception {
+        //gameInstance = this;
+        gameStatus=gameMainStatus;
+        gameState=playState;
+        Pane mainGameroot = new Pane();
+        mainGameroot.setOnMouseEntered(event -> {
+            mainGameroot.setCursor(Cursor.HAND);
+        });
+        gameScene = new Scene(mainGameroot, screenWidth, screenHeight); // Set the scene before creating KeyHandler
+        //gameScene=scene;
+        keyHandler= new KeyHandler(this);
+        player = new Player(this); // KeyHandler depends on game.scene
+        mainGameroot.getChildren().add(mainGameCanvas);
+//        assetSetter.setObject();
+//        assetSetter.setNPC();
+//        assetSetter.setMonster();
+//        assetSetter.setInteractiveTile();
+//        lastNanoTime = System.nanoTime();
+//        gameTimer = new GameAnimationTimer(this);
+        gameTimer.start();
+        primaryStage.setScene(gameScene);
+        //When the game is starting then gameState will be PlayState
+//        gameState=playState;
 
+//        primaryStage.setX(300);
+//        primaryStage.setY(120);
+
+
+    }
 
     public void showSchoolScene() throws Exception{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/school.fxml"));
@@ -319,6 +367,8 @@ public final int messageState=10;
                 player.keyHandler.setSpacePressed(false);
             } else if (gameStatus==gameSpaceInvadersStatus) {
                 gameSpaceInvaders.update();
+            }else if(gameStatus==gameSnakeyStatus){
+                gameSnakey.update();
             }
 
 
@@ -337,6 +387,9 @@ public final int messageState=10;
         if(gameStatus == gameMainStatus) {
 
                 tileM.draw(gc);
+//                if(gameState== mapState){
+//                    map.drawFullMapScreen(gc);
+//                }
                 //draw Interactive tile
                 for(int i=0;i< iTile[currentMap].length;i++){
                     if(iTile[currentMap][i]!=null){
@@ -401,13 +454,14 @@ public final int messageState=10;
 
         } else if (gameStatus == gameSpaceInvadersStatus) {
             gameSpaceInvaders.draw(gc);
-            ui.draw(gc);
+//            ui.draw(gc);
+            gameSpaceInvaders.uiGameSpaceInvaders.draw(gc);
+        } else if (gameStatus == gameSnakeyStatus) {
+            gameSnakey.draw(gc);
+            //ui.draw(gc);
         }
+
     }
-
-
-
-
     public static void main(String[] args) {
         launch(args);
     }

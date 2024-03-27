@@ -10,7 +10,7 @@ import javafx.scene.shape.Rectangle;
 import java.io.IOException;
 
 public class SpaceShip extends Entity {
-    public KeyHandler keyHandler;
+    public SpaceInvadersKeyHandler keyHandler;
     GameSpaceInvaders gameSpaceInvaders;
     Image bcPic;
     Game game;
@@ -19,7 +19,7 @@ public class SpaceShip extends Entity {
 
     //    public final int screenX;
 //    public final int screenY;
-    public SpaceShip(Game game,KeyHandler keyHandler) {
+    public SpaceShip(Game game,SpaceInvadersKeyHandler keyHandler) {
         super(game);
         this.game=game;
         gameSpaceInvaders= Game.gameSpaceInvaders;

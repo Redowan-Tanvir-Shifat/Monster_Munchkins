@@ -44,6 +44,7 @@ public class GameSpaceInvaders {
     public Entity[] enemies = new Entity[20];
     public List<Enemy> enemiesList = new ArrayList<>();
     SpaceAssetSetter assetSetter;
+    public UI_GameSpaceInvaders uiGameSpaceInvaders;
 
 
     public GameSpaceInvaders( Game game,GraphicsContext gc){
@@ -51,6 +52,7 @@ public class GameSpaceInvaders {
         this.gc = gc;
         this.canvas=game.mainGameCanvas;
          uTool= new UtilityTool();
+         uiGameSpaceInvaders=new UI_GameSpaceInvaders(game,gc);
     }
 
 
@@ -61,7 +63,7 @@ public class GameSpaceInvaders {
         Pane gameSpaceInvadersRoot = new Pane();
         Game.gameScene = new Scene(gameSpaceInvadersRoot, game.screenWidth, game.screenHeight); // Set the scene before creating KeyHandler
         //game.keyHandler= new KeyHandler(game);
-        spaceShip=new SpaceShip(game,new KeyHandler(game));
+        spaceShip=new SpaceShip(game,new SpaceInvadersKeyHandler(game));
         bcPic=  uTool.loadImage("/gameCenter/spaceInvaders/level1.png", game.screenWidth, game.screenHeight);
 
         gameSpaceInvadersRoot.getChildren().add(canvas); //Now we added the root created in gameSpaceInvaders
