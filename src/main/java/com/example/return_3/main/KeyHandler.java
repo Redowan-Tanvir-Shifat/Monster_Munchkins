@@ -50,6 +50,9 @@ public class KeyHandler {
             }
             if(code==KeyCode.M){
                 game.gameState=game.mapState;
+            }if(code==KeyCode.K){
+                System.out.println("Pressing K in KeyHandler");
+
             }
         }
         
@@ -79,9 +82,9 @@ public class KeyHandler {
             if (game.gameStatus == game.gameMainStatus) {
                 menuBarState(code);
             }
-            if (game.gameStatus == game.gameSpaceInvadersStatus) {
-                menuBarState(code);
-            }
+//            if (game.gameStatus == game.gameSpaceInvadersStatus) {
+//                menuBarState(code);
+//            }
         }
         else if (game.gameState == game.hospitalState) {
             hospitalState(code);
