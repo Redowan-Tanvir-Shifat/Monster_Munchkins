@@ -6,6 +6,7 @@ import com.example.return_3.main.UtilityTool;
 import com.example.return_3.object.OBJ_Coin;
 import com.example.return_3.object.OBJ_Heart;
 import com.example.return_3.object.OBJ_Ladi;
+import com.example.return_3.shop.Shop;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
@@ -39,18 +40,26 @@ public class UI_MainGame {
     public Entity heart;
     public int playerSlotCol=0;
     public int playerSlotRow=0;
-    public int npcSlotCol=0;
-    public int npcSlotRow=0;
+    public int shopSlotCol=0;
+    public int shopSlotRow=0;
     int counter=0;
 
     public Entity npc;
+    public Shop shop;
     public UI_MainGame(Game game) {
         this.game = game;
         this.gc = game.gc;
+
 //        arial_40 = new Font("Arial",40);
 //        arial_80B = new Font("Arial",80);
-        //pixelSport= Font.loadFont(getClass().getResourceAsStream("/font/PixelSport-nRVRV.ttf"), 14);
-        pixelSport= Font.loadFont(getClass().getResourceAsStream("/font/CubicPixel-lgEmy.otf"), 14);
+//        pixelSport= Font.loadFont(getClass().getResourceAsStream("/font/PixelSport-nRVRV.ttf"), 14);
+//        pixelSport= Font.loadFont(getClass().getResourceAsStream("/font/CubicPixel-lgEmy.otf"), 14);
+//        pixelSport= Font.loadFont(getClass().getResourceAsStream("/font/HerloitRegular-EaVwn.otf"), 14);
+//        pixelSport= Font.loadFont(getClass().getResourceAsStream("/font/kenvector_future.ttf"), 14);
+//        pixelSport= Font.loadFont(getClass().getResourceAsStream("/font/kenvector_future_thin.ttf"), 14);
+//        pixelSport= Font.loadFont(getClass().getResourceAsStream("/font/lucasarts-scumm-outline.ttf"), 14);
+        pixelSport= Font.loadFont(getClass().getResourceAsStream("/font/retro.ttf"), 14);
+//        pixelSport= Font.loadFont(getClass().getResourceAsStream("/font/turok.ttf"), 14);
         UtilityTool uTool= new UtilityTool();
         heart = new OBJ_Heart(game);
         heartFull = heart.image1;
@@ -62,11 +71,6 @@ public class UI_MainGame {
         darkCream= Color.rgb(172,128,83);
         darkDarkCream= Color.rgb(97,70,42);
     }
-
-
-
-
-
     public void drawPlayerLife() {
         int x = (game.screenWidth / 2) - game.tileSize * 3;
         double y = game.tileSize / 1.5;
@@ -415,7 +419,7 @@ public class UI_MainGame {
         }//we can draw something instead of nothing [for weapon]
     }
 
-    public void drawInventory(Entity entity, boolean cursor){
+    public void drawInventory(Entity entity, boolean cursor,int tileSizeNum){
         //Initial value
         int frameX=0;
         int frameY=0;
@@ -426,7 +430,7 @@ public class UI_MainGame {
 
         if(entity==game.player){
             //FRAME
-            frameX=game.tileSize*18;
+            frameX=game.tileSize*tileSizeNum;
             frameY=game.tileSize*4;
             frameWidth=game.tileSize*7;
             frameHeight=game.tileSize*6;
@@ -438,15 +442,23 @@ public class UI_MainGame {
             frameY=game.tileSize*4;
             frameWidth=game.tileSize*7;
             frameHeight=game.tileSize*6;
-            slotCol=npcSlotCol;
-            slotRow=npcSlotRow;
+            slotCol=shopSlotCol;
+            slotRow=shopSlotRow;
         }
+        //set variable for making dynamic two inventory and different column ;
+        int xPositon=21;
+        int r1=4,r2=9,r3=14;
 
         //Draw the frame
         drawSubWindow(frameX, frameY, frameWidth, frameHeight,cream,darkCream);
         if(entity==game.player){
             //Title for player
 
+            //to make different columns and positions
+            xPositon=100;
+            r1=2;
+            r2=5;
+            r3=8;
         }else{
             //Title
             String titleText="Stuff parts";
@@ -456,7 +468,7 @@ public class UI_MainGame {
         }
 
         //SLOT
-        final int slotXStart=frameX+21;
+        final int slotXStart=frameX+xPositon;
         final int slotYStart=frameY+36;
         int slotX=slotXStart;
         int slotY=slotYStart;
@@ -475,7 +487,7 @@ public class UI_MainGame {
             }
             gc.drawImage(entity.inventory.get(i).down1, slotX, slotY);
             slotX+=slotSize+1;
-            if(i==4 ||i==9||i==14){
+            if(i==r1 ||i==r2||i==r3){
                 slotY+=slotSize+2;
                 //reset SlotX
                 slotX=slotXStart;
@@ -579,13 +591,13 @@ public class UI_MainGame {
     }
     public void buy(){
 //        //Draw player Inventory
-        drawInventory(game.player,false);
+        drawInventory(game.player,false,6);
 //        frameX=game.tileSize*6;
 //        frameY=game.tileSize*4;
 //        frameWidth=game.tileSize*7;
 //        frameHeight=game.tileSize*6;
 //        //Draw NPC inventory
-        drawInventory(npc,true);
+        drawInventory(shop,true,6);
 
 //        //DRAW HINT WINDOWS
         int x= game.tileSize*13;
@@ -614,8 +626,8 @@ public class UI_MainGame {
 
 
         //DRAW PRICE WINDOWS
-        int itemIndex = getItemIndexOnSlot(npcSlotCol,npcSlotRow);
-        if(itemIndex<npc.inventory.size()){
+        int itemIndex = getItemIndexOnSlot(shopSlotCol,shopSlotRow);
+        if(itemIndex<shop.inventory.size()){
 
             //FRAME
 //            frameX=game.tileSize*18;
@@ -626,48 +638,49 @@ public class UI_MainGame {
 //            slotRow=npcSlotRow;
 
 
-            x=(int)(game.tileSize*23);
-            y=(int)(game.tileSize*10)+28;
-            width=(game.tileSize*2)-10;
-            height=game.tileSize-16;
-//            drawSubWindow(x,y,width,height);
-            gc.setFill(darkCream);
-            gc.fillRoundRect(x,y,width,height,20,20);
-            //draw
-
-            gc.setFont(Font.font("Arial", 12));
-            gc.setFill(Color.WHITE);
-
-
-
-            gc.drawImage(coinImage,x-5,y,19,19);
-            int price= npc.inventory.get(itemIndex).price;
-
-            String text=""+price;
-            x=getXForAlignToRightText(text,(x+width));
-            gc.fillText(text,x-6,y+14);
+//            x=(int)(game.tileSize*23);
+//            y=(int)(game.tileSize*10)+28;
+//            width=(game.tileSize*2)-10;
+//            height=game.tileSize-16;
+////            drawSubWindow(x,y,width,height);
+//            gc.setFill(darkCream);
+//            gc.fillRoundRect(x,y,width,height,20,20);
+//            //draw
+//
+//            gc.setFont(Font.font("Arial", 12));
+//            gc.setFill(Color.WHITE);
+//
+//
+//
+//            gc.drawImage(coinImage,x-5,y,19,19);
+//            int price= shop.inventory.get(itemIndex).price;
+//
+//            String text=""+price;
+//            x=getXForAlignToRightText(text,(x+width));
+//            gc.fillText(text,x-6,y+14);
 
             //IF BUY an ITEM
             if(game.keyHandler.isEnterPressed()==true){
-                if(npc.inventory.get(itemIndex).price>game.player.coin){
+                if(shop.inventory.get(itemIndex).price>game.player.coin){
                     subState=0;
-                    game.gameState=game.dialogueState;
+                    game.gameState=game.messageState;
                     currentDialogue="You need more coin to buy that";
                     drawDialogueScreen();
                 } else if (game.player.inventory.size()==game.player.maxInventorySize) {
                     subState=0;
-                    game.gameState=game.dialogueState;
+                    game.gameState=game.messageState;
                     currentDialogue="You can not carry any more items";
+                    drawDialogueScreen();
                 }else{
-                    game.player.coin-=npc.inventory.get(itemIndex).price;
-                    game.player.inventory.add(npc.inventory.get(itemIndex));
+                    game.player.coin-=shop.inventory.get(itemIndex).price;
+                    game.player.inventory.add(shop.inventory.get(itemIndex));
                 }
             }
         }
     }
     public void sell(){
 //        //Draw player Inventory
-        drawInventory(game.player,true);
+        drawInventory(game.player,true,6);
 //        //Draw NPC inventory
       //  drawInventory(npc,true);
 
@@ -713,7 +726,7 @@ public class UI_MainGame {
                 if(game.player.inventory.get(itemIndex)==game.player.currentWeapon||game.player.inventory.get(itemIndex)==game.player.currentShield){
                     commandNum=0;
                     subState=0;
-                    game.gameState=game.dialogueState;
+                    game.gameState=game.messageState;
                     currentDialogue="you can not sell an equiped items";
                 }else{
                     game.player.inventory.remove(itemIndex);
@@ -725,22 +738,6 @@ public class UI_MainGame {
         }
     }
 
-
-    public int getXForAlignToRightText(String text, int tailX) {
-        Text textNode = new Text(text);
-        textNode.setFont(gc.getFont());
-        int length = (int)textNode.getBoundsInLocal().getWidth();
-        int x = tailX - length;
-        return x;
-    }
-
-    public int getXForCenteredText(String text) {
-        Text textNode = new Text(text);
-        textNode.setFont(gc.getFont());
-        int length = (int)textNode.getBoundsInLocal().getWidth();
-        int x = game.screenWidth/2 - length/2;
-        return x;
-    }
 
 
     public void addMessage(String text){
@@ -773,8 +770,6 @@ public class UI_MainGame {
             }
         }
     }
-
-
 
     public void drawDialogueScreen(){
         //  CREATING A DIALOGUE WINDOW
@@ -833,7 +828,6 @@ public class UI_MainGame {
         gc.strokeRoundRect(x + 5, y + 5, width - 10, height - 10, 25, 25);
     }
 
-
     public void drawWizConversationScreen(){
         System.out.println("Command num: "+commandNum);
         //System.out.println("drawWizConversationScreen draw working");
@@ -890,7 +884,6 @@ public class UI_MainGame {
         }
     }
 
-
     public int getItemIndexOnSlot(int slotCol,int slotRow){
         int itemIndex=slotCol+(slotRow*5);
         return itemIndex;
@@ -902,6 +895,22 @@ public class UI_MainGame {
         double textWidth = textNode.getBoundsInLocal().getWidth();
         return textWidth;
     }
+    public int getXForAlignToRightText(String text, int tailX) {
+        Text textNode = new Text(text);
+        textNode.setFont(gc.getFont());
+        int length = (int)textNode.getBoundsInLocal().getWidth();
+        int x = tailX - length;
+        return x;
+    }
+
+    public int getXForCenteredText(String text) {
+        Text textNode = new Text(text);
+        textNode.setFont(gc.getFont());
+        int length = (int)textNode.getBoundsInLocal().getWidth();
+        int x = game.screenWidth/2 - length/2;
+        return x;
+    }
+
     public double getXforAlignRightText(String text, int tailX){
         double width=getWidthOfText(text);
         double x=tailX-width;
