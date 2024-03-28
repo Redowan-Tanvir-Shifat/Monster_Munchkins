@@ -116,7 +116,7 @@ public class Entity {
     public int attackValue;
     public int defenseValue;
     public ArrayList<Entity> inventory = new ArrayList<>();
-    public final int maxInventorySize = 20;
+    public int maxInventorySize = 20;
     public String description = "";
     public int useCost;
     public int price;

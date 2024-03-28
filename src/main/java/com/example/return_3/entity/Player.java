@@ -36,6 +36,7 @@ public class Player extends Entity{
     public final int screenX;
     public final int screenY;
 
+    public final int backPackSize=10;
 
 
     //part 8 Object Interaction part starts
@@ -46,6 +47,7 @@ public class Player extends Entity{
     public Player(Game game) {
         super(game);
         this.keyHandler = game.keyHandler;
+        maxInventorySize=12;
         // Get the width and height of the screen
         double screenWidth = Game.gameScene.getWidth();
         double screenHeight = Game.gameScene.getHeight();

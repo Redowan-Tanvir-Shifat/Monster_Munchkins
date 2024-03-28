@@ -54,11 +54,11 @@ public class UI_MainGame {
 //        arial_80B = new Font("Arial",80);
 //        pixelSport= Font.loadFont(getClass().getResourceAsStream("/font/PixelSport-nRVRV.ttf"), 14);
 //        pixelSport= Font.loadFont(getClass().getResourceAsStream("/font/CubicPixel-lgEmy.otf"), 14);
-        pixelSport= Font.loadFont(getClass().getResourceAsStream("/font/HerloitRegular-EaVwn.otf"), 14);
+//        pixelSport= Font.loadFont(getClass().getResourceAsStream("/font/HerloitRegular-EaVwn.otf"), 14);
 //        pixelSport= Font.loadFont(getClass().getResourceAsStream("/font/kenvector_future.ttf"), 14);
 //        pixelSport= Font.loadFont(getClass().getResourceAsStream("/font/kenvector_future_thin.ttf"), 14);
 //        pixelSport= Font.loadFont(getClass().getResourceAsStream("/font/lucasarts-scumm-outline.ttf"), 14);
-//        pixelSport= Font.loadFont(getClass().getResourceAsStream("/font/retro.ttf"), 14);
+        pixelSport= Font.loadFont(getClass().getResourceAsStream("/font/retro.ttf"), 14);
 //        pixelSport= Font.loadFont(getClass().getResourceAsStream("/font/turok.ttf"), 14);
         UtilityTool uTool= new UtilityTool();
         heart = new OBJ_Heart(game);
@@ -71,11 +71,6 @@ public class UI_MainGame {
         darkCream= Color.rgb(172,128,83);
         darkDarkCream= Color.rgb(97,70,42);
     }
-
-
-
-
-
     public void drawPlayerLife() {
         int x = (game.screenWidth / 2) - game.tileSize * 3;
         double y = game.tileSize / 1.5;
@@ -450,12 +445,20 @@ public class UI_MainGame {
             slotCol=shopSlotCol;
             slotRow=shopSlotRow;
         }
+        //set variable for making dynamic two inventory and different column ;
+        int xPositon=21;
+        int r1=4,r2=9,r3=14;
 
         //Draw the frame
         drawSubWindow(frameX, frameY, frameWidth, frameHeight,cream,darkCream);
         if(entity==game.player){
             //Title for player
 
+            //to make different columns and positions
+            xPositon=100;
+            r1=2;
+            r2=5;
+            r3=8;
         }else{
             //Title
             String titleText="Stuff parts";
@@ -465,7 +468,7 @@ public class UI_MainGame {
         }
 
         //SLOT
-        final int slotXStart=frameX+21;
+        final int slotXStart=frameX+xPositon;
         final int slotYStart=frameY+36;
         int slotX=slotXStart;
         int slotY=slotYStart;
@@ -484,7 +487,7 @@ public class UI_MainGame {
             }
             gc.drawImage(entity.inventory.get(i).down1, slotX, slotY);
             slotX+=slotSize+1;
-            if(i==4 ||i==9||i==14){
+            if(i==r1 ||i==r2||i==r3){
                 slotY+=slotSize+2;
                 //reset SlotX
                 slotX=slotXStart;
