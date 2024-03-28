@@ -52,8 +52,14 @@ public class UI_MainGame {
 
 //        arial_40 = new Font("Arial",40);
 //        arial_80B = new Font("Arial",80);
-        //pixelSport= Font.loadFont(getClass().getResourceAsStream("/font/PixelSport-nRVRV.ttf"), 14);
-        pixelSport= Font.loadFont(getClass().getResourceAsStream("/font/CubicPixel-lgEmy.otf"), 14);
+//        pixelSport= Font.loadFont(getClass().getResourceAsStream("/font/PixelSport-nRVRV.ttf"), 14);
+//        pixelSport= Font.loadFont(getClass().getResourceAsStream("/font/CubicPixel-lgEmy.otf"), 14);
+        pixelSport= Font.loadFont(getClass().getResourceAsStream("/font/HerloitRegular-EaVwn.otf"), 14);
+//        pixelSport= Font.loadFont(getClass().getResourceAsStream("/font/kenvector_future.ttf"), 14);
+//        pixelSport= Font.loadFont(getClass().getResourceAsStream("/font/kenvector_future_thin.ttf"), 14);
+//        pixelSport= Font.loadFont(getClass().getResourceAsStream("/font/lucasarts-scumm-outline.ttf"), 14);
+//        pixelSport= Font.loadFont(getClass().getResourceAsStream("/font/retro.ttf"), 14);
+//        pixelSport= Font.loadFont(getClass().getResourceAsStream("/font/turok.ttf"), 14);
         UtilityTool uTool= new UtilityTool();
         heart = new OBJ_Heart(game);
         heartFull = heart.image1;
