@@ -13,7 +13,7 @@
    <children>
       <AnchorPane layoutY="6.0" prefHeight="33.0" prefWidth="960.0" styleClass="close-btn_container" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button fx:id="backButton" layoutX="925.0" layoutY="4.0" mnemonicParsing="false" onAction="#back" prefHeight="20.0" prefWidth="36.0" styleClass="close-btn" text="X">
+            <Button fx:id="backButton" layoutX="915.0" layoutY="3.0" mnemonicParsing="false" onAction="#back" prefHeight="20.0" prefWidth="36.0" styleClass="close-btn" text="X">
                <font>
                   <Font name="Arial Bold" size="12.0" />
                </font>
@@ -69,15 +69,10 @@
             <Image url="@../../../school/GeographyLogo.jpg" />
          </image>
       </ImageView>
-      <Label layoutX="835.0" layoutY="553.0" text="Powered by return-3;" textFill="#33bf5e">
-         <font>
-            <Font name="System Bold Italic" size="12.0" />
-         </font>
-      </Label>
       <Separator layoutX="495.0" layoutY="319.0" orientation="VERTICAL" prefHeight="200.0" />
       <ImageView fitHeight="135.0" fitWidth="226.0" layoutX="388.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../school/schoolRed.jpg" />
+            <Image url="@../../../school/School.png" />
          </image>
       </ImageView>
    </children>
