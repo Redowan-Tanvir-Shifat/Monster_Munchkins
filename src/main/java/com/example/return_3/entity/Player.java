@@ -47,7 +47,7 @@ public class Player extends Entity{
     public Player(Game game) {
         super(game);
         this.keyHandler = game.keyHandler;
-        maxInventorySize=12;
+//        maxInventorySize=12;
         // Get the width and height of the screen
         double screenWidth = Game.gameScene.getWidth();
         double screenHeight = Game.gameScene.getHeight();

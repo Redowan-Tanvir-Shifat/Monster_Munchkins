@@ -447,8 +447,8 @@ public class UI_MainGame {
             slotRow=shopSlotRow;
         }
         //set variable for making dynamic two inventory and different column ;
-        int xPositon=21;
-        int r1=4,r2=9,r3=14;
+//        int xPositon=21;
+//        int r1=4,r2=9,r3=14;
 
         //Draw the frame
         drawSubWindow(frameX, frameY, frameWidth, frameHeight,cream,darkCream);
@@ -456,15 +456,12 @@ public class UI_MainGame {
             //Title for player
 
             //to make different columns and positions
-            xPositon=100;
-            r1=2;
-            r2=5;
-            r3=8;
-            gc.setFill(Color.WHITE);
-            gc.fillText(game.user.getUsername(),frameX+10,frameY+90);
-            gc.drawImage(playerImage,frameX+15,frameY+100);
-            //in here we are drawing player coin box, player coin
-            drawCoinBox(coinImage,frameX+25,frameY+44,game.player.coin);
+//            xPositon=100;
+//            r1=2;
+//            r2=5;
+//            r3=8;
+            drawPlayerPropertiesBox(frameX-(game.tileSize*4),frameY,115,frameHeight);
+
         }else{
             //Title
             String titleText="Stuff parts";
@@ -474,7 +471,7 @@ public class UI_MainGame {
         }
 
         //SLOT
-        final int slotXStart=frameX+xPositon;
+        final int slotXStart=frameX+21;
         final int slotYStart=frameY+36;
         int slotX=slotXStart;
         int slotY=slotYStart;
@@ -493,7 +490,7 @@ public class UI_MainGame {
             }
             gc.drawImage(entity.inventory.get(i).down1, slotX, slotY);
             slotX+=slotSize+1;
-            if(i==r1 ||i==r2||i==r3){
+            if(i==4 ||i==9||i==14){
                 slotY+=slotSize+2;
                 //reset SlotX
                 slotX=slotXStart;
@@ -537,6 +534,15 @@ public class UI_MainGame {
                 }
             }
         }
+
+    }
+    public void drawPlayerPropertiesBox(int frameX,int frameY,int frameWidth,int frameHeight) {
+        drawSubWindow(frameX, frameY, frameWidth, frameHeight,cream,darkCream);
+        gc.setFill(Color.WHITE);
+        gc.fillText(game.user.getUsername(),frameX+10,frameY+90);
+        gc.drawImage(playerImage,frameX+15,frameY+100);
+        //in here we are drawing player coin box, player coin
+        drawCoinBox(coinImage,frameX+25,frameY+44,game.player.coin);
 
     }
     //THis method is used for showing coin box and value
