@@ -315,14 +315,7 @@ public class Game extends Application {
         gameTimer.stop();
         Game.primaryStage.setScene(scene);
     }
-    public void showStoreScene() throws Exception{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/store.fxml"));
-        Parent root = loader.load();
-        Scene scene= new Scene(root);
-        //scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("school.css")).toExternalForm());
-        gameTimer.stop();
-        Game.primaryStage.setScene(scene);
-    }
+
 
     public void showGameCenter() throws Exception{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/gameCenter.fxml"));
