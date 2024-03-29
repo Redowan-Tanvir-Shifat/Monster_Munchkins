@@ -339,6 +339,30 @@ public class Game extends Application {
     public static void exitGame() {
         Platform.exit();
     }
+    public static void exitWithConfirmation(){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Exit Confirmation");
+
+        alert.setHeaderText("You are about to exit!");
+        alert.setContentText("Are you sure you want to exit?");
+
+        // Add "Yes" and "No" buttons to the confirmation dialog
+        ButtonType buttonTypeYes = new ButtonType("Yes");
+        ButtonType buttonTypeNo = new ButtonType("No");
+        alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
+
+        // Custom CSS for the dialog
+        alert.getDialogPane().getStylesheets().add(
+                Game.class.getResource("/com/example/return_3/alert.css").toExternalForm());
+        alert.initStyle(StageStyle.TRANSPARENT); // Transparent style for a sleek look
+
+        // Handle button actions
+        alert.showAndWait().ifPresent(buttonType -> {
+            if (buttonType == buttonTypeYes) {
+                Platform.exit(); // Exit the application
+            }
+        });
+    }
 
     public void logout(){
         try {

@@ -50,14 +50,7 @@ public class SignUpController {
     }
 
     public void close(ActionEvent event) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Exit");
-        alert.setHeaderText("You are about to exit");
-        alert.setContentText("Do you want to exit?");
-
-        if (alert.showAndWait().get() == ButtonType.OK) {
-            Game.exitGame();
-        }
+        Game.exitWithConfirmation();
     }
 
     private boolean validateUserInput(String username,String password, String rePassword){
