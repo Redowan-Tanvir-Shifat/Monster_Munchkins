@@ -196,7 +196,7 @@ public class EventHandler {
         if (canTouchEvent) {
 
             // <--------School-------->
-            if(hit(0,82,143,"any")){
+            if(hit(0,82,144,"any") || hit(0,83,144,"any")){
                     try {
                         gp.showSchoolScene();
                         canTouchEvent = false;
