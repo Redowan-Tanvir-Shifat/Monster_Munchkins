@@ -25,7 +25,7 @@ public class UI_MainGame {
     Entity entity;
     GraphicsContext gc;
     Font pixelSport;
-    Image heartFull, starImage, energyImage, coinImage;
+    Image heartFull, starImage, energyImage, coinImage, playerImage;
     public boolean messageOn = false;
 
     ArrayList<String> message = new ArrayList<>();
@@ -65,6 +65,7 @@ public class UI_MainGame {
         heartFull = heart.image1;
         starImage = uTool.loadImage("/objects/star1.png",game.tileSize+10,game.tileSize+10);
         energyImage = uTool.loadImage("/objects/energy.png",game.tileSize-7,game.tileSize-7);
+        playerImage = uTool.loadImage("/player/boy_down_1.png", 2*game.tileSize, 2*game.tileSize);
         Entity coin= new OBJ_Coin(game);
         coinImage = coin.down1;
         cream= Color.rgb(246,202,156);
@@ -459,6 +460,11 @@ public class UI_MainGame {
             r1=2;
             r2=5;
             r3=8;
+            gc.setFill(Color.WHITE);
+            gc.fillText(game.user.getUsername(),frameX+10,frameY+90);
+            gc.drawImage(playerImage,frameX+15,frameY+100);
+            //in here we are drawing player coin box, player coin
+            drawCoinBox(coinImage,frameX+25,frameY+44,game.player.coin);
         }else{
             //Title
             String titleText="Stuff parts";
@@ -532,6 +538,22 @@ public class UI_MainGame {
             }
         }
 
+    }
+    //THis method is used for showing coin box and value
+    public void drawCoinBox(Image image,int x, int y,int price){
+        gc.setFill(darkCream);
+        int width=54;
+        int height=16;
+        int arc=20;
+        gc.fillRoundRect(x,y,width,height,arc,arc);
+        String text=""+price;
+        int priceX=getXForAlignToRightText(text,x+width);
+        int priceY=y+height
+                ;
+        gc.setFill(Color.WHITE);
+        gc.fillText(text,priceX,priceY);
+
+        gc.drawImage(image,x-16,y-4);
     }
 
 

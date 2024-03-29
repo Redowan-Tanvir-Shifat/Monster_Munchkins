@@ -1,4 +1,9 @@
 package com.example.return_3.shop;
 
-public class FoodShop {
+import com.example.return_3.main.Game;
+
+public class FoodShop extends Shop{
+    public FoodShop(Game game) {
+        super(game);
+    }
 }
