@@ -11,6 +11,7 @@ import javafx.scene.control.*;
 import java.io.IOException;
 import java.util.Objects;
 
+import static com.example.return_3.main.Game.loginScene;
 import static com.example.return_3.main.Game.primaryStage;
 
 public class SignUpController {
@@ -20,6 +21,7 @@ public class SignUpController {
     public PasswordField password2;
     public Button closeBtn;
     public Label failedText;
+    public Button loginBtn;
 
     public void signUp(ActionEvent event) throws IOException {
 //        if (Objects.equals(password1.getText(), password2.getText())) {
@@ -75,5 +77,11 @@ public class SignUpController {
 
         //passes validation
         return true;
+    }
+
+    public void goToLogin(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/return_3/login.fxml"));
+        loginScene = new Scene(fxmlLoader.load());
+        primaryStage.setScene(loginScene);
     }
 }
