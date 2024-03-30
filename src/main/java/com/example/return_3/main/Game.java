@@ -1,6 +1,8 @@
 package com.example.return_3.main;
 
 
+import com.example.return_3.Controllers.GameController;
+import com.example.return_3.Controllers.SchoolController;
 import com.example.return_3.ai.PathFinder;
 import com.example.return_3.db.MyJDBC;
 import com.example.return_3.db.User;
@@ -21,6 +23,7 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -42,6 +45,7 @@ public class Game extends Application {
     public static Scene menuScene;
     public static Scene loginScene;
     public static Scene gameScene;
+    public static Scene mainGameScene;
 
 
     // $$$$$$$$$  GAME STATE $$$$$$$$$
@@ -230,22 +234,18 @@ public class Game extends Application {
             }
         } else {
 
-//            primaryStage.setScene(gameScene);
-            //I confused that should i comment that or not
+            // Clear canvas and redraw main game content
+            gameInstance.clearCanvas(gameInstance.gc); // Implement this method to clear the canvas
+            gameInstance.gameStatus = gameInstance.gameMainStatus;
+            gameInstance.gameState = gameInstance.playState;
+            gameScene=mainGameScene;
+            primaryStage.setScene(gameScene);
             gameTimer.start();
-            try {
-                gameInstance.reStartGame();
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-//            try {
-//                gameInstance.startGame();
-//            } catch (Exception e) {
-//                throw new RuntimeException(e);
-//            }
         }
     }
-
+    public void clearCanvas(GraphicsContext gc){
+        gc.clearRect(0,0,screenWidth, screenHeight);
+    }
 
 
     //----------------------------- IN this `startGame` method our Application will direct you to the main game Screen  ----------------------------------------------------------------
@@ -268,15 +268,13 @@ public class Game extends Application {
         lastNanoTime = System.nanoTime();
         gameTimer = new GameAnimationTimer(this);
         gameTimer.start();
+        mainGameScene=gameScene;
         primaryStage.setScene(gameScene);
         //When the game is starting then gameState will be PlayState
         gameState=playState;
 
-//        primaryStage.setX(300);
-//        primaryStage.setY(120);
-
-
     }
+    //this restart game method is not needed
     public void reStartGame() throws Exception {
         //gameInstance = this;
         gameStatus=gameMainStatus;
@@ -313,6 +311,18 @@ public class Game extends Application {
         Scene scene= new Scene(root);
         //scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("school.css")).toExternalForm());
         gameTimer.stop();
+        ArrayList <Button> buttons= new ArrayList<>();
+        SchoolController schoolController = loader.getController();
+        buttons.add(schoolController.mathButton);
+        buttons.add(schoolController.englishButton);
+        buttons.add(schoolController.histryButton);
+        buttons.add(schoolController.geographybutton);
+        buttons.add(schoolController.backButton);
+
+       hoverButton(buttons);
+
+
+
         Game.primaryStage.setScene(scene);
     }
 
@@ -323,7 +333,10 @@ public class Game extends Application {
         Scene scene= new Scene(root);
         //scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("school.css")).toExternalForm());
         gameTimer.stop();
+        GameController gameController = loader.getController();
+        gameController.setCoin(player.coin); // Pass the time to the controller
         Game.primaryStage.setScene(scene);
+
     }
 
 
@@ -383,6 +396,8 @@ public class Game extends Application {
         if(gameState==playState){
             if(gameStatus == gameMainStatus){
                 player.update();
+                System.out.println(player.worldX);
+                System.out.println(player.worldY);
 
                 //NPC UPDATE
                 for(int i=0; i<npc[currentMap].length; i++){
@@ -531,6 +546,20 @@ public class Game extends Application {
             //ui.draw(gc);
         }
 
+    }
+
+    public void hoverButton(ArrayList <Button> arrayList){
+        for(Button button : arrayList){
+            button.setOnMouseEntered(e ->{
+
+                button.setScaleX(1.05);
+                button.setScaleY(1.05);
+            });
+            button.setOnMouseExited(e ->{
+                button.setScaleX(1);
+                button.setScaleY(1);
+            });
+        }
     }
     public static void main(String[] args) {
         launch(args);

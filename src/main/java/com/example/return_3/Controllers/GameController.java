@@ -70,5 +70,8 @@ public class GameController {
             e.printStackTrace();
         }
     }
+    public void setCoin(int c){
+        coin.setText(String.valueOf(c));
+    }
 
 }
