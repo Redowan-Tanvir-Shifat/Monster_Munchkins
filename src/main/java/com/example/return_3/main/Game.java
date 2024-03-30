@@ -30,6 +30,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.*;
+import java.security.SignatureException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -215,8 +216,28 @@ public class Game extends Application {
     public void loginPage() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/return_3/login.fxml"));
         loginScene = new Scene(fxmlLoader.load());
+
+        ArrayList <Button> buttons= new ArrayList<>();
+        LoginController loginController = fxmlLoader.getController();
+        buttons.add(loginController.loginBtn);
+        buttons.add(loginController.signUpBtn);
+        buttons.add(loginController.closeBtn);
+
+        hoverButton(buttons);
+
         primaryStage.setScene(loginScene);
     }
+//    public void signUpPage() throws IOException {
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/signUp.fxml"));
+//        //loader.setController(new MenuController());
+//        Parent root = loader.load();
+//        Scene scene = new Scene(root);
+//
+//        ArrayList <Button> buttons = new ArrayList<>();
+//        SignUpController signUpController = loader.getController();
+//
+//        primaryStage.setScene(scene);
+//    }
 
 
     //----------------------------- IN this `showGameScene` method our Application will direct you to the main game  ----------------------------------------------------------------
