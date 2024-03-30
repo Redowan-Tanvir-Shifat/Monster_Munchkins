@@ -275,9 +275,6 @@ public class EventHandler {
             }
 
         }
-
-
-
         counter++;
         if(counter > 1800){
             counter=0;
@@ -285,8 +282,6 @@ public class EventHandler {
                 tl = true;
             }
         }
-
-
     }
 
     public boolean hit(int map, int col, int row, String reqDirection) {

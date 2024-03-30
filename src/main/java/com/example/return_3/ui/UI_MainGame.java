@@ -24,7 +24,7 @@ public class UI_MainGame {
     Color cream, darkCream, darkDarkCream;
     Entity entity;
     GraphicsContext gc;
-    Font pixelSport;
+    Font titleFont, smallFont,mediumFont,largeFont;
     Image heartFull, starImage, energyImage, coinImage, playerImage;
     public boolean messageOn = false;
 
@@ -52,14 +52,12 @@ public class UI_MainGame {
 
 //        arial_40 = new Font("Arial",40);
 //        arial_80B = new Font("Arial",80);
-//        pixelSport= Font.loadFont(getClass().getResourceAsStream("/font/PixelSport-nRVRV.ttf"), 14);
-//        pixelSport= Font.loadFont(getClass().getResourceAsStream("/font/CubicPixel-lgEmy.otf"), 14);
-//        pixelSport= Font.loadFont(getClass().getResourceAsStream("/font/HerloitRegular-EaVwn.otf"), 14);
-//        pixelSport= Font.loadFont(getClass().getResourceAsStream("/font/kenvector_future.ttf"), 14);
-//        pixelSport= Font.loadFont(getClass().getResourceAsStream("/font/kenvector_future_thin.ttf"), 14);
-//        pixelSport= Font.loadFont(getClass().getResourceAsStream("/font/lucasarts-scumm-outline.ttf"), 14);
-        pixelSport= Font.loadFont(getClass().getResourceAsStream("/font/retro.ttf"), 14);
-//        pixelSport= Font.loadFont(getClass().getResourceAsStream("/font/turok.ttf"), 14);
+
+
+        smallFont= Font.loadFont(getClass().getResourceAsStream("/font/Minecraft.ttf"), 16);
+        mediumFont= Font.loadFont(getClass().getResourceAsStream("/font/Minecraft.ttf"), 21);
+        largeFont= Font.loadFont(getClass().getResourceAsStream("/font/Minecraft.ttf"), 25);
+        titleFont= Font.loadFont(getClass().getResourceAsStream("/font/KarmaFuture.ttf"), 28);
         UtilityTool uTool= new UtilityTool();
         heart = new OBJ_Heart(game);
         heartFull = heart.image1;
@@ -467,6 +465,7 @@ public class UI_MainGame {
             String titleText="Stuff parts";
             double titlewidth= getWidthOfText(titleText);
             gc.setFill(darkDarkCream);
+            gc.setFont(titleFont);
             gc.fillText(titleText,frameX+((frameWidth-titlewidth)/2),frameY+24);
         }
 
@@ -527,6 +526,7 @@ public class UI_MainGame {
             int itemIndex=getItemIndexOnSlot(slotCol,slotRow);
             if(itemIndex<entity.inventory.size()) {
                 drawSubWindow(dFrameX,dFrameY,dFrameWidth,dFrameHeight,cream,darkCream);
+                gc.setFont(smallFont);
                 for(String line : entity.inventory.get(itemIndex).description.split("\n")) {
                     gc.setFill(darkDarkCream);
                     gc.fillText(line, textX,textY);
@@ -539,8 +539,11 @@ public class UI_MainGame {
     public void drawPlayerPropertiesBox(int frameX,int frameY,int frameWidth,int frameHeight) {
         drawSubWindow(frameX, frameY, frameWidth, frameHeight,cream,darkCream);
         gc.setFill(Color.WHITE);
-        gc.fillText(game.user.getUsername(),frameX+10,frameY+90);
-        gc.drawImage(playerImage,frameX+15,frameY+100);
+        gc.setFont(smallFont);
+        String userName=game.user.getUsername();
+        int userNameX=getXForCenteredTextInFrame(userName,frameX,frameWidth);
+        gc.fillText(userName,userNameX,frameY+90);
+        gc.drawImage(playerImage,frameX+20,frameY+100);
         //in here we are drawing player coin box, player coin
         drawCoinBox(coinImage,frameX+25,frameY+44,game.player.coin);
 
@@ -584,8 +587,8 @@ public class UI_MainGame {
         drawSubWindow(x, y, width, height,cream,darkCream);
         // Text....
         gc.setFill(darkDarkCream);
-        pixelSport=Font.font(pixelSport.getFamily(),FontWeight.LIGHT,30);
-        gc.setFont(pixelSport);
+       // pixelSport=Font.font(pixelSport.getFamily(),FontWeight.LIGHT,30);
+        gc.setFont(mediumFont);
 
         //DRAW TEXT
         x+= game.tileSize;
@@ -620,11 +623,8 @@ public class UI_MainGame {
     public void buy(){
 //        //Draw player Inventory
         drawInventory(game.player,false,6);
-//        frameX=game.tileSize*6;
-//        frameY=game.tileSize*4;
-//        frameWidth=game.tileSize*7;
-//        frameHeight=game.tileSize*6;
-//        //Draw NPC inventory
+
+//        //Draw ShopC inventory
         drawInventory(shop,true,6);
 
 //        //DRAW HINT WINDOWS
@@ -635,57 +635,17 @@ public class UI_MainGame {
         drawSubWindow(x, y, y, 40,cream,darkCream);
         //drawing text
         gc.setFill(darkDarkCream);
+        gc.setFont(mediumFont);
         gc.fillText("[ESC] back",x+15,y+20);
 
 
-        //DRAW PLAYER COIN WINDOWs
-//        x= game.tileSize*7+2;
-//        y=game.tileSize*9;
-//        width=(game.tileSize*2)-10;
-//        height=game.tileSize-16;
-////        drawSubWindow(x, y, width, height,cream,darkCream);
-//        gc.setFill(darkCream);
-//        gc.fillRoundRect(x,y,width,height,20,20);
-//
-//        gc.setFont(Font.font("Arial", 12));
-//        gc.drawImage(coinImage,x-5,y,19,19);
-//        gc.setFill(Color.WHITE);
-//        gc.fillText(""+game.player.coin,x+14,y+12);
 
 
         //DRAW PRICE WINDOWS
         int itemIndex = getItemIndexOnSlot(shopSlotCol,shopSlotRow);
         if(itemIndex<shop.inventory.size()){
 
-            //FRAME
-//            frameX=game.tileSize*18;
-//            frameY=game.tileSize*4;
-//            frameWidth=game.tileSize*7;
-//            frameHeight=game.tileSize*6;
-//            slotCol=npcSlotCol;
-//            slotRow=npcSlotRow;
 
-
-//            x=(int)(game.tileSize*23);
-//            y=(int)(game.tileSize*10)+28;
-//            width=(game.tileSize*2)-10;
-//            height=game.tileSize-16;
-////            drawSubWindow(x,y,width,height);
-//            gc.setFill(darkCream);
-//            gc.fillRoundRect(x,y,width,height,20,20);
-//            //draw
-//
-//            gc.setFont(Font.font("Arial", 12));
-//            gc.setFill(Color.WHITE);
-//
-//
-//
-//            gc.drawImage(coinImage,x-5,y,19,19);
-//            int price= shop.inventory.get(itemIndex).price;
-//
-//            String text=""+price;
-//            x=getXForAlignToRightText(text,(x+width));
-//            gc.fillText(text,x-6,y+14);
 
             //IF BUY an ITEM
             if(game.keyHandler.isEnterPressed()==true){
@@ -936,6 +896,15 @@ public class UI_MainGame {
         textNode.setFont(gc.getFont());
         int length = (int)textNode.getBoundsInLocal().getWidth();
         int x = game.screenWidth/2 - length/2;
+        return x;
+    }
+
+    public int getXForCenteredTextInFrame(String text,int frameX,int frameWidth) {
+        Text textNode = new Text(text);
+        textNode.setFont(gc.getFont());
+        int length = (int)textNode.getBoundsInLocal().getWidth();
+
+        int x = frameX+(frameWidth/2 - length/2);
         return x;
     }
 
