@@ -6,8 +6,11 @@ import com.example.return_3.main.Game;
 import javafx.beans.value.ObservableStringValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.stage.StageStyle;
 
 public class GameController {
 
@@ -27,12 +30,38 @@ public class GameController {
 
     @FXML
     void back(ActionEvent event) throws Exception {
-        System.out.println("Before entry: "+ Game.gameInstance.player.worldY);
-        //Game.gameInstance.player.worldY+=Game.gameInstance.tileSize*5;
+//        System.out.println("Before entry: "+ Game.gameInstance.player.worldY);
+//        //Game.gameInstance.player.worldY+=Game.gameInstance.tileSize*5;
+//
+//        System.out.println("after entry: "+ Game.gameInstance.player.worldY);
+//        Game.gameInstance.keyHandler.setBooleanAll(false);
+//        Game.gameInstance.startGame();
 
-        System.out.println("after entry: "+ Game.gameInstance.player.worldY);
-        Game.gameInstance.keyHandler.setBooleanAll(false);
-        Game.gameInstance.startGame();
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Exit Confirmation");
+
+        alert.setHeaderText("You are about to exit!");
+        alert.setContentText("Are you sure you want to exit?");
+
+        // Add "Yes" and "No" buttons to the confirmation dialog
+        ButtonType buttonTypeYes = new ButtonType("Yes");
+        ButtonType buttonTypeNo = new ButtonType("No");
+        alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
+
+        // Custom CSS for the dialog
+        alert.getDialogPane().getStylesheets().add(
+                Game.class.getResource("/com/example/return_3/alert.css").toExternalForm());
+        alert.initStyle(StageStyle.TRANSPARENT); // Transparent style for a sleek look
+
+        // Handle button actions
+        alert.showAndWait().ifPresent(buttonType -> {
+            if (buttonType == buttonTypeYes) {
+                Game.gameInstance.keyHandler.setBooleanAll(false);
+                //Game.gameInstance.startGame();
+                Game.showGameScene();
+            }
+        });
     }
 
     @FXML

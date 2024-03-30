@@ -61,10 +61,12 @@ public class LoginController {
         Game.exitWithConfirmation();
     }
     public void signUp(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/signUp.fxml"));
-        //loader.setController(new MenuController());
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        primaryStage.setScene(scene);
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/signUp.fxml"));
+//        //loader.setController(new MenuController());
+//        Parent root = loader.load();
+//        Scene scene = new Scene(root);
+//        primaryStage.setScene(scene);
+        Game.gameInstance.signUpPage();
+
     }
 }
