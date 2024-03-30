@@ -227,17 +227,22 @@ public class Game extends Application {
 
         primaryStage.setScene(loginScene);
     }
-//    public void signUpPage() throws IOException {
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/signUp.fxml"));
-//        //loader.setController(new MenuController());
-//        Parent root = loader.load();
-//        Scene scene = new Scene(root);
-//
-//        ArrayList <Button> buttons = new ArrayList<>();
-//        SignUpController signUpController = loader.getController();
-//
-//        primaryStage.setScene(scene);
-//    }
+    public void signUpPage() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/signUp.fxml"));
+        //loader.setController(new MenuController());
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+
+        ArrayList <Button> buttons = new ArrayList<>();
+        SignUpController signUpController = loader.getController();
+        buttons.add(signUpController.signUpBtn);
+        buttons.add(signUpController.closeBtn);
+        buttons.add(signUpController.loginBtn);
+
+        hoverButton(buttons);
+
+        primaryStage.setScene(scene);
+    }
 
 
     //----------------------------- IN this `showGameScene` method our Application will direct you to the main game  ----------------------------------------------------------------
