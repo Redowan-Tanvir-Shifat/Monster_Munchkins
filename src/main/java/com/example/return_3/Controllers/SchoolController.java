@@ -22,7 +22,7 @@ public class SchoolController {
     public Button englishButton;
 
     @FXML
-    private Button backButton;
+    public Button backButton;
 
     @FXML
     void back(ActionEvent event) {
@@ -71,4 +71,6 @@ public class SchoolController {
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
     }
+
+
 }

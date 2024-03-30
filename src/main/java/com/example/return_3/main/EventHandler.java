@@ -135,6 +135,8 @@
 package com.example.return_3.main;
 
 import com.example.return_3.entity.Entity;
+import com.example.return_3.shop.ClothShop;
+import com.example.return_3.shop.StuffShop;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -232,30 +234,7 @@ public class EventHandler {
 
 
 
-            if(hit(gp.currentMap,23,42,"any")){
 
-                try {
-//                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/school.fxml"));
-//                        Parent root = loader.load();
-//                        Scene scene= new Scene(root);
-////                        scene.getStylesheets().add(getClass().getResource("school.css").toExternalForm());
-//                        gp.gameTimer.stop();
-//                        Game.primaryStage.setScene(scene);
-
-                    gp.showStoreScene();
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    System.err.println("Error loading store.fxml: " + e.getMessage());
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-
-
-                System.out.println("welcome to Store");
-                //
-
-            }
 
 
 
@@ -268,26 +247,29 @@ public class EventHandler {
 
 
 
-            if(hit(gp.currentMap,11,47,"right")){
+//            if(hit(gp.currentMap,11,47,"right")){
+//
+//               if(tl){
+//                   teleport(gp.currentMap,24,20);
+//                   tl=false;
+//               }
+//                System.out.println("hit teleport");
+//            }
+//
+//            if(hit(gp.currentMap,24,20,"right")){
+//
+//               ; if(tl){
+//                    teleport(gp.currentMap,11,47);
+//                    tl=false;
+//                }
+//                System.out.println("hit teleport");
+//            }
+            if(hit(gp.currentMap,128,146,"any")){
+//                speak(gp.npc[gp.currentMap][0]);
+                new ClothShop(gp).use();
 
-               if(tl){
-                   teleport(gp.currentMap,24,20);
-                   tl=false;
-               }
-                System.out.println("hit teleport");
-            }
-
-            if(hit(gp.currentMap,24,20,"right")){
-
-               ; if(tl){
-                    teleport(gp.currentMap,11,47);
-                    tl=false;
-                }
-                System.out.println("hit teleport");
-            }
-            if(hit(gp.currentMap,128,146,"any")||hit(gp.currentMap,29,146,"any")){
-                speak(gp.npc[gp.currentMap][0]);
                 System.out.println("Trade Place hit");
+
             }
 
         }
