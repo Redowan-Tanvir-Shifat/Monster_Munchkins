@@ -26,13 +26,13 @@ public class GameController {
 
 
     @FXML
-    void back(ActionEvent event) {
+    void back(ActionEvent event) throws Exception {
         System.out.println("Before entry: "+ Game.gameInstance.player.worldY);
         //Game.gameInstance.player.worldY+=Game.gameInstance.tileSize*5;
 
         System.out.println("after entry: "+ Game.gameInstance.player.worldY);
         Game.gameInstance.keyHandler.setBooleanAll(false);
-        Game.showGameScene();
+        Game.gameInstance.startGame();
     }
 
     @FXML

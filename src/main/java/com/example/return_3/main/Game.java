@@ -235,17 +235,16 @@ public class Game extends Application {
         } else {
 
             // Clear canvas and redraw main game content
-            gameInstance.clearCanvas(gameInstance.gc); // Implement this method to clear the canvas
+            //gameInstance.clearCanvas(gameInstance.gc); // Implement this method to clear the canvas
             gameInstance.gameStatus = gameInstance.gameMainStatus;
             gameInstance.gameState = gameInstance.playState;
-            gameScene=mainGameScene;
             primaryStage.setScene(gameScene);
             gameTimer.start();
         }
     }
-    public void clearCanvas(GraphicsContext gc){
-        gc.clearRect(0,0,screenWidth, screenHeight);
-    }
+//    public void clearCanvas(GraphicsContext gc){
+//        gc.clearRect(0,0,screenWidth, screenHeight);
+//    }
 
 
     //----------------------------- IN this `startGame` method our Application will direct you to the main game Screen  ----------------------------------------------------------------
@@ -396,9 +395,6 @@ public class Game extends Application {
         if(gameState==playState){
             if(gameStatus == gameMainStatus){
                 player.update();
-                System.out.println(player.worldX);
-                System.out.println(player.worldY);
-
                 //NPC UPDATE
                 for(int i=0; i<npc[currentMap].length; i++){
                     if(npc[currentMap][i] !=null){
@@ -556,6 +552,14 @@ public class Game extends Application {
                 button.setScaleY(1.05);
             });
             button.setOnMouseExited(e ->{
+                button.setScaleX(1);
+                button.setScaleY(1);
+            });
+            button.setOnMousePressed(e -> {
+                button.setScaleX(0.95);
+                button.setScaleY(0.95);
+            });
+            button.setOnMouseReleased(e -> {
                 button.setScaleX(1);
                 button.setScaleY(1);
             });
