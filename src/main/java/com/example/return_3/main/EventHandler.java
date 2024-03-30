@@ -136,6 +136,7 @@ package com.example.return_3.main;
 
 import com.example.return_3.entity.Entity;
 import com.example.return_3.shop.ClothShop;
+import com.example.return_3.shop.FoodShop;
 import com.example.return_3.shop.StuffShop;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -266,7 +267,8 @@ public class EventHandler {
 //            }
             if(hit(gp.currentMap,128,146,"any")){
 //                speak(gp.npc[gp.currentMap][0]);
-                new ClothShop(gp).use();
+                new FoodShop(gp).use();
+                canTouchEvent = false;
 
                 System.out.println("Trade Place hit");
 

@@ -14,7 +14,7 @@ public class StuffShop extends Shop {
         name="stuff shop";
         this.game = game;
         setItems();
-        setDialogue();
+       // setDialogue();
 
     }
 
@@ -24,9 +24,9 @@ public class StuffShop extends Shop {
         inventory.add(new OBJ_Axe(game));
         inventory.add(new OBJ_Shield_Blue(game));
     }
-    public void setDialogue(){
-        dialogue[0]="He he, so you found me.\nI have some good stuff. Do you want to trade?";
-    }
+    //public void setDialogue(){
+//        dialogue[0]="He he, so you found me.\nI have some good stuff. Do you want to trade?";
+//    }
     public void use(){
         game.gameState= game.tradeState;
         game.ui.uiMainGame.shop=this;

@@ -13,7 +13,7 @@ public class OBJ_Coin extends Entity {
         //Type will erite here later
         type= type_pickupOnly;
         name="Coin";
-        value =1;
+        value =1000;
         down1=uTool.loadImage("/objects/coin3.png",game.tileSize-7,game.tileSize-7);
         description="this is "+name;
     }
