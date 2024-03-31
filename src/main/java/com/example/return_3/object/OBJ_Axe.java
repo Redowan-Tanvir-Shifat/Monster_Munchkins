@@ -9,6 +9,7 @@ public class OBJ_Axe extends Entity {
         type =type_axe;
         name="Woodcutter's Axe";
         down1=loadImage("/objects/axe.png",game.tileSize,game.tileSize);
+        price=800;
         attackValue=2;
         attackArea.setWidth(25);
         attackArea.setHeight(25);
