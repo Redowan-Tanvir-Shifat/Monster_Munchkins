@@ -12,6 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.StrokeLineCap;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
@@ -24,7 +25,7 @@ public class UI_MainGame {
     Color cream, darkCream, darkDarkCream;
     Entity entity;
     GraphicsContext gc;
-    Font titleFont, smallFont,mediumFont,largeFont;
+    Font titleFont, smallFont,mediumFont,largeFont,smallFontBold,mediumFontBold,largeFontBold;
     Image heartFull, starImage, energyImage, coinImage, playerImage;
     public boolean messageOn = false;
 
@@ -54,9 +55,16 @@ public class UI_MainGame {
 //        arial_80B = new Font("Arial",80);
 
 
-        smallFont= Font.loadFont(getClass().getResourceAsStream("/font/Minecraft.ttf"), 16);
-        mediumFont= Font.loadFont(getClass().getResourceAsStream("/font/Minecraft.ttf"), 21);
-        largeFont= Font.loadFont(getClass().getResourceAsStream("/font/Minecraft.ttf"), 25);
+
+// Create font objects with different sizes
+        Font baseFont = Font.loadFont(getClass().getResourceAsStream("/font/Minecraft.ttf"), 12);
+        smallFont = Font.font(baseFont.getName(), FontWeight.NORMAL, FontPosture.REGULAR, 12); // Change size as needed
+        mediumFont = Font.font(baseFont.getName(), FontWeight.NORMAL, FontPosture.REGULAR, 16); // Change size as needed
+        largeFont = Font.font(baseFont.getName(), FontWeight.NORMAL, FontPosture.REGULAR, 24); // Change size as needed
+        smallFontBold = Font.font(baseFont.getName(), FontWeight.EXTRA_BOLD, FontPosture.REGULAR, 12); // Change size as needed
+        mediumFontBold = Font.font(baseFont.getName(), FontWeight.EXTRA_BOLD, FontPosture.REGULAR, 16); // Change size as needed
+        largeFontBold = Font.font(baseFont.getName(), FontWeight.EXTRA_BOLD, FontPosture.REGULAR, 24); // Change size as needed
+
         titleFont= Font.loadFont(getClass().getResourceAsStream("/font/KarmaFuture.ttf"), 28);
         UtilityTool uTool= new UtilityTool();
         heart = new OBJ_Heart(game);
@@ -122,10 +130,10 @@ public class UI_MainGame {
         gc.fillRoundRect(x, tempY, energyWidth, game.tileSize / 2,10,10);
 
         // Set font for text
-        gc.setFont(Font.font("Arial", FontWeight.BOLD, 12));
+        gc.setFont(smallFontBold);
 
         // Draw "Energy" text
-        gc.setFill(Color.WHITE);
+        gc.setFill(darkDarkCream);
         String text = "" + game.player.energy + "/" + game.player.maxEnergy;
 
         // Create a temporary Text node to measure the width
@@ -157,7 +165,7 @@ public class UI_MainGame {
         gc.fillRoundRect(x, tempY, game.tileSize * 2.5, game.tileSize / 2,10,10);
 
         // Set font for text
-        gc.setFont(Font.font("Arial", FontWeight.BOLD, 12));
+        gc.setFont(smallFontBold);
 
         // Draw "Energy" text
         gc.setFill(Color.rgb(125,89,9));
@@ -199,13 +207,13 @@ public class UI_MainGame {
 
         // Draw level number
         int level = game.player.level;
-        gc.setFill(Color.WHITE);
-        gc.setFont(Font.font("Arial", FontWeight.BOLD, 15)); // Customize font as needed
+        gc.setFill(Color.BLACK);
+        gc.setFont(mediumFontBold); // Customize font as needed
         gc.fillText("50", 13 + x, tempY+12); // Adjust position as needed
 
         //Draw Player EXP
         String expText= game.player.exp + "/" + game.player.nextLevelExp;
-        gc.setFont(Font.font("Arial", FontWeight.BOLD, 14)); // Customize font as needed
+        gc.setFont(smallFontBold); // Cusomize font as needed
 
         // Draw exp text at adjusted x position
         // gc.fillText(expText, tempX+10, tempY+5 );
@@ -225,16 +233,16 @@ public class UI_MainGame {
         drawSubWindow(frameX, frameY, frameWidth, frameHeight);
 
         String text = "Welcome To Hospital";
-        int textX = getXForCenteredText(text);
+        int textX = getXForCenteredTextInFrame(text,frameX,frameWidth);
         int textY = frameY + game.tileSize + 16;
 
         gc.setFill(Color.rgb(255, 255, 255));
-        gc.setFont(Font.font("Arial", 30));
+        gc.setFont(titleFont);
         gc.fillText(text, textX, textY);
 
         // Menu...
         gc.setFill(Color.rgb(255, 255, 255));
-        gc.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+        gc.setFont(mediumFontBold);
 
         int calCoin = (game.player.maxLife - game.player.life) * 20;
         text = "You need " + calCoin + " coin to heal yourself.";
@@ -286,12 +294,12 @@ public class UI_MainGame {
         int textY = frameY + game.tileSize + 16;
 
         gc.setFill(Color.rgb(255, 255, 255));
-        gc.setFont(Font.font("Arial", 40));
+        gc.setFont(titleFont);
         gc.fillText(text, textX, textY);
 
         // Menu...
         gc.setFill(Color.rgb(255, 255, 255));
-        gc.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+        gc.setFont(largeFontBold);
 
         text = "Back To Town hall";
         textX = getXForCenteredText(text);
@@ -328,7 +336,7 @@ public class UI_MainGame {
 
         // Text....
         gc.setFill(Color.rgb(255, 255, 255));
-        gc.setFont(Font.font("Arial", 16));
+        gc.setFont(mediumFontBold);
 
         int textX = frameX + game.tileSize/2;
         int textY = frameY + game.tileSize+8;
@@ -526,7 +534,7 @@ public class UI_MainGame {
             int itemIndex=getItemIndexOnSlot(slotCol,slotRow);
             if(itemIndex<entity.inventory.size()) {
                 drawSubWindow(dFrameX,dFrameY,dFrameWidth,dFrameHeight,cream,darkCream);
-                gc.setFont(smallFont);
+                gc.setFont(mediumFontBold);
                 for(String line : entity.inventory.get(itemIndex).description.split("\n")) {
                     gc.setFill(darkDarkCream);
                     gc.fillText(line, textX,textY);
@@ -539,7 +547,7 @@ public class UI_MainGame {
     public void drawPlayerPropertiesBox(int frameX,int frameY,int frameWidth,int frameHeight) {
         drawSubWindow(frameX, frameY, frameWidth, frameHeight,cream,darkCream);
         gc.setFill(Color.WHITE);
-        gc.setFont(smallFont);
+        gc.setFont(mediumFontBold);
         String userName=game.user.getUsername();
         int userNameX=getXForCenteredTextInFrame(userName,frameX,frameWidth);
         gc.fillText(userName,userNameX,frameY+90);
@@ -557,8 +565,8 @@ public class UI_MainGame {
         gc.fillRoundRect(x,y,width,height,arc,arc);
         String text=""+price;
         int priceX=getXForAlignToRightText(text,x+width);
-        int priceY=y+height
-                ;
+        int priceY=y+height;
+        gc.setFont(mediumFontBold);
         gc.setFill(Color.WHITE);
         gc.fillText(text,priceX,priceY);
 
@@ -588,7 +596,7 @@ public class UI_MainGame {
         // Text....
         gc.setFill(darkDarkCream);
        // pixelSport=Font.font(pixelSport.getFamily(),FontWeight.LIGHT,30);
-        gc.setFont(mediumFont);
+        gc.setFont(largeFontBold);
 
         //DRAW TEXT
         x+= game.tileSize;
@@ -635,7 +643,7 @@ public class UI_MainGame {
         drawSubWindow(x, y, y, 40,cream,darkCream);
         //drawing text
         gc.setFill(darkDarkCream);
-        gc.setFont(mediumFont);
+        gc.setFont(mediumFontBold);
         gc.fillText("[ESC] back",x+15,y+20);
 
 
@@ -739,7 +747,7 @@ public class UI_MainGame {
         int messageX = game.tileSize;
         int messageY = game.tileSize * 5;
 
-        gc.setFont(Font.font("Arial", FontWeight.BOLD, 15));
+        gc.setFont(largeFontBold);
         gc.setFill(Color.WHITE);
         for(int i = 0; i < message.size(); i++){
 
@@ -749,7 +757,7 @@ public class UI_MainGame {
 
                 int counter = messageCounter.get(i) + 1;
                 messageCounter.set(i, counter);     //set the counter to the array;
-                messageY += 50;
+                messageY += 30;
 
                 if(messageCounter.get(i) > 240){
                     message.remove(i);
@@ -775,6 +783,7 @@ public class UI_MainGame {
         y += game.tileSize;
         //System.out.println(currentDialogue);
         //to create new line
+        gc.setFont(mediumFontBold);
         for(String line: currentDialogue.split("\n")){
             gc.fillText(line,x,y);
             y+=40;
@@ -797,8 +806,6 @@ public class UI_MainGame {
         gc.setLineDashes(0); // Setting line dashes to 0 (solid line)
         gc.setLineCap(StrokeLineCap.ROUND); // Setting line cap to round
         gc.strokeRoundRect(x + 5, y + 5, width - 10, height - 10, 25, 25);
-        gc.setFill(Color.rgb(255, 255, 255));
-        gc.setFont(Font.font("Arial", 16));
     }
 
     public void drawSubWindow(int x, int y, int width, int height, Color color,Color strokeColor){
@@ -902,9 +909,9 @@ public class UI_MainGame {
     public int getXForCenteredTextInFrame(String text,int frameX,int frameWidth) {
         Text textNode = new Text(text);
         textNode.setFont(gc.getFont());
-        int length = (int)textNode.getBoundsInLocal().getWidth();
+        double length = textNode.getLayoutBounds().getWidth();
 
-        int x = frameX+(frameWidth/2 - length/2);
+        int x = frameX + (frameWidth / 2 - (int) length / 2);
         return x;
     }
 
