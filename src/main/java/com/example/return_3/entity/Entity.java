@@ -26,6 +26,7 @@ public class Entity {
     public String direction = "down";
     public  int spriteNum = 1;
     public int chatNum = 1;
+    public int itemCode;
     public int goalCol;
     public int goalRow;
     public int dialogueIndex = 0;

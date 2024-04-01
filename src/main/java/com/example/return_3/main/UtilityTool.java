@@ -1,6 +1,7 @@
 package com.example.return_3.main;
 
 import com.example.return_3.entity.Entity;
+import com.example.return_3.object.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.PixelWriter;
@@ -44,5 +45,15 @@ public class UtilityTool {
         } else if (entity.worldY + Game.gameInstance.tileSize >y+ height) {
             entity.worldY = y+height- Game.gameInstance.tileSize; // Prevent player from moving beyond the bottom boundary
         }
+    }
+    public static Entity inventoryItem(int itemCode){
+        return switch (itemCode) {
+            case 101 -> new OBJ_Sword_Normal(Game.gameInstance);
+            case 102 -> new OBJ_Axe(Game.gameInstance);
+            case 103 -> new OBJ_Shield_Wood(Game.gameInstance);
+            case 104 -> new OBJ_Shield_Blue(Game.gameInstance);
+            case 301 -> new OBJ_Potion_Red(Game.gameInstance);
+            default -> null;
+        };
     }
 }
