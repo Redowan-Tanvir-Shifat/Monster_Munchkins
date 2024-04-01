@@ -485,9 +485,11 @@ public class Player extends Entity{
             else{
                 String text;
                 if(inventory.size()!=maxInventorySize){
-                    inventory.add(game.obj[game.currentMap][i]);
+                    //inventory.add(game.obj[game.currentMap][i]);
+                    addToInventory(game.obj[game.currentMap][i]);
                     // game.playSE(1);
                     text="Got a "+ game.obj[game.currentMap][i].name+" !";
+                   // game.obj[game.currentMap][i].itemCount++;
                 }else {
                     text="You can not carry any more!";
                 }
@@ -497,6 +499,36 @@ public class Player extends Entity{
             }
         }
     }
+    public void addToInventory(Entity entity){
+        Entity item=game.inventoryMapgetItem(entity.itemCode);
+        inventory.add(item);
+        item.itemCount++;
+
+//        for (Entity inventoryItem : inventory) {
+//            if (inventoryItem.name.equals(entity.name)) {
+//                // If the item already exists, increment the count and return
+//                inventoryItem.itemCount++;
+//                return;
+//            }
+//        }
+//        // If the item does not exist in the inventory, add it with count 1
+//        item.itemCount=1;
+//        inventory.add(item);
+    }
+//    private void addToInventoryWithName(Entity item, String itemName) {
+//        // Check if the item already exists in the inventory
+//        for (Entity inventoryItem : inventory) {
+//            if (inventoryItem.getName().equals(itemName)) {
+//                // If the item already exists, increment the count and return
+//                inventoryItem.incrementItemCount();
+//                return;
+//            }
+//        }
+//
+//        // If the item does not exist in the inventory, add it with count 1
+//        item.itemCount=1;
+//        inventory.add(item);
+//    }
     public void checkLevelUp() {
         if (exp >= nextLevelExp) {
             level++;

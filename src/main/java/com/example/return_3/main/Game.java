@@ -11,6 +11,7 @@ import com.example.return_3.entity.Player;
 import com.example.return_3.gameCenter.snakey.Snakey;
 import com.example.return_3.gameCenter.spaceInvaders.GameSpaceInvaders;
 import com.example.return_3.interactiveTile.InteractiveTile;
+import com.example.return_3.object.*;
 import com.example.return_3.tile.Map;
 import com.example.return_3.tile.TileManager;
 import com.example.return_3.ui.UI;
@@ -34,6 +35,7 @@ import java.security.SignatureException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 
 public class Game extends Application {
 
@@ -120,6 +122,16 @@ public class Game extends Application {
     // public  ArrayList<Entity> projectileList = new ArrayList<>();
     public Entity[][] projectile = new Entity[maxMap][20];
     public ArrayList<Entity> particleList = new ArrayList<>();
+
+    //For inventory
+    HashMap<Integer, Entity> inventoryMap;
+    Entity axe = new OBJ_Axe(this);
+    Entity shieldBlue = new OBJ_Shield_Blue(this);
+    Entity sword = new OBJ_Sword_Normal(this);
+    Entity shieldWood = new OBJ_Shield_Wood(this);
+    Entity redPotion = new OBJ_Potion_Red(this);
+
+
 
 
 
@@ -276,7 +288,14 @@ public class Game extends Application {
     //----------------------------- IN this `startGame` method our Application will direct you to the main game Screen  ----------------------------------------------------------------
     public void startGame() throws Exception {
         //gameInstance = this;
+
         gameStatus=gameMainStatus;
+        inventoryMap = new HashMap<>();
+        inventoryMapAddItem(axe.itemCode, axe);
+        inventoryMapAddItem(sword.itemCode, sword);
+        inventoryMapAddItem(redPotion.itemCode, redPotion);
+        inventoryMapAddItem(shieldBlue.itemCode, shieldBlue);
+        inventoryMapAddItem(shieldWood.itemCode, shieldWood);
         Pane mainGameroot = new Pane();
         mainGameroot.setOnMouseEntered(event -> {
             mainGameroot.setCursor(Cursor.HAND);
@@ -299,6 +318,22 @@ public class Game extends Application {
         gameState=playState;
 
     }
+
+
+    public void inventoryMapAddItem(int itemCode, Entity item) {
+        inventoryMap.put(itemCode, item);
+    }
+
+    public Entity inventoryMapgetItem(int itemCode) {
+        return inventoryMap.get(itemCode);
+    }
+
+    public void inventoryMapremoveItem(int itemCode) {
+        inventoryMap.remove(itemCode);
+    }
+
+
+
     //this restart game method is not needed
     public void reStartGame() throws Exception {
         //gameInstance = this;

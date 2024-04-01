@@ -7,7 +7,7 @@ public class OBJ_Shield_Wood extends Entity {
     public OBJ_Shield_Wood(Game game) {
         super(game);
         type=type_shield;
-        price=350;
+        price=35;
         name = "Wood Shield";
         down1 = loadImage("/objects/shield_wood.png", game.tileSize, game.tileSize);
         defenseValue = 1;

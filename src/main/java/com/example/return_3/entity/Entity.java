@@ -27,6 +27,7 @@ public class Entity {
     public  int spriteNum = 1;
     public int chatNum = 1;
     public int itemCode;
+    public  int itemCount;
     public int goalCol;
     public int goalRow;
     public int dialogueIndex = 0;

@@ -1,5 +1,6 @@
 package com.example.return_3.ui;
 
+import com.example.return_3.db.MyJDBC;
 import com.example.return_3.entity.Entity;
 import com.example.return_3.main.Game;
 import com.example.return_3.main.UtilityTool;
@@ -543,7 +544,7 @@ public class UI_MainGame {
             if(itemIndex<entity.inventory.size()) {
                 drawSubWindow(dFrameX,dFrameY,dFrameWidth,dFrameHeight,cream,darkCream);
                 int price= entity.inventory.get(itemIndex).price;
-                System.out.println("Price: " + price);
+//                System.out.println("Price: " + price);
                 int x=dFrameX+game.tileSize*5;
                 int y=dFrameY+game.tileSize/2;
                 drawCoinBox(coinImage,x,y,price);
@@ -682,9 +683,10 @@ public class UI_MainGame {
                     currentDialogue="You can not carry any more items";
                     drawDialogueScreen();
                 }else{
+
                     game.player.coin-=shop.inventory.get(itemIndex).price;
                     game.player.inventory.add(shop.inventory.get(itemIndex));
-                }
+                    shop.inventory.get(itemIndex).itemCount++;                }
             }
         }
     }
@@ -740,6 +742,13 @@ public class UI_MainGame {
                     game.gameState=game.messageState;
                     currentDialogue="you can not sell an equiped items";
                 }else{
+                    System.out.println("before sell:");
+                    System.out.println("name: "+game.player.inventory.get(itemIndex).name+"|| Item Count: "+game.player.inventory.get(itemIndex).itemCount);
+
+                    game.player.inventory.get(itemIndex).itemCount--;
+                    System.out.println("after sell: ");
+                    System.out.println("name: "+game.player.inventory.get(itemIndex).name+"|| Item Count: "+game.player.inventory.get(itemIndex).itemCount);
+                    MyJDBC.updateInventory(game.player.playerId,game.player.inventory.get(itemIndex).itemCode,game.player.inventory.get(itemIndex).itemCount);
                     game.player.inventory.remove(itemIndex);
                     game.player.coin+=price;
                 }

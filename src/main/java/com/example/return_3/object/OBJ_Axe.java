@@ -4,12 +4,13 @@ import com.example.return_3.entity.Entity;
 import com.example.return_3.main.Game;
 
 public class OBJ_Axe extends Entity {
+
     public OBJ_Axe(Game game) {
         super(game);
         type =type_axe;
         name="Woodcutter's Axe";
         down1=loadImage("/objects/axe.png",game.tileSize,game.tileSize);
-        price=800;
+        price=8;
         itemCode=102;
         attackValue=2;
         attackArea.setWidth(25);

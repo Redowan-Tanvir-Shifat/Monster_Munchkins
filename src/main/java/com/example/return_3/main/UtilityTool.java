@@ -46,14 +46,17 @@ public class UtilityTool {
             entity.worldY = y+height- Game.gameInstance.tileSize; // Prevent player from moving beyond the bottom boundary
         }
     }
-    public static Entity inventoryItem(int itemCode){
-        return switch (itemCode) {
-            case 101 -> new OBJ_Sword_Normal(Game.gameInstance);
-            case 102 -> new OBJ_Axe(Game.gameInstance);
-            case 103 -> new OBJ_Shield_Wood(Game.gameInstance);
-            case 104 -> new OBJ_Shield_Blue(Game.gameInstance);
-            case 301 -> new OBJ_Potion_Red(Game.gameInstance);
-            default -> null;
-        };
+    public static Entity inventoryItem(int itemCode,int itemCount){
+        Entity item = Game.gameInstance.inventoryMap.get(itemCode);
+
+        // If the item is found in the inventory
+        if (item != null) {
+            item.itemCount=itemCount;
+        }
+            return item;
     }
+
+//    public static void updateItemInventory(
+//
+//    )
 }
