@@ -1,6 +1,7 @@
 package com.example.return_3.db;
 
 import com.example.return_3.entity.Entity;
+import com.example.return_3.interactiveTile.CuttableTree;
 import com.example.return_3.main.Game;
 import com.example.return_3.main.UtilityTool;
 
@@ -213,7 +214,7 @@ public class MyJDBC {
 
 
     //////For INVENTORY
-
+//we i need to check this method once again because there might be one operation and i did multiple for not knowing the
     public static ArrayList<Entity> getUserInventory(int userId) {
         try {
             Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
@@ -252,6 +253,87 @@ public class MyJDBC {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    // <----------------INTERACTIVE LINE------------------->
+    //in this addInteractivetile  we will add tile by this method at the time of sign up .
+    //when user will create then the interactive tile will also be created
+    public static void addInteractiveTile(int userId, int col, int row, int mapNum, boolean destroyed) {
+        try {
+            Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "INSERT INTO InteractiveTiles (user_id, col, row, mapNum, destroyed) VALUES (?, ?, ?, ?, ?)"
+            );
+            preparedStatement.setInt(1, userId);
+            preparedStatement.setInt(2, col);
+            preparedStatement.setInt(3, row);
+            preparedStatement.setInt(4, mapNum);
+            preparedStatement.setBoolean(5, destroyed);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public static void setInteractiveTile(int userId, int mapNum) {
+        try {
+            Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT col, row FROM InteractiveTiles WHERE user_id = ? AND mapNum = ? AND destroyed = TRUE"
+            );
+            preparedStatement.setInt(1, userId);
+            preparedStatement.setInt(2, mapNum);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            int i=0;
+            // Iterate over the result set and create instances of CuttableTree
+            while (resultSet.next()) {
+                int col = resultSet.getInt("col");
+                int row = resultSet.getInt("row");
+
+                // Create instance of CuttableTree with the retrieved position
+                CuttableTree cuttableTree = new CuttableTree(Game.gameInstance, col, row);
+
+                // Add the instance to the game's data structure for storing interactive tiles
+                Game.gameInstance.iTile[mapNum][i] = cuttableTree;
+                i++;
+            }
+
+            // Close resources
+            resultSet.close();
+            preparedStatement.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle exceptions
+        }
+    }
+
+// when player cut the tree then this method will called
+    public void updateDestroyedStatus(int userId, int mapNum, int row, int col, boolean destroyed) {
+        try {
+            Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "UPDATE InteractiveTiles SET destroyed = ? WHERE user_id = ? AND mapNum = ? AND row = ? AND col = ?"
+            );
+            preparedStatement.setBoolean(1, destroyed);
+            preparedStatement.setInt(2, userId);
+            preparedStatement.setInt(3, mapNum);
+            preparedStatement.setInt(4, row);
+            preparedStatement.setInt(5, col);
+            // Execute the update query
+            int rowsAffected = preparedStatement.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("interactive TIle data updated successfully.");
+            } else {
+                System.out.println("No interactive tile found with the given data.");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
 }
