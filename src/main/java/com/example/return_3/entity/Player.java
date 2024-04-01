@@ -1,5 +1,6 @@
 package com.example.return_3.entity;
 
+import com.example.return_3.db.MyJDBC;
 import com.example.return_3.main.EventHandler;
 import com.example.return_3.main.Game;
 import com.example.return_3.main.KeyHandler;
@@ -168,6 +169,8 @@ public class Player extends Entity{
         maxMana = game.user.getBullet();
         mana = game.user.getMaxBullet();
         //ammo=10;
+        inventory= MyJDBC.getUserInventory(playerId);
+
 
     }
 

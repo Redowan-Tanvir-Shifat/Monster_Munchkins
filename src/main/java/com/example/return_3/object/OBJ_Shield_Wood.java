@@ -11,6 +11,7 @@ public class OBJ_Shield_Wood extends Entity {
         name = "Wood Shield";
         down1 = loadImage("/objects/shield_wood.png", game.tileSize, game.tileSize);
         defenseValue = 1;
+        itemCode=103;
         description="["+name+"]\nMade by Wood";
         knockBackPower = 25;
     }

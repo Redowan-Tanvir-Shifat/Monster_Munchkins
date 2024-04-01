@@ -2,8 +2,11 @@ package com.example.return_3.db;
 
 import com.example.return_3.entity.Entity;
 import com.example.return_3.main.Game;
+import com.example.return_3.main.UtilityTool;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 //JDBC class is used to interact with our MYSQL database to perform activites such as retrieving and updatin our db
 public class MyJDBC {
@@ -203,6 +206,49 @@ public class MyJDBC {
             } else {
                 System.out.println("No user found with the given ID.");
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    //////For INVENTORY
+
+    public static ArrayList<Entity> getUserInventory(int userId) {
+        try {
+            Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM Inventory WHERE user_id = ?"
+            );
+            preparedStatement.setInt(1, userId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            ArrayList<Entity> inventory = new ArrayList<>();
+            while (resultSet.next()) {
+                int itemCode = resultSet.getInt("itemCode");
+                int count = resultSet.getInt("count");
+                for(int i=0;i<count;i++){
+                inventory.add(new UtilityTool().inventoryItem(itemCode));
+                }
+            }
+            return inventory;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static void updateInventory(int userId, String itemCode, int count) {
+        try {
+            Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "INSERT INTO Inventory (user_id, itemCode, count) VALUES (?, ?, ?) " +
+                            "ON DUPLICATE KEY UPDATE count = VALUES(count)"
+            );
+            preparedStatement.setInt(1, userId);
+            preparedStatement.setString(2, itemCode);
+            preparedStatement.setInt(3, count);
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }

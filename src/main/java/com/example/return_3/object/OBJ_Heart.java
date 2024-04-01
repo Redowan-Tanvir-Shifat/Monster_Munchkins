@@ -13,7 +13,7 @@ public class OBJ_Heart extends Entity {
         type = type_pickupOnly;
         name="Heart";
         value=30;
-
+//        itemCode=201;
         down1 = loadImage("/objects/heart_full.png",game.tileSize,game.tileSize);
         image1 = loadImage("/objects/heart_full.png",game.tileSize,game.tileSize);
         image2 = loadImage("/objects/heart_half.png",game.tileSize,game.tileSize);
