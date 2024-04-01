@@ -47,23 +47,13 @@ public class UtilityTool {
         }
     }
     public static Entity inventoryItem(int itemCode,int itemCount){
-        Entity item=null;
-        if(itemCode==101){
-            item=new OBJ_Sword_Normal(Game.gameInstance);
+        Entity item = Game.gameInstance.inventoryMap.get(itemCode);
 
-        } else if (itemCode==102) {
-            item=  new OBJ_Axe(Game.gameInstance);
-        }else if (itemCode==103) {
-            item= new OBJ_Shield_Wood(Game.gameInstance);
-        }else if (itemCode==104) {
-            item= new OBJ_Shield_Blue(Game.gameInstance);
-        }else if (itemCode==301) {
-            item= new OBJ_Potion_Red(Game.gameInstance);
-        }
-        if(item!=null) {
+        // If the item is found in the inventory
+        if (item != null) {
             item.itemCount=itemCount;
         }
-        return item;
+            return item;
     }
 
 //    public static void updateItemInventory(

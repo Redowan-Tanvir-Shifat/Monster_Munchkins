@@ -268,6 +268,8 @@ public class KeyHandler {
                     int itemCode=item.itemCode;
                     int count=item.itemCount;
                 MyJDBC.updateInventory(game.user.getUserId(),itemCode,count);
+                    System.out.println("after updated:");
+                    System.out.println("itemName: "+item.name+"|| itemCount: "+count);
                 }
 
                 Game.exitGame();
