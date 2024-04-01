@@ -1,6 +1,7 @@
 package com.example.return_3.db;
 
 import com.example.return_3.entity.Entity;
+import com.example.return_3.main.Game;
 
 import java.sql.*;
 
@@ -36,28 +37,53 @@ public class MyJDBC {
                 int userId=resultSet.getInt("user_id");
 
                 //get others properties.
-                int coin= resultSet.getInt("coin");
-                int energy= resultSet.getInt("energy");
-                int maxEnergy= resultSet.getInt("maxEnergy");
-                int life= resultSet.getInt("life");
-                int maxLife= resultSet.getInt("maxLife");
-                int exp= resultSet.getInt("exp");
-                int nextLevelExp= resultSet.getInt("nextLevelExp");
-                int level= resultSet.getInt("level");
-                int strength= resultSet.getInt("strength");
-                int dexterity= resultSet.getInt("dexterity");
-                int bullet= resultSet.getInt("bullet");
-                int maxBullet= resultSet.getInt("maxBullet");
-                //BigDecimal currentBalance= resultSet.getBigDecimal("current_balance");
-                //BigDecimal currentBalance= resultSet.getBigDecimal("current_balance");
-                //return user object
-                return  new User(userId,username,password,coin,energy,maxEnergy,life,maxLife,exp,nextLevelExp,level,strength,dexterity,bullet,maxBullet);
+//                int coin= resultSet.getInt("coin");
+//                int energy= resultSet.getInt("energy");
+//                int maxEnergy= resultSet.getInt("maxEnergy");
+//                int life= resultSet.getInt("life");
+//                int maxLife= resultSet.getInt("maxLife");
+//                int exp= resultSet.getInt("exp");
+//                int nextLevelExp= resultSet.getInt("nextLevelExp");
+//                int level= resultSet.getInt("level");
+//                int strength= resultSet.getInt("strength");
+//                int dexterity= resultSet.getInt("dexterity");
+//                int bullet= resultSet.getInt("bullet");
+//                int maxBullet= resultSet.getInt("maxBullet");
+//                int playerRow= resultSet.getInt("p_row");
+//                int playerCol= resultSet.getInt("p_col");
+//                boolean canTouchEvent= resultSet.getBoolean("can_touch_event");
+//                //BigDecimal currentBalance= resultSet.getBigDecimal("current_balance");
+//                //BigDecimal currentBalance= resultSet.getBigDecimal("current_balance");
+//                //return user object
+//                return  new User(userId,username,password,playerCol,playerRow,canTouchEvent,coin,energy,maxEnergy,life,maxLife,exp,nextLevelExp,level,strength,dexterity,bullet,maxBullet);
+                return getUserProperties(userId,username,password,resultSet);
             }
         }catch (SQLException e){
             e.printStackTrace();
         }
         //not valid user
         return  null;
+    }
+    private static User getUserProperties(int userId, String username, String password, ResultSet resultSet) throws SQLException {
+        int coin= resultSet.getInt("coin");
+        int energy= resultSet.getInt("energy");
+        int maxEnergy= resultSet.getInt("maxEnergy");
+        int life= resultSet.getInt("life");
+        int maxLife= resultSet.getInt("maxLife");
+        int exp= resultSet.getInt("exp");
+        int nextLevelExp= resultSet.getInt("nextLevelExp");
+        int level= resultSet.getInt("level");
+        int strength= resultSet.getInt("strength");
+        int dexterity= resultSet.getInt("dexterity");
+        int bullet= resultSet.getInt("bullet");
+        int maxBullet= resultSet.getInt("maxBullet");
+        int playerRow= resultSet.getInt("p_row");
+        int playerCol= resultSet.getInt("p_col");
+        boolean canTouchEvent= resultSet.getBoolean("can_touch_event");
+        //BigDecimal currentBalance= resultSet.getBigDecimal("current_balance");
+        //BigDecimal currentBalance= resultSet.getBigDecimal("current_balance");
+        //return user object
+        return  new User(userId,username,password,playerCol,playerRow,canTouchEvent,coin,energy,maxEnergy,life,maxLife,exp,nextLevelExp,level,strength,dexterity,bullet,maxBullet);
     }
 
     public static User getUserData(int userId) {
@@ -73,22 +99,23 @@ public class MyJDBC {
                 // Retrieve user data from the result set
                 String username = resultSet.getString("username");
                 String password = resultSet.getString("password");
-                int coin = resultSet.getInt("coin");
-                int energy = resultSet.getInt("energy");
-                int maxEnergy = resultSet.getInt("maxEnergy");
-                int life = resultSet.getInt("life");
-                int maxLife = resultSet.getInt("maxLife");
-                int exp = resultSet.getInt("exp");
-                int nextLevelExp = resultSet.getInt("nextLevelExp");
-                int level = resultSet.getInt("level");
-                int strength = resultSet.getInt("strength");
-                int dexterity = resultSet.getInt("dexterity");
-                int bullet = resultSet.getInt("bullet");
-                int maxBullet = resultSet.getInt("maxBullet");
-
-                // Create and return a User object
-                return new User(userId, username, password, coin, energy, maxEnergy, life, maxLife, exp, nextLevelExp,
-                        level, strength, dexterity, bullet, maxBullet);
+//                int coin = resultSet.getInt("coin");
+//                int energy = resultSet.getInt("energy");
+//                int maxEnergy = resultSet.getInt("maxEnergy");
+//                int life = resultSet.getInt("life");
+//                int maxLife = resultSet.getInt("maxLife");
+//                int exp = resultSet.getInt("exp");
+//                int nextLevelExp = resultSet.getInt("nextLevelExp");
+//                int level = resultSet.getInt("level");
+//                int strength = resultSet.getInt("strength");
+//                int dexterity = resultSet.getInt("dexterity");
+//                int bullet = resultSet.getInt("bullet");
+//                int maxBullet = resultSet.getInt("maxBullet");
+//
+//                // Create and return a User object
+//                return new User(userId, username, password, coin, energy, maxEnergy, life, maxLife, exp, nextLevelExp,
+//                        level, strength, dexterity, bullet, maxBullet);
+                return getUserProperties(userId, username, password, resultSet);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -141,17 +168,18 @@ public class MyJDBC {
     //Update users table before exit the game.
     public static void updateUser(Entity user) {
         try {
-            //establish a connection to the database using configuration
+            // Establish a connection to the database using configuration
             Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
 
-            //create sql query
+            // Create SQL query
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "UPDATE users SET coin = ?, energy = ?, maxEnergy = ?, life = ?, maxLife = ?, " +
                             "exp = ?, nextLevelExp = ?, level = ?, strength = ?, dexterity = ?, " +
-                            "bullet = ?, maxBullet = ? WHERE user_id = ?"
+                            "bullet = ?, maxBullet = ?, p_row = ?, p_col = ? WHERE user_id = ?"
             );
+            //, can_touch_event = ?
 
-            //replace the placeholders with values
+            // Replace the placeholders with values
             preparedStatement.setInt(1, user.coin);
             preparedStatement.setInt(2, user.energy);
             preparedStatement.setInt(3, user.maxEnergy);
@@ -164,9 +192,12 @@ public class MyJDBC {
             preparedStatement.setInt(10, user.dexterity);
             preparedStatement.setInt(11, user.mana);
             preparedStatement.setInt(12, user.maxMana);
-            preparedStatement.setInt(13, user.playerId); // user_id for WHERE clause
+            preparedStatement.setInt(13, user.worldY / Game.gameInstance.tileSize);
+            preparedStatement.setInt(14, user.worldX/Game.gameInstance.tileSize);
+            //preparedStatement.setBoolean(15, user.can_touch_event);
+            preparedStatement.setInt(15, user.playerId); // user_id for WHERE clause
 
-            //execute the update query
+            // Execute the update query
             int rowsAffected = preparedStatement.executeUpdate();
             if (rowsAffected > 0) {
                 System.out.println("User data updated successfully.");

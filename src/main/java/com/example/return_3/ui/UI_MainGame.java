@@ -57,15 +57,23 @@ public class UI_MainGame {
 
 
 // Create font objects with different sizes
-        Font baseFont = Font.loadFont(getClass().getResourceAsStream("/font/Minecraft.ttf"), 12);
+//        Font baseFont = Font.loadFont(getClass().getResourceAsStream("/font/Teh And Kopi.ttf"), 12);
+//        Font baseFont = Font.loadFont(getClass().getResourceAsStream("/font/neuropol x rg.otf"), 12);
+//        Font baseFont = Font.loadFont(getClass().getResourceAsStream("/font/rexlia rg.otf"), 12);
+//        Font baseFont = Font.loadFont(getClass().getResourceAsStream("/font/zekton rg.otf"), 12);
+        Font baseFont = Font.font("Dialog",FontWeight.BOLD,20);
         smallFont = Font.font(baseFont.getName(), FontWeight.NORMAL, FontPosture.REGULAR, 12); // Change size as needed
         mediumFont = Font.font(baseFont.getName(), FontWeight.NORMAL, FontPosture.REGULAR, 16); // Change size as needed
         largeFont = Font.font(baseFont.getName(), FontWeight.NORMAL, FontPosture.REGULAR, 24); // Change size as needed
-        smallFontBold = Font.font(baseFont.getName(), FontWeight.EXTRA_BOLD, FontPosture.REGULAR, 12); // Change size as needed
-        mediumFontBold = Font.font(baseFont.getName(), FontWeight.EXTRA_BOLD, FontPosture.REGULAR, 16); // Change size as needed
-        largeFontBold = Font.font(baseFont.getName(), FontWeight.EXTRA_BOLD, FontPosture.REGULAR, 24); // Change size as needed
+        smallFontBold = Font.font(baseFont.getName(), FontWeight.BOLD, FontPosture.REGULAR, 12); // Change size as needed
+        mediumFontBold = Font.font(baseFont.getName(), FontWeight.BOLD, FontPosture.REGULAR, 16); // Change size as needed
+        largeFontBold = Font.font(baseFont.getName(), FontWeight.NORMAL, FontPosture.REGULAR, 24); // Change size as needed
 
-        titleFont= Font.loadFont(getClass().getResourceAsStream("/font/KarmaFuture.ttf"), 28);
+  //      titleFont= Font.loadFont(getClass().getResourceAsStream("/font/DapplegrimDemoRegular-ODop.otf"), 28);
+        Font baseTitleFont = Font.loadFont(getClass().getResourceAsStream("/font/LONDON PRESLEY.ttf"), 36);
+
+        titleFont= Font.font(baseTitleFont.getName(), FontWeight.BLACK, FontPosture.REGULAR, 36);
+//        titleFont= Font.loadFont(getClass().getResourceAsStream("/font/Teh And Kopi.ttf"), 28);
         UtilityTool uTool= new UtilityTool();
         heart = new OBJ_Heart(game);
         heartFull = heart.image1;
@@ -526,7 +534,7 @@ public class UI_MainGame {
             int dFrameHeight= game.tileSize*4;
             //DRAW DESCRIPTION TEXT
             int textX=dFrameX+20;
-            int textY=dFrameY+game.tileSize;
+            int textY=dFrameY+(2*game.tileSize);
 
            // gc.setFill(Color.rgb(255, 255, 255));
             //gc.setFont(Font.font("Arial", 16));
@@ -534,6 +542,11 @@ public class UI_MainGame {
             int itemIndex=getItemIndexOnSlot(slotCol,slotRow);
             if(itemIndex<entity.inventory.size()) {
                 drawSubWindow(dFrameX,dFrameY,dFrameWidth,dFrameHeight,cream,darkCream);
+                int price= entity.inventory.get(itemIndex).price;
+                System.out.println("Price: " + price);
+                int x=dFrameX+game.tileSize*5;
+                int y=dFrameY+game.tileSize/2;
+                drawCoinBox(coinImage,x,y,price);
                 gc.setFont(mediumFontBold);
                 for(String line : entity.inventory.get(itemIndex).description.split("\n")) {
                     gc.setFill(darkDarkCream);
@@ -685,37 +698,38 @@ public class UI_MainGame {
         int y=game.tileSize*9;
         int width=game.tileSize*6;
         int height=game.tileSize*2;
-        drawSubWindow(x,y,width,height);
-        //drawing text
-        gc.fillText("[ESC] back",x+24,y+60);
+//        drawSubWindow(x,y,width,height);
+//        //drawing text
+//        gc.fillText("[ESC] back",x+24,y+60);
 
 
-        //DRAW PLAYER COIN WINDOWs
-        x= game.tileSize*12;
-        y=game.tileSize*9;
-        width=game.tileSize*6;
-        height=game.tileSize*2;
-        drawSubWindow(x, y, width, height);
-        gc.setFont(Font.font("Arial", 16));
-        gc.fillText("Your Coin: "+game.player.coin,x+24,y+60);
+//        DRAW PLAYER COIN WINDOWs
+//        x= game.tileSize*12;
+//        y=game.tileSize*9;
+//        width=game.tileSize*6;
+//        height=game.tileSize*2;
+//        drawSubWindow(x, y, width, height);
+//        gc.setFont(Font.font("Arial", 16));
+//        gc.fillText("Your Coin: "+game.player.coin,x+24,y+60);
 
 
         //DRAW PRICE WINDOWS
         int itemIndex = getItemIndexOnSlot(playerSlotCol,playerSlotRow);
         if(itemIndex<game.player.inventory.size()){
-            x=(int)(game.tileSize*15.5);
-            y=(int)(game.tileSize*5.5);
-            width=(int)(game.tileSize*2.5);
-            height=game.tileSize;
-            drawSubWindow(x,y,width,height);
+//            x=(int)(game.tileSize*15.5);
+//            y=(int)(game.tileSize*5.5);
+//            width=(int)(game.tileSize*2.5);
+//            height=game.tileSize;
+//            drawSubWindow(x,y,width,height,cream,darkCream);
             //draw
-            gc.drawImage(coinImage,x+10,y+10,25,25);
+           // gc.drawImage(coinImage,x+10,y+10,25,25);
 
             int price= game.player.inventory.get(itemIndex).price;
+//            drawCoinBox(coinImage,x+10,y+10,price);
 
-            String text=""+price;
-            x=getXForAlignToRightText(text,game.tileSize*8-20);
-            gc.fillText(text,x,y+20);
+//            String text=""+price;
+//            x=getXForAlignToRightText(text,game.tileSize*8-20);
+//            gc.fillText(text,x,y+20);
 
             //IF Sell an ITEM
             if(game.keyHandler.isEnterPressed()==true){
