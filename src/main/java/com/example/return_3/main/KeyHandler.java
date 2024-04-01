@@ -221,7 +221,7 @@ public class KeyHandler {
             }
         }
         if(code==KeyCode.D || code== KeyCode.RIGHT){ //VK_D means if user press D then
-            if(game.ui.uiMainGame.shopSlotCol!=4) {
+            if(game.ui.uiMainGame.shopSlotCol!=5) {
                 game.ui.uiMainGame.shopSlotCol++;
                 //gp.playSE(9);
             }
@@ -252,12 +252,13 @@ public class KeyHandler {
                 game.player.setDefaultPositions();
             }
             if (game.ui.uiMainGame.commandNum == 1) {
-                MyJDBC.updateUser(game.player);
+                MyJDBC.updateUser(game.user);
+
                 game.logout();
 
 
             }if (game.ui.uiMainGame.commandNum == 2) {
-                MyJDBC.updateUser(game.player);
+                MyJDBC.updateUser(game.user);
                 Game.exitGame();
             }
         }

@@ -7,15 +7,15 @@ User entity which is used to store user information ()i.e. id, username, passwor
 public class User {
     private final int userId;
     private final String  username, password;
-    private int playerCol,playerRow, coin, energy,maxEnergy, life,maxLife, exp,nextLevelExp, level,strength,dexterity, bullet,maxBullet;
-    private boolean canTouchEvent;
-    public User(int userId,String  username, String password,int playerCol,int playerRow,boolean canTouchEvent,int coin,int energy,int maxEnergy,int life,int maxLife, int exp,int nextLevelExp,int level,int strength,int dexterity,int bullet,int maxBullet ){
+
+    private int worldX,worldY, coin, energy,maxEnergy, life,maxLife, exp,nextLevelExp, level,strength,dexterity, bullet,maxBullet;
+    public User(int userId,String  username, String password,int playerCol,int playerRow,int coin,int energy,int maxEnergy,int life,int maxLife, int exp,int nextLevelExp,int level,int strength,int dexterity,int bullet,int maxBullet ){
         this.userId=userId;
         this.username=username;
         this.password=password;
-        this.playerCol=playerCol;
-        this.playerRow=playerRow;
-        this.canTouchEvent=canTouchEvent;
+        this.worldX=playerCol;
+        this.worldY=playerRow;
+
         this.coin=coin;
         this.energy=energy;
         this.maxEnergy=maxEnergy;
@@ -127,28 +127,20 @@ public class User {
         this.maxEnergy = maxEnergy;
     }
 
-    public int getPlayerCol() {
-        return playerCol;
+    public int getWorldX() {
+        return worldX;
     }
 
-    public void setPlayerCol(int playerCol) {
-        this.playerCol = playerCol;
+    public void setWorldX(int worldX) {
+        this.worldX = worldX;
     }
 
-    public int getPlayerRow() {
-        return playerRow;
+    public int getWorldY() {
+        return worldY;
     }
 
-    public void setPlayerRow(int playerRow) {
-        this.playerRow = playerRow;
-    }
-
-    public boolean isCanTouchEvent() {
-        return canTouchEvent;
-    }
-
-    public void setCanTouchEvent(boolean canTouchEvent) {
-        this.canTouchEvent = canTouchEvent;
+    public void setWorldY(int worldY) {
+        this.worldY = worldY;
     }
 
     public void setLife(int life) {

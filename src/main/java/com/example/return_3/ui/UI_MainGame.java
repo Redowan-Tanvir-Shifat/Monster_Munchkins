@@ -647,6 +647,7 @@ public class UI_MainGame {
 
 //        //Draw ShopC inventory
         drawInventory(shop,true,6);
+        System.out.println("SHOP: "+shop.inventory.get(0).price);
 
 //        //DRAW HINT WINDOWS
         int x= game.tileSize*13;
