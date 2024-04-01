@@ -15,6 +15,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Objects;
 
+import static com.example.return_3.main.Game.gameInstance;
 import static com.example.return_3.main.Game.primaryStage;
 
 public class LoginController {
@@ -31,7 +32,7 @@ public class LoginController {
     String password1;
 
     //-------------------------- --- IN this `startGame` method our Application will direct you `showGameScene` and then game will start  ----------------------------------------------------------------
-    public void login(ActionEvent event) {
+    public void login(ActionEvent event) throws Exception {
         //Validate Login
         Game.gameInstance.user= MyJDBC.validateLogin(username.getText(),password.getText());
         if (Game.gameInstance.user!=null){
@@ -43,7 +44,8 @@ public class LoginController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            Game.showGameScene();
+            //Game.showGameScene();
+            gameInstance.startGame();
         }else{
             failedText.setText("Please enter correct password!");
         }

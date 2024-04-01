@@ -77,13 +77,12 @@ public class MyJDBC {
         int dexterity= resultSet.getInt("dexterity");
         int bullet= resultSet.getInt("bullet");
         int maxBullet= resultSet.getInt("maxBullet");
-        int playerRow= resultSet.getInt("p_row");
-        int playerCol= resultSet.getInt("p_col");
-        boolean canTouchEvent= resultSet.getBoolean("can_touch_event");
+        int worldX= resultSet.getInt("world_x");
+        int worldY= resultSet.getInt("world_y");
         //BigDecimal currentBalance= resultSet.getBigDecimal("current_balance");
         //BigDecimal currentBalance= resultSet.getBigDecimal("current_balance");
         //return user object
-        return  new User(userId,username,password,playerCol,playerRow,canTouchEvent,coin,energy,maxEnergy,life,maxLife,exp,nextLevelExp,level,strength,dexterity,bullet,maxBullet);
+        return  new User(userId,username,password,worldX,worldY,coin,energy,maxEnergy,life,maxLife,exp,nextLevelExp,level,strength,dexterity,bullet,maxBullet);
     }
 
     public static User getUserData(int userId) {
@@ -166,7 +165,7 @@ public class MyJDBC {
     }
 
     //Update users table before exit the game.
-    public static void updateUser(Entity user) {
+    public static void updateUser(User user) {
         try {
             // Establish a connection to the database using configuration
             Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
@@ -175,27 +174,27 @@ public class MyJDBC {
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "UPDATE users SET coin = ?, energy = ?, maxEnergy = ?, life = ?, maxLife = ?, " +
                             "exp = ?, nextLevelExp = ?, level = ?, strength = ?, dexterity = ?, " +
-                            "bullet = ?, maxBullet = ?, p_row = ?, p_col = ? WHERE user_id = ?"
+                            "bullet = ?, maxBullet = ?, world_x = ?, world_y = ? WHERE user_id = ?"
             );
             //, can_touch_event = ?
 
             // Replace the placeholders with values
-            preparedStatement.setInt(1, user.coin);
-            preparedStatement.setInt(2, user.energy);
-            preparedStatement.setInt(3, user.maxEnergy);
-            preparedStatement.setInt(4, user.life);
-            preparedStatement.setInt(5, user.maxLife);
-            preparedStatement.setInt(6, user.exp);
-            preparedStatement.setInt(7, user.nextLevelExp);
-            preparedStatement.setInt(8, user.level);
-            preparedStatement.setInt(9, user.strength);
-            preparedStatement.setInt(10, user.dexterity);
-            preparedStatement.setInt(11, user.mana);
-            preparedStatement.setInt(12, user.maxMana);
-            preparedStatement.setInt(13, user.worldY / Game.gameInstance.tileSize);
-            preparedStatement.setInt(14, user.worldX/Game.gameInstance.tileSize);
+            preparedStatement.setInt(1, user.getCoin());
+            preparedStatement.setInt(2, user.getEnergy());
+            preparedStatement.setInt(3, user.getMaxEnergy());
+            preparedStatement.setInt(4, user.getLife());
+            preparedStatement.setInt(5, user.getMaxLife());
+            preparedStatement.setInt(6, user.getExp());
+            preparedStatement.setInt(7, user.getNextLevelExp());
+            preparedStatement.setInt(8, user.getLevel());
+            preparedStatement.setInt(9, user.getStrength());
+            preparedStatement.setInt(10, user.getDexterity());
+            preparedStatement.setInt(11, user.getBullet());
+            preparedStatement.setInt(12, user.getMaxBullet());
+            preparedStatement.setInt(13, user.getWorldX());
+            preparedStatement.setInt(14, user.getWorldY());
             //preparedStatement.setBoolean(15, user.can_touch_event);
-            preparedStatement.setInt(15, user.playerId); // user_id for WHERE clause
+            preparedStatement.setInt(15, user.getUserId()); // user_id for WHERE clause
 
             // Execute the update query
             int rowsAffected = preparedStatement.executeUpdate();

@@ -182,8 +182,8 @@ public class Player extends Entity{
     }
 
     public void setDefaultPositions(){
-        worldX= game.tileSize * game.user.getPlayerCol();
-        worldY= game.tileSize * game.user.getPlayerRow();
+        worldX=  game.user.getWorldX();
+        worldY=  game.user.getWorldY();
         direction = "down";
     }
     public void setHospitalPosition() {
