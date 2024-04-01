@@ -534,7 +534,7 @@ public class UI_MainGame {
             int dFrameHeight= game.tileSize*4;
             //DRAW DESCRIPTION TEXT
             int textX=dFrameX+20;
-            int textY=dFrameY+game.tileSize;
+            int textY=dFrameY+(2*game.tileSize);
 
            // gc.setFill(Color.rgb(255, 255, 255));
             //gc.setFont(Font.font("Arial", 16));
@@ -716,16 +716,16 @@ public class UI_MainGame {
         //DRAW PRICE WINDOWS
         int itemIndex = getItemIndexOnSlot(playerSlotCol,playerSlotRow);
         if(itemIndex<game.player.inventory.size()){
-            x=(int)(game.tileSize*15.5);
-            y=(int)(game.tileSize*5.5);
-            width=(int)(game.tileSize*2.5);
-            height=game.tileSize;
-            drawSubWindow(x,y,width,height,cream,darkCream);
+//            x=(int)(game.tileSize*15.5);
+//            y=(int)(game.tileSize*5.5);
+//            width=(int)(game.tileSize*2.5);
+//            height=game.tileSize;
+//            drawSubWindow(x,y,width,height,cream,darkCream);
             //draw
            // gc.drawImage(coinImage,x+10,y+10,25,25);
 
             int price= game.player.inventory.get(itemIndex).price;
-            drawCoinBox(coinImage,x+10,y+10,price);
+//            drawCoinBox(coinImage,x+10,y+10,price);
 
 //            String text=""+price;
 //            x=getXForAlignToRightText(text,game.tileSize*8-20);
