@@ -228,7 +228,7 @@ public class MyJDBC {
                 int itemCode = resultSet.getInt("itemCode");
                 int count = resultSet.getInt("count");
                 for(int i=0;i<count;i++){
-                inventory.add(new UtilityTool().inventoryItem(itemCode));
+                inventory.add(new UtilityTool().inventoryItem(itemCode,count));
                 }
             }
             return inventory;
@@ -238,7 +238,7 @@ public class MyJDBC {
         return null;
     }
 
-    public static void updateInventory(int userId, String itemCode, int count) {
+    public static void updateInventory(int userId, int itemCode, int count) {
         try {
             Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
             PreparedStatement preparedStatement = connection.prepareStatement(
@@ -246,7 +246,7 @@ public class MyJDBC {
                             "ON DUPLICATE KEY UPDATE count = VALUES(count)"
             );
             preparedStatement.setInt(1, userId);
-            preparedStatement.setString(2, itemCode);
+            preparedStatement.setInt(2, itemCode);
             preparedStatement.setInt(3, count);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {

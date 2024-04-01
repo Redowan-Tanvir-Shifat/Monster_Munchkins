@@ -682,9 +682,10 @@ public class UI_MainGame {
                     currentDialogue="You can not carry any more items";
                     drawDialogueScreen();
                 }else{
+
                     game.player.coin-=shop.inventory.get(itemIndex).price;
                     game.player.inventory.add(shop.inventory.get(itemIndex));
-                }
+                    shop.inventory.get(itemIndex).itemCount++;                }
             }
         }
     }
@@ -740,6 +741,7 @@ public class UI_MainGame {
                     game.gameState=game.messageState;
                     currentDialogue="you can not sell an equiped items";
                 }else{
+                    game.player.inventory.get(itemIndex).itemCount--;
                     game.player.inventory.remove(itemIndex);
                     game.player.coin+=price;
                 }

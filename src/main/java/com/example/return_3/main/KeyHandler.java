@@ -2,6 +2,7 @@ package com.example.return_3.main;
 
 
 import com.example.return_3.db.MyJDBC;
+import com.example.return_3.entity.Entity;
 import com.example.return_3.entity.NPC_Trade;
 import com.example.return_3.shop.StuffShop;
 import javafx.application.Platform;
@@ -263,6 +264,12 @@ public class KeyHandler {
                 game.user.setWorldX(game.player.worldX);
                 game.user.setWorldY(game.player.worldY);
                 MyJDBC.updateUser(game.user);
+                for ( Entity item: game.player.inventory) {
+                    int itemCode=item.itemCode;
+                    int count=item.itemCount;
+                MyJDBC.updateInventory(game.user.getUserId(),itemCode,count);
+                }
+
                 Game.exitGame();
             }
         }

@@ -4,6 +4,7 @@ import com.example.return_3.entity.Entity;
 import com.example.return_3.main.Game;
 
 public class OBJ_Axe extends Entity {
+
     public OBJ_Axe(Game game) {
         super(game);
         type =type_axe;

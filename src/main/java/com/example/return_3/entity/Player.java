@@ -488,6 +488,7 @@ public class Player extends Entity{
                     inventory.add(game.obj[game.currentMap][i]);
                     // game.playSE(1);
                     text="Got a "+ game.obj[game.currentMap][i].name+" !";
+                    game.obj[game.currentMap][i].itemCount++;
                 }else {
                     text="You can not carry any more!";
                 }
