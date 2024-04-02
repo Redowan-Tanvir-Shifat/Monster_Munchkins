@@ -1,6 +1,7 @@
 package com.example.return_3.main;
 
 
+import com.example.return_3.db.MyJDBC;
 import com.example.return_3.entity.NPC_School;
 import com.example.return_3.entity.NPC_Trade;
 import com.example.return_3.entity.NPC_Wizard;
@@ -144,10 +145,17 @@ i++;
     //For Interactive Tile
     public void setInteractiveTile(){
         int mapNum=0;
-        int i=0;
-        game.iTile[mapNum][i]=new CuttableTree(game,45,138);i++;
-        game.iTile[mapNum][i]=new CuttableTree(game,46,138);i++;
-        game.iTile[mapNum][i]=new CuttableTree(game,47,137);i++;
-        game.iTile[mapNum][i]=new CuttableTree(game,48,137);i++;
+//        int i=0;
+        MyJDBC.setInteractiveTile(game.player.playerId,mapNum);
+    }
+
+
+
+    public static void addInteractiveTileToDB(int userId){
+        int mapNum=0;
+         MyJDBC.addInteractiveTile(userId, 53, 142, mapNum); // Add interactive tiles
+         MyJDBC.addInteractiveTile(userId, 53, 143, mapNum); // Add interactive tiles
+         MyJDBC.addInteractiveTile(userId, 54, 142, mapNum); // Add interactive tiles
+         MyJDBC.addInteractiveTile(userId, 54, 143, mapNum); // Add interactive tiles
     }
 }

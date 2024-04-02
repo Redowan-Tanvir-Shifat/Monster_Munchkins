@@ -22,6 +22,7 @@ public class InteractiveTile extends Entity {
     }
     public InteractiveTile getDestryoedForm(){
         InteractiveTile tile=null;
+
         return tile;
     }
     public void update(){

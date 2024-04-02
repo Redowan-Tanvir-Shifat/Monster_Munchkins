@@ -30,10 +30,10 @@ public class CuttableTree extends InteractiveTile{
 //    public void playSE(){
 //        gp.playSE(11);
 //    }
-    public InteractiveTile getDestryoedForm(){
-        InteractiveTile tile= new CuttableTree_Parts(game, worldX/game.tileSize, worldY/game.tileSize);
-        return tile;
-    }
+//    public InteractiveTile getDestryoedForm(){
+//        InteractiveTile tile= new CuttableTree_Parts(game, worldX/game.tileSize, worldY/game.tileSize);
+//        return tile;
+//    }
     public Color getParticleColor(){ //this indicates the color of the particle
         Color color= Color.rgb(65,50,30);
         return color;

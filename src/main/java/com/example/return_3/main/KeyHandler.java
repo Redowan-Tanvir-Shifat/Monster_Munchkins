@@ -253,17 +253,13 @@ public class KeyHandler {
                 game.player.setDefaultPositions();
             }
             if (game.ui.uiMainGame.commandNum == 1) {
-                game.user.setWorldX(game.player.worldX);
-                game.user.setWorldY(game.player.worldY);
-                MyJDBC.updateUser(game.user);
+                MyJDBC.updateUser(game.player);
 
                 game.logout();
 
 
             }if (game.ui.uiMainGame.commandNum == 2) {
-                game.user.setWorldX(game.player.worldX);
-                game.user.setWorldY(game.player.worldY);
-                MyJDBC.updateUser(game.user);
+                MyJDBC.updateUser(game.player);
                 for ( Entity item: game.player.inventory) {
                     int itemCode=item.itemCode;
                     int count=item.itemCount;
