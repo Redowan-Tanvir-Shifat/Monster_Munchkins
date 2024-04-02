@@ -148,4 +148,14 @@ i++;
 //        int i=0;
         MyJDBC.setInteractiveTile(game.player.playerId,mapNum);
     }
+
+
+
+    public static void addInteractiveTileToDB(int userId){
+        int mapNum=0;
+         MyJDBC.addInteractiveTile(userId, 53, 142, mapNum); // Add interactive tiles
+         MyJDBC.addInteractiveTile(userId, 53, 143, mapNum); // Add interactive tiles
+         MyJDBC.addInteractiveTile(userId, 54, 142, mapNum); // Add interactive tiles
+         MyJDBC.addInteractiveTile(userId, 54, 143, mapNum); // Add interactive tiles
+    }
 }

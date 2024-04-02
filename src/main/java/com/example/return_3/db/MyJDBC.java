@@ -128,23 +128,29 @@ public class MyJDBC {
 
     //true - register success
     //false - register failed
-    public static boolean register(String username,String password){
-        try{
-            //first we will need to check if the username has already been taken
-            if(!checkUser(username)){
-                Connection connection= DriverManager.getConnection(DB_URL,DB_USERNAME,DB_PASSWORD);
-                PreparedStatement preparedStatement= connection.prepareStatement(
-                        "INSERT INTO users(username,password)"+"VALUES(? , ?)"
+    public static int register(String username, String password) {
+        try {
+            if (!checkUser(username)) {
+                Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+                PreparedStatement preparedStatement = connection.prepareStatement(
+                        "INSERT INTO users(username,password)" + "VALUES(? , ?)", Statement.RETURN_GENERATED_KEYS
                 );
-                preparedStatement.setString(1,username);
-                preparedStatement.setString(2,password);
+                preparedStatement.setString(1, username);
+                preparedStatement.setString(2, password);
                 preparedStatement.executeUpdate();
-                return true;
+
+                // Retrieve the auto-generated user ID
+                ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    return generatedKeys.getInt(1); // Return the user ID
+                }
             }
-        }catch (SQLException e){
-            e.printStackTrace();}
-        return false;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1; // Registration failed
     }
+
 
     //check if username already exists in the db
     //true - user exists
@@ -169,7 +175,7 @@ public class MyJDBC {
     }
 
     //Update users table before exit the game.
-    public static void updateUser(User user) {
+    public static void updateUser(Entity user) {
         try {
             // Establish a connection to the database using configuration
             Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
@@ -183,22 +189,22 @@ public class MyJDBC {
             //, can_touch_event = ?
 
             // Replace the placeholders with values
-            preparedStatement.setInt(1, user.getCoin());
-            preparedStatement.setInt(2, user.getEnergy());
-            preparedStatement.setInt(3, user.getMaxEnergy());
-            preparedStatement.setInt(4, user.getLife());
-            preparedStatement.setInt(5, user.getMaxLife());
-            preparedStatement.setInt(6, user.getExp());
-            preparedStatement.setInt(7, user.getNextLevelExp());
-            preparedStatement.setInt(8, user.getLevel());
-            preparedStatement.setInt(9, user.getStrength());
-            preparedStatement.setInt(10, user.getDexterity());
-            preparedStatement.setInt(11, user.getBullet());
-            preparedStatement.setInt(12, user.getMaxBullet());
-            preparedStatement.setInt(13, user.getWorldX());
-            preparedStatement.setInt(14, user.getWorldY());
+            preparedStatement.setInt(1, user.coin);
+            preparedStatement.setInt(2, user.energy);
+            preparedStatement.setInt(3, user.maxEnergy);
+            preparedStatement.setInt(4, user.life);
+            preparedStatement.setInt(5, user.maxLife);
+            preparedStatement.setInt(6, user.exp);
+            preparedStatement.setInt(7, user.nextLevelExp);
+            preparedStatement.setInt(8, user.level);
+            preparedStatement.setInt(9, user.strength);
+            preparedStatement.setInt(10, user.dexterity);
+            preparedStatement.setInt(11, user.mana);
+            preparedStatement.setInt(12, user.maxMana);
+            preparedStatement.setInt(13, user.worldX);
+            preparedStatement.setInt(14, user.worldY);
             //preparedStatement.setBoolean(15, user.can_touch_event);
-            preparedStatement.setInt(15, user.getUserId()); // user_id for WHERE clause
+            preparedStatement.setInt(15, user.playerId); // user_id for WHERE clause
 
             // Execute the update query
             int rowsAffected = preparedStatement.executeUpdate();
@@ -258,17 +264,17 @@ public class MyJDBC {
     // <----------------INTERACTIVE LINE------------------->
     //in this addInteractivetile  we will add tile by this method at the time of sign up .
     //when user will create then the interactive tile will also be created
-    public static void addInteractiveTile(int userId, int col, int row, int mapNum, boolean destroyed) {
+    public static void addInteractiveTile(int userId, int col, int row, int mapNum) {
         try {
             Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "INSERT INTO InteractiveTiles (user_id, col, row, mapNum, destroyed) VALUES (?, ?, ?, ?, ?)"
+                    "INSERT INTO InteractiveTiles (user_id, tile_col, tile_row, mapNum) VALUES (?, ?, ?, ?)"
             );
             preparedStatement.setInt(1, userId);
             preparedStatement.setInt(2, col);
             preparedStatement.setInt(3, row);
             preparedStatement.setInt(4, mapNum);
-            preparedStatement.setBoolean(5, destroyed);
+//            preparedStatement.setBoolean(5, destroyed);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -280,7 +286,7 @@ public class MyJDBC {
         try {
             Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT col, row FROM InteractiveTiles WHERE user_id = ? AND mapNum = ? AND destroyed = TRUE"
+                    "SELECT tile_col, tile_row FROM InteractiveTiles WHERE user_id = ? AND mapNum = ? AND destroyed = FALSE"
             );
             preparedStatement.setInt(1, userId);
             preparedStatement.setInt(2, mapNum);
@@ -288,8 +294,8 @@ public class MyJDBC {
             int i=0;
             // Iterate over the result set and create instances of CuttableTree
             while (resultSet.next()) {
-                int col = resultSet.getInt("col");
-                int row = resultSet.getInt("row");
+                int col = resultSet.getInt("tile_col");
+                int row = resultSet.getInt("tile_row");
 
                 // Create instance of CuttableTree with the retrieved position
                 CuttableTree cuttableTree = new CuttableTree(Game.gameInstance, col, row);
@@ -297,6 +303,7 @@ public class MyJDBC {
                 // Add the instance to the game's data structure for storing interactive tiles
                 Game.gameInstance.iTile[mapNum][i] = cuttableTree;
                 i++;
+                System.out.println("tile number " + i  );
             }
 
             // Close resources
@@ -310,11 +317,11 @@ public class MyJDBC {
     }
 
 // when player cut the tree then this method will called
-    public void updateDestroyedStatus(int userId, int mapNum, int row, int col, boolean destroyed) {
+    public static void updateDestroyedStatus(int userId, int mapNum, int row, int col, boolean destroyed) {
         try {
             Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "UPDATE InteractiveTiles SET destroyed = ? WHERE user_id = ? AND mapNum = ? AND row = ? AND col = ?"
+                    "UPDATE InteractiveTiles SET destroyed = ? WHERE user_id = ? AND mapNum = ? AND tile_row = ? AND tile_col = ?"
             );
             preparedStatement.setBoolean(1, destroyed);
             preparedStatement.setInt(2, userId);

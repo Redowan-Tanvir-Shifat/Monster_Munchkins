@@ -1,6 +1,7 @@
 package com.example.return_3.Controllers;
 
 import com.example.return_3.db.MyJDBC;
+import com.example.return_3.main.AssetSetter;
 import com.example.return_3.main.Game;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -24,29 +25,20 @@ public class SignUpController {
     public Button loginBtn;
 
     public void signUp(ActionEvent event) throws IOException {
-//        if (Objects.equals(password1.getText(), password2.getText())) {
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/login.fxml"));
-//            //loader.setController(new MenuController());
-//            Parent root = loader.load();
-//            Scene scene = new Scene(root);
-//            primaryStage.setScene(scene);
-//        } else {
-//            failedText.setText("Please enter same password!");
-//        }
-        if(validateUserInput(username.getText(),password1.getText(),password2.getText())){
-            //if MyJDBC.register == true then success in register or fail in register
-            if(MyJDBC.register(username.getText(),password1.getText())){
+        if(validateUserInput(username.getText(), password1.getText(), password2.getText())) {
+            int userId = MyJDBC.register(username.getText(), password1.getText());
+            if(userId != -1) { // Registration successful
+               // MyJDBC.addInteractiveTile(userId, col, row, mapNum, destroyed); // Add interactive tiles
+                //setup interactive Tile
+                AssetSetter.addInteractiveTileToDB(userId);
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/login.fxml"));
-            //loader.setController(new MenuController());
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-            primaryStage.setScene(scene);
-            }else{
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+                primaryStage.setScene(scene);
+            } else {
                 failedText.setText("This username is already taken!");
             }
         }
-
-
     }
 
     public void close(ActionEvent event) {

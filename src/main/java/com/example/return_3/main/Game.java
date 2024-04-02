@@ -116,7 +116,6 @@ public class Game extends Application {
     public Entity obj[][]= new Entity[maxMap][20];
     public Entity npc[][]= new Entity[maxMap][20]; //set the number of 10 NPC Number
     public Entity[][] monster = new Entity[maxMap][20];
-
     public InteractiveTile iTile[][]= new InteractiveTile[maxMap][50];
     ArrayList<Entity> entityList = new ArrayList<>();
     // public  ArrayList<Entity> projectileList = new ArrayList<>();
@@ -517,7 +516,12 @@ public class Game extends Application {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
+        //To reset the player properties
+        obj= new Entity[maxMap][20];
+        npc= new Entity[maxMap][20]; //set the number of 10 NPC Number
+        monster = new Entity[maxMap][20];
+        iTile= new InteractiveTile[maxMap][50];
+        entityList = new ArrayList<>();
     }
 
     public void update() {

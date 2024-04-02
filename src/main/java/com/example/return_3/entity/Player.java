@@ -468,6 +468,11 @@ public class Player extends Entity{
             generateParticle(game.iTile[game.currentMap][i],game.iTile[game.currentMap][i]);
 
             if(game.iTile[game.currentMap][i].life<1){
+
+                int row=game.iTile[game.currentMap][i].worldY/game.tileSize;
+                int col=game.iTile[game.currentMap][i].worldX/game.tileSize;
+                MyJDBC.updateDestroyedStatus(playerId,game.currentMap,row,col,true);
+                //thogh we can simply use `null` but we did that code because if we need any destroyed form
                 game.iTile[game.currentMap][i]=game.iTile[game.currentMap][i].getDestryoedForm();
             }
         }
