@@ -17,8 +17,9 @@ public class OBJ_Apple extends Entity {
         down1=uTool.loadImage("/objects/food/apple.png",game.tileSize-7,game.tileSize-7);
         description="this is "+name;
     }
-    public void use(Entity entity){
+    public boolean use(Entity entity){
         game.ui.uiMainGame.addMessage("life gain: "+value);
         game.player.life+=value;
+        return true;
     }
 }

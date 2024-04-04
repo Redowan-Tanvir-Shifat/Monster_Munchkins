@@ -20,12 +20,13 @@ public class OBJ_Heart extends Entity {
         image3 = loadImage("/objects/heart_blank.png",game.tileSize,game.tileSize);
 
     }
-    public void use(Entity entity){
+    public boolean use(Entity entity){
         //gp.playSE(2);
         game.ui.uiMainGame.addMessage("Life + "+value);
         entity.life += value;
         if(game.player.life>game.player.maxLife){
             game.player.life=game.player.maxLife;
         }
+        return true;
     }
 }

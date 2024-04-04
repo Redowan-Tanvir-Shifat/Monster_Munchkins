@@ -490,6 +490,14 @@ public class Player extends Entity{
                 game.obj[game.currentMap][i]=null;
 
             }
+            //obstacles
+            else if (game.obj[game.currentMap][i].type==type_obstacle){
+
+                if(keyHandler.isEnterPressed()){
+                    game.obj[game.currentMap][i].interact();
+                }
+                System.out.println("obstacle detected");
+            }
             //INVENTORY ITEMS
             else{
                 String text;
@@ -572,8 +580,10 @@ public class Player extends Entity{
             }
             if(selectedItem.type==type_consumable){
                 //WE are gonna use this later
-                selectedItem.use(this);
+                if(selectedItem.use(this)){
+
                 inventory.remove(itemIndex);
+                }
             }
         }
 
