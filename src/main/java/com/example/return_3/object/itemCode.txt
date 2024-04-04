@@ -17,3 +17,4 @@ starts with 300
 coin - 301
 heart - 302
 red potion - 303
+key -304

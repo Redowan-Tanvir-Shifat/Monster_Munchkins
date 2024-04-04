@@ -138,6 +138,7 @@ public class Entity {
     public final int type_shield = 6;
     public final int type_consumable = 7;
     public final int type_pickupOnly = 8;
+    public final int type_obstacle = 9;
 
     // <---------Type of NPC--------->
     public int npc_area;
@@ -155,8 +156,31 @@ public class Entity {
         this.game=game;
          uTool=new UtilityTool();
     }
+    //get entity properties
+    public double getLeftX(){
+        return  (worldX+solidArea.getX());
+    }
+    public double getRightX(){
+        return (worldX+solidArea.getX()+solidArea.getWidth());
+    }
+    public double getTopY(){
+        return worldY+solidArea.getY();
+    }
+    public double getBottomY(){
+        return worldY+solidArea.getY()+solidArea.getHeight();
+    }
+    public int getCol(){
+        return (int) ((worldX+solidArea.getX())/game.tileSize);
+    }
+    public int getRow(){
+        return (int) ((worldY+solidArea.getY())/game.tileSize);
+    }
 
-    public void use(Entity entity){}
+// Return `TRUE` if you used the item and `FALSE` if you failed to use it
+    public boolean use(Entity entity){
+        return false;
+    }
+    public void interact(){}
     public void checkDrop(){}
     public void dropItem(Entity droppedItem){
         for (int i=0; i<game.obj[0].length;i++){
@@ -866,6 +890,34 @@ public class Entity {
             }
 
         }
+    }
+
+    public int getDetected(Entity user, Entity target[][], String targetName){
+        int index= 999;
+        //check the sourrending object
+        double nextWorldX=user.getLeftX();
+        double nextWorldY=user.getTopY();
+        switch(user.direction){
+            case "up":nextWorldY=user.getTopY()-3;break;
+            case "down":nextWorldY=user.getBottomY()+1;break;
+            case "left":nextWorldX=user.getLeftX()-1;break;
+            case "right":nextWorldX=user.getRightX()+1;break;
+        }
+        int col= (int) (nextWorldX/game.tileSize);
+        int row= (int)(nextWorldY/game.tileSize);
+
+        for(int i=0;i<target[1].length;i++){
+            if(target[game.currentMap][i]!=null){
+                if(target[game.currentMap][i].getCol()==col &&
+                target[game.currentMap][i].getRow()==row &&
+                target[game.currentMap][i].name.equals(targetName)){
+                    index=i;
+                    break;
+                }
+            }
+        }
+
+        return index;
     }
 
 
