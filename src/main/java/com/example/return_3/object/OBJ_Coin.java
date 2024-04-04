@@ -14,6 +14,7 @@ public class OBJ_Coin extends Entity {
         type= type_pickupOnly;
         name="Coin";
         value =1000;
+        itemCode=301;
         down1=uTool.loadImage("/objects/coin3.png",game.tileSize-7,game.tileSize-7);
         description="this is "+name;
     }

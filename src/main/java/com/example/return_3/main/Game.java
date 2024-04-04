@@ -1,6 +1,5 @@
 package com.example.return_3.main;
 
-
 import com.example.return_3.Controllers.*;
 import com.example.return_3.Controllers.HistoryController;
 import com.example.return_3.ai.PathFinder;
@@ -31,7 +30,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.*;
-import java.security.SignatureException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -71,10 +69,17 @@ public class Game extends Application {
 
     // $$$$$$$$$  GAME STATUS $$$$$$$$$
     public int gameStatus;
-    public int gameFXMLStatus=0;
-    public int gameMainStatus=1;
-    public int gameSpaceInvadersStatus=2;
-    public int gameSnakeyStatus=3;
+    public final int gameFXMLStatus=0;
+    public final int gameMainStatus=1;
+    public final int gameSpaceInvadersStatus=2;
+    public final int gameSnakeyStatus=3;
+
+    //TYPE
+
+    public int objectType;
+    public final int type_interactiveTIle=0;
+    public final int type_object=1;
+
 
 
 
@@ -106,7 +111,7 @@ public class Game extends Application {
     public Canvas mainGameCanvas = new Canvas(screenWidth, screenHeight);
     public GraphicsContext gc = mainGameCanvas.getGraphicsContext2D();
     public TileManager tileM= new TileManager(this);
-    //public Map map= new Map(this);
+//    public Map map= new Map(this);
     public CollisionChecker cChecker = new CollisionChecker(this);
     public EventHandler eventHandler= new EventHandler(this);
     public AssetSetter assetSetter= new AssetSetter(this);
@@ -124,11 +129,11 @@ public class Game extends Application {
 
     //For inventory
     HashMap<Integer, Entity> inventoryMap;
-    Entity axe = new OBJ_Axe(this);
-    Entity shieldBlue = new OBJ_Shield_Blue(this);
-    Entity sword = new OBJ_Sword_Normal(this);
+    public Entity axe = new OBJ_Axe(this);
+    public Entity shieldBlue = new OBJ_Shield_Blue(this);
+    public Entity sword = new OBJ_Sword_Normal(this);
     Entity shieldWood = new OBJ_Shield_Wood(this);
-    Entity redPotion = new OBJ_Potion_Red(this);
+    public Entity redPotion = new OBJ_Potion_Red(this);
 
 
 
@@ -151,8 +156,9 @@ public class Game extends Application {
     String direction="down1";
 
 
-
-    //-------------------------- --- IN this start method our Application is running ----------------------------------------------------------------
+    //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    //              <----------------- IN this start method our Application is running ------------------------>
+    //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     @Override
     public void start(Stage stage) throws Exception {
 
@@ -255,8 +261,10 @@ public class Game extends Application {
         primaryStage.setScene(scene);
     }
 
+    //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    //              <----------------- IN this `ShowGameScene` method our Application will direct you to the game screen ------------------------>
+    //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-    //----------------------------- IN this `showGameScene` method our Application will direct you to the main game  ----------------------------------------------------------------
     public static void showGameScene()  {
         if (gameScene == null) {   // if there is no Scene initialize then
 //            System.out.println("GameScene is null");
@@ -284,10 +292,10 @@ public class Game extends Application {
 //    }
 
 
-    //----------------------------- IN this `startGame` method our Application will direct you to the main game Screen  ----------------------------------------------------------------
+    //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    //<----------------- IN this `startGame` method our Application will direct you to the main game Screen  ------------------------>
+    //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     public void startGame() throws Exception {
-        //gameInstance = this;
-
         gameStatus=gameMainStatus;
         inventoryMap = new HashMap<>();
         inventoryMapAddItem(axe.itemCode, axe);

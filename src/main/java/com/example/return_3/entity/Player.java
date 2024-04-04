@@ -471,7 +471,7 @@ public class Player extends Entity{
 
                 int row=game.iTile[game.currentMap][i].worldY/game.tileSize;
                 int col=game.iTile[game.currentMap][i].worldX/game.tileSize;
-                MyJDBC.updateDestroyedStatus(playerId,game.currentMap,row,col,true);
+                MyJDBC.updateObjectDestroyedStatus(playerId,game.currentMap,row,col,game.type_interactiveTIle,true);
                 //thogh we can simply use `null` but we did that code because if we need any destroyed form
                 game.iTile[game.currentMap][i]=game.iTile[game.currentMap][i].getDestryoedForm();
             }
@@ -483,6 +483,10 @@ public class Player extends Entity{
             if(game.obj[game.currentMap][i].type==type_pickupOnly){
 
                 game.obj[game.currentMap][i].use(this);
+                int row=game.obj[game.currentMap][i].worldY/game.tileSize;
+                int col=game.obj[game.currentMap][i].worldX/game.tileSize;
+                MyJDBC.updateObjectDestroyedStatus(playerId,game.currentMap,row,col,game.type_object,true);
+
                 game.obj[game.currentMap][i]=null;
 
             }
@@ -499,6 +503,9 @@ public class Player extends Entity{
                     text="You can not carry any more!";
                 }
                 game.ui.uiMainGame.addMessage(text);
+                int row=game.obj[game.currentMap][i].worldY/game.tileSize;
+                int col=game.obj[game.currentMap][i].worldX/game.tileSize;
+                MyJDBC.updateObjectDestroyedStatus(playerId,game.currentMap,row,col,game.type_object,true);
                 game.obj[game.currentMap][i]=null;
 
             }

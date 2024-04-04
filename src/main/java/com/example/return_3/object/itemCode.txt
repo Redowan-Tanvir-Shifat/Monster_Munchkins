@@ -1,0 +1,19 @@
+weapon starts with 100;
+sword - 101
+axe - 102
+shield(wood) - 103
+shield(blue) - 104
+
+
+Food starts with 200
+apple - 201
+banana - 202
+berries - 203
+orange - 204
+
+objects which will be not available in shop
+starts with 300
+
+coin - 301
+heart - 302
+red potion - 303
