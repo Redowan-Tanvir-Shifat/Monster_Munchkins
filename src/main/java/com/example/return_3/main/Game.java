@@ -11,7 +11,6 @@ import com.example.return_3.gameCenter.snakey.Snakey;
 import com.example.return_3.gameCenter.spaceInvaders.GameSpaceInvaders;
 import com.example.return_3.interactiveTile.InteractiveTile;
 import com.example.return_3.object.*;
-import com.example.return_3.tile.Map;
 import com.example.return_3.tile.TileManager;
 import com.example.return_3.ui.UI;
 import javafx.application.Application;
@@ -231,36 +230,7 @@ public class Game extends Application {
 
     //-------------------------- --- IN this `loginPage` method our Application will direct you to the login system  ----------------------------------------------------------------
 
-    public void loginPage() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/return_3/login.fxml"));
-        loginScene = new Scene(fxmlLoader.load());
 
-        ArrayList <Button> buttons= new ArrayList<>();
-        LoginController loginController = fxmlLoader.getController();
-        buttons.add(loginController.loginBtn);
-        buttons.add(loginController.signUpBtn);
-        buttons.add(loginController.closeBtn);
-
-        hoverButton(buttons);
-
-        primaryStage.setScene(loginScene);
-    }
-    public void signUpPage() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/signUp.fxml"));
-        //loader.setController(new MenuController());
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-
-        ArrayList <Button> buttons = new ArrayList<>();
-        SignUpController signUpController = loader.getController();
-        buttons.add(signUpController.signUpBtn);
-        buttons.add(signUpController.closeBtn);
-        buttons.add(signUpController.loginBtn);
-
-        hoverButton(buttons);
-
-        primaryStage.setScene(scene);
-    }
 
     //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     //              <----------------- IN this `ShowGameScene` method our Application will direct you to the game screen ------------------------>
@@ -373,112 +343,6 @@ public class Game extends Application {
 
 
     }
-
-    public void showSchoolScene() throws Exception{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/school.fxml"));
-        Parent root = loader.load();
-        Scene scene= new Scene(root);
-        //scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("school.css")).toExternalForm());
-        gameTimer.stop();
-
-        ArrayList <Button> buttons= new ArrayList<>();
-        SchoolController schoolController = loader.getController();
-        buttons.add(schoolController.mathButton);
-        buttons.add(schoolController.englishButton);
-        buttons.add(schoolController.histryButton);
-        buttons.add(schoolController.geographybutton);
-        buttons.add(schoolController.backButton);
-
-        hoverButton(buttons);
-
-        Game.primaryStage.setScene(scene);
-    }
-
-    public void showMathScene() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/math.fxml"));
-        //loader.setController(new MenuController());
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-
-        ArrayList <Button> buttons= new ArrayList<>();
-        MathController mathController = loader.getController();
-        buttons.add(mathController.triginometryBtn);
-        buttons.add(mathController.algebraBtn);
-        buttons.add(mathController.conversionBtn);
-        buttons.add(mathController.geometryBtn);
-        buttons.add(mathController.backButton);
-
-        hoverButton(buttons);
-
-        primaryStage.setScene(scene);
-    }
-    public void showHistoryScene() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/history.fxml"));
-        //loader.setController(new MenuController());
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-
-        ArrayList <Button> buttons= new ArrayList<>();
-        HistoryController historyController = loader.getController();
-        buttons.add(historyController.backButton);
-
-        hoverButton(buttons);
-
-        primaryStage.setScene(scene);
-    }
-    public void showEnglishScene() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/english.fxml"));
-        //loader.setController(new MenuController());
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-
-        ArrayList <Button> buttons= new ArrayList<>();
-        EnglishController englishController = loader.getController();
-        buttons.add(englishController.backButton);
-
-        hoverButton(buttons);
-
-        primaryStage.setScene(scene);
-    }
-    public void showGeographyScene() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/geography.fxml"));
-        //loader.setController(new MenuController());
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-
-        ArrayList <Button> buttons= new ArrayList<>();
-        GeographyController geographyController = loader.getController();
-        buttons.add(geographyController.backButton);
-
-        hoverButton(buttons);
-
-        primaryStage.setScene(scene);
-    }
-
-
-    public void showGameCenter() throws Exception{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/gameCenter.fxml"));
-        Parent root = loader.load();
-        Scene scene= new Scene(root);
-        //scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("school.css")).toExternalForm());
-        gameTimer.stop();
-        GameController gameController = loader.getController();
-        gameController.setCoin(player.coin); // Pass the time to the controller
-
-        ArrayList <Button> buttons= new ArrayList<>();
-        buttons.add(gameController.backButton);
-        buttons.add(gameController.spaceInvaders);
-        buttons.add(gameController.snakeyBtn);
-        buttons.add(gameController.puzzle);
-        buttons.add(gameController.tictactoe);
-
-        hoverButton(buttons);
-
-        Game.primaryStage.setScene(scene);
-
-    }
-
-
 
 
     public static void exitGame() {
@@ -710,6 +574,251 @@ public class Game extends Application {
             });
         }
     }
+
+    // <-----------------FXML SCENE--------------------->
+    public void loginPage() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/return_3/login.fxml"));
+        loginScene = new Scene(fxmlLoader.load());
+
+        ArrayList <Button> buttons= new ArrayList<>();
+        LoginController loginController = fxmlLoader.getController();
+        buttons.add(loginController.loginBtn);
+        buttons.add(loginController.signUpBtn);
+        buttons.add(loginController.closeBtn);
+
+        hoverButton(buttons);
+
+        primaryStage.setScene(loginScene);
+    }
+    public void signUpPage() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/signUp.fxml"));
+        //loader.setController(new MenuController());
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+
+        ArrayList <Button> buttons = new ArrayList<>();
+        SignUpController signUpController = loader.getController();
+        buttons.add(signUpController.signUpBtn);
+        buttons.add(signUpController.closeBtn);
+        buttons.add(signUpController.loginBtn);
+
+        hoverButton(buttons);
+
+        primaryStage.setScene(scene);
+    }
+
+    public void showGameCenter() throws Exception{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/gameCenter.fxml"));
+        Parent root = loader.load();
+        Scene scene= new Scene(root);
+        //scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("school.css")).toExternalForm());
+        gameTimer.stop();
+        GameController gameController = loader.getController();
+        gameController.setCoin(player.coin); // Pass the time to the controller
+
+        ArrayList <Button> buttons= new ArrayList<>();
+        buttons.add(gameController.backButton);
+        buttons.add(gameController.spaceInvaders);
+        buttons.add(gameController.snakeyBtn);
+        buttons.add(gameController.puzzle);
+        buttons.add(gameController.tictactoe);
+
+        hoverButton(buttons);
+
+        Game.primaryStage.setScene(scene);
+    }
+
+    public void showSchoolScene() throws Exception{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/school.fxml"));
+        Parent root = loader.load();
+        Scene scene= new Scene(root);
+        //scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("school.css")).toExternalForm());
+        gameTimer.stop();
+
+        ArrayList <Button> buttons= new ArrayList<>();
+        SchoolController schoolController = loader.getController();
+        buttons.add(schoolController.mathButton);
+        buttons.add(schoolController.englishButton);
+        buttons.add(schoolController.histryButton);
+        buttons.add(schoolController.geographybutton);
+        buttons.add(schoolController.backButton);
+
+        hoverButton(buttons);
+
+        Game.primaryStage.setScene(scene);
+    }
+
+    public void showMathScene() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/math.fxml"));
+        //loader.setController(new MenuController());
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+
+        ArrayList <Button> buttons= new ArrayList<>();
+        MathController mathController = loader.getController();
+        buttons.add(mathController.triginometryBtn);
+        buttons.add(mathController.algebraBtn);
+        buttons.add(mathController.conversionBtn);
+        buttons.add(mathController.geometryBtn);
+        buttons.add(mathController.backButton);
+
+        hoverButton(buttons);
+
+        primaryStage.setScene(scene);
+    }
+    public void showHistoryScene() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/history.fxml"));
+        //loader.setController(new MenuController());
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+
+        ArrayList <Button> buttons= new ArrayList<>();
+        HistoryController historyController = loader.getController();
+        buttons.add(historyController.backButton);
+
+        hoverButton(buttons);
+
+        primaryStage.setScene(scene);
+    }
+    public void showEnglishScene() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/english.fxml"));
+        //loader.setController(new MenuController());
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+
+        ArrayList <Button> buttons= new ArrayList<>();
+        EnglishController englishController = loader.getController();
+        buttons.add(englishController.backButton);
+
+        hoverButton(buttons);
+
+        primaryStage.setScene(scene);
+    }
+    public void showGeographyScene() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/geography.fxml"));
+        //loader.setController(new MenuController());
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+
+        ArrayList <Button> buttons= new ArrayList<>();
+        GeographyController geographyController = loader.getController();
+        buttons.add(geographyController.backButton);
+
+        hoverButton(buttons);
+
+        primaryStage.setScene(scene);
+    }
+
+    public void showAlgebraPage1() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/algebraP_1.fxml"));
+        //loader.setController(new MenuController());
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+
+//        ArrayList <Button> buttons= new ArrayList<>();
+//        GeographyController geographyController = loader.getController();
+//        buttons.add(geographyController.backButton);
+//
+//        hoverButton(buttons);
+
+        primaryStage.setScene(scene);
+    }
+
+    public void showAlgebraPage2() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/algebraP_2.fxml"));
+        //loader.setController(new MenuController());
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+
+//        ArrayList <Button> buttons= new ArrayList<>();
+//        GeographyController geographyController = loader.getController();
+//        buttons.add(geographyController.backButton);
+//
+//        hoverButton(buttons);
+
+        primaryStage.setScene(scene);
+    }
+
+    public void showAlgebraPage3() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/algebraP_3.fxml"));
+        //loader.setController(new MenuController());
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+
+//        ArrayList <Button> buttons= new ArrayList<>();
+//        GeographyController geographyController = loader.getController();
+//        buttons.add(geographyController.backButton);
+//
+//        hoverButton(buttons);
+
+        primaryStage.setScene(scene);
+    }
+
+    public void showAlgebraPage4() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/algebraP_4.fxml"));
+        //loader.setController(new MenuController());
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+
+//        ArrayList <Button> buttons= new ArrayList<>();
+//        GeographyController geographyController = loader.getController();
+//        buttons.add(geographyController.backButton);
+//
+//        hoverButton(buttons);
+
+        primaryStage.setScene(scene);
+    }
+
+    public void showAlgebraPage5() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/algebraP_5.fxml"));
+        //loader.setController(new MenuController());
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+
+//        ArrayList <Button> buttons= new ArrayList<>();
+//        GeographyController geographyController = loader.getController();
+//        buttons.add(geographyController.backButton);
+//
+//        hoverButton(buttons);
+
+        primaryStage.setScene(scene);
+    }
+
+    public void showAlgebraPage6() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/algebraP_6.fxml"));
+        //loader.setController(new MenuController());
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+
+//        ArrayList <Button> buttons= new ArrayList<>();
+//        GeographyController geographyController = loader.getController();
+//        buttons.add(geographyController.backButton);
+//
+//        hoverButton(buttons);
+
+        primaryStage.setScene(scene);
+    }
+
+    public void showAlgebraPage7() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/algebraP_7.fxml"));
+        //loader.setController(new MenuController());
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+
+//        ArrayList <Button> buttons= new ArrayList<>();
+//        GeographyController geographyController = loader.getController();
+//        buttons.add(geographyController.backButton);
+//
+//        hoverButton(buttons);
+
+        primaryStage.setScene(scene);
+    }
+
+
+
+
+
+
     public static void main(String[] args) {
         launch(args);
     }

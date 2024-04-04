@@ -9,6 +9,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 
+import java.io.IOException;
+
 public class MathController {
     public Button algebraBtn;
     public Button geometryBtn;
@@ -24,7 +26,8 @@ public class MathController {
         Game.gameInstance.showSchoolScene();
     }
     
-    public void goToAlgebra(ActionEvent event) {
+    public void goToAlgebra(ActionEvent event) throws Exception {
+        Game.gameInstance.showAlgebraPage1();
     }
     
     public void goToGeometry(ActionEvent event) {
