@@ -7,7 +7,6 @@
     -fx-effect: dropShadow(three-pass-box, rgba(0,0,0,1), 10.0, 0.0, 0.0, 5.0 );
 }
 
-
 .close-btn {
     -fx-cursor: hand;
     -fx-background-color: #FFFFFF;
@@ -19,4 +18,15 @@
     -fx-background-color: #33BF5E;
     -fx-background-radius: 100;
     -fx-effect: dropShadow(three-pass-box, rgba(0,0,0,1), 10.0, 0.0, 0.0, 5.0 );
+}
+
+.logo_container {
+    -fx-background-radius: 10;
+    -fx-background-color: #FFFFFF;
+    -fx-effect: dropShadow(three-pass-box, rgba(0,0,0,1), 10.0, 0.0, 0.0, 5.0 );
+}
+.next_back_btn {
+    -fx-background-radius: 360;
+    -fx-background-color: #FFFFFF;
+    -fx-effect: dropShadow(three-pass-box, rgba(0,0,0,0.5), 10.0, 0.0, 0.0, 5.0 );
 }
