@@ -1,5 +1,6 @@
 package com.example.return_3.Controllers;
 
+import com.example.return_3.gameCenter.puzzGame.PuzzGame;
 import com.example.return_3.gameCenter.snakey.Snakey;
 import com.example.return_3.gameCenter.spaceInvaders.GameSpaceInvaders;
 import com.example.return_3.main.Game;
@@ -66,7 +67,7 @@ public class GameController {
 
     @FXML
     void goToPuzzle(ActionEvent event) {
-
+        new PuzzGame().showGame();
     }
 
     @FXML

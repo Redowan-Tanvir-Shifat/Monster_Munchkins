@@ -18,11 +18,11 @@ public class OBJ_Potion_Red extends Entity {
         description="["+name+"]\nHeals your life by "+value+".";
     }
 
-    public void use(Entity entity) {
+    public boolean use(Entity entity) {
         game.gameState = game.playState;
 //        game.ui.uiMainGame.currentDialogue="You drink the "+name+"!\nYour life has been recovered by "+value+",";
         game.ui.uiMainGame.addMessage("You drink the "+name+"!\nYour life has been recovered by "+value+",");
         entity.life+=value;
-
+        return true;
     }
 }

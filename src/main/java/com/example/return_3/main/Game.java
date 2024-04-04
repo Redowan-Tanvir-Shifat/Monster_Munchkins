@@ -133,6 +133,7 @@ public class Game extends Application {
     public Entity shieldBlue = new OBJ_Shield_Blue(this);
     public Entity sword = new OBJ_Sword_Normal(this);
     Entity shieldWood = new OBJ_Shield_Wood(this);
+    public Entity key= new OBJ_Key(this);
     public Entity redPotion = new OBJ_Potion_Red(this);
 
 
@@ -303,6 +304,7 @@ public class Game extends Application {
         inventoryMapAddItem(redPotion.itemCode, redPotion);
         inventoryMapAddItem(shieldBlue.itemCode, shieldBlue);
         inventoryMapAddItem(shieldWood.itemCode, shieldWood);
+        inventoryMapAddItem(key.itemCode, key);
         Pane mainGameroot = new Pane();
         mainGameroot.setOnMouseEntered(event -> {
             mainGameroot.setCursor(Cursor.HAND);

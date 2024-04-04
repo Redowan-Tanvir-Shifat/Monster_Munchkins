@@ -9,7 +9,9 @@ module com.example.return_3 {
     exports com.example.return_3.main;
     exports com.example.return_3.test;
     exports com.example.return_3.Controllers;
+    exports com.example.return_3.Controllers.puzzGame;
     opens com.example.return_3.Controllers to javafx.fxml;
+    opens com.example.return_3.Controllers.puzzGame to javafx.fxml;
     exports com.example.return_3.ui;
     opens com.example.return_3.ui to javafx.fxml;
 }

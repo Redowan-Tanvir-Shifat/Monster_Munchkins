@@ -18,8 +18,9 @@ public class OBJ_Coin extends Entity {
         down1=uTool.loadImage("/objects/coin3.png",game.tileSize-7,game.tileSize-7);
         description="this is "+name;
     }
-    public void use(Entity entity){
+    public boolean use(Entity entity){
         game.ui.uiMainGame.addMessage("Coint: "+value);
         game.player.coin+=value;
+        return true;
     }
 }
