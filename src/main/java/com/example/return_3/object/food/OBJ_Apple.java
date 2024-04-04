@@ -12,6 +12,7 @@ public class OBJ_Apple extends Entity {
         type= type_consumable;
         name="Apple";
         value =15;
+        itemCode=201;
         price= 2*value;
         down1=uTool.loadImage("/objects/food/apple.png",game.tileSize-7,game.tileSize-7);
         description="this is "+name;

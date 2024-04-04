@@ -24,50 +24,50 @@ public class AssetSetter {
     //setInteractiveTile [dry tree, breakable tree, trunk.]
     public void setObject() {
         int mapNum = 0; //For map 1  //to create object for map 2 then we need to ser mapNum 2 under the code.
-        int i = 0;
-        game.obj[mapNum][i]=new OBJ_Shield_Blue(game);
-        game.obj[mapNum][i].worldX=game.tileSize*42;
-        game.obj[mapNum][i].worldY=game.tileSize*140;
-        i++;
-        game.obj[mapNum][i]=new OBJ_Heart(game);
-        game.obj[mapNum][i].worldX=game.tileSize*44;
-        game.obj[mapNum][i].worldY=game.tileSize*140;
-        i++;
-        game.obj[mapNum][i]=new OBJ_Shield_Wood(game);
-        game.obj[mapNum][i].worldX=game.tileSize*47;
-        game.obj[mapNum][i].worldY=game.tileSize*140;
-        i++;
-        game.obj[mapNum][i]=new OBJ_Sword_Normal(game);
-        game.obj[mapNum][i].worldX=game.tileSize*49;
-        game.obj[mapNum][i].worldY=game.tileSize*140;
-        i++;
-        game.obj[mapNum][i]=new OBJ_Coin(game);
-        game.obj[mapNum][i].worldX=game.tileSize*41;
-        game.obj[mapNum][i].worldY=game.tileSize*142;
-        i++;
-        game.obj[mapNum][i]=new OBJ_Axe(game);
-        game.obj[mapNum][i].worldX=game.tileSize*42;
-        game.obj[mapNum][i].worldY=game.tileSize*145;
-        i++;
-        game.obj[mapNum][i]=new OBJ_Potion_Red(game);
-        game.obj[mapNum][i].worldX=game.tileSize*44;
-        game.obj[mapNum][i].worldY=game.tileSize*142;
-        i++; game.obj[mapNum][i]=new OBJ_Axe(game);
-        game.obj[mapNum][i].worldX=game.tileSize*43;
-        game.obj[mapNum][i].worldY=game.tileSize*145;
-        i++;
-        game.obj[mapNum][i]=new OBJ_Potion_Red(game);
-        game.obj[mapNum][i].worldX=game.tileSize*45;
-        game.obj[mapNum][i].worldY=game.tileSize*142;
-        i++;
-        game.obj[mapNum][i]=new OBJ_Axe(game);
-        game.obj[mapNum][i].worldX=game.tileSize*42;
-        game.obj[mapNum][i].worldY=game.tileSize*144;
-        i++;
-        game.obj[mapNum][i]=new OBJ_Potion_Red(game);
-        game.obj[mapNum][i].worldX=game.tileSize*44;
-        game.obj[mapNum][i].worldY=game.tileSize*143;
-        i++;
+//        int i = 0;
+//        game.obj[mapNum][i]=new OBJ_Shield_Blue(game);
+//        game.obj[mapNum][i].worldX=game.tileSize*42;
+//        game.obj[mapNum][i].worldY=game.tileSize*140;
+//        i++;
+//        game.obj[mapNum][i]=new OBJ_Heart(game);
+//        game.obj[mapNum][i].worldX=game.tileSize*44;
+//        game.obj[mapNum][i].worldY=game.tileSize*140;
+//        i++;
+//        game.obj[mapNum][i]=new OBJ_Shield_Wood(game);
+//        game.obj[mapNum][i].worldX=game.tileSize*47;
+//        game.obj[mapNum][i].worldY=game.tileSize*140;
+//        i++;
+//        game.obj[mapNum][i]=new OBJ_Sword_Normal(game);
+//        game.obj[mapNum][i].worldX=game.tileSize*49;
+//        game.obj[mapNum][i].worldY=game.tileSize*140;
+//        i++;
+//        game.obj[mapNum][i]=new OBJ_Coin(game);
+//        game.obj[mapNum][i].worldX=game.tileSize*41;
+//        game.obj[mapNum][i].worldY=game.tileSize*142;
+//        i++;
+//        game.obj[mapNum][i]=new OBJ_Axe(game);
+//        game.obj[mapNum][i].worldX=game.tileSize*42;
+//        game.obj[mapNum][i].worldY=game.tileSize*145;
+//        i++;
+//        game.obj[mapNum][i]=new OBJ_Potion_Red(game);
+//        game.obj[mapNum][i].worldX=game.tileSize*44;
+//        game.obj[mapNum][i].worldY=game.tileSize*142;
+//        i++; game.obj[mapNum][i]=new OBJ_Axe(game);
+//        game.obj[mapNum][i].worldX=game.tileSize*43;
+//        game.obj[mapNum][i].worldY=game.tileSize*145;
+//        i++;
+//        game.obj[mapNum][i]=new OBJ_Potion_Red(game);
+//        game.obj[mapNum][i].worldX=game.tileSize*45;
+//        game.obj[mapNum][i].worldY=game.tileSize*142;
+//        i++;
+//        game.obj[mapNum][i]=new OBJ_Axe(game);
+//        game.obj[mapNum][i].worldX=game.tileSize*42;
+//        game.obj[mapNum][i].worldY=game.tileSize*144;
+//        i++;
+//        game.obj[mapNum][i]=new OBJ_Potion_Red(game);
+//        game.obj[mapNum][i].worldX=game.tileSize*44;
+//        game.obj[mapNum][i].worldY=game.tileSize*143;
+       // i++;
 
 
 
@@ -146,16 +146,33 @@ i++;
     public void setInteractiveTile(){
         int mapNum=0;
 //        int i=0;
-        MyJDBC.setInteractiveTile(game.player.playerId,mapNum);
+        MyJDBC.setObjects(game.player.playerId,mapNum);
     }
 
 
 
     public static void addInteractiveTileToDB(int userId){
+                //  FOR THE FIRST MAP
         int mapNum=0;
-         MyJDBC.addInteractiveTile(userId, 53, 142, mapNum); // Add interactive tiles
-         MyJDBC.addInteractiveTile(userId, 53, 143, mapNum); // Add interactive tiles
-         MyJDBC.addInteractiveTile(userId, 54, 142, mapNum); // Add interactive tiles
-         MyJDBC.addInteractiveTile(userId, 54, 143, mapNum); // Add interactive tiles
+        int itemCode=0;
+        // FOR OBJECT
+        int objecttype= Game.gameInstance.type_object;
+        MyJDBC.addObject(userId,objecttype,Game.gameInstance.axe.itemCode,42,145,mapNum);
+        MyJDBC.addObject(userId,objecttype,Game.gameInstance.redPotion.itemCode,44,142,mapNum);
+
+
+
+        //FOR INTERACTIVE TILE
+         objecttype= Game.gameInstance.type_interactiveTIle;
+
+        MyJDBC.addObject(userId,objecttype,itemCode,53,142,mapNum);
+        MyJDBC.addObject(userId,objecttype,itemCode,54,142,mapNum);
+
+
+
+//         MyJDBC.addInteractiveTile(userId, 53, 142, mapNum); // Add interactive tiles
+//         MyJDBC.addInteractiveTile(userId, 53, 143, mapNum); // Add interactive tiles
+//         MyJDBC.addInteractiveTile(userId, 54, 142, mapNum); // Add interactive tiles
+//         MyJDBC.addInteractiveTile(userId, 54, 143, mapNum); // Add interactive tiles
     }
 }

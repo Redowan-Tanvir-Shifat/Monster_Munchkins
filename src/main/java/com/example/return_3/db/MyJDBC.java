@@ -4,6 +4,8 @@ import com.example.return_3.entity.Entity;
 import com.example.return_3.interactiveTile.CuttableTree;
 import com.example.return_3.main.Game;
 import com.example.return_3.main.UtilityTool;
+import com.example.return_3.object.OBJ_Axe;
+import com.example.return_3.object.OBJ_Potion_Red;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -261,20 +263,24 @@ public class MyJDBC {
         }
     }
 
-    // <----------------INTERACTIVE LINE------------------->
+    // <----------------OBJECT LINE------------------->
     //in this addInteractivetile  we will add tile by this method at the time of sign up .
     //when user will create then the interactive tile will also be created
-    public static void addInteractiveTile(int userId, int col, int row, int mapNum) {
+
+
+    public static void addObject(int userId, int objectType, int itemCode, int col, int row, int mapNum) {
         try {
             Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "INSERT INTO InteractiveTiles (user_id, tile_col, tile_row, mapNum) VALUES (?, ?, ?, ?)"
+                    "INSERT INTO Objects (user_id, object_type, item_code, tile_col, tile_row, map_num) " +
+                            "VALUES (?, ?, ?, ?, ?, ?)"
             );
             preparedStatement.setInt(1, userId);
-            preparedStatement.setInt(2, col);
-            preparedStatement.setInt(3, row);
-            preparedStatement.setInt(4, mapNum);
-//            preparedStatement.setBoolean(5, destroyed);
+            preparedStatement.setInt(2, objectType);
+            preparedStatement.setInt(3, itemCode);
+            preparedStatement.setInt(4, col);
+            preparedStatement.setInt(5, row);
+            preparedStatement.setInt(6, mapNum);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -282,28 +288,75 @@ public class MyJDBC {
     }
 
 
-    public static void setInteractiveTile(int userId, int mapNum) {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public static void setObjects(int userId, int mapNum) {
         try {
             Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT tile_col, tile_row FROM InteractiveTiles WHERE user_id = ? AND mapNum = ? AND destroyed = FALSE"
+                    "SELECT tile_col, tile_row, item_code,object_type FROM Objects " +
+                            "WHERE user_id = ? AND map_num = ? AND destroyed = FALSE"
             );
             preparedStatement.setInt(1, userId);
             preparedStatement.setInt(2, mapNum);
+           // preparedStatement.setInt(3, objectType);
             ResultSet resultSet = preparedStatement.executeQuery();
-            int i=0;
-            // Iterate over the result set and create instances of CuttableTree
+            int i = 0;
+            int oIndex=0;
+            int count =0;
+            // Iterate over the result set and create instances of objects based on type
             while (resultSet.next()) {
+                System.out.println("count: "+count);
+
+                int itemCode= resultSet.getInt("item_code");
                 int col = resultSet.getInt("tile_col");
                 int row = resultSet.getInt("tile_row");
+                int objectType = resultSet.getInt("object_type");
 
-                // Create instance of CuttableTree with the retrieved position
-                CuttableTree cuttableTree = new CuttableTree(Game.gameInstance, col, row);
+                // Create instance of object based on the type retrieved from the database
+                if (objectType == Game.gameInstance.type_interactiveTIle) {
+                    // Interactive tile
+                    CuttableTree cuttableTree = new CuttableTree(Game.gameInstance, col, row);
+                    Game.gameInstance.iTile[mapNum][i] = cuttableTree;
+                    i++;
+                    System.out.println("tile number " + i  );
+                } else if (objectType == 20) {
+                    // Monster
+                    // Create instance of Monster
+                } else if (objectType == Game.gameInstance.type_object) {
+                    Entity entity;
+                    switch (itemCode){
+                        case 102:   entity =new OBJ_Axe(Game.gameInstance);break;
+                        case 303:   entity =new OBJ_Potion_Red(Game.gameInstance);break;
+                        default:entity = null;
+                    }
+                    if(entity!=null){
+                        Game.gameInstance.obj[mapNum][oIndex]=entity;
+                        Game.gameInstance.obj[mapNum][oIndex].worldX=Game.gameInstance.tileSize*col;
+                        Game.gameInstance.obj[mapNum][oIndex].worldY=Game.gameInstance.tileSize*row;
+                    }
+                    oIndex++;
+                    System.out.println("object number " + oIndex  );
+                    // Object
+                    // Create instance of Object using itemCode
+                }
+                count++;
 
-                // Add the instance to the game's data structure for storing interactive tiles
-                Game.gameInstance.iTile[mapNum][i] = cuttableTree;
-                i++;
-                System.out.println("tile number " + i  );
             }
 
             // Close resources
@@ -312,35 +365,66 @@ public class MyJDBC {
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
-            // Handle exceptions
         }
     }
 
-// when player cut the tree then this method will called
-    public static void updateDestroyedStatus(int userId, int mapNum, int row, int col, boolean destroyed) {
+//    public static void updateObjectDestroyedStatus(int userId, int mapNum, int row, int col, boolean destroyed) {
+//        try {
+//            Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+//            PreparedStatement preparedStatement = connection.prepareStatement(
+//                    "UPDATE Objects SET destroyed = ? " +
+//                            "WHERE user_id = ? AND map_num = ? AND tile_row = ? AND tile_col = ?"
+//            );
+//            preparedStatement.setBoolean(1, destroyed);
+//            preparedStatement.setInt(2, userId);
+//            preparedStatement.setInt(3, mapNum);
+//            preparedStatement.setInt(4, row);
+//            preparedStatement.setInt(5, col);
+//            // Execute the update query
+//            int rowsAffected = preparedStatement.executeUpdate();
+//            if (rowsAffected > 0) {
+//                System.out.println("Object data updated successfully.");
+//            } else {
+//                System.out.println("No object found with the given data.");
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+
+
+
+
+
+    public static void updateObjectDestroyedStatus(int userId, int mapNum, int row, int col, int objectType, boolean destroyed) {
         try {
             Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "UPDATE InteractiveTiles SET destroyed = ? WHERE user_id = ? AND mapNum = ? AND tile_row = ? AND tile_col = ?"
+                    "UPDATE Objects SET destroyed = ? " +
+                            "WHERE user_id = ? AND map_num = ? AND tile_row = ? AND tile_col = ? AND object_type = ?"
             );
             preparedStatement.setBoolean(1, destroyed);
             preparedStatement.setInt(2, userId);
             preparedStatement.setInt(3, mapNum);
             preparedStatement.setInt(4, row);
             preparedStatement.setInt(5, col);
+            preparedStatement.setInt(6, objectType);
             // Execute the update query
             int rowsAffected = preparedStatement.executeUpdate();
             if (rowsAffected > 0) {
-                System.out.println("interactive TIle data updated successfully.");
+                System.out.println("Object data updated successfully.");
             } else {
-                System.out.println("No interactive tile found with the given data.");
+                System.out.println("No object found with the given data.");
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
     }
+
+
+
+
+
 
 }
