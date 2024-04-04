@@ -38,13 +38,13 @@
       </Button>
    </AnchorPane>
    <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="199.0" layoutY="156.0" pickOnBounds="true" preserveRatio="true">
-      <Image url="@../../../snakey/SnakeyMain.jpg" />
+      <Image url="@../../../gameCenter/spaceInvadersLogo.png" />
    </ImageView>
    <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="199.0" layoutY="363.0" pickOnBounds="true" preserveRatio="true">
-      <Image url="@../../../snakey/SnakeyMain.jpg" />
+      <Image url="@../../../gameCenter/puzzleGameLogo.png" />
    </ImageView>
    <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="641.0" layoutY="156.0" pickOnBounds="true" preserveRatio="true">
-      <Image url="@../../../snakey/SnakeyMain.jpg" />
+      <Image url="@../../../gameCenter/tictactoeLogo.png" />
    </ImageView>
    <Separator layoutX="477.0" layoutY="229.0" orientation="VERTICAL" prefHeight="200.0" />
    <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="23.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
@@ -64,8 +64,7 @@
          <Font name="System Bold" size="18.0" />
       </font>
    </Button>
-   <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="641.0" layoutY="363.0" pickOnBounds="true"
-              preserveRatio="true">
-      <Image url="@../../../snakey/SnakeyMain.jpg"/>
+   <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="641.0" layoutY="363.0" pickOnBounds="true" preserveRatio="true">
+      <Image url="@../../../gameCenter/snakey/SnakeyMain.jpg" />
    </ImageView>
 </AnchorPane>
