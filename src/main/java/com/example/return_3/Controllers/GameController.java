@@ -3,6 +3,7 @@ package com.example.return_3.Controllers;
 import com.example.return_3.gameCenter.puzzGame.PuzzGame;
 import com.example.return_3.gameCenter.snakey.Snakey;
 import com.example.return_3.gameCenter.spaceInvaders.GameSpaceInvaders;
+import com.example.return_3.gameCenter.ticTacToe.TicTacToe;
 import com.example.return_3.main.Game;
 import javafx.beans.value.ObservableStringValue;
 import javafx.event.ActionEvent;
@@ -12,6 +13,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.stage.StageStyle;
+
+import java.io.IOException;
 
 public class GameController {
 
@@ -66,8 +69,8 @@ public class GameController {
     }
 
     @FXML
-    void goToPuzzle(ActionEvent event) {
-        new PuzzGame().showGame();
+    void goToPuzzle(ActionEvent event) throws IOException {
+        new PuzzGame().puzzGameMenuPage();
     }
 
     @FXML
@@ -84,8 +87,8 @@ public class GameController {
     }
 
     @FXML
-    void goToTicTacToe(ActionEvent event) {
-
+    void goToTicTacToe(ActionEvent event) throws IOException {
+        new TicTacToe().showTicTacToeMenuPage();
     }
 
     @FXML

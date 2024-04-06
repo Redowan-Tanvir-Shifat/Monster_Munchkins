@@ -9,8 +9,7 @@ public class OBJ_Axe extends Entity {
         super(game);
         type =type_axe;
         name="Woodcutter's Axe";
-        //down1=loadImage("/objects/axe.png",game.tileSize,game.tileSize);
-        down1=loadImage("/gameCenter/puzzGame/elephant.png",game.tileSize,game.tileSize);
+        down1=loadImage("/objects/axe.png",game.tileSize,game.tileSize);
         price=8;
         itemCode=102;
         attackValue=2;

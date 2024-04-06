@@ -10,6 +10,7 @@ module com.example.return_3 {
     exports com.example.return_3.test;
     exports com.example.return_3.Controllers;
     exports com.example.return_3.Controllers.puzzGame;
+    exports com.example.return_3.Controllers.tictactoe;
     opens com.example.return_3.Controllers to javafx.fxml;
     opens com.example.return_3.Controllers.puzzGame to javafx.fxml;
     exports com.example.return_3.ui;
