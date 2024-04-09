@@ -369,7 +369,7 @@ public class Entity {
     public void checkStartChasingOrNot(Entity target, int distance, int rate) {
         if (getTileDistance(target) < distance) {
             int i = new Random().nextInt(rate);
-            if (i == 0) {
+            if (i > 50) {
                 onPath = true;
             }
         }

@@ -88,7 +88,8 @@ public class GameController {
 
     @FXML
     void goToTicTacToe(ActionEvent event) throws IOException {
-        new TicTacToe().showTicTacToeMenuPage();
+        Game.gameInstance.ticTacToeGame= new TicTacToe(Game.gameInstance, Game.gameInstance.gc);
+        Game.gameInstance.ticTacToeGame.showTicTacToeMenuPage();
     }
 
     @FXML
