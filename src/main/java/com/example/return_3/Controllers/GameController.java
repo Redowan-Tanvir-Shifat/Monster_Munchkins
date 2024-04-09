@@ -62,8 +62,13 @@ public class GameController {
         alert.showAndWait().ifPresent(buttonType -> {
             if (buttonType == buttonTypeYes) {
                 Game.gameInstance.keyHandler.setBooleanAll(false);
-                //Game.gameInstance.startGame();
-                Game.showGameScene();
+                try {
+
+                    Game.gameInstance.startGame();
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+//                Game.showGameScene();
             }
         });
     }
