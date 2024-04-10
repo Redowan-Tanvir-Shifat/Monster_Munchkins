@@ -9,10 +9,10 @@ import com.example.return_3.object.OBJ_Rock;
 
 import java.util.Random;
 
-public class Mon_Green extends Entity {
+public class Mon_Spider extends Entity {
     Game game;
     String imgName;
-    public Mon_Green(Game game) {
+    public Mon_Spider(Game game) {
         super(game);
         this.game=game;
         name = "Green Slime";
@@ -33,7 +33,7 @@ public class Mon_Green extends Entity {
         solidArea.setHeight(23);
         solidAreaDefaultX = (int)(solidArea.getX());
         solidAreaDefaultY = (int)(solidArea.getY());
-        imgName="greenMon";
+        imgName="spider";
         getImage();
     }
     public void getImage(){
