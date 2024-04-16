@@ -9,6 +9,7 @@ import com.example.return_3.entity.Entity;
 import com.example.return_3.entity.Player;
 import com.example.return_3.gameCenter.snakey.Snakey;
 import com.example.return_3.gameCenter.spaceInvaders.GameSpaceInvaders;
+import com.example.return_3.gameCenter.ticTacToe.TicTacToe;
 import com.example.return_3.interactiveTile.InteractiveTile;
 import com.example.return_3.object.*;
 import com.example.return_3.tile.TileManager;
@@ -72,6 +73,7 @@ public class Game extends Application {
     public final int gameMainStatus=1;
     public final int gameSpaceInvadersStatus=2;
     public final int gameSnakeyStatus=3;
+    public final int gameTicTacToeStatus=4;
 
     //TYPE
 
@@ -144,6 +146,7 @@ public class Game extends Application {
     public static KeyHandler keyHandler;
     //Static instance of gameSpaceInvaders;
     public static GameSpaceInvaders gameSpaceInvaders;
+    public TicTacToe ticTacToeGame;
     public static Snakey gameSnakey;
 
     public PathFinder pFinder= new PathFinder(this);
@@ -459,6 +462,8 @@ public class Game extends Application {
                 gameSpaceInvaders.update();
             }else if(gameStatus==gameSnakeyStatus){
                 gameSnakey.update();
+            }else if(gameStatus==gameTicTacToeStatus){
+                ticTacToeGame.update();
             }
 
 
@@ -549,6 +554,8 @@ public class Game extends Application {
         } else if (gameStatus == gameSnakeyStatus) {
             gameSnakey.draw(gc);
             //ui.draw(gc);
+        }else if (gameStatus == gameTicTacToeStatus){
+            ticTacToeGame.draw(gc);
         }
 
     }

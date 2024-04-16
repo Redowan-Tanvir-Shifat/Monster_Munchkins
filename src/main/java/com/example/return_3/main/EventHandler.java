@@ -134,6 +134,7 @@
 
 package com.example.return_3.main;
 
+import com.example.return_3.db.MyJDBC;
 import com.example.return_3.entity.Entity;
 import com.example.return_3.shop.ClothShop;
 import com.example.return_3.shop.FoodShop;
@@ -220,6 +221,15 @@ public class EventHandler {
                 try {
                     gp.showGameCenter();
                     canTouchEvent = false;
+                    MyJDBC.updateUser(gp.player);
+
+                    for ( Entity item: gp.player.inventory) {
+                        int itemCode=item.itemCode;
+                        int count=item.itemCount;
+                        MyJDBC.updateInventory(gp.user.getUserId(),itemCode,count);
+                        System.out.println("after updated:");
+                        System.out.println("itemName: "+item.name+"|| itemCount: "+count);
+                    }
 
                 } catch (IOException e) {
                     e.printStackTrace();

@@ -132,10 +132,41 @@ i++;
     public void setMonster(){
         int i = 0;
 
-//        game.monster[game.currentMap][i] = new Mon_GreenSlime(game);
-//        game.monster[game.currentMap][i].worldX = game.tileSize * 85;
-//        game.monster[game.currentMap][i].worldY = game.tileSize * 143;
-//        i++;
+        game.monster[game.currentMap][i] = new Mon_Pac(game);
+        game.monster[game.currentMap][i].worldX = game.tileSize * 127;
+        game.monster[game.currentMap][i].worldY = game.tileSize * 32;
+        i++;game.monster[game.currentMap][i] = new Mon_Pac(game);
+        game.monster[game.currentMap][i].worldX = game.tileSize * 128;
+        game.monster[game.currentMap][i].worldY = game.tileSize * 32;
+        i++;game.monster[game.currentMap][i] = new Mon_Pac(game);
+        game.monster[game.currentMap][i].worldX = game.tileSize * 127;
+        game.monster[game.currentMap][i].worldY = game.tileSize * 31;
+        i++;game.monster[game.currentMap][i] = new Mon_Pac(game);
+        game.monster[game.currentMap][i].worldX = game.tileSize * 127;
+        game.monster[game.currentMap][i].worldY = game.tileSize * 33;
+        //worm
+//        i++;game.monster[game.currentMap][i] = new Mon_Worm(game);
+//        game.monster[game.currentMap][i].worldX = game.tileSize * 129;
+//        game.monster[game.currentMap][i].worldY = game.tileSize * 30;
+//        i++;game.monster[game.currentMap][i] = new Mon_Worm(game);
+//        game.monster[game.currentMap][i].worldX = game.tileSize * 127;
+//        game.monster[game.currentMap][i].worldY = game.tileSize * 34;
+        i++;game.monster[game.currentMap][i] = new Mon_Spider(game);
+        game.monster[game.currentMap][i].worldX = game.tileSize * 125;
+        game.monster[game.currentMap][i].worldY = game.tileSize * 33;
+        i++;
+
+        game.monster[game.currentMap][i] = new Mon_Green(game);
+        game.monster[game.currentMap][i].worldX = game.tileSize * 135;
+        game.monster[game.currentMap][i].worldY = game.tileSize * 26;
+        i++;game.monster[game.currentMap][i] = new Mon_Green(game);
+        game.monster[game.currentMap][i].worldX = game.tileSize * 136;
+        game.monster[game.currentMap][i].worldY = game.tileSize * 26;
+        i++;game.monster[game.currentMap][i] = new Mon_Spider(game);
+        game.monster[game.currentMap][i].worldX = game.tileSize * 137;
+        game.monster[game.currentMap][i].worldY = game.tileSize * 25;
+
+        i++;
 //
 //        game.monster[game.currentMap][i] = new Mon_RedSlime(game);
 //        game.monster[game.currentMap][i].worldX = game.tileSize * 83;
