@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -19,16 +20,20 @@
                 <Font name="Book Antiqua Bold" size="30.0" />
             </font>
         </Label>
+       <Button fx:id="testBtn" layoutX="15.0" layoutY="460.0" mnemonicParsing="false" onAction="#goToTest" prefHeight="34.0" prefWidth="170.0" text="Test yourself" textFill="WHITE">
+           <font>
+             <Font name="Book Antiqua Bold" size="18.0" />
+           </font>
+         <styleClass>
+            <String fx:value="course-btn" />
+            <String fx:value="course-btn" />
+         </styleClass>
+       </Button>
     </AnchorPane>
     <AnchorPane layoutX="366.0" layoutY="39.0" prefHeight="33.0" prefWidth="960.0" styleClass="close-btn_container" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
     <Button fx:id="exitBtn7" layoutX="915.0" layoutY="3.0" mnemonicParsing="false" onAction="#exitToMath7" prefHeight="20.0" prefWidth="36.0" styleClass="close-btn" text="X">
         <font>
           <Font name="Arial Bold" size="12.0" />
-        </font>
-    </Button>
-    <Button fx:id="nextBtn7" layoutX="922.0" layoutY="286.0" mnemonicParsing="false" onAction="#next7" prefHeight="36.0" prefWidth="36.0" styleClass="next_back_btn" text="&gt;">
-        <font>
-          <Font name="Arial Bold" size="18.0" />
         </font>
     </Button>
     <Label layoutX="570.0" layoutY="544.0" text="Page 7">

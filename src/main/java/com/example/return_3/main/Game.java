@@ -29,6 +29,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -808,6 +809,66 @@ public class Game extends Application {
 
     public void showAlgebraPage7() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/algebraP_7.fxml"));
+        //loader.setController(new MenuController());
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+
+//        ArrayList <Button> buttons= new ArrayList<>();
+//        GeographyController geographyController = loader.getController();
+//        buttons.add(geographyController.backButton);
+//
+//        hoverButton(buttons);
+
+        primaryStage.setScene(scene);
+    }
+
+    public void showAlgebraTestPage1() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/algebraTestP1.fxml"));
+        //loader.setController(new MenuController());
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+
+//        ArrayList <Button> buttons= new ArrayList<>();
+//        GeographyController geographyController = loader.getController();
+//        buttons.add(geographyController.backButton); 
+//
+//        hoverButton(buttons);
+
+        primaryStage.setScene(scene);
+    }
+
+    public void showAlgebraTestPage2() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/algebraTestP2.fxml"));
+        //loader.setController(new MenuController());
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+
+//        ArrayList <Button> buttons= new ArrayList<>();
+//        GeographyController geographyController = loader.getController();
+//        buttons.add(geographyController.backButton);
+//
+//        hoverButton(buttons);
+
+        primaryStage.setScene(scene);
+    }
+
+    public void showAlgebraTestPage3() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/algebraTestP3.fxml"));
+        //loader.setController(new MenuController());
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+
+//        ArrayList <Button> buttons= new ArrayList<>();
+//        GeographyController geographyController = loader.getController();
+//        buttons.add(geographyController.backButton);
+//
+//        hoverButton(buttons);
+
+        primaryStage.setScene(scene);
+    }
+
+    public void showAlgebraTestPage4() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/algebraTestP4.fxml"));
         //loader.setController(new MenuController());
         Parent root = loader.load();
         Scene scene = new Scene(root);
