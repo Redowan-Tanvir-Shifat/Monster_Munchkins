@@ -463,7 +463,7 @@ public class Game extends Application {
             }else if(gameStatus==gameSnakeyStatus){
                 gameSnakey.update();
             }else if(gameStatus==gameTicTacToeStatus){
-                ticTacToeGame.update();
+//                ticTacToeGame.update();
             }
 
 
@@ -555,7 +555,7 @@ public class Game extends Application {
             gameSnakey.draw(gc);
             //ui.draw(gc);
         }else if (gameStatus == gameTicTacToeStatus){
-            ticTacToeGame.draw(gc);
+//            ticTacToeGame.draw(gc);
         }
 
     }

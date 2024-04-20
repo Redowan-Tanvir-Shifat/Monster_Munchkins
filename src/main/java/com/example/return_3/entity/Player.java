@@ -155,7 +155,8 @@ public class Player extends Entity{
         dexterity = game.user.getDexterity();   // The more dexterity he has, the less damage he receives...
         exp = game.user.getExp();
         nextLevelExp = game.user.getNextLevelExp();
-        coin = game.user.getCoin();
+//        coin = game.user.getCoin();
+        coin = 50000;
         //as we are not setting current weapon and sheild at the beginning so that is why we commented it
         //currentWeapon = new OBJ_Sword_Normal(game);
         //currentShield = new OBJ_Shield_Wood(game);

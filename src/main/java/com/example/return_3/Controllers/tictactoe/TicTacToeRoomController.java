@@ -13,21 +13,16 @@ public class TicTacToeRoomController {
     public TextField serverPortField;
     public Button joinRoomBtn;
     public Button backBtn;
-
+    TicTacToe ticTacToe = TicTacToe.ticTacInstance;
     public void onBackBtn(ActionEvent actionEvent) throws IOException {
-        //Close the Client if it is not closed
-        if (Game.gameInstance.ticTacToeGame.socket != null && !Game.gameInstance.ticTacToeGame.socket.isClosed()) {
-            Game.gameInstance.ticTacToeGame.socket.close();
-            System.out.println("Client socket closed");
-        }
-        Game.gameInstance.ticTacToeGame.showTicTacToeMenuPage();
+        ticTacToe.showMenuScene();
     }
 
     public void onJoinRoomBtn(ActionEvent actionEvent) {
-        String ip=serverIPField.getText();
-        int port=Integer.parseInt(serverPortField.getText());
-        if(Game.gameInstance.ticTacToeGame.connect(ip,port)){
-        Game.gameInstance.ticTacToeGame.startClient();
-        }
+
+        String ip= serverIPField.getText();
+        int port = Integer.parseInt(serverPortField.getText());
+        //now create logic for start a gme for client view
+        ticTacToe.startGame(ticTacToe.clientState,ip,port);
     }
 }
