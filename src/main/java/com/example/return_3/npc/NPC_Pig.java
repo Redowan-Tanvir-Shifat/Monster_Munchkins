@@ -17,6 +17,7 @@ public class NPC_Pig extends NPC {
         speed=(int) (65*game.targetFrameTime);
         getNPCImage();
         setDialogue();
+
     }
     public void getNPCImage(){
         int size=game.tileSize-8;

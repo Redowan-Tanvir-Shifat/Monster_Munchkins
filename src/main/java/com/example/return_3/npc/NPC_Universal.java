@@ -15,6 +15,7 @@ public class NPC_Universal extends NPC {
         super(game);
         this.game=game;
         this.name=name;
+//        collisionOn=false;
 
         //type= type_npc;
         speed=(int) (65*game.targetFrameTime);        getNPCImage();

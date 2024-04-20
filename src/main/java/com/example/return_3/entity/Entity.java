@@ -222,6 +222,7 @@ public class Entity {
         collisionOn=false;
         //CHeching part of collision so that entity got collision and can not move
         game.cChecker.checkTile(this);
+        game.cChecker.checkPlayer(this);
 //        gp.cChecker.checkObject(this,false); //its not player so its remain false
         game.cChecker.checkEntity(this,game.npc);
         game.cChecker.checkEntity(this,game.monster);
