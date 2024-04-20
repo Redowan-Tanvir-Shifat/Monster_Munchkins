@@ -7,13 +7,15 @@ import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 public class SpaceInvadersKeyHandler {
     Game game;
+    GameSpaceInvaders gameSpaceInvaders;
     Stage stage;
     private boolean moveUp, moveDown, moveLeft, moveRight,enterPressed, spacePressed, escapePressed,FKeyPressed;
 
-    public SpaceInvadersKeyHandler(Game game) {
+    public SpaceInvadersKeyHandler(Game game,GameSpaceInvaders gameSpace) {
         this.game = game;
-        Game.gameScene.setOnKeyPressed(event -> handleKeyPress(event.getCode()));
-        Game.gameScene.setOnKeyReleased(event -> handleKeyRelease(event.getCode()));
+        gameSpaceInvaders=gameSpace;
+        gameSpaceInvaders.spaceInvadersScene.setOnKeyPressed(event -> handleKeyPress(event.getCode()));
+        gameSpaceInvaders.spaceInvadersScene.setOnKeyReleased(event -> handleKeyRelease(event.getCode()));
     }
 
     private void handleKeyPress(KeyCode code) {
@@ -134,7 +136,7 @@ public class SpaceInvadersKeyHandler {
             case ENTER: enterPressed = true; break;
             case SPACE: spacePressed = true; break;
             case C: game.gameState = game.characterState; break;
-            case ESCAPE: game.gameState = game.menuBarState; break;
+            case ESCAPE: game.gameState = game.titleState; break;
 
         }
     }

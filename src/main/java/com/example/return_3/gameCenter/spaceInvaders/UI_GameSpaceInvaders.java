@@ -26,7 +26,7 @@ public class UI_GameSpaceInvaders {
         titleImage= uTool.loadImage("/gameCenter/spaceInvaders/titleScreen.png",game.screenWidth,game.screenHeight);
     }
 
-    public void draw(GraphicsContext gc) {
+    public void draw() {
         // <------PLAY STATE------>
         if (game.gameState == game.playState) {
 //            drawPlayerLife();

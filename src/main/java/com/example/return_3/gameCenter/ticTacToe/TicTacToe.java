@@ -369,7 +369,7 @@ public class TicTacToe {
     }
     public void showGameOverScene() throws IOException {
         System.out.println("show game Over page called");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/tictactoesocketfx/gameOver.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/tictactoe/tictactoeGameOver.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);

@@ -173,10 +173,10 @@ i++;
 //        game.monster[game.currentMap][i].worldY = game.tileSize * 143;
 //        i++;
 //
-//        game.monster[game.currentMap][i] = new Mon_ORC(game);
-//        game.monster[game.currentMap][i].worldX = game.tileSize * 87;
-//        game.monster[game.currentMap][i].worldY = game.tileSize * 143;
-//        i++;
+        game.monster[game.currentMap][i] = new Mon_ORC(game);
+        game.monster[game.currentMap][i].worldX = game.tileSize * 87;
+        game.monster[game.currentMap][i].worldY = game.tileSize * 143;
+        i++;
     }
 
 

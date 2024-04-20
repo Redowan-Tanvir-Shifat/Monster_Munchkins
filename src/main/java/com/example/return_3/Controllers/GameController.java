@@ -63,13 +63,8 @@ public class GameController {
         alert.showAndWait().ifPresent(buttonType -> {
             if (buttonType == buttonTypeYes) {
                 Game.gameInstance.keyHandler.setBooleanAll(false);
-                try {
 
-                    Game.gameInstance.startGame();
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-//                Game.showGameScene();
+                Game.showGameScene();
             }
         });
     }
@@ -82,7 +77,7 @@ public class GameController {
     @FXML
     void goToSpaceInvaders(ActionEvent event) {
         System.out.println("ENterign space invaders game");
-        Game.gameSpaceInvaders = new GameSpaceInvaders(Game.gameInstance, Game.gameInstance.gc);
+        Game.gameSpaceInvaders = new GameSpaceInvaders(Game.gameInstance);
         //Game.gameInstance.keyHandler.setBooleanAll(false);
         try {
             Game.gameSpaceInvaders.startGameSpaceInvaders();

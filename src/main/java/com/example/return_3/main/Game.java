@@ -548,9 +548,9 @@ public class Game extends Application {
 
 
         } else if (gameStatus == gameSpaceInvadersStatus) {
-            gameSpaceInvaders.draw(gc);
+            gameSpaceInvaders.draw();
 //            ui.draw(gc);
-            gameSpaceInvaders.uiGameSpaceInvaders.draw(gc);
+            gameSpaceInvaders.uiGameSpaceInvaders.draw();
         } else if (gameStatus == gameSnakeyStatus) {
             gameSnakey.draw(gc);
             //ui.draw(gc);
