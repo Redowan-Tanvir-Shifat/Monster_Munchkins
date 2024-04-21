@@ -185,7 +185,7 @@ public class Game extends Application {
             }
         }
         primaryStage.setTitle("Powered By return_3;"); //set the title of the stage
-        primaryStage.initStyle(StageStyle.UNDECORATED); //create un decorated style
+        //primaryStage.initStyle(StageStyle.UNDECORATED); //create un decorated style
 //        primaryStage.setScene(menuScene);
         primaryStage.show(); //by this show method we are now showing the stage
         //primaryStage.setOnCloseRequest(windowEvent -> exit(primaryStage));
@@ -464,7 +464,7 @@ public class Game extends Application {
             }else if(gameStatus==gameSnakeyStatus){
                 gameSnakey.update();
             }else if(gameStatus==gameTicTacToeStatus){
-                ticTacToeGame.update();
+//                ticTacToeGame.update();
             }
 
 
@@ -549,14 +549,14 @@ public class Game extends Application {
 
 
         } else if (gameStatus == gameSpaceInvadersStatus) {
-            gameSpaceInvaders.draw(gc);
+            gameSpaceInvaders.draw();
 //            ui.draw(gc);
-            gameSpaceInvaders.uiGameSpaceInvaders.draw(gc);
+            gameSpaceInvaders.uiGameSpaceInvaders.draw();
         } else if (gameStatus == gameSnakeyStatus) {
             gameSnakey.draw(gc);
             //ui.draw(gc);
         }else if (gameStatus == gameTicTacToeStatus){
-            ticTacToeGame.draw(gc);
+//            ticTacToeGame.draw(gc);
         }
 
     }

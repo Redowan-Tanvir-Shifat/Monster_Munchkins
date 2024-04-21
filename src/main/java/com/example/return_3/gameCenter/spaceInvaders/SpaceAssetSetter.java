@@ -4,15 +4,11 @@ import com.example.return_3.gameCenter.spaceInvaders.enemy.Enemy_Black;
 import com.example.return_3.gameCenter.spaceInvaders.enemy.Enemy_Blue;
 import com.example.return_3.gameCenter.spaceInvaders.enemy.Enemy_Red;
 import com.example.return_3.main.Game;
-import com.example.return_3.test.TestEnemyBlack;
-import com.example.return_3.test.TestEnemyBlue;
-import com.example.return_3.test.TestEnemyRed;
-import com.example.return_3.test.TestGame;
 
 import java.util.Random;
 
 public class SpaceAssetSetter extends Thread{
-     Game game;
+    Game game;
     public int sleepTime;
     private static final Random RAND = new Random();
     public int posX,posY;

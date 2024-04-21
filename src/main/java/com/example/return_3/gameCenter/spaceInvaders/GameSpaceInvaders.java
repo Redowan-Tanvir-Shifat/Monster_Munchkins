@@ -6,8 +6,7 @@ import com.example.return_3.main.Game;
 import com.example.return_3.main.GameAnimationTimer;
 import com.example.return_3.main.KeyHandler;
 import com.example.return_3.main.UtilityTool;
-import com.example.return_3.test.TestAssetSetter;
-import com.example.return_3.test.TestEntity;
+
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -35,6 +34,7 @@ public class GameSpaceInvaders {
 //    GraphicsContext gc = canvas.getGraphicsContext2D();
     Canvas canvas;
     GraphicsContext gc;
+    Scene spaceInvadersScene;
 
     public SpaceShip spaceShip ;
     Image bcPic;
@@ -47,10 +47,10 @@ public class GameSpaceInvaders {
     public UI_GameSpaceInvaders uiGameSpaceInvaders;
 
 
-    public GameSpaceInvaders( Game game,GraphicsContext gc){
+    public GameSpaceInvaders( Game game){
         this.game = game;
-        this.gc = gc;
-        this.canvas=game.mainGameCanvas;
+        this.canvas=new Canvas(game.screenWidth,game.screenHeight);
+        this.gc = canvas.getGraphicsContext2D();
          uTool= new UtilityTool();
          uiGameSpaceInvaders=new UI_GameSpaceInvaders(game,gc);
     }
@@ -61,9 +61,9 @@ public class GameSpaceInvaders {
         game.gameStatus=game.gameSpaceInvadersStatus; //change the GameStatus  as our new gameStatus so that update and render method will work in that such crieteria
         game.gameState=game.playState; //change the GameState as play state
         Pane gameSpaceInvadersRoot = new Pane();
-        Game.gameScene = new Scene(gameSpaceInvadersRoot, game.screenWidth, game.screenHeight); // Set the scene before creating KeyHandler
+        spaceInvadersScene = new Scene(gameSpaceInvadersRoot, game.screenWidth, game.screenHeight); // Set the scene before creating KeyHandler
         //game.keyHandler= new KeyHandler(game);
-        spaceShip=new SpaceShip(game,new SpaceInvadersKeyHandler(game));
+        spaceShip=new SpaceShip(game,new SpaceInvadersKeyHandler(game,this));
         bcPic=  uTool.loadImage("/gameCenter/spaceInvaders/level1.png", game.screenWidth, game.screenHeight);
 
         gameSpaceInvadersRoot.getChildren().add(canvas); //Now we added the root created in gameSpaceInvaders
@@ -73,14 +73,19 @@ public class GameSpaceInvaders {
 
         assetSetter.start();
         Game.gameTimer.start();
-        Game.primaryStage.setScene(Game.gameScene);
+        Game.primaryStage.setScene(spaceInvadersScene);
     }
 
 
 
     public void update(){
         //System.out.println("update working");
-        spaceShip.update();
+        if(spaceShip!=null){
+            spaceShip.update();
+            if(spaceShip.destroyed){
+                System.out.println("gameOver");
+            }
+        }
         for(int i=0; i<enemies.length;i++){
             if(enemies[i]!=null){
                 if(enemies[i].bottomTouched==false){
@@ -94,7 +99,7 @@ public class GameSpaceInvaders {
         }
     }
 
-    public void draw( GraphicsContext gc){
+    public void draw( ){
         //System.out.println("GameSpaceInvaders Class: `drawMethod`  draw working");
         //Now drawing the background
 

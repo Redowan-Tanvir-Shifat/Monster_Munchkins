@@ -135,13 +135,13 @@ i++;
         game.monster[game.currentMap][i] = new Mon_Pac(game);
         game.monster[game.currentMap][i].worldX = game.tileSize * 127;
         game.monster[game.currentMap][i].worldY = game.tileSize * 32;
-        i++;game.monster[game.currentMap][i] = new Mon_Pac(game);
+        i++;game.monster[game.currentMap][i] = new Mon_Worm(game);
         game.monster[game.currentMap][i].worldX = game.tileSize * 128;
         game.monster[game.currentMap][i].worldY = game.tileSize * 32;
-        i++;game.monster[game.currentMap][i] = new Mon_Pac(game);
+        i++;game.monster[game.currentMap][i] = new Mon_Worm(game);
         game.monster[game.currentMap][i].worldX = game.tileSize * 127;
         game.monster[game.currentMap][i].worldY = game.tileSize * 31;
-        i++;game.monster[game.currentMap][i] = new Mon_Pac(game);
+        i++;game.monster[game.currentMap][i] = new Mon_ORC(game);
         game.monster[game.currentMap][i].worldX = game.tileSize * 127;
         game.monster[game.currentMap][i].worldY = game.tileSize * 33;
         //worm
@@ -151,7 +151,7 @@ i++;
 //        i++;game.monster[game.currentMap][i] = new Mon_Worm(game);
 //        game.monster[game.currentMap][i].worldX = game.tileSize * 127;
 //        game.monster[game.currentMap][i].worldY = game.tileSize * 34;
-        i++;game.monster[game.currentMap][i] = new Mon_Spider(game);
+        i++;game.monster[game.currentMap][i] = new Mon_GreenSlime(game);
         game.monster[game.currentMap][i].worldX = game.tileSize * 125;
         game.monster[game.currentMap][i].worldY = game.tileSize * 33;
         i++;
@@ -176,7 +176,7 @@ i++;
 //        game.monster[game.currentMap][i] = new Mon_ORC(game);
 //        game.monster[game.currentMap][i].worldX = game.tileSize * 87;
 //        game.monster[game.currentMap][i].worldY = game.tileSize * 143;
-//        i++;
+        i++;
     }
 
 

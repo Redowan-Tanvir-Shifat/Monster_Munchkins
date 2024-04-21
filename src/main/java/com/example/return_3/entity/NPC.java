@@ -66,6 +66,44 @@ public class NPC extends Entity{
                 actionLookCounter=0;
             }
         }
+    }
+
+    public void update(){
+        setAction();
+        checkCollision();
+
+        //if collisionOn is false then player can be able to move
+        if(collisionOn == false){
+
+            switch (direction){
+                case "up":worldY -= speed; break;
+                case "down":worldY+= speed; break;
+                case "left":worldX -= speed; break;
+                case "right":worldX += speed; break;
+            }
+        }
+
+        spriteCounter++;
+        if (spriteCounter > 24) {
+            if (spriteNum == 1) {
+                spriteNum = 2;
+            } else if (spriteNum == 2) {
+                spriteNum = 1;
+            }
+            spriteCounter = 0;
+        }
+    }
+
+
+    public void checkCollision(){
+        collisionOn=false;
+        //CHeching part of collision so that entity got collision and can not move
+        game.cChecker.checkTile(this);
+//        game.cChecker.checkPlayer(this);
+//        gp.cChecker.checkObject(this,false); //its not player so its remain false
+        game.cChecker.checkEntity(this,game.npc);
+        game.cChecker.checkEntity(this,game.monster);
+        game.cChecker.checkEntity(this,game.iTile);
 
 
     }

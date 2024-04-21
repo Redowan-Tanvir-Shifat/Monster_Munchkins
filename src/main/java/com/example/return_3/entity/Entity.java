@@ -222,6 +222,7 @@ public class Entity {
         collisionOn=false;
         //CHeching part of collision so that entity got collision and can not move
         game.cChecker.checkTile(this);
+        game.cChecker.checkPlayer(this);
 //        gp.cChecker.checkObject(this,false); //its not player so its remain false
         game.cChecker.checkEntity(this,game.npc);
         game.cChecker.checkEntity(this,game.monster);
@@ -770,21 +771,6 @@ public class Entity {
     public Image loadImage(String imagePath, int width, int height) {
         return new Image(Objects.requireNonNull(getClass().getResourceAsStream(imagePath)), width, height, true, true);
     }
-
-    // Method to restrict entity movement within a specified area
-//    public void areaSetup(int x, int y, int width, int height) {
-//        if (worldX < x) {
-//            worldX = x; // Prevent entity from moving beyond the left boundary
-//        } else if (worldX + game.tileSize > x + width) {
-//            worldX = x + width - game.tileSize; // Prevent entity from moving beyond the right boundary
-//        }
-//
-//        if (worldY < y) {
-//            worldY = y; // Prevent entity from moving beyond the top boundary
-//        } else if (worldY + game.tileSize > y + height) {
-//            worldY = y + height - game.tileSize; // Prevent entity from moving beyond the bottom boundary
-//        }
-//    }
 
     public Color getParticleColor(){ //this indicates the color of the particle
          Color color=  null;

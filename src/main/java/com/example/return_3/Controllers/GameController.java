@@ -3,6 +3,7 @@ package com.example.return_3.Controllers;
 import com.example.return_3.gameCenter.puzzGame.PuzzGame;
 import com.example.return_3.gameCenter.snakey.Snakey;
 import com.example.return_3.gameCenter.spaceInvaders.GameSpaceInvaders;
+//import com.example.return_3.gameCenter.ticTacToe.TicTacToe;
 import com.example.return_3.gameCenter.ticTacToe.TicTacToe;
 import com.example.return_3.main.Game;
 import javafx.beans.value.ObservableStringValue;
@@ -62,13 +63,8 @@ public class GameController {
         alert.showAndWait().ifPresent(buttonType -> {
             if (buttonType == buttonTypeYes) {
                 Game.gameInstance.keyHandler.setBooleanAll(false);
-                try {
 
-                    Game.gameInstance.startGame();
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-//                Game.showGameScene();
+                Game.showGameScene();
             }
         });
     }
@@ -81,7 +77,7 @@ public class GameController {
     @FXML
     void goToSpaceInvaders(ActionEvent event) {
         System.out.println("ENterign space invaders game");
-        Game.gameSpaceInvaders = new GameSpaceInvaders(Game.gameInstance, Game.gameInstance.gc);
+        Game.gameSpaceInvaders = new GameSpaceInvaders(Game.gameInstance);
         //Game.gameInstance.keyHandler.setBooleanAll(false);
         try {
             Game.gameSpaceInvaders.startGameSpaceInvaders();
@@ -91,15 +87,15 @@ public class GameController {
         }
     }
 
-    @FXML
-    void goToTicTacToe(ActionEvent event) throws IOException {
-        Game.gameInstance.ticTacToeGame= new TicTacToe(Game.gameInstance, Game.gameInstance.gc);
-        Game.gameInstance.ticTacToeGame.showTicTacToeMenuPage();
-    }
+//    @FXML
+//    void goToTicTacToe(ActionEvent event) throws IOException {
+//        Game.gameInstance.ticTacToeGame= new TicTacToe(Game.gameInstance, Game.gameInstance.gc);
+//        Game.gameInstance.ticTacToeGame.showTicTacToeMenuPage();
+//    }
 
     @FXML
     void goToSnakey(ActionEvent event) {
-        System.out.println("ENterign Snakey game");
+        System.out.println("Entering Snakey game");
         Game.gameSnakey = new Snakey(Game.gameInstance, Game.gameInstance.gc);
         //Game.gameInstance.keyHandler.setBooleanAll(false);
         try {
@@ -113,4 +109,8 @@ public class GameController {
         coin.setText(String.valueOf(c));
     }
 
+    public void goToTicTacToe(ActionEvent actionEvent) throws IOException {
+        Game.gameInstance.ticTacToeGame=new TicTacToe();
+        TicTacToe.ticTacInstance.showMenuScene();
+    }
 }
