@@ -26,6 +26,8 @@ public class SpaceShip extends Entity {
         this.keyHandler=keyHandler;
         double screenWidth = Game.gameScene.getWidth();
         double screenHeight = Game.gameScene.getHeight();
+        maxLife=6;
+        life=maxLife;
        // bcPic=  loadImage("/gameCenter/spaceInvaders/background_1.jpg", game.screenWidth, game.screenHeight);
 
 
@@ -82,6 +84,10 @@ public class SpaceShip extends Entity {
 
 
     public void update(){
+        if(life<=0){
+            destroyed=true;
+        }
+
         if(keyHandler.isMoveUp() || keyHandler.isMoveDown() || keyHandler.isMoveRight() || keyHandler.isMoveLeft() || keyHandler.isEnterPressed()) {
             // Move player based on key inputs
             if (keyHandler.isMoveUp()) {

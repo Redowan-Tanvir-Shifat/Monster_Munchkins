@@ -155,8 +155,8 @@ public class Player extends Entity{
         dexterity = game.user.getDexterity();   // The more dexterity he has, the less damage he receives...
         exp = game.user.getExp();
         nextLevelExp = game.user.getNextLevelExp();
-//        coin = game.user.getCoin();
-        coin = 50000;
+        coin = game.user.getCoin();
+//        coin = 50000;
         //as we are not setting current weapon and sheild at the beginning so that is why we commented it
         //currentWeapon = new OBJ_Sword_Normal(game);
         //currentShield = new OBJ_Shield_Wood(game);
@@ -267,8 +267,8 @@ public class Player extends Entity{
             pickUpObject(objIndex);
 
             //CHeck NPC collision
-            int npcIndex=game.cChecker.checkEntity(this,game.npc);
-            interactNPC(npcIndex);
+//            int npcIndex=game.cChecker.checkEntity(this,game.npc);
+//            interactNPC(npcIndex);
 
             //CHECK MONSTER COLLISION
             int monsterIndex = game.cChecker.checkEntity(this,game.monster);

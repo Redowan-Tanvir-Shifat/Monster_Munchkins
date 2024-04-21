@@ -50,7 +50,9 @@ public class Shot {
     public void update() {
 
         if(game.cChecker.checkPlayerShot(this)){
-            Game.gameSpaceInvaders.spaceShip.destroyed=true;
+//            Game.gameSpaceInvaders.spaceShip.destroyed=true;
+            Game.gameSpaceInvaders.spaceShip.life--;
+
             active=false;
         }
 
