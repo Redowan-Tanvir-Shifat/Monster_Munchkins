@@ -772,21 +772,6 @@ public class Entity {
         return new Image(Objects.requireNonNull(getClass().getResourceAsStream(imagePath)), width, height, true, true);
     }
 
-    // Method to restrict entity movement within a specified area
-//    public void areaSetup(int x, int y, int width, int height) {
-//        if (worldX < x) {
-//            worldX = x; // Prevent entity from moving beyond the left boundary
-//        } else if (worldX + game.tileSize > x + width) {
-//            worldX = x + width - game.tileSize; // Prevent entity from moving beyond the right boundary
-//        }
-//
-//        if (worldY < y) {
-//            worldY = y; // Prevent entity from moving beyond the top boundary
-//        } else if (worldY + game.tileSize > y + height) {
-//            worldY = y + height - game.tileSize; // Prevent entity from moving beyond the bottom boundary
-//        }
-//    }
-
     public Color getParticleColor(){ //this indicates the color of the particle
          Color color=  null;
         return color;

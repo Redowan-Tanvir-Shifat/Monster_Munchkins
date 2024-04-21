@@ -6,8 +6,7 @@ import com.example.return_3.main.Game;
 import com.example.return_3.main.GameAnimationTimer;
 import com.example.return_3.main.KeyHandler;
 import com.example.return_3.main.UtilityTool;
-import com.example.return_3.test.TestAssetSetter;
-import com.example.return_3.test.TestEntity;
+
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -81,7 +80,12 @@ public class GameSpaceInvaders {
 
     public void update(){
         //System.out.println("update working");
-        spaceShip.update();
+        if(spaceShip!=null){
+            spaceShip.update();
+            if(spaceShip.destroyed){
+                System.out.println("gameOver");
+            }
+        }
         for(int i=0; i<enemies.length;i++){
             if(enemies[i]!=null){
                 if(enemies[i].bottomTouched==false){
