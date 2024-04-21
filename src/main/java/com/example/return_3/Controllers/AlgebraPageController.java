@@ -23,8 +23,8 @@ public class AlgebraPageController {
     public Button nextBtn6;
     public Button backBtn5;
     public Button exitBtn7;
-    public Button nextBtn7;
     public Button backBtn6;
+    public Button testBtn;
     Game game;
 
     public Button exitBtn1;
@@ -103,11 +103,11 @@ public class AlgebraPageController {
         Game.gameInstance.showMathScene();
     }
 
-    public void next7(ActionEvent event) {
-
-    }
-
     public void back6(ActionEvent event) throws IOException {
         Game.gameInstance.showAlgebraPage6();
+    }
+
+    public void goToTest(ActionEvent event) throws IOException {
+        Game.gameInstance.showAlgebraTestPage1();
     }
 }
