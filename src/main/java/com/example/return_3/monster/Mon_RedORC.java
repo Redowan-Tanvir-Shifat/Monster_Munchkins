@@ -9,23 +9,23 @@ import com.example.return_3.object.OBJ_Rock;
 
 import java.util.Random;
 
-public class Mon_ORC extends Entity {
+public class Mon_RedORC extends Entity {
     Game game;
-    public Mon_ORC(Game game,int area) {
+    public Mon_RedORC(Game game) {
         super(game);
         this.game=game;
-        monster_area=area;
-        name = "ORC";
+
+        name = "Red_ORC";
         defaultSpeed = 1;
         speed = defaultSpeed;
         type = type_OrcMonster;
-        maxLife = 20;
+        maxLife = 50;
         life = maxLife;
-        attack = 10;
+        attack = 20;
         defense = 0;
-        exp = 5;
-        knockBackPower = 5;
-        projectile=new OBJ_Rock(game);
+        exp = 10;
+        knockBackPower = 10;
+        projectile = new OBJ_Rock(game);
 
         //set the SOLID AREA for  collision part
         solidArea.setX(4);
@@ -47,25 +47,25 @@ public class Mon_ORC extends Entity {
 
 
     public void loadMonsterImages(){
-        up1 = loadImage( "/monster/orc_up_1.png",game.tileSize,game.tileSize);
-        up2 = loadImage("/monster/orc_up_2.png",game.tileSize,game.tileSize);
-        down1 = loadImage("/monster/orc_down_1.png",game.tileSize,game.tileSize);
-        down2 = loadImage("/monster/orc_down_2.png",game.tileSize,game.tileSize);
-        left1 =loadImage ("/monster/orc_left_1.png",game.tileSize,game.tileSize);
-        left2 = loadImage("/monster/orc_left_2.png",game.tileSize,game.tileSize);
-        right1 = loadImage("/monster/orc_right_1.png",game.tileSize,game.tileSize);
-        right2 = loadImage("/monster/orc_right_2.png",game.tileSize,game.tileSize);
+        up1 = loadImage( "/monster/RedOrc_up_1.png",game.tileSize,game.tileSize);
+        up2 = loadImage("/monster/RedOrc_up_2.png",game.tileSize,game.tileSize);
+        down1 = loadImage("/monster/RedOrc_down_1.png",game.tileSize,game.tileSize);
+        down2 = loadImage("/monster/RedOrc_down_2.png",game.tileSize,game.tileSize);
+        left1 =loadImage ("/monster/RedOrc_left_1.png",game.tileSize,game.tileSize);
+        left2 = loadImage("/monster/RedOrc_left_2.png",game.tileSize,game.tileSize);
+        right1 = loadImage("/monster/RedOrc_right_1.png",game.tileSize,game.tileSize);
+        right2 = loadImage("/monster/RedOrc_right_2.png",game.tileSize,game.tileSize);
     }
 
     private void loadMonsterAttackImages() {
-        attackUp1 = loadImage("/monster/orc_attack_up_1.png", game.tileSize, game.tileSize * 2);
-        attackUp2 = loadImage("/monster/orc_attack_up_2.png", game.tileSize, game.tileSize * 2);
-        attackDown1 = loadImage("/monster/orc_attack_down_1.png", game.tileSize, game.tileSize * 2);
-        attackDown2 = loadImage("/monster/orc_attack_down_2.png", game.tileSize, game.tileSize * 2);
-        attackLeft1 = loadImage("/monster/orc_attack_left_1.png", game.tileSize * 2, game.tileSize);
-        attackLeft2 = loadImage("/monster/orc_attack_left_2.png", game.tileSize * 2, game.tileSize);
-        attackRight1 = loadImage("/monster/orc_attack_right_1.png", game.tileSize * 2, game.tileSize);
-        attackRight2 = loadImage("/monster/orc_attack_right_2.png", game.tileSize * 2, game.tileSize);
+        attackUp1 = loadImage("/monster/RedOrc_attack_up_1.png", game.tileSize, game.tileSize * 2);
+        attackUp2 = loadImage("/monster/RedOrc_attack_up_2.png", game.tileSize, game.tileSize * 2);
+        attackDown1 = loadImage("/monster/RedOrc_attack_down_1.png", game.tileSize, game.tileSize * 2);
+        attackDown2 = loadImage("/monster/RedOrc_attack_down_2.png", game.tileSize, game.tileSize * 2);
+        attackLeft1 = loadImage("/monster/RedOrc_attack_left_1.png", game.tileSize * 2, game.tileSize);
+        attackLeft2 = loadImage("/monster/RedOrc_attack_left_2.png", game.tileSize * 2, game.tileSize);
+        attackRight1 = loadImage("/monster/RedOrc_attack_right_1.png", game.tileSize * 2, game.tileSize);
+        attackRight2 = loadImage("/monster/RedOrc_attack_right_2.png", game.tileSize * 2, game.tileSize);
 
     }
 
@@ -91,7 +91,7 @@ public class Mon_ORC extends Entity {
 
             // Check if it attacks...
             if (attacking == false) {   // make monster aggressive by deceasing the rate...
-                checkAttackOrNot(30, game.tileSize * 4, game.tileSize);
+                checkAttackOrNot(20, game.tileSize * 4, game.tileSize);
             }
         }
     }

@@ -139,6 +139,7 @@ public class Entity {
     public final int type_consumable = 7;
     public final int type_pickupOnly = 8;
     public final int type_obstacle = 9;
+    public final int type_OrcMonster = 10;
 
     // <---------Type of NPC--------->
     public int npc_area;
@@ -305,8 +306,12 @@ public class Entity {
 
         //MONSTER ATTACK ON PLAYER.
         boolean contactPlayer= game.cChecker.checkPlayer(this);
-        if(this.type == type_monster && contactPlayer == true){
-            damagePlayer(attack);
+        if(contactPlayer){
+            if(type == type_OrcMonster){
+                damagePlayerOrc(attack);
+            }else{
+                damagePlayer(attack);
+            }
         }
 
 
@@ -434,9 +439,9 @@ public class Entity {
             solidArea.setHeight(attackArea.getHeight());
 
 
-            if (type == type_monster) {
+            if (type == type_OrcMonster) {
                 if (game.cChecker.checkPlayer(this) == true) {
-                    damagePlayer(attack);
+                    damagePlayerOrc(attack);
                 }
             }
             else { // Player
@@ -561,6 +566,57 @@ public class Entity {
         }
     }
 
+    public void damagePlayerOrc(int attack){
+
+        if (game.player.invincible == false && attacking == true) {
+            int damage = attack - game.player.defense;
+
+            // Get and opposite direction of an attacker...
+            String canGuardDirection = getOppositeDirection(direction);
+            if (game.player.guarding == true && game.player.direction.equals(canGuardDirection)) {
+                // Parry : // if you parry 10 frame before monsters attack you can parry monster...if you increase the value the parry became easier...
+                if (game.player.guardCounter < 10) {
+                    damage = 0;
+                    setKnockBack(this, game.player, game.player.currentShield.knockBackPower);
+                    offBalance = true;
+                    spriteCounter -= 60;
+                }
+
+                // Normal guard...
+                damage /= 3;
+            }
+            else {
+                // Not Guarding...
+                if (damage < 0) {
+                    damage = 0;
+                }
+            }
+
+            if (damage != 0) {
+                game.player.transparent = true;
+                setKnockBack(game.player, this, knockBackPower);
+            }
+
+            game.player.life -= damage;
+            game.player.invincible = true;
+
+            if (game.player.life >= 0 && game.player.life <= 20) {
+                game.ui.uiMainGame.addMessage( "Careful, " + game.player.life + " % Life left!");
+            }
+            if (game.player.life <= 0) {
+                game.player.dying = true;
+                game.player.setHospitalPosition();
+                game.keyHandler.setBooleanAll(false);
+                game.player.life = game.player.maxLife;
+                if (game.player.coin >= 300) {
+                    game.player.coin -= 300;
+                }
+                else {
+                    game.player.coin = 0;
+                }
+            }
+        }
+    }
     public void setKnockBack(Entity target, Entity attacker, int knockBackPower) {
         this.attacker = attacker;
         target.knockBackDirection = attacker.direction;

@@ -20,7 +20,7 @@ public class Mon_Pac extends Entity {
         name = "Green Slime";
         defaultSpeed = 1;
         speed = defaultSpeed;
-        type = type_monster;
+        type = type_OrcMonster;
         maxLife = 8;
         life = maxLife;
         attack = 2;
