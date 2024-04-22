@@ -143,6 +143,23 @@ public class Entity {
     // <---------Type of NPC--------->
     public int npc_area;
     public final int area_village=1;
+    // <---------Type of Monster--------->
+    public int monster_type;
+    public final int type_slime=1;
+    public final int type_pacman=2;
+    public final int type_spider=3;
+    public final int type_worm=4;
+    public final int type_arc=5;
+
+
+    // <---------Area of Monster--------->
+    public int monster_area;
+    public final int area_village_1=1;
+    public final int area_village_2=2;
+    public final int area_townHall=3;
+    public final int area_monIsland_1=4;
+    public final int area_monIsland_2=5;
+    public final int area_hill_1=6;
 
 
   // <-------------COLLiSION------------->
@@ -292,7 +309,6 @@ public class Entity {
             damagePlayer(attack);
         }
 
-        set_Area(); //
 
 
         if (invincible == true) {
@@ -314,40 +330,8 @@ public class Entity {
             }
         }
 
+        set_Monster_Area();
 
-        if(type==type_npc){
-            int xDistance=Math.abs(worldX-game.player.worldX);
-            int yDistance=Math.abs(worldY-game.player.worldY);
-            int tileDistance=(xDistance+yDistance)/game.tileSize;
-
-            if(tileDistance<3){
-                chatOnStatus=true;
-            }else{
-                chatOnStatus=false;
-            }
-
-
-            if( chatOnStatus==true){
-                chatCounter++;
-                if (chatCounter <15 ) {
-                    chatNum=1;
-
-
-                } else if (chatCounter >=15&& chatCounter<30 ) {
-                    chatNum=2;
-
-                } else if (chatCounter >=30&& chatCounter<45 ) {
-                    chatNum=3;
-
-                } else if (chatCounter >=45&& chatCounter<60 ) {
-                    chatNum=4;
-
-                }else {
-                    chatCounter = 0;
-                }
-            }
-
-        }
     }
 
 
@@ -468,6 +452,11 @@ public class Entity {
                 game.player.damageProjectile(projectileIndex);
             }
 
+            System.out.println("solidAreaX: "+solidArea.getX());
+            System.out.println("solidAreaY: "+solidArea.getY());
+
+            System.out.println("solidArea Width"+solidArea.getWidth());
+            System.out.println("solidArea height"+solidArea.getHeight());
             // After checking collision restore the original data...
             worldX = currentWorldX;
             worldY = currentWorldY;
@@ -760,11 +749,24 @@ public class Entity {
     }
 
 
-    public void set_Area(){ // we use different area here  for different position
+    public void set_NPC_Area(){ // we use different area here  for different position
         switch (npc_area){ //x is for map starting position and y is for map ending position
             //width and height give us the expected recatngular area for us
             case area_village:uTool.areaSetup(this,36*game.tileSize,133*game.tileSize,12*game.tileSize,4*game.tileSize);   ;break;
 //            case area_village:        areaSetup(36*game.tileSize,133*game.tileSize,12*game.tileSize,4*game.tileSize);   ;break;
+        }
+    }public void set_Monster_Area(){ // we use different area here  for different position
+        switch (monster_area){ //x is for map starting position and y is for map ending position
+            //width and height give us the expected recatngular area for us
+            case area_village_1:uTool.areaSetup(this,65*game.tileSize,156*game.tileSize,73*game.tileSize,29*game.tileSize);   ;break;
+            case area_village_2 :uTool.areaSetup(this,142*game.tileSize,158*game.tileSize,34*game.tileSize,16*game.tileSize) ;break;
+            case area_townHall :uTool.areaSetup(this,38*game.tileSize,120*game.tileSize,38*game.tileSize,50*game.tileSize) ;break;
+            case area_monIsland_1 :uTool.areaSetup(this,108*game.tileSize,14*game.tileSize,78*game.tileSize,21*game.tileSize) ;break;
+//            case area_monIsland_2 :uTool.areaSetup(this,150*game.tileSize,36*game.tileSize,36*game.tileSize,27*game.tileSize) ;break;
+            case area_monIsland_2 :uTool.areaSetup(this,48*game.tileSize,168*game.tileSize,5*game.tileSize,5*game.tileSize) ;break;
+            case area_hill_1 :uTool.areaSetup(this,53*game.tileSize,19*game.tileSize,53*game.tileSize,45*game.tileSize) ;break;
+//            case : ;break;
+//            case : ;break;
         }
     }
 
@@ -789,6 +791,8 @@ public class Entity {
         int maxLife=0;
         return maxLife;
     }
+
+    //this method is for giving a little animation on falling particles
 
     public void generateParticle(Entity generator,Entity target){
         //We will do it later

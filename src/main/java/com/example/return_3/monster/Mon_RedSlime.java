@@ -13,9 +13,10 @@ import java.util.Random;
 
 public class Mon_RedSlime extends Entity {
     Game game;
-    public Mon_RedSlime(Game game) {
+    public Mon_RedSlime(Game game,int area) {
         super(game);
         this.game=game;
+        monster_area=area;
         name = "Red Slime";
         defaultSpeed = 1;
         speed = defaultSpeed;

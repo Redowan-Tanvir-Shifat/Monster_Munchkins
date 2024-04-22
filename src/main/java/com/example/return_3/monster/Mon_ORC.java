@@ -11,11 +11,10 @@ import java.util.Random;
 
 public class Mon_ORC extends Entity {
     Game game;
-    public Mon_ORC(Game game) {
+    public Mon_ORC(Game game,int area) {
         super(game);
         this.game=game;
-
-        type = type_monster;
+        monster_area=area;
         name = "ORC";
         defaultSpeed = 1;
         speed = defaultSpeed;

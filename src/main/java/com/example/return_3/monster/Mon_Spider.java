@@ -12,9 +12,11 @@ import java.util.Random;
 public class Mon_Spider extends Entity {
     Game game;
     String imgName;
-    public Mon_Spider(Game game) {
+    public Mon_Spider(Game game,int area) {
         super(game);
         this.game=game;
+        monster_area=area;
+        monster_type=type_spider;
         name = "Green Slime";
         defaultSpeed = 1;
         speed = defaultSpeed;

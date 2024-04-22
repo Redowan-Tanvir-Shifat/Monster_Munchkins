@@ -79,8 +79,10 @@ public class Game extends Application {
     //TYPE
 
     public int objectType;
-    public final int type_interactiveTIle=0;
-    public final int type_object=1;
+    public final int type_interactiveTIle=1;
+    public final int type_object=2;
+    public final int type_monster=2;
+
 
 
 
@@ -122,7 +124,8 @@ public class Game extends Application {
 
     public Entity obj[][]= new Entity[maxMap][20];
     public Entity npc[][]= new Entity[maxMap][20]; //set the number of 10 NPC Number
-    public Entity[][] monster = new Entity[maxMap][20];
+    public Entity[][] monster = new Entity[maxMap][50];
+    public Entity[][] slimeMonster = new Entity[maxMap][20];
     public InteractiveTile iTile[][]= new InteractiveTile[maxMap][50];
     ArrayList<Entity> entityList = new ArrayList<>();
     // public  ArrayList<Entity> projectileList = new ArrayList<>();
@@ -185,7 +188,7 @@ public class Game extends Application {
             }
         }
         primaryStage.setTitle("Powered By return_3;"); //set the title of the stage
-        //primaryStage.initStyle(StageStyle.UNDECORATED); //create un decorated style
+        primaryStage.initStyle(StageStyle.UNDECORATED); //create un decorated style
 //        primaryStage.setScene(menuScene);
         primaryStage.show(); //by this show method we are now showing the stage
         //primaryStage.setOnCloseRequest(windowEvent -> exit(primaryStage));
@@ -272,6 +275,7 @@ public class Game extends Application {
     //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     public void startGame() throws Exception {
         gameStatus=gameMainStatus;
+
         inventoryMap = new HashMap<>();
         inventoryMapAddItem(axe.itemCode, axe);
         inventoryMapAddItem(sword.itemCode, sword);
@@ -427,6 +431,18 @@ public class Game extends Application {
                         }
                     }
                 }
+                // Slime Monster
+                for (int i = 0; i < slimeMonster.length; i++) {
+                    if (slimeMonster[currentMap][i] != null) {
+                        if (slimeMonster[currentMap][i].alive == true) {
+                            slimeMonster[currentMap][i].update();
+                        }
+                        if (slimeMonster[currentMap][i].alive == false) {
+                            slimeMonster[currentMap][i].checkDrop();
+                            slimeMonster[currentMap][i] = null;
+                        }
+                    }
+                }
 
                 //PROJECTILE
                 for (int i = 0; i < projectile[currentMap].length; i++) {
@@ -506,6 +522,12 @@ public class Game extends Application {
                 for (int i = 0; i < monster[currentMap].length; i++) {
                     if (monster[currentMap][i] != null) {
                         entityList.add(monster[currentMap][i]);
+                    }
+                }
+                //ADD Slime MONSTER TO THE LIST
+                for (int i = 0; i < slimeMonster[currentMap].length; i++) {
+                    if (slimeMonster[currentMap][i] != null) {
+                        entityList.add(slimeMonster[currentMap][i]);
                     }
                 }
                 //add object to list
