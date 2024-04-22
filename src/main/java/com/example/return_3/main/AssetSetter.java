@@ -2,6 +2,7 @@ package com.example.return_3.main;
 
 
 import com.example.return_3.db.MyJDBC;
+import com.example.return_3.entity.Entity;
 import com.example.return_3.entity.NPC_School;
 import com.example.return_3.entity.NPC_Trade;
 import com.example.return_3.entity.NPC_Wizard;
@@ -130,57 +131,8 @@ i++;
 
     }
     public void setMonster(){
-//        int i = 0;
-//
-//        game.monster[game.currentMap][i] = new Mon_Pac(game);
-//        game.monster[game.currentMap][i].worldX = game.tileSize * 127;
-//        game.monster[game.currentMap][i].worldY = game.tileSize * 32;
-//        i++;game.monster[game.currentMap][i] = new Mon_Worm(game);
-//        game.monster[game.currentMap][i].worldX = game.tileSize * 128;
-//        game.monster[game.currentMap][i].worldY = game.tileSize * 32;
-//        i++;game.monster[game.currentMap][i] = new Mon_Worm(game);
-//        game.monster[game.currentMap][i].worldX = game.tileSize * 127;
-//        game.monster[game.currentMap][i].worldY = game.tileSize * 31;
-////        i++;game.monster[game.currentMap][i] = new Mon_ORC(game);
-////        game.monster[game.currentMap][i].worldX = game.tileSize * 63;
-////        game.monster[game.currentMap][i].worldY = game.tileSize * 145;
-//
-//        i++;game.monster[game.currentMap][i] = new Mon_RedORC(game);
-//        game.monster[game.currentMap][i].worldX = game.tileSize * 64;
-//        game.monster[game.currentMap][i].worldY = game.tileSize * 146;
-//        //worm
-////        i++;game.monster[game.currentMap][i] = new Mon_Worm(game);
-////        game.monster[game.currentMap][i].worldX = game.tileSize * 129;
-////        game.monster[game.currentMap][i].worldY = game.tileSize * 30;
-////        i++;game.monster[game.currentMap][i] = new Mon_Worm(game);
-////        game.monster[game.currentMap][i].worldX = game.tileSize * 127;
-////        game.monster[game.currentMap][i].worldY = game.tileSize * 34;
-//        i++;game.monster[game.currentMap][i] = new Mon_GreenSlime(game);
-//        game.monster[game.currentMap][i].worldX = game.tileSize * 125;
-//        game.monster[game.currentMap][i].worldY = game.tileSize * 33;
-//        i++;
-//
-//        game.monster[game.currentMap][i] = new Mon_Green(game);
-//        game.monster[game.currentMap][i].worldX = game.tileSize * 135;
-//        game.monster[game.currentMap][i].worldY = game.tileSize * 26;
-//        i++;game.monster[game.currentMap][i] = new Mon_Green(game);
-//        game.monster[game.currentMap][i].worldX = game.tileSize * 136;
-//        game.monster[game.currentMap][i].worldY = game.tileSize * 26;
-//        i++;game.monster[game.currentMap][i] = new Mon_Spider(game);
-//        game.monster[game.currentMap][i].worldX = game.tileSize * 137;
-//        game.monster[game.currentMap][i].worldY = game.tileSize * 25;
-//
-//        i++;
-////
-////        game.monster[game.currentMap][i] = new Mon_RedSlime(game);
-////        game.monster[game.currentMap][i].worldX = game.tileSize * 83;
-////        game.monster[game.currentMap][i].worldY = game.tileSize * 143;
-////        i++;
-////
-////        game.monster[game.currentMap][i] = new Mon_ORC(game);
-////        game.monster[game.currentMap][i].worldX = game.tileSize * 87;
-////        game.monster[game.currentMap][i].worldY = game.tileSize * 143;
-//        i++;
+        int mapNum=0;
+        MyJDBC.setMonsters(game.player.playerId,mapNum);
     }
 
 
@@ -193,7 +145,7 @@ i++;
 
 
 
-    public static void addInteractiveTileToDB(int userId){
+    public static void addObjectToDB(int userId){
                 //  FOR THE FIRST MAP
         int mapNum=0;
         int itemCode=0;
@@ -209,6 +161,30 @@ i++;
 
         MyJDBC.addObject(userId,objecttype,itemCode,53,142,mapNum);
         MyJDBC.addObject(userId,objecttype,itemCode,54,142,mapNum);
+
+        //for monster types
+        Entity entity=new Entity(Game.gameInstance);
+        int monIndex=0;
+//        MyJDBC.addMonster(userId,entity.type_spider,entity.area_townHall,55,149,mapNum,monIndex);monIndex++;
+//        MyJDBC.addMonster(userId,entity.type_worm,entity.area_townHall,55,150,mapNum,monIndex);monIndex++;
+//        MyJDBC.addMonster(userId,entity.type_pacman,entity.area_village_2,152,167,mapNum,monIndex);monIndex++;
+//        MyJDBC.addMonster(userId,entity.type_pacman,entity.area_village_2,165,164,mapNum,monIndex);monIndex++;
+//        MyJDBC.addMonster(userId,entity.type_pacman,entity.area_village_2,172,172,mapNum,monIndex);monIndex++;
+//        MyJDBC.addMonster(userId,entity.type_worm,entity.area_village_2,161,162,mapNum,monIndex);monIndex++;
+//        MyJDBC.addMonster(userId,entity.type_worm,0,159,177,mapNum,monIndex);monIndex++;
+//        MyJDBC.addMonster(userId,entity.type_worm,0,158,155,mapNum,monIndex);monIndex++;
+
+
+        MyJDBC.addMonster(userId,entity.type_pacman,entity.area_village_1,95,172,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_pacman,entity.area_village_1,95,176,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_pacman,entity.area_village_1,67,172,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_worm,entity.area_village_1,65,169,mapNum,monIndex);monIndex++;
+
+        MyJDBC.addMonster(userId,entity.type_worm,entity.area_monIsland_1,118,17,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_slime,entity.area_monIsland_1,119,17,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_spider,entity.area_monIsland_1,116,17,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_arc,entity.area_monIsland_1,115,17,mapNum,monIndex);monIndex++;
+
 
 
 

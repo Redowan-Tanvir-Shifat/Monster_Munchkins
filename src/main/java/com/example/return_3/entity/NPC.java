@@ -92,6 +92,43 @@ public class NPC extends Entity{
             }
             spriteCounter = 0;
         }
+
+        set_NPC_Area();
+
+        if(type==type_npc){
+            int xDistance=Math.abs(worldX-game.player.worldX);
+            int yDistance=Math.abs(worldY-game.player.worldY);
+            int tileDistance=(xDistance+yDistance)/game.tileSize;
+
+            if(tileDistance<3){
+                chatOnStatus=true;
+            }else{
+                chatOnStatus=false;
+            }
+
+
+            if( chatOnStatus==true){
+                chatCounter++;
+                if (chatCounter <15 ) {
+                    chatNum=1;
+
+
+                } else if (chatCounter >=15&& chatCounter<30 ) {
+                    chatNum=2;
+
+                } else if (chatCounter >=30&& chatCounter<45 ) {
+                    chatNum=3;
+
+                } else if (chatCounter >=45&& chatCounter<60 ) {
+                    chatNum=4;
+
+                }else {
+                    chatCounter = 0;
+                }
+            }
+
+        }
+
     }
 
 
@@ -104,6 +141,7 @@ public class NPC extends Entity{
         game.cChecker.checkEntity(this,game.npc);
         game.cChecker.checkEntity(this,game.monster);
         game.cChecker.checkEntity(this,game.iTile);
+
 
 
     }
