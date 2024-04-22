@@ -4,6 +4,10 @@ import com.example.return_3.entity.Entity;
 import com.example.return_3.interactiveTile.CuttableTree;
 import com.example.return_3.main.Game;
 import com.example.return_3.main.UtilityTool;
+import com.example.return_3.monster.Mon_Green;
+import com.example.return_3.monster.Mon_ORC;
+import com.example.return_3.monster.Mon_Pac;
+import com.example.return_3.monster.Mon_Spider;
 import com.example.return_3.object.OBJ_Axe;
 import com.example.return_3.object.OBJ_Potion_Red;
 
@@ -368,31 +372,6 @@ public class MyJDBC {
         }
     }
 
-//    public static void updateObjectDestroyedStatus(int userId, int mapNum, int row, int col, boolean destroyed) {
-//        try {
-//            Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
-//            PreparedStatement preparedStatement = connection.prepareStatement(
-//                    "UPDATE Objects SET destroyed = ? " +
-//                            "WHERE user_id = ? AND map_num = ? AND tile_row = ? AND tile_col = ?"
-//            );
-//            preparedStatement.setBoolean(1, destroyed);
-//            preparedStatement.setInt(2, userId);
-//            preparedStatement.setInt(3, mapNum);
-//            preparedStatement.setInt(4, row);
-//            preparedStatement.setInt(5, col);
-//            // Execute the update query
-//            int rowsAffected = preparedStatement.executeUpdate();
-//            if (rowsAffected > 0) {
-//                System.out.println("Object data updated successfully.");
-//            } else {
-//                System.out.println("No object found with the given data.");
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-
 
 
 
@@ -424,7 +403,195 @@ public class MyJDBC {
 
 
 
+////  <------------  MONSTER
+public static void addMonster(int userId, int monsterType, int areaType, int col, int row, int mapNum, int indexNum) {
+    try {
+        Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+        PreparedStatement preparedStatement = connection.prepareStatement(
+                "INSERT INTO Monsters (user_id, monster_type, area_type, tile_col, tile_row, indexNum, map_num) " +
+                        "VALUES (?, ?, ?, ?, ?, ?, ?)"
+        );
+        preparedStatement.setInt(1, userId);
+        preparedStatement.setInt(2, monsterType);
+        preparedStatement.setInt(3, areaType);
+        preparedStatement.setInt(4, col);
+        preparedStatement.setInt(5, row);
+        preparedStatement.setInt(6, indexNum);
+        preparedStatement.setInt(7, mapNum);
+        preparedStatement.executeUpdate();
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
+//public static void addMonster(int userId, int monsterType, int areaType, int col, int row, int mapNum) {
+//    try {
+//        Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+//        PreparedStatement preparedStatement = connection.prepareStatement(
+//                "INSERT INTO Monsters (user_id, monster_type, area_type, tile_col, tile_row, map_num) " +
+//                        "VALUES (?, ?, ?, ?, ?, ?)"
+//        );
+//        preparedStatement.setInt(1, userId);
+//        preparedStatement.setInt(2, monsterType);
+//        preparedStatement.setInt(3, areaType);
+//        preparedStatement.setInt(4, col);
+//        preparedStatement.setInt(5, row);
+//        preparedStatement.setInt(6, mapNum);
+//        preparedStatement.executeUpdate();
+//    } catch (SQLException e) {
+//        e.printStackTrace();
+//    }
+//}
 
+//    public static void setMonsters(int userId, int mapNum) {
+//        Game game=Game.gameInstance;
+//        Entity entity00= new Entity(game);
+//        try {
+//            Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+//            PreparedStatement preparedStatement = connection.prepareStatement(
+//                    "SELECT tile_col, tile_row, area_type, monster_type FROM Monsters " +
+//                            "WHERE user_id = ? AND map_num = ? AND destroyed = FALSE"
+//            );
+//            preparedStatement.setInt(1, userId);
+//            preparedStatement.setInt(2, mapNum);
+//            ResultSet resultSet = preparedStatement.executeQuery();
+//            int i = 0; // Index for MONSTER
+////            int mIndex = 0; // Index for monsters
+//            // Iterate over the result set and create instances of monsters
+//            while (resultSet.next()) {
+//                int areaType = resultSet.getInt("area_type");
+//                int col = resultSet.getInt("tile_col");
+//                int row = resultSet.getInt("tile_row");
+//                int monsterType = resultSet.getInt("monster_type");
+//
+//                    Entity monster=null;
+//                 if(monsterType == entity00.type_pacman){
+//                     monster= new Mon_Pac(game);
+//                 }else if(monsterType == entity00.type_spider){
+//                     monster= new Mon_Spider(game);
+//                 }else if(monsterType == entity00.type_arc){
+//                     monster= new Mon_ORC(game);
+//                 }else if(monsterType == entity00.type_slime){
+//                     monster= new Mon_Green(game);
+//                 }
+//                    // Place the monster in the game world
+//                    if (monster != null) {
+//                        Game.gameInstance.monster[mapNum][i] = monster;
+//                        Game.gameInstance.monster[mapNum][i].worldX = Game.gameInstance.tileSize * col;
+//                        Game.gameInstance.monster[mapNum][i].worldY = Game.gameInstance.tileSize * row;
+//                        System.out.println("monster is not null");
+//                    i++; // Increment the monster index
+//                    }
+//
+//            }
+//
+//            // Close resources
+//            resultSet.close();
+//            preparedStatement.close();
+//            connection.close();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
+    public static void setMonsters(int userId, int mapNum) {
+        Game game = Game.gameInstance;
+        Entity entity00 = new Entity(game);
+        try {
+            Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT tile_col, tile_row, area_type, monster_type, indexNum FROM Monsters " +
+                            "WHERE user_id = ? AND map_num = ? AND destroyed = FALSE"
+            );
+            preparedStatement.setInt(1, userId);
+            preparedStatement.setInt(2, mapNum);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            int i = 0; // Index for MONSTER
+            // Iterate over the result set and create instances of monsters
+            while (resultSet.next()) {
+                int areaType = resultSet.getInt("area_type");
+                int col = resultSet.getInt("tile_col");
+                int row = resultSet.getInt("tile_row");
+                int monsterType = resultSet.getInt("monster_type");
+                int indexNum = resultSet.getInt("indexNum");
+
+                Entity monster = null;
+                // Determine the type of monster and create an instance accordingly
+                if (monsterType == entity00.type_pacman) {
+                    monster = new Mon_Pac(game);
+                } else if (monsterType == entity00.type_spider) {
+                    monster = new Mon_Spider(game);
+                } else if (monsterType == entity00.type_arc) {
+                    monster = new Mon_ORC(game);
+                } else if (monsterType == entity00.type_slime) {
+                    monster = new Mon_Green(game);
+                }
+
+                // Place the monster in the game world
+                if (monster != null) {
+                    Game.gameInstance.monster[mapNum][indexNum] = monster;
+                    Game.gameInstance.monster[mapNum][indexNum].worldX = Game.gameInstance.tileSize * col;
+                    Game.gameInstance.monster[mapNum][indexNum].worldY = Game.gameInstance.tileSize * row;
+                    System.out.println("Monster is not null");
+                }
+            }
+
+            // Close resources
+            resultSet.close();
+            preparedStatement.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void updateMonsterDestroyedStatus(int userId, int indexNum, int monsterType, int mapNum, boolean destroyed) {
+        try {
+            Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "UPDATE Monsters SET destroyed = ? " +
+                            "WHERE user_id = ? AND indexNum = ? AND monster_type = ? AND map_num = ?"
+            );
+            preparedStatement.setBoolean(1, destroyed);
+            preparedStatement.setInt(2, userId);
+            preparedStatement.setInt(3, indexNum);
+            preparedStatement.setInt(4, monsterType);
+            preparedStatement.setInt(5, mapNum);
+            // Execute the update query
+            int rowsAffected = preparedStatement.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Monster data updated successfully.");
+            } else {
+                System.out.println("No monster found with the given data.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+//    public static void updateMonsterDestroyedStatus(int userId, int mapNum, int row, int col, int monsterType, boolean destroyed) {
+//        try {
+//            Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+//            PreparedStatement preparedStatement = connection.prepareStatement(
+//                    "UPDATE Monsters SET destroyed = ? " +
+//                            "WHERE user_id = ? AND map_num = ? AND tile_row = ? AND tile_col = ? AND monster_type = ?"
+//            );
+//            preparedStatement.setBoolean(1, destroyed);
+//            preparedStatement.setInt(2, userId);
+//            preparedStatement.setInt(3, mapNum);
+//            preparedStatement.setInt(4, row);
+//            preparedStatement.setInt(5, col);
+//            preparedStatement.setInt(6, monsterType);
+//            // Execute the update query
+//            int rowsAffected = preparedStatement.executeUpdate();
+//            if (rowsAffected > 0) {
+//                System.out.println("Monster data updated successfully.");
+//            } else {
+//                System.out.println("No monster found with the given data.");
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
 
 }

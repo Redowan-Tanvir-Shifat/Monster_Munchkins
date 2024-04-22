@@ -15,6 +15,7 @@ public class Mon_Spider extends Entity {
     public Mon_Spider(Game game) {
         super(game);
         this.game=game;
+        monster_type=type_spider;
         name = "Green Slime";
         defaultSpeed = 1;
         speed = defaultSpeed;

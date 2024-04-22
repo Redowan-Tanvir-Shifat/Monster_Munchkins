@@ -413,6 +413,9 @@ public class Player extends Entity{
                 game.monster[game.currentMap][i].damageReaction();
 
                 if (game.monster[game.currentMap][i].life <= 0) {
+                    int col=game.monster[game.currentMap][i].worldX/game.tileSize;
+                    int row= game.monster[game.currentMap][i].worldY/game.tileSize;
+                    int monsterType=game.monster[game.currentMap][i].monster_type;
                     String name= game.monster[game.currentMap][i].name;
                     game.monster[game.currentMap][i].dying = true;
 
@@ -420,6 +423,8 @@ public class Player extends Entity{
                     game.ui.uiMainGame.addMessage("Killed the " + game.monster[game.currentMap][i].name + "!");
                     exp += game.monster[game.currentMap][i].exp;
                     game.ui.uiMainGame.addMessage(" EXP + " + game.monster[game.currentMap][i].exp);
+                    MyJDBC.updateMonsterDestroyedStatus(playerId,i,monsterType,game.currentMap,true);
+//                    MyJDBC.updateObjectDestroyedStatus(playerId,game.currentMap,row,col,game.type_object,true);
 
                     new MonsterSetterThread(game,i,name).start();
 

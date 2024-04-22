@@ -11,7 +11,7 @@ Game game;
     public NPC_Trade(Game game) {
         super(game);
         this.game=game;
-        npc_area=area_village;
+//        npc_area=area_village;
         getNPCImage();
         setDialogue();
         setItems();
