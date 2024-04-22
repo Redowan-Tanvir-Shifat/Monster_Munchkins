@@ -49,11 +49,11 @@ true
 024.png
 true
 025.png
-false
+true
 026.png
-false
+true
 027.png
-false
+true
 028.png
 true
 029.png
