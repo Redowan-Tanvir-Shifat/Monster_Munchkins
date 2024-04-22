@@ -14,17 +14,17 @@ public class MonsterSetterThread extends Thread{
     this.name=name;
     }
     public void run(){
-        try {
-            Thread.sleep(5000);
-            if(name.equals("Red Slime")){
-                game.monster[game.currentMap][i] = new Mon_RedSlime(game);
-            }else if(name.equals("Green Slime")){
-                game.monster[game.currentMap][i] = new Mon_GreenSlime(game);
-            }
-            game.monster[game.currentMap][i].worldX = game.tileSize * 80;
-            game.monster[game.currentMap][i].worldY = game.tileSize * 144;
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+//        try {
+//            Thread.sleep(5000);
+//            if(name.equals("Red Slime")){
+//                game.monster[game.currentMap][i] = new Mon_RedSlime(game);
+//            }else if(name.equals("Green Slime")){
+//                game.monster[game.currentMap][i] = new Mon_GreenSlime(game);
+//            }
+//            game.monster[game.currentMap][i].worldX = game.tileSize * 80;
+//            game.monster[game.currentMap][i].worldY = game.tileSize * 144;
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        }
     }
 }

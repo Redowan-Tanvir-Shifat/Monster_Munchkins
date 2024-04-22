@@ -374,6 +374,8 @@ public class Player extends Entity{
             mana=maxMana;
         }
 
+
+
     }
 
 

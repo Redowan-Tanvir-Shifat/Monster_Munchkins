@@ -13,9 +13,10 @@ public class Mon_Worm extends Entity {
     Game game;
     private String imgName;
     private int size;
-    public Mon_Worm(Game game) {
+    public Mon_Worm(Game game,int area) {
         super(game);
         this.game=game;
+        monster_area=area;
         monster_type=type_worm;
         name = "Green Slime";
         defaultSpeed = 1;

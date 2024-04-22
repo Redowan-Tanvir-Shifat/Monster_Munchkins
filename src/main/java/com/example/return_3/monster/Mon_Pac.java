@@ -12,9 +12,10 @@ import java.util.Random;
 public class Mon_Pac extends Entity {
     Game game;
     String imgName;
-    public Mon_Pac(Game game) {
+    public Mon_Pac(Game game,int area) {
         super(game);
         this.game=game;
+        monster_area=area;
         monster_type=type_pacman;
         name = "Green Slime";
         defaultSpeed = 1;
@@ -83,7 +84,7 @@ public class Mon_Pac extends Entity {
         else {
 
             // Check if it starts chasing...
-            checkStartChasingOrNot(game.player, 5, 100);
+           // checkStartChasingOrNot(game.player, 5, 100);
 
             // Get a random direction...
             getRandomDirection();

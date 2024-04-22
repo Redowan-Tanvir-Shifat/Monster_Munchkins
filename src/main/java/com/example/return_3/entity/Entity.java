@@ -330,7 +330,7 @@ public class Entity {
             }
         }
 
-
+        set_Monster_Area();
 
     }
 
@@ -452,6 +452,11 @@ public class Entity {
                 game.player.damageProjectile(projectileIndex);
             }
 
+            System.out.println("solidAreaX: "+solidArea.getX());
+            System.out.println("solidAreaY: "+solidArea.getY());
+
+            System.out.println("solidArea Width"+solidArea.getWidth());
+            System.out.println("solidArea height"+solidArea.getHeight());
             // After checking collision restore the original data...
             worldX = currentWorldX;
             worldY = currentWorldY;
@@ -757,7 +762,8 @@ public class Entity {
             case area_village_2 :uTool.areaSetup(this,142*game.tileSize,158*game.tileSize,34*game.tileSize,16*game.tileSize) ;break;
             case area_townHall :uTool.areaSetup(this,38*game.tileSize,120*game.tileSize,38*game.tileSize,50*game.tileSize) ;break;
             case area_monIsland_1 :uTool.areaSetup(this,108*game.tileSize,14*game.tileSize,78*game.tileSize,21*game.tileSize) ;break;
-            case area_monIsland_2 :uTool.areaSetup(this,150*game.tileSize,36*game.tileSize,36*game.tileSize,27*game.tileSize) ;break;
+//            case area_monIsland_2 :uTool.areaSetup(this,150*game.tileSize,36*game.tileSize,36*game.tileSize,27*game.tileSize) ;break;
+            case area_monIsland_2 :uTool.areaSetup(this,48*game.tileSize,168*game.tileSize,5*game.tileSize,5*game.tileSize) ;break;
             case area_hill_1 :uTool.areaSetup(this,53*game.tileSize,19*game.tileSize,53*game.tileSize,45*game.tileSize) ;break;
 //            case : ;break;
 //            case : ;break;

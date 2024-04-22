@@ -4,10 +4,7 @@ import com.example.return_3.entity.Entity;
 import com.example.return_3.interactiveTile.CuttableTree;
 import com.example.return_3.main.Game;
 import com.example.return_3.main.UtilityTool;
-import com.example.return_3.monster.Mon_Green;
-import com.example.return_3.monster.Mon_ORC;
-import com.example.return_3.monster.Mon_Pac;
-import com.example.return_3.monster.Mon_Spider;
+import com.example.return_3.monster.*;
 import com.example.return_3.object.OBJ_Axe;
 import com.example.return_3.object.OBJ_Potion_Red;
 
@@ -505,7 +502,7 @@ public static void addMonster(int userId, int monsterType, int areaType, int col
             preparedStatement.setInt(1, userId);
             preparedStatement.setInt(2, mapNum);
             ResultSet resultSet = preparedStatement.executeQuery();
-            int i = 0; // Index for MONSTER
+            //int i = 0; // Index for MONSTER
             // Iterate over the result set and create instances of monsters
             while (resultSet.next()) {
                 int areaType = resultSet.getInt("area_type");
@@ -517,13 +514,15 @@ public static void addMonster(int userId, int monsterType, int areaType, int col
                 Entity monster = null;
                 // Determine the type of monster and create an instance accordingly
                 if (monsterType == entity00.type_pacman) {
-                    monster = new Mon_Pac(game);
+                    monster = new Mon_Pac(game,areaType);
                 } else if (monsterType == entity00.type_spider) {
-                    monster = new Mon_Spider(game);
+                    monster = new Mon_Spider(game,areaType);
                 } else if (monsterType == entity00.type_arc) {
-                    monster = new Mon_ORC(game);
+                    monster = new Mon_ORC(game,areaType);
                 } else if (monsterType == entity00.type_slime) {
-                    monster = new Mon_Green(game);
+                    monster = new Mon_Green(game,areaType);
+                } else if (monsterType == entity00.type_worm) {
+                    monster = new Mon_Worm(game,areaType);
                 }
 
                 // Place the monster in the game world

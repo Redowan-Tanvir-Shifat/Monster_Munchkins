@@ -124,7 +124,7 @@ public class Game extends Application {
 
     public Entity obj[][]= new Entity[maxMap][20];
     public Entity npc[][]= new Entity[maxMap][20]; //set the number of 10 NPC Number
-    public Entity[][] monster = new Entity[maxMap][20];
+    public Entity[][] monster = new Entity[maxMap][50];
     public Entity[][] slimeMonster = new Entity[maxMap][20];
     public InteractiveTile iTile[][]= new InteractiveTile[maxMap][50];
     ArrayList<Entity> entityList = new ArrayList<>();
@@ -275,6 +275,7 @@ public class Game extends Application {
     //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     public void startGame() throws Exception {
         gameStatus=gameMainStatus;
+
         inventoryMap = new HashMap<>();
         inventoryMapAddItem(axe.itemCode, axe);
         inventoryMapAddItem(sword.itemCode, sword);
