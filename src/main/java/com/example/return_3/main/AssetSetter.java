@@ -25,7 +25,7 @@ public class AssetSetter {
     //setInteractiveTile [dry tree, breakable tree, trunk.]
     public void setObject() {
         int mapNum = 0; //For map 1  //to create object for map 2 then we need to ser mapNum 2 under the code.
-//        int i = 0;
+        int i = 0;
 //        game.obj[mapNum][i]=new OBJ_Shield_Blue(game);
 //        game.obj[mapNum][i].worldX=game.tileSize*42;
 //        game.obj[mapNum][i].worldY=game.tileSize*140;
@@ -42,9 +42,9 @@ public class AssetSetter {
 //        game.obj[mapNum][i].worldX=game.tileSize*49;
 //        game.obj[mapNum][i].worldY=game.tileSize*140;
 //        i++;
-//        game.obj[mapNum][i]=new OBJ_Coin(game);
-//        game.obj[mapNum][i].worldX=game.tileSize*41;
-//        game.obj[mapNum][i].worldY=game.tileSize*142;
+        game.obj[mapNum][i]=new OBJ_Coin(game);
+        game.obj[mapNum][i].worldX=game.tileSize*41;
+        game.obj[mapNum][i].worldY=game.tileSize*142;
 //        i++;
 //        game.obj[mapNum][i]=new OBJ_Axe(game);
 //        game.obj[mapNum][i].worldX=game.tileSize*42;
@@ -66,8 +66,8 @@ public class AssetSetter {
 //        game.obj[mapNum][i].worldY=game.tileSize*144;
 //        i++;
         game.obj[mapNum][14]=new OBJ_Door(game);
-        game.obj[mapNum][14].worldX=game.tileSize*46;
-        game.obj[mapNum][14].worldY=game.tileSize*142;
+        game.obj[mapNum][14].worldX=game.tileSize * 28;
+        game.obj[mapNum][14].worldY=game.tileSize * 161;
         game.obj[mapNum][15]=new OBJ_Key(game);
         game.obj[mapNum][15].worldX=game.tileSize*47;
         game.obj[mapNum][15].worldY=game.tileSize*142;

@@ -727,7 +727,7 @@ public class Entity {
 
 
             //Monster HP Bar......
-            if (type == type_monster && hpBarOn == true) {
+            if ((type == type_monster || type == type_OrcMonster) && hpBarOn == true) {
                 double oneScale = (double)game.tileSize/maxLife;
                 double hpBarValue = oneScale*life;
 
