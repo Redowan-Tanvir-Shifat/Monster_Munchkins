@@ -132,6 +132,11 @@ public class Game extends Application {
     public Entity[][] projectile = new Entity[maxMap][20];
     public ArrayList<Entity> particleList = new ArrayList<>();
 
+    //For Sound
+    private Sound music = new Sound();
+    private Sound soundEffect = new Sound();
+
+
     //For inventory
     HashMap<Integer, Entity> inventoryMap;
     public Entity axe = new OBJ_Axe(this);
@@ -299,6 +304,7 @@ public class Game extends Application {
         lastNanoTime = System.nanoTime();
         gameTimer = new GameAnimationTimer(this);
         gameTimer.start();
+        playMusic(0);
         mainGameScene=gameScene;
         primaryStage.setScene(gameScene);
         //When the game is starting then gameState will be PlayState
@@ -905,7 +911,21 @@ public class Game extends Application {
     }
 
 
+//CODE FOR SOUND SYSTEM
+public void playMusic(int i) {
+    music.setFile(i);
+    music.play();
+    music.loop();
+}
 
+    public void stopMusic() {
+        music.stop();
+    }
+
+    public void playSoundEffect(int i) {
+        soundEffect.setFile(i);
+        soundEffect.play();
+    }
 
 
 
