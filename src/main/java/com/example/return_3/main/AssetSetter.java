@@ -119,15 +119,55 @@ i++;
         game.npc[mapNum][i]= new NPC_Universal(game,"oldman");
         game.npc[mapNum][i].worldX=game.tileSize*54;
         game.npc[mapNum][i].worldY=game.tileSize*132;
-
-
-//        New Map;
-//        mapNum=1;
-//        i=0;
-//        gp.npc[mapNum][i]= new NPC_Merchant(gp);
-//        gp.npc[mapNum][i].worldX=gp.tileSize*59;
-//        gp.npc[mapNum][i].worldY=gp.tileSize*86;
-//        i++;
+        i++;
+        game.npc[mapNum][i]= new NPC_Universal(game,"girl");
+        game.npc[mapNum][i].worldX=game.tileSize*78;
+        game.npc[mapNum][i].worldY=game.tileSize*116;
+        i++;
+        game.npc[mapNum][i]= new NPC_Universal(game,"girl2");
+        game.npc[mapNum][i].worldX=game.tileSize*88;
+        game.npc[mapNum][i].worldY=game.tileSize*121;
+        i++;
+        game.npc[mapNum][i]= new NPC_Universal(game,"boy");
+        game.npc[mapNum][i].worldX=game.tileSize*110;
+        game.npc[mapNum][i].worldY=game.tileSize*150;
+        i++;
+        game.npc[mapNum][i]= new NPC_Universal(game,"boy2");
+        game.npc[mapNum][i].worldX=game.tileSize*125;
+        game.npc[mapNum][i].worldY=game.tileSize*159;
+        i++;
+        game.npc[mapNum][i]= new NPC_Universal(game,"oldman");
+        game.npc[mapNum][i].worldX=game.tileSize*112;
+        game.npc[mapNum][i].worldY=game.tileSize*176;
+        i++;
+        game.npc[mapNum][i]= new NPC_Universal(game,"boy2");
+        game.npc[mapNum][i].worldX=game.tileSize*165;
+        game.npc[mapNum][i].worldY=game.tileSize*172;
+        i++;
+        game.npc[mapNum][i]= new NPC_Universal(game,"oldman");
+        game.npc[mapNum][i].worldX=game.tileSize*171;
+        game.npc[mapNum][i].worldY=game.tileSize*151;
+        i++;
+        game.npc[mapNum][i]= new NPC_Universal(game,"girl");
+        game.npc[mapNum][i].worldX=game.tileSize*153;
+        game.npc[mapNum][i].worldY=game.tileSize*139;
+        i++;
+        game.npc[mapNum][i]= new NPC_Universal(game,"girl2");
+        game.npc[mapNum][i].worldX=game.tileSize*148;
+        game.npc[mapNum][i].worldY=game.tileSize*125;
+        i++;
+        game.npc[mapNum][i]= new NPC_Universal(game,"boy");
+        game.npc[mapNum][i].worldX=game.tileSize*127;
+        game.npc[mapNum][i].worldY=game.tileSize*127;
+        i++;
+        game.npc[mapNum][i]= new NPC_Universal(game,"boy2");
+        game.npc[mapNum][i].worldX=game.tileSize*131;
+        game.npc[mapNum][i].worldY=game.tileSize*113;
+        i++;
+        game.npc[mapNum][i]= new NPC_Universal(game,"oldman");
+        game.npc[mapNum][i].worldX=game.tileSize*142;
+        game.npc[mapNum][i].worldY=game.tileSize*176;
+        i++;
 
     }
     public void setMonster(){
@@ -151,8 +191,9 @@ i++;
         int itemCode=0;
         // FOR OBJECT
         int objecttype= Game.gameInstance.type_object;
-        MyJDBC.addObject(userId,objecttype,Game.gameInstance.axe.itemCode,42,145,mapNum);
-        MyJDBC.addObject(userId,objecttype,Game.gameInstance.redPotion.itemCode,44,142,mapNum);
+        MyJDBC.addObject(userId,objecttype,Game.gameInstance.sword.itemCode,93,118,mapNum);
+        MyJDBC.addObject(userId,objecttype,Game.gameInstance.redPotion.itemCode,144,149,mapNum);
+        MyJDBC.addObject(userId,objecttype,Game.gameInstance.shieldWood.itemCode,144,149,mapNum);
 
 
 
@@ -165,26 +206,45 @@ i++;
         //for monster types
         Entity entity=new Entity(Game.gameInstance);
         int monIndex=0;
-//        MyJDBC.addMonster(userId,entity.type_spider,entity.area_townHall,55,149,mapNum,monIndex);monIndex++;
-//        MyJDBC.addMonster(userId,entity.type_worm,entity.area_townHall,55,150,mapNum,monIndex);monIndex++;
-//        MyJDBC.addMonster(userId,entity.type_pacman,entity.area_village_2,152,167,mapNum,monIndex);monIndex++;
-//        MyJDBC.addMonster(userId,entity.type_pacman,entity.area_village_2,165,164,mapNum,monIndex);monIndex++;
-//        MyJDBC.addMonster(userId,entity.type_pacman,entity.area_village_2,172,172,mapNum,monIndex);monIndex++;
-//        MyJDBC.addMonster(userId,entity.type_worm,entity.area_village_2,161,162,mapNum,monIndex);monIndex++;
-//        MyJDBC.addMonster(userId,entity.type_worm,0,159,177,mapNum,monIndex);monIndex++;
-//        MyJDBC.addMonster(userId,entity.type_worm,0,158,155,mapNum,monIndex);monIndex++;
 
+        //Area TownHall
+        MyJDBC.addMonster(userId,entity.type_spider,entity.area_townHall,39,124,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_spider,entity.area_townHall,47,128,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_spider,entity.area_townHall,44,131,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_spider,entity.area_townHall,68,120,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_spider,entity.area_townHall,41,134,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_spider,entity.area_townHall,45,152,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_spider,entity.area_townHall,42,161,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_spider,entity.area_townHall,58,165,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_spider,entity.area_townHall,69,142,mapNum,monIndex);monIndex++;
 
-        MyJDBC.addMonster(userId,entity.type_pacman,entity.area_village_1,95,172,mapNum,monIndex);monIndex++;
-        MyJDBC.addMonster(userId,entity.type_pacman,entity.area_village_1,95,176,mapNum,monIndex);monIndex++;
-        MyJDBC.addMonster(userId,entity.type_pacman,entity.area_village_1,67,172,mapNum,monIndex);monIndex++;
-        MyJDBC.addMonster(userId,entity.type_worm,entity.area_village_1,65,169,mapNum,monIndex);monIndex++;
+        //AREA Village1
+        MyJDBC.addMonster(userId,entity.type_pacman,entity.area_village_1,112,160,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_pacman,entity.area_village_1,128,164,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_pacman,entity.area_village_1,70,163,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_pacman,entity.area_village_1,67,184,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_pacman,entity.area_village_1,103,169,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_pacman,entity.area_village_1,115,171,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_pacman,entity.area_village_1,123,176,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_pacman,entity.area_village_1,112,183,mapNum,monIndex);monIndex++;
 
-        MyJDBC.addMonster(userId,entity.type_worm,entity.area_monIsland_1,118,17,mapNum,monIndex);monIndex++;
-        MyJDBC.addMonster(userId,entity.type_slime,entity.area_monIsland_1,119,17,mapNum,monIndex);monIndex++;
-        MyJDBC.addMonster(userId,entity.type_spider,entity.area_monIsland_1,116,17,mapNum,monIndex);monIndex++;
-        MyJDBC.addMonster(userId,entity.type_arc,entity.area_monIsland_1,115,17,mapNum,monIndex);monIndex++;
+        //Area Village2
 
+        MyJDBC.addMonster(userId,entity.type_spider,entity.area_village_2,170,172,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_spider,entity.area_village_2,145,166,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_spider,entity.area_village_2,149,163,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_spider,entity.area_village_2,172,162,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_spider,entity.area_village_2,170,172,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_spider,entity.area_village_2,175,165,mapNum,monIndex);monIndex++;
+
+        // <--------------ADD SLIME MONSTER ------------->
+        MyJDBC.addMonster(userId,entity.type_slime,0,19,174,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_slime,0,22,165,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_slime,0,93,142,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_slime,0,115,151,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_slime,0,133,144,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_slime,0,152,149,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_slime,0,184,142,mapNum,monIndex);monIndex++;
 
 
 
