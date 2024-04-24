@@ -420,7 +420,7 @@ public class Game extends Application {
                 }
 
                 //Monster
-                for (int i = 0; i < monster.length; i++) {
+                for (int i = 0; i < monster[currentMap].length; i++) {
                     if (monster[currentMap][i] != null) {
                         if (monster[currentMap][i].alive == true) {
                             monster[currentMap][i].update();
@@ -432,7 +432,7 @@ public class Game extends Application {
                     }
                 }
                 // Slime Monster
-                for (int i = 0; i < slimeMonster.length; i++) {
+                for (int i = 0; i < slimeMonster[currentMap].length; i++) {
                     if (slimeMonster[currentMap][i] != null) {
                         if (slimeMonster[currentMap][i].alive == true) {
                             slimeMonster[currentMap][i].update();
