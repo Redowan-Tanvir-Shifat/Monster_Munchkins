@@ -406,8 +406,8 @@ public class Game extends Application {
         }
         //To reset the player properties
         obj= new Entity[maxMap][20];
-        npc= new Entity[maxMap][20]; //set the number of 10 NPC Number
-        monster = new Entity[maxMap][20];
+        npc= new Entity[maxMap][50]; //set the number of 10 NPC Number
+        monster = new Entity[maxMap][100];
         iTile= new InteractiveTile[maxMap][50];
         entityList = new ArrayList<>();
     }

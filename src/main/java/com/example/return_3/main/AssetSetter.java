@@ -208,12 +208,12 @@ i++;
         int monIndex=0;
 
         //Area TownHall
-        MyJDBC.addMonster(userId,entity.type_spider,entity.area_townHall,39,124,mapNum,monIndex);monIndex++;
-        MyJDBC.addMonster(userId,entity.type_spider,entity.area_townHall,47,128,mapNum,monIndex);monIndex++;
-        MyJDBC.addMonster(userId,entity.type_spider,entity.area_townHall,44,131,mapNum,monIndex);monIndex++;
-        MyJDBC.addMonster(userId,entity.type_spider,entity.area_townHall,68,120,mapNum,monIndex);monIndex++;
-        MyJDBC.addMonster(userId,entity.type_spider,entity.area_townHall,41,134,mapNum,monIndex);monIndex++;
-        MyJDBC.addMonster(userId,entity.type_spider,entity.area_townHall,45,152,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_pacmanGreen,entity.area_townHall,39,124,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_pacmanGreen,entity.area_townHall,47,128,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_pacmanGreen,entity.area_townHall,44,131,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_pacmanGreen,entity.area_townHall,68,120,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_pacmanGreen,entity.area_townHall,41,134,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_pacmanGreen,entity.area_townHall,45,152,mapNum,monIndex);monIndex++;
         MyJDBC.addMonster(userId,entity.type_spider,entity.area_townHall,42,161,mapNum,monIndex);monIndex++;
         MyJDBC.addMonster(userId,entity.type_spider,entity.area_townHall,58,165,mapNum,monIndex);monIndex++;
         MyJDBC.addMonster(userId,entity.type_spider,entity.area_townHall,69,142,mapNum,monIndex);monIndex++;

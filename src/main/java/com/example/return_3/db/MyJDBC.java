@@ -527,6 +527,8 @@ public static void addMonster(int userId, int monsterType, int areaType, int col
                     monster = new Mon_Green(game,areaType);
                 } else if (monsterType == entity00.type_worm) {
                     monster = new Mon_Worm(game,areaType);
+                }else if (monsterType == entity00.type_pacmanGreen) {
+                    monster = new Mon_PacGreen(game,areaType);
                 }
 
                 // Place the monster in the game world
