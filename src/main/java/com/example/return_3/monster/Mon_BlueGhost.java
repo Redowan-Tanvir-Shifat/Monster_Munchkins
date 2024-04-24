@@ -9,15 +9,14 @@ import com.example.return_3.object.OBJ_Rock;
 
 import java.util.Random;
 
-public class Mon_Worm extends Entity {
+public class Mon_BlueGhost extends Entity {
     Game game;
-    private String imgName;
-    private int size;
-    public Mon_Worm(Game game,int area) {
+    String imgName;
+    public Mon_BlueGhost(Game game,int area) {
         super(game);
         this.game=game;
         monster_area=area;
-        monster_type=type_worm;
+        monster_type=type_blueGhost;
         name = "Green Slime";
         defaultSpeed = 1;
         speed = defaultSpeed;
@@ -36,64 +35,56 @@ public class Mon_Worm extends Entity {
         solidArea.setHeight(23);
         solidAreaDefaultX = (int)(solidArea.getX());
         solidAreaDefaultY = (int)(solidArea.getY());
-        imgName="worm";
-        size=game.tileSize;
+        imgName="blueGhost";
         getImage();
     }
     public void getImage(){
-//        up1 = loadImage( "/monster/" +
-//
-//                imgName +
-//                "_up_1.png",game.tileSize,game.tileSize);
-//        up2 = loadImage("/monster/" +
-//                imgName +
-//                "_up_2.png",game.tileSize,game.tileSize);
-//        down1 = loadImage("/monster/" +
-//                imgName +
-//                "_down_1.png",game.tileSize,game.tileSize);
-//        down2 = loadImage("/monster/" +
-//                imgName +
-//                "_down_2.png",game.tileSize,game.tileSize);
+        up1 = loadImage( "/monster/" +
+
+                imgName +
+                "_up_1.png",game.tileSize,game.tileSize);
+        up2 = loadImage("/monster/" +
+                imgName +
+                "_up_2.png",game.tileSize,game.tileSize);
+        down1 = loadImage("/monster/" +
+                imgName +
+                "_down_1.png",game.tileSize,game.tileSize);
+        down2 = loadImage("/monster/" +
+                imgName +
+                "_down_2.png",game.tileSize,game.tileSize);
         left1 =loadImage ("/monster/" +
                 imgName+
-                "_left_1.png",game.tileSize,game.tileSize);
+                "_down_1.png",game.tileSize,game.tileSize);
         left2 = loadImage("/monster/" +
                 imgName+
-                "_left_2.png",game.tileSize,game.tileSize);
+                "_down_2.png",game.tileSize,game.tileSize);
         right1 = loadImage("/monster/" +
                 imgName+
-                "_right_1.png",game.tileSize,game.tileSize);
+                "_down_1.png",game.tileSize,game.tileSize);
         right2 = loadImage("/monster/" +
                 imgName+
-                "_right_2.png",game.tileSize,game.tileSize);
+                "_down_2.png",game.tileSize,game.tileSize);
     }
 
 
     public void setAction(){
 
-            actionLookCounter++;
-            Random random= new Random();
-            int actionLookCounterLimit = random.nextInt(50)+90;
 
-            if(actionLookCounter > actionLookCounterLimit){   // for two seconds it means
 
-                int i=random.nextInt(100)+1; //we add 1 because otherwise it will catch 0 to 99.. we want to avoid 0 here
-                if(i<=50){
-                    direction="left";
-                }
-                if(i>50&&i<=100){
-                    direction="right";
-                }
-                actionLookCounter=0;
-            }
+
+        // Get a random direction...
+        getRandomDirection();
+
     }
 
 
     public void damageReaction(){
         actionLookCounter = 0;
         switch (game.player.direction){
+            case "up": direction = "down"; break;
             case "left": direction = "right"; break;
             case "right": direction = "left"; break;
+            case "down": direction = "up"; break;
         }
     }
 

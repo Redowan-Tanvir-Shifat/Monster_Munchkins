@@ -217,6 +217,8 @@ i++;
         MyJDBC.addMonster(userId,entity.type_spider,entity.area_townHall,42,161,mapNum,monIndex);monIndex++;
         MyJDBC.addMonster(userId,entity.type_spider,entity.area_townHall,58,165,mapNum,monIndex);monIndex++;
         MyJDBC.addMonster(userId,entity.type_spider,entity.area_townHall,69,142,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_worm,entity.area_townHall,61,122,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_worm,entity.area_townHall,59,162,mapNum,monIndex);monIndex++;
 
         //AREA Village1
         MyJDBC.addMonster(userId,entity.type_pacman,entity.area_village_1,112,160,mapNum,monIndex);monIndex++;
@@ -227,6 +229,7 @@ i++;
         MyJDBC.addMonster(userId,entity.type_pacman,entity.area_village_1,115,171,mapNum,monIndex);monIndex++;
         MyJDBC.addMonster(userId,entity.type_pacman,entity.area_village_1,123,176,mapNum,monIndex);monIndex++;
         MyJDBC.addMonster(userId,entity.type_pacman,entity.area_village_1,112,183,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_worm,entity.area_village_1,90,179,mapNum,monIndex);monIndex++;
 
         //Area Village2
 
@@ -234,8 +237,33 @@ i++;
         MyJDBC.addMonster(userId,entity.type_spider,entity.area_village_2,145,166,mapNum,monIndex);monIndex++;
         MyJDBC.addMonster(userId,entity.type_spider,entity.area_village_2,149,163,mapNum,monIndex);monIndex++;
         MyJDBC.addMonster(userId,entity.type_spider,entity.area_village_2,172,162,mapNum,monIndex);monIndex++;
-        MyJDBC.addMonster(userId,entity.type_spider,entity.area_village_2,170,172,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_spider,entity.area_village_2,165,167,mapNum,monIndex);monIndex++;
         MyJDBC.addMonster(userId,entity.type_spider,entity.area_village_2,175,165,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_worm,entity.area_village_2,167,174,mapNum,monIndex);monIndex++;
+
+
+        //AREA hill 1
+        MyJDBC.addMonster(userId,entity.type_blueGhost,entity.area_hill_1,56,48,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_blueGhost,entity.area_hill_1,59,36,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_blueGhost,entity.area_hill_1,60,61,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_blueGhost,entity.area_hill_1,86,56,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_blueGhost,entity.area_hill_1,92,38,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_blueGhost,entity.area_hill_1,94,58,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_blueGhost,entity.area_hill_1,107,35,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_blueGhost,entity.area_hill_1,98,29,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_blueGhost,entity.area_hill_1,67,28,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_blueGhost,entity.area_hill_1,71,22,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_blueGhost,entity.area_hill_1,71,34,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_blueGhost,entity.area_hill_1,78,46,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_blueGhost,entity.area_hill_1,80,53,mapNum,monIndex);monIndex++;
+
+
+        //<-----------------ADD WORM--------------------->
+        MyJDBC.addMonster(userId,entity.type_worm,0,121,155,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_worm,0,155,143,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_worm,0,155,113,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_worm,0,129,125,mapNum,monIndex);monIndex++;
+
 
         // <--------------ADD SLIME MONSTER ------------->
         MyJDBC.addMonster(userId,entity.type_slime,0,19,174,mapNum,monIndex);monIndex++;
