@@ -5,9 +5,13 @@ import java.net.URL;
 
 public class Sound {
     private Clip clip;
-    private URL[] soundUrls = new URL[14]; // Adjust the size according to the number of sound files
+    private URL[] soundUrls = new URL[14];
+    private FloatControl gainControl;
+    private float volume = 0.6f; // Default volume
+    private int volumeScale = 3;
 
     public Sound() {
+        // Initialize sound URLs
         soundUrls[0] = getClass().getResource("/sound/BlueBoyAdventure.wav");
         soundUrls[1] = getClass().getResource("/sound/coin.wav");
         soundUrls[2] = getClass().getResource("/sound/powerup.wav");
@@ -22,6 +26,9 @@ public class Sound {
         soundUrls[11] = getClass().getResource("/sound/cuttree.wav");
         soundUrls[12] = getClass().getResource("/sound/gameover.wav");
         soundUrls[13] = getClass().getResource("/sound/stairs.wav");
+
+        // Set default volume
+        volume = volumeScaleToFloat(volumeScale);
     }
 
     public void setFile(int i) {
@@ -29,7 +36,8 @@ public class Sound {
             AudioInputStream ais = AudioSystem.getAudioInputStream(soundUrls[i]);
             clip = AudioSystem.getClip();
             clip.open(ais);
-            adjustVolume();
+            gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            adjustVolume(); // Adjust volume when loading the sound file
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -47,13 +55,44 @@ public class Sound {
         clip.stop();
     }
 
+    public void increaseVolume() {
+        if (volumeScale < 5) {
+            volumeScale++;
+            volume = volumeScaleToFloat(volumeScale);
+            adjustVolume();
+        }
+    }
+
+    public void decreaseVolume() {
+        if (volumeScale > 0) {
+            volumeScale--;
+            volume = volumeScaleToFloat(volumeScale);
+            adjustVolume();
+        }
+    }
+
     private void adjustVolume() {
         try {
-            FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-            float dB = (float) (Math.log(6) / Math.log(10) * 20); // Adjust volume here, 6 means maximum volume
+            float dB = volumeToDecibel(volume);
             gainControl.setValue(dB);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    private float volumeToDecibel(float volume) {
+        return (float) (Math.log(volume) / Math.log(10) * 20);
+    }
+
+    private float volumeScaleToFloat(int volumeScale) {
+        switch (volumeScale) {
+            case 0: return 0.0001f; // to avoid -Infinity
+            case 1: return 0.1f;
+            case 2: return 0.316f;
+            case 3: return 0.6f;
+            case 4: return 0.8f;
+            case 5: return 1.0f;
+            default: return 1.0f;
         }
     }
 }
