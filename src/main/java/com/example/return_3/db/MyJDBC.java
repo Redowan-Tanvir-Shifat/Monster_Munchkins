@@ -592,5 +592,33 @@ public static void addMonster(int userId, int monsterType, int areaType, int col
 //        }
 //    }
 
+    public static void saveMonsterPositions(int userId, int mapNum, Entity[][] monsters) {
+        try {
+            Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "UPDATE Monsters SET tile_col = ?, tile_row = ? WHERE user_id = ? AND map_num = ? AND indexNum = ?"
+            );
+
+            // Iterate over the monsters array and update their positions in the database
+            for (int i = 0; i < monsters[mapNum].length; i++) {
+                if (monsters[mapNum][i] != null) {
+                    preparedStatement.setInt(1, monsters[mapNum][i].worldX / Game.gameInstance.tileSize);
+                    preparedStatement.setInt(2, monsters[mapNum][i].worldY / Game.gameInstance.tileSize);
+                    preparedStatement.setInt(3, userId);
+                    preparedStatement.setInt(4, mapNum);
+                    preparedStatement.setInt(5, i + 1); // Assuming indexNum starts from 1
+                    preparedStatement.addBatch();
+                }
+            }
+
+            // Execute batch update
+            preparedStatement.executeBatch();
+            System.out.println("Monster positions saved successfully.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
 }
