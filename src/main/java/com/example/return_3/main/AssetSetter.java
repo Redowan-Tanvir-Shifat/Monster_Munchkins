@@ -239,7 +239,24 @@ i++;
         MyJDBC.addMonster(userId,entity.type_spider,entity.area_village_2,172,162,mapNum,monIndex);monIndex++;
         MyJDBC.addMonster(userId,entity.type_spider,entity.area_village_2,165,167,mapNum,monIndex);monIndex++;
         MyJDBC.addMonster(userId,entity.type_spider,entity.area_village_2,175,165,mapNum,monIndex);monIndex++;
-        MyJDBC.addMonster(userId,entity.type_worm,entity.area_village_2,152,174,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_worm,entity.area_village_2,167,174,mapNum,monIndex);monIndex++;
+
+
+        //AREA hill 1
+        MyJDBC.addMonster(userId,entity.type_blueGhost,entity.area_hill_1,56,48,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_blueGhost,entity.area_hill_1,59,36,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_blueGhost,entity.area_hill_1,60,61,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_blueGhost,entity.area_hill_1,86,56,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_blueGhost,entity.area_hill_1,92,38,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_blueGhost,entity.area_hill_1,94,58,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_blueGhost,entity.area_hill_1,107,35,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_blueGhost,entity.area_hill_1,98,29,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_blueGhost,entity.area_hill_1,67,28,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_blueGhost,entity.area_hill_1,71,22,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_blueGhost,entity.area_hill_1,71,34,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_blueGhost,entity.area_hill_1,78,46,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_blueGhost,entity.area_hill_1,80,53,mapNum,monIndex);monIndex++;
+
 
         //<-----------------ADD WORM--------------------->
         MyJDBC.addMonster(userId,entity.type_worm,0,121,155,mapNum,monIndex);monIndex++;
