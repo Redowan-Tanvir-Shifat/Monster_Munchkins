@@ -148,9 +148,11 @@ public class Entity {
     public int monster_type;
     public final int type_slime=1;
     public final int type_pacman=2;
+
     public final int type_spider=3;
     public final int type_worm=4;
     public final int type_arc=5;
+    public final int type_pacmanGreen=6;
 
 
     // <---------Area of Monster--------->
