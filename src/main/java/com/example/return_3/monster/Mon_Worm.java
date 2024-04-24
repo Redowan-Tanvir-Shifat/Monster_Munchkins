@@ -71,25 +71,6 @@ public class Mon_Worm extends Entity {
 
     public void setAction(){
 
-        if (onPath == true) {
-
-            // Check if id stop chasing...
-            //checkStopChasingOrNot(game.player, 10, 100);
-
-            // Search the direction to go...
-            //searchPath(getGoalCol(game.player), getGoalRow(game.player));
-
-            // Check if shoot a projectile...
-            //checkShootOrNot(200, 30);
-
-        }
-        else {
-
-            // Check if it starts chasing...
-            checkStartChasingOrNot(game.player, 5, 100);
-
-            // Get a random direction...
-//            getRandomDirection();
             actionLookCounter++;
             Random random= new Random();
             int actionLookCounterLimit = random.nextInt(50)+90;
@@ -105,17 +86,14 @@ public class Mon_Worm extends Entity {
                 }
                 actionLookCounter=0;
             }
-        }
     }
 
 
     public void damageReaction(){
         actionLookCounter = 0;
         switch (game.player.direction){
-            case "up": direction = "down"; break;
             case "left": direction = "right"; break;
             case "right": direction = "left"; break;
-            case "down": direction = "up"; break;
         }
     }
 
