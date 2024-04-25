@@ -22,7 +22,7 @@ public class Mon_Worm extends Entity {
         defaultSpeed = 1;
         speed = defaultSpeed;
         type = type_monster;
-        maxLife = 5;
+        maxLife = 8;
         life = maxLife;
         attack = 2;
         defense = 0;
@@ -71,21 +71,21 @@ public class Mon_Worm extends Entity {
 
     public void setAction(){
 
-        actionLookCounter++;
-        Random random= new Random();
-        int actionLookCounterLimit = random.nextInt(50)+90;
+            actionLookCounter++;
+            Random random= new Random();
+            int actionLookCounterLimit = random.nextInt(50)+90;
 
-        if(actionLookCounter > actionLookCounterLimit){   // for two seconds it means
+            if(actionLookCounter > actionLookCounterLimit){   // for two seconds it means
 
-            int i=random.nextInt(100)+1; //we add 1 because otherwise it will catch 0 to 99.. we want to avoid 0 here
-            if(i<=50){
-                direction="left";
+                int i=random.nextInt(100)+1; //we add 1 because otherwise it will catch 0 to 99.. we want to avoid 0 here
+                if(i<=50){
+                    direction="left";
+                }
+                if(i>50&&i<=100){
+                    direction="right";
+                }
+                actionLookCounter=0;
             }
-            if(i>50&&i<=100){
-                direction="right";
-            }
-            actionLookCounter=0;
-        }
     }
 
 

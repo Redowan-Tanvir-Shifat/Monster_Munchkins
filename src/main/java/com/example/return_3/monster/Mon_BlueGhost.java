@@ -9,21 +9,21 @@ import com.example.return_3.object.OBJ_Rock;
 
 import java.util.Random;
 
-public class Mon_Spider extends Entity {
+public class Mon_BlueGhost extends Entity {
     Game game;
     String imgName;
-    public Mon_Spider(Game game,int area) {
+    public Mon_BlueGhost(Game game,int area) {
         super(game);
         this.game=game;
         monster_area=area;
-        monster_type=type_spider;
-        name = "Spider Monster";
-        defaultSpeed = 1.5;
+        monster_type=type_blueGhost;
+        name = "Green Slime";
+        defaultSpeed = 1;
         speed = defaultSpeed;
         type = type_monster;
-        maxLife = 15;
+        maxLife = 8;
         life = maxLife;
-        attack = 5;
+        attack = 2;
         defense = 0;
         exp = 2;
         projectile=new OBJ_Rock(game);
@@ -35,7 +35,7 @@ public class Mon_Spider extends Entity {
         solidArea.setHeight(23);
         solidAreaDefaultX = (int)(solidArea.getX());
         solidAreaDefaultY = (int)(solidArea.getY());
-        imgName="spider";
+        imgName="blueGhost";
         getImage();
     }
     public void getImage(){
@@ -54,66 +54,30 @@ public class Mon_Spider extends Entity {
                 "_down_2.png",game.tileSize,game.tileSize);
         left1 =loadImage ("/monster/" +
                 imgName+
-                "_left_1.png",game.tileSize,game.tileSize);
+                "_down_1.png",game.tileSize,game.tileSize);
         left2 = loadImage("/monster/" +
                 imgName+
-                "_left_2.png",game.tileSize,game.tileSize);
+                "_down_2.png",game.tileSize,game.tileSize);
         right1 = loadImage("/monster/" +
                 imgName+
-                "_right_1.png",game.tileSize,game.tileSize);
+                "_down_1.png",game.tileSize,game.tileSize);
         right2 = loadImage("/monster/" +
                 imgName+
-                "_right_2.png",game.tileSize,game.tileSize);
+                "_down_2.png",game.tileSize,game.tileSize);
     }
 
 
     public void setAction(){
-        if (onPath == true) {
 
-            // Check if stop chasing...
-            checkStopChasingOrNot(game.player, 10, 100);
 
-            // Search the direction to go...
-            searchPath(getGoalCol(game.player), getGoalRow(game.player));
 
-            // Check if shoot a projectile...
-            checkShootOrNot(100, 30);
 
-        }
-        else {
-            // Check if it starts chasing...
-            checkStartChasingOrNot(game.player, 5, 100);
-
-            // Get a random direction...
-            getRandomDirection();
-        }
-    }
-    public void dropDirt() {
+        // Get a random direction...
+        getRandomDirection();
 
     }
-    public void getRandomDirection() {
-        actionLookCounter++;
-        Random random= new Random();
-        int actionLookCounterLimit = random.nextInt(50)+90;
 
-        if(actionLookCounter > actionLookCounterLimit){   // for two seconds it means
 
-            int i=random.nextInt(100)+1; //we add 1 because otherwise it will catch 0 to 99.. we want to avoid 0 here
-            if(i<=25){
-                direction="up";
-            }
-            if(i>25&&i<=50){
-                direction="down";
-            }
-            if(i>50&&i<=75){
-                direction="left";
-            }
-            if(i>75&&i<=100){
-                direction="right";
-            }
-            actionLookCounter=0;
-        }
-    }
     public void damageReaction(){
         actionLookCounter = 0;
         switch (game.player.direction){
@@ -130,6 +94,12 @@ public class Mon_Spider extends Entity {
         //SET THE MONSTER DROP
         if (i < 50){
             dropItem(new OBJ_Coin(game));
+        }
+        if (i >= 50 && i < 75){
+            dropItem(new OBJ_Heart(game));
+        }
+        if (i >= 75 && i < 100){
+            dropItem(new OBJ_Potion_Red(game));
         }
     }
 }
