@@ -524,6 +524,7 @@ public class Entity {
 
     public void damagePlayer(int attack){
         if (game.player.invincible == false) {
+            game.playSoundEffect(6);
             int damage = attack - game.player.defense;
 
             // Get and opposite direction of an attacker...
@@ -576,6 +577,7 @@ public class Entity {
     public void damagePlayerOrc(int attack){
 
         if (game.player.invincible == false && attacking == true) {
+            game.playSoundEffect(6);
             int damage = attack - game.player.defense;
 
             // Get and opposite direction of an attacker...

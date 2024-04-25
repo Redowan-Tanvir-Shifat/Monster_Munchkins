@@ -458,6 +458,7 @@ public class Player extends Entity{
     private void contactMonster(int i) {
         if (i != 999) {
             if (invincible == false && game.monster[game.currentMap][i].dying==false && game.monster[game.currentMap][i].type == type_monster) {
+                game.playSoundEffect(6);
 
                 int damage = game.monster[game.currentMap][i].attack - defense;
                 if (damage < 0) {

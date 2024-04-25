@@ -296,6 +296,18 @@ public class EventHandler {
 
             }
 
+            if(hit(gp.currentMap,145,35,"up") || hit(gp.currentMap,146,35,"up")){
+                gp.stopMusic();
+                gp.playMusic(15);
+            }
+
+            if(hit(gp.currentMap,145,37,"down") || hit(gp.currentMap,146,37,"down")){
+                gp.stopMusic();
+                gp.playMusic(0);
+            }
+
+
+
         }
         counter++;
         if(counter > 1800){
