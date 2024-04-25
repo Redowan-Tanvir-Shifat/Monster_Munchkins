@@ -135,10 +135,10 @@ public class KeyHandler {
             }
             if (game.ui.uiMainGame.commandNum == 1) {
                 if (game.player.coin >= 2000) {
-                    game.player.maxLife += 20;
+                    game.player.maxLife += 10;
                     game.player.coin -= 2000;
                     game.gameState = game.playState;
-                    game.ui.uiMainGame.addMessage("Increasing life successful!");
+                    game.ui.uiMainGame.addMessage("Increasing Max life successful!");
                 }
                 else {
                     System.out.println("Don't have coin ");
@@ -148,7 +148,7 @@ public class KeyHandler {
             }
 
             if (game.ui.uiMainGame.commandNum == 2) {
-                if (game.player.coin >= 500) {
+                if (game.player.coin >= 1000) {
                     game.player.energy += 10;
                     game.player.coin -= 500;
                     game.gameState = game.playState;

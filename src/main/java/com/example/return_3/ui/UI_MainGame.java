@@ -262,7 +262,7 @@ public class UI_MainGame {
             gc.fillText(">", textX-game.tileSize, textY);
         }
 
-        text = "You need 2000 coin to increase 20% of life.";
+        text = "You need 2000 coin to increase 10% of life.";
         textX = game.tileSize * 8;
         textY = game.tileSize * 7;
         gc.fillText(text, textX, textY);
@@ -270,7 +270,7 @@ public class UI_MainGame {
             gc.fillText(">", textX-game.tileSize, textY);
         }
 
-        text = "You need 500 coin to get 10% energy";
+        text = "You need 1000 coin to get 10% energy";
         textX = game.tileSize * 8;
         textY = game.tileSize * 8;
         gc.fillText(text, textX, textY);

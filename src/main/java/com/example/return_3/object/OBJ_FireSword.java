@@ -15,7 +15,7 @@ public class OBJ_FireSword extends Entity {
         attackArea.setWidth(32);
         attackArea.setHeight(28);
         description="["+name+"]\nA Fire sword.";
-        knockBackPower = 20;
+        knockBackPower = 15;
 
         motion1_duration = 5;
         motion2_duration = 25;
