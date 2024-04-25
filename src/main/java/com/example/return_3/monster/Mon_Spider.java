@@ -76,8 +76,32 @@ public class Mon_Spider extends Entity {
             getRandomDirection();
 
     }
+    public void dropDirt() {
 
+    }
+    public void getRandomDirection() {
+        actionLookCounter++;
+        Random random= new Random();
+        int actionLookCounterLimit = random.nextInt(50)+90;
 
+        if(actionLookCounter > actionLookCounterLimit){   // for two seconds it means
+
+            int i=random.nextInt(100)+1; //we add 1 because otherwise it will catch 0 to 99.. we want to avoid 0 here
+            if(i<=25){
+                direction="up";
+            }
+            if(i>25&&i<=50){
+                direction="down";
+            }
+            if(i>50&&i<=75){
+                direction="left";
+            }
+            if(i>75&&i<=100){
+                direction="right";
+            }
+            actionLookCounter=0;
+        }
+    }
     public void damageReaction(){
         actionLookCounter = 0;
         switch (game.player.direction){
