@@ -195,10 +195,10 @@ public class Player extends Entity{
 
     }
 
-    private int getDefense() {
+    public int getDefense() {
         return defense = dexterity * currentShield.defenseValue;
     }
-    private int getAttack() {
+    public int getAttack() {
         attackArea=currentWeapon.attackArea;
         motion1_duration = currentWeapon.motion1_duration;
         motion2_duration = currentWeapon.motion2_duration;
@@ -559,7 +559,7 @@ public class Player extends Entity{
     }
     public void addToInventory(Entity entity){
         Entity item=game.inventoryMapgetItem(entity.itemCode);
-        inventory.add(item);
+        inventory.add(entity);
         item.itemCount++;
 
 //        for (Entity inventoryItem : inventory) {

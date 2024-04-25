@@ -147,6 +147,9 @@ public class Game extends Application {
     Entity shieldWood = new OBJ_Shield_Wood(this);
     public Entity key= new OBJ_Key(this);
     public Entity redPotion = new OBJ_Potion_Red(this);
+    public Entity powerPotion = new OBJ_PowerPotion(this);
+    public Entity speedPotion = new OBJ_SpeedPotion(this);
+    public Entity defensePotion = new OBJ_DefensePotion(this);
 
 
 
@@ -292,6 +295,9 @@ public class Game extends Application {
         inventoryMapAddItem(shieldBlue.itemCode, shieldBlue);
         inventoryMapAddItem(shieldWood.itemCode, shieldWood);
         inventoryMapAddItem(key.itemCode, key);
+        inventoryMapAddItem(powerPotion.itemCode, powerPotion);
+        inventoryMapAddItem(speedPotion.itemCode, speedPotion);
+        inventoryMapAddItem(defensePotion.itemCode, defensePotion);
         Pane mainGameroot = new Pane();
         mainGameroot.setOnMouseEntered(event -> {
             mainGameroot.setCursor(Cursor.HAND);
