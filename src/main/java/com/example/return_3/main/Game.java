@@ -308,7 +308,7 @@ public class Game extends Application {
         lastNanoTime = System.nanoTime();
         gameTimer = new GameAnimationTimer(this);
         gameTimer.start();
-        //playMusic(0);
+        playMusic(0);
         mainGameScene=gameScene;
         primaryStage.setScene(gameScene);
         //When the game is starting then gameState will be PlayState

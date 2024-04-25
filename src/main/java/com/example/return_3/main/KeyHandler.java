@@ -97,14 +97,15 @@ public class KeyHandler {
 
     private void hospitalState(KeyCode code) {
         if(code== KeyCode.W || code== KeyCode.UP){
-
             game.ui.uiMainGame.commandNum--;
+            game.playSoundEffect(9);
             if(game.ui.uiMainGame.commandNum < 0){
                 game.ui.uiMainGame.commandNum = 1;
             }
         }
         if(code== KeyCode.S || code== KeyCode.DOWN){
             game.ui.uiMainGame.commandNum++;
+            game.playSoundEffect(9);
             if(game.ui.uiMainGame.commandNum > 3){
                 game.ui.uiMainGame.commandNum=0;
             }
@@ -180,25 +181,25 @@ public class KeyHandler {
         if(code== KeyCode.W || code== KeyCode.UP){ //VK_W means if user press W then
             if(game.ui.uiMainGame.playerSlotRow!=0){
                 game.ui.uiMainGame.playerSlotRow--;
-               // gp.playSE(9);
+                game.playSoundEffect(9);
             }
         }
         if(code== KeyCode.S || code== KeyCode.DOWN){ //VK_S means if user press S then
             if(game.ui.uiMainGame.playerSlotRow!=3) {
                 game.ui.uiMainGame.playerSlotRow++;
-                //gp.playSE(9);
+                game.playSoundEffect(9);
             }
         }
         if(code==KeyCode.A || code== KeyCode.LEFT){ //VK_A means if user press A then
             if(game.ui.uiMainGame.playerSlotCol!=0) {
                 game.ui.uiMainGame.playerSlotCol--;
-                //gp.playSE(9);
+                game.playSoundEffect(9);
             }
         }
         if(code==KeyCode.D || code== KeyCode.RIGHT){ //VK_D means if user press D then
             if(game.ui.uiMainGame.playerSlotCol!=4) {
                 game.ui.uiMainGame.playerSlotCol++;
-                //gp.playSE(9);
+                game.playSoundEffect(9);
             }
         }
     }
@@ -206,25 +207,25 @@ public class KeyHandler {
         if(code== KeyCode.W || code== KeyCode.UP){ //VK_W means if user press W then
             if(game.ui.uiMainGame.shopSlotRow!=0){
                 game.ui.uiMainGame.shopSlotRow--;
-                // gp.playSE(9);
+                game.playSoundEffect(9);
             }
         }
         if(code== KeyCode.S || code== KeyCode.DOWN){ //VK_S means if user press S then
             if(game.ui.uiMainGame.shopSlotRow!=3) {
                 game.ui.uiMainGame.shopSlotRow++;
-                //gp.playSE(9);
+                game.playSoundEffect(9);
             }
         }
         if(code==KeyCode.A || code== KeyCode.LEFT){ //VK_A means if user press A then
             if(game.ui.uiMainGame.shopSlotCol!=0) {
                 game.ui.uiMainGame.shopSlotCol--;
-                //gp.playSE(9);
+                game.playSoundEffect(9);
             }
         }
         if(code==KeyCode.D || code== KeyCode.RIGHT){ //VK_D means if user press D then
             if(game.ui.uiMainGame.shopSlotCol!=4) {
                 game.ui.uiMainGame.shopSlotCol++;
-                //gp.playSE(9);
+                game.playSoundEffect(9);
             }
         }
     };
@@ -235,14 +236,15 @@ public class KeyHandler {
             game.gameState=game.playState;
         }
         if(code== KeyCode.W || code== KeyCode.UP){
-
             game.ui.uiMainGame.commandNum--;
+            game.playSoundEffect(9);
             if(game.ui.uiMainGame.commandNum < 0){
                 game.ui.uiMainGame.commandNum = 2;
             }
         }
         if(code== KeyCode.S || code== KeyCode.DOWN){
             game.ui.uiMainGame.commandNum++;
+            game.playSoundEffect(9);
             if(game.ui.uiMainGame.commandNum > 2){
                 game.ui.uiMainGame.commandNum=0;
             }
@@ -254,7 +256,14 @@ public class KeyHandler {
             }
             if (game.ui.uiMainGame.commandNum == 1) {
                 MyJDBC.updateUser(game.player);
-
+                for ( Entity item: game.player.inventory) {
+                    int itemCode = item.itemCode;
+                    int count = item.itemCount;
+                    MyJDBC.updateInventory(game.user.getUserId(), itemCode, count);
+                    System.out.println("after updated:");
+                    System.out.println("itemName: " + item.name + "|| itemCount: " + count);
+                }
+                game.stopMusic();
                 game.logout();
 
 
@@ -267,7 +276,7 @@ public class KeyHandler {
                     System.out.println("after updated:");
                     System.out.println("itemName: "+item.name+"|| itemCount: "+count);
                 }
-
+                game.stopMusic();
                 Game.exitGame();
             }
         }

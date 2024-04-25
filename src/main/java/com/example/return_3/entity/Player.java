@@ -475,6 +475,13 @@ public class Player extends Entity{
         //we set the condition when player equip a weapon only then time he or she can attack
         if (currentWeapon !=null && game.keyHandler.isSpacePressed()) {
             attacking = true;
+            if (currentWeapon.type == type_specialSword) {
+                game.playSoundEffect(7);
+            }
+            if (currentWeapon.type == type_sword || currentWeapon.type == type_fireSword) {
+                game.playSoundEffect(14);
+            }
+
         }
     }
 
@@ -509,6 +516,9 @@ public class Player extends Entity{
         if(i!=999){
             //PICKUP ONLY ITEMS
             if(game.obj[game.currentMap][i].type==type_pickupOnly){
+                if (Objects.equals(game.obj[game.currentMap][i].name, "Coin")) {
+                    game.playSoundEffect(1);
+                }
 
                 game.obj[game.currentMap][i].use(this);
                 int row=game.obj[game.currentMap][i].worldY/game.tileSize;
