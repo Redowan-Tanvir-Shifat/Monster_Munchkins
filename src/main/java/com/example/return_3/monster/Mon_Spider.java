@@ -2,10 +2,7 @@ package com.example.return_3.monster;
 
 import com.example.return_3.entity.Entity;
 import com.example.return_3.main.Game;
-import com.example.return_3.object.OBJ_Coin;
-import com.example.return_3.object.OBJ_Heart;
-import com.example.return_3.object.OBJ_Potion_Red;
-import com.example.return_3.object.OBJ_Rock;
+import com.example.return_3.object.*;
 
 import java.util.Random;
 
@@ -26,7 +23,7 @@ public class Mon_Spider extends Entity {
         attack = 5;
         defense = 0;
         exp = 2;
-        projectile=new OBJ_Rock(game);
+        projectile=new OBJ_Spider_Shots(game);
 
         //set the SOLID AREA for  collision part
         solidArea.setX(1);
