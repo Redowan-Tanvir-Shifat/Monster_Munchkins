@@ -17,13 +17,13 @@ public class Mon_BlueGhost extends Entity {
         this.game=game;
         monster_area=area;
         monster_type=type_blueGhost;
-        name = "Green Slime";
+        name = "Blue Ghost";
         defaultSpeed = 1;
         speed = defaultSpeed;
         type = type_monster;
-        maxLife = 8;
+        maxLife = 20;
         life = maxLife;
-        attack = 2;
+        attack = 15;
         defense = 0;
         exp = 2;
         projectile=new OBJ_Rock(game);
@@ -68,12 +68,25 @@ public class Mon_BlueGhost extends Entity {
 
 
     public void setAction(){
+        if (onPath == true) {
 
+            // Check if stop chasing...
+            checkStopChasingOrNot(game.player, 10, 100);
 
+            // Search the direction to go...
+            searchPath(getGoalCol(game.player), getGoalRow(game.player));
 
+            // Check if shoot a projectile...
+            //checkShootOrNot(100, 30);
 
-        // Get a random direction...
-        getRandomDirection();
+        }
+        else {
+            // Check if it starts chasing...
+            checkStartChasingOrNot(game.player, 5, 100);
+
+            // Get a random direction...
+            getRandomDirection();
+        }
 
     }
 
@@ -95,11 +108,6 @@ public class Mon_BlueGhost extends Entity {
         if (i < 50){
             dropItem(new OBJ_Coin(game));
         }
-        if (i >= 50 && i < 75){
-            dropItem(new OBJ_Heart(game));
-        }
-        if (i >= 75 && i < 100){
-            dropItem(new OBJ_Potion_Red(game));
-        }
+
     }
 }

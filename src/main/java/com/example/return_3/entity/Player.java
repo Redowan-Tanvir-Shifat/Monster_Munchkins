@@ -142,7 +142,7 @@ public class Player extends Entity{
     public void setDefaultValues(){
         setDefaultPositions();
         //defaultSpeed = (int) (250*game.targetFrameTime);  //pixel per second
-        defaultSpeed = 4;
+        defaultSpeed = 3;
         speed = defaultSpeed;
 
 
