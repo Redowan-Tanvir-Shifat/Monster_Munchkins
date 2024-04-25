@@ -18,6 +18,6 @@ public class OBJ_Sword_Special extends Entity {
         knockBackPower = 20;
 
         motion1_duration = 5;
-        motion2_duration = 25;
+        motion2_duration = 35;
     }
 }
