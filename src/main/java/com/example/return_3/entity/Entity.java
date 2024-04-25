@@ -151,14 +151,13 @@ public class Entity {
     public int monster_type;
     public final int type_slime=1;
     public final int type_pacman=2;
-
     public final int type_spider=3;
     public final int type_worm=4;
     public final int type_arc=5;
     public final int type_pacmanGreen=6;
     public final int type_blueGhost=7;
     public final int type_redOrc=8;
-    public final int type_redFly=8;
+    public final int type_redFly=9;
 
 
     // <---------Area of Monster--------->
@@ -465,11 +464,11 @@ public class Entity {
                 game.player.damageProjectile(projectileIndex);
             }
 
-            System.out.println("solidAreaX: "+solidArea.getX());
-            System.out.println("solidAreaY: "+solidArea.getY());
-
-            System.out.println("solidArea Width"+solidArea.getWidth());
-            System.out.println("solidArea height"+solidArea.getHeight());
+//            System.out.println("solidAreaX: "+solidArea.getX());
+//            System.out.println("solidAreaY: "+solidArea.getY());
+//
+//            System.out.println("solidArea Width"+solidArea.getWidth());
+//            System.out.println("solidArea height"+solidArea.getHeight());
             // After checking collision restore the original data...
             worldX = currentWorldX;
             worldY = currentWorldY;
@@ -974,4 +973,11 @@ public class Entity {
     }
 
 
+    public int getAttack() {
+        return 0;
+    }
+
+    public int getDefense() {
+        return 0;
+    }
 }
