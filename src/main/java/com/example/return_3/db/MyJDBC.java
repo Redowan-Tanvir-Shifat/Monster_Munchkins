@@ -517,7 +517,7 @@ public static void addMonster(int userId, int monsterType, int areaType, int col
                 Entity monster = null;
                 // Determine the type of monster and create an instance accordingly
                 if (monsterType == entity00.type_pacman) {
-                    monster = new Mon_Pac(game,areaType);
+                    monster = new Mon_RedFly(game,areaType);
                 } else if (monsterType == entity00.type_spider) {
                     monster = new Mon_Spider(game,areaType);
                 } else if (monsterType == entity00.type_arc) {
