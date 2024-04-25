@@ -5,10 +5,7 @@ import com.example.return_3.interactiveTile.CuttableTree;
 import com.example.return_3.main.Game;
 import com.example.return_3.main.UtilityTool;
 import com.example.return_3.monster.*;
-import com.example.return_3.object.OBJ_Axe;
-import com.example.return_3.object.OBJ_Potion_Red;
-import com.example.return_3.object.OBJ_Shield_Wood;
-import com.example.return_3.object.OBJ_Sword_Normal;
+import com.example.return_3.object.*;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -345,6 +342,8 @@ public class MyJDBC {
                     Entity entity;
                     switch (itemCode){
                         case 101:   entity =new OBJ_Sword_Normal(Game.gameInstance);break;
+                        case 105:   entity =new OBJ_Sword_Special(Game.gameInstance);break;
+                        case 106:   entity =new OBJ_FireSword(Game.gameInstance);break;
                         case 102:   entity =new OBJ_Axe(Game.gameInstance);break;
                         case 103:   entity =new OBJ_Shield_Wood(Game.gameInstance);break;
                         case 303:   entity =new OBJ_Potion_Red(Game.gameInstance);break;
