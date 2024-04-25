@@ -19,10 +19,10 @@ public class Mon_ORC extends Entity {
         defaultSpeed = 1;
         speed = defaultSpeed;
         type = type_OrcMonster;
-        maxLife = 20;
+        maxLife = 30;
         life = maxLife;
-        attack = 10;
-        defense = 0;
+        attack = 10;    // Sword power will be 5 for player...
+        defense = 2;
         exp = 5;
         knockBackPower = 5;
         projectile=new OBJ_Rock(game);
@@ -114,11 +114,6 @@ public class Mon_ORC extends Entity {
         if (i < 50){
             dropItem(new OBJ_Coin(game));
         }
-        if (i >= 50 && i < 75){
-            dropItem(new OBJ_Heart(game));
-        }
-        if (i >= 75 && i < 100){
-            dropItem(new OBJ_Potion_Red(game));
-        }
+
     }
 }

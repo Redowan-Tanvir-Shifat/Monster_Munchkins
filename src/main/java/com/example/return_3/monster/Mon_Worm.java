@@ -18,11 +18,11 @@ public class Mon_Worm extends Entity {
         this.game=game;
         monster_area=area;
         monster_type=type_worm;
-        name = "Green Slime";
+        name = "Worm";
         defaultSpeed = 1;
         speed = defaultSpeed;
         type = type_monster;
-        maxLife = 8;
+        maxLife = 5;
         life = maxLife;
         attack = 2;
         defense = 0;
@@ -104,11 +104,6 @@ public class Mon_Worm extends Entity {
         if (i < 50){
             dropItem(new OBJ_Coin(game));
         }
-        if (i >= 50 && i < 75){
-            dropItem(new OBJ_Heart(game));
-        }
-        if (i >= 75 && i < 100){
-            dropItem(new OBJ_Potion_Red(game));
-        }
+
     }
 }

@@ -26,6 +26,7 @@ public class Sound {
         soundUrls[11] = getClass().getResource("/sound/cuttree.wav");
         soundUrls[12] = getClass().getResource("/sound/gameover.wav");
         soundUrls[13] = getClass().getResource("/sound/stairs.wav");
+        //soundUrls[0] = getClass().getResource("/sound/bgMusic.wav");
 
         // Set default volume
         volume = volumeScaleToFloat(volumeScale);

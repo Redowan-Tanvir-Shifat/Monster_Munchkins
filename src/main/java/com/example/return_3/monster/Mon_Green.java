@@ -23,7 +23,7 @@ public class Mon_Green extends Entity {
         type = type_monster;
         maxLife = 8;
         life = maxLife;
-        attack = 2;
+        attack = 10;
         defense = 0;
         exp = 2;
         projectile=new OBJ_Rock(game);
@@ -68,13 +68,8 @@ public class Mon_Green extends Entity {
 
 
     public void setAction(){
-
-
-
-
             // Get a random direction...
             getRandomDirection();
-
     }
 
 
@@ -88,18 +83,12 @@ public class Mon_Green extends Entity {
         }
     }
 
-    public void checkDrop(){
+    public void checkDrop() {
         //CAST A DIE
-        int i = new Random().nextInt(100)+1;
+        int i = new Random().nextInt(100) + 1;
         //SET THE MONSTER DROP
-        if (i < 50){
+        if (i < 50) {
             dropItem(new OBJ_Coin(game));
-        }
-        if (i >= 50 && i < 75){
-            dropItem(new OBJ_Heart(game));
-        }
-        if (i >= 75 && i < 100){
-            dropItem(new OBJ_Potion_Red(game));
         }
     }
 }

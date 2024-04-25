@@ -17,15 +17,15 @@ public class Mon_Pac extends Entity {
         this.game=game;
         monster_area=area;
         monster_type=type_pacman;
-        name = "Green Slime";
-        defaultSpeed = 1;
+        name = "Pac Red";
+        defaultSpeed = 2;
         speed = defaultSpeed;
-        type = type_OrcMonster;
-        maxLife = 8;
+        type = type_monster;
+        maxLife = 12;
         life = maxLife;
-        attack = 2;
+        attack = 8;
         defense = 0;
-        exp = 2;
+        exp = 5;
         projectile=new OBJ_Rock(game);
 
         //set the SOLID AREA for  collision part
@@ -72,19 +72,18 @@ public class Mon_Pac extends Entity {
         if (onPath == true) {
 
             // Check if id stop chasing...
-            //checkStopChasingOrNot(game.player, 10, 100);
+            checkStopChasingOrNot(game.player, 10, 100);
 
             // Search the direction to go...
-            //searchPath(getGoalCol(game.player), getGoalRow(game.player));
+            searchPath(getGoalCol(game.player), getGoalRow(game.player));
 
             // Check if shoot a projectile...
             //checkShootOrNot(200, 30);
 
         }
         else {
-
             // Check if it starts chasing...
-           // checkStartChasingOrNot(game.player, 5, 100);
+            checkStartChasingOrNot(game.player, 5, 100);
 
             // Get a random direction...
             getRandomDirection();
@@ -106,14 +105,8 @@ public class Mon_Pac extends Entity {
         //CAST A DIE
         int i = new Random().nextInt(100)+1;
         //SET THE MONSTER DROP
-        if (i < 50){
+        if (i < 50) {
             dropItem(new OBJ_Coin(game));
-        }
-        if (i >= 50 && i < 75){
-            dropItem(new OBJ_Heart(game));
-        }
-        if (i >= 75 && i < 100){
-            dropItem(new OBJ_Potion_Red(game));
         }
     }
 }
