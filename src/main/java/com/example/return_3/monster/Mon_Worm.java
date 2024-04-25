@@ -6,7 +6,6 @@ import com.example.return_3.object.OBJ_Coin;
 import com.example.return_3.object.OBJ_Heart;
 import com.example.return_3.object.OBJ_Potion_Red;
 import com.example.return_3.object.OBJ_Rock;
-import com.example.return_3.object.food.OBJ_Apple;
 
 import java.util.Random;
 
@@ -19,7 +18,7 @@ public class Mon_Worm extends Entity {
         this.game=game;
         monster_area=area;
         monster_type=type_worm;
-        name = "Worm";
+        name = "Green Slime";
         defaultSpeed = 1;
         speed = defaultSpeed;
         type = type_monster;
@@ -71,6 +70,7 @@ public class Mon_Worm extends Entity {
 
 
     public void setAction(){
+
         actionLookCounter++;
         Random random= new Random();
         int actionLookCounterLimit = random.nextInt(50)+90;
@@ -81,7 +81,7 @@ public class Mon_Worm extends Entity {
             if(i<=50){
                 direction="left";
             }
-            if(i> 50 && i <= 100){
+            if(i>50&&i<=100){
                 direction="right";
             }
             actionLookCounter=0;
@@ -92,10 +92,8 @@ public class Mon_Worm extends Entity {
     public void damageReaction(){
         actionLookCounter = 0;
         switch (game.player.direction){
-            case "up": direction = "down"; break;
             case "left": direction = "right"; break;
             case "right": direction = "left"; break;
-            case "down": direction = "up"; break;
         }
     }
 
@@ -103,8 +101,14 @@ public class Mon_Worm extends Entity {
         //CAST A DIE
         int i = new Random().nextInt(100)+1;
         //SET THE MONSTER DROP
-        if (i < 20){
+        if (i < 50){
             dropItem(new OBJ_Coin(game));
+        }
+        if (i >= 50 && i < 75){
+            dropItem(new OBJ_Heart(game));
+        }
+        if (i >= 75 && i < 100){
+            dropItem(new OBJ_Potion_Red(game));
         }
     }
 }
