@@ -168,10 +168,10 @@ public class EventHandler {
         int row = 0;
         while (map < gp.maxMap && col < gp.maxWorldCol && row < gp.maxWorldRow) {
             eventRect[map][col][row] = new EventRect();
-            eventRect[map][col][row].setX(12);
-            eventRect[map][col][row].setY(12);
-            eventRect[map][col][row].setWidth(8);
-            eventRect[map][col][row].setHeight(8);
+            eventRect[map][col][row].setX(0);
+            eventRect[map][col][row].setY(0);
+            eventRect[map][col][row].setWidth(32);
+            eventRect[map][col][row].setHeight(32);
             eventRect[map][col][row].eventRectDefaultX = (int) (eventRect[map][col][row].getX());
             eventRect[map][col][row].eventRectDefaultY = (int) (eventRect[map][col][row].getY());
             col++;
@@ -301,7 +301,7 @@ public class EventHandler {
                 gp.playMusic(15);
             }
 
-            if(hit(gp.currentMap,145,37,"down") || hit(gp.currentMap,146,37,"down")){
+            if(hit(gp.currentMap,145,40,"down") || hit(gp.currentMap,146,40,"down")){
                 gp.stopMusic();
                 gp.playMusic(0);
             }
