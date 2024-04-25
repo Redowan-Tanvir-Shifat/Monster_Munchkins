@@ -522,6 +522,8 @@ public static void addMonster(int userId, int monsterType, int areaType, int col
                     monster = new Mon_Spider(game,areaType);
                 } else if (monsterType == entity00.type_arc) {
                     monster = new Mon_ORC(game,areaType);
+                } else if (monsterType == entity00.type_redOrc) {
+                    monster = new Mon_RedORC(game,areaType);
                 } else if (monsterType == entity00.type_slime) {
                     monster = new Mon_Green(game,areaType);
                 } else if (monsterType == entity00.type_worm) {
