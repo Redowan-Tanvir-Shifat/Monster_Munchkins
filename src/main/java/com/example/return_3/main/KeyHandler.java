@@ -135,10 +135,10 @@ public class KeyHandler {
             }
             if (game.ui.uiMainGame.commandNum == 1) {
                 if (game.player.coin >= 2000) {
-                    game.player.maxLife += 20;
+                    game.player.maxLife += 10;
                     game.player.coin -= 2000;
                     game.gameState = game.playState;
-                    game.ui.uiMainGame.addMessage("Increasing life successful!");
+                    game.ui.uiMainGame.addMessage("Increasing Max life successful!");
                 }
                 else {
                     System.out.println("Don't have coin ");
@@ -148,7 +148,7 @@ public class KeyHandler {
             }
 
             if (game.ui.uiMainGame.commandNum == 2) {
-                if (game.player.coin >= 500) {
+                if (game.player.coin >= 1000) {
                     game.player.energy += 10;
                     game.player.coin -= 500;
                     game.gameState = game.playState;
@@ -222,7 +222,7 @@ public class KeyHandler {
             }
         }
         if(code==KeyCode.D || code== KeyCode.RIGHT){ //VK_D means if user press D then
-            if(game.ui.uiMainGame.shopSlotCol!=5) {
+            if(game.ui.uiMainGame.shopSlotCol!=4) {
                 game.ui.uiMainGame.shopSlotCol++;
                 //gp.playSE(9);
             }
