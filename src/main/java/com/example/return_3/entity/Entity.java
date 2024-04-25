@@ -154,6 +154,7 @@ public class Entity {
     public final int type_arc=5;
     public final int type_pacmanGreen=6;
     public final int type_blueGhost=7;
+    public final int type_redOrc=8;
 
 
     // <---------Area of Monster--------->

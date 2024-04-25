@@ -19,6 +19,7 @@ public class Mon_ORC extends Entity {
         defaultSpeed = 1;
         speed = defaultSpeed;
         type = type_OrcMonster;
+        monster_type=type_arc;
         maxLife = 30;
         life = maxLife;
         attack = 10;    // Sword power will be 5 for player...

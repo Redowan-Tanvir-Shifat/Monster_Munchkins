@@ -289,6 +289,8 @@ i++;
         MyJDBC.addMonster(userId,entity.type_arc,0,167,22,mapNum,monIndex);monIndex++;
         MyJDBC.addMonster(userId,entity.type_blueGhost,0,159,43,mapNum,monIndex);monIndex++;
         MyJDBC.addMonster(userId,entity.type_blueGhost,0,160,43,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_redOrc,0,176,34,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_redOrc,0,177,34,mapNum,monIndex);monIndex++;
 
 
 //         MyJDBC.addInteractiveTile(userId, 53, 142, mapNum); // Add interactive tiles
