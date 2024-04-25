@@ -222,7 +222,7 @@ public class KeyHandler {
             }
         }
         if(code==KeyCode.D || code== KeyCode.RIGHT){ //VK_D means if user press D then
-            if(game.ui.uiMainGame.shopSlotCol!=5) {
+            if(game.ui.uiMainGame.shopSlotCol!=4) {
                 game.ui.uiMainGame.shopSlotCol++;
                 //gp.playSE(9);
             }

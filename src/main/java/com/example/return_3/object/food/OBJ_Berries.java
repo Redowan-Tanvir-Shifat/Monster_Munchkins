@@ -8,18 +8,18 @@ public class OBJ_Berries extends Entity {
     public OBJ_Berries(Game game) {
         super(game);
         this.game = game;
-        //Type will erite here later
+        //Type will write here later
         type= type_consumable;
         name="Berries";
-        value =5;
-        price= 2*value;
-        itemCode=203;
-        down1=uTool.loadImage("/objects/food/berries.png",game.tileSize-7,game.tileSize-7);
-        description="this is "+name;
+        value = 5;
+        price = 10*value;
+        itemCode = 203;
+        down1 = uTool.loadImage("/objects/food/berries.png",game.tileSize-7,game.tileSize-7);
+        description = "This is "+name;
     }
     public boolean use(Entity entity){
-        game.ui.uiMainGame.addMessage("life gain: "+value);
-        game.player.life+=value;
+        game.ui.uiMainGame.addMessage("Energy increase: "+value);
+        game.player.energy += value;
         return true;
     }
 }

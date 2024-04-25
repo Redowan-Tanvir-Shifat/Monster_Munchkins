@@ -366,7 +366,7 @@ public class UI_MainGame {
         textY += lineGap;
         gc.fillText("EXP: ", textX, textY);
         textY += lineGap;
-        gc.fillText("Next Level EXP: ", textX, textY);
+        gc.fillText("Energy: ", textX, textY);
         textY += lineGap;
         gc.fillText("Coin: ", textX, textY);
         textY += lineGap + 8;
@@ -415,7 +415,7 @@ public class UI_MainGame {
         gc.fillText(value, textX, textY);
         textY += lineGap;
 
-        value = String.valueOf(game.player.nextLevelExp);
+        value = String.valueOf(game.player.energy);
         textX = getXForAlignToRightText(value, tailX);
         gc.fillText(value, textX, textY);
         textY += lineGap;
@@ -547,7 +547,7 @@ public class UI_MainGame {
 //                System.out.println("Price: " + price);
                 int x=dFrameX+game.tileSize*5;
                 int y=dFrameY+game.tileSize/2;
-                drawCoinBox(coinImage,x,y,price);
+                drawCoinBox(coinImage,x+10,y,price);
                 gc.setFont(mediumFontBold);
                 for(String line : entity.inventory.get(itemIndex).description.split("\n")) {
                     gc.setFill(darkDarkCream);
@@ -567,7 +567,7 @@ public class UI_MainGame {
         gc.fillText(userName,userNameX,frameY+90);
         gc.drawImage(playerImage,frameX+20,frameY+100);
         //in here we are drawing player coin box, player coin
-        drawCoinBox(coinImage,frameX+25,frameY+44,game.player.coin);
+        drawCoinBox(coinImage,frameX+25,frameY+20,game.player.coin);
 
     }
     //THis method is used for showing coin box and value
@@ -655,7 +655,7 @@ public class UI_MainGame {
         int y=game.tileSize*3;
         int width=game.tileSize*6;
         int height=game.tileSize*2;
-        drawSubWindow(x, y, y, 40,cream,darkCream);
+        drawSubWindow(x, y, 100, 40,cream,darkCream);
         //drawing text
         gc.setFill(darkDarkCream);
         gc.setFont(mediumFontBold);

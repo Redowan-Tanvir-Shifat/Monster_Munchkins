@@ -14,7 +14,7 @@ public class OBJ_Ghost_Dirt extends Projectile {
         speed =0;
         maxLife=600;
         life= maxLife;
-        attack=8;
+        attack=5;
         useCost=1;
         alive=false;
         getImage();
