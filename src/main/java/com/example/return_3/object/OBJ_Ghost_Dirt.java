@@ -12,7 +12,7 @@ public class OBJ_Ghost_Dirt extends Projectile {
         this.game = game;
         name ="ghost dirt";
         speed =0;
-        maxLife=200;
+        maxLife=600;
         life= maxLife;
         attack=8;
         useCost=1;
@@ -21,14 +21,14 @@ public class OBJ_Ghost_Dirt extends Projectile {
     }
     public void getImage() {
 
-        up1=loadImage( "/objects/projectile/blueGhost_Projectile.png",game.tileSize,game.tileSize);
-        up2= loadImage("/objects/projectile/blueGhost_Projectile.png",game.tileSize,game.tileSize);
-        down1= loadImage("/objects/projectile/blueGhost_Projectile.png",game.tileSize,game.tileSize);
-        down2= loadImage("/objects/projectile/blueGhost_Projectile.png",game.tileSize,game.tileSize);
-        left1=loadImage ("/objects/projectile/blueGhost_Projectile.png",game.tileSize,game.tileSize);
-        left2= loadImage("/objects/projectile/blueGhost_Projectile.png",game.tileSize,game.tileSize);
-        right1= loadImage("/objects/projectile/blueGhost_Projectile.png",game.tileSize,game.tileSize);
-        right2= loadImage("/objects/projectile/blueGhost_Projectile.png",game.tileSize,game.tileSize);
+        up1=loadImage( "/objects/projectile/blueGhost_Projectile.png",game.tileSize+15,game.tileSize+15);
+        up2= loadImage("/objects/projectile/blueGhost_Projectile.png",game.tileSize+15,game.tileSize+15);
+        down1= loadImage("/objects/projectile/blueGhost_Projectile.png",game.tileSize+15,game.tileSize+15);
+        down2= loadImage("/objects/projectile/blueGhost_Projectile.png",game.tileSize+15,game.tileSize+15);
+        left1=loadImage ("/objects/projectile/blueGhost_Projectile.png",game.tileSize+15,game.tileSize+15);
+        left2= loadImage("/objects/projectile/blueGhost_Projectile.png",game.tileSize+15,game.tileSize+15);
+        right1= loadImage("/objects/projectile/blueGhost_Projectile.png",game.tileSize+15,game.tileSize+15);
+        right2= loadImage("/objects/projectile/blueGhost_Projectile.png",game.tileSize+15,game.tileSize+15);
     }
     public boolean haveResource(Entity user){
         boolean haveResource=false;
