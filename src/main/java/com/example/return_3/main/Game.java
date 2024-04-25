@@ -142,6 +142,8 @@ public class Game extends Application {
     public Entity axe = new OBJ_Axe(this);
     public Entity shieldBlue = new OBJ_Shield_Blue(this);
     public Entity sword = new OBJ_Sword_Normal(this);
+    public Entity specialSword = new OBJ_Sword_Special(this);
+    public Entity fireSword = new OBJ_FireSword(this);
     Entity shieldWood = new OBJ_Shield_Wood(this);
     public Entity key= new OBJ_Key(this);
     public Entity redPotion = new OBJ_Potion_Red(this);
@@ -284,6 +286,8 @@ public class Game extends Application {
         inventoryMap = new HashMap<>();
         inventoryMapAddItem(axe.itemCode, axe);
         inventoryMapAddItem(sword.itemCode, sword);
+        inventoryMapAddItem(specialSword.itemCode, specialSword);
+        inventoryMapAddItem(fireSword.itemCode, fireSword);
         inventoryMapAddItem(redPotion.itemCode, redPotion);
         inventoryMapAddItem(shieldBlue.itemCode, shieldBlue);
         inventoryMapAddItem(shieldWood.itemCode, shieldWood);

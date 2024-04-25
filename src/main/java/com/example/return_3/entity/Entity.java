@@ -140,6 +140,9 @@ public class Entity {
     public final int type_pickupOnly = 8;
     public final int type_obstacle = 9;
     public final int type_OrcMonster = 10;
+    public final int type_specialSword = 11;
+    public final int type_fireSword = 12;
+
 
     // <---------Type of NPC--------->
     public int npc_area;
