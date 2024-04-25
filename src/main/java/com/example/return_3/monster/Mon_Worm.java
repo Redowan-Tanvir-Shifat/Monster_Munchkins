@@ -6,6 +6,7 @@ import com.example.return_3.object.OBJ_Coin;
 import com.example.return_3.object.OBJ_Heart;
 import com.example.return_3.object.OBJ_Potion_Red;
 import com.example.return_3.object.OBJ_Rock;
+import com.example.return_3.object.food.OBJ_Apple;
 
 import java.util.Random;
 
@@ -18,11 +19,11 @@ public class Mon_Worm extends Entity {
         this.game=game;
         monster_area=area;
         monster_type=type_worm;
-        name = "Green Slime";
+        name = "Worm";
         defaultSpeed = 1;
         speed = defaultSpeed;
         type = type_monster;
-        maxLife = 8;
+        maxLife = 5;
         life = maxLife;
         attack = 2;
         defense = 0;
@@ -70,41 +71,20 @@ public class Mon_Worm extends Entity {
 
 
     public void setAction(){
+        actionLookCounter++;
+        Random random= new Random();
+        int actionLookCounterLimit = random.nextInt(50)+90;
 
-        if (onPath == true) {
+        if(actionLookCounter > actionLookCounterLimit){   // for two seconds it means
 
-            // Check if id stop chasing...
-            //checkStopChasingOrNot(game.player, 10, 100);
-
-            // Search the direction to go...
-            //searchPath(getGoalCol(game.player), getGoalRow(game.player));
-
-            // Check if shoot a projectile...
-            //checkShootOrNot(200, 30);
-
-        }
-        else {
-
-            // Check if it starts chasing...
-            checkStartChasingOrNot(game.player, 5, 100);
-
-            // Get a random direction...
-//            getRandomDirection();
-            actionLookCounter++;
-            Random random= new Random();
-            int actionLookCounterLimit = random.nextInt(50)+90;
-
-            if(actionLookCounter > actionLookCounterLimit){   // for two seconds it means
-
-                int i=random.nextInt(100)+1; //we add 1 because otherwise it will catch 0 to 99.. we want to avoid 0 here
-                if(i<=50){
-                    direction="left";
-                }
-                if(i>50&&i<=100){
-                    direction="right";
-                }
-                actionLookCounter=0;
+            int i=random.nextInt(100)+1; //we add 1 because otherwise it will catch 0 to 99.. we want to avoid 0 here
+            if(i<=50){
+                direction="left";
             }
+            if(i> 50 && i <= 100){
+                direction="right";
+            }
+            actionLookCounter=0;
         }
     }
 
@@ -123,14 +103,8 @@ public class Mon_Worm extends Entity {
         //CAST A DIE
         int i = new Random().nextInt(100)+1;
         //SET THE MONSTER DROP
-        if (i < 50){
+        if (i < 20){
             dropItem(new OBJ_Coin(game));
-        }
-        if (i >= 50 && i < 75){
-            dropItem(new OBJ_Heart(game));
-        }
-        if (i >= 75 && i < 100){
-            dropItem(new OBJ_Potion_Red(game));
         }
     }
 }

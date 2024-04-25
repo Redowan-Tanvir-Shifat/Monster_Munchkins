@@ -275,12 +275,24 @@ public class EventHandler {
 //                }
 //                System.out.println("hit teleport");
 //            }
-            if(hit(gp.currentMap,128,146,"any")){
+
+
+            if(hit(gp.currentMap,128,146,"any") || hit(gp.currentMap,129,146,"any")
+                || hit(gp.currentMap,101,146,"any") || hit(gp.currentMap,102,146,"any")) {
 //                speak(gp.npc[gp.currentMap][0]);
                 new FoodShop(gp).use();
                 canTouchEvent = false;
 
-                System.out.println("Trade Place hit");
+                //System.out.println("Trade Place hit");
+
+            }
+
+            if(hit(gp.currentMap,143,112,"any")){
+//                speak(gp.npc[gp.currentMap][0]);
+                new StuffShop(gp).use();
+                canTouchEvent = false;
+
+                //System.out.println("Stuff Shop hit");
 
             }
 

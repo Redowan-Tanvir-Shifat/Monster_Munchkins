@@ -21,7 +21,7 @@ public class Entity {
 
     // <----------VARIABLES---------->
     public String name;
-    public int speed;
+    public double speed;
     public int worldX, worldY;
     public String direction = "down";
     public  int spriteNum = 1;
@@ -108,7 +108,7 @@ public class Entity {
     public Entity currentWeapon;
     public Entity currentShield;
     public Projectile projectile;
-    public int defaultSpeed;
+    public double defaultSpeed;
     public int motion1_duration;
     public int motion2_duration;
 
