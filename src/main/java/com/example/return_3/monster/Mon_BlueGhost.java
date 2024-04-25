@@ -2,10 +2,7 @@ package com.example.return_3.monster;
 
 import com.example.return_3.entity.Entity;
 import com.example.return_3.main.Game;
-import com.example.return_3.object.OBJ_Coin;
-import com.example.return_3.object.OBJ_Heart;
-import com.example.return_3.object.OBJ_Potion_Red;
-import com.example.return_3.object.OBJ_Rock;
+import com.example.return_3.object.*;
 
 import java.util.Random;
 
@@ -26,7 +23,7 @@ public class Mon_BlueGhost extends Entity {
         attack = 15;
         defense = 0;
         exp = 2;
-        projectile=new OBJ_Rock(game);
+        projectile=new OBJ_Ghost_Dirt(game);
 
         //set the SOLID AREA for  collision part
         solidArea.setX(1);
@@ -68,6 +65,7 @@ public class Mon_BlueGhost extends Entity {
 
 
     public void setAction(){
+        checkShootOrNot(100, 30);
         if (onPath == true) {
 
             // Check if stop chasing...
@@ -77,7 +75,7 @@ public class Mon_BlueGhost extends Entity {
             searchPath(getGoalCol(game.player), getGoalRow(game.player));
 
             // Check if shoot a projectile...
-            //checkShootOrNot(100, 30);
+
 
         }
         else {
@@ -87,6 +85,7 @@ public class Mon_BlueGhost extends Entity {
             // Get a random direction...
             getRandomDirection();
         }
+
 
     }
 
