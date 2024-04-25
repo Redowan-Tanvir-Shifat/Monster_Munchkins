@@ -274,6 +274,23 @@ i++;
         MyJDBC.addMonster(userId,entity.type_slime,0,152,149,mapNum,monIndex);monIndex++;
         MyJDBC.addMonster(userId,entity.type_slime,0,184,142,mapNum,monIndex);monIndex++;
 
+        // <--------------ADD Random area random  MONSTER ------------->
+        MyJDBC.addMonster(userId,entity.type_slime,0,110,18,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_slime,0,111,18,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_pacmanGreen,0,114,29,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_pacmanGreen,0,115,29,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_pacman,0,125,36,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_pacman,0,125,36,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_spider,0,134,21,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_spider,0,135,21,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_worm,0,146,30,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_worm,0,146,31,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_arc,0,166,22,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_arc,0,167,22,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_blueGhost,0,159,43,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_blueGhost,0,160,43,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_redOrc,0,176,34,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_redOrc,0,177,34,mapNum,monIndex);monIndex++;
 
 
 //         MyJDBC.addInteractiveTile(userId, 53, 142, mapNum); // Add interactive tiles

@@ -11,14 +11,15 @@ import java.util.Random;
 
 public class Mon_RedORC extends Entity {
     Game game;
-    public Mon_RedORC(Game game) {
+    public Mon_RedORC(Game game,int area) {
         super(game);
         this.game=game;
-
+monster_area =area;
         name = "Red_ORC";
         defaultSpeed = 1;
         speed = defaultSpeed;
         type = type_OrcMonster;
+        monster_type=type_redOrc;
         maxLife = 45;
         life = maxLife;
         attack = 20;   // // Sword power will be 8, 10 for player...
