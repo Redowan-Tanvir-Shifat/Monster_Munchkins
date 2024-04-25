@@ -18,9 +18,9 @@ public class Mon_Pac extends Entity {
         monster_area=area;
         monster_type=type_pacman;
         name = "Pac Red";
-        defaultSpeed = 1;
+        defaultSpeed = 2;
         speed = defaultSpeed;
-        type = type_OrcMonster;
+        type = type_monster;
         maxLife = 12;
         life = maxLife;
         attack = 8;

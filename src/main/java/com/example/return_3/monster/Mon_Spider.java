@@ -18,7 +18,7 @@ public class Mon_Spider extends Entity {
         monster_area=area;
         monster_type=type_spider;
         name = "Spider Monster";
-        defaultSpeed = 1.5;
+        defaultSpeed = 2;
         speed = defaultSpeed;
         type = type_monster;
         maxLife = 15;
