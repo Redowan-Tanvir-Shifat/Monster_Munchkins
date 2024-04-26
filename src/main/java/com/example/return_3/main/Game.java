@@ -146,6 +146,7 @@ public class Game extends Application {
     public Entity specialSword = new OBJ_Sword_Special(this);
     public Entity fireSword = new OBJ_FireSword(this);
     Entity shieldWood = new OBJ_Shield_Wood(this);
+
     public Entity key= new OBJ_Key(this);
     public Entity redPotion = new OBJ_Potion_Red(this);
     public Entity powerPotion = new OBJ_PowerPotion(this);

@@ -936,7 +936,7 @@ public class Entity {
         double nextWorldX=user.getLeftX();
         double nextWorldY=user.getTopY();
         switch(user.direction){
-            case "up":nextWorldY=user.getTopY()-3;break;
+            case "up":nextWorldY=user.getTopY()-10;break;
             case "down":nextWorldY=user.getBottomY()+1;break;
             case "left":nextWorldX=user.getLeftX()-1;break;
             case "right":nextWorldX=user.getRightX()+1;break;
