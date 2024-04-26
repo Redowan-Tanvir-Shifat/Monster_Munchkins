@@ -36,7 +36,7 @@ public class Mon_Worm extends Entity {
         solidArea.setHeight(23);
         solidAreaDefaultX = (int)(solidArea.getX());
         solidAreaDefaultY = (int)(solidArea.getY());
-        imgName="worm";
+        imgName="purpleCrub";
         size=game.tileSize;
         getImage();
     }

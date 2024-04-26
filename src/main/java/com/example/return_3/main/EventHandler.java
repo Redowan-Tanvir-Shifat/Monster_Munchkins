@@ -353,6 +353,8 @@ public class EventHandler {
         previousEventY=gp.player.worldY;
 
     }
+
+    //THis has no usage
     public void speak(Entity entity){
         if(gp.keyHandler.isEnterPressed()==true){
             gp.gameState=gp.dialogueState;

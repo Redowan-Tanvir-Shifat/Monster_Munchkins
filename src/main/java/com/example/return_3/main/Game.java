@@ -124,6 +124,7 @@ public class Game extends Application {
 
     public Entity obj[][]= new Entity[maxMap][20];
     public Entity npc[][]= new Entity[maxMap][100]; //set the number of 10 NPC Number
+    public Entity interactNpc[][]= new Entity[maxMap][10]; //set the number of 10 NPC Number
     public Entity[][] monster = new Entity[maxMap][100];
     public Entity[][] slimeMonster = new Entity[maxMap][20];
     public InteractiveTile iTile[][]= new InteractiveTile[maxMap][50];
@@ -433,6 +434,11 @@ public class Game extends Application {
                     if(npc[currentMap][i] !=null){
                         npc[currentMap][i].update();
                     }
+                } //Interact NPC UPDATE
+                for(int i=0; i<interactNpc[currentMap].length; i++){
+                    if(interactNpc[currentMap][i] !=null){
+                        interactNpc[currentMap][i].update();
+                    }
                 }
 
                 //Monster
@@ -532,6 +538,12 @@ public class Game extends Application {
                 for (int i = 0; i < npc[currentMap].length; i++) {
                     if (npc[currentMap][i] != null) {
                         entityList.add(npc[currentMap][i]);
+                    }
+                }
+                //add interact NPC entity TO the list.
+                for (int i = 0; i < interactNpc[currentMap].length; i++) {
+                    if (interactNpc[currentMap][i] != null) {
+                        entityList.add(interactNpc[currentMap][i]);
                     }
                 }
                 //ADD MONSTER TO THE LIST
