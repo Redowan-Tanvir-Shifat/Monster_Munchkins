@@ -5,14 +5,15 @@ import java.net.URL;
 
 public class Sound {
     private Clip clip;
-    private URL[] soundUrls = new URL[14];
+    private URL[] soundUrls = new URL[20];
     private FloatControl gainControl;
     private float volume = 0.6f; // Default volume
     private int volumeScale = 3;
 
     public Sound() {
         // Initialize sound URLs
-        soundUrls[0] = getClass().getResource("/sound/BlueBoyAdventure.wav");
+        //soundUrls[0] = getClass().getResource("/sound/BlueBoyAdventure.wav");
+        soundUrls[0] = getClass().getResource("/sound/bgMusic.wav");
         soundUrls[1] = getClass().getResource("/sound/coin.wav");
         soundUrls[2] = getClass().getResource("/sound/powerup.wav");
         soundUrls[3] = getClass().getResource("/sound/unlock.wav");
@@ -26,7 +27,8 @@ public class Sound {
         soundUrls[11] = getClass().getResource("/sound/cuttree.wav");
         soundUrls[12] = getClass().getResource("/sound/gameover.wav");
         soundUrls[13] = getClass().getResource("/sound/stairs.wav");
-        //soundUrls[0] = getClass().getResource("/sound/bgMusic.wav");
+        soundUrls[14] = getClass().getResource("/sound/newSword.wav");
+        soundUrls[15] = getClass().getResource("/sound/monsterIsland.wav");
 
         // Set default volume
         volume = volumeScaleToFloat(volumeScale);
