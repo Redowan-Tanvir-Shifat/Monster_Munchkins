@@ -221,8 +221,34 @@ public class MyJDBC {
     }
 
 
+
+
+
+
+
+
     //////For INVENTORY
 //we i need to check this method once again because there might be one operation and i did multiple for not knowing the
+
+
+    public static void addInventory(int userId, int itemCode) {
+        try {
+            Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "INSERT INTO Inventory (user_id, item_code, item_count) " +
+                            "VALUES (?, ?, 0)"
+            );
+            preparedStatement.setInt(1, userId);
+            preparedStatement.setInt(2, itemCode);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
     public static ArrayList<Entity> getUserInventory(int userId) {
         try {
             Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
@@ -234,10 +260,10 @@ public class MyJDBC {
 
             ArrayList<Entity> inventory = new ArrayList<>();
             while (resultSet.next()) {
-                int itemCode = resultSet.getInt("itemCode");
-                int count = resultSet.getInt("count");
+                int itemCode = resultSet.getInt("item_code");
+                int count = resultSet.getInt("item_count");
                 for(int i=0;i<count;i++){
-                inventory.add(new UtilityTool().inventoryItem(itemCode,count));
+                inventory.add(UtilityTool.getInventoryItem(itemCode));
                 }
             }
             return inventory;
@@ -246,6 +272,35 @@ public class MyJDBC {
         }
         return null;
     }
+    public static void addItemToInventory(int userId, int itemCode) {
+        try {
+            Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "INSERT INTO Inventory (user_id, item_code, item_count) VALUES (?, ?, 1) " +
+                            "ON DUPLICATE KEY UPDATE item_count = item_count + 1"
+            );
+            preparedStatement.setInt(1, userId);
+            preparedStatement.setInt(2, itemCode);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void removeItemFromInventory(int userId, int itemCode) {
+        try {
+            Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "UPDATE Inventory SET item_count = item_count - 1 WHERE user_id = ? AND item_code = ? AND item_count > 0"
+            );
+            preparedStatement.setInt(1, userId);
+            preparedStatement.setInt(2, itemCode);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public static void updateInventory(int userId, int itemCode, int count) {
         try {
@@ -262,6 +317,19 @@ public class MyJDBC {
             e.printStackTrace();
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     // <----------------OBJECT LINE------------------->
     //in this addInteractivetile  we will add tile by this method at the time of sign up .

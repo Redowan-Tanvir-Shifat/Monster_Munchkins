@@ -256,26 +256,12 @@ public class KeyHandler {
             }
             if (game.ui.uiMainGame.commandNum == 1) {
                 MyJDBC.updateUser(game.player);
-                for ( Entity item: game.player.inventory) {
-                    int itemCode = item.itemCode;
-                    int count = item.itemCount;
-                    MyJDBC.updateInventory(game.user.getUserId(), itemCode, count);
-                    System.out.println("after updated:");
-                    System.out.println("itemName: " + item.name + "|| itemCount: " + count);
-                }
                 game.stopMusic();
                 game.logout();
 
 
             }if (game.ui.uiMainGame.commandNum == 2) {
                 MyJDBC.updateUser(game.player);
-                for ( Entity item: game.player.inventory) {
-                    int itemCode=item.itemCode;
-                    int count=item.itemCount;
-                MyJDBC.updateInventory(game.user.getUserId(),itemCode,count);
-                    System.out.println("after updated:");
-                    System.out.println("itemName: "+item.name+"|| itemCount: "+count);
-                }
                 game.stopMusic();
                 Game.exitGame();
             }
