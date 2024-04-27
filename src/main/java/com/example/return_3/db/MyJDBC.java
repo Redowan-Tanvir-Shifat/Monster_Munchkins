@@ -306,6 +306,7 @@ public class MyJDBC {
 
 
     public static void setObjects(int userId, int mapNum) {
+        int oIndex=0;
         try {
             Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
             PreparedStatement preparedStatement = connection.prepareStatement(
@@ -317,7 +318,7 @@ public class MyJDBC {
            // preparedStatement.setInt(3, objectType);
             ResultSet resultSet = preparedStatement.executeQuery();
             int i = 0;
-            int oIndex=0;
+
             int count =0;
             // Iterate over the result set and create instances of objects based on type
             while (resultSet.next()) {
@@ -347,6 +348,8 @@ public class MyJDBC {
                         case 102:   entity =new OBJ_Axe(Game.gameInstance);break;
                         case 103:   entity =new OBJ_Shield_Wood(Game.gameInstance);break;
                         case 303:   entity =new OBJ_Potion_Red(Game.gameInstance);break;
+                        case 304:   entity =new OBJ_Key(Game.gameInstance);break;
+                        case 320:   entity =new OBJ_Door(Game.gameInstance);break;
                         default:entity = null;
                     }
                     if(entity!=null){
@@ -370,6 +373,53 @@ public class MyJDBC {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+
+        try {
+            Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT tile_col, tile_row FROM Objects " +
+                            "WHERE user_id = ? AND map_num = ? AND destroyed = TRUE AND item_code= 320"
+            );
+            preparedStatement.setInt(1, userId);
+            preparedStatement.setInt(2, mapNum);
+            // preparedStatement.setInt(3, objectType);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            int i = 0;
+
+            int count =0;
+            // Iterate over the result set and create instances of objects based on type
+            while (resultSet.next()) {
+                System.out.println("count: "+count);
+
+//                int itemCode= resultSet.getInt("item_code");
+                int col = resultSet.getInt("tile_col");
+                int row = resultSet.getInt("tile_row");
+//                int objectType = resultSet.getInt("object_type");
+
+
+                        Game.gameInstance.obj[mapNum][oIndex]=new OBJ_Door(Game.gameInstance);
+                        Game.gameInstance.obj[mapNum][oIndex].down1=Game.gameInstance.obj[mapNum][oIndex].image2;
+                        Game.gameInstance.obj[mapNum][oIndex].collision=false;
+                        Game.gameInstance.obj[mapNum][oIndex].destroyed=true;
+                        Game.gameInstance.obj[mapNum][oIndex].worldX=Game.gameInstance.tileSize*col;
+                        Game.gameInstance.obj[mapNum][oIndex].worldY=Game.gameInstance.tileSize*row;
+
+                    oIndex++;
+
+
+            }
+
+            // Close resources
+            resultSet.close();
+            preparedStatement.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+
     }
 
 
@@ -394,7 +444,7 @@ public class MyJDBC {
             if (rowsAffected > 0) {
                 System.out.println("Object data updated successfully.");
             } else {
-                System.out.println("No object found with the given data.");
+                System.out.println("No object found with fgggggggggggthe given data.");
             }
         } catch (SQLException e) {
             e.printStackTrace();

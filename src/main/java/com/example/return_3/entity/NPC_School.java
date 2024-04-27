@@ -13,7 +13,7 @@ public class NPC_School extends NPC{
         super(game);
         this.game=game;
         type= type_npc;
-
+        dialogueArraySize=4;
         getNPCImage();
         setDialogue();
     }

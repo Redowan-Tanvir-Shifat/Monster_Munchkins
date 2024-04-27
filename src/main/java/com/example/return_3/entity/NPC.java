@@ -1,6 +1,9 @@
 package com.example.return_3.entity;
 
 import com.example.return_3.main.Game;
+import com.example.return_3.object.OBJ_ChatBox;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 
 import java.util.Random;
 
@@ -146,11 +149,47 @@ public class NPC extends Entity{
 
     }
 
-//        public void speak(){
-//        super.speak();
-//        }
+        public void speak(){
+            game.gameState = game.dialogueState;
+            game.ui.uiMainGame.npc=this;
+            game.ui.uiMainGame.currentDialogue=dialogue[dialogueIndex];
+             dialogueIndex++;
+            switch (game.player.direction){
+                case "up":
+                    direction="down";
+                    break;
+                case "left":
+                    direction="right";
+                    break;
+                case "right":
+                    direction="left";
+                    break;
+                case "down":
+                    direction="up";
+                    break;
+            }
+        }
 
+    public void draw(GraphicsContext gc){
+        super.draw(gc);
 
+        if(chatOnStatus==true){
+            int screenX= worldX-game.player.worldX + game.player.screenX;
+            int screenY= worldY-game.player.worldY + game.player.screenY;
+            Image image= null;
+            //System.out.println("draw method working");
+            if(chatNum==1){
+                image= new OBJ_ChatBox(game).down1;
+            } else if (chatNum==2) {
+                image= new OBJ_ChatBox(game).up1;
+            }else if(chatNum==3){
+                image= new OBJ_ChatBox(game).left1;
+            } else if (chatNum==4) {
+                image= new OBJ_ChatBox(game).right1;
+            }
+            gc.drawImage(image,screenX,screenY-(game.tileSize/2));
+        }
+    }
 
 
 }

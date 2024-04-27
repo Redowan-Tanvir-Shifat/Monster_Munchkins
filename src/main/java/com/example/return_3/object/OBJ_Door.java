@@ -11,7 +11,7 @@ public class OBJ_Door extends Entity {
         this.game = game;
         type= type_obstacle;
         name= "door";
-
+        itemCode=320;
         image1=uTool.loadImage("/objects/door.png",game.tileSize,game.tileSize);
         image2=uTool.loadImage("/objects/door_opened.png",game.tileSize,game.tileSize);
         down1=image1;

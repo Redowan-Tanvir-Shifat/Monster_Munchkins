@@ -31,6 +31,7 @@ public class Entity {
     public int goalCol;
     public int goalRow;
     public int dialogueIndex = 0;
+    public int dialogueArraySize = 0;
     public String[] dialogue =new String[20];
     public Entity attacker;
     public String knockBackDirection;
@@ -793,24 +794,7 @@ public class Entity {
 
 
     public void speak(){
-        game.gameState = game.dialogueState;
-        game.ui.uiMainGame.npc=this;
-        game.ui.uiMainGame.currentDialogue=dialogue[dialogueIndex];
-        // dialogueIndex++;
-        switch (game.player.direction){
-            case "up":
-                direction="down";
-                break;
-            case "left":
-                direction="right";
-                break;
-            case "right":
-                direction="left";
-                break;
-            case "down":
-                direction="up";
-                break;
-        }
+
     }
 
 
@@ -952,7 +936,7 @@ public class Entity {
         double nextWorldX=user.getLeftX();
         double nextWorldY=user.getTopY();
         switch(user.direction){
-            case "up":nextWorldY=user.getTopY()-3;break;
+            case "up":nextWorldY=user.getTopY()-10;break;
             case "down":nextWorldY=user.getBottomY()+1;break;
             case "left":nextWorldX=user.getLeftX()-1;break;
             case "right":nextWorldX=user.getRightX()+1;break;

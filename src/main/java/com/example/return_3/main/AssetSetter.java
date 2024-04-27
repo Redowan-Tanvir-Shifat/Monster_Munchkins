@@ -72,15 +72,15 @@ public class AssetSetter {
         game.obj[mapNum][14]=new OBJ_Door(game);
         game.obj[mapNum][14].worldX=game.tileSize * 28;
         game.obj[mapNum][14].worldY=game.tileSize * 161;
-        game.obj[mapNum][13]=new OBJ_PowerPotion(game);
-        game.obj[mapNum][13].worldX=game.tileSize*47;
-        game.obj[mapNum][13].worldY=game.tileSize*142;
-        game.obj[mapNum][15]=new OBJ_PowerPotion(game);
-        game.obj[mapNum][15].worldX=game.tileSize*46;
-        game.obj[mapNum][15].worldY=game.tileSize*142;
-        game.obj[mapNum][16]=new OBJ_PowerPotion(game);
-        game.obj[mapNum][16].worldX=game.tileSize*45;
-        game.obj[mapNum][16].worldY=game.tileSize*142;
+//        game.obj[mapNum][13]=new OBJ_PowerPotion(game);
+//        game.obj[mapNum][13].worldX=game.tileSize*47;
+//        game.obj[mapNum][13].worldY=game.tileSize*144;
+//        game.obj[mapNum][15]=new OBJ_Key(game);
+//        game.obj[mapNum][15].worldX=game.tileSize*46;
+//        game.obj[mapNum][15].worldY=game.tileSize*144;
+//        game.obj[mapNum][16]=new OBJ_Key(game);
+//        game.obj[mapNum][16].worldX=game.tileSize*45;
+//        game.obj[mapNum][16].worldY=game.tileSize*144;
 
        // i++;
 
@@ -90,9 +90,13 @@ public class AssetSetter {
     public void setNPC(){
         int mapNum = 0;
         int i = 0;
-        game.npc[mapNum][i]= new NPC_Trade(game);
-        game.npc[mapNum][i].worldX=game.tileSize*48;
-        game.npc[mapNum][i].worldY=game.tileSize*135;
+
+//        game.npc[mapNum][i]= new NPC_Trade(game);
+//        game.npc[mapNum][i].worldX=game.tileSize*48;
+//        game.npc[mapNum][i].worldY=game.tileSize*135;
+        game.interactNpc[mapNum][i]= new NPC_Welcome(game);
+        game.interactNpc[mapNum][i].worldX=game.tileSize*81;
+        game.interactNpc[mapNum][i].worldY=game.tileSize*117;
         i++;
         game.npc[mapNum][i] = new NPC_School(game);
         game.npc[mapNum][i].worldX = game.tileSize * 40;
@@ -201,6 +205,16 @@ i++;
         MyJDBC.addObject(userId,objecttype,Game.gameInstance.sword.itemCode,93,118,mapNum);
         MyJDBC.addObject(userId,objecttype,Game.gameInstance.redPotion.itemCode,144,149,mapNum);
         MyJDBC.addObject(userId,objecttype,Game.gameInstance.shieldWood.itemCode,144,149,mapNum);
+
+        Entity door= new OBJ_Door(Game.gameInstance);
+        //
+        MyJDBC.addObject(userId,objecttype,door.itemCode,45,142,mapNum);
+        MyJDBC.addObject(userId,objecttype,door.itemCode,46,142,mapNum);
+        MyJDBC.addObject(userId,objecttype,door.itemCode,47,142,mapNum);
+        door= new OBJ_Key(Game.gameInstance);
+        MyJDBC.addObject(userId,objecttype,door.itemCode,43,142,mapNum);
+        MyJDBC.addObject(userId,objecttype,door.itemCode,42,142,mapNum);
+        MyJDBC.addObject(userId,objecttype,door.itemCode,44,142,mapNum);
 
 
 

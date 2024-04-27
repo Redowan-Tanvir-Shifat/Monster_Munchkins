@@ -310,17 +310,22 @@ public class KeyHandler {
 
            // game.ui.uiMainGame.npc.dialogueIndex++;
             if(game.ui.uiMainGame.npc.dialogue[game.ui.uiMainGame.npc.dialogueIndex]==null){
-                game.isDialogueToGameState=true;
-                game.ui.uiMainGame.npc.dialogueIndex=0;
-            }
-            if( game.isDialogueToGameState==true){
+//                game.isDialogueToGameState=true;
                 game.gameState=game.playState;
-                //game.ui.npc.onPath=true;
-                game.isDialogueToGameState=false;
-            }else {
+                game.ui.uiMainGame.npc.dialogueIndex=0;
+            }else{
                 game.ui.uiMainGame.npc.speak();
-
             }
+
+
+//            if( game.isDialogueToGameState==true){
+//                game.gameState=game.playState;
+//                //game.ui.npc.onPath=true;
+//                game.isDialogueToGameState=false;
+//            }else {
+//                game.ui.uiMainGame.npc.speak();
+//
+//            }
         }
     }
 

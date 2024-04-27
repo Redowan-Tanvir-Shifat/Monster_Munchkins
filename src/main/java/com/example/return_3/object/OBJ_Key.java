@@ -1,5 +1,6 @@
 package com.example.return_3.object;
 
+import com.example.return_3.db.MyJDBC;
 import com.example.return_3.entity.Entity;
 import com.example.return_3.main.Game;
 
@@ -21,9 +22,14 @@ public class OBJ_Key extends Entity {
         if(objectIndex!=999 &&game.obj[game.currentMap][objectIndex].destroyed!=true){
             game.ui.uiMainGame.currentDialogue="You use the "+name+"and opened the door";
             Entity entity2=game.obj[game.currentMap][objectIndex];
+            int row=entity2.worldY/game.tileSize;
+            int col=entity2.worldX/game.tileSize;
+            MyJDBC.updateObjectDestroyedStatus(playerId,game.currentMap,row,col,game.type_object,true);
             entity2.down1=entity2.image2;
             entity2.collision=false;
             entity2.destroyed=true;
+
+
 
             return true;
         }

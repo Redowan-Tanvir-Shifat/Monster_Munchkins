@@ -21,3 +21,5 @@ key -304
 powerPotion -305
 defensePotion -306
 speedPotion -307
+
+door - 320
