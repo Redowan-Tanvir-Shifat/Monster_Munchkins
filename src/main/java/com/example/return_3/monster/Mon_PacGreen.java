@@ -82,7 +82,7 @@ public class Mon_PacGreen extends Entity {
         }
         else {
             // Check if it starts chasing...
-            checkStartChasingOrNot(game.player, 5, 100);
+           // checkStartChasingOrNot(game.player, 5, 100);
 
             // Get a random direction...
             getRandomDirection();
@@ -93,6 +93,7 @@ public class Mon_PacGreen extends Entity {
 
     public void damageReaction(){
         actionLookCounter = 0;
+        onPath=true;
         switch (game.player.direction){
             case "up": direction = "down"; break;
             case "left": direction = "right"; break;
