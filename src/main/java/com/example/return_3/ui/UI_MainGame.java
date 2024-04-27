@@ -686,7 +686,9 @@ public class UI_MainGame {
 
                     game.player.coin-=shop.inventory.get(itemIndex).price;
                     game.player.inventory.add(shop.inventory.get(itemIndex));
-                    shop.inventory.get(itemIndex).itemCount++;                }
+                    MyJDBC.addItemToInventory(game.player.playerId,shop.inventory.get(itemIndex).itemCode);
+
+                }
             }
         }
     }
@@ -742,13 +744,7 @@ public class UI_MainGame {
                     game.gameState=game.messageState;
                     currentDialogue="you can not sell an equiped items";
                 }else{
-                    System.out.println("before sell:");
-                    System.out.println("name: "+game.player.inventory.get(itemIndex).name+"|| Item Count: "+game.player.inventory.get(itemIndex).itemCount);
-
-                    game.player.inventory.get(itemIndex).itemCount--;
-                    System.out.println("after sell: ");
-                    System.out.println("name: "+game.player.inventory.get(itemIndex).name+"|| Item Count: "+game.player.inventory.get(itemIndex).itemCount);
-                    MyJDBC.updateInventory(game.player.playerId,game.player.inventory.get(itemIndex).itemCode,game.player.inventory.get(itemIndex).itemCount);
+                    MyJDBC.removeItemFromInventory(game.player.playerId,game.player.inventory.get(itemIndex).itemCode);
                     game.player.inventory.remove(itemIndex);
                     game.player.coin+=price;
                 }

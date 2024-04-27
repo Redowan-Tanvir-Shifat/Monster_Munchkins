@@ -31,6 +31,7 @@ public class SignUpController {
                // MyJDBC.addInteractiveTile(userId, col, row, mapNum, destroyed); // Add interactive tiles
                 //setup interactive Tile
                 AssetSetter.addObjectToDB(userId);
+                AssetSetter.addInventoryToDB(userId);
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/login.fxml"));
                 Parent root = loader.load();
                 Scene scene = new Scene(root);

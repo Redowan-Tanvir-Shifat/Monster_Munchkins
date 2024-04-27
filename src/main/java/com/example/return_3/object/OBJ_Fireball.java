@@ -12,6 +12,7 @@ public class OBJ_Fireball extends Projectile {
         super(game);
         this.game = game;
         name="Fireball";
+        itemCode=107;
         speed = 5;
         maxLife=80;
         life = maxLife;

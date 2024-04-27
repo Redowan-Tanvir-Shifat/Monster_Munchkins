@@ -12,7 +12,7 @@ public class OBJ_Egg extends Entity {
         type = type_consumable;
         name ="Egg";
         value = 5;
-        itemCode = 205;
+        itemCode = 206;
         price = 25*value;
         down1 = uTool.loadImage("/objects/food/egg.png",game.tileSize-7,game.tileSize-7);
         description = "This is " + name;
