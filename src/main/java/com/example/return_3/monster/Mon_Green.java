@@ -70,17 +70,26 @@ public class Mon_Green extends Entity {
     public void setAction(){
             // Get a random direction...
             getRandomDirection();
-    }
+            if(speedChange==true){
+                speed=defaultSpeed+2;
+                if(actionLookCounter>40){
+                    speedChange=false;
+                    speed=defaultSpeed;
+                }
+            }
 
+    }
 
     public void damageReaction(){
         actionLookCounter = 0;
+        speedChange=true;
         switch (game.player.direction){
-            case "up": direction = "down"; break;
-            case "left": direction = "right"; break;
-            case "right": direction = "left"; break;
-            case "down": direction = "up"; break;
+            case "up": direction = "up"; break;
+            case "left": direction = "left"; break;
+            case "right": direction = "right"; break;
+            case "down": direction = "down"; break;
         }
+
     }
 
     public void checkDrop() {
