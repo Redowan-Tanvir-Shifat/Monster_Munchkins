@@ -347,8 +347,12 @@ public class MyJDBC {
                         case 106:   entity =new OBJ_FireSword(Game.gameInstance);break;
                         case 102:   entity =new OBJ_Axe(Game.gameInstance);break;
                         case 103:   entity =new OBJ_Shield_Wood(Game.gameInstance);break;
+                        case 301:   entity =new OBJ_Coin(Game.gameInstance);break;
                         case 303:   entity =new OBJ_Potion_Red(Game.gameInstance);break;
                         case 304:   entity =new OBJ_Key(Game.gameInstance);break;
+                        case 305:   entity =new OBJ_PowerPotion(Game.gameInstance);break;
+                        case 306:   entity =new OBJ_DefensePotion(Game.gameInstance);break;
+                        case 307:   entity =new OBJ_SpeedPotion(Game.gameInstance);break;
                         case 320:   entity =new OBJ_Door(Game.gameInstance);break;
                         default:entity = null;
                     }
@@ -430,7 +434,7 @@ public class MyJDBC {
         try {
             Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "UPDATE Objects SET destroyed = ? " +
+                    "UPDATE game.Objects SET destroyed = ? " +
                             "WHERE user_id = ? AND map_num = ? AND tile_row = ? AND tile_col = ? AND object_type = ?"
             );
             preparedStatement.setBoolean(1, destroyed);
