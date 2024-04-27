@@ -287,8 +287,8 @@ public class Player extends Entity{
             pickUpObject(objIndex);
 
             //CHeck NPC collision
-//            int npcIndex=game.cChecker.checkEntity(this,game.npc);
-//            interactNPC(npcIndex);
+            int npcIndex=game.cChecker.checkEntity(this,game.interactNpc);
+            interactNPC(npcIndex);
 
             //CHECK MONSTER COLLISION
             int monsterIndex = game.cChecker.checkEntity(this,game.monster);
@@ -406,7 +406,7 @@ public class Player extends Entity{
             if(i != 999){
                 //attackCanceled=true;
 
-                game.npc[game.currentMap][i].speak();
+                game.interactNpc[game.currentMap][i].speak();
             }
             //gp.playSE(7);
         }
