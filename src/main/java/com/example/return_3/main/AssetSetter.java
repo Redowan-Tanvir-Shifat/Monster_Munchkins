@@ -42,18 +42,18 @@ public class AssetSetter {
 //        game.obj[mapNum][i].worldX=game.tileSize*49;
 //        game.obj[mapNum][i].worldY=game.tileSize*140;
 //        i++;
-        game.obj[mapNum][i]=new OBJ_Coin(game);
-        game.obj[mapNum][i].worldX=game.tileSize*41;
-        game.obj[mapNum][i].worldY=game.tileSize*142;
-        i++;
-        game.obj[mapNum][i]=new OBJ_PowerPotion(game);
-        game.obj[mapNum][i].worldX=game.tileSize*42;
-        game.obj[mapNum][i].worldY=game.tileSize*142;
+//        game.obj[mapNum][i]=new OBJ_Coin(game);
+//        game.obj[mapNum][i].worldX=game.tileSize*41;
+//        game.obj[mapNum][i].worldY=game.tileSize*142;
 //        i++;
-//        game.obj[mapNum][i]=new OBJ_Axe(game);
+//        game.obj[mapNum][i]=new OBJ_PowerPotion(game);
+//        game.obj[mapNum][i].worldX=game.tileSize*42;
+//        game.obj[mapNum][i].worldY=game.tileSize*142;
+//        i++;
+//        game.obj[mapNum][i]=new OBJ_Key(game);
 //        game.obj[mapNum][i].worldX=game.tileSize*42;
 //        game.obj[mapNum][i].worldY=game.tileSize*145;
-//        i++;
+////        i++;
 //        game.obj[mapNum][i]=new OBJ_Potion_Red(game);
 //        game.obj[mapNum][i].worldX=game.tileSize*44;
 //        game.obj[mapNum][i].worldY=game.tileSize*142;
@@ -69,18 +69,26 @@ public class AssetSetter {
 //        game.obj[mapNum][i].worldX=game.tileSize*42;
 //        game.obj[mapNum][i].worldY=game.tileSize*144;
 //        i++;
-        game.obj[mapNum][14]=new OBJ_Door(game);
-        game.obj[mapNum][14].worldX=game.tileSize * 28;
-        game.obj[mapNum][14].worldY=game.tileSize * 161;
+//        game.obj[mapNum][14]=new OBJ_Door(game);
+//        game.obj[mapNum][14].worldX=game.tileSize * 28;
+//        game.obj[mapNum][14].worldY=game.tileSize * 161;
 //        game.obj[mapNum][13]=new OBJ_PowerPotion(game);
 //        game.obj[mapNum][13].worldX=game.tileSize*47;
 //        game.obj[mapNum][13].worldY=game.tileSize*144;
 //        game.obj[mapNum][15]=new OBJ_Key(game);
 //        game.obj[mapNum][15].worldX=game.tileSize*46;
 //        game.obj[mapNum][15].worldY=game.tileSize*144;
-//        game.obj[mapNum][16]=new OBJ_Key(game);
-//        game.obj[mapNum][16].worldX=game.tileSize*45;
-//        game.obj[mapNum][16].worldY=game.tileSize*144;
+        game.obj[mapNum][16]=new OBJ_Key(game);
+        game.obj[mapNum][16].worldX=game.tileSize*45;
+        game.obj[mapNum][16].worldY=game.tileSize*144;
+        i=17;
+                game.obj[mapNum][i]=new OBJ_Key(game);
+        game.obj[mapNum][i].worldX=game.tileSize*43;
+        game.obj[mapNum][i].worldY=game.tileSize*143;
+        i++;              game.obj[mapNum][i]=new OBJ_Key(game);
+        game.obj[mapNum][i].worldX=game.tileSize*44;
+        game.obj[mapNum][i].worldY=game.tileSize*143;
+        i++;
 
        // i++;
 
@@ -205,17 +213,14 @@ i++;
         MyJDBC.addObject(userId,objecttype,Game.gameInstance.sword.itemCode,93,118,mapNum);
         MyJDBC.addObject(userId,objecttype,Game.gameInstance.redPotion.itemCode,144,149,mapNum);
         MyJDBC.addObject(userId,objecttype,Game.gameInstance.shieldWood.itemCode,144,149,mapNum);
-
-        Entity door= new OBJ_Door(Game.gameInstance);
-        //
-        MyJDBC.addObject(userId,objecttype,door.itemCode,45,142,mapNum);
-        MyJDBC.addObject(userId,objecttype,door.itemCode,46,142,mapNum);
-        MyJDBC.addObject(userId,objecttype,door.itemCode,47,142,mapNum);
-        door= new OBJ_Key(Game.gameInstance);
-        MyJDBC.addObject(userId,objecttype,door.itemCode,43,142,mapNum);
-        MyJDBC.addObject(userId,objecttype,door.itemCode,42,142,mapNum);
-        MyJDBC.addObject(userId,objecttype,door.itemCode,44,142,mapNum);
-
+        MyJDBC.addObject(userId,objecttype,Game.gameInstance.shieldWood.itemCode,67,126,mapNum);
+        MyJDBC.addObject(userId,objecttype,Game.gameInstance.speedPotion.itemCode,71,119,mapNum);
+        MyJDBC.addObject(userId,objecttype,Game.gameInstance.redPotion.itemCode,85,128,mapNum);
+        MyJDBC.addObject(userId,objecttype,Game.gameInstance.powerPotion.itemCode,76,128,mapNum);
+        MyJDBC.addObject(userId,objecttype,Game.gameInstance.coin.itemCode,77,118,mapNum);
+        MyJDBC.addObject(userId,objecttype,Game.gameInstance.coin.itemCode,47,128,mapNum);
+        MyJDBC.addObject(userId,objecttype,Game.gameInstance.key.itemCode,57,120,mapNum);
+        MyJDBC.addObject(userId,objecttype,Game.gameInstance.door.itemCode,28,161,mapNum);
 
 
         //FOR INTERACTIVE TILE

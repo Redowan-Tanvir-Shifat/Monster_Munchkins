@@ -152,6 +152,9 @@ public class Game extends Application {
     public Entity powerPotion = new OBJ_PowerPotion(this);
     public Entity speedPotion = new OBJ_SpeedPotion(this);
     public Entity defensePotion = new OBJ_DefensePotion(this);
+    public Entity door = new OBJ_Door(this);
+    public Entity coin = new OBJ_Coin(this);
+
 
 
 
@@ -300,6 +303,8 @@ public class Game extends Application {
         inventoryMapAddItem(powerPotion.itemCode, powerPotion);
         inventoryMapAddItem(speedPotion.itemCode, speedPotion);
         inventoryMapAddItem(defensePotion.itemCode, defensePotion);
+        inventoryMapAddItem(door.itemCode, door);
+        inventoryMapAddItem(coin.itemCode, coin);
         Pane mainGameroot = new Pane();
         mainGameroot.setOnMouseEntered(event -> {
             mainGameroot.setCursor(Cursor.HAND);

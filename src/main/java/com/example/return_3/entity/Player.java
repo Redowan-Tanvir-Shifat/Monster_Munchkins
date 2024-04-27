@@ -519,6 +519,7 @@ public class Player extends Entity{
             if(game.obj[game.currentMap][i].type==type_pickupOnly){
                 if (Objects.equals(game.obj[game.currentMap][i].name, "Coin")) {
                     game.playSoundEffect(1);
+
                 }
 
                 game.obj[game.currentMap][i].use(this);
@@ -543,6 +544,16 @@ public class Player extends Entity{
                 if(inventory.size()!=maxInventorySize){
                     //inventory.add(game.obj[game.currentMap][i]);
                     addToInventory(game.obj[game.currentMap][i]);
+                    if(game.obj[game.currentMap][i].itemCode==game.key.itemCode){
+                        game.key.itemCount++;
+                        //MyJDBC.updateInventory(playerId,game.key.itemCode,game.key.itemCount);
+                    }if(game.obj[game.currentMap][i].itemCode==game.sword.itemCode){
+                        game.sword.itemCount++;
+                        //MyJDBC.updateInventory(playerId,game.key.itemCode,game.key.itemCount);
+                    }if(game.obj[game.currentMap][i].itemCode==game.redPotion.itemCode){
+                        game.redPotion.itemCount++;
+                        //MyJDBC.updateInventory(playerId,game.key.itemCode,game.key.itemCount);
+                    }
                     // game.playSE(1);
                     text="Got a "+ game.obj[game.currentMap][i].name+" !";
                    // game.obj[game.currentMap][i].itemCount++;
@@ -552,6 +563,7 @@ public class Player extends Entity{
                 game.ui.uiMainGame.addMessage(text);
                 int row=game.obj[game.currentMap][i].worldY/game.tileSize;
                 int col=game.obj[game.currentMap][i].worldX/game.tileSize;
+
                 MyJDBC.updateObjectDestroyedStatus(playerId,game.currentMap,row,col,game.type_object,true);
                 game.obj[game.currentMap][i]=null;
 
