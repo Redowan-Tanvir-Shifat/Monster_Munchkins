@@ -150,24 +150,26 @@ public class Entity {
     public final int area_village=1;
     // <---------Type of Monster--------->
     public int monster_type;
-    public final int type_slime=1;
-    public final int type_pacman=2;
-    public final int type_spider=3;
-    public final int type_worm=4;
-    public final int type_arc=5;
-    public final int type_pacmanGreen=6;
-    public final int type_blueGhost=7;
-    public final int type_redOrc=8;
-    public final int type_redFly=9;
+    public final int type_slime = 1;
+    public final int type_pacman = 2;
+    public final int type_spider = 3;
+    public final int type_worm = 4;
+    public final int type_arc = 5;
+    public final int type_pacmanGreen = 6;
+    public final int type_blueGhost = 7;
+    public final int type_redOrc = 8;
+    public final int type_redFly = 9;
+    public final int type_skeleton = 10;
+    public final int type_spiderBrown = 11;
 
 
     // <---------Area of Monster--------->
     public int monster_area;
-    public final int area_village_1=1;
-    public final int area_village_2=2;
-    public final int area_townHall=3;
-    public final int area_monIsland_1=4;
-    public final int area_monIsland_2=5;
+    public final int area_th_1 = 1;
+    public final int area_th_2 = 2;
+    public final int area_th_3 = 3;
+    public final int area_th_4 = 4;
+    public final int area_th_5 = 5;
     public final int area_hill_1=6;
 
 
@@ -804,17 +806,16 @@ public class Entity {
             case area_village:uTool.areaSetup(this,36*game.tileSize,133*game.tileSize,12*game.tileSize,4*game.tileSize);   ;break;
 //            case area_village:        areaSetup(36*game.tileSize,133*game.tileSize,12*game.tileSize,4*game.tileSize);   ;break;
         }
-    }public void set_Monster_Area(){ // we use different area here  for different position
-        switch (monster_area){ //x is for map starting position and y is for map ending position
-            //width and height give us the expected recatngular area for us
-            case area_village_1:uTool.areaSetup(this,65*game.tileSize,156*game.tileSize,73*game.tileSize,29*game.tileSize);   ;break;
-            case area_village_2 :uTool.areaSetup(this,142*game.tileSize,158*game.tileSize,34*game.tileSize,16*game.tileSize) ;break;
-            case area_townHall :uTool.areaSetup(this,38*game.tileSize,120*game.tileSize,38*game.tileSize,50*game.tileSize) ;break;
-            case area_monIsland_1 :uTool.areaSetup(this,108*game.tileSize,14*game.tileSize,78*game.tileSize,21*game.tileSize) ;break;
-            case area_monIsland_2 :uTool.areaSetup(this,150*game.tileSize,36*game.tileSize,36*game.tileSize,27*game.tileSize) ;break;
-            case area_hill_1 :uTool.areaSetup(this,53*game.tileSize,19*game.tileSize,53*game.tileSize,45*game.tileSize) ;break;
-//            case : ;break;
-//            case : ;break;
+    }
+
+    public void set_Monster_Area(){    // we use different area here  for different position
+        switch (monster_area){    //x is for map starting position and y is for map ending position
+            // width and height give us the expected rectangular area for us
+            case area_th_1 : uTool.areaSetup(this,36*game.tileSize,113*game.tileSize,37*game.tileSize,48*game.tileSize);   ;break;
+            case area_th_2 : uTool.areaSetup(this,93*game.tileSize,119*game.tileSize,43*game.tileSize,19*game.tileSize) ;break;
+            case area_th_3 : uTool.areaSetup(this,139*game.tileSize,144*game.tileSize,47*game.tileSize,41*game.tileSize) ;break;
+            case area_th_4 : uTool.areaSetup(this,75*game.tileSize,156*game.tileSize,61*game.tileSize,29*game.tileSize) ;break;
+            case area_th_5 : uTool.areaSetup(this,16*game.tileSize,163*game.tileSize,57*game.tileSize,22*game.tileSize) ;break;
         }
     }
 

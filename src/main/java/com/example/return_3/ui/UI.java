@@ -111,5 +111,10 @@ public class UI {
                 uiMainGame.drawTradeScreen();
             }
 
+            // <----------Settings State----------->
+            if (game.gameState == game.settingsState) {
+                uiMainGame.drawSettingsScreen();
+            }
+
     }
 }

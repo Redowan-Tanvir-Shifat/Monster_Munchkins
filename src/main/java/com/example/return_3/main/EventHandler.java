@@ -237,8 +237,7 @@ public class EventHandler {
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
-
-                System.out.println("welcome to Game Center");
+                //System.out.println("welcome to Game Center");
             }
 
 
@@ -252,8 +251,8 @@ public class EventHandler {
             // <---------Hospital--------->
             if(hit(gp.currentMap, 154, 135, "any") || hit(0,155,135,"any")) {
                 gp.gameState = gp.hospitalState;
-                System.out.println("Hit");
                 canTouchEvent = false;
+                //System.out.println("Hit Hospital");
             }
 
 
@@ -296,6 +295,7 @@ public class EventHandler {
 
             }
 
+            // <---------------------Monster Island--------------------->
             if(hit(gp.currentMap,145,35,"up") || hit(gp.currentMap,146,35,"up")){
                 gp.stopMusic();
                 gp.playMusic(15);

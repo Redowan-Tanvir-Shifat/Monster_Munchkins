@@ -93,6 +93,61 @@ public class KeyHandler {
         }else if (game.gameState == game.mapState) {
             mapState(code);
         }
+
+
+        else if (game.gameState == game.settingsState) {
+            settingsState(code);
+        }
+    }
+
+    private void settingsState(KeyCode code) {
+        if(code== KeyCode.W || code== KeyCode.UP){
+            game.ui.uiMainGame.commandNum--;
+            game.playSoundEffect(9);
+            if(game.ui.uiMainGame.commandNum < 0){
+                game.ui.uiMainGame.commandNum = 2;
+            }
+        }
+        if(code== KeyCode.S || code== KeyCode.DOWN){
+            game.ui.uiMainGame.commandNum++;
+            game.playSoundEffect(9);
+            if(game.ui.uiMainGame.commandNum > 2){
+                game.ui.uiMainGame.commandNum=0;
+            }
+        }
+        if (code == KeyCode.ENTER) {
+            if (game.ui.uiMainGame.commandNum == 0) {
+
+            }
+            if (game.ui.uiMainGame.commandNum == 1) {
+
+            }
+            if (game.ui.uiMainGame.commandNum == 2) {
+                game.gameState = game.menuBarState;
+            }
+        }
+        if (code == KeyCode.A || code == KeyCode.LEFT) {
+            if (game.ui.uiMainGame.commandNum == 0 && game.music.volumeScale > 0) {
+                game.music.volumeScale--;
+                game.music.checkVolume();
+                game.playSoundEffect(9);
+            }
+            if (game.ui.uiMainGame.commandNum == 1 && game.soundEffect.volumeScale > 0) {
+                game.soundEffect.volumeScale--;
+                game.playSoundEffect(9);
+            }
+        }
+        if (code == KeyCode.D || code == KeyCode.RIGHT) {
+            if (game.ui.uiMainGame.commandNum == 0 && game.music.volumeScale < 5) {
+                game.music.volumeScale++;
+                game.music.checkVolume();
+                game.playSoundEffect(9);
+            }
+            if (game.ui.uiMainGame.commandNum == 1 && game.soundEffect.volumeScale < 5) {
+                game.soundEffect.volumeScale++;
+                game.playSoundEffect(9);
+            }
+        }
     }
 
     private void hospitalState(KeyCode code) {
@@ -100,7 +155,7 @@ public class KeyHandler {
             game.ui.uiMainGame.commandNum--;
             game.playSoundEffect(9);
             if(game.ui.uiMainGame.commandNum < 0){
-                game.ui.uiMainGame.commandNum = 1;
+                game.ui.uiMainGame.commandNum = 3;
             }
         }
         if(code== KeyCode.S || code== KeyCode.DOWN){
@@ -239,35 +294,24 @@ public class KeyHandler {
             game.ui.uiMainGame.commandNum--;
             game.playSoundEffect(9);
             if(game.ui.uiMainGame.commandNum < 0){
-                game.ui.uiMainGame.commandNum = 2;
+                game.ui.uiMainGame.commandNum = 3;
             }
         }
         if(code== KeyCode.S || code== KeyCode.DOWN){
             game.ui.uiMainGame.commandNum++;
             game.playSoundEffect(9);
-            if(game.ui.uiMainGame.commandNum > 2){
+            if(game.ui.uiMainGame.commandNum > 3){
                 game.ui.uiMainGame.commandNum=0;
             }
         }
         if (code == KeyCode.ENTER) {
             if (game.ui.uiMainGame.commandNum == 0) {
-                game.gameState = game.playState;
-                game.player.setDefaultPositions();
+
             }
             if (game.ui.uiMainGame.commandNum == 1) {
-                MyJDBC.updateUser(game.player);
-                for ( Entity item: game.player.inventory) {
-                    int itemCode = item.itemCode;
-                    int count = item.itemCount;
-                    MyJDBC.updateInventory(game.user.getUserId(), itemCode, count);
-                    System.out.println("after updated:");
-                    System.out.println("itemName: " + item.name + "|| itemCount: " + count);
-                }
-                game.stopMusic();
-                game.logout();
-
-
-            }if (game.ui.uiMainGame.commandNum == 2) {
+                game.gameState = game.settingsState;
+            }
+            if (game.ui.uiMainGame.commandNum == 2) {
                 MyJDBC.updateUser(game.player);
                 for ( Entity item: game.player.inventory) {
                     int itemCode=item.itemCode;
@@ -278,6 +322,18 @@ public class KeyHandler {
                 }
                 game.stopMusic();
                 Game.exitGame();
+            }
+            if (game.ui.uiMainGame.commandNum == 3) {
+                MyJDBC.updateUser(game.player);
+                for ( Entity item: game.player.inventory) {
+                    int itemCode = item.itemCode;
+                    int count = item.itemCount;
+                    MyJDBC.updateInventory(game.user.getUserId(), itemCode, count);
+                    System.out.println("after updated:");
+                    System.out.println("itemName: " + item.name + "|| itemCount: " + count);
+                }
+                game.stopMusic();
+                game.logout();
             }
         }
     }

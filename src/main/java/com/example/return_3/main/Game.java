@@ -67,6 +67,7 @@ public class Game extends Application {
     public final int hospitalState = 9;
     public final int titleState = 10;
     public final int messageState=11;
+    public final int settingsState=12;
 
     // $$$$$$$$$  GAME STATUS $$$$$$$$$
     public int gameStatus;
@@ -134,8 +135,8 @@ public class Game extends Application {
     public ArrayList<Entity> particleList = new ArrayList<>();
 
     //For Sound
-    private Sound music = new Sound();
-    private Sound soundEffect = new Sound();
+    public Sound music = new Sound();
+    public Sound soundEffect = new Sound();
 
 
     //For inventory
