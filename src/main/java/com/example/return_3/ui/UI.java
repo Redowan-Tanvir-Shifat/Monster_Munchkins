@@ -23,46 +23,20 @@ public class UI {
     public UI_MainGame uiMainGame;
     //Entity entity;
     GraphicsContext gc;
-//    Font arial_40, arial_80B;
-    //Image heartFull, starImage, energyImage, coinImage;
-    //public boolean messageOn=false;
 
-    //ArrayList<String> message = new ArrayList<>();
-    //ArrayList<Integer> messageCounter = new ArrayList<>();
-
-    //public boolean gameFinished=false; // if game is finished then the message will be shown
-    //public String currentDialogue=""; //for setting the dialogue
-    //public int commandNum = 0; // this is for showing our menu specific commands
-
-
-//    public Entity heart;
-//    int counter=0;
-
-//    public Entity npc;
-    //
 
     //CONSTRUCTOR START
 
     public UI(Game game){
         this.game = game;
         this.uiMainGame = new UI_MainGame(game);
-//        arial_40 = new Font("Arial",40);
-//        arial_80B = new Font("Arial",80);
-//        UtilityTool uTool= new UtilityTool();
-//        heart = new OBJ_Heart(game);
-//        heartFull = heart.image1;
-//        starImage = uTool.loadImage("/objects/star1.png",game.tileSize+10,game.tileSize+10);
-//        energyImage = uTool.loadImage("/objects/energy.png",game.tileSize-7,game.tileSize-7);
-//        coinImage = uTool.loadImage("/objects/coin3.png",game.tileSize-7,game.tileSize-7);
+
 
     }
 
     public void draw(GraphicsContext gc) {
         //we did this because we need to use this gc in other methods also
         this.gc = gc;
-
-//        gc.setFont(arial_40);
-//        gc.setFill(Color.WHITE);
 
 
             // <------PLAY STATE------>
@@ -114,6 +88,9 @@ public class UI {
             // <----------Settings State----------->
             if (game.gameState == game.settingsState) {
                 uiMainGame.drawSettingsScreen();
+            } // <----------Guideline State----------->
+            if (game.gameState == game.guidelineState) {
+                uiMainGame.guidelineScreen();
             }
 
     }

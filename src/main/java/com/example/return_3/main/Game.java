@@ -68,6 +68,7 @@ public class Game extends Application {
     public final int titleState = 10;
     public final int messageState=11;
     public final int settingsState=12;
+    public final int guidelineState=13;
 
     // $$$$$$$$$  GAME STATUS $$$$$$$$$
     public int gameStatus;
@@ -76,6 +77,12 @@ public class Game extends Application {
     public final int gameSpaceInvadersStatus=2;
     public final int gameSnakeyStatus=3;
     public final int gameTicTacToeStatus=4;
+
+
+    //BOOLEAN
+    public final int guidelineScene=2;
+    public boolean isFirstTime= true;
+
 
     //TYPE
 
@@ -326,7 +333,11 @@ public class Game extends Application {
         mainGameScene=gameScene;
         primaryStage.setScene(gameScene);
         //When the game is starting then gameState will be PlayState
+        if(isFirstTime){
+            gameState=guidelineState;
+        }else{
         gameState=playState;
+        }
 
     }
 

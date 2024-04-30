@@ -94,9 +94,26 @@ public class KeyHandler {
             mapState(code);
         }
 
-
+// Handle settingState
         else if (game.gameState == game.settingsState) {
             settingsState(code);
+        }
+        //Handle
+        else if (game.gameState == game.guidelineState) {
+            guidelineState(code);
+        }
+    }
+
+    private void guidelineState(KeyCode code) {
+        if(code== KeyCode.ESCAPE){
+            if(game.ui.uiMainGame.commandNum > 0){
+                game.ui.uiMainGame.commandNum--;
+            }
+        }if(code== KeyCode.ENTER){
+            game.ui.uiMainGame.commandNum++;
+            if(game.ui.uiMainGame.commandNum >=game.guidelineScene){
+                game.gameState=game.playState;
+            }
         }
     }
 
@@ -306,7 +323,7 @@ public class KeyHandler {
         }
         if (code == KeyCode.ENTER) {
             if (game.ui.uiMainGame.commandNum == 0) {
-
+                game.gameState = game.guidelineState;
             }
             if (game.ui.uiMainGame.commandNum == 1) {
                 game.gameState = game.settingsState;

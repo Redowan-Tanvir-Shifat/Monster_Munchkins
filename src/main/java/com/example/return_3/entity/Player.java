@@ -624,7 +624,7 @@ public class Player extends Entity{
             if(selectedItem.type==type_consumable){
                 //WE are gonna use this later
                 if(selectedItem.use(this)){
-
+                MyJDBC.removeItemFromInventory(playerId,selectedItem.itemCode);
                 inventory.remove(itemIndex);
                 }
             }

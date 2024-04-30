@@ -27,7 +27,7 @@ public class UI_MainGame {
     Entity entity;
     GraphicsContext gc;
     Font titleFont, smallFont,mediumFont,largeFont,smallFontBold,mediumFontBold,largeFontBold;
-    Image heartFull, starImage, energyImage, coinImage, playerImage;
+    Image heartFull, starImage, energyImage, coinImage, playerImage,guideline1,guideline2;
     public boolean messageOn = false;
 
     ArrayList<String> message = new ArrayList<>();
@@ -78,9 +78,13 @@ public class UI_MainGame {
         UtilityTool uTool= new UtilityTool();
         heart = new OBJ_Heart(game);
         heartFull = heart.image1;
-        starImage = uTool.loadImage("/objects/star1.png",game.tileSize+10,game.tileSize+10);
+        guideline2 = uTool.loadImage("/objects/guideline_2.png",game.screenWidth,game.screenHeight);
         energyImage = uTool.loadImage("/objects/energy.png",game.tileSize-7,game.tileSize-7);
+        energyImage = uTool.loadImage("/objects/star1.png",game.tileSize-7,game.tileSize-7);
+        guideline1 = uTool.loadImage("/objects/guideline_1.png",game.screenWidth,game.screenHeight);
         playerImage = uTool.loadImage("/player/boy_down_1.png", 2*game.tileSize, 2*game.tileSize);
+
+
         Entity coin= new OBJ_Coin(game);
         coinImage = coin.down1;
         cream= Color.rgb(246,202,156);
@@ -348,6 +352,14 @@ public class UI_MainGame {
         gc.fillRect(textX, textY, volumeWidth, 24);
 
 
+    }
+
+    public void guidelineScreen(){
+        if(commandNum==0){
+        gc.drawImage(guideline1,0,0);
+        }if(commandNum==1){
+        gc.drawImage(guideline2,0,0);
+        }
     }
 
     public void menuBarScreen() {
