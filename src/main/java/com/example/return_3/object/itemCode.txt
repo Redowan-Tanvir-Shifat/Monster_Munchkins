@@ -3,6 +3,9 @@ sword - 101
 axe - 102
 shield(wood) - 103
 shield(blue) - 104
+sword(special) - 105
+sword(fire) - 106
+fireBall - 107
 
 
 Food starts with 200
@@ -10,6 +13,10 @@ apple - 201
 banana - 202
 berries - 203
 orange - 204
+chese - 205
+egg - 206
+fish - 207
+meat - 208
 
 objects which will be not available in shop
 starts with 300

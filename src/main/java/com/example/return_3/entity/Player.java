@@ -544,16 +544,8 @@ public class Player extends Entity{
                 if(inventory.size()!=maxInventorySize){
                     //inventory.add(game.obj[game.currentMap][i]);
                     addToInventory(game.obj[game.currentMap][i]);
-                    if(game.obj[game.currentMap][i].itemCode==game.key.itemCode){
-                        game.key.itemCount++;
-                        //MyJDBC.updateInventory(playerId,game.key.itemCode,game.key.itemCount);
-                    }if(game.obj[game.currentMap][i].itemCode==game.sword.itemCode){
-                        game.sword.itemCount++;
-                        //MyJDBC.updateInventory(playerId,game.key.itemCode,game.key.itemCount);
-                    }if(game.obj[game.currentMap][i].itemCode==game.redPotion.itemCode){
-                        game.redPotion.itemCount++;
-                        //MyJDBC.updateInventory(playerId,game.key.itemCode,game.key.itemCount);
-                    }
+                    MyJDBC.addItemToInventory(playerId,game.obj[game.currentMap][i].itemCode);
+
                     // game.playSE(1);
                     text="Got a "+ game.obj[game.currentMap][i].name+" !";
                    // game.obj[game.currentMap][i].itemCount++;

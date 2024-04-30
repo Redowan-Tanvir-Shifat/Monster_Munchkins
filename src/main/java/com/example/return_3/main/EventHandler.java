@@ -223,14 +223,6 @@ public class EventHandler {
                     canTouchEvent = false;
                     MyJDBC.updateUser(gp.player);
 
-                    for ( Entity item: gp.player.inventory) {
-                        int itemCode=item.itemCode;
-                        int count=item.itemCount;
-                        MyJDBC.updateInventory(gp.user.getUserId(),itemCode,count);
-                        System.out.println("after updated:");
-                        System.out.println("itemName: "+item.name+"|| itemCount: "+count);
-                    }
-
                 } catch (IOException e) {
                     e.printStackTrace();
                     System.err.println("Error loading gameCenter.fxml: " + e.getMessage());

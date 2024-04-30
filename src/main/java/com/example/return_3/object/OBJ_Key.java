@@ -24,13 +24,16 @@ public class OBJ_Key extends Entity {
             Entity entity2=game.obj[game.currentMap][objectIndex];
             int row=entity2.worldY/game.tileSize;
             int col=entity2.worldX/game.tileSize;
-            MyJDBC.updateObjectDestroyedStatus(playerId,game.currentMap,row,col,game.type_object,true);
+            MyJDBC.updateObjectDestroyedStatus(game.player.playerId,game.currentMap,row,col,game.type_object,true);
+            System.out.println("player id"+playerId);
+            System.out.println(game.currentMap);
+            System.out.println(row);
+            System.out.println(col);
+            System.out.println(game.type_object);
+            System.out.println(true);
             entity2.down1=entity2.image2;
             entity2.collision=false;
             entity2.destroyed=true;
-
-
-
             return true;
         }
         else {

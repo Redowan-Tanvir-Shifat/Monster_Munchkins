@@ -50,6 +50,7 @@ public class Entity {
 
 
     // <--------Boolean-------->
+
     public boolean collision = false;
     public boolean collisionOn = false;
     public boolean invincible = false;
@@ -63,6 +64,11 @@ public class Entity {
     public boolean chatOnStatus = false;
     public boolean knockBack = false;
     public boolean offBalance;
+
+    public boolean speedChange=false;
+
+
+
 
     //For SpaceInvadors
     public boolean destroyed=false;

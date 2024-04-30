@@ -2,6 +2,7 @@ package com.example.return_3.main;
 
 import com.example.return_3.entity.Entity;
 import com.example.return_3.object.*;
+import com.example.return_3.object.food.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.PixelWriter;
@@ -50,14 +51,51 @@ public class UtilityTool {
             entity.direction="up";
         }
     }
-    public static Entity inventoryItem(int itemCode,int itemCount){
-        Entity item = Game.gameInstance.inventoryMap.get(itemCode);
-
-        // If the item is found in the inventory
-        if (item != null) {
-            item.itemCount=itemCount;
+    public static Entity getInventoryItem(int itemCode){
+        Game game = Game.gameInstance;
+        Entity item=null;
+        if(itemCode==101){
+            item= new OBJ_Sword_Normal(game);
+        } else if (itemCode==102) {
+            item= new OBJ_Axe(game);
+        } else if (itemCode==103) {
+            item= new OBJ_Shield_Wood(game);
+        } else if (itemCode==104) {
+            item= new OBJ_Shield_Blue(game);
+        } else if (itemCode==105) {
+            item= new OBJ_Sword_Special(game);
+        } else if (itemCode==106) {
+            item= new OBJ_FireSword(game);
+        } else if (itemCode==107) {
+            item= new OBJ_Fireball(game);
+        } else if (itemCode==201) {
+            item= new OBJ_Apple(game);
+        } else if (itemCode==202) {
+            item= new OBJ_Banana(game);
+        } else if (itemCode==203) {
+            item= new OBJ_Berries(game);
+        } else if (itemCode==204) {
+            item= new OBJ_Orange(game);
+        } else if (itemCode==205) {
+            item= new OBJ_Cheese(game);
+        } else if (itemCode==206) {
+            item= new OBJ_Egg(game);
+        } else if (itemCode==207) {
+            item= new OBJ_Fish(game);
+        } else if (itemCode==208) {
+            item= new OBJ_Meat(game);
+        } else if (itemCode==303) {
+            item= new OBJ_Potion_Red(game);
+        }  else if (itemCode==304) {
+            item= new OBJ_Key(game);
+        }  else if (itemCode==305) {
+            item= new OBJ_PowerPotion(game);
+        }  else if (itemCode==306) {
+            item= new OBJ_DefensePotion(game);
+        }  else if (itemCode==307) {
+            item= new OBJ_SpeedPotion(game);
         }
-            return item;
+        return item;
     }
 
 //    public static void updateItemInventory(
