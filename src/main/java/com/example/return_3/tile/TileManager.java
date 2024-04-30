@@ -198,18 +198,18 @@ public class TileManager {
 //                y+=gp.tileSize;
             }
         }
-        if (drawPath==true){
-            gc.setFill(Color.rgb(255, 0, 0, .20));
-            //Color c=Color.BLACK;
-            //gc.setFill(c);
-            for(int i=0;i<game.pFinder.pathList.size();i++){
-                int worldX=game.pFinder.pathList.get(i).col*game.tileSize;
-                int worldY=game.pFinder.pathList.get(i).row*game.tileSize;
-                int screenY=worldY-game.player.worldY+game.player.screenY;
-                int screenX=worldX-game.player.worldX+game.player.screenX;
-
-                gc.fillRect(screenX,screenY,game.tileSize,game.tileSize);
-            }
-        }
+//        if (drawPath==true){
+//            gc.setFill(Color.rgb(255, 0, 0, .20));
+//            //Color c=Color.BLACK;
+//            //gc.setFill(c);
+//            for(int i=0;i<game.pFinder.pathList.size();i++){
+//                int worldX=game.pFinder.pathList.get(i).col*game.tileSize;
+//                int worldY=game.pFinder.pathList.get(i).row*game.tileSize;
+//                int screenY=worldY-game.player.worldY+game.player.screenY;
+//                int screenX=worldX-game.player.worldX+game.player.screenX;
+//
+//                gc.fillRect(screenX,screenY,game.tileSize,game.tileSize);
+//            }
+//        }
     }
 }
