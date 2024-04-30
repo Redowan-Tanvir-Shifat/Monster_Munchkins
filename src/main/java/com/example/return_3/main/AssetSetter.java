@@ -2,10 +2,7 @@ package com.example.return_3.main;
 
 
 import com.example.return_3.db.MyJDBC;
-import com.example.return_3.entity.Entity;
-import com.example.return_3.entity.NPC_School;
-import com.example.return_3.entity.NPC_Trade;
-import com.example.return_3.entity.NPC_Wizard;
+import com.example.return_3.entity.*;
 import com.example.return_3.interactiveTile.CuttableTree;
 import com.example.return_3.monster.*;
 import com.example.return_3.npc.*;
@@ -105,6 +102,10 @@ public class AssetSetter {
         game.interactNpc[mapNum][i]= new NPC_Welcome(game);
         game.interactNpc[mapNum][i].worldX=game.tileSize*81;
         game.interactNpc[mapNum][i].worldY=game.tileSize*117;
+        i++;
+        game.interactNpc[mapNum][i]= new SignBoard(game);
+        game.interactNpc[mapNum][i].worldX=game.tileSize*82;
+        game.interactNpc[mapNum][i].worldY=game.tileSize*116;
         i++;
         game.npc[mapNum][i] = new NPC_School(game);
         game.npc[mapNum][i].worldX = game.tileSize * 40;

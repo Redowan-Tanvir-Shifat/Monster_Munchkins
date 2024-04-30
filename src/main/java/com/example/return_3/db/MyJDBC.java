@@ -302,30 +302,6 @@ public class MyJDBC {
     }
 
 
-    public static void updateInventory(int userId, int itemCode, int count) {
-        try {
-            Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
-            PreparedStatement preparedStatement = connection.prepareStatement(
-                    "INSERT INTO Inventory (user_id, itemCode, count) VALUES (?, ?, ?) " +
-                            "ON DUPLICATE KEY UPDATE count = VALUES(count)"
-            );
-            preparedStatement.setInt(1, userId);
-            preparedStatement.setInt(2, itemCode);
-            preparedStatement.setInt(3, count);
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-
-
-
-
-
-
-
 
 
 
