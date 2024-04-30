@@ -6,9 +6,9 @@ import java.net.URL;
 public class Sound {
     private Clip clip;
     private URL[] soundUrls = new URL[20];
-    private FloatControl gainControl;
-    private float volume = 0.6f; // Default volume
-    private int volumeScale = 3;
+    FloatControl fc;
+    public float volume = 0.6f; // Default volume
+    public int  volumeScale = 3;
 
     public Sound() {
         // Initialize sound URLs
@@ -30,8 +30,6 @@ public class Sound {
         soundUrls[14] = getClass().getResource("/sound/newSword.wav");
         soundUrls[15] = getClass().getResource("/sound/monsterIsland.wav");
 
-        // Set default volume
-        volume = volumeScaleToFloat(volumeScale);
     }
 
     public void setFile(int i) {
@@ -39,8 +37,8 @@ public class Sound {
             AudioInputStream ais = AudioSystem.getAudioInputStream(soundUrls[i]);
             clip = AudioSystem.getClip();
             clip.open(ais);
-            gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-            adjustVolume(); // Adjust volume when loading the sound file
+            fc = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            checkVolume();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -58,44 +56,17 @@ public class Sound {
         clip.stop();
     }
 
-    public void increaseVolume() {
-        if (volumeScale < 5) {
-            volumeScale++;
-            volume = volumeScaleToFloat(volumeScale);
-            adjustVolume();
+    public void checkVolume() {
+        switch (volumeScale){
+            case 0: volume = -80f; break;
+            case 1: volume = -20f; break;
+            case 2: volume = -12f; break;
+            case 3: volume = -5f; break;
+            case 4: volume = 1f; break;
+            case 5: volume = 6f; break;
         }
+        fc.setValue(volume);
     }
 
-    public void decreaseVolume() {
-        if (volumeScale > 0) {
-            volumeScale--;
-            volume = volumeScaleToFloat(volumeScale);
-            adjustVolume();
-        }
-    }
 
-    private void adjustVolume() {
-        try {
-            float dB = volumeToDecibel(volume);
-            gainControl.setValue(dB);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private float volumeToDecibel(float volume) {
-        return (float) (Math.log(volume) / Math.log(10) * 20);
-    }
-
-    private float volumeScaleToFloat(int volumeScale) {
-        switch (volumeScale) {
-            case 0: return 0.0001f; // to avoid -Infinity
-            case 1: return 0.1f;
-            case 2: return 0.316f;
-            case 3: return 0.6f;
-            case 4: return 0.8f;
-            case 5: return 1.0f;
-            default: return 1.0f;
-        }
-    }
 }

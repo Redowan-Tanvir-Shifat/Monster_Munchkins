@@ -639,10 +639,12 @@ public static void addMonster(int userId, int monsterType, int areaType, int col
                 Entity monster = null;
                 // Determine the type of monster and create an instance accordingly
                 if (monsterType == entity00.type_pacman) {
-                    monster = new Mon_RedFly(game,areaType);
+                    monster = new Mon_Pac(game,areaType);
                 } else if (monsterType == entity00.type_spider) {
                     monster = new Mon_Spider(game,areaType);
-                } else if (monsterType == entity00.type_arc) {
+                } else if (monsterType == entity00.type_spiderBrown) {
+                    monster = new Mon_SpiderBrown(game, areaType);
+                }else if (monsterType == entity00.type_arc) {
                     monster = new Mon_ORC(game,areaType);
                 } else if (monsterType == entity00.type_redOrc) {
                     monster = new Mon_RedORC(game,areaType);
@@ -654,6 +656,10 @@ public static void addMonster(int userId, int monsterType, int areaType, int col
                     monster = new Mon_PacGreen(game,areaType);
                 }else if (monsterType == entity00.type_blueGhost) {
                     monster = new Mon_BlueGhost(game,areaType);
+                }else if (monsterType == entity00.type_skeleton) {
+                    monster = new Mon_Skeleton(game, areaType);
+                }else if (monsterType == entity00.type_redFly) {
+                    monster = new Mon_RedFly(game, areaType);
                 }
 
                 // Place the monster in the game world

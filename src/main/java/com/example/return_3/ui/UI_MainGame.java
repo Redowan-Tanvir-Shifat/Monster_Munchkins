@@ -251,7 +251,7 @@ public class UI_MainGame {
 
         // Menu...
         gc.setFill(Color.rgb(255, 255, 255));
-        gc.setFont(mediumFontBold);
+        gc.setFont(largeFontBold);
 
         int calCoin = (game.player.maxLife - game.player.life) * 20;
         text = "You need " + calCoin + " coin to heal yourself.";
@@ -259,34 +259,96 @@ public class UI_MainGame {
         textY = game.tileSize * 6;
         gc.fillText(text, textX, textY);
         if (commandNum == 0) {
-            gc.fillText(">", textX-game.tileSize, textY);
+            gc.fillText("-->", textX-game.tileSize, textY);
         }
 
         text = "You need 2000 coin to increase 10% of life.";
         textX = game.tileSize * 8;
-        textY = game.tileSize * 7;
+        textY = game.tileSize * 8;
         gc.fillText(text, textX, textY);
         if (commandNum == 1) {
-            gc.fillText(">", textX-game.tileSize, textY);
+            gc.fillText("-->", textX-game.tileSize, textY);
         }
 
         text = "You need 1000 coin to get 10% energy";
         textX = game.tileSize * 8;
-        textY = game.tileSize * 8;
+        textY = game.tileSize * 10;
         gc.fillText(text, textX, textY);
         if (commandNum == 2) {
-            gc.fillText(">", textX-game.tileSize, textY);
+            gc.fillText("-->", textX-game.tileSize, textY);
         }
 
         text = "Back";
         textX = game.tileSize * 8;
-        textY = game.tileSize * 9;
+        textY = game.tileSize * 13;
         gc.fillText(text, textX, textY);
         if (commandNum == 3) {
-            gc.fillText(">", textX-game.tileSize, textY);
+            gc.fillText("-->", textX-game.tileSize, textY);
         }
     }
 
+    public void drawSettingsScreen() {
+        // Create a Frame...
+        final int frameX = game.tileSize * 5;
+        final int frameY = game.tileSize * 2;
+        final int frameWidth = game.tileSize * 20;
+        final int frameHeight = game.tileSize * 14;
+
+        drawSubWindow(frameX, frameY, frameWidth, frameHeight);
+
+        String text = "Settings";
+        int textX = getXForCenteredText(text);
+        int textY = frameY + game.tileSize + 16;
+
+        gc.setFill(Color.rgb(255, 255, 255));
+        gc.setFont(titleFont);
+        gc.fillText(text, textX, textY);
+
+
+        gc.setFill(Color.rgb(255, 255, 255));
+        gc.setFont(largeFontBold);
+        text = "BG Music";
+        textX = game.tileSize * 9;
+        textY = game.tileSize * 6;
+        gc.fillText(text, textX, textY);
+        if (commandNum == 0) {
+            gc.fillText("-->", textX-game.tileSize-8, textY);
+        }
+
+        text = "Sound Effect";
+        textX = game.tileSize * 9;
+        textY = game.tileSize * 8;
+        gc.fillText(text, textX, textY);
+        if (commandNum == 1) {
+            gc.fillText("-->", textX-game.tileSize-8, textY);
+        }
+
+        text = "Back";
+        textX = game.tileSize * 9;
+        textY = game.tileSize * 13;
+        gc.fillText(text, textX, textY);
+        if (commandNum == 2) {
+            gc.fillText("-->", textX-game.tileSize-8, textY);
+        }
+
+        textX = game.tileSize * 17;
+        textY = game.tileSize * 6 - 24;
+        //gc.fillRect(textX, textY, 120, 24);
+        gc.setStroke(Color.WHITE);
+        gc.strokeRect(textX, textY, 150, 24); // 150/5 = 30...
+        int volumeWidth = 30 * game.music.volumeScale;
+        gc.fillRect(textX, textY, volumeWidth, 24);
+
+        textX = game.tileSize * 17;
+        textY = game.tileSize * 8 - 24;
+        //gc.fillRect(textX, textY, 120, 24);
+        gc.setStroke(Color.WHITE);
+        gc.strokeRect(textX, textY, 150, 24);
+        volumeWidth = 30 * game.soundEffect.volumeScale;
+        gc.fillRect(textX, textY, volumeWidth, 24);
+
+
+    }
 
     public void menuBarScreen() {
         // Create a Frame...
@@ -310,26 +372,36 @@ public class UI_MainGame {
         gc.setFill(Color.rgb(255, 255, 255));
         gc.setFont(largeFontBold);
 
-        text = "Back To Town hall";
+        text = "Guideline";
         textX = getXForCenteredText(text);
         textY = game.tileSize * 6;
         gc.fillText(text, textX, textY);
         if (commandNum == 0) {
-            gc.fillText(">", textX-game.tileSize, textY);
+            gc.fillText("-->", textX-game.tileSize-8, textY);
         }
 
-        text = "Log Out";
-        textX = getXForCenteredText(text);
-        textY = game.tileSize * 7;
-        gc.fillText(text, textX, textY);
-        if (commandNum == 1) {
-            gc.fillText(">", textX-game.tileSize, textY);
-        }text = "Exit Game";
+        text = "Settings";
         textX = getXForCenteredText(text);
         textY = game.tileSize * 8;
         gc.fillText(text, textX, textY);
+        if (commandNum == 1) {
+            gc.fillText("-->", textX-game.tileSize-8, textY);
+        }
+
+        text = "Exit Game";
+        textX = getXForCenteredText(text);
+        textY = game.tileSize * 10;
+        gc.fillText(text, textX, textY);
         if (commandNum == 2) {
-            gc.fillText(">", textX-game.tileSize, textY);
+            gc.fillText("-->", textX-game.tileSize-8, textY);
+        }
+
+        text = "Logout";
+        textX = getXForCenteredText(text);
+        textY = game.tileSize * 13;
+        gc.fillText(text, textX, textY);
+        if (commandNum == 3) {
+            gc.fillText("-->", textX-game.tileSize-8, textY);
         }
     }
 
@@ -340,7 +412,6 @@ public class UI_MainGame {
         final int frameWidth = game.tileSize * 6;
         final int frameHeight = game.tileSize * 12;
 
-        Color c = Color.rgb(255, 209, 184);
         drawSubWindow(frameX, frameY, frameWidth, frameHeight);
 
         // Text....
@@ -817,9 +888,7 @@ public class UI_MainGame {
         gc.setFill(c);
         gc.fillRoundRect(x,y,width,height,35,35);
 
-        //c=Color.WHITE;
-        // gc.setFill(c);
-        //gc.setStroke(Color.WHITE);
+        gc.setStroke(Color.rgb(170, 60, 60));
 
 
         gc.setLineWidth(5); // Setting stroke width

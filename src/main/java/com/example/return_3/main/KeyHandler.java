@@ -57,7 +57,7 @@ public class KeyHandler {
 
             }
         }
-
+        
         //DIALOGUE state
         else if(game.gameState == game.dialogueState) {
             dialogueState(code);
@@ -316,7 +316,7 @@ public class KeyHandler {
                 for ( Entity item: game.player.inventory) {
                     int itemCode=item.itemCode;
                     int count=item.itemCount;
-                    MyJDBC.updateInventory(game.user.getUserId(),itemCode,count);
+                MyJDBC.updateInventory(game.user.getUserId(),itemCode,count);
                     System.out.println("after updated:");
                     System.out.println("itemName: "+item.name+"|| itemCount: "+count);
                 }
@@ -364,7 +364,7 @@ public class KeyHandler {
         if(code== KeyCode.ENTER ){ //VK_ENTER means if user press ENTER then
 
 
-            // game.ui.uiMainGame.npc.dialogueIndex++;
+           // game.ui.uiMainGame.npc.dialogueIndex++;
             if(game.ui.uiMainGame.npc.dialogue[game.ui.uiMainGame.npc.dialogueIndex]==null){
 //                game.isDialogueToGameState=true;
                 game.gameState=game.playState;
