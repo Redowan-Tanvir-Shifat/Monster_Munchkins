@@ -316,7 +316,6 @@ public class KeyHandler {
                 for ( Entity item: game.player.inventory) {
                     int itemCode=item.itemCode;
                     int count=item.itemCount;
-                MyJDBC.updateInventory(game.user.getUserId(),itemCode,count);
                     System.out.println("after updated:");
                     System.out.println("itemName: "+item.name+"|| itemCount: "+count);
                 }
@@ -328,7 +327,6 @@ public class KeyHandler {
                 for ( Entity item: game.player.inventory) {
                     int itemCode = item.itemCode;
                     int count = item.itemCount;
-                    MyJDBC.updateInventory(game.user.getUserId(), itemCode, count);
                     System.out.println("after updated:");
                     System.out.println("itemName: " + item.name + "|| itemCount: " + count);
                 }

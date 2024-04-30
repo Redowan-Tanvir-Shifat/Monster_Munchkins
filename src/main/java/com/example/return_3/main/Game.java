@@ -126,7 +126,7 @@ public class Game extends Application {
     public Entity obj[][]= new Entity[maxMap][20];
     public Entity npc[][]= new Entity[maxMap][100]; //set the number of 10 NPC Number
     public Entity interactNpc[][]= new Entity[maxMap][10]; //set the number of 10 NPC Number
-    public Entity[][] monster = new Entity[maxMap][1000];
+    public Entity[][] monster = new Entity[maxMap][500];
     public Entity[][] slimeMonster = new Entity[maxMap][20];
     public InteractiveTile iTile[][]= new InteractiveTile[maxMap][50];
     ArrayList<Entity> entityList = new ArrayList<>();
@@ -424,8 +424,8 @@ public class Game extends Application {
         }
         //To reset the player properties
         obj= new Entity[maxMap][20];
-        npc= new Entity[maxMap][50]; //set the number of 10 NPC Number
-        monster = new Entity[maxMap][100];
+        npc= new Entity[maxMap][100]; //set the number of 10 NPC Number
+        monster = new Entity[maxMap][500];
         iTile= new InteractiveTile[maxMap][50];
         entityList = new ArrayList<>();
     }
