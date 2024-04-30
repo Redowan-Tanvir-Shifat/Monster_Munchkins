@@ -80,7 +80,7 @@ public class UI_MainGame {
         heartFull = heart.image1;
         guideline2 = uTool.loadImage("/objects/guideline_2.png",game.screenWidth,game.screenHeight);
         energyImage = uTool.loadImage("/objects/energy.png",game.tileSize-7,game.tileSize-7);
-        energyImage = uTool.loadImage("/objects/star1.png",game.tileSize-7,game.tileSize-7);
+        starImage = uTool.loadImage("/objects/star1.png",game.tileSize+10,game.tileSize+10);
         guideline1 = uTool.loadImage("/objects/guideline_1.png",game.screenWidth,game.screenHeight);
         playerImage = uTool.loadImage("/player/boy_down_1.png", 2*game.tileSize, 2*game.tileSize);
 

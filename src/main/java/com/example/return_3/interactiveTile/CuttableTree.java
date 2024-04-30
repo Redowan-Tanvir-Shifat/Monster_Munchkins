@@ -13,7 +13,7 @@ public class CuttableTree extends InteractiveTile{
         life=3;
         this.worldX=game.tileSize*col;
         this.worldY=game.tileSize*row;
-        down1=loadImage("/tiles_interactive/drytree.png",game.tileSize,game.tileSize);
+        down1=loadImage("/tiles_interactive/drytree_2.png",game.tileSize,game.tileSize);
         destructible=true;
         life=3;
     }

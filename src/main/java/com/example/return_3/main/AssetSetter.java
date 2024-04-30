@@ -220,8 +220,9 @@ i++;
         MyJDBC.addObject(userId,objecttype,Game.gameInstance.powerPotion.itemCode,76,128,mapNum);
         MyJDBC.addObject(userId,objecttype,Game.gameInstance.coin.itemCode,77,118,mapNum);
         MyJDBC.addObject(userId,objecttype,Game.gameInstance.coin.itemCode,47,128,mapNum);
-        MyJDBC.addObject(userId,objecttype,Game.gameInstance.key.itemCode,57,120,mapNum);
+        MyJDBC.addObject(userId,objecttype,Game.gameInstance.key.itemCode,93,110,mapNum);
         MyJDBC.addObject(userId,objecttype,Game.gameInstance.door.itemCode,28,161,mapNum);
+        MyJDBC.addObject(userId,objecttype,Game.gameInstance.axe.itemCode,172,158,mapNum);
 
 
         //FOR INTERACTIVE TILE
@@ -229,6 +230,56 @@ i++;
 
         MyJDBC.addObject(userId,objecttype,itemCode,53,142,mapNum);
         MyJDBC.addObject(userId,objecttype,itemCode,54,142,mapNum);
+
+        // Key Hill Area
+        MyJDBC.addObject(userId,objecttype,itemCode,95,113,mapNum);
+        MyJDBC.addObject(userId,objecttype,itemCode,97,113,mapNum);
+        MyJDBC.addObject(userId,objecttype,itemCode,99,113,mapNum);
+        MyJDBC.addObject(userId,objecttype,itemCode,98,114,mapNum);
+        MyJDBC.addObject(userId,objecttype,itemCode,101,114,mapNum);
+        MyJDBC.addObject(userId,objecttype,itemCode,97,115,mapNum);
+        MyJDBC.addObject(userId,objecttype,itemCode,98,115,mapNum);
+        MyJDBC.addObject(userId,objecttype,itemCode,99,115,mapNum);
+        MyJDBC.addObject(userId,objecttype,itemCode,100,115,mapNum);
+        MyJDBC.addObject(userId,objecttype,itemCode,102,115,mapNum);
+        MyJDBC.addObject(userId,objecttype,itemCode,105,115,mapNum);
+        MyJDBC.addObject(userId,objecttype,itemCode,99,116,mapNum);
+        MyJDBC.addObject(userId,objecttype,itemCode,100,116,mapNum);
+        MyJDBC.addObject(userId,objecttype,itemCode,105,117,mapNum);
+        MyJDBC.addObject(userId,objecttype,itemCode,108,117,mapNum);
+        MyJDBC.addObject(userId,objecttype,itemCode,108,118,mapNum);
+        MyJDBC.addObject(userId,objecttype,itemCode,112,118,mapNum);
+        MyJDBC.addObject(userId,objecttype,itemCode,102,119,mapNum);
+        MyJDBC.addObject(userId,objecttype,itemCode,103,119,mapNum);
+        MyJDBC.addObject(userId,objecttype,itemCode,107,119,mapNum);
+        MyJDBC.addObject(userId,objecttype,itemCode,108,119,mapNum);
+        MyJDBC.addObject(userId,objecttype,itemCode,101,120,mapNum);
+        MyJDBC.addObject(userId,objecttype,itemCode,102,120,mapNum);
+        MyJDBC.addObject(userId,objecttype,itemCode,107,120,mapNum);
+        MyJDBC.addObject(userId,objecttype,itemCode,112,120,mapNum);
+        MyJDBC.addObject(userId,objecttype,itemCode,114,120,mapNum);
+        MyJDBC.addObject(userId,objecttype,itemCode,116,120,mapNum);
+        MyJDBC.addObject(userId,objecttype,itemCode,111,121,mapNum);
+        MyJDBC.addObject(userId,objecttype,itemCode,112,121,mapNum);
+        MyJDBC.addObject(userId,objecttype,itemCode,113,121,mapNum);
+        MyJDBC.addObject(userId,objecttype,itemCode,115,121,mapNum);
+        MyJDBC.addObject(userId,objecttype,itemCode,117,121,mapNum);
+        MyJDBC.addObject(userId,objecttype,itemCode,111,122,mapNum);
+        MyJDBC.addObject(userId,objecttype,itemCode,113,122,mapNum);
+        MyJDBC.addObject(userId,objecttype,itemCode,114,122,mapNum);
+        MyJDBC.addObject(userId,objecttype,itemCode,117,122,mapNum);
+        MyJDBC.addObject(userId,objecttype,itemCode,111,123,mapNum);
+        MyJDBC.addObject(userId,objecttype,itemCode,115,123,mapNum);
+        MyJDBC.addObject(userId,objecttype,itemCode,116,123,mapNum);
+        MyJDBC.addObject(userId,objecttype,itemCode,112,124,mapNum);
+        MyJDBC.addObject(userId,objecttype,itemCode,113,124,mapNum);
+        MyJDBC.addObject(userId,objecttype,itemCode,114,124,mapNum);
+        MyJDBC.addObject(userId,objecttype,itemCode,115,124,mapNum);
+
+
+
+
+
 
         //for monster types
         Entity entity=new Entity(Game.gameInstance);
@@ -374,10 +425,18 @@ i++;
         MyJDBC.addMonster(userId,entity.type_pacman,entity.area_th_5,68,180,mapNum,monIndex);monIndex++;
 
 
-//         MyJDBC.addInteractiveTile(userId, 53, 142, mapNum); // Add interactive tiles
-//         MyJDBC.addInteractiveTile(userId, 53, 143, mapNum); // Add interactive tiles
-//         MyJDBC.addInteractiveTile(userId, 54, 142, mapNum); // Add interactive tiles
-//         MyJDBC.addInteractiveTile(userId, 54, 143, mapNum); // Add interactive tiles
+        //MONSTER SETUP WITHOUT AREA
+        MyJDBC.addMonster(userId,entity.type_slime,0,94,110,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_slime,0,98,112,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_slime,0,104,121,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_slime,0,110,119,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_slime,0,112,123,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_worm,0,101,117,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_worm,0,114,119,mapNum,monIndex);monIndex++;
+        MyJDBC.addMonster(userId,entity.type_pacmanGreen,0,106,118,mapNum,monIndex);monIndex++;
+
+
+
     }
 
     //initial adding object in inventory
