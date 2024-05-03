@@ -10,6 +10,7 @@ import com.example.return_3.entity.Player;
 import com.example.return_3.gameCenter.snakey.Snakey;
 import com.example.return_3.gameCenter.spaceInvaders.GameSpaceInvaders;
 import com.example.return_3.gameCenter.ticTacToe.TicTacToe;
+import com.example.return_3.globalChat.Client;
 import com.example.return_3.interactiveTile.InteractiveTile;
 import com.example.return_3.object.*;
 import com.example.return_3.tile.TileManager;
@@ -40,7 +41,7 @@ public class Game extends Application {
 
 
     // GAME SETTINGS
-
+    public Client client;
     //STATIC VARIABLES
     public static Game gameInstance;
     public static Stage primaryStage;
@@ -704,6 +705,8 @@ public class Game extends Application {
         Game.primaryStage.setScene(scene);
     }
 
+
+
     public void showSchoolScene() throws Exception{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/school.fxml"));
         Parent root = loader.load();
@@ -947,6 +950,19 @@ public class Game extends Application {
 //
 //        hoverButton(buttons);
 
+        primaryStage.setScene(scene);
+    }
+
+
+
+
+    ///GLOBAL CHAT
+    public void showGlobalChatScene() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/chatWindow.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        gameTimer.stop();
+        client.startCLient(loader);
         primaryStage.setScene(scene);
     }
 

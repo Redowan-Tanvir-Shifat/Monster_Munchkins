@@ -79,9 +79,9 @@ public class AssetSetter {
         game.obj[mapNum][16].worldX=game.tileSize*45;
         game.obj[mapNum][16].worldY=game.tileSize*144;
         i=17;
-                game.obj[mapNum][i]=new OBJ_Key(game);
-        game.obj[mapNum][i].worldX=game.tileSize*43;
-        game.obj[mapNum][i].worldY=game.tileSize*143;
+                game.obj[mapNum][18]=new OBJ_Key(game);
+        game.obj[mapNum][18].worldX=game.tileSize*43;
+        game.obj[mapNum][18].worldY=game.tileSize*143;
         i++;              game.obj[mapNum][i]=new OBJ_Key(game);
         game.obj[mapNum][i].worldX=game.tileSize*44;
         game.obj[mapNum][i].worldY=game.tileSize*143;
