@@ -28,10 +28,10 @@ public class TicTacToe {
     private final int HEIGHT = 527;
     public String ip;
     public int port;
-    ServerSocket serverSocket;
-    Socket socket;
-    ObjectInputStream ois;
-    ObjectOutputStream oos;
+    public ServerSocket serverSocket;
+    public Socket socket;
+    public ObjectInputStream ois;
+    public ObjectOutputStream oos;
     Scene gameScene;
     Canvas canvas= new Canvas(WIDTH,HEIGHT);
     GraphicsContext gc= canvas.getGraphicsContext2D();
@@ -39,8 +39,7 @@ public class TicTacToe {
     //Game Properties
     public boolean isServer=false;
     // Add a boolean variable to track whose turn it is
-    private boolean isServerTurn = true;
-    public static boolean isConnected=false;
+
 
     //first start the game [show menu screen]
 
@@ -54,15 +53,15 @@ public class TicTacToe {
     private Image blueCircle;
 
 
-    private String[] spaces = new String[9];
+    public String[] spaces = new String[9];
 
-    private boolean yourTurn = false;
-    private boolean circle = true;
-    private boolean accepted = false;
-    private boolean unableToCommunicateWithOpponent = false;
-    private boolean won = false;
-    private boolean enemyWon = false;
-    private boolean tie = false;
+    public boolean yourTurn = false;
+    public boolean circle = true;
+    public boolean accepted = false;
+    public boolean unableToCommunicateWithOpponent = false;
+    public boolean won = false;
+    public boolean enemyWon = false;
+    public boolean tie = false;
 
     private int lengthOfSpace = 160;
     private int errors = 0;
