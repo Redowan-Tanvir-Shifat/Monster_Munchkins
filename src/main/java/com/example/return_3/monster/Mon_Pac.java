@@ -12,13 +12,14 @@ import java.util.Random;
 public class Mon_Pac extends Entity {
     Game game;
     String imgName;
+    int speedCounter=0;
     public Mon_Pac(Game game,int area) {
         super(game);
         this.game=game;
         monster_area=area;
         monster_type=type_pacman;
         name = "Pac Red";
-        defaultSpeed = 2;
+        defaultSpeed = 1;
         speed = defaultSpeed;
         type = type_monster;
         maxLife = 12;
@@ -72,22 +73,34 @@ public class Mon_Pac extends Entity {
         if (onPath == true) {
 
             // Check if id stop chasing...
-            checkStopChasingOrNot(game.player, 10, 100);
+            checkStopChasingOrNot(game.player, 12, 100);
 
             // Search the direction to go...
             searchPath(getGoalCol(game.player), getGoalRow(game.player));
 
             // Check if shoot a projectile...
             //checkShootOrNot(200, 30);
-
+            speedCounter++;
+            if(speedCounter>185&&speedCounter<200){
+                speed=2;
+            }else if(speedCounter>200&&speedCounter<220){
+                speed=3;
+            }else if(speedCounter>220&&speedCounter<235){
+                speed=2;
+            }
+            else if (speedCounter>235) {
+                speed=defaultSpeed;
+                speedCounter=0;
+            }
         }
         else {
             // Check if it starts chasing...
-            checkStartChasingOrNot(game.player, 5, 100);
+            checkStartChasingOrNot(game.player, 8, 100);
 
             // Get a random direction...
             getRandomDirection();
         }
+
     }
 
 

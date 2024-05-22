@@ -958,12 +958,13 @@ public class Game extends Application {
 
     ///GLOBAL CHAT
     public void showGlobalChatScene() throws IOException {
+        gameTimer.stop();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/chatWindow.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
-        gameTimer.stop();
-        client.startCLient(loader);
+        GlobalChatController controller = loader.getController();
         primaryStage.setScene(scene);
+        client.startCLient(loader);
     }
 
 
