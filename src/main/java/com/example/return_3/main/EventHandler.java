@@ -233,10 +233,10 @@ public class EventHandler {
             }
 
             // <--------Global CHAT-------->
-            if(hit(0,36,161,"any")){
+            if(hit(0,36,161,"any" )){
                 try {
-                    gp.showGlobalChatScene();
                     canTouchEvent = false;
+                    gp.showGlobalChatScene();
                     MyJDBC.updateUser(gp.player);
 
                 } catch (IOException e) {
