@@ -258,7 +258,8 @@ public class Entity {
         game.cChecker.checkTile(this);
         game.cChecker.checkPlayer(this);
 //        gp.cChecker.checkObject(this,false); //its not player so its remain false
-        game.cChecker.checkEntity(this,game.npc);
+//        game.cChecker.checkEntity(this,game.npc);
+        game.cChecker.checkEntity(this,game.interactNpc);
         game.cChecker.checkEntity(this,game.monster);
         game.cChecker.checkEntity(this,game.iTile);
 

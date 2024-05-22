@@ -232,21 +232,21 @@ public class EventHandler {
                 //System.out.println("welcome to Game Center");
             }
 
-//            // <--------Global CHAT-------->
-//            if(hit(0,36,161,"any")){
-//                try {
-//                    gp.showGlobalChatScene();
-//                    canTouchEvent = false;
-//                    MyJDBC.updateUser(gp.player);
-//
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                    System.err.println("Error loading gameCenter.fxml: " + e.getMessage());
-//                } catch (Exception e) {
-//                    throw new RuntimeException(e);
-//                }
-//                //System.out.println("welcome to Game Center");
-//            }
+            // <--------Global CHAT-------->
+            if(hit(0,36,161,"any")){
+                try {
+                    gp.showGlobalChatScene();
+                    canTouchEvent = false;
+                    MyJDBC.updateUser(gp.player);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    System.err.println("Error loading chatWindow.fxml: " + e.getMessage());
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+                System.out.println("welcome to chat Center");
+            }
 
 
 
