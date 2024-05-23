@@ -4,53 +4,43 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-public class ServerReaderThread implements Runnable{
-    ObjectInputStream ois;
-    ObjectOutputStream oos;
-    Socket socket;
-    String  name;
-    String msg;
-    public ServerReaderThread(Socket socket, String  name){
-        this.name=name;
-        this.socket=socket;
-        Thread thread= new Thread(this);
-        thread.start();
+
+public class ServerReaderThread implements Runnable {
+    private Socket socket;
+    private String name;
+    private ObjectInputStream ois;
+
+    public ServerReaderThread(Socket socket, String name) throws IOException {
+        this.socket = socket;
+        this.name = name;
+        this.ois = new ObjectInputStream(socket.getInputStream());
     }
 
     @Override
     public void run() {
-        while(true){
+        try {
+            while (true) {
+                String msg = (String) ois.readObject();
+                if (msg == null) break;
+
+                String msgToSend = name + " says: " + msg;
+                System.out.println(msgToSend);
+                Server.prevConversation += "$" + msgToSend;
+
+                for (ObjectOutputStream oos : Server.clientOutputStreams.values()) {
+                    oos.writeObject(msgToSend);
+                    oos.flush();
+                }
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println(name + " disconnected!");
+            Server.clientOutputStreams.remove(socket);
             try {
-                ois = new ObjectInputStream(socket.getInputStream());
-                msg=(String)ois.readObject();
-            } catch (IOException | ClassNotFoundException e) {
-                System.out.println( name+ " disconnected !");
-                Server.clientInfo.remove(socket);
-                for(Socket socket0 :Server.clientInfo.keySet()){
-                    System.out.println(Server.clientInfo.get(socket0));
-                    try {
-                        oos=new ObjectOutputStream(socket0.getOutputStream());
-                        oos.writeObject(name+": left!");
-                    } catch (IOException e2) {
-                        throw new RuntimeException(e2);
-                    }
-                }
-                e.printStackTrace();
-                break;
+                ois.close();
+                socket.close();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
             }
-            for(Socket socket0 :Server.clientInfo.keySet()){
-                if(socket0!=socket){
-                    try {
-                        oos=new ObjectOutputStream(socket0.getOutputStream());
-                        oos.writeObject(name+": "+msg);
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-            }
-            String msgToSend=name+" says: "+msg;
-            System.out.println(msgToSend);
-            Server.prevConversation+="$"+msgToSend;
         }
     }
 }
