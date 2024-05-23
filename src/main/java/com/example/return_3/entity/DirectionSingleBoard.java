@@ -2,11 +2,14 @@ package com.example.return_3.entity;
 
 import com.example.return_3.main.Game;
 
-public class SignBoard extends NPC{
+public class DirectionSingleBoard extends NPC{
     Game game;
-    public SignBoard(Game game) {
+    String imgPath;
+
+    public DirectionSingleBoard(Game game, int x) {
         super(game);
         this.game=game;
+        this.name="directionBoard"+x;
         getNPCImage();
     }
     public void checkCollision(){
@@ -23,7 +26,12 @@ public class SignBoard extends NPC{
 
     }
     public void getNPCImage(){
-        up1=loadImage( "/tiles_interactive/testBoard.png",75,75);
+//        up1=loadImage( "/tiles_interactive/directionBoard1.png",75,75);
+//        System.out.println(name);
+                up1=loadImage( "/tiles_interactive/" +name+
+                ".png",50,50);
+
+//        src/main/resources/tiles_interactive/directionBoard1.png
         up2=up1;
         down1=up1;
         down2= up1;
