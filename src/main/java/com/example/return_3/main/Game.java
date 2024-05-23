@@ -962,9 +962,8 @@ public class Game extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/chatWindow.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
-        GlobalChatController controller = loader.getController();
         primaryStage.setScene(scene);
-        client.startCLient(loader);
+        client.startClient(loader);
     }
 
 

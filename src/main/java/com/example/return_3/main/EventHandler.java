@@ -245,7 +245,7 @@ public class EventHandler {
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
-                System.out.println("welcome to chat Center");
+                System.out.println("welcome to global chat Center");
             }
 
 

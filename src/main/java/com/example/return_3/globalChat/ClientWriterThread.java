@@ -5,32 +5,37 @@ import com.example.return_3.Controllers.GlobalChatController;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 public class ClientWriterThread implements Runnable {
-    ObjectOutputStream oos;
-    Socket socket;
-    GlobalChatController globalChatController;
+    private ObjectOutputStream oos;
+    private BlockingQueue<String> messageQueue;
 
-    public ClientWriterThread(Socket socket, GlobalChatController globalChatController) {
-        this.socket = socket;
-        this.globalChatController = globalChatController;
-        Thread thread = new Thread(this);
-        thread.start();
+    public ClientWriterThread(Socket socket, GlobalChatController globalChatController) throws IOException {
+        this.oos = new ObjectOutputStream(socket.getOutputStream());
+        this.messageQueue = new LinkedBlockingQueue<>();
+        new Thread(this).start();
+    }
+
+    public void sendMessage(String message) {
+        try {
+            messageQueue.put(message);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
     }
 
     @Override
     public void run() {
-        while (true) {
-            try {
-                String msg = globalChatController.getMessage();
-                if (msg != null && !msg.trim().isEmpty()) {
-                    oos = new ObjectOutputStream(socket.getOutputStream());
-                    oos.writeObject(msg);
-                }
-                Thread.sleep(100); // Small delay to reduce CPU usage
-            } catch (IOException | InterruptedException e) {
-                throw new RuntimeException(e);
+        try {
+            while (true) {
+                String message = messageQueue.take();
+                oos.writeObject(message);
+                oos.flush();
             }
+        } catch (IOException | InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 }

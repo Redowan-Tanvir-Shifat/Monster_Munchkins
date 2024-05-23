@@ -1,5 +1,6 @@
 package com.example.return_3.Controllers;
 
+import com.example.return_3.globalChat.Client;
 import com.example.return_3.main.Game;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -49,13 +50,18 @@ public class GlobalChatController {
 
     public void updateChat(String msg) {
         Platform.runLater(() -> {
-            chatLabels.add(0, chatLabels.remove(chatLabels.size() - 1)); // Rotate the labels
+            for (int i = chatLabels.size() - 1; i > 0; i--) {
+                chatLabels.get(i).setText(chatLabels.get(i - 1).getText());
+            }
             chatLabels.get(0).setText(msg);
         });
     }
 
     public void onSend(ActionEvent actionEvent) {
-        Game.gameInstance.client.clientWriterThread.run();
+        String message = getMessage();
+        if (!message.trim().isEmpty()) {
+            Client.clientWriterThread.sendMessage(message);
+        }
     }
 
     public void onExit(ActionEvent actionEvent) {

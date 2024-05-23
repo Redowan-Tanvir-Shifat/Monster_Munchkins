@@ -1,46 +1,43 @@
 package com.example.return_3.globalChat;
 
 import com.example.return_3.Controllers.GlobalChatController;
-import javafx.fxml.FXMLLoader;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 
 public class ClientReaderThread implements Runnable {
-    ObjectInputStream ois;
-    Socket socket;
-    GlobalChatController globalChatController;
-    public ClientReaderThread(Socket socket,GlobalChatController globalChatController) {
-        this.socket=socket;
-        Thread thread= new Thread(this);
-        thread.start();
-       this. globalChatController=globalChatController;
+    private ObjectInputStream ois;
+    private GlobalChatController globalChatController;
+
+    public ClientReaderThread(Socket socket, GlobalChatController globalChatController) throws IOException {
+        this.ois = new ObjectInputStream(socket.getInputStream());
+        this.globalChatController = globalChatController;
+        new Thread(this).start();
     }
+
+
     @Override
     public void run() {
-
         try {
-            ois = new ObjectInputStream(socket.getInputStream());
-            String msg=(String)ois.readObject();
-            System.out.println(msg);
-            String prevMsg=(String)ois.readObject();
-            if(prevMsg!=null){
-                String []prevConversation=prevMsg.split("\\$");
-                for(int i=prevConversation.length-10;i<prevConversation.length;i++){
-                    System.out.println(prevConversation[i]);
+            String initialMessage = (String) ois.readObject();
+            System.out.println(initialMessage);
+            globalChatController.updateChat(initialMessage);
+
+            String prevMessages = (String) ois.readObject();
+            if (prevMessages != null && !prevMessages.isEmpty()) {
+                String[] prevConversation = prevMessages.split("\\$");
+                for (int i = Math.max(0, prevConversation.length - 11); i < prevConversation.length; i++) {
+                    globalChatController.updateChat(prevConversation[i]);
                 }
             }
-            while(true){
-                ois = new ObjectInputStream(socket.getInputStream());
-                String msg2=(String)ois.readObject();
-                System.out.println(msg2);
+
+            while (true) {
+                String msg = (String) ois.readObject();
+                globalChatController.updateChat(msg);
             }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
-
     }
 }
