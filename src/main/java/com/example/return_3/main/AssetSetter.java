@@ -3,8 +3,6 @@ package com.example.return_3.main;
 
 import com.example.return_3.db.MyJDBC;
 import com.example.return_3.entity.*;
-import com.example.return_3.interactiveTile.CuttableTree;
-import com.example.return_3.monster.*;
 import com.example.return_3.npc.*;
 import com.example.return_3.object.*;
 
@@ -103,10 +101,43 @@ public class AssetSetter {
         game.interactNpc[mapNum][i].worldX=game.tileSize*81;
         game.interactNpc[mapNum][i].worldY=game.tileSize*117;
         i++;
-        game.interactNpc[mapNum][i]= new SignBoard(game);
-        game.interactNpc[mapNum][i].worldX=game.tileSize*82;
-        game.interactNpc[mapNum][i].worldY=game.tileSize*116;
+        //Direction
+        game.interactNpc[mapNum][i]= new DirectionBoard(game,1);
+        game.interactNpc[mapNum][i].worldX=game.tileSize*90;
+        game.interactNpc[mapNum][i].worldY=game.tileSize*120;
         i++;
+        game.interactNpc[mapNum][i]= new DirectionBoard(game,2);
+        game.interactNpc[mapNum][i].worldX=game.tileSize*64;
+        game.interactNpc[mapNum][i].worldY=game.tileSize*156;
+        i++;
+        game.interactNpc[mapNum][i]= new DirectionSingleBoard(game,3);
+        game.interactNpc[mapNum][i].worldX=game.tileSize*93;
+        game.interactNpc[mapNum][i].worldY=game.tileSize*153;
+        i++;
+        game.interactNpc[mapNum][i]= new DirectionSingleBoard(game,4);
+        game.interactNpc[mapNum][i].worldX=game.tileSize*165;
+        game.interactNpc[mapNum][i].worldY=game.tileSize*111;
+        i++;
+        game.interactNpc[mapNum][i]= new DirectionSingleBoard(game,4);
+        game.interactNpc[mapNum][i].worldX=game.tileSize*142;
+        game.interactNpc[mapNum][i].worldY=game.tileSize*141;
+        i++;
+        game.interactNpc[mapNum][i]= new DirectionSingleBoard(game,5);
+        game.interactNpc[mapNum][i].worldX=game.tileSize*177;
+        game.interactNpc[mapNum][i].worldY=game.tileSize*141;
+        i++;
+        game.interactNpc[mapNum][i]= new DirectionSingleBoard(game,6);
+        game.interactNpc[mapNum][i].worldX=game.tileSize*148;
+        game.interactNpc[mapNum][i].worldY=game.tileSize*72;
+        i++;
+        game.interactNpc[mapNum][i]= new DirectionSingleBoard(game,7);
+        game.interactNpc[mapNum][i].worldX=game.tileSize*136;
+        game.interactNpc[mapNum][i].worldY=game.tileSize*153;
+        i++;
+
+
+
+        //set Npc
         game.npc[mapNum][i] = new NPC_School(game);
         game.npc[mapNum][i].worldX = game.tileSize * 40;
         game.npc[mapNum][i].worldY = game.tileSize * 134;
