@@ -63,7 +63,7 @@ public class Game extends Application {
 
 //    public final int optionState=5;
     public final int mapState=6;
-//    public final int transitionState=7;
+    public final int transitionState=7;
     public final int tradeState=8;
     public final int hospitalState = 9;
     public final int titleState = 10;

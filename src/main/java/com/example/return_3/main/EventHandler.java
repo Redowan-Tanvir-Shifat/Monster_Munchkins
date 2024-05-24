@@ -155,7 +155,7 @@ public class EventHandler {
     Game gp;
     int previousEventX, previousEventY;
     boolean canTouchEvent = true;
-    int tempMap, tempCol, tempRow;
+    public int tempMap, tempCol, tempRow;
     EventRect[][][] eventRect;
 
     public EventHandler(Game gp) {
@@ -350,15 +350,21 @@ public class EventHandler {
     }
 
     public void teleport(int map, int col, int row) {
-//        tempMap = map;
-//        tempCol = col;
-//        tempRow = row;
-//        canTouchEvent = false;
-        gp.currentMap=map;
-        gp.player.worldX=gp.tileSize*col;
-        gp.player.worldY=gp.tileSize*row;
-        previousEventX=gp.player.worldX;
-        previousEventY=gp.player.worldY;
+
+        tempMap = map;
+        tempCol = col;
+        tempRow = row;
+        gp.gameState=gp.transitionState;
+        System.out.println("after teleport record in temp the state is "+gp.gameState);
+
+        canTouchEvent = false;
+        gp.playSoundEffect(gp.soundEffect.shipWave);
+
+//        gp.currentMap=map;
+//        gp.player.worldX=gp.tileSize*col;
+//        gp.player.worldY=gp.tileSize*row;
+//        previousEventX=gp.player.worldX;
+//        previousEventY=gp.player.worldY;
 
     }
 
