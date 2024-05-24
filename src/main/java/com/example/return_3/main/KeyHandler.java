@@ -79,6 +79,10 @@ public class KeyHandler {
         else if (game.gameState == game.tradeState) {
             tradeState(code);
         }
+        //TRADE state
+        else if (game.gameState == game.shipTeleportState) {
+            shipTeleportState(code);
+        }
         //MENU BAR state
         else if (game.gameState == game.menuBarState) {
             if (game.gameStatus == game.gameMainStatus) {
@@ -456,6 +460,35 @@ public class KeyHandler {
             }
         }
 
+    }
+
+    public void shipTeleportState(KeyCode code) {
+        if(code== KeyCode.ENTER ){
+            enterPressed=true;
+        }
+        //we will write code lated
+        if(code== KeyCode.W || code== KeyCode.UP){
+            game.ui.uiMainGame.commandNum--;
+            if(game.ui.uiMainGame.commandNum<0){
+                game.ui.uiMainGame.commandNum=1;
+            }
+        }
+        if(code== KeyCode.S || code== KeyCode.DOWN){
+            game.ui.uiMainGame.commandNum++;
+            if(game.ui.uiMainGame.commandNum>1){
+                game.ui.uiMainGame.commandNum=0;
+            }
+        }
+
+//        if(game.ui.uiMainGame.commandNum==0){
+//            if(enterPressed==true){
+//
+//            }
+//        }if(game.ui.uiMainGame.commandNum==1){
+//            if(enterPressed==true){
+//                game.gameState=game.playState;
+//            }
+//        }
     }
     public void mapState(KeyCode code) {
         if(code==KeyCode.M){
