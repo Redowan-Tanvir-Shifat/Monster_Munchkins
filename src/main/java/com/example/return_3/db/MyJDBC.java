@@ -41,27 +41,6 @@ public class MyJDBC {
                 //success
                 //get id
                 int userId=resultSet.getInt("user_id");
-
-                //get others properties.
-//                int coin= resultSet.getInt("coin");
-//                int energy= resultSet.getInt("energy");
-//                int maxEnergy= resultSet.getInt("maxEnergy");
-//                int life= resultSet.getInt("life");
-//                int maxLife= resultSet.getInt("maxLife");
-//                int exp= resultSet.getInt("exp");
-//                int nextLevelExp= resultSet.getInt("nextLevelExp");
-//                int level= resultSet.getInt("level");
-//                int strength= resultSet.getInt("strength");
-//                int dexterity= resultSet.getInt("dexterity");
-//                int bullet= resultSet.getInt("bullet");
-//                int maxBullet= resultSet.getInt("maxBullet");
-//                int playerRow= resultSet.getInt("p_row");
-//                int playerCol= resultSet.getInt("p_col");
-//                boolean canTouchEvent= resultSet.getBoolean("can_touch_event");
-//                //BigDecimal currentBalance= resultSet.getBigDecimal("current_balance");
-//                //BigDecimal currentBalance= resultSet.getBigDecimal("current_balance");
-//                //return user object
-//                return  new User(userId,username,password,playerCol,playerRow,canTouchEvent,coin,energy,maxEnergy,life,maxLife,exp,nextLevelExp,level,strength,dexterity,bullet,maxBullet);
                 return getUserProperties(userId,username,password,resultSet);
             }
         }catch (SQLException e){
@@ -85,8 +64,6 @@ public class MyJDBC {
         int maxBullet= resultSet.getInt("maxBullet");
         int worldX= resultSet.getInt("world_x");
         int worldY= resultSet.getInt("world_y");
-        //BigDecimal currentBalance= resultSet.getBigDecimal("current_balance");
-        //BigDecimal currentBalance= resultSet.getBigDecimal("current_balance");
         //return user object
         return  new User(userId,username,password,worldX,worldY,coin,energy,maxEnergy,life,maxLife,exp,nextLevelExp,level,strength,dexterity,bullet,maxBullet);
     }
@@ -104,22 +81,6 @@ public class MyJDBC {
                 // Retrieve user data from the result set
                 String username = resultSet.getString("username");
                 String password = resultSet.getString("password");
-//                int coin = resultSet.getInt("coin");
-//                int energy = resultSet.getInt("energy");
-//                int maxEnergy = resultSet.getInt("maxEnergy");
-//                int life = resultSet.getInt("life");
-//                int maxLife = resultSet.getInt("maxLife");
-//                int exp = resultSet.getInt("exp");
-//                int nextLevelExp = resultSet.getInt("nextLevelExp");
-//                int level = resultSet.getInt("level");
-//                int strength = resultSet.getInt("strength");
-//                int dexterity = resultSet.getInt("dexterity");
-//                int bullet = resultSet.getInt("bullet");
-//                int maxBullet = resultSet.getInt("maxBullet");
-//
-//                // Create and return a User object
-//                return new User(userId, username, password, coin, energy, maxEnergy, life, maxLife, exp, nextLevelExp,
-//                        level, strength, dexterity, bullet, maxBullet);
                 return getUserProperties(userId, username, password, resultSet);
             }
         } catch (SQLException e) {
@@ -220,13 +181,6 @@ public class MyJDBC {
         }
     }
 
-
-
-
-
-
-
-
     //////For INVENTORY
 //we i need to check this method once again because there might be one operation and i did multiple for not knowing the
 
@@ -300,12 +254,6 @@ public class MyJDBC {
             e.printStackTrace();
         }
     }
-
-
-
-
-
-
 
     // <----------------OBJECT LINE------------------->
     //in this addInteractivetile  we will add tile by this method at the time of sign up .
@@ -457,7 +405,6 @@ public class MyJDBC {
 
 
             }
-
             // Close resources
             resultSet.close();
             preparedStatement.close();
@@ -465,15 +412,7 @@ public class MyJDBC {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
-
     }
-
-
-
-
-
     public static void updateObjectDestroyedStatus(int userId, int mapNum, int row, int col, int objectType, boolean destroyed) {
         try {
             Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
@@ -521,76 +460,6 @@ public static void addMonster(int userId, int monsterType, int areaType, int col
         e.printStackTrace();
     }
 }
-//public static void addMonster(int userId, int monsterType, int areaType, int col, int row, int mapNum) {
-//    try {
-//        Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
-//        PreparedStatement preparedStatement = connection.prepareStatement(
-//                "INSERT INTO Monsters (user_id, monster_type, area_type, tile_col, tile_row, map_num) " +
-//                        "VALUES (?, ?, ?, ?, ?, ?)"
-//        );
-//        preparedStatement.setInt(1, userId);
-//        preparedStatement.setInt(2, monsterType);
-//        preparedStatement.setInt(3, areaType);
-//        preparedStatement.setInt(4, col);
-//        preparedStatement.setInt(5, row);
-//        preparedStatement.setInt(6, mapNum);
-//        preparedStatement.executeUpdate();
-//    } catch (SQLException e) {
-//        e.printStackTrace();
-//    }
-//}
-
-//    public static void setMonsters(int userId, int mapNum) {
-//        Game game=Game.gameInstance;
-//        Entity entity00= new Entity(game);
-//        try {
-//            Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
-//            PreparedStatement preparedStatement = connection.prepareStatement(
-//                    "SELECT tile_col, tile_row, area_type, monster_type FROM Monsters " +
-//                            "WHERE user_id = ? AND map_num = ? AND destroyed = FALSE"
-//            );
-//            preparedStatement.setInt(1, userId);
-//            preparedStatement.setInt(2, mapNum);
-//            ResultSet resultSet = preparedStatement.executeQuery();
-//            int i = 0; // Index for MONSTER
-////            int mIndex = 0; // Index for monsters
-//            // Iterate over the result set and create instances of monsters
-//            while (resultSet.next()) {
-//                int areaType = resultSet.getInt("area_type");
-//                int col = resultSet.getInt("tile_col");
-//                int row = resultSet.getInt("tile_row");
-//                int monsterType = resultSet.getInt("monster_type");
-//
-//                    Entity monster=null;
-//                 if(monsterType == entity00.type_pacman){
-//                     monster= new Mon_Pac(game);
-//                 }else if(monsterType == entity00.type_spider){
-//                     monster= new Mon_Spider(game);
-//                 }else if(monsterType == entity00.type_arc){
-//                     monster= new Mon_ORC(game);
-//                 }else if(monsterType == entity00.type_slime){
-//                     monster= new Mon_Green(game);
-//                 }
-//                    // Place the monster in the game world
-//                    if (monster != null) {
-//                        Game.gameInstance.monster[mapNum][i] = monster;
-//                        Game.gameInstance.monster[mapNum][i].worldX = Game.gameInstance.tileSize * col;
-//                        Game.gameInstance.monster[mapNum][i].worldY = Game.gameInstance.tileSize * row;
-//                        System.out.println("monster is not null");
-//                    i++; // Increment the monster index
-//                    }
-//
-//            }
-//
-//            // Close resources
-//            resultSet.close();
-//            preparedStatement.close();
-//            connection.close();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//    }
-
     public static void setMonsters(int userId, int mapNum) {
         Game game = Game.gameInstance;
         Entity entity00 = new Entity(game);
@@ -679,32 +548,6 @@ public static void addMonster(int userId, int monsterType, int areaType, int col
             e.printStackTrace();
         }
     }
-
-//    public static void updateMonsterDestroyedStatus(int userId, int mapNum, int row, int col, int monsterType, boolean destroyed) {
-//        try {
-//            Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
-//            PreparedStatement preparedStatement = connection.prepareStatement(
-//                    "UPDATE Monsters SET destroyed = ? " +
-//                            "WHERE user_id = ? AND map_num = ? AND tile_row = ? AND tile_col = ? AND monster_type = ?"
-//            );
-//            preparedStatement.setBoolean(1, destroyed);
-//            preparedStatement.setInt(2, userId);
-//            preparedStatement.setInt(3, mapNum);
-//            preparedStatement.setInt(4, row);
-//            preparedStatement.setInt(5, col);
-//            preparedStatement.setInt(6, monsterType);
-//            // Execute the update query
-//            int rowsAffected = preparedStatement.executeUpdate();
-//            if (rowsAffected > 0) {
-//                System.out.println("Monster data updated successfully.");
-//            } else {
-//                System.out.println("No monster found with the given data.");
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//    }
-
     public static void saveMonsterPositions(int userId, int mapNum, Entity[][] monsters) {
         try {
             Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
@@ -723,7 +566,6 @@ public static void addMonster(int userId, int monsterType, int areaType, int col
                     preparedStatement.addBatch();
                 }
             }
-
             // Execute batch update
             preparedStatement.executeBatch();
             System.out.println("Monster positions saved successfully.");
@@ -731,7 +573,4 @@ public static void addMonster(int userId, int monsterType, int areaType, int col
             e.printStackTrace();
         }
     }
-
-
-
 }

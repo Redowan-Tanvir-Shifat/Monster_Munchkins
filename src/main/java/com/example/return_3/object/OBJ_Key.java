@@ -21,6 +21,7 @@ public class OBJ_Key extends Entity {
         int objectIndex=getDetected(entity,game.obj,"door");
         if(objectIndex!=999 &&game.obj[game.currentMap][objectIndex].destroyed!=true){
             game.ui.uiMainGame.currentDialogue="You use the "+name+"and opened the door";
+            game.playSoundEffect(game.soundEffect.doorOpened);
             Entity entity2=game.obj[game.currentMap][objectIndex];
             int row=entity2.worldY/game.tileSize;
             int col=entity2.worldX/game.tileSize;
@@ -38,7 +39,7 @@ public class OBJ_Key extends Entity {
         }
         else {
             game.ui.uiMainGame.currentDialogue="r e vai dorjar samne use kor!";
-        return false;
+            return false;
         }
     }
 }

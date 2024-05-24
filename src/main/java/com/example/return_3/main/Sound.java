@@ -5,10 +5,18 @@ import java.net.URL;
 
 public class Sound {
     private Clip clip;
-    private URL[] soundUrls = new URL[20];
+    private URL[] soundUrls = new URL[30];
     FloatControl fc;
     public float volume = 0.6f; // Default volume
     public int  volumeScale = 3;
+    public final int pickUpItem=16;
+    public final int doorOpened=17;
+    public final int doorLocked=18;
+    public final int fireSword=19;
+    public final int swordSound2=20;
+    public final int swingWhoosh1=21;
+    public final int swingWhoosh2=22;
+    public final int swingWhoosh3=23;
 
     public Sound() {
         // Initialize sound URLs
@@ -29,6 +37,14 @@ public class Sound {
         soundUrls[13] = getClass().getResource("/sound/stairs.wav");
         soundUrls[14] = getClass().getResource("/sound/newSword.wav");
         soundUrls[15] = getClass().getResource("/sound/monsterIsland.wav");
+        soundUrls[pickUpItem]= getClass().getResource("/sound/pickUpItem.wav");
+        soundUrls[doorOpened]= getClass().getResource("/sound/doorOpened.wav");
+        soundUrls[doorLocked]= getClass().getResource("/sound/doorLocked.wav");
+        soundUrls[fireSword]=getClass().getResource("/sound/fireSwordSwing.wav");
+        soundUrls[swordSound2]=getClass().getResource("/sound/swordSound2.wav");
+        soundUrls[swingWhoosh1]=getClass().getResource("/sound/swingWhoosh1.wav");
+        soundUrls[swingWhoosh2]=getClass().getResource("/sound/swingWhoosh2.wav");
+        soundUrls[swingWhoosh3]=getClass().getResource("/sound/swingWhoosh3.wav");
 
     }
 
