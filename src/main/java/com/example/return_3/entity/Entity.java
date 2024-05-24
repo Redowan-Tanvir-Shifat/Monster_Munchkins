@@ -167,6 +167,7 @@ public class Entity {
     public final int type_redFly = 9;
     public final int type_skeleton = 10;
     public final int type_spiderBrown = 11;
+    public final int type_sixEyes = 12;
 
 
     // <---------Area of Monster--------->
@@ -176,7 +177,13 @@ public class Entity {
     public final int area_th_3 = 3;
     public final int area_th_4 = 4;
     public final int area_th_5 = 5;
-    public final int area_hill_1=6;
+    public final int area_hill_1 = 6;
+    public final int area_hill_2 = 7;
+    public final int area_hill_3 = 8;
+    public final int area_hill_4 = 9;
+    public final int area_mi_1 = 10;
+    public final int area_mi_2 = 11;
+    public final int area_mi_3 = 12;
 
 
   // <-------------COLLiSION------------->
@@ -823,6 +830,16 @@ public class Entity {
             case area_th_3 : uTool.areaSetup(this,139*game.tileSize,144*game.tileSize,47*game.tileSize,41*game.tileSize) ;break;
             case area_th_4 : uTool.areaSetup(this,75*game.tileSize,156*game.tileSize,61*game.tileSize,29*game.tileSize) ;break;
             case area_th_5 : uTool.areaSetup(this,16*game.tileSize,163*game.tileSize,57*game.tileSize,22*game.tileSize) ;break;
+            case area_hill_1 : uTool.areaSetup(this,142*game.tileSize,100*game.tileSize,44*game.tileSize,28*game.tileSize) ;break;
+            case area_hill_2 : uTool.areaSetup(this,95*game.tileSize,78*game.tileSize,45*game.tileSize,26*game.tileSize) ;break;
+            case area_hill_3 : uTool.areaSetup(this,18*game.tileSize,65*game.tileSize,76*game.tileSize,18*game.tileSize) ;break;
+            case area_hill_4 : uTool.areaSetup(this,16*game.tileSize,85*game.tileSize,58*game.tileSize,27*game.tileSize) ;break;
+            case area_mi_1 : uTool.areaSetup(this,107*game.tileSize,14*game.tileSize,36*game.tileSize,25*game.tileSize) ;break;
+            case area_mi_2 : uTool.areaSetup(this,149*game.tileSize,14*game.tileSize,38*game.tileSize,25*game.tileSize) ;break;
+            case area_mi_3 : uTool.areaSetup(this,153*game.tileSize,40*game.tileSize,34*game.tileSize,24*game.tileSize) ;break;
+
+
+
         }
     }
 
