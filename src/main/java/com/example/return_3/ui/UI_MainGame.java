@@ -45,7 +45,7 @@ public class UI_MainGame {
     public int playerSlotRow=0;
     public int shopSlotCol=0;
     public int shopSlotRow=0;
-    int counter=0;
+    int transitionCounter=0;
 
     public Entity npc;
     public Shop shop;
@@ -362,6 +362,8 @@ public class UI_MainGame {
         gc.drawImage(guideline2,0,0);
         }
     }
+
+
 
     public void menuBarScreen() {
         // Create a Frame...
@@ -844,25 +846,27 @@ public  void shipTeleportScreen(){
     int y = game.tileSize / 2;
     int width = game.screenWidth-(game.tileSize*6);
     int height = game.tileSize * 4;
-    drawSubWindow(x, y, width, height);
+    drawSubWindow(x, y, width, height,cream,darkCream);
+    gc.setFill(darkDarkCream);
     x += game.tileSize;
     y += game.tileSize;
     //System.out.println(currentDialogue);
     //to create new line
     gc.setFont(mediumFontBold);
-    gc.setFill(Color.WHITE);
     for(String line: currentDialogue.split("\n")){
         gc.fillText(line,x,y);
         y+=40;
 
     }
-     x = game.tileSize * 6;
+     x = game.tileSize * 20;
      y = (game.tileSize / 2)+(game.tileSize*4);
-     width = game.screenWidth-(game.tileSize*12);
+     width = game.tileSize*6;
      height = game.tileSize * 4;
-    drawSubWindow(x, y, width, height);
-    gc.setFill(Color.WHITE);
+    drawSubWindow(x, y, width, height,cream,darkCream);
+    gc.setFill(darkDarkCream);
     x += game.tileSize;
+    y += game.tileSize;
+    gc.fillText("Do you want to go?",x,y);
     y += game.tileSize;
     gc.fillText("Yes",x,y);
     if(commandNum==0){
@@ -872,20 +876,14 @@ public  void shipTeleportScreen(){
             if(npc.name.equals("thisSide")){
                 if(game.player.coin>=2000){
                     System.out.println("He can teleport");
-                    new EventHandler(game).teleport(game.currentMap,27,11);
+                    game.eventHandler.teleport(game.currentMap,27,11);
                     game.player.coin-=2000;
-                    game.player.direction="down";
-                    game.gameState=game.messageState;
-                    currentDialogue="Welcome to the mysterious landing pad";
                 }else{
                     game.gameState=game.messageState;
                     currentDialogue="You do not have enough coin";
                 }
             }else if(npc.name.equals("otherSide")){
-                new EventHandler(game).teleport(game.currentMap,21,85);
-                game.player.direction="down";
-                game.gameState=game.messageState;
-                currentDialogue="Welcome back!";
+                game.eventHandler.teleport(game.currentMap,21,85);
             }
 
         }
@@ -901,6 +899,39 @@ public  void shipTeleportScreen(){
 
 
 }
+
+    public void drawTransition() {
+        System.out.println("transition method called");
+        transitionCounter++;
+
+        // Calculate opacity and ensure it stays within the valid range
+        double opacity = transitionCounter * 0.02; // This ensures the value goes from 0.0 to 1.0 over 50 steps
+
+        // Set the fill color with the corrected opacity value
+        gc.setFill(new Color(0, 0, 0, opacity));
+        gc.fillRect(0, 0, game.screenWidth, game.screenHeight);
+
+        if (transitionCounter == 50) {
+            transitionCounter = 0;
+            game.currentMap = game.eventHandler.tempMap;
+            game.player.worldX = game.tileSize * game.eventHandler.tempCol;
+            game.player.worldY = game.tileSize * game.eventHandler.tempRow;
+
+            if(npc.name.equals("thisSide")){
+                    game.player.direction="down";
+                    game.gameState=game.messageState;
+                    currentDialogue="Welcome to the mysterious landing pad";
+
+            }else if(npc.name.equals("otherSide")){
+                game.player.direction="down";
+                game.gameState=game.messageState;
+                currentDialogue="Welcome back!";
+            }else{
+                game.gameState = game.playState;
+            }
+        }
+    }
+
 
     public void addMessage(String text){
 //        message = text;

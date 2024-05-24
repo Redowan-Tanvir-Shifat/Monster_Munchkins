@@ -17,6 +17,7 @@ public class Sound {
     public final int swingWhoosh1=21;
     public final int swingWhoosh2=22;
     public final int swingWhoosh3=23;
+    public final int shipWave=23;
 
     public Sound() {
         // Initialize sound URLs
@@ -45,6 +46,7 @@ public class Sound {
         soundUrls[swingWhoosh1]=getClass().getResource("/sound/swingWhoosh1.wav");
         soundUrls[swingWhoosh2]=getClass().getResource("/sound/swingWhoosh2.wav");
         soundUrls[swingWhoosh3]=getClass().getResource("/sound/swingWhoosh3.wav");
+        soundUrls[shipWave]=getClass().getResource("/sound/shipWave.wav");
 
     }
 

@@ -95,6 +95,11 @@ public class UI {
             if (game.gameState == game.guidelineState) {
                 uiMainGame.guidelineScreen();
             }
+            // <----------Transition State----------->
+            if (game.gameState == game.transitionState) {
+                System.out.println("Transistion method is called in UI");
+                uiMainGame.drawTransition();
+            }
 
     }
 }
