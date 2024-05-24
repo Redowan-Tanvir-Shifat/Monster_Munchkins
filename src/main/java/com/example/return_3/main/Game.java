@@ -70,6 +70,7 @@ public class Game extends Application {
     public final int messageState=11;
     public final int settingsState=12;
     public final int guidelineState=13;
+    public final int shipTeleportState = 14;
 
     // $$$$$$$$$  GAME STATUS $$$$$$$$$
     public int gameStatus;
@@ -133,7 +134,7 @@ public class Game extends Application {
 
     public Entity obj[][]= new Entity[maxMap][20];
     public Entity npc[][]= new Entity[maxMap][100]; //set the number of 10 NPC Number
-    public Entity interactNpc[][]= new Entity[maxMap][10]; //set the number of 10 NPC Number
+    public Entity interactNpc[][]= new Entity[maxMap][20]; //set the number of 10 NPC Number
     public Entity[][] monster = new Entity[maxMap][500];
     public Entity[][] slimeMonster = new Entity[maxMap][20];
     public InteractiveTile iTile[][]= new InteractiveTile[maxMap][50];

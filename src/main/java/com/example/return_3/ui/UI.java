@@ -84,6 +84,9 @@ public class UI {
             if (game.gameState == game.tradeState) {
                 uiMainGame.drawTradeScreen();
             }
+            if (game.gameState == game.shipTeleportState) {
+                uiMainGame.shipTeleportScreen();
+            }
 
             // <----------Settings State----------->
             if (game.gameState == game.settingsState) {

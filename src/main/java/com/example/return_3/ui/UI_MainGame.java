@@ -2,6 +2,7 @@ package com.example.return_3.ui;
 
 import com.example.return_3.db.MyJDBC;
 import com.example.return_3.entity.Entity;
+import com.example.return_3.main.EventHandler;
 import com.example.return_3.main.Game;
 import com.example.return_3.main.UtilityTool;
 import com.example.return_3.object.OBJ_Coin;
@@ -837,7 +838,69 @@ public class UI_MainGame {
         }
     }
 
+public  void shipTeleportScreen(){
+        //we will write code later
+    int x = game.tileSize * 3;
+    int y = game.tileSize / 2;
+    int width = game.screenWidth-(game.tileSize*6);
+    int height = game.tileSize * 4;
+    drawSubWindow(x, y, width, height);
+    x += game.tileSize;
+    y += game.tileSize;
+    //System.out.println(currentDialogue);
+    //to create new line
+    gc.setFont(mediumFontBold);
+    gc.setFill(Color.WHITE);
+    for(String line: currentDialogue.split("\n")){
+        gc.fillText(line,x,y);
+        y+=40;
 
+    }
+     x = game.tileSize * 6;
+     y = (game.tileSize / 2)+(game.tileSize*4);
+     width = game.screenWidth-(game.tileSize*12);
+     height = game.tileSize * 4;
+    drawSubWindow(x, y, width, height);
+    gc.setFill(Color.WHITE);
+    x += game.tileSize;
+    y += game.tileSize;
+    gc.fillText("Yes",x,y);
+    if(commandNum==0){
+        gc.fillText(">",x-24,y);
+        if(game.player.keyHandler.isEnterPressed()==true){
+
+            if(npc.name.equals("thisSide")){
+                if(game.player.coin>=2000){
+                    System.out.println("He can teleport");
+                    new EventHandler(game).teleport(game.currentMap,27,11);
+                    game.player.coin-=2000;
+                    game.player.direction="down";
+                    game.gameState=game.messageState;
+                    currentDialogue="Welcome to the mysterious landing pad";
+                }else{
+                    game.gameState=game.messageState;
+                    currentDialogue="You do not have enough coin";
+                }
+            }else if(npc.name.equals("otherSide")){
+                new EventHandler(game).teleport(game.currentMap,21,85);
+                game.player.direction="down";
+                game.gameState=game.messageState;
+                currentDialogue="Welcome back!";
+            }
+
+        }
+    }
+    y+= game.tileSize;
+    gc.fillText("No",x,y);
+    if(commandNum==1){
+        gc.fillText(">",x-24,y);
+        if(game.keyHandler.isEnterPressed()==true){
+            game.gameState=game.playState;
+        }
+    }
+
+
+}
 
     public void addMessage(String text){
 //        message = text;
