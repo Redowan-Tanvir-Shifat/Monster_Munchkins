@@ -56,6 +56,13 @@ public class UI_MainGame {
 //        arial_40 = new Font("Arial",40);
 //        arial_80B = new Font("Arial",80);
 
+//NEW FONT
+//    Font baseFont = Font.loadFont(getClass().getResourceAsStream("/font/FlyingBird-Yz9Ga.otf"), 12);
+//    Font baseFont = Font.loadFont(getClass().getResourceAsStream("/font/ShantyHouseRegular-K7j4l.ttf"), 12);
+//    Font baseFont = Font.loadFont(getClass().getResourceAsStream("/font/SuperPixel-m2L8j.ttf"), 12);
+    Font baseFont = Font.loadFont(getClass().getResourceAsStream("/font/TechnoRaceItalic-eZRWe.otf"), 12);
+
+
 
 
 // Create font objects with different sizes
@@ -63,7 +70,7 @@ public class UI_MainGame {
 //        Font baseFont = Font.loadFont(getClass().getResourceAsStream("/font/neuropol x rg.otf"), 12);
 //        Font baseFont = Font.loadFont(getClass().getResourceAsStream("/font/rexlia rg.otf"), 12);
 //        Font baseFont = Font.loadFont(getClass().getResourceAsStream("/font/zekton rg.otf"), 12);
-        Font baseFont = Font.font("Dialog",FontWeight.BOLD,20);
+       // Font baseFont = Font.font("Dialog",FontWeight.BOLD,20);
         smallFont = Font.font(baseFont.getName(), FontWeight.NORMAL, FontPosture.REGULAR, 12); // Change size as needed
         mediumFont = Font.font(baseFont.getName(), FontWeight.NORMAL, FontPosture.REGULAR, 16); // Change size as needed
         largeFont = Font.font(baseFont.getName(), FontWeight.NORMAL, FontPosture.REGULAR, 24); // Change size as needed
@@ -71,11 +78,11 @@ public class UI_MainGame {
         mediumFontBold = Font.font(baseFont.getName(), FontWeight.BOLD, FontPosture.REGULAR, 16); // Change size as needed
         largeFontBold = Font.font(baseFont.getName(), FontWeight.NORMAL, FontPosture.REGULAR, 24); // Change size as needed
 
-  //      titleFont= Font.loadFont(getClass().getResourceAsStream("/font/DapplegrimDemoRegular-ODop.otf"), 28);
-        Font baseTitleFont = Font.loadFont(getClass().getResourceAsStream("/font/LONDON PRESLEY.ttf"), 36);
+//        titleFont= Font.loadFont(getClass().getResourceAsStream("/font/DapplegrimDemoRegular-ODop.otf"), 28);
+//        Font baseTitleFont = Font.loadFont(getClass().getResourceAsStream("/font/LONDON PRESLEY.ttf"), 36);
 
-        titleFont= Font.font(baseTitleFont.getName(), FontWeight.BLACK, FontPosture.REGULAR, 36);
-//        titleFont= Font.loadFont(getClass().getResourceAsStream("/font/Teh And Kopi.ttf"), 28);
+//        titleFont= Font.font(baseTitleFont.getName(), FontWeight.BLACK, FontPosture.REGULAR, 30);
+        titleFont= Font.loadFont(getClass().getResourceAsStream("/font/Teh And Kopi.ttf"), 34);
         UtilityTool uTool= new UtilityTool();
         heart = new OBJ_Heart(game);
         heartFull = heart.image1;
@@ -246,12 +253,12 @@ public class UI_MainGame {
         Color c = Color.rgb(255, 209, 184);
         drawSubWindow(frameX, frameY, frameWidth, frameHeight);
 
+        gc.setFont(titleFont);
         String text = "Welcome To Hospital";
         int textX = getXForCenteredTextInFrame(text,frameX,frameWidth);
         int textY = frameY + game.tileSize + 16;
 
         gc.setFill(Color.rgb(255, 255, 255));
-        gc.setFont(titleFont);
         gc.fillText(text, textX, textY);
 
         // Menu...
@@ -302,11 +309,11 @@ public class UI_MainGame {
         drawSubWindow(frameX, frameY, frameWidth, frameHeight);
 
         String text = "Settings";
+        gc.setFont(titleFont);
         int textX = getXForCenteredText(text);
         int textY = frameY + game.tileSize + 16;
 
         gc.setFill(Color.rgb(255, 255, 255));
-        gc.setFont(titleFont);
         gc.fillText(text, textX, textY);
 
 
@@ -375,12 +382,12 @@ public class UI_MainGame {
         Color c = Color.rgb(255, 209, 184);
         drawSubWindow(frameX, frameY, frameWidth, frameHeight);
 
-        String text = "Game Name";
+        gc.setFont(titleFont);
+        String text = "Monster MunchKins";
         int textX = getXForCenteredText(text);
-        int textY = frameY + game.tileSize + 16;
+        int textY = frameY + game.tileSize *2;
 
         gc.setFill(Color.rgb(255, 255, 255));
-        gc.setFont(titleFont);
         gc.fillText(text, textX, textY);
 
         // Menu...
@@ -565,10 +572,10 @@ public class UI_MainGame {
 
         }else{
             //Title
+            gc.setFont(largeFontBold);
             String titleText="Stuff parts";
             double titlewidth= getWidthOfText(titleText);
             gc.setFill(darkDarkCream);
-            gc.setFont(titleFont);
             gc.fillText(titleText,frameX+((frameWidth-titlewidth)/2),frameY+24);
         }
 
