@@ -479,10 +479,15 @@ public class Player extends Entity{
             if (currentWeapon.type == type_specialSword) {
                 game.playSoundEffect(7);
             }
-            if (currentWeapon.type == type_sword || currentWeapon.type == type_fireSword) {
-                game.playSoundEffect(14);
+            if (currentWeapon.type == type_fireSword) {
+                game.playSoundEffect(game.soundEffect.fireSword);
             }
-
+            if (currentWeapon.type == type_axe) {
+                game.playSoundEffect(game.soundEffect.swingWhoosh2);
+            }
+            if (currentWeapon.type == type_sword) {
+                game.playSoundEffect(game.soundEffect.swordSound2);
+            }
         }
     }
 
@@ -492,6 +497,7 @@ public class Player extends Entity{
             Entity projectile = game.projectile[game.currentMap][i];
             projectile.alive = false;
             generateParticle(projectile, projectile);
+            //Here i need ot add projectile sounds
         }
     }
 
@@ -536,7 +542,7 @@ public class Player extends Entity{
                 if(keyHandler.isEnterPressed()){
                     game.obj[game.currentMap][i].interact();
                 }
-                System.out.println("obstacle detected");
+//                System.out.println("obstacle detected");
             }
             //INVENTORY ITEMS
             else{
@@ -546,7 +552,7 @@ public class Player extends Entity{
                     addToInventory(game.obj[game.currentMap][i]);
                     MyJDBC.addItemToInventory(playerId,game.obj[game.currentMap][i].itemCode);
 
-                    // game.playSE(1);
+                    game.playSoundEffect(game.soundEffect.pickUpItem);
                     text="Got a "+ game.obj[game.currentMap][i].name+" !";
                    // game.obj[game.currentMap][i].itemCount++;
                 }else {

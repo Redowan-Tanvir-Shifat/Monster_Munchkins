@@ -29,6 +29,8 @@ public class OBJ_Door extends Entity {
         if(!destroyed){
         game.gameState=game.messageState;
         game.ui.uiMainGame.currentDialogue="You need a key to open the door";
+        game.playSoundEffect(game.soundEffect.doorLocked);
+
         }
     }
 
