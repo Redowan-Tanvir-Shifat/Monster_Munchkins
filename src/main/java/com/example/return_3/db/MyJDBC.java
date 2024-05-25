@@ -260,28 +260,47 @@ public class MyJDBC {
     //when user will create then the interactive tile will also be created
 
 
-    public static void addObject(int userId, int objectType, int itemCode, int col, int row, int mapNum) {
-        try {
-            Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+//    public static void addObject(int userId, int objectType, int itemCode, int col, int row, int mapNum) {
+//        try {
+//            Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+//            PreparedStatement preparedStatement = connection.prepareStatement(
+//                    "INSERT INTO Objects (user_id, object_type, item_code, tile_col, tile_row, map_num) " +
+//                            "VALUES (?, ?, ?, ?, ?, ?)"
+//            );
+//            preparedStatement.setInt(1, userId);
+//            preparedStatement.setInt(2, objectType);
+//            preparedStatement.setInt(3, itemCode);
+//            preparedStatement.setInt(4, col);
+//            preparedStatement.setInt(5, row);
+//            preparedStatement.setInt(6, mapNum);
+//            preparedStatement.executeUpdate();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//
+
+    public static void addObjectBatch(List<ObjectData> objects) {
+        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD)) {
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "INSERT INTO Objects (user_id, object_type, item_code, tile_col, tile_row, map_num) " +
                             "VALUES (?, ?, ?, ?, ?, ?)"
             );
-            preparedStatement.setInt(1, userId);
-            preparedStatement.setInt(2, objectType);
-            preparedStatement.setInt(3, itemCode);
-            preparedStatement.setInt(4, col);
-            preparedStatement.setInt(5, row);
-            preparedStatement.setInt(6, mapNum);
-            preparedStatement.executeUpdate();
+            for (ObjectData object : objects) {
+                preparedStatement.setInt(1, object.getUserId());
+                preparedStatement.setInt(2, object.getObjectType());
+                preparedStatement.setInt(3, object.getItemCode());
+                preparedStatement.setInt(4, object.getCol());
+                preparedStatement.setInt(5, object.getRow());
+                preparedStatement.setInt(6, object.getMapNum());
+                preparedStatement.addBatch();
+            }
+            preparedStatement.executeBatch();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
-
-
-
 
 
 
@@ -441,26 +460,53 @@ public class MyJDBC {
 
 
 ////  <------------  MONSTER
-public static void addMonster(int userId, int monsterType, int areaType, int col, int row, int mapNum, int indexNum) {
-    try {
-        Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
-        PreparedStatement preparedStatement = connection.prepareStatement(
-                "INSERT INTO Monsters (user_id, monster_type, area_type, tile_col, tile_row, indexNum, map_num) " +
-                        "VALUES (?, ?, ?, ?, ?, ?, ?)"
-        );
-        preparedStatement.setInt(1, userId);
-        preparedStatement.setInt(2, monsterType);
-        preparedStatement.setInt(3, areaType);
-        preparedStatement.setInt(4, col);
-        preparedStatement.setInt(5, row);
-        preparedStatement.setInt(6, indexNum);
-        preparedStatement.setInt(7, mapNum);
-        preparedStatement.executeUpdate();
+public static void addMonsters(List<int[]> monsters) {
+    String sql = "INSERT INTO monsters (user_id, indexNum, monster_type, area_type, tile_col, tile_row, map_num) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+    try (Connection conn = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+        for (int[] monster : monsters) {
+            pstmt.setInt(1, monster[0]);
+            pstmt.setInt(2, monster[1]);
+            pstmt.setInt(3, monster[2]);
+            pstmt.setInt(4, monster[3]);
+            pstmt.setInt(5, monster[4]);
+            pstmt.setInt(6, monster[5]);
+            pstmt.setInt(7, monster[6]);
+            pstmt.addBatch();
+        }
+        pstmt.executeBatch();
     } catch (SQLException e) {
         e.printStackTrace();
     }
 }
-    public static void setMonsters(int userId, int mapNum) {
+
+
+//public static void addMonster(int userId, int monsterType, int areaType, int col, int row, int mapNum, int indexNum) {
+//
+//    try {
+//        Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+//        PreparedStatement preparedStatement = connection.prepareStatement(
+//                "INSERT INTO Monsters (user_id, monster_type, area_type, tile_col, tile_row, indexNum, map_num) " +
+//                        "VALUES (?, ?, ?, ?, ?, ?, ?)"
+//        );
+//        preparedStatement.setInt(1, userId);
+//        preparedStatement.setInt(2, monsterType);
+//        preparedStatement.setInt(3, areaType);
+//        preparedStatement.setInt(4, col);
+//        preparedStatement.setInt(5, row);
+//        preparedStatement.setInt(6, indexNum);
+//        preparedStatement.setInt(7, mapNum);
+//        preparedStatement.executeUpdate();
+//    } catch (SQLException e) {
+//        e.printStackTrace();
+//    }
+//}
+//
+
+
+public static void setMonsters(int userId, int mapNum) {
         Game game = Game.gameInstance;
         Entity entity00 = new Entity(game);
         try {
