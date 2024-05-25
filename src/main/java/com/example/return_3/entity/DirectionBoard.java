@@ -11,6 +11,13 @@ public class DirectionBoard extends NPC{
         this.game=game;
         this.name="directionBoard"+x;
         getNPCImage();
+        //set the collision part
+        solidArea.setX(13);
+        solidArea.setY(22);
+        solidArea.setWidth(14);
+        solidArea.setHeight(52);
+        solidAreaDefaultX=(int)(solidArea.getX());
+        solidAreaDefaultY=(int)(solidArea.getY());
     }
     public void checkCollision(){
         collisionOn=false;
