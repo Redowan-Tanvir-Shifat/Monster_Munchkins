@@ -1,8 +1,6 @@
 package com.example.return_3.thread;
 
 import com.example.return_3.main.Game;
-import com.example.return_3.monster.Mon_GreenSlime;
-import com.example.return_3.monster.Mon_RedSlime;
 
 public class MonsterSetterThread extends Thread{
     Game game;
