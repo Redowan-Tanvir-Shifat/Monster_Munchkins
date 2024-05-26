@@ -2,6 +2,7 @@ package com.example.return_3.entity;
 
 import com.example.return_3.main.Game;
 import com.example.return_3.main.UtilityTool;
+import com.example.return_3.monster.*;
 import com.example.return_3.object.OBJ_ChatBox;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -778,6 +779,7 @@ public class Entity {
                 gc.setGlobalAlpha(0.4);
             }
             if (dying == true) {
+
                 dyingAnimation(gc);
             }
 
@@ -793,6 +795,7 @@ public class Entity {
     }
 
     public void dyingAnimation(GraphicsContext gc) {
+
         dyingCounter++;
         int i = 5;
         if (dyingCounter <= i) {gc.setGlobalAlpha(0);}
@@ -804,7 +807,9 @@ public class Entity {
         if (dyingCounter > i*6 && dyingCounter <= i*7) {gc.setGlobalAlpha(0);}
         if (dyingCounter > i*7 && dyingCounter <= i*8) {gc.setGlobalAlpha(1);}
         if (dyingCounter > i*8) {
+
             alive = false;
+
         }
     }
 

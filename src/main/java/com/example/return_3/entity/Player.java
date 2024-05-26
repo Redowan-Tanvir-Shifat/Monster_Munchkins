@@ -4,8 +4,7 @@ import com.example.return_3.db.MyJDBC;
 import com.example.return_3.main.EventHandler;
 import com.example.return_3.main.Game;
 import com.example.return_3.main.KeyHandler;
-import com.example.return_3.monster.Mon_GreenSlime;
-import com.example.return_3.monster.Mon_RedSlime;
+import com.example.return_3.monster.*;
 import com.example.return_3.object.*;
 import com.example.return_3.thread.MonsterSetterThread;
 import javafx.animation.KeyFrame;
@@ -440,13 +439,52 @@ public class Player extends Entity{
                     int monsterType=game.monster[game.currentMap][i].monster_type;
                     String name= game.monster[game.currentMap][i].name;
                     game.monster[game.currentMap][i].dying = true;
+                    if(game.monster[game.currentMap][i] instanceof Mon_Green){
+                        game.playSoundEffect(game.soundEffect.slimeDeathSound);
+                        System.out.println("green slime died");
+                    } else if(game.monster[game.currentMap][i] instanceof Mon_Pac){
+                        game.playSoundEffect(game.soundEffect.redPacDeathSound);
+                        System.out.println("Mon_Pac died");
+                    }else if(game.monster[game.currentMap][i] instanceof Mon_Spider){
+                        game.playSoundEffect(game.soundEffect.spiderSound);
+                        System.out.println("Mon_Spider died");
+                    }else if(game.monster[game.currentMap][i] instanceof Mon_SpiderBrown){
+                        game.playSoundEffect(game.soundEffect.spiderSound);
+                        System.out.println("Mon_SpiderBrown died");
+                    }else if(game.monster[game.currentMap][i] instanceof Mon_Worm){
+//                game.playSoundEffect(game.soundEffect.shipWave);
+                        System.out.println("Mon_Worm died");
+                    }else if(game.monster[game.currentMap][i] instanceof Mon_PacGreen){
+                        game.playSoundEffect(game.soundEffect.greenPacDeathSound);
+                        System.out.println("Mon_PacGreen died");
+                    }else if(game.monster[game.currentMap][i] instanceof Mon_BlueGhost){
+                        game.playSoundEffect(game.soundEffect.blueghostDeathSound);
+                        System.out.println("Mon_BlueGhost died");
+                    }else if(game.monster[game.currentMap][i] instanceof Mon_RedFly){
+                        game.playSoundEffect(game.soundEffect.fireflyDeathSound);
+                        System.out.println("Mon_RedFly died");
+                    }else if(game.monster[game.currentMap][i] instanceof Mon_ORC){
+                        game.playSoundEffect(game.soundEffect.orcDeathSound);
+                        System.out.println("Mon_ORC died");
+                    }else if(game.monster[game.currentMap][i] instanceof Mon_RedORC){
+                        game.playSoundEffect(game.soundEffect.orcDeathSound);
+                        System.out.println("Mon_RedORC died");
+                    }else if(game.monster[game.currentMap][i] instanceof Mon_Skeleton){
+//                game.playSoundEffect(game.soundEffect.shipWave);
+                        System.out.println("Mon_Skeleton died");
+                    }
 
 
                     game.ui.uiMainGame.addMessage("Killed the " + game.monster[game.currentMap][i].name + "!");
                     exp += game.monster[game.currentMap][i].exp;
                     game.ui.uiMainGame.addMessage(" EXP + " + game.monster[game.currentMap][i].exp);
+                    if(game.monster[game.currentMap][i] instanceof Mon_Green){
+                        //then do nothing
+                    }else{
+                        //set the destroy mode true
                     MyJDBC.updateMonsterDestroyedStatus(playerId,i,monsterType,game.currentMap,true);
-//                    MyJDBC.updateObjectDestroyedStatus(playerId,game.currentMap,row,col,game.type_object,true);
+                    }
+//
 
                     new MonsterSetterThread(game,i,name).start();
 
@@ -749,6 +787,7 @@ public class Player extends Entity{
             gc.setGlobalAlpha(0.3);
         }
         if (dying == true) {
+            //here we will called sound effects for our player died
             dyingAnimation(game.gc);
         }
         gc.drawImage(image, tempScreenX, tempScreenY);
