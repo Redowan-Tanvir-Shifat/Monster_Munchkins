@@ -4,6 +4,7 @@ import com.example.return_3.db.MyJDBC;
 import com.example.return_3.main.EventHandler;
 import com.example.return_3.main.Game;
 import com.example.return_3.main.KeyHandler;
+import com.example.return_3.monster.Mon_Green;
 import com.example.return_3.monster.Mon_GreenSlime;
 import com.example.return_3.monster.Mon_RedSlime;
 import com.example.return_3.object.*;
@@ -445,8 +446,13 @@ public class Player extends Entity{
                     game.ui.uiMainGame.addMessage("Killed the " + game.monster[game.currentMap][i].name + "!");
                     exp += game.monster[game.currentMap][i].exp;
                     game.ui.uiMainGame.addMessage(" EXP + " + game.monster[game.currentMap][i].exp);
+                    if(game.monster[game.currentMap][i] instanceof Mon_Green){
+                        //then do nothing
+                    }else{
+                        //set the destroy mode true
                     MyJDBC.updateMonsterDestroyedStatus(playerId,i,monsterType,game.currentMap,true);
-//                    MyJDBC.updateObjectDestroyedStatus(playerId,game.currentMap,row,col,game.type_object,true);
+                    }
+//
 
                     new MonsterSetterThread(game,i,name).start();
 
@@ -749,6 +755,7 @@ public class Player extends Entity{
             gc.setGlobalAlpha(0.3);
         }
         if (dying == true) {
+            //here we will called sound effects for our player died
             dyingAnimation(game.gc);
         }
         gc.drawImage(image, tempScreenX, tempScreenY);

@@ -2,6 +2,7 @@ package com.example.return_3.entity;
 
 import com.example.return_3.main.Game;
 import com.example.return_3.main.UtilityTool;
+import com.example.return_3.monster.*;
 import com.example.return_3.object.OBJ_ChatBox;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -778,6 +779,40 @@ public class Entity {
                 gc.setGlobalAlpha(0.4);
             }
             if (dying == true) {
+                if(this instanceof Mon_Green){
+//                game.playSoundEffect(game.soundEffect.shipWave);
+                    System.out.println("green slime died");
+                } else if(this instanceof Mon_Pac){
+//                game.playSoundEffect(game.soundEffect.shipWave);
+                    System.out.println("Mon_Pac died");
+                }else if(this instanceof Mon_Spider){
+//                game.playSoundEffect(game.soundEffect.shipWave);
+                    System.out.println("Mon_Spider died");
+                }else if(this instanceof Mon_SpiderBrown){
+//                game.playSoundEffect(game.soundEffect.shipWave);
+                    System.out.println("Mon_SpiderBrown died");
+                }else if(this instanceof Mon_Worm){
+//                game.playSoundEffect(game.soundEffect.shipWave);
+                    System.out.println("Mon_Worm died");
+                }else if(this instanceof Mon_PacGreen){
+//                game.playSoundEffect(game.soundEffect.shipWave);
+                    System.out.println("Mon_PacGreen died");
+                }else if(this instanceof Mon_BlueGhost){
+//                game.playSoundEffect(game.soundEffect.shipWave);
+                    System.out.println("Mon_BlueGhost died");
+                }else if(this instanceof Mon_RedFly){
+//                game.playSoundEffect(game.soundEffect.shipWave);
+                    System.out.println("Mon_RedFly died");
+                }else if(this instanceof Mon_ORC){
+//                game.playSoundEffect(game.soundEffect.shipWave);
+                    System.out.println("Mon_ORC died");
+                }else if(this instanceof Mon_RedORC){
+//                game.playSoundEffect(game.soundEffect.shipWave);
+                    System.out.println("Mon_RedORC died");
+                }else if(this instanceof Mon_Skeleton){
+//                game.playSoundEffect(game.soundEffect.shipWave);
+                    System.out.println("Mon_Skeleton died");
+                }
                 dyingAnimation(gc);
             }
 
@@ -793,6 +828,7 @@ public class Entity {
     }
 
     public void dyingAnimation(GraphicsContext gc) {
+
         dyingCounter++;
         int i = 5;
         if (dyingCounter <= i) {gc.setGlobalAlpha(0);}
@@ -804,7 +840,9 @@ public class Entity {
         if (dyingCounter > i*6 && dyingCounter <= i*7) {gc.setGlobalAlpha(0);}
         if (dyingCounter > i*7 && dyingCounter <= i*8) {gc.setGlobalAlpha(1);}
         if (dyingCounter > i*8) {
+
             alive = false;
+
         }
     }
 

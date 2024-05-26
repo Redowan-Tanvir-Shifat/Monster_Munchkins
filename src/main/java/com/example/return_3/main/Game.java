@@ -12,7 +12,9 @@ import com.example.return_3.gameCenter.spaceInvaders.GameSpaceInvaders;
 import com.example.return_3.gameCenter.ticTacToe.TicTacToe;
 import com.example.return_3.globalChat.Client;
 import com.example.return_3.interactiveTile.InteractiveTile;
+import com.example.return_3.monster.Mon_Green;
 import com.example.return_3.object.*;
+import com.example.return_3.thread.GreenMonsterRebornThread;
 import com.example.return_3.tile.TileManager;
 import com.example.return_3.ui.UI;
 import javafx.application.Application;
@@ -136,7 +138,7 @@ public class Game extends Application {
     public Entity npc[][]= new Entity[maxMap][100]; //set the number of 10 NPC Number
     public Entity interactNpc[][]= new Entity[maxMap][20]; //set the number of 10 NPC Number
     public Entity[][] monster = new Entity[maxMap][500];
-    public Entity[][] slimeMonster = new Entity[maxMap][20];
+
     public InteractiveTile iTile[][]= new InteractiveTile[maxMap][50];
     ArrayList<Entity> entityList = new ArrayList<>();
     // public  ArrayList<Entity> projectileList = new ArrayList<>();
@@ -469,19 +471,15 @@ public class Game extends Application {
                         }
                         if (monster[currentMap][i].alive == false) {
                             monster[currentMap][i].checkDrop();
-                            monster[currentMap][i] = null;
-                        }
-                    }
-                }
-                // Slime Monster
-                for (int i = 0; i < slimeMonster[currentMap].length; i++) {
-                    if (slimeMonster[currentMap][i] != null) {
-                        if (slimeMonster[currentMap][i].alive == true) {
-                            slimeMonster[currentMap][i].update();
-                        }
-                        if (slimeMonster[currentMap][i].alive == false) {
-                            slimeMonster[currentMap][i].checkDrop();
-                            slimeMonster[currentMap][i] = null;
+                            if(monster[currentMap][i] instanceof Mon_Green){
+                                //handle for green monster death here.
+                                System.out.println("green slime died and run the thread");
+                                GreenMonsterRebornThread greenMonsterRebornThread= new GreenMonsterRebornThread(this,i,monster[currentMap][i].monster_area,monster[currentMap][i].worldX,monster[currentMap][i].worldY);
+                                monster[currentMap][i] = null;
+                                greenMonsterRebornThread.start();
+                            } else {
+                                monster[currentMap][i] = null;
+                            }
                         }
                     }
                 }
@@ -572,12 +570,7 @@ public class Game extends Application {
                         entityList.add(monster[currentMap][i]);
                     }
                 }
-                //ADD Slime MONSTER TO THE LIST
-                for (int i = 0; i < slimeMonster[currentMap].length; i++) {
-                    if (slimeMonster[currentMap][i] != null) {
-                        entityList.add(slimeMonster[currentMap][i]);
-                    }
-                }
+
                 //add object to list
                 for(int i=0; i<obj[currentMap].length; i++){
                     if(obj[currentMap][i]!=null){
