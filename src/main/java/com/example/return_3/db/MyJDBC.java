@@ -551,6 +551,8 @@ public static void setMonsters(int userId, int mapNum) {
                     monster = new Mon_Skeleton(game, areaType);
                 }else if (monsterType == entity00.type_redFly) {
                     monster = new Mon_RedFly(game, areaType);
+                }else if (monsterType == entity00.type_slimeMother) {
+                    monster = new Mon_GreenSlimeMother(game, areaType);
                 }
 
                 // Place the monster in the game world
@@ -619,4 +621,20 @@ public static void setMonsters(int userId, int mapNum) {
             e.printStackTrace();
         }
     }
+
+    public static void setDestroyedForSlimes() {
+        String sql = "UPDATE monsters SET destroyed = TRUE WHERE monster_type = ?";
+
+        try (Connection conn = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1, Entity.type_slime);  // Assuming Entity.type_slime is a static variable
+
+            int affectedRows = pstmt.executeUpdate();
+            System.out.println("Updated " + affectedRows + " rows.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

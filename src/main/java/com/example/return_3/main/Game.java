@@ -481,6 +481,9 @@ public class Game extends Application {
                                 monster[currentMap][i] = null;
                             }
                         }
+                        if(monster[currentMap][i].slimeDeath == true){
+                            monster[currentMap][i] = null;
+                        }
                     }
                 }
 
