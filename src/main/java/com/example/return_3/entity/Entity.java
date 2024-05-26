@@ -4,6 +4,7 @@ import com.example.return_3.main.Game;
 import com.example.return_3.main.UtilityTool;
 import com.example.return_3.monster.*;
 import com.example.return_3.object.OBJ_ChatBox;
+import com.example.return_3.thread.SlimeDeadThread;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
@@ -60,6 +61,8 @@ public class Entity {
     public boolean guarding  = false;
     public boolean alive = true;
     public boolean dying = false;
+    public boolean slimeDeathOn = false;
+    public boolean slimeDeath = false;
     public boolean hpBarOn = false;
     public boolean onPath = false;
     public boolean chatOnStatus = false;
@@ -157,7 +160,7 @@ public class Entity {
     public final int area_village=1;
     // <---------Type of Monster--------->
     public int monster_type;
-    public final int type_slime = 1;
+    public static final int type_slime = 1;
     public final int type_pacman = 2;
     public final int type_spider = 3;
     public final int type_worm = 4;
@@ -169,6 +172,7 @@ public class Entity {
     public final int type_skeleton = 10;
     public final int type_spiderBrown = 11;
     public final int type_sixEyes = 12;
+    public final int type_slimeMother = 12;
 
 
     // <---------Area of Monster--------->
@@ -782,6 +786,20 @@ public class Entity {
 
                 dyingAnimation(gc);
             }
+            if(slimeDeathOn==true) {
+                dyingCounter++;
+                int i = 5;
+                if (dyingCounter <= i) {gc.setGlobalAlpha(0);}
+                if (dyingCounter > i && dyingCounter <= i*2) {gc.setGlobalAlpha(1);}
+                if (dyingCounter > i*2 && dyingCounter <= i*3) {gc.setGlobalAlpha(0);}
+                if (dyingCounter > i*3 && dyingCounter <= i*4) {gc.setGlobalAlpha(1);}
+                if (dyingCounter > i*4 && dyingCounter <= i*5) {gc.setGlobalAlpha(0);}
+                if (dyingCounter > i*5 && dyingCounter <= i*6) {gc.setGlobalAlpha(1);}
+                if (dyingCounter > i*6 && dyingCounter <= i*7) {gc.setGlobalAlpha(0);}
+                if (dyingCounter > i*7 && dyingCounter <= i*8) {gc.setGlobalAlpha(1);}
+                slimeDeath=true;
+            }
+
 
             gc.drawImage(image,tempScreenX,tempScreenY);
 
@@ -807,9 +825,7 @@ public class Entity {
         if (dyingCounter > i*6 && dyingCounter <= i*7) {gc.setGlobalAlpha(0);}
         if (dyingCounter > i*7 && dyingCounter <= i*8) {gc.setGlobalAlpha(1);}
         if (dyingCounter > i*8) {
-
             alive = false;
-
         }
     }
 

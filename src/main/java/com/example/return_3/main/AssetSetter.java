@@ -447,7 +447,11 @@ i++;
                 {entity.type_slime, 0, 94, 110}, {entity.type_slime, 0, 98, 112},
                 {entity.type_slime, 0, 104, 121}, {entity.type_slime, 0, 110, 119},
                 {entity.type_slime, 0, 112, 123}, {entity.type_worm, 0, 101, 117},
-                {entity.type_worm, 0, 114, 119}, {entity.type_pacmanGreen, 0, 106, 118}
+                {entity.type_worm, 0, 114, 119}, {entity.type_pacmanGreen, 0, 106, 118},
+                {entity.type_slimeMother,0,31,32},
+                {entity.type_slime, 0, 39, 34}, {entity.type_slime, 0, 21, 32},
+                {entity.type_slime, 0, 29, 39}, {entity.type_slime, 0, 18, 22},
+                {entity.type_slime, 0, 44, 22}
         };
 
 

@@ -1,31 +1,17 @@
 package com.example.return_3.entity;
 
 import com.example.return_3.db.MyJDBC;
-import com.example.return_3.main.EventHandler;
 import com.example.return_3.main.Game;
 import com.example.return_3.main.KeyHandler;
 import com.example.return_3.monster.*;
 import com.example.return_3.object.*;
-import com.example.return_3.thread.MonsterSetterThread;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
+import com.example.return_3.thread.SlimeDeadThread;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
-import javafx.util.Duration;
 
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.util.ArrayList;
 import java.util.Objects;
 
 
@@ -472,21 +458,25 @@ public class Player extends Entity{
                     }else if(game.monster[game.currentMap][i] instanceof Mon_Skeleton){
 //                game.playSoundEffect(game.soundEffect.shipWave);
                         System.out.println("Mon_Skeleton died");
+                    }else if(game.monster[game.currentMap][i] instanceof Mon_GreenSlimeMother){
+//                game.playSoundEffect(game.soundEffect.shipWave);
+
+                        System.out.println("Mon_GreenSlimeMother died");
+                        SlimeDeadThread slimeDeadThread= new SlimeDeadThread(game);
+                        slimeDeadThread.start();
+
                     }
 
 
                     game.ui.uiMainGame.addMessage("Killed the " + game.monster[game.currentMap][i].name + "!");
                     exp += game.monster[game.currentMap][i].exp;
                     game.ui.uiMainGame.addMessage(" EXP + " + game.monster[game.currentMap][i].exp);
-                    if(game.monster[game.currentMap][i] instanceof Mon_Green){
+                    if(game.monster[game.currentMap][i] instanceof Mon_Green ){
                         //then do nothing
                     }else{
                         //set the destroy mode true
                     MyJDBC.updateMonsterDestroyedStatus(playerId,i,monsterType,game.currentMap,true);
                     }
-//
-
-                    new MonsterSetterThread(game,i,name).start();
 
                 }
             }

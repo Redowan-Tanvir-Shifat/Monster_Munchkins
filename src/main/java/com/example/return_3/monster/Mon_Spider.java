@@ -85,9 +85,7 @@ public class Mon_Spider extends Entity {
             getRandomDirection();
         }
     }
-    public void dropDirt() {
 
-    }
     public void getRandomDirection() {
         actionLookCounter++;
         Random random= new Random();
