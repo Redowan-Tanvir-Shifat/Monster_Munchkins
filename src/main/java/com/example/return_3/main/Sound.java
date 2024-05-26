@@ -5,7 +5,7 @@ import java.net.URL;
 
 public class Sound {
     private Clip clip;
-    private URL[] soundUrls = new URL[30];
+    private URL[] soundUrls = new URL[50];
     FloatControl fc;
     public float volume = 0.6f; // Default volume
     public int  volumeScale = 3;
@@ -17,7 +17,16 @@ public class Sound {
     public final int swingWhoosh1=21;
     public final int swingWhoosh2=22;
     public final int swingWhoosh3=23;
-    public final int shipWave=23;
+
+    public  final int blueghostDeathSound=24;
+    public final int fireflyDeathSound=25;
+    public final int greenPacDeathSound=26;
+    public final int orcDeathSound=27;
+    public final int redPacDeathSound=28;
+    public final int slimeDeathSound=29;
+    public final int spiderSound=30;
+    public final int shipWave=31;
+
 
     public Sound() {
         // Initialize sound URLs
@@ -47,6 +56,13 @@ public class Sound {
         soundUrls[swingWhoosh2]=getClass().getResource("/sound/swingWhoosh2.wav");
         soundUrls[swingWhoosh3]=getClass().getResource("/sound/swingWhoosh3.wav");
         soundUrls[shipWave]=getClass().getResource("/sound/shipWave.wav");
+        soundUrls[blueghostDeathSound]=getClass().getResource("/sound/blueghostDeathSound.wav");
+        soundUrls[fireflyDeathSound]=getClass().getResource("/sound/fireflyDeathSound.wav");
+        soundUrls[greenPacDeathSound]=getClass().getResource("/sound/greenPacDeathSound.wav");
+        soundUrls[orcDeathSound]=getClass().getResource("/sound/orcDeathSound.wav");
+        soundUrls[redPacDeathSound]=getClass().getResource("/sound/redPacDeathSound.wav");
+        soundUrls[slimeDeathSound]=getClass().getResource("/sound/slimeDeathSound.wav");
+        soundUrls[spiderSound]=getClass().getResource("/sound/spiderSound.wav");
 
     }
 

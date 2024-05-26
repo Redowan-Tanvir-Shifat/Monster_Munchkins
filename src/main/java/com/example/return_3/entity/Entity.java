@@ -779,40 +779,7 @@ public class Entity {
                 gc.setGlobalAlpha(0.4);
             }
             if (dying == true) {
-                if(this instanceof Mon_Green){
-//                game.playSoundEffect(game.soundEffect.shipWave);
-                    System.out.println("green slime died");
-                } else if(this instanceof Mon_Pac){
-//                game.playSoundEffect(game.soundEffect.shipWave);
-                    System.out.println("Mon_Pac died");
-                }else if(this instanceof Mon_Spider){
-//                game.playSoundEffect(game.soundEffect.shipWave);
-                    System.out.println("Mon_Spider died");
-                }else if(this instanceof Mon_SpiderBrown){
-//                game.playSoundEffect(game.soundEffect.shipWave);
-                    System.out.println("Mon_SpiderBrown died");
-                }else if(this instanceof Mon_Worm){
-//                game.playSoundEffect(game.soundEffect.shipWave);
-                    System.out.println("Mon_Worm died");
-                }else if(this instanceof Mon_PacGreen){
-//                game.playSoundEffect(game.soundEffect.shipWave);
-                    System.out.println("Mon_PacGreen died");
-                }else if(this instanceof Mon_BlueGhost){
-//                game.playSoundEffect(game.soundEffect.shipWave);
-                    System.out.println("Mon_BlueGhost died");
-                }else if(this instanceof Mon_RedFly){
-//                game.playSoundEffect(game.soundEffect.shipWave);
-                    System.out.println("Mon_RedFly died");
-                }else if(this instanceof Mon_ORC){
-//                game.playSoundEffect(game.soundEffect.shipWave);
-                    System.out.println("Mon_ORC died");
-                }else if(this instanceof Mon_RedORC){
-//                game.playSoundEffect(game.soundEffect.shipWave);
-                    System.out.println("Mon_RedORC died");
-                }else if(this instanceof Mon_Skeleton){
-//                game.playSoundEffect(game.soundEffect.shipWave);
-                    System.out.println("Mon_Skeleton died");
-                }
+
                 dyingAnimation(gc);
             }
 
