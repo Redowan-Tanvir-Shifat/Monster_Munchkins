@@ -148,11 +148,11 @@ public class Player extends Entity{
 
     }
 
-    public void setItems(){
-        inventory.clear();
-        inventory.add(currentWeapon);
-        inventory.add(currentShield);
-    }
+//    public void setItems(){
+//        inventory.clear();
+//        inventory.add(currentWeapon);
+//        inventory.add(currentShield);
+//    }
 
     public void setDefaultValues(){
         setDefaultPositions();
@@ -211,8 +211,12 @@ public class Player extends Entity{
         direction = "down";
     }
 
-
+//remove current weapon and also cr
     public void update(){
+        if(currentWeapon!=null && currentWeapon instanceof OBJ_Axe && currentWeapon.life<=0){
+            currentWeapon=null;
+//            inventory.remove()
+        }
 
         if (knockBack == true) {
 
@@ -474,6 +478,12 @@ public class Player extends Entity{
                         System.out.println("Mon_GreenSlimeMother died");
                         SlimeDeadThread slimeDeadThread= new SlimeDeadThread(game);
                         slimeDeadThread.start();
+//                        for (int j = 0; j < game.monster[game.currentMap].length; j++) {
+//                            if (game.monster[game.currentMap][j] instanceof Mon_Green) {
+//                                game.monster[game.currentMap][j].slimeDeathOn=true;
+//                                game.monster[game.currentMap][j].dying=true;
+//                            }
+//                        }
 
                     }
 
@@ -483,7 +493,8 @@ public class Player extends Entity{
                     game.ui.uiMainGame.addMessage(" EXP + " + game.monster[game.currentMap][i].exp);
                     if(game.monster[game.currentMap][i] instanceof Mon_Green ){
                         //then do nothing
-                    }else{
+                    }
+                    else{
                         //set the destroy mode true
                     MyJDBC.updateMonsterDestroyedStatus(playerId,i,monsterType,game.currentMap,true);
                     }
@@ -544,7 +555,7 @@ public class Player extends Entity{
                 && game.iTile[game.currentMap][i].isCorrectItem(this)==true &&game.iTile[game.currentMap][i].invincible==false){
             game.iTile[game.currentMap][i].life--;
             game.iTile[game.currentMap][i].invincible=true;
-
+            currentWeapon.life--;
             generateParticle(game.iTile[game.currentMap][i],game.iTile[game.currentMap][i]);
 
             if(game.iTile[game.currentMap][i].life<1){
@@ -610,32 +621,8 @@ public class Player extends Entity{
         Entity item=game.inventoryMapgetItem(entity.itemCode);
         inventory.add(entity);
         item.itemCount++;
-
-//        for (Entity inventoryItem : inventory) {
-//            if (inventoryItem.name.equals(entity.name)) {
-//                // If the item already exists, increment the count and return
-//                inventoryItem.itemCount++;
-//                return;
-//            }
-//        }
-//        // If the item does not exist in the inventory, add it with count 1
-//        item.itemCount=1;
-//        inventory.add(item);
     }
-//    private void addToInventoryWithName(Entity item, String itemName) {
-//        // Check if the item already exists in the inventory
-//        for (Entity inventoryItem : inventory) {
-//            if (inventoryItem.getName().equals(itemName)) {
-//                // If the item already exists, increment the count and return
-//                inventoryItem.incrementItemCount();
-//                return;
-//            }
-//        }
-//
-//        // If the item does not exist in the inventory, add it with count 1
-//        item.itemCount=1;
-//        inventory.add(item);
-//    }
+
     public void checkLevelUp() {
         if (exp >= nextLevelExp) {
             level++;
