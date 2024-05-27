@@ -442,6 +442,28 @@ i++;
                 {entity.type_pacmanGreen, entity.area_hill_2, 103, 96}
         };
 
+        // Hill 3
+        int[][] hill3Positions = {
+                {entity.type_arc, entity.area_hill_3, 89, 68}, {entity.type_worm, entity.area_hill_3, 81, 74},
+                {entity.type_spiderBrown, entity.area_hill_3, 77, 69}, {entity.type_slime, entity.area_hill_3, 74, 78},
+                {entity.type_blueGhost, entity.area_hill_3, 82, 79}, {entity.type_redFly, entity.area_hill_3, 87, 80},
+                {entity.type_redFly, entity.area_hill_3, 66, 74}, {entity.type_blueGhost, entity.area_hill_3, 61, 68},
+                {entity.type_slime, entity.area_hill_3, 59, 71}, {entity.type_worm, entity.area_hill_3, 52, 74},
+                {entity.type_spiderBrown, entity.area_hill_3, 60, 81}, {entity.type_blueGhost, entity.area_hill_3, 51, 78}
+        };
+
+        // Hill 4
+        int[][] hill4Positions = {
+                {entity.type_arc, entity.area_hill_3, 89, 68}, {entity.type_worm, entity.area_hill_3, 81, 74},
+                {entity.type_spiderBrown, entity.area_hill_3, 77, 69}, {entity.type_slime, entity.area_hill_3, 74, 78},
+                {entity.type_blueGhost, entity.area_hill_3, 82, 79}, {entity.type_redFly, entity.area_hill_3, 87, 80},
+                {entity.type_redFly, entity.area_hill_3, 66, 74}, {entity.type_blueGhost, entity.area_hill_3, 61, 68},
+                {entity.type_slime, entity.area_hill_3, 59, 71}, {entity.type_worm, entity.area_hill_3, 52, 74},
+                {entity.type_spiderBrown, entity.area_hill_3, 60, 81}, {entity.type_blueGhost, entity.area_hill_3, 51, 78}
+        };
+
+
+
         // Monster setup without area
         int[][] noAreaPositions = {
                 {entity.type_slime, 0, 94, 110}, {entity.type_slime, 0, 98, 112},
@@ -451,7 +473,20 @@ i++;
                 {entity.type_slimeMother,0,31,32},
                 {entity.type_slime, 0, 39, 34}, {entity.type_slime, 0, 21, 32},
                 {entity.type_slime, 0, 29, 39}, {entity.type_slime, 0, 18, 22},
-                {entity.type_slime, 0, 44, 22}
+                {entity.type_slime, 0, 44, 22}, {entity.type_redFly, 0, 67, 27},
+                {entity.type_arc, 0, 71, 24}, {entity.type_redFly, 0, 67, 27},
+                {entity.type_blueGhost, 0, 86, 24}, {entity.type_arc, 0, 66, 33},
+                {entity.type_slime, 0, 70, 36}, {entity.type_worm, 0, 78, 33},
+                {entity.type_slime, 0, 94, 34}, {entity.type_pacmanGreen, 0, 99, 27},
+                {entity.type_arc, 0, 102, 48}, {entity.type_blueGhost, 0, 96, 57},
+                {entity.type_slime, 0, 105, 54}, {entity.type_spider, 0, 115, 62},
+                {entity.type_spider, 0,111, 49}, {entity.type_spider, 0, 129, 57},
+                {entity.type_spiderBrown, 0, 128, 50}, {entity.type_spiderBrown, 0, 114, 57},
+                {entity.type_redFly, 0, 121, 53}, {entity.type_slime, 0, 122, 62},
+                {entity.type_slime, 0, 135, 72}, {entity.type_slime, 0, 163, 94},
+                {entity.type_arc, 0, 156, 85}, {entity.type_pacman, 0, 169, 81},
+                {entity.type_slime, 0, 148, 79}, {entity.type_redFly, 0, 54, 45},
+                {entity.type_blueGhost, 0, 64, 47}, {entity.type_redFly, 0, 64, 40},
         };
 
 
@@ -460,7 +495,7 @@ i++;
 
 
 
-        int[][][] allPositions = {townHall1Positions, townHall2Positions, townHall3Positions, townHall4Positions, townHall5Positions,hill1Positions,hill2Positions,noAreaPositions};
+        int[][][] allPositions = {townHall1Positions, townHall2Positions, townHall3Positions, townHall4Positions, townHall5Positions,hill1Positions,hill2Positions,hill3Positions, hill4Positions,noAreaPositions};
 
         List<int[]> allMonsters = new ArrayList<>();
 
