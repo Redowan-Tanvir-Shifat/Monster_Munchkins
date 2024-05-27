@@ -539,11 +539,15 @@ i++;
     }
 
     //initial adding object in inventory
-    public static void addInventoryToDB(int userId){
-//Now i declare all item code in an array that i will need.
-        int itemCode[]=new int[]{101,102,103,104,105,106,107,201,202,203,204,205,206,207,208,303,304,305,306,307};
-        for(int i=0;i<itemCode.length;i++){
-            MyJDBC.addInventory(userId,itemCode[i]);
-        }
+//    public static void addInventoryToDB(int userId){
+////Now i declare all item code in an array that i will need.
+//        int itemCode[]=new int[]{101,102,103,104,105,106,107,201,202,203,204,205,206,207,208,303,304,305,306,307};
+//        for(int i=0;i<itemCode.length;i++){
+//            MyJDBC.addInventory(userId,itemCode[i]);
+//        }
+//    }
+    public static void addInventoryToDB(int userId) {
+        int[] itemCodes = new int[]{101, 102, 103, 104, 105, 106, 107, 201, 202, 203, 204, 205, 206, 207, 208, 303, 304, 305, 306, 307};
+        MyJDBC.addInventory(userId, itemCodes);
     }
 }

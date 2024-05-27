@@ -185,20 +185,49 @@ public class MyJDBC {
 //we i need to check this method once again because there might be one operation and i did multiple for not knowing the
 
 
-    public static void addInventory(int userId, int itemCode) {
-        try {
-            Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
-            PreparedStatement preparedStatement = connection.prepareStatement(
-                    "INSERT INTO Inventory (user_id, item_code, item_count) " +
-                            "VALUES (?, ?, 0)"
-            );
-            preparedStatement.setInt(1, userId);
-            preparedStatement.setInt(2, itemCode);
+//    public static void addInventory(int userId, int itemCode) {
+//        try {
+//            Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+//            PreparedStatement preparedStatement = connection.prepareStatement(
+//                    "INSERT INTO Inventory (user_id, item_code, item_count) " +
+//                            "VALUES (?, ?, 0)"
+//            );
+//            preparedStatement.setInt(1, userId);
+//            preparedStatement.setInt(2, itemCode);
+//            preparedStatement.executeUpdate();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
+    public static void addInventory(int userId, int[] itemCodes) {
+        String query = "INSERT INTO Inventory (user_id, item_code, item_count) VALUES ";
+        StringBuilder values = new StringBuilder();
+
+        for (int i = 0; i < itemCodes.length; i++) {
+            values.append("(?, ?, 0)");
+            if (i < itemCodes.length - 1) {
+                values.append(", ");
+            }
+        }
+
+        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+             PreparedStatement preparedStatement = connection.prepareStatement(query + values.toString())) {
+
+            int parameterIndex = 1;
+            for (int itemCode : itemCodes) {
+                preparedStatement.setInt(parameterIndex++, userId);
+                preparedStatement.setInt(parameterIndex++, itemCode);
+            }
+
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
+
+
 
 
 
@@ -226,34 +255,73 @@ public class MyJDBC {
         }
         return null;
     }
+//    public static void addItemToInventory(int userId, int itemCode) {
+//        try {
+//            Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+//            PreparedStatement preparedStatement = connection.prepareStatement(
+//                    "INSERT INTO Inventory (user_id, item_code, item_count) VALUES (?, ?, 1) " +
+//                            "ON DUPLICATE KEY UPDATE item_count = item_count + 1"
+//            );
+//            preparedStatement.setInt(1, userId);
+//            preparedStatement.setInt(2, itemCode);
+//            preparedStatement.executeUpdate();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
     public static void addItemToInventory(int userId, int itemCode) {
-        try {
-            Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
-            PreparedStatement preparedStatement = connection.prepareStatement(
-                    "INSERT INTO Inventory (user_id, item_code, item_count) VALUES (?, ?, 1) " +
-                            "ON DUPLICATE KEY UPDATE item_count = item_count + 1"
-            );
+        String sql = "UPDATE Inventory SET item_count = item_count + 1 WHERE user_id = ? AND item_code = ?";
+
+        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
             preparedStatement.setInt(1, userId);
             preparedStatement.setInt(2, itemCode);
-            preparedStatement.executeUpdate();
+            int rowsUpdated = preparedStatement.executeUpdate();
+
+            if (rowsUpdated == 0) {
+                System.out.println("No record found for user_id " + userId + " and item_code " + itemCode);
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public static void removeItemFromInventory(int userId, int itemCode) {
-        try {
-            Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
-            PreparedStatement preparedStatement = connection.prepareStatement(
-                    "UPDATE Inventory SET item_count = item_count - 1 WHERE user_id = ? AND item_code = ? AND item_count > 0"
-            );
-            preparedStatement.setInt(1, userId);
-            preparedStatement.setInt(2, itemCode);
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
+
+//    public static void removeItemFromInventory(int userId, int itemCode) {
+//        try {
+//            Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+//            PreparedStatement preparedStatement = connection.prepareStatement(
+//                    "UPDATE Inventory SET item_count = item_count - 1 WHERE user_id = ? AND item_code = ? AND item_count > 0"
+//            );
+//            preparedStatement.setInt(1, userId);
+//            preparedStatement.setInt(2, itemCode);
+//            preparedStatement.executeUpdate();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
+public static void removeItemFromInventory(int userId, int itemCode) {
+    String sql = "UPDATE Inventory SET item_count = item_count - 1 WHERE user_id = ? AND item_code = ? AND item_count > 0";
+
+    try (Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+         PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+        preparedStatement.setInt(1, userId);
+        preparedStatement.setInt(2, itemCode);
+        int rowsUpdated = preparedStatement.executeUpdate();
+
+        if (rowsUpdated == 0) {
+            System.out.println("No item found or item count is already 0 for user_id " + userId + " and item_code " + itemCode);
         }
+
+    } catch (SQLException e) {
+        e.printStackTrace();
     }
+}
+
 
     // <----------------OBJECT LINE------------------->
     //in this addInteractivetile  we will add tile by this method at the time of sign up .

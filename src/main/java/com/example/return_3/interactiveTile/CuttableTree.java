@@ -21,7 +21,7 @@ public class CuttableTree extends InteractiveTile{
 
     public boolean isCorrectItem(Entity entity){
         boolean isCorrectItem=false;
-        if(entity.currentWeapon.type==type_axe){
+        if(entity.currentWeapon != null && entity.currentWeapon.type==type_axe){
             isCorrectItem=true;
         }
         return isCorrectItem;
