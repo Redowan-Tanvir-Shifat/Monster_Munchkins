@@ -212,10 +212,20 @@ public class Player extends Entity{
     }
 
 //remove current weapon and also cr
+public void removeCurrentWeapon() {
+    for(int i=0;i<inventory.size();i++) {
+        if(inventory.get(i).itemCode==currentWeapon.itemCode) {
+            inventory.remove(i);
+            currentWeapon=null;
+            String text="Axe Brocked!";
+            game.ui.uiMainGame.addMessage(text);
+            break;
+        }
+    }
+}
     public void update(){
         if(currentWeapon!=null && currentWeapon instanceof OBJ_Axe && currentWeapon.life<=0){
-            currentWeapon=null;
-//            inventory.remove()
+            removeCurrentWeapon();
         }
 
         if (knockBack == true) {
