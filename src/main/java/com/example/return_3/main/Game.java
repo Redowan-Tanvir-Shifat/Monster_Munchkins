@@ -157,6 +157,7 @@ public class Game extends Application {
     public Entity sword = new OBJ_Sword_Normal(this);
     public Entity specialSword = new OBJ_Sword_Special(this);
     public Entity fireSword = new OBJ_FireSword(this);
+    public Entity iceSword = new OBJ_IceSword(this);
     Entity shieldWood = new OBJ_Shield_Wood(this);
 
     public Entity key= new OBJ_Key(this);
@@ -308,6 +309,7 @@ public class Game extends Application {
         inventoryMapAddItem(sword.itemCode, sword);
         inventoryMapAddItem(specialSword.itemCode, specialSword);
         inventoryMapAddItem(fireSword.itemCode, fireSword);
+        inventoryMapAddItem(iceSword.itemCode, iceSword);
         inventoryMapAddItem(redPotion.itemCode, redPotion);
         inventoryMapAddItem(shieldBlue.itemCode, shieldBlue);
         inventoryMapAddItem(shieldWood.itemCode, shieldWood);

@@ -153,6 +153,7 @@ public class Entity {
     public final int type_OrcMonster = 10;
     public final int type_specialSword = 11;
     public final int type_fireSword = 12;
+    public final int type_iceSword = 13;
 
 
     // <---------Type of NPC--------->
