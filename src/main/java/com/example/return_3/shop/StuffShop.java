@@ -19,6 +19,7 @@ public class StuffShop extends Shop {
         inventory.add(new OBJ_Sword_Normal(game));
         inventory.add(new OBJ_Sword_Special(game));
         inventory.add(new OBJ_FireSword(game));
+        inventory.add(new OBJ_IceSword(game));
         inventory.add(new OBJ_Shield_Wood(game));
         inventory.add(new OBJ_Axe(game));
         inventory.add(new OBJ_Shield_Blue(game));

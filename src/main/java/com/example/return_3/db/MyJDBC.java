@@ -356,6 +356,7 @@ public class MyJDBC {
                         case 101:   entity =new OBJ_Sword_Normal(Game.gameInstance);break;
                         case 105:   entity =new OBJ_Sword_Special(Game.gameInstance);break;
                         case 106:   entity =new OBJ_FireSword(Game.gameInstance);break;
+                        case 108:   entity =new OBJ_IceSword(Game.gameInstance);break;
                         case 102:   entity =new OBJ_Axe(Game.gameInstance);break;
                         case 103:   entity =new OBJ_Shield_Wood(Game.gameInstance);break;
                         case 301:   entity =new OBJ_Coin(Game.gameInstance);break;

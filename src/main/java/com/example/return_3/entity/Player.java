@@ -126,6 +126,16 @@ public class Player extends Entity{
             attackRight1 = loadImage("/player/attackingFire_right_1.png", game.tileSize * 2, game.tileSize);
             attackRight2 = loadImage("/player/attackingFire_right_2.png", game.tileSize * 2, game.tileSize);
         }
+        else if(currentWeapon.type==type_iceSword) {
+            attackUp1 = loadImage("/player/attackingIce_up_1.png", game.tileSize, game.tileSize * 2);
+            attackUp2 = loadImage("/player/attackingIce_up_2.png", game.tileSize, game.tileSize * 2);
+            attackDown1 = loadImage("/player/attackingIce_down_1.png", game.tileSize, game.tileSize * 2);
+            attackDown2 = loadImage("/player/attackingIce_down_2.png", game.tileSize, game.tileSize * 2);
+            attackLeft1 = loadImage("/player/attackingIce_left_1.png", game.tileSize * 2, game.tileSize);
+            attackLeft2 = loadImage("/player/attackingIce_left_2.png", game.tileSize * 2, game.tileSize);
+            attackRight1 = loadImage("/player/attackingIce_right_1.png", game.tileSize * 2, game.tileSize);
+            attackRight2 = loadImage("/player/attackingIce_right_2.png", game.tileSize * 2, game.tileSize);
+        }
     }
 
     public void loadPlayerGuardImages() {
@@ -518,7 +528,7 @@ public class Player extends Entity{
             if (currentWeapon.type == type_specialSword) {
                 game.playSoundEffect(7);
             }
-            if (currentWeapon.type == type_fireSword) {
+            if (currentWeapon.type == type_fireSword || currentWeapon.type == type_iceSword) {
                 game.playSoundEffect(game.soundEffect.fireSword);
             }
             if (currentWeapon.type == type_axe) {
@@ -630,7 +640,7 @@ public class Player extends Entity{
         if(itemIndex<inventory.size()){
             Entity selectedItem=inventory.get(itemIndex);
             //We need to fix this type_sword or something else
-            if(selectedItem.type==type_sword|| selectedItem.type==type_axe || selectedItem.type==type_specialSword || selectedItem.type==type_fireSword){
+            if(selectedItem.type==type_sword|| selectedItem.type==type_axe || selectedItem.type==type_specialSword || selectedItem.type==type_fireSword || selectedItem.type == type_iceSword){
                 currentWeapon=selectedItem;
                 //update the attack method with proper power
                 attack=getAttack();

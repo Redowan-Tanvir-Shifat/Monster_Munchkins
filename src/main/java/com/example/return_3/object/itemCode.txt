@@ -5,7 +5,9 @@ shield(wood) - 103
 shield(blue) - 104
 sword(special) - 105
 sword(fire) - 106
+sword(Ice) - 108
 fireBall - 107
+
 
 
 Food starts with 200
