@@ -85,7 +85,7 @@ public class Game extends Application {
 
     //BOOLEAN
     public final int guidelineScene=2;
-    public boolean isFirstTime= true;
+//    public boolean isFirstTime= true;
 
 
     //TYPE
@@ -339,12 +339,10 @@ public class Game extends Application {
         mainGameScene=gameScene;
         primaryStage.setScene(gameScene);
         //When the game is starting then gameState will be PlayState
-        if(isFirstTime){
-            gameState=guidelineState;
-        }else{
+//        if(isFirstTime){
+//            gameState=guidelineState;
+//        }else{gameState=playState;}
         gameState=playState;
-        }
-
     }
 
 
