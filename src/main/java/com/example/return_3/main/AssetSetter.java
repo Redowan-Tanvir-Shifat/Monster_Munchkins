@@ -422,7 +422,8 @@ i++;
                 {entity.type_slime, entity.area_hill_1, 147, 103}, {entity.type_slime, entity.area_hill_1, 155, 108},
                 {entity.type_slime, entity.area_hill_1, 154, 116}, {entity.type_slime, entity.area_hill_1, 161, 121},
                 {entity.type_slime, entity.area_hill_1, 174, 119}, {entity.type_slime, entity.area_hill_1, 171, 108},
-                {entity.type_worm, entity.area_hill_1, 161, 113}, {entity.type_redFly, entity.area_hill_1, 167, 113}
+                {entity.type_worm, entity.area_hill_1, 161, 113}, {entity.type_redFly, entity.area_hill_1, 167, 113},
+                {entity.type_skeleton, entity.area_hill_1, 167, 122}
         };
 
 
@@ -452,6 +453,40 @@ i++;
                 {entity.type_spiderBrown, entity.area_hill_3, 60, 81}, {entity.type_blueGhost, entity.area_hill_3, 51, 78}
         };
 
+        // Monster Island 1
+        int[][] mi1positions = {
+                {entity.type_redOrc, entity.area_mi_1, 110, 18}, {entity.type_spider, entity.area_mi_1, 118, 16},
+                {entity.type_spider, entity.area_mi_1, 114, 26}, {entity.type_skeleton, entity.area_mi_1, 116, 21},
+                {entity.type_skeleton, entity.area_mi_1, 123, 21}, {entity.type_redFly, entity.area_mi_1, 121, 27},
+                {entity.type_spider, entity.area_mi_1, 128, 18}, {entity.type_redFly, entity.area_mi_1, 131, 21},
+                {entity.type_spiderBrown, entity.area_mi_1, 140, 23}, {entity.type_worm, entity.area_mi_1, 131, 27},
+                {entity.type_arc, entity.area_mi_1, 139, 27}, {entity.type_spider, entity.area_mi_1, 130, 36}
+        };
+
+        // Monster Island 2
+        int[][] mi2positions = {
+                {entity.type_redOrc, entity.area_mi_2, 153, 18}, {entity.type_blueGhost, entity.area_mi_2, 162, 18},
+                {entity.type_redFly, entity.area_mi_2, 157, 23}, {entity.type_arc, entity.area_mi_2, 153, 28},
+                {entity.type_redOrc, entity.area_mi_2, 158, 30}, {entity.type_redOrc, entity.area_mi_2, 168, 22},
+                {entity.type_blueGhost, entity.area_mi_2, 166, 27}, {entity.type_skeleton, entity.area_mi_2, 167, 36},
+                {entity.type_skeleton, entity.area_mi_2, 173, 36}, {entity.type_skeleton, entity.area_mi_2, 177, 30},
+                {entity.type_redOrc, entity.area_mi_2, 181, 35}, {entity.type_redOrc, entity.area_mi_2, 182, 27},
+                {entity.type_redFly, entity.area_mi_2, 182, 20},  {entity.type_redFly, entity.area_mi_2, 172, 27},
+        };
+
+
+        // Monster Island 3
+        int[][] mi3positions = {
+                {entity.type_blueGhost, entity.area_mi_3, 167, 42}, {entity.type_redOrc, entity.area_mi_3, 159, 46},
+                {entity.type_arc, entity.area_mi_3, 165, 48}, {entity.type_blueGhost, entity.area_mi_3, 168, 52},
+                {entity.type_skeleton, entity.area_mi_3, 164, 54}, {entity.type_skeleton, entity.area_mi_3, 171, 56},
+                {entity.type_redFly, entity.area_mi_3, 177, 62}, {entity.type_skeleton, entity.area_mi_3, 182, 60},
+                {entity.type_skeleton, entity.area_mi_3, 183, 56}, {entity.type_skeleton, entity.area_mi_3, 182, 49},
+                {entity.type_redFly, entity.area_mi_3, 177, 44}, {entity.type_redOrc, entity.area_mi_3, 177, 53}
+        };
+
+
+
 
         // Monster setup without area
         int[][] noAreaPositions = {
@@ -477,7 +512,11 @@ i++;
                 {entity.type_slime, 0, 148, 79}, {entity.type_redFly, 0, 54, 45},
                 {entity.type_blueGhost, 0, 64, 47}, {entity.type_redFly, 0, 64, 40},
                 {entity.type_slime, 0, 111, 67}, {entity.type_redFly, 0, 118, 68},
-                {entity.type_worm, 0, 117, 72}
+                {entity.type_worm, 0, 117, 72},
+
+                //Monster Island....
+                {entity.type_blueGhost, 0, 145, 20}, {entity.type_redFly, 0, 146, 27},
+                {entity.type_blueGhost, 0, 148, 33}
         };
 
 
@@ -486,7 +525,7 @@ i++;
 
 
 
-        int[][][] allPositions = {townHall1Positions, townHall2Positions, townHall3Positions, townHall4Positions, townHall5Positions,hill1Positions,hill2Positions,hill3Positions,noAreaPositions};
+        int[][][] allPositions = {townHall1Positions, townHall2Positions, townHall3Positions, townHall4Positions, townHall5Positions,hill1Positions,hill2Positions,hill3Positions, mi1positions,mi2positions,mi3positions,noAreaPositions};
 
         List<int[]> allMonsters = new ArrayList<>();
 
