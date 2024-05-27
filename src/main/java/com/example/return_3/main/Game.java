@@ -468,22 +468,23 @@ public class Game extends Application {
                     if (monster[currentMap][i] != null) {
                         if (monster[currentMap][i].alive == true) {
                             monster[currentMap][i].update();
-                        }
-                        if (monster[currentMap][i].alive == false) {
-                            monster[currentMap][i].checkDrop();
-                            if(monster[currentMap][i] instanceof Mon_Green){
+                        }else if (monster[currentMap][i].alive == false) {
+                            if(monster[currentMap][i] instanceof Mon_Green && monster[currentMap][i].slimeDeathOn==false ){
                                 //handle for green monster death here.
                                 System.out.println("green slime died and run the thread");
                                 GreenMonsterRebornThread greenMonsterRebornThread= new GreenMonsterRebornThread(this,i,monster[currentMap][i].monster_area,monster[currentMap][i].worldX,monster[currentMap][i].worldY);
+                                monster[currentMap][i].checkDrop();
                                 monster[currentMap][i] = null;
                                 greenMonsterRebornThread.start();
-                            } else {
+                            }else if(monster[currentMap][i] instanceof Mon_Green && monster[currentMap][i].slimeDeathOn==true){
+                                monster[currentMap][i] = null;
+                            }
+                            else {
+                                monster[currentMap][i].checkDrop();
                                 monster[currentMap][i] = null;
                             }
                         }
-                        if(monster[currentMap][i].slimeDeath == true){
-                            monster[currentMap][i] = null;
-                        }
+
                     }
                 }
 

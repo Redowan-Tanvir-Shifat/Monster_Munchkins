@@ -783,21 +783,7 @@ public class Entity {
                 gc.setGlobalAlpha(0.4);
             }
             if (dying == true) {
-
                 dyingAnimation(gc);
-            }
-            if(slimeDeathOn==true) {
-                dyingCounter++;
-                int i = 5;
-                if (dyingCounter <= i) {gc.setGlobalAlpha(0);}
-                if (dyingCounter > i && dyingCounter <= i*2) {gc.setGlobalAlpha(1);}
-                if (dyingCounter > i*2 && dyingCounter <= i*3) {gc.setGlobalAlpha(0);}
-                if (dyingCounter > i*3 && dyingCounter <= i*4) {gc.setGlobalAlpha(1);}
-                if (dyingCounter > i*4 && dyingCounter <= i*5) {gc.setGlobalAlpha(0);}
-                if (dyingCounter > i*5 && dyingCounter <= i*6) {gc.setGlobalAlpha(1);}
-                if (dyingCounter > i*6 && dyingCounter <= i*7) {gc.setGlobalAlpha(0);}
-                if (dyingCounter > i*7 && dyingCounter <= i*8) {gc.setGlobalAlpha(1);}
-                slimeDeath=true;
             }
 
 

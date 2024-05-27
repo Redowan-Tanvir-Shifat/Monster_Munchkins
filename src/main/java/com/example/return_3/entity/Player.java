@@ -464,6 +464,12 @@ public class Player extends Entity{
                         System.out.println("Mon_GreenSlimeMother died");
                         SlimeDeadThread slimeDeadThread= new SlimeDeadThread(game);
                         slimeDeadThread.start();
+//                        for (int j = 0; j < game.monster[game.currentMap].length; j++) {
+//                            if (game.monster[game.currentMap][j] instanceof Mon_Green) {
+//                                game.monster[game.currentMap][j].slimeDeathOn=true;
+//                                game.monster[game.currentMap][j].dying=true;
+//                            }
+//                        }
 
                     }
 
@@ -473,7 +479,8 @@ public class Player extends Entity{
                     game.ui.uiMainGame.addMessage(" EXP + " + game.monster[game.currentMap][i].exp);
                     if(game.monster[game.currentMap][i] instanceof Mon_Green ){
                         //then do nothing
-                    }else{
+                    }
+                    else{
                         //set the destroy mode true
                     MyJDBC.updateMonsterDestroyedStatus(playerId,i,monsterType,game.currentMap,true);
                     }
