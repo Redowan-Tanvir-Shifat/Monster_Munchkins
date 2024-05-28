@@ -44,7 +44,7 @@ public class OBJ_Chest extends Entity {
             if(game.player.inventory.size() == game.player.maxInventorySize){
                 sb.append("\n... But you can not carry any more. Your inventory is full!");
             }else{
-                sb.append("You obtained the ").append(loot.name).append("!");
+                sb.append("\nYou obtained the ").append(loot.name).append("!");
                 game.player.inventory.add(loot);
                 MyJDBC.addItemToInventory(game.player.playerId,loot.itemCode);
                 down1=image2;
