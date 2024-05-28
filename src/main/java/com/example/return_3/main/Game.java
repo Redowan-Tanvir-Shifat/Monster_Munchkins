@@ -28,11 +28,12 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.awt.*;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -191,7 +192,7 @@ public class Game extends Application {
     int spriteCounter=0;
     int spriteNum=1;
     String direction="down1";
-
+Image icon;
 
     //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     //              <----------------- IN this start method our Application is running ------------------------>
@@ -199,7 +200,10 @@ public class Game extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
+         icon=new UtilityTool().loadImage("/monster/icon.png",22,22);
+
         primaryStage = stage; //as we have a static Stage variable . we initialize the value as game stage of start method
+        primaryStage.getIcons().add(icon);
         gameInstance= this;  // we create a
         // Check login status
         int loginStatus = readLoginStatusFromFile();
