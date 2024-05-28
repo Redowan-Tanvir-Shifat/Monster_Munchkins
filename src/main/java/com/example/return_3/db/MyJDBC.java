@@ -607,6 +607,12 @@ public static void setMonsters(int userId, int mapNum) {
                     monster = new Mon_SpiderBrown(game, areaType);
                 }else if (monsterType == entity00.type_arc) {
                     monster = new Mon_ORC(game,areaType);
+                }else if (monsterType == entity00.type_skeleton) {
+                    monster = new Mon_Skeleton(game, areaType);
+                }else if (monsterType == entity00.type_redFly) {
+                    monster = new Mon_RedFly(game, areaType);
+                }else if (monsterType == entity00.type_slimeMother) {
+                    monster = new Mon_GreenSlimeMother(game, areaType);
                 } else if (monsterType == entity00.type_redOrc) {
                     monster = new Mon_RedORC(game,areaType);
                 } else if (monsterType == entity00.type_slime) {
@@ -617,12 +623,8 @@ public static void setMonsters(int userId, int mapNum) {
                     monster = new Mon_PacGreen(game,areaType);
                 }else if (monsterType == entity00.type_blueGhost) {
                     monster = new Mon_BlueGhost(game,areaType);
-                }else if (monsterType == entity00.type_skeleton) {
-                    monster = new Mon_Skeleton(game, areaType);
-                }else if (monsterType == entity00.type_redFly) {
-                    monster = new Mon_RedFly(game, areaType);
-                }else if (monsterType == entity00.type_slimeMother) {
-                    monster = new Mon_GreenSlimeMother(game, areaType);
+                }else if (monsterType == entity00.type_sixEyes) {
+                    monster = new Mon_SixEyes(game,areaType);
                 }
 
                 // Place the monster in the game world
