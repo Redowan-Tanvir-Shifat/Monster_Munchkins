@@ -78,7 +78,7 @@ public class NPC_FisherMan extends NPC {
         }
     }
     public void speak(){
-        game.gameState = game.shipTeleportState;
+        game.gameState = game.fisheriesState;
         game.ui.uiMainGame.npc=this;
         game.ui.uiMainGame.currentDialogue=dialogue[dialogueIndex];
     }

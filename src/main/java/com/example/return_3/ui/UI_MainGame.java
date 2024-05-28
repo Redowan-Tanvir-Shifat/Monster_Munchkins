@@ -876,11 +876,14 @@ public class UI_MainGame {
         if(commandNum==0){
             gc.fillText(">",x-24,y);
             if(game.player.keyHandler.isEnterPressed()==true){
+                game.gameState=game.messageState;
                 if(game.player.coin>=200){
                     game.player.coin-=200;
-                    currentDialogue="You got a fish!";
+                    addMessage("cost 200 coins!");
+                    currentDialogue="You got a fish! You can find it in your inventory!";
+                    //addign fish in inventory
+                    //update the inventory in database
                 }else{
-                    game.gameState=game.messageState;
                     currentDialogue="You do not have enough coin";
                 }
             }
