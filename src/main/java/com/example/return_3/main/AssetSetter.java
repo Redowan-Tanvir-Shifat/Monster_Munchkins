@@ -26,16 +26,16 @@ public class AssetSetter {
         int mapNum = 0; //For map 1  //to create object for map 2 then we need to ser mapNum 2 under the code.
         int i = 0;
 
-        game.obj[mapNum][16]=new OBJ_Key(game);
+        game.obj[mapNum][16]=new OBJ_Chest(game,new OBJ_FireSword(game));
         game.obj[mapNum][16].worldX=game.tileSize*45;
         game.obj[mapNum][16].worldY=game.tileSize*144;
         i=17;
-                game.obj[mapNum][18]=new OBJ_Key(game);
+                game.obj[mapNum][18]=new OBJ_Chest(game,new OBJ_IceSword(game));
         game.obj[mapNum][18].worldX=game.tileSize*43;
         game.obj[mapNum][18].worldY=game.tileSize*143;
-        game.obj[mapNum][18]=new OBJ_BlueKey(game);
-        game.obj[mapNum][18].worldX=game.tileSize*21;
-        game.obj[mapNum][18].worldY=game.tileSize*103;
+//        game.obj[mapNum][18]=new OBJ_BlueKey(game);
+//        game.obj[mapNum][18].worldX=game.tileSize*21;
+//        game.obj[mapNum][18].worldY=game.tileSize*103;
         game.obj[mapNum][19]=new OBJ_BlueKey(game);
         game.obj[mapNum][19].worldX=game.tileSize*21;
         game.obj[mapNum][19].worldY=game.tileSize*101;
@@ -553,7 +553,7 @@ i++;
 //        }
 //    }
     public static void addInventoryToDB(int userId) {
-        int[] itemCodes = new int[]{101, 102, 103, 104, 105, 106, 107, 201, 202, 203, 204, 205, 206, 207, 208, 303, 304, 305, 306, 307};
+        int[] itemCodes = new int[]{101, 102, 103, 104, 105, 106, 107,108, 201, 202, 203, 204, 205, 206, 207, 208, 303, 304, 305, 306, 307,308};
         MyJDBC.addInventory(userId, itemCodes);
     }
 }

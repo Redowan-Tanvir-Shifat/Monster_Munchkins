@@ -33,3 +33,4 @@ speedPotion -307
 Blue Key -308
 
 door - 320
+chest - 321

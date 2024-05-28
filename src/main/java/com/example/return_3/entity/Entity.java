@@ -173,8 +173,8 @@ public class Entity {
     public final int type_redFly = 9;
     public final int type_skeleton = 10;
     public final int type_spiderBrown = 11;
-    public final int type_sixEyes = 12;
-    public final int type_slimeMother = 13;
+    public final int type_slimeMother = 12;
+    public final int type_sixEyes = 13;
 
 
     // <---------Area of Monster--------->
@@ -271,7 +271,7 @@ public class Entity {
         //CHeching part of collision so that entity got collision and can not move
         game.cChecker.checkTile(this);
         game.cChecker.checkPlayer(this);
-//        gp.cChecker.checkObject(this,false); //its not player so its remain false
+        game.cChecker.checkObject(this,false); //its not player so its remain false
 //        game.cChecker.checkEntity(this,game.npc);
         game.cChecker.checkEntity(this,game.interactNpc);
         game.cChecker.checkEntity(this,game.monster);
