@@ -4,6 +4,7 @@ package com.example.return_3.main;
 import com.example.return_3.db.MyJDBC;
 import com.example.return_3.entity.Entity;
 import com.example.return_3.entity.NPC_Trade;
+import com.example.return_3.npc.NPC_Welcome;
 import com.example.return_3.shop.StuffShop;
 import javafx.application.Platform;
 import javafx.scene.Scene;
@@ -381,26 +382,22 @@ public class KeyHandler {
 
     public void dialogueState(KeyCode code){
         if(code== KeyCode.ENTER ){ //VK_ENTER means if user press ENTER then
-
-
-           // game.ui.uiMainGame.npc.dialogueIndex++;
+            game.ui.uiMainGame.npc.dialogueIndex++;
             if(game.ui.uiMainGame.npc.dialogue[game.ui.uiMainGame.npc.dialogueIndex]==null){
 //                game.isDialogueToGameState=true;
                 game.gameState=game.playState;
                 game.ui.uiMainGame.npc.dialogueIndex=0;
+                if(game.ui.uiMainGame.npc instanceof NPC_Welcome){
+                    game.ui.uiMainGame.npc.onPath=true;
+                }
             }else{
                 game.ui.uiMainGame.npc.speak();
             }
-
-
-//            if( game.isDialogueToGameState==true){
-//                game.gameState=game.playState;
-//                //game.ui.npc.onPath=true;
-//                game.isDialogueToGameState=false;
-//            }else {
-//                game.ui.uiMainGame.npc.speak();
-//
-//            }
+        }else if(code==KeyCode.ESCAPE){
+            if(game.ui.uiMainGame.npc.dialogueIndex>0){
+                game.ui.uiMainGame.npc.dialogueIndex--;
+                game.ui.uiMainGame.npc.speak();
+            }
         }
     }
 

@@ -45,7 +45,7 @@ public class UI_MainGame {
     public int playerSlotRow=0;
     public int shopSlotCol=0;
     public int shopSlotRow=0;
-    int transitionCounter=0;
+    public int transitionCounter=0;
 
     public Entity npc;
     public Shop shop;

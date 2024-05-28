@@ -459,10 +459,13 @@ public class Game extends Application {
                 } //Interact NPC UPDATE
                 for(int i=0; i<interactNpc[currentMap].length; i++){
                     if(interactNpc[currentMap][i] !=null){
+                        if(interactNpc[currentMap][i].alive==true){
                         interactNpc[currentMap][i].update();
+                        }else  if(interactNpc[currentMap][i].alive==false){
+                            interactNpc[currentMap][i]=null;
+                        }
                     }
                 }
-
                 //Monster
                 for (int i = 0; i < monster[currentMap].length; i++) {
                     if (monster[currentMap][i] != null) {

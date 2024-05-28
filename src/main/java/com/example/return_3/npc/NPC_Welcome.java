@@ -2,12 +2,16 @@ package com.example.return_3.npc;
 
 import com.example.return_3.entity.NPC;
 import com.example.return_3.main.Game;
+import com.example.return_3.main.UtilityTool;
 import com.example.return_3.object.OBJ_ChatBox;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
+import java.util.Random;
+
 public class NPC_Welcome extends NPC {
     Game game;
+    int size;
     public NPC_Welcome(Game game) {
         super(game);
         this.game=game;
@@ -15,6 +19,10 @@ public class NPC_Welcome extends NPC {
         speed=1;
         getNPCImage();
         setDialogue();
+        goalCol=84;
+        goalRow=113;
+        size=game.tileSize;
+
     }
     public void checkCollision(){
         collisionOn=false;
@@ -30,89 +38,30 @@ public class NPC_Welcome extends NPC {
 
     }
     public void getNPCImage(){
-        up1=loadImage( "/npc/npc_townHall.png",game.tileSize,game.tileSize);
-//        up2= loadImage("/npc/oldman_up_2.png",game.tileSize,game.tileSize);
-//        down1= loadImage("/npc/oldman_down_1.png",game.tileSize,game.tileSize);
-//        down2= loadImage("/npc/oldman_down_2.png",game.tileSize,game.tileSize);
-//        left1=loadImage ("/npc/oldman_left_1.png",game.tileSize,game.tileSize);
-//        left2= loadImage("/npc/oldman_left_2.png",game.tileSize,game.tileSize);
-//        right1= loadImage("/npc/oldman_right_1.png",game.tileSize,game.tileSize);
-//        right2= loadImage("/npc/oldman_right_2.png",game.tileSize,game.tileSize);
-        up2=up1;
-        down1=up1;
-        down2= up1;
-        left1=up1;
-        left2= up1;
-        right1= up1;
-        right2= up1;
+        up1=loadImage( "/npc/oldman_up_1.png",game.tileSize,game.tileSize);
+        up2= loadImage("/npc/oldman_up_2.png",game.tileSize,game.tileSize);
+        down1= loadImage("/npc/oldman_down_1.png",game.tileSize,game.tileSize);
+        down2= loadImage("/npc/oldman_down_2.png",game.tileSize,game.tileSize);
+        left1=loadImage ("/npc/oldman_left_1.png",game.tileSize,game.tileSize);
+        left2= loadImage("/npc/oldman_left_2.png",game.tileSize,game.tileSize);
+        right1= loadImage("/npc/oldman_right_1.png",game.tileSize,game.tileSize);
+        right2= loadImage("/npc/oldman_right_2.png",game.tileSize,game.tileSize);
+
     }
     //set dialogue
     public void setDialogue(){
-        dialogue[0]="Hello "+Game.gameInstance.user.getUsername()+"! \nWelcome to the Mysterious Island";
-        dialogue[1]="People of this Island are very disturb\n of dangerous monster they killed villagers";
-        dialogue[2]="Please save us from these dangerous monsters\nPeople can not live here in sound";
-        dialogue[3]="Please help us by free the island from monsters!";
+        dialogue[0]="Greetings, brave hunter!\nWelcome to the island. Our island is in grave danger. Monsters have overrun our home" ;
+        dialogue[1]="Your mission is to kill all the monsters and set us free.\n Here are the guidelines to help you: " ;
+        dialogue[2]="1. Use W/A/S/D or Arrow Keys to move.\n2. Press Enter to interact with game properties.\n" ;
+        dialogue[3]="3. Press Space to attack, V to defend.\n4. Press C to see your inventory.\n" ;
+        dialogue[4]="Please, we are counting on you to save us.\n Good luck, brave hunter!";
     }
-    public void update(){
-//        setAction();
-//        checkCollision();
 
-        //if collisionOn is false then player can be able to move
-//        if(collisionOn == false){
-//
-//            switch (direction){
-//                case "up":worldY -= speed; break;
-//                case "down":worldY+= speed; break;
-//                case "left":worldX -= speed; break;
-//                case "right":worldX += speed; break;
-//            }
-//        }
-
-//        spriteCounter++;
-//        if (spriteCounter > 24) {
-//            if (spriteNum == 1) {
-//                spriteNum = 2;
-//            } else if (spriteNum == 2) {
-//                spriteNum = 1;
-//            }
-//            spriteCounter = 0;
-//        }
-
-
-        if(type==type_npc){
-            int xDistance=Math.abs(worldX-game.player.worldX);
-            int yDistance=Math.abs(worldY-game.player.worldY);
-            int tileDistance=(xDistance+yDistance)/game.tileSize;
-
-            if(tileDistance<3){
-                chatOnStatus=true;
-            }else{
-                chatOnStatus=false;
-            }
-
-
-            if( chatOnStatus==true){
-                chatCounter++;
-                if (chatCounter <15 ) {
-                    chatNum=1;
-
-
-                } else if (chatCounter >=15&& chatCounter<30 ) {
-                    chatNum=2;
-
-                } else if (chatCounter >=30&& chatCounter<45 ) {
-                    chatNum=3;
-
-                } else if (chatCounter >=45&& chatCounter<60 ) {
-                    chatNum=4;
-
-                }else {
-                    chatCounter = 0;
-                }
-            }
-
+    public void getRandomDirection(){
+        if(npcGone==false) {
+            super.getRandomDirection();
+            uTool.areaSetup(this, 80 * size, 116 * size, 8 * size, 5 * size);//88,121
         }
-
     }
 
 }
