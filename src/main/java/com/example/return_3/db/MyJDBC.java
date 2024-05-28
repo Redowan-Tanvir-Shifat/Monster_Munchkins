@@ -433,6 +433,7 @@ public static void removeItemFromInventory(int userId, int itemCode) {
                         case 305:   entity =new OBJ_PowerPotion(Game.gameInstance);break;
                         case 306:   entity =new OBJ_DefensePotion(Game.gameInstance);break;
                         case 307:   entity =new OBJ_SpeedPotion(Game.gameInstance);break;
+                        case 308:   entity =new OBJ_BlueKey(Game.gameInstance);break;
                         case 320:   entity =new OBJ_Door(Game.gameInstance);break;
                         default:entity = null;
                     }

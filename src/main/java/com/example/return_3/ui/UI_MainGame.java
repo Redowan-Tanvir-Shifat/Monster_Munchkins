@@ -5,6 +5,7 @@ import com.example.return_3.entity.Entity;
 import com.example.return_3.main.EventHandler;
 import com.example.return_3.main.Game;
 import com.example.return_3.main.UtilityTool;
+import com.example.return_3.object.OBJ_BlueKey;
 import com.example.return_3.object.OBJ_Coin;
 import com.example.return_3.object.OBJ_Heart;
 import com.example.return_3.object.OBJ_Ladi;
@@ -862,7 +863,7 @@ public  void shipTeleportScreen(){
     gc.setFont(mediumFontBold);
     for(String line: currentDialogue.split("\n")){
         gc.fillText(line,x,y);
-        y+=40;
+        y+=game.tileSize;
 
     }
      x = game.tileSize * 20;
@@ -873,7 +874,11 @@ public  void shipTeleportScreen(){
     gc.setFill(darkDarkCream);
     x += game.tileSize;
     y += game.tileSize;
+    if(game.shipStarted==false){
+    gc.fillText("Do you got the Blue Key?",x,y);
+    }else {
     gc.fillText("Do you want to go?",x,y);
+    }
     y += game.tileSize;
     gc.fillText("Yes",x,y);
     if(commandNum==0){
@@ -881,14 +886,39 @@ public  void shipTeleportScreen(){
         if(game.player.keyHandler.isEnterPressed()==true){
 
             if(npc.name.equals("thisSide")){
-                if(game.player.coin>=2000){
-                    System.out.println("He can teleport");
-                    game.eventHandler.teleport(game.currentMap,27,11);
-                    game.player.coin-=2000;
-                }else{
-                    game.gameState=game.messageState;
-                    currentDialogue="You do not have enough coin";
+                Boolean ok = false;
+                if(game.shipStarted==false){
+                    for(int i =0;i<game.player.inventory.size();i++){
+                        if(game.player.inventory.get(i) instanceof OBJ_BlueKey){
+                            game.eventHandler.teleport(game.currentMap,27,11);
+                            MyJDBC.removeItemFromInventory(game.player.playerId,game.player.inventory.get(i).itemCode);
+                            game.player.inventory.remove(i);
+                            ok=true;
+                            break;
+                        }
+                    }
+
+                }else if(game.shipStarted==true){
+                    if(game.player.coin>=2000){
+                        ok=true;
+                    }
                 }
+                if(ok==false){
+                    game.gameState=game.messageState;
+                    if(game.shipStarted==false){
+                        currentDialogue="You do not have the Blue Key. The Key is hidden somewhere in the island.";
+                    }else if(game.shipStarted==true){
+                        currentDialogue="You do not have enough coin";
+                    }
+                }else if(ok==true){
+                    game.eventHandler.teleport(game.currentMap,27,11);
+                    if(game.shipStarted==false) {
+                        game.shipStarted = true;
+                    }else if(game.shipStarted==true){
+                        game.player.coin-=2000;
+                    }
+                }
+
             }else if(npc.name.equals("otherSide")){
                 game.eventHandler.teleport(game.currentMap,21,85);
             }
@@ -900,7 +930,15 @@ public  void shipTeleportScreen(){
     if(commandNum==1){
         gc.fillText(">",x-24,y);
         if(game.keyHandler.isEnterPressed()==true){
-            game.gameState=game.playState;
+            if(game.shipStarted==false){
+            game.gameState=game.messageState;
+            currentDialogue="Your mission is to find the blue key. It is said to be hidden deep within the island, guarded by fearsome \ncreatures." +
+                    "Once you find the blue key, bring it back to me. With it, we can set sail to the mysterious island \nand uncover its secrets together." +
+                    " Good luck, adventurer! The fate of our journey depends on you.";
+            }else {
+                game.gameState=game.playState;
+            }
+//            game.gameState=game.playState;
         }
     }
 
@@ -927,12 +965,12 @@ public  void shipTeleportScreen(){
             if(npc.name.equals("thisSide")){
                     game.player.direction="down";
                     game.gameState=game.messageState;
-                    currentDialogue="Welcome to the mysterious landing pad";
+                    currentDialogue="Welcome to the mysterious Island";
 
             }else if(npc.name.equals("otherSide")){
                 game.player.direction="down";
                 game.gameState=game.messageState;
-                currentDialogue="Welcome back!";
+                currentDialogue="Welcome back to the Monster Island!";
             }else{
                 game.gameState = game.playState;
             }
@@ -980,7 +1018,7 @@ public  void shipTeleportScreen(){
         int y = game.tileSize / 2;
         int width = game.screenWidth-(game.tileSize*6);
         int height = game.tileSize * 4;
-        drawSubWindow(x, y, width, height);
+        drawSubWindow(x, y, width, height,cream,darkCream);
         gc.setFill(Color.rgb(255,255,255));
         //gc.setFont(gc.getFont().deriveFont(Font.PLAIN,28F));
         x += game.tileSize;
@@ -988,9 +1026,10 @@ public  void shipTeleportScreen(){
         //System.out.println(currentDialogue);
         //to create new line
         gc.setFont(mediumFontBold);
+        gc.setFill(darkDarkCream);
         for(String line: currentDialogue.split("\n")){
             gc.fillText(line,x,y);
-            y+=40;
+            y+=32;
 
         }
 
@@ -1013,15 +1052,8 @@ public  void shipTeleportScreen(){
     public void drawSubWindow(int x, int y, int width, int height, Color color,Color strokeColor){
         gc.setFill(color);
         gc.fillRoundRect(x,y,width,height,35,35);
-
-//        c = Color.BLACK;
-        //gc.setFill(c);
         gc.setStroke(strokeColor);
-
-
         gc.setLineWidth(4); // Setting stroke width
-        //gc.setLineDashes(5); // Setting line dashes to 0 (solid line)
-        //gc.setLineCap(StrokeLineCap.ROUND); // Setting line cap to round
         gc.strokeRoundRect(x + 5, y + 5, width - 10, height - 10, 25, 25);
     }
 

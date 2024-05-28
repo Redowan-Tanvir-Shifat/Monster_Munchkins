@@ -30,5 +30,6 @@ key -304
 powerPotion -305
 defensePotion -306
 speedPotion -307
+Blue Key -308
 
 door - 320

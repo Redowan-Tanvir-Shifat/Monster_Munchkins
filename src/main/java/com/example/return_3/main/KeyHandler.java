@@ -117,7 +117,8 @@ public class KeyHandler {
         }if(code== KeyCode.ENTER){
             game.ui.uiMainGame.commandNum++;
             if(game.ui.uiMainGame.commandNum >=game.guidelineScene){
-                game.gameState=game.playState;
+                game.gameState=game.menuBarState;
+                game.ui.uiMainGame.commandNum=0;
             }
         }
     }
@@ -413,12 +414,14 @@ public class KeyHandler {
             enterPressed=true;
         }
         if(code== KeyCode.W || code== KeyCode.UP){
+            game.playSoundEffect(9);
             game.ui.uiMainGame.commandNum--;
             if(game.ui.uiMainGame.commandNum<0){
                 game.ui.uiMainGame.commandNum=3;
             }
         }
         if(code== KeyCode.S || code== KeyCode.DOWN){
+            game.playSoundEffect(9);
             game.ui.uiMainGame.commandNum++;
             if(game.ui.uiMainGame.commandNum>3){
                 game.ui.uiMainGame.commandNum=0;
@@ -433,12 +436,14 @@ public class KeyHandler {
         if(game.ui.uiMainGame.subState==0){
 
             if(code== KeyCode.W || code== KeyCode.UP){
+                game.playSoundEffect(9);
                 game.ui.uiMainGame.commandNum--;
                 if(game.ui.uiMainGame.commandNum<0){
                     game.ui.uiMainGame.commandNum=2;
                 }
             }
             if(code== KeyCode.S || code== KeyCode.DOWN){
+                game.playSoundEffect(9);
                 game.ui.uiMainGame.commandNum++;
                 if(game.ui.uiMainGame.commandNum>2){
                     game.ui.uiMainGame.commandNum=0;
@@ -465,12 +470,15 @@ public class KeyHandler {
         }
         //we will write code lated
         if(code== KeyCode.W || code== KeyCode.UP){
+            game.playSoundEffect(9);
             game.ui.uiMainGame.commandNum--;
             if(game.ui.uiMainGame.commandNum<0){
                 game.ui.uiMainGame.commandNum=1;
+
             }
         }
         if(code== KeyCode.S || code== KeyCode.DOWN){
+            game.playSoundEffect(9);
             game.ui.uiMainGame.commandNum++;
             if(game.ui.uiMainGame.commandNum>1){
                 game.ui.uiMainGame.commandNum=0;

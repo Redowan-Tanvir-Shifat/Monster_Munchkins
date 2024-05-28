@@ -12,7 +12,7 @@ public class NPC_ShipThisSide extends NPC {
         type= type_npc;
         speed=1;
         getNPCImage();
-        setDialogue();
+//        setDialogue();
     }
     public void checkCollision(){
         collisionOn=false;
@@ -46,7 +46,13 @@ public class NPC_ShipThisSide extends NPC {
     }
     //set dialogue
     public void setDialogue(){
-        dialogue[0]="welcome to the boat. Do you want to go the \nmysterious land? it will cost you 2000 coins";
+        if(Game.gameInstance.shipStarted==true){
+        dialogue[0]="welcome to the boat. Do you want to go the mysterious land again? it will cost you 2000 coins";
+        }else if (Game.gameInstance.shipStarted==false){
+        dialogue[0]="Greetings Hunter. I can help you sail to the mysterious island where the greatest treasures \n" +
+                "and most dangerous monsters lie. But "+"To unlock " +
+                "my ship, we need a special blue key. Unfortunately,\n it was lost somewhere on this island.";
+        }
     }
     public void update(){
         if(type==type_npc){
@@ -76,6 +82,7 @@ public class NPC_ShipThisSide extends NPC {
         }
     }
     public void speak(){
+        setDialogue();
         game.gameState = game.shipTeleportState;
         game.ui.uiMainGame.npc=this;
         game.ui.uiMainGame.currentDialogue=dialogue[dialogueIndex];

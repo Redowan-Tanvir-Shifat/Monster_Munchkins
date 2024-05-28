@@ -86,6 +86,7 @@ public class Game extends Application {
     //BOOLEAN
     public final int guidelineScene=2;
 //    public boolean isFirstTime= true;
+    public boolean shipStarted=false;
 
 
     //TYPE
@@ -161,6 +162,7 @@ public class Game extends Application {
     Entity shieldWood = new OBJ_Shield_Wood(this);
 
     public Entity key= new OBJ_Key(this);
+    public Entity blueKey= new OBJ_BlueKey(this);
     public Entity redPotion = new OBJ_Potion_Red(this);
     public Entity powerPotion = new OBJ_PowerPotion(this);
     public Entity speedPotion = new OBJ_SpeedPotion(this);
@@ -314,6 +316,7 @@ public class Game extends Application {
         inventoryMapAddItem(shieldBlue.itemCode, shieldBlue);
         inventoryMapAddItem(shieldWood.itemCode, shieldWood);
         inventoryMapAddItem(key.itemCode, key);
+        inventoryMapAddItem(blueKey.itemCode, blueKey);
         inventoryMapAddItem(powerPotion.itemCode, powerPotion);
         inventoryMapAddItem(speedPotion.itemCode, speedPotion);
         inventoryMapAddItem(defensePotion.itemCode, defensePotion);
