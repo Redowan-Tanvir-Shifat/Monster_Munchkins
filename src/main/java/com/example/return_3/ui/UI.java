@@ -86,6 +86,8 @@ public class UI {
             }
             if (game.gameState == game.shipTeleportState) {
                 uiMainGame.shipTeleportScreen();
+            }if (game.gameState == game.fisheriesState) {
+                uiMainGame.fisheriesScreen();
             }
 
             // <----------Settings State----------->

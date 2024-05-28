@@ -848,7 +848,54 @@ public class UI_MainGame {
         }
     }
 
-public  void shipTeleportScreen(){
+    public void fisheriesScreen(){
+        int x = game.tileSize * 3;
+        int y = game.tileSize / 2;
+        int width = game.screenWidth-(game.tileSize*6);
+        int height = game.tileSize * 4;
+        drawSubWindow(x, y, width, height,cream,darkCream);
+        gc.setFill(darkDarkCream);
+        x += game.tileSize;
+        y += game.tileSize;
+        gc.setFont(mediumFontBold);
+        for(String line: currentDialogue.split("\n")){
+            gc.fillText(line,x,y);
+            y+=game.tileSize;
+        }
+        x = game.tileSize * 20;
+        y = (game.tileSize / 2)+(game.tileSize*4);
+        width = game.tileSize*6;
+        height = game.tileSize * 4;
+        drawSubWindow(x, y, width, height,cream,darkCream);
+        gc.setFill(darkDarkCream);
+        x += game.tileSize;
+        y += game.tileSize;
+        gc.fillText("Do you want to buy?",x,y);
+        y += game.tileSize;
+        gc.fillText("Yes",x,y);
+        if(commandNum==0){
+            gc.fillText(">",x-24,y);
+            if(game.player.keyHandler.isEnterPressed()==true){
+                if(game.player.coin>=200){
+                    game.player.coin-=200;
+                    currentDialogue="You got a fish!";
+                }else{
+                    game.gameState=game.messageState;
+                    currentDialogue="You do not have enough coin";
+                }
+            }
+        }
+        y+= game.tileSize;
+        gc.fillText("No",x,y);
+        if(commandNum==1){
+            gc.fillText(">",x-24,y);
+            if(game.player.keyHandler.isEnterPressed()==true) {
+                game.gameState = game.playState;
+            }
+        }
+    }
+
+    public  void shipTeleportScreen(){
         //we will write code later
     int x = game.tileSize * 3;
     int y = game.tileSize / 2;
@@ -943,7 +990,7 @@ public  void shipTeleportScreen(){
     }
 
 
-}
+    }
 
     public void drawTransition() {
         System.out.println("transition method called");
