@@ -466,7 +466,6 @@ public class Game extends Application {
                         }
                     }
                 }
-
                 //Monster
                 for (int i = 0; i < monster[currentMap].length; i++) {
                     if (monster[currentMap][i] != null) {

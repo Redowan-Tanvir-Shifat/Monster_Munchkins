@@ -61,6 +61,7 @@ public class Entity {
     public boolean guarding  = false;
     public boolean alive = true;
     public boolean dying = false;
+    public boolean npcGone = false;
     public boolean slimeDeathOn = false;
     public boolean slimeDeath = false;
     public boolean hpBarOn = false;
@@ -788,6 +789,9 @@ public class Entity {
             if (dying == true) {
                 dyingAnimation(gc);
             }
+            if(npcGone==true) {
+                goneAnimation(gc);
+            }
 
 
             gc.drawImage(image,tempScreenX,tempScreenY);
@@ -815,6 +819,20 @@ public class Entity {
         if (dyingCounter > i*7 && dyingCounter <= i*8) {gc.setGlobalAlpha(1);}
         if (dyingCounter > i*8) {
             alive = false;
+        }
+    }
+
+    public void goneAnimation(GraphicsContext gc){
+        System.out.println("transition method called");
+        game.ui.uiMainGame.transitionCounter++;
+
+        // Calculate opacity and ensure it stays within the valid range
+        double alpha =  1.0 - ((double) game.ui.uiMainGame.transitionCounter / 40);; // This ensures the value goes from 0.0 to 1.0 over 50 steps
+
+        if (alpha >= 0) {
+            gc.setGlobalAlpha(alpha);
+        }else{
+            alive=false;
         }
     }
 

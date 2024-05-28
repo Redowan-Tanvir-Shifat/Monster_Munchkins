@@ -47,31 +47,11 @@ public class NPC extends Entity{
         if(onPath==true){
             searchPath(goalCol, goalRow);
             if(onPath==false){
-                alive=false;
+                npcGone=true;
                 System.out.println("NPC WORK DONE");
             }
         } else  {
-            actionLookCounter++;
-            Random random= new Random();
-            int actionLookCounterLimit =random.nextInt(50)+90;
-
-            if(actionLookCounter>actionLookCounterLimit){//for two seconds it means
-
-                int i=random.nextInt(100)+1; //we add 1 because otherwise it will catch 0 to 99.. we want to avoid 0 here
-                if(i<=25){
-                    direction="up";
-                }
-                if(i>25&&i<=50){
-                    direction="down";
-                }
-                if(i>50&&i<=75){
-                    direction="left";
-                }
-                if(i>75&&i<=100){
-                    direction="right";
-                }
-                actionLookCounter=0;
-            }
+            getRandomDirection();
         }
     }
 

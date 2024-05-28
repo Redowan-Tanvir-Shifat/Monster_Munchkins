@@ -2,12 +2,16 @@ package com.example.return_3.npc;
 
 import com.example.return_3.entity.NPC;
 import com.example.return_3.main.Game;
+import com.example.return_3.main.UtilityTool;
 import com.example.return_3.object.OBJ_ChatBox;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
+import java.util.Random;
+
 public class NPC_Welcome extends NPC {
     Game game;
+    int size;
     public NPC_Welcome(Game game) {
         super(game);
         this.game=game;
@@ -17,6 +21,8 @@ public class NPC_Welcome extends NPC {
         setDialogue();
         goalCol=84;
         goalRow=113;
+        size=game.tileSize;
+
     }
     public void checkCollision(){
         collisionOn=false;
@@ -50,4 +56,12 @@ public class NPC_Welcome extends NPC {
         dialogue[3]="3. Press Space to attack, V to defend.\n4. Press C to see your inventory.\n" ;
         dialogue[4]="Please, we are counting on you to save us.\n Good luck, brave hunter!";
     }
+
+    public void getRandomDirection(){
+        if(npcGone==false) {
+            super.getRandomDirection();
+            uTool.areaSetup(this, 80 * size, 116 * size, 8 * size, 5 * size);//88,121
+        }
+    }
+
 }
