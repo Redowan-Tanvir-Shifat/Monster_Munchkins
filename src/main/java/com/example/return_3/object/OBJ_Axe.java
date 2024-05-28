@@ -13,7 +13,7 @@ public class OBJ_Axe extends Entity {
         price=8;
         itemCode=102;
         attackValue=2;
-        life=3;
+        life=15;
         attackArea.setWidth(25);
         attackArea.setHeight(25);
         description="["+name+"]\nA bit rusty but still can \ncut some trees";

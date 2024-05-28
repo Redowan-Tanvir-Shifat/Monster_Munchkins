@@ -33,10 +33,14 @@ public class AssetSetter {
                 game.obj[mapNum][18]=new OBJ_Key(game);
         game.obj[mapNum][18].worldX=game.tileSize*43;
         game.obj[mapNum][18].worldY=game.tileSize*143;
-        i++;              game.obj[mapNum][i]=new OBJ_Key(game);
-        game.obj[mapNum][i].worldX=game.tileSize*44;
-        game.obj[mapNum][i].worldY=game.tileSize*143;
+        game.obj[mapNum][18]=new OBJ_BlueKey(game);
+        game.obj[mapNum][18].worldX=game.tileSize*21;
+        game.obj[mapNum][18].worldY=game.tileSize*103;
+        game.obj[mapNum][19]=new OBJ_BlueKey(game);
+        game.obj[mapNum][19].worldX=game.tileSize*21;
+        game.obj[mapNum][19].worldY=game.tileSize*101;
         i++;
+
 
     }
     public void setNPC(){
@@ -297,6 +301,7 @@ i++;
         addObjectToList(objects, userId, objecttype, Game.gameInstance.coin.itemCode, 77, 118, mapNum);
         addObjectToList(objects, userId, objecttype, Game.gameInstance.coin.itemCode, 47, 128, mapNum);
         addObjectToList(objects, userId, objecttype, Game.gameInstance.key.itemCode, 93, 110, mapNum);
+        addObjectToList(objects, userId, objecttype, Game.gameInstance.blueKey.itemCode, 68, 37, mapNum);
         addObjectToList(objects, userId, objecttype, Game.gameInstance.door.itemCode, 28, 161, mapNum);
         addObjectToList(objects, userId, objecttype, Game.gameInstance.axe.itemCode, 172, 158, mapNum);
 
@@ -333,6 +338,7 @@ i++;
                 {117, 122}, {111, 123}, {115, 123}, {116, 123}, {112, 124}, {113, 124},
                 {114, 124}, {115, 124}
                 // Add more positions as needed
+                //pihi
         };
         for (int[] pos : tilePositions) {
             objects.add(new ObjectData(userId, objectType, itemCode, pos[0], pos[1], mapNum));
