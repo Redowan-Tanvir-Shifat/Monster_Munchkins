@@ -174,7 +174,7 @@ public class Entity {
     public final int type_skeleton = 10;
     public final int type_spiderBrown = 11;
     public final int type_sixEyes = 12;
-    public final int type_slimeMother = 12;
+    public final int type_slimeMother = 13;
 
 
     // <---------Area of Monster--------->
