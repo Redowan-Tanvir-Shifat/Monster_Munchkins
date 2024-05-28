@@ -74,6 +74,7 @@ public class Game extends Application {
     public final int settingsState=12;
     public final int guidelineState=13;
     public final int shipTeleportState = 14;
+    public final int fisheriesState = 15;
 
     // $$$$$$$$$  GAME STATUS $$$$$$$$$
     public int gameStatus;

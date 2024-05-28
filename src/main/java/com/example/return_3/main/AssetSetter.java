@@ -51,6 +51,10 @@ public class AssetSetter {
         game.interactNpc[mapNum][i].worldX=game.tileSize*81;
         game.interactNpc[mapNum][i].worldY=game.tileSize*117;
         i++;
+        game.interactNpc[mapNum][i]= new NPC_FisherMan(game);
+        game.interactNpc[mapNum][i].worldX=game.tileSize*188;
+        game.interactNpc[mapNum][i].worldY=game.tileSize*113;
+        i++;
         game.interactNpc[mapNum][i]= new NPC_ShipThisSide(game);
         game.interactNpc[mapNum][i].worldX=game.tileSize*23;
         game.interactNpc[mapNum][i].worldY=game.tileSize*85;

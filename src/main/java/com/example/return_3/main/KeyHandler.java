@@ -80,9 +80,12 @@ public class KeyHandler {
         else if (game.gameState == game.tradeState) {
             tradeState(code);
         }
-        //TRADE state
+        //Teleport state
         else if (game.gameState == game.shipTeleportState) {
             shipTeleportState(code);
+        }//Fisheris state
+        else if (game.gameState == game.fisheriesState) {
+            fisheriesState(code);
         }
         //MENU BAR state
         else if (game.gameState == game.menuBarState) {
@@ -484,17 +487,28 @@ public class KeyHandler {
                 game.ui.uiMainGame.commandNum=0;
             }
         }
+    }    public void fisheriesState(KeyCode code) {
+        if(code== KeyCode.ENTER ){
+            enterPressed=true;
+        }
+        //we will write code lated
+        if(code== KeyCode.W || code== KeyCode.UP){
+            game.playSoundEffect(9);
+            game.ui.uiMainGame.commandNum--;
+            if(game.ui.uiMainGame.commandNum<0){
+                game.ui.uiMainGame.commandNum=1;
 
-//        if(game.ui.uiMainGame.commandNum==0){
-//            if(enterPressed==true){
-//
-//            }
-//        }if(game.ui.uiMainGame.commandNum==1){
-//            if(enterPressed==true){
-//                game.gameState=game.playState;
-//            }
-//        }
+            }
+        }
+        if(code== KeyCode.S || code== KeyCode.DOWN){
+            game.playSoundEffect(9);
+            game.ui.uiMainGame.commandNum++;
+            if(game.ui.uiMainGame.commandNum>1){
+                game.ui.uiMainGame.commandNum=0;
+            }
+        }
     }
+
     public void mapState(KeyCode code) {
         if(code==KeyCode.M){
             game.gameState=game.playState;

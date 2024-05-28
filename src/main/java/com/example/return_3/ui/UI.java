@@ -64,9 +64,11 @@ public class UI {
             // <-------DIALOGUE STATE------->
             if (game.gameState == game.dialogueState) {
                 uiMainGame.drawDialogueScreen();
+                uiMainGame.drawMessage();
             }// <-------Message STATE------->
             if (game.gameState == game.messageState) {
                 uiMainGame.drawDialogueScreen();
+                uiMainGame.drawMessage();
             }
 
 
@@ -86,6 +88,8 @@ public class UI {
             }
             if (game.gameState == game.shipTeleportState) {
                 uiMainGame.shipTeleportScreen();
+            }if (game.gameState == game.fisheriesState) {
+                uiMainGame.fisheriesScreen();
             }
 
             // <----------Settings State----------->
