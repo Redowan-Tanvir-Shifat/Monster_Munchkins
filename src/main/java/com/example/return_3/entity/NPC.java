@@ -46,6 +46,10 @@ public class NPC extends Entity{
     public void setAction(){
         if(onPath==true){
             searchPath(goalCol, goalRow);
+            if(onPath==false){
+                alive=false;
+                System.out.println("NPC WORK DONE");
+            }
         } else  {
             actionLookCounter++;
             Random random= new Random();
@@ -152,7 +156,7 @@ public class NPC extends Entity{
             game.gameState = game.dialogueState;
             game.ui.uiMainGame.npc=this;
             game.ui.uiMainGame.currentDialogue=dialogue[dialogueIndex];
-             dialogueIndex++;
+//             dialogueIndex++;
             switch (game.player.direction){
                 case "up":
                     direction="down";
