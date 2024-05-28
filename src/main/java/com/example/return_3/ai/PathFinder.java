@@ -76,13 +76,13 @@ public class PathFinder {
                 node[col][row].solid=true;
             }
             //check Interactive Tile
-//            for(int i=0; i<game.iTile[1].length;i++){
-//                if(game.iTile[game.currentMap][i].destructible==true){
-//                    int itCol=game.iTile[game.currentMap][i].worldX/game.tileSize;
-//                    int itRow=game.iTile[game.currentMap][i].worldY/game.tileSize;
-//                    node[itCol][itRow].solid=true;
-//                }
-//            }
+            for(int i=0; i<game.iTile[1].length;i++){
+                if(game.iTile[game.currentMap][i].destructible==true){
+                    int itCol=game.iTile[game.currentMap][i].worldX/game.tileSize;
+                    int itRow=game.iTile[game.currentMap][i].worldY/game.tileSize;
+                    node[itCol][itRow].solid=true;
+                }
+            }
 
             //set COST
             getCost(node[col][row]);
