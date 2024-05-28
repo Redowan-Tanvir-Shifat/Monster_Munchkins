@@ -46,9 +46,7 @@ public class NPC_FisherMan extends NPC {
     }
     //set dialogue
     public void setDialogue(){
-
-        dialogue[0]="Ahoy there, traveler! Fancy some fresh fish? I've got the best catch of the day, straight from the sea. Care to buy? \nA good meal can give you the strength to face those nasty monsters!";
-
+        dialogue[0]="Ahoy there, traveler! Fancy some fresh fish? I've got the best catch of the day, straight from the sea. \nCare to buy? A good meal can give you the strength to face those nasty monsters!";
     }
     public void update(){
         if(type==type_npc){
