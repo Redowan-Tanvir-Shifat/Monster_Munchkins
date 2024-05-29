@@ -809,7 +809,8 @@ public class UI_MainGame {
                 }else{
 
                     game.player.coin-=shop.inventory.get(itemIndex).price;
-                    game.player.inventory.add(shop.inventory.get(itemIndex));
+                    Entity entity= UtilityTool.getInventoryItem(shop.inventory.get(itemIndex).itemCode);
+                    game.player.inventory.add(entity);
                     MyJDBC.addItemToInventory(game.player.playerId,shop.inventory.get(itemIndex).itemCode);
 
                 }
