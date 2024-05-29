@@ -60,6 +60,11 @@ public class UI {
                 uiMainGame.menuBarScreen();
             }
 
+            // <-------Pause State------>
+            if (game.gameState == game.pauseState) {
+                uiMainGame.pauseScreen();
+            }
+
 
             // <-------DIALOGUE STATE------->
             if (game.gameState == game.dialogueState) {

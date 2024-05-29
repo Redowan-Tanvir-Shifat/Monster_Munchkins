@@ -427,6 +427,36 @@ public class UI_MainGame {
             gc.fillText("-->", textX-game.tileSize-8, textY);
         }
     }
+    public void pauseScreen() {
+        // Create a Frame...
+        final int frameX = game.tileSize * 5;
+        final int frameY = game.tileSize * 2;
+        final int frameWidth = game.tileSize * 20;
+        final int frameHeight = game.tileSize * 14;
+
+        Color c = Color.rgb(255, 209, 184);
+        drawSubWindow(frameX, frameY, frameWidth, frameHeight);
+
+        gc.setFont(titleFont);
+        String text = "Monster MunchKins";
+        int textX = getXForCenteredText(text);
+        int textY = frameY + game.tileSize *2;
+
+        gc.setFill(Color.rgb(255, 255, 255));
+        gc.fillText(text, textX, textY);
+
+        // Menu...
+        gc.setFill(Color.rgb(255, 255, 255));
+        gc.setFont(largeFontBold);
+
+        text = "Press 'ENTER' to play";
+        textX = getXForCenteredText(text);
+        textY = game.tileSize * 9;
+        gc.fillText(text, textX, textY);
+        if (commandNum == 0) {
+            gc.fillText("-->", textX-game.tileSize-8, textY);
+        }
+    }
 
     public void drawCharacterScreen() {
         // Create a Frame...

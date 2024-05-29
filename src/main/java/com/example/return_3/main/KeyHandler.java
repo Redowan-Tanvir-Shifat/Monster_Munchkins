@@ -96,6 +96,17 @@ public class KeyHandler {
 //                menuBarState(code);
 //            }
         }
+
+        // <------------Pause State---------->
+        else if (game.gameState == game.pauseState) {
+            if (game.gameStatus == game.gameMainStatus) {
+                pauseState(code);
+            }
+//            if (game.gameStatus == game.gameSpaceInvadersStatus) {
+//                menuBarState(code);
+//            }
+        }
+
         else if (game.gameState == game.hospitalState) {
             hospitalState(code);
         }else if (game.gameState == game.mapState) {
@@ -361,6 +372,15 @@ public class KeyHandler {
             }
         }
     }
+
+    private void pauseState(KeyCode code) {
+        if (code == KeyCode.ENTER) {
+            if (game.ui.uiMainGame.commandNum == 0) {
+                game.gameState = game.playState;
+            }
+        }
+    }
+
 
     public void playState(KeyCode code){
 
