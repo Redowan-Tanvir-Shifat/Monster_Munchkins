@@ -687,6 +687,7 @@ public void removeCurrentWeapon() {
             }
             if (selectedItem.type == type_fireball) {
                 currentWeapon=selectedItem;
+                System.out.println(currentWeapon.name +" ->"+currentWeapon.mana);
             }
             if(selectedItem.type==type_shield){
                 currentShield=selectedItem;
