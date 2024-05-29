@@ -9,10 +9,10 @@ public class OBJ_Chest extends Entity {
     Game game;
     Entity loot;
     boolean opened=false;
-    public OBJ_Chest(Game game,Entity loot) {
+    public OBJ_Chest(Game game) {
         super(game);
         this.game = game;
-        this.loot = loot;
+        this.loot = new OBJ_FireSword(game);
         type= type_obstacle;
         name= "chest";
         itemCode=321;
