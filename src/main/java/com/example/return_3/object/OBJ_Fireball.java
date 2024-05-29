@@ -46,9 +46,9 @@ public class OBJ_Fireball extends Projectile {
     }
 
     public void subtractResource(Entity user){
-        mana -= useCost;
-        System.out.println("user.mana");
-        if (mana <= 0) {
+        game.player.currentWeapon.mana -= useCost;
+        System.out.println("Mana ="+game.player.currentWeapon.mana);
+        if (game.player.currentWeapon.mana <= 0) {
             removeCurrentWeapon();
             System.out.println("ENd of mana");
         }
