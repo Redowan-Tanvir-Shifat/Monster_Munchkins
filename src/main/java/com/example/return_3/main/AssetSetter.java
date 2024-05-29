@@ -26,11 +26,11 @@ public class AssetSetter {
         int mapNum = 0; //For map 1  //to create object for map 2 then we need to ser mapNum 2 under the code.
         int i = 0;
 
-        game.obj[mapNum][16]=new OBJ_Chest(game,new OBJ_FireSword(game));
+        game.obj[mapNum][16]=new OBJ_Chest(game);
         game.obj[mapNum][16].worldX=game.tileSize*45;
         game.obj[mapNum][16].worldY=game.tileSize*144;
         i=17;
-        game.obj[mapNum][18]=new OBJ_Chest(game,new OBJ_IceSword(game));
+        game.obj[mapNum][18]=new OBJ_Chest(game);
         game.obj[mapNum][18].worldX=game.tileSize*43;
         game.obj[mapNum][18].worldY=game.tileSize*143;
 //        game.obj[mapNum][18]=new OBJ_BlueKey(game);
@@ -308,6 +308,7 @@ public class AssetSetter {
         addObjectToList(objects, userId, objecttype, Game.gameInstance.blueKey.itemCode, 68, 37, mapNum);
         addObjectToList(objects, userId, objecttype, Game.gameInstance.door.itemCode, 28, 161, mapNum);
         addObjectToList(objects, userId, objecttype, Game.gameInstance.axe.itemCode, 172, 158, mapNum);
+        addObjectToList(objects, userId, objecttype, Game.gameInstance.chest.itemCode, 19, 121, mapNum);
 
         // FOR INTERACTIVE TILE
         objecttype = Game.gameInstance.type_interactiveTIle;
@@ -340,9 +341,23 @@ public class AssetSetter {
                 {107, 120}, {112, 120}, {114, 120}, {116, 120}, {111, 121}, {112, 121},
                 {113, 121}, {115, 121}, {117, 121}, {111, 122}, {113, 122}, {114, 122},
                 {117, 122}, {111, 123}, {115, 123}, {116, 123}, {112, 124}, {113, 124},
-                {114, 124}, {115, 124}
+                {114, 124}, {115, 124},
                 // Add more positions as needed
                 //pihi
+                //port Area
+                {16, 102}, {17, 102}, {19, 102}, {21, 102},
+                {17, 103}, {20, 103}, {23, 103},
+                {16, 104},{17, 104},{18, 104},{20, 104},{21, 104},{24, 104},{27, 104},{28, 104},{29, 104},
+                {16, 105},{18, 105},{19, 105},{20, 105},{22, 105},{25, 105},{26, 105},{30, 105},{32, 105},{34, 105},
+                {16, 106},{17, 106},{18, 106},{19, 106},{20, 106},{22, 106},{24, 106},{26, 106},{28, 106},{33, 106},{36, 106},
+                {19, 107},{21, 107},{23, 107},{26, 107},{30, 107},{31, 107},{34, 107},{35, 107},{37, 107},{39, 107},{40, 107},{42, 107},{43, 107},
+                {17, 108},{18, 108},{20, 108},{22, 108},{24, 108},{25, 108},{27, 108},{29, 108},{30, 108},{31, 108},{32, 108},{34, 108},{36, 108},{37, 108},{42, 108},{44, 108},
+                {16, 109},{18, 109},{19, 109},{21, 109},{22, 109},{23, 109},{24, 109},{25, 109},{27, 109},{28, 109},{30, 109},{32, 109},{33, 109},{34, 109},{35, 109},{38, 109},{40, 109},{41, 109},{43, 109},{45, 109},{46, 109},
+                {17, 110},{19, 110},{20, 110},{21, 110},{22, 110},{23, 110},{24, 110},{25, 110},{26, 110},{27, 110},{29, 110},{31, 110},{33, 110},{35, 110},{36, 110},{37, 110},{38, 110},{41, 110},{42, 110},{44, 110},{45, 110},{46, 110},{47, 110},{48, 110},{49, 110},
+                {16, 111},{17, 111},{18, 111},{19, 111},{20, 111},{21, 111},{22, 111},{23, 111},{24, 111},{25, 111},{27, 111},{28, 111},{29, 111},{30, 111},{32, 111},{33, 111},{34, 111},{35, 111},{36, 111},{37, 111},{38, 111},{39, 111},{41, 111},{42, 111},{43, 111},
+                {16, 112},{17, 112},{18, 112},{21, 112},{23, 112},{24, 112},{25, 112},{26, 112},{27, 112},{29, 112},{30, 112},{31, 112},{32, 112},{34, 112},{36, 112},{38, 112},{40, 112},
+                {16, 113},{31, 113},{32, 113},{33, 113},{34, 113},{35, 113},{36, 113},{37, 113},{38, 113},
+                {33, 114}, {35, 114}, {33, 115}, {34, 115}, {35, 115}, {36, 115}, {33, 116}, {34, 116}, {34, 117},
         };
         for (int[] pos : tilePositions) {
             objects.add(new ObjectData(userId, objectType, itemCode, pos[0], pos[1], mapNum));
@@ -432,8 +447,7 @@ public class AssetSetter {
                 {entity.type_slime, entity.area_hill_1, 147, 103}, {entity.type_slime, entity.area_hill_1, 155, 108},
                 {entity.type_slime, entity.area_hill_1, 154, 116}, {entity.type_slime, entity.area_hill_1, 161, 121},
                 {entity.type_slime, entity.area_hill_1, 174, 119}, {entity.type_slime, entity.area_hill_1, 171, 108},
-                {entity.type_worm, entity.area_hill_1, 161, 113}, {entity.type_redFly, entity.area_hill_1, 167, 113},
-                {entity.type_skeleton, entity.area_hill_1, 167, 122}
+                {entity.type_worm, entity.area_hill_1, 161, 113}, {entity.type_redFly, entity.area_hill_1, 167, 113}
         };
 
 
@@ -462,6 +476,19 @@ public class AssetSetter {
                 {entity.type_slime, entity.area_hill_3, 59, 71}, {entity.type_worm, entity.area_hill_3, 52, 74},
                 {entity.type_spiderBrown, entity.area_hill_3, 60, 81}, {entity.type_blueGhost, entity.area_hill_3, 51, 78}
         };
+
+        // Hill 4
+        int[][] hill4Positions = {
+                {entity.type_sixEyes, entity.area_hill_4, 17, 116},
+                {entity.type_blueGhost, entity.area_hill_4, 24, 119},
+                {entity.type_sixEyes, entity.area_hill_4, 31, 119},
+                {entity.type_redFly, entity.area_hill_4, 71, 105},
+                {entity.type_redFly, entity.area_hill_4, 29, 100},
+                {entity.type_spider, entity.area_hill_4, 46, 104},
+                {entity.type_blueGhost, entity.area_hill_4, 59, 106},
+
+        };
+
 
         // Monster Island 1
         int[][] mi1positions = {
@@ -497,18 +524,20 @@ public class AssetSetter {
 
 
 
-
         // Monster setup without area
         int[][] noAreaPositions = {
                 {entity.type_slime, 0, 94, 110}, {entity.type_slime, 0, 98, 112},
                 {entity.type_slime, 0, 104, 121}, {entity.type_slime, 0, 110, 119},
                 {entity.type_slime, 0, 112, 123}, {entity.type_worm, 0, 101, 117},
                 {entity.type_worm, 0, 114, 119}, {entity.type_pacmanGreen, 0, 106, 118},
+
                 {entity.type_slimeMother,0,31,32},
                 {entity.type_slime, 0, 39, 34}, {entity.type_slime, 0, 21, 32},
                 {entity.type_slime, 0, 29, 39}, {entity.type_slime, 0, 18, 22},
-                {entity.type_slime, 0, 44, 22}, {entity.type_redFly, 0, 67, 27},
-                {entity.type_arc, 0, 71, 24}, {entity.type_redFly, 0, 68, 27},
+                {entity.type_slime, 0, 44, 22},
+
+
+                {entity.type_arc, 0, 71, 24}, {entity.type_redFly, 0, 67, 27},
                 {entity.type_blueGhost, 0, 86, 24}, {entity.type_arc, 0, 66, 33},
                 {entity.type_slime, 0, 70, 36}, {entity.type_worm, 0, 78, 33},
                 {entity.type_slime, 0, 94, 34}, {entity.type_pacmanGreen, 0, 99, 27},
@@ -521,12 +550,12 @@ public class AssetSetter {
                 {entity.type_arc, 0, 156, 85}, {entity.type_pacman, 0, 169, 81},
                 {entity.type_slime, 0, 148, 79}, {entity.type_redFly, 0, 54, 45},
                 {entity.type_blueGhost, 0, 64, 47}, {entity.type_redFly, 0, 64, 40},
-                {entity.type_slime, 0, 111, 67}, {entity.type_redFly, 0, 118, 68},
-                {entity.type_worm, 0, 117, 72},
 
-                //Monster Island....
-                {entity.type_blueGhost, 0, 145, 20}, {entity.type_redFly, 0, 146, 27},
-                {entity.type_blueGhost, 0, 148, 33}
+
+
+                {entity.type_sixEyes, 0, 161, 71}, {entity.type_sixEyes, 0, 156, 63},
+                {entity.type_sixEyes, 0, 169, 71}, {entity.type_sixEyes, 0, 156, 77},
+
         };
 
 
@@ -535,7 +564,7 @@ public class AssetSetter {
 
 
 
-        int[][][] allPositions = {townHall1Positions, townHall2Positions, townHall3Positions, townHall4Positions, townHall5Positions,hill1Positions,hill2Positions,hill3Positions, mi1positions,mi2positions,mi3positions,noAreaPositions};
+        int[][][] allPositions = {townHall1Positions, townHall2Positions, townHall3Positions, townHall4Positions, townHall5Positions,hill1Positions,hill2Positions,hill3Positions, hill4Positions,mi1positions,mi2positions,mi3positions,noAreaPositions};
 
         List<int[]> allMonsters = new ArrayList<>();
 
