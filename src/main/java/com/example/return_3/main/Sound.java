@@ -26,6 +26,7 @@ public class Sound {
     public final int slimeDeathSound=29;
     public final int spiderSound=30;
     public final int shipWave=31;
+    public final int shield = 32;
 
 
     public Sound() {
@@ -63,7 +64,7 @@ public class Sound {
         soundUrls[redPacDeathSound]=getClass().getResource("/sound/redPacDeathSound.wav");
         soundUrls[slimeDeathSound]=getClass().getResource("/sound/slimeDeathSound.wav");
         soundUrls[spiderSound]=getClass().getResource("/sound/spiderSound.wav");
-
+        soundUrls[shield] = getClass().getResource("/sound/blocked.wav");
     }
 
     public void setFile(int i) {

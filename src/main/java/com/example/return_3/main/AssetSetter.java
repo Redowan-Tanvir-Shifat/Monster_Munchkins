@@ -574,7 +574,7 @@ public class AssetSetter {
             }
         }
 
-        MyJDBC.addMonsters(allMonsters);
+        //MyJDBC.addMonsters(allMonsters);
     }
 
     //initial adding object in inventory
