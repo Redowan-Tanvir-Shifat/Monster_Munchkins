@@ -1,5 +1,6 @@
 package com.example.return_3.object;
 
+import com.example.return_3.db.MyJDBC;
 import com.example.return_3.entity.Entity;
 import com.example.return_3.entity.Projectile;
 import com.example.return_3.main.Game;
@@ -24,6 +25,12 @@ public class OBJ_Fireball extends Projectile {
         useCost=1;
         alive=false;
         getImage();
+        solidArea.setX(11);
+        solidArea.setY(13);
+        solidArea.setWidth(12);
+        solidArea.setHeight(8);
+        solidAreaDefaultX = (int)(solidArea.getX());
+        solidAreaDefaultY = (int)(solidArea.getY());
     }
 
     public void getImage(){
@@ -57,9 +64,10 @@ public class OBJ_Fireball extends Projectile {
         for(int i=0; i < game.player.inventory.size(); i++) {
             if(game.player.inventory.get(i).itemCode == game.player.currentWeapon.itemCode) {
                 game.player.inventory.remove(i);
-                game.player.currentWeapon = null;
-                String text="End!";
+                MyJDBC.removeItemFromInventory(game.player.playerId, game.player.currentWeapon.itemCode);
+                String text = game.player.currentWeapon.name +" disposed!";
                 game.ui.uiMainGame.addMessage(text);
+                game.player.currentWeapon = null;
                 break;
             }
         }

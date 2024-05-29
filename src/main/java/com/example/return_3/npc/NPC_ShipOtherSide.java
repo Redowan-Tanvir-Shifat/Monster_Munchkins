@@ -46,7 +46,7 @@ public class NPC_ShipOtherSide extends NPC {
     }
     //set dialogue
     public void setDialogue(){
-        dialogue[0]="welcome to the boat. Do you want to go the \nmysterious land? it will cost you 2000 coins";
+        dialogue[0]="Welcome hunter. Nice to see you again.";
     }
     public void update(){
         if(type==type_npc){

@@ -217,6 +217,7 @@ public class Player extends Entity{
 public void removeCurrentWeapon() {
     for(int i=0;i<inventory.size();i++) {
         if(inventory.get(i).itemCode==currentWeapon.itemCode) {
+            MyJDBC.removeItemFromInventory(playerId,currentWeapon.itemCode);
             inventory.remove(i);
             currentWeapon=null;
             String text="Axe Brocked!";
@@ -459,37 +460,37 @@ public void removeCurrentWeapon() {
                         game.playSoundEffect(game.soundEffect.slimeDeathSound);
                         System.out.println("green slime died");
                     } else if(game.monster[game.currentMap][i] instanceof Mon_Pac){
-                        game.playSoundEffect(game.soundEffect.redPacDeathSound);
+                        game.playSoundEffect(game.soundEffect.slimeDeathSound);
                         System.out.println("Mon_Pac died");
                     }else if(game.monster[game.currentMap][i] instanceof Mon_Spider){
-                        game.playSoundEffect(game.soundEffect.spiderSound);
+                        game.playSoundEffect(game.soundEffect.slimeDeathSound);
                         System.out.println("Mon_Spider died");
                     }else if(game.monster[game.currentMap][i] instanceof Mon_SpiderBrown){
-                        game.playSoundEffect(game.soundEffect.spiderSound);
+                        game.playSoundEffect(game.soundEffect.slimeDeathSound);
                         System.out.println("Mon_SpiderBrown died");
                     }else if(game.monster[game.currentMap][i] instanceof Mon_Worm){
-//                game.playSoundEffect(game.soundEffect.shipWave);
+                        game.playSoundEffect(game.soundEffect.slimeDeathSound);
                         System.out.println("Mon_Worm died");
                     }else if(game.monster[game.currentMap][i] instanceof Mon_PacGreen){
-                        game.playSoundEffect(game.soundEffect.greenPacDeathSound);
+                        game.playSoundEffect(game.soundEffect.slimeDeathSound);
                         System.out.println("Mon_PacGreen died");
                     }else if(game.monster[game.currentMap][i] instanceof Mon_BlueGhost){
-                        game.playSoundEffect(game.soundEffect.blueghostDeathSound);
+                        game.playSoundEffect(game.soundEffect.slimeDeathSound);
                         System.out.println("Mon_BlueGhost died");
                     }else if(game.monster[game.currentMap][i] instanceof Mon_RedFly){
-                        game.playSoundEffect(game.soundEffect.fireflyDeathSound);
+                        game.playSoundEffect(game.soundEffect.slimeDeathSound);
                         System.out.println("Mon_RedFly died");
                     }else if(game.monster[game.currentMap][i] instanceof Mon_ORC){
-                        game.playSoundEffect(game.soundEffect.orcDeathSound);
+                        game.playSoundEffect(game.soundEffect.slimeDeathSound);
                         System.out.println("Mon_ORC died");
                     }else if(game.monster[game.currentMap][i] instanceof Mon_RedORC){
-                        game.playSoundEffect(game.soundEffect.orcDeathSound);
+                        game.playSoundEffect(game.soundEffect.slimeDeathSound);
                         System.out.println("Mon_RedORC died");
                     }else if(game.monster[game.currentMap][i] instanceof Mon_Skeleton){
-//                game.playSoundEffect(game.soundEffect.shipWave);
+                        game.playSoundEffect(game.soundEffect.spiderSound);
                         System.out.println("Mon_Skeleton died");
                     }else if(game.monster[game.currentMap][i] instanceof Mon_GreenSlimeMother){
-//                game.playSoundEffect(game.soundEffect.shipWave);
+                        game.playSoundEffect(game.soundEffect.slimeDeathSound);
 
                         System.out.println("Mon_GreenSlimeMother died");
                         SlimeDeadThread slimeDeadThread= new SlimeDeadThread(game);
@@ -565,13 +566,13 @@ public void removeCurrentWeapon() {
                 if (currentWeapon.type == type_specialSword) {
                     game.playSoundEffect(7);
                 }
-                if (currentWeapon.type == type_fireSword || currentWeapon.type == type_iceSword) {
+                if (currentWeapon.type == type_fireSword) {
                     game.playSoundEffect(game.soundEffect.fireSword);
                 }
                 if (currentWeapon.type == type_axe) {
                     game.playSoundEffect(game.soundEffect.swingWhoosh2);
                 }
-                if (currentWeapon.type == type_sword) {
+                if (currentWeapon.type == type_sword || currentWeapon.type == type_iceSword) {
                     game.playSoundEffect(game.soundEffect.swordSound2);
                 }
 

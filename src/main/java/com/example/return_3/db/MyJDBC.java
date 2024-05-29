@@ -49,6 +49,40 @@ public class MyJDBC {
         //not valid user
         return  null;
     }
+
+    public static boolean checkUsername(String username){
+        try {
+            //establish a connection to the database using configuration
+            Connection connection= DriverManager.getConnection(DB_URL,DB_USERNAME,DB_PASSWORD);
+            //create sql query
+            PreparedStatement preparedStatement= connection.prepareStatement(
+                    "SELECT * FROM users WHERE username = ?"
+            );
+            //replace the ? with values
+            preparedStatement.setString(1,username);
+
+
+            //execute query and store into a result set
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            //next() return true or false
+            //true - query returned data and result set now points to the first row
+            // false - query returned no dat and reset set equals to null
+            if(resultSet.next()){
+                //success
+                return true;
+                //get id
+//                int userId=resultSet.getInt("user_id");
+//                return getUserProperties(userId,username,password,resultSet);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        //not valid user
+        return  false;
+    }
+
+
     private static User getUserProperties(int userId, String username, String password, ResultSet resultSet) throws SQLException {
         int coin= resultSet.getInt("coin");
         int energy= resultSet.getInt("energy");

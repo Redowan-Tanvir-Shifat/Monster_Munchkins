@@ -51,7 +51,7 @@ public class SignUpController {
 
         //username has to be at least 6 characters long
         if(username.length()<5){
-            failedText.setText("username has to be at least 6 characters long!");
+            failedText.setText("username has to be at least 5 characters long!");
         return false;
         }
         //password and repassword must be the same

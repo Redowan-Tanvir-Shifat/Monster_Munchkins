@@ -34,21 +34,27 @@ public class LoginController {
     //-------------------------- --- IN this `startGame` method our Application will direct you `showGameScene` and then game will start  ----------------------------------------------------------------
     public void login(ActionEvent event) throws Exception {
         //Validate Login
-        Game.gameInstance.user= MyJDBC.validateLogin(username.getText(),password.getText());
-        if (Game.gameInstance.user!=null){
-            try {
-                // Write user ID to file to indicate login
-                BufferedWriter writer = new BufferedWriter(new FileWriter("loginStatus.txt"));
-                writer.write(String.valueOf(Game.gameInstance.user.getUserId()));
-                writer.close();
-            } catch (IOException e) {
-                e.printStackTrace();
+
+        if(MyJDBC.checkUsername(username.getText())) {
+            Game.gameInstance.user= MyJDBC.validateLogin(username.getText(),password.getText());
+            if (Game.gameInstance.user!=null){
+                try {
+                    // Write user ID to file to indicate login
+                    BufferedWriter writer = new BufferedWriter(new FileWriter("loginStatus.txt"));
+                    writer.write(String.valueOf(Game.gameInstance.user.getUserId()));
+                    writer.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                //Game.showGameScene();
+                gameInstance.startGame();
+            }else{
+                failedText.setText("Please enter correct password!");
             }
-            //Game.showGameScene();
-            gameInstance.startGame();
-        }else{
-            failedText.setText("Please enter correct password!");
+        }else {
+            failedText.setText("Please sign up first!");
         }
+
 
     }
     public void close(ActionEvent event) {

@@ -57,11 +57,11 @@ public class Sound {
         soundUrls[swingWhoosh2]=getClass().getResource("/sound/swingWhoosh2.wav");
         soundUrls[swingWhoosh3]=getClass().getResource("/sound/swingWhoosh3.wav");
         soundUrls[shipWave]=getClass().getResource("/sound/shipWave.wav");
-        soundUrls[blueghostDeathSound]=getClass().getResource("/sound/blueghostDeathSound.wav");
-        soundUrls[fireflyDeathSound]=getClass().getResource("/sound/fireflyDeathSound.wav");
-        soundUrls[greenPacDeathSound]=getClass().getResource("/sound/greenPacDeathSound.wav");
-        soundUrls[orcDeathSound]=getClass().getResource("/sound/orcDeathSound.wav");
-        soundUrls[redPacDeathSound]=getClass().getResource("/sound/redPacDeathSound.wav");
+//        soundUrls[blueghostDeathSound]=getClass().getResource("/sound/blueghostDeathSound.wav");
+//        soundUrls[fireflyDeathSound]=getClass().getResource("/sound/fireflyDeathSound.wav");
+//        soundUrls[greenPacDeathSound]=getClass().getResource("/sound/greenPacDeathSound.wav");
+//        soundUrls[orcDeathSound]=getClass().getResource("/sound/orcDeathSound.wav");
+//        soundUrls[redPacDeathSound]=getClass().getResource("/sound/redPacDeathSound.wav");
         soundUrls[slimeDeathSound]=getClass().getResource("/sound/slimeDeathSound.wav");
         soundUrls[spiderSound]=getClass().getResource("/sound/spiderSound.wav");
         soundUrls[shield] = getClass().getResource("/sound/blocked.wav");

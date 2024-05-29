@@ -480,8 +480,15 @@ public class Entity {
             else { // Player
                 //CHECK monster collision with the updated worldX, worldY and solidArea....
                 int monsterIndex = game.cChecker.checkEntity(this, game.monster);
-                if(game.player.currentWeapon!=null){
-                game.player.damagedMonster(monsterIndex, this, attack, currentWeapon.knockBackPower);
+                if(game.player.currentWeapon!=null && monsterIndex!=999){
+                    if(game.monster[game.currentMap][monsterIndex] instanceof Mon_RedFly){
+                        if(game.player.currentWeapon.type==type_fireball){
+                            game.player.damagedMonster(monsterIndex, this, attack, currentWeapon.knockBackPower);
+                        }
+                    }else{
+                        game.player.damagedMonster(monsterIndex, this, attack, currentWeapon.knockBackPower);
+                    }
+
                 }
 
                 //CHECK INTERACTIVE TILES COLLSION AND GET ATTACK

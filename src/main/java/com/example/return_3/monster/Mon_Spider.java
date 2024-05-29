@@ -74,7 +74,7 @@ public class Mon_Spider extends Entity {
             searchPath(getGoalCol(game.player), getGoalRow(game.player));
 
             // Check if shoot a projectile...
-            checkShootOrNot(100, 30);
+            //checkShootOrNot(100, 30);
 
         }
         else {
