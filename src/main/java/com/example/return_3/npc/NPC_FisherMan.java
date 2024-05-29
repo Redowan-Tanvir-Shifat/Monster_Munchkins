@@ -10,6 +10,12 @@ public class NPC_FisherMan extends NPC {
         name="Fisher man";
         this.game=game;
         type= type_npc;
+        solidArea.setX(0);
+        solidArea.setY(0);
+        solidArea.setWidth(32);
+        solidArea.setHeight(32);
+        solidAreaDefaultX=(int)(solidArea.getX());
+        solidAreaDefaultY=(int)(solidArea.getY());
 //        speed=1;
         getNPCImage();
         setDialogue();

@@ -11,6 +11,12 @@ public class NPC_ShipThisSide extends NPC {
         this.game=game;
         type= type_npc;
         speed=1;
+        solidArea.setX(0);
+        solidArea.setY(0);
+        solidArea.setWidth(32);
+        solidArea.setHeight(32);
+        solidAreaDefaultX=(int)(solidArea.getX());
+        solidAreaDefaultY=(int)(solidArea.getY());
         getNPCImage();
 //        setDialogue();
     }
