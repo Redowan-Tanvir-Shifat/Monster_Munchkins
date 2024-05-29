@@ -9,6 +9,7 @@ import com.example.return_3.object.OBJ_BlueKey;
 import com.example.return_3.object.OBJ_Coin;
 import com.example.return_3.object.OBJ_Heart;
 import com.example.return_3.object.OBJ_Ladi;
+import com.example.return_3.object.food.OBJ_Fish;
 import com.example.return_3.shop.Shop;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -913,7 +914,9 @@ public class UI_MainGame {
                     addMessage("cost 200 coins!");
                     currentDialogue="You got a fish! You can find it in your inventory!";
                     //addign fish in inventory
+                    game.player.addToInventory(new OBJ_Fish(game));
                     //update the inventory in database
+                    MyJDBC.addItemToInventory(game.player.playerId,new OBJ_Fish(game).itemCode);
                 }else{
                     currentDialogue="You do not have enough coin";
                 }

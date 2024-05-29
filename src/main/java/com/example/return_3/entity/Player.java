@@ -657,9 +657,9 @@ public void removeCurrentWeapon() {
         }
     }
     public void addToInventory(Entity entity){
-        Entity item=game.inventoryMapgetItem(entity.itemCode);
+//        Entity item=game.inventoryMapgetItem(entity.itemCode);
         inventory.add(entity);
-        item.itemCount++;
+//        item.itemCount++;
     }
 
     public void checkLevelUp() {
