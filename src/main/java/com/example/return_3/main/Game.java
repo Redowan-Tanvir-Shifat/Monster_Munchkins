@@ -58,7 +58,7 @@ public class Game extends Application {
     public int gameState;
     public final int menuBarState = 0;
     public final int playState = 1;
-    public final int pauseState=2;
+    public final int pauseState = 2;
     public final int dialogueState = 3;
     public final int wizConversationState = 4;
     public final int characterState = 5;
@@ -142,7 +142,7 @@ public class Game extends Application {
     public Entity interactNpc[][]= new Entity[maxMap][20]; //set the number of 10 NPC Number
     public Entity[][] monster = new Entity[maxMap][500];
 
-    public InteractiveTile iTile[][]= new InteractiveTile[maxMap][50];
+    public InteractiveTile iTile[][]= new InteractiveTile[maxMap][500];
     ArrayList<Entity> entityList = new ArrayList<>();
     // public  ArrayList<Entity> projectileList = new ArrayList<>();
     public Entity[][] projectile = new Entity[maxMap][20];
@@ -352,7 +352,7 @@ Image icon;
 //        if(isFirstTime){
 //            gameState=guidelineState;
 //        }else{gameState=playState;}
-        gameState=playState;
+        gameState = pauseState;
     }
 
 
