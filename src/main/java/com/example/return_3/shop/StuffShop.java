@@ -23,6 +23,7 @@ public class StuffShop extends Shop {
         inventory.add(new OBJ_Shield_Wood(game));
         inventory.add(new OBJ_Axe(game));
         inventory.add(new OBJ_Shield_Blue(game));
+        inventory.add(new OBJ_Fireball(game));
     }
     //public void setDialogue(){
 //        dialogue[0]="He he, so you found me.\nI have some good stuff. Do you want to trade?";

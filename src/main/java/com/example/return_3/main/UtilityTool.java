@@ -66,10 +66,10 @@ public class UtilityTool {
             item= new OBJ_Sword_Special(game);
         } else if (itemCode==106) {
             item= new OBJ_FireSword(game);
-        } else if (itemCode==108) {
-            item = new OBJ_IceSword(game);
         } else if (itemCode==107) {
             item= new OBJ_Fireball(game);
+        } else if (itemCode==108) {
+            item = new OBJ_IceSword(game);
         } else if (itemCode==201) {
             item= new OBJ_Apple(game);
         } else if (itemCode==202) {
