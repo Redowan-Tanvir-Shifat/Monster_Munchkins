@@ -161,6 +161,7 @@ public class Game extends Application {
     public Entity specialSword = new OBJ_Sword_Special(this);
     public Entity fireSword = new OBJ_FireSword(this);
     public Entity iceSword = new OBJ_IceSword(this);
+    public Entity fireBall = new OBJ_Fireball(this);
     Entity shieldWood = new OBJ_Shield_Wood(this);
 
     public Entity key= new OBJ_Key(this);
@@ -318,6 +319,7 @@ Image icon;
         inventoryMapAddItem(specialSword.itemCode, specialSword);
         inventoryMapAddItem(fireSword.itemCode, fireSword);
         inventoryMapAddItem(iceSword.itemCode, iceSword);
+        inventoryMapAddItem(fireBall.itemCode, fireBall);
         inventoryMapAddItem(redPotion.itemCode, redPotion);
         inventoryMapAddItem(shieldBlue.itemCode, shieldBlue);
         inventoryMapAddItem(shieldWood.itemCode, shieldWood);
@@ -451,7 +453,7 @@ Image icon;
         obj= new Entity[maxMap][20];
         npc= new Entity[maxMap][100]; //set the number of 10 NPC Number
         monster = new Entity[maxMap][500];
-        iTile= new InteractiveTile[maxMap][50];
+        iTile= new InteractiveTile[maxMap][500];
         entityList = new ArrayList<>();
     }
 

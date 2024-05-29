@@ -8,14 +8,17 @@ import javafx.scene.paint.Color;
 
 public class OBJ_Fireball extends Projectile {
     Game game;
+
     public OBJ_Fireball(Game game) {
         super(game);
         this.game = game;
         name="Fireball";
+        type = type_fireball;
         itemCode=107;
         speed = 5;
         maxLife=80;
         life = maxLife;
+        mana=10;
         attack=2;
         knockBackPower = 10;
         useCost=1;
@@ -43,7 +46,23 @@ public class OBJ_Fireball extends Projectile {
     }
 
     public void subtractResource(Entity user){
-        user.mana -= useCost;
+        mana -= useCost;
+        System.out.println("user.mana");
+        if (mana <= 0) {
+            removeCurrentWeapon();
+            System.out.println("ENd of mana");
+        }
+    }
+    public void removeCurrentWeapon() {
+        for(int i=0; i < game.player.inventory.size(); i++) {
+            if(game.player.inventory.get(i).itemCode == game.player.currentWeapon.itemCode) {
+                game.player.inventory.remove(i);
+                game.player.currentWeapon = null;
+                String text="End!";
+                game.ui.uiMainGame.addMessage(text);
+                break;
+            }
+        }
     }
 
     public Color getParticleColor(){ //this indicates the color of the particle
