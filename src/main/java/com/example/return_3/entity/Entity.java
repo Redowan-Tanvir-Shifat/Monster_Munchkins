@@ -19,6 +19,7 @@ import java.util.Random;
 
 
 public class Entity {
+
     Game game;
 
     // <----------VARIABLES---------->
@@ -155,6 +156,7 @@ public class Entity {
     public final int type_specialSword = 11;
     public final int type_fireSword = 12;
     public final int type_iceSword = 13;
+    public final int type_fireball = 14;
 
 
     // <---------Type of NPC--------->
@@ -610,7 +612,7 @@ public class Entity {
             String canGuardDirection = getOppositeDirection(direction);
             if (game.player.guarding == true && game.player.direction.equals(canGuardDirection)) {
                 // Parry : // if you parry 10 frame before monsters attack you can parry monster...if you increase the value the parry became easier...
-                if (game.player.guardCounter < 10) {
+                if (game.player.guardCounter < 30) {
                     damage = 0;
                     setKnockBack(this, game.player, game.player.currentShield.knockBackPower);
                     offBalance = true;

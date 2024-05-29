@@ -182,8 +182,10 @@ public class Player extends Entity{
 
         energy = game.user.getEnergy();
         maxEnergy = game.user.getMaxEnergy();
-        maxMana = game.user.getBullet();
-        mana = game.user.getMaxBullet();
+//        maxMana = game.user.getBullet();
+        maxMana = 10;
+        //mana = game.user.getBullet();
+        mana = game.fireBall.mana;
         //ammo=10;
         inventory= MyJDBC.getUserInventory(playerId);
 
@@ -265,6 +267,9 @@ public void removeCurrentWeapon() {
             attacking();
         }
         else if (currentShield != null && keyHandler.isVKeyPressed()) {
+            if(guarding == false){
+             game.playSoundEffect(game.soundEffect.shield);
+            }
             guarding = true;
             guardCounter++;
         }
@@ -348,29 +353,30 @@ public void removeCurrentWeapon() {
         else {
             guarding = false;
             guardCounter = 0;
+
         }
 
 
             //END  of IF statement
+//        if(game.keyHandler.isFKeyPressed()==true && projectile.alive==false
+//                && shotAvailableCounter==30 && projectile.haveResource(this)==true){
+//            //Set default COORDINATES, DIRECTION AND USER
+//            projectile.set(worldX,worldY,direction, true, this);
+//
+//            //SUBTRACT THE COST MANA/ AMMO ETC
+//            projectile.subtractResource(this);
+//
+//            // ADD IT TO THE LIST
+//            for (int i = 0; i < game.projectile[game.currentMap].length; i++) {
+//                if (game.projectile[game.currentMap][i] == null) {
+//                    game.projectile[game.currentMap][i] = projectile;
+//                    break;
+//                }
+//            }
+//
+//            shotAvailableCounter=0;
+//        }
 
-        if(game.keyHandler.isFKeyPressed()==true && projectile.alive==false
-                && shotAvailableCounter==30 && projectile.haveResource(this)==true){
-            //Set default COORDINATES, DIRECTION AND USER
-            projectile.set(worldX,worldY,direction, true, this);
-
-            //SUBTRACT THE COST MANA/ AMMO ETC
-            projectile.subtractResource(this);
-
-            // ADD IT TO THE LIST
-            for (int i = 0; i < game.projectile[game.currentMap].length; i++) {
-                if (game.projectile[game.currentMap][i] == null) {
-                    game.projectile[game.currentMap][i] = projectile;
-                    break;
-                }
-            }
-
-            shotAvailableCounter=0;
-        }
 
 
 
@@ -533,19 +539,42 @@ public void removeCurrentWeapon() {
     }
     public void useWeapon() {
         //we set the condition when player equip a weapon only then time he or she can attack
-        if (currentWeapon !=null && game.keyHandler.isSpacePressed()) {
-            attacking = true;
-            if (currentWeapon.type == type_specialSword) {
-                game.playSoundEffect(7);
+        if (currentWeapon instanceof OBJ_Fireball){
+            if(game.keyHandler.isSpacePressed() && projectile.alive==false
+                    && shotAvailableCounter==30 && projectile.haveResource(this)==true){
+                //Set default COORDINATES, DIRECTION AND USER
+                projectile.set(worldX,worldY,direction, true, this);
+
+                //SUBTRACT THE COST MANA/ AMMO ETC
+                projectile.subtractResource(this);
+
+                // ADD IT TO THE LIST
+                for (int i = 0; i < game.projectile[game.currentMap].length; i++) {
+                    if (game.projectile[game.currentMap][i] == null) {
+                        game.projectile[game.currentMap][i] = projectile;
+                        break;
+                    }
+                }
+
+                shotAvailableCounter=0;
             }
-            if (currentWeapon.type == type_fireSword || currentWeapon.type == type_iceSword) {
-                game.playSoundEffect(game.soundEffect.fireSword);
-            }
-            if (currentWeapon.type == type_axe) {
-                game.playSoundEffect(game.soundEffect.swingWhoosh2);
-            }
-            if (currentWeapon.type == type_sword) {
-                game.playSoundEffect(game.soundEffect.swordSound2);
+        }
+        else {
+            if (currentWeapon !=null && game.keyHandler.isSpacePressed()) {
+                attacking = true;
+                if (currentWeapon.type == type_specialSword) {
+                    game.playSoundEffect(7);
+                }
+                if (currentWeapon.type == type_fireSword || currentWeapon.type == type_iceSword) {
+                    game.playSoundEffect(game.soundEffect.fireSword);
+                }
+                if (currentWeapon.type == type_axe) {
+                    game.playSoundEffect(game.soundEffect.swingWhoosh2);
+                }
+                if (currentWeapon.type == type_sword) {
+                    game.playSoundEffect(game.soundEffect.swordSound2);
+                }
+
             }
         }
     }
@@ -655,6 +684,9 @@ public void removeCurrentWeapon() {
                 //update the attack method with proper power
                 attack=getAttack();
                 loadPlayerAttackImages();
+            }
+            if (selectedItem.type == type_fireball) {
+                currentWeapon=selectedItem;
             }
             if(selectedItem.type==type_shield){
                 currentShield=selectedItem;
