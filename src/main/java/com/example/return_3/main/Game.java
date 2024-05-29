@@ -171,6 +171,7 @@ public class Game extends Application {
     public Entity defensePotion = new OBJ_DefensePotion(this);
     public Entity door = new OBJ_Door(this);
     public Entity coin = new OBJ_Coin(this);
+    public Entity chest = new OBJ_Chest(this);
 
 
 
@@ -327,6 +328,7 @@ Image icon;
         inventoryMapAddItem(defensePotion.itemCode, defensePotion);
         inventoryMapAddItem(door.itemCode, door);
         inventoryMapAddItem(coin.itemCode, coin);
+        inventoryMapAddItem(chest.itemCode, chest);
         Pane mainGameroot = new Pane();
         mainGameroot.setOnMouseEntered(event -> {
             mainGameroot.setCursor(Cursor.HAND);
