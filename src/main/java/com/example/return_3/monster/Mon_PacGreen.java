@@ -25,7 +25,7 @@ public class Mon_PacGreen extends Entity {
         life = maxLife;
         attack = 5;
         defense = 0;
-        exp = 2;
+        exp = 3;
         projectile=new OBJ_Rock(game);
 
         //set the SOLID AREA for  collision part

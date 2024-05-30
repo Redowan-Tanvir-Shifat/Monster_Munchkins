@@ -15,7 +15,7 @@ public class OBJ_Sword_Special extends Entity {
         attackArea.setWidth(32);
         attackArea.setHeight(28);
         description="["+name+"]\nA special sword.";
-        knockBackPower = 20;
+        knockBackPower = 15;
 
         motion1_duration = 5;
         motion2_duration = 35;

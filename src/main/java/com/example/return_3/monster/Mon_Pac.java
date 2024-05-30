@@ -22,11 +22,11 @@ public class Mon_Pac extends Entity {
         defaultSpeed = 1;
         speed = defaultSpeed;
         type = type_monster;
-        maxLife = 12;
+        maxLife = 15;
         life = maxLife;
-        attack = 8;
+        attack = 10;
         defense = 0;
-        exp = 5;
+        exp = 4;
         projectile=new OBJ_Rock(game);
 
         //set the SOLID AREA for  collision part

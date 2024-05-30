@@ -20,9 +20,9 @@ public class Mon_Spider extends Entity {
         type = type_monster;
         maxLife = 15;
         life = maxLife;
-        attack = 5;
+        attack = 10;
         defense = 0;
-        exp = 2;
+        exp = 3;
         projectile=new OBJ_Spider_Shots(game);
 
         //set the SOLID AREA for  collision part

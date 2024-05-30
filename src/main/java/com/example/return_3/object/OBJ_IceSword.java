@@ -9,13 +9,13 @@ public class OBJ_IceSword extends Entity {
         type = type_iceSword;
         name = "Ice Sword";
         down1 = loadImage("/objects/sword_ice.png", game.tileSize, game.tileSize);
-        attackValue = 5;
+        attackValue = 15;
         price = 30;
         itemCode = 108;
         attackArea.setWidth(32);
         attackArea.setHeight(28);
         description="["+name+"]\nAn Ice sword.";
-        knockBackPower = 15;
+        knockBackPower = 20;
 
         motion1_duration = 5;
         motion2_duration = 25;

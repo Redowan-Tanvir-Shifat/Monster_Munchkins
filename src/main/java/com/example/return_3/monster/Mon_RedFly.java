@@ -21,11 +21,11 @@ public class Mon_RedFly extends Entity {
         defaultSpeed = 1;
         speed = defaultSpeed;
         type = type_monster;
-        maxLife = 20;
+        maxLife = 50;
         life = maxLife;
         attack = 15;
-        defense = 1;
-        exp = 2;
+        defense = 0;
+        exp = 5;
         projectile=new OBJ_RedFly_Shots(game);
 
         //set the SOLID AREA for  collision part
