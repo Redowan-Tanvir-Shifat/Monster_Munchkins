@@ -58,7 +58,9 @@ public class UtilityTool {
             item= new OBJ_Sword_Normal(game);
         } else if (itemCode==102) {
             item= new OBJ_Axe(game);
-        } else if (itemCode==103) {
+        } else if (itemCode==109) {
+            item = new OBJ_Tomahawk(game);
+        }else if (itemCode==103) {
             item= new OBJ_Shield_Wood(game);
         } else if (itemCode==104) {
             item= new OBJ_Shield_Blue(game);

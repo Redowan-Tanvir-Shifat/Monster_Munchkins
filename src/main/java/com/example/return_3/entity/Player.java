@@ -96,7 +96,7 @@ public class Player extends Entity{
             attackRight1 = loadImage("/player/attacking_right_1.png", game.tileSize * 2, game.tileSize);
             attackRight2 = loadImage("/player/attacking_right_2.png", game.tileSize * 2, game.tileSize);
         }
-         else if(currentWeapon.type==type_axe){
+        else if(currentWeapon.type==type_axe){
             attackUp1=loadImage( "/player/boy_axe_up_1.png",game.tileSize,game.tileSize*2);
             attackUp2= loadImage("/player/boy_axe_up_2.png",game.tileSize,game.tileSize*2);
             attackDown1= loadImage("/player/boy_axe_down_1.png",game.tileSize,game.tileSize*2);
@@ -105,6 +105,15 @@ public class Player extends Entity{
             attackLeft2= loadImage("/player/boy_axe_left_2.png",game.tileSize*2,game.tileSize);
             attackRight1= loadImage("/player/boy_axe_right_1.png",game.tileSize*2,game.tileSize);
             attackRight2= loadImage("/player/boy_axe_right_2.png",game.tileSize*2,game.tileSize);
+        }else if(currentWeapon.type==type_tomahawkAxe) {
+            attackUp1 = loadImage("/player/boy_axe1_up_1.png", game.tileSize, game.tileSize * 2);
+            attackUp2 = loadImage("/player/boy_axe1_up_2.png", game.tileSize, game.tileSize * 2);
+            attackDown1 = loadImage("/player/boy_axe1_down_1.png", game.tileSize, game.tileSize * 2);
+            attackDown2 = loadImage("/player/boy_axe1_down_2.png", game.tileSize, game.tileSize * 2);
+            attackLeft1 = loadImage("/player/boy_axe1_left_1.png", game.tileSize * 2, game.tileSize);
+            attackLeft2 = loadImage("/player/boy_axe1_left_2.png", game.tileSize * 2, game.tileSize);
+            attackRight1 = loadImage("/player/boy_axe1_right_1.png", game.tileSize * 2, game.tileSize);
+            attackRight2 = loadImage("/player/boy_axe1_right_2.png", game.tileSize * 2, game.tileSize);
         }
         else if(currentWeapon.type==type_specialSword) {
             attackUp1 = loadImage("/player/attackingSpecial_up_1.png", game.tileSize, game.tileSize * 2);
@@ -569,7 +578,7 @@ public void removeCurrentWeapon() {
                 if (currentWeapon.type == type_fireSword) {
                     game.playSoundEffect(game.soundEffect.fireSword);
                 }
-                if (currentWeapon.type == type_axe) {
+                if (currentWeapon.type == type_axe || currentWeapon.type == type_tomahawkAxe) {
                     game.playSoundEffect(game.soundEffect.swingWhoosh2);
                 }
                 if (currentWeapon.type == type_sword || currentWeapon.type == type_iceSword) {
@@ -680,7 +689,7 @@ public void removeCurrentWeapon() {
         if(itemIndex<inventory.size()){
             Entity selectedItem=inventory.get(itemIndex);
             //We need to fix this type_sword or something else
-            if(selectedItem.type==type_sword|| selectedItem.type==type_axe || selectedItem.type==type_specialSword || selectedItem.type==type_fireSword || selectedItem.type == type_iceSword){
+            if(selectedItem.type==type_sword|| selectedItem.type==type_axe || selectedItem.type==type_specialSword || selectedItem.type==type_fireSword || selectedItem.type == type_iceSword || selectedItem.type == type_tomahawkAxe){
                 currentWeapon=selectedItem;
                 //update the attack method with proper power
                 attack=getAttack();
