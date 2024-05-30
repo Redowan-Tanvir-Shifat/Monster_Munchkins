@@ -37,18 +37,25 @@ public class UtilityTool {
     public void areaSetup(Entity entity, int x, int y, int width, int height){
         if (entity.worldX < x) {
             entity.worldX = x; // Prevent player from moving beyond the left boundary
-            entity.direction="right";
+            if(entity.type!=Entity.type_npc) {
+                entity.direction = "right";
+            }
         } else if (entity.worldX + Game.gameInstance.tileSize > x+width) {
             entity.worldX =x+ width - Game.gameInstance.tileSize; // Prevent player from moving beyond the right boundary
-            entity.direction="left";
-        }
+            if(entity.type!=Entity.type_npc) {
+                entity.direction = "left";
+            }        }
 
         if (entity.worldY < y) {
             entity.worldY = y; // Prevent player from moving beyond the top boundary
-            entity.direction="down";
+            if(entity.type!=Entity.type_npc) {
+                entity.direction = "down";
+            }
         } else if (entity.worldY + Game.gameInstance.tileSize >y+ height) {
             entity.worldY = y+height- Game.gameInstance.tileSize; // Prevent player from moving beyond the bottom boundary
-            entity.direction="up";
+            if(entity.type!=Entity.type_npc) {
+                entity.direction = "up";
+            }
         }
     }
     public static Entity getInventoryItem(int itemCode) {

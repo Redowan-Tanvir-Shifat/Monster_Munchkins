@@ -63,6 +63,7 @@ public class Entity {
     public boolean alive = true;
     public boolean dying = false;
     public boolean npcGone = false;
+    public boolean npcGoneCommand = false;
     public boolean slimeDeathOn = false;
     public boolean slimeDeath = false;
     public boolean hpBarOn = false;
@@ -143,7 +144,7 @@ public class Entity {
     // <---------Type of All Element--------->
     public int type; // 0 for player, 1 for npc, 2 for monster
     public final int type_player = 0;
-    public final int type_npc = 1;
+    public static final int type_npc = 1;
     public final int type_wizard = 2;
     public final int type_monster = 3;
     public final int type_axe = 4;
