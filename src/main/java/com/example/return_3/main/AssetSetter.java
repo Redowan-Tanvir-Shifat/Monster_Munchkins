@@ -369,198 +369,275 @@ public class AssetSetter {
         int monIndex = 0;
 
         int[][] townHall1Positions = {
-                {entity.type_worm, entity.area_th_1, 64, 122}, {entity.type_worm, entity.area_th_1, 43, 125},
-                {entity.type_worm, entity.area_th_1, 57, 130}, {entity.type_worm, entity.area_th_1, 67, 135},
-                {entity.type_worm, entity.area_th_1, 45, 140}, {entity.type_worm, entity.area_th_1, 45, 142},
-                {entity.type_worm, entity.area_th_1, 41, 147}, {entity.type_worm, entity.area_th_1, 67, 141},
-                {entity.type_worm, entity.area_th_1, 56, 145}, {entity.type_slime, entity.area_th_1, 62, 129},
-                {entity.type_slime, entity.area_th_1, 70, 130}, {entity.type_slime, entity.area_th_1, 51, 133},
-                {entity.type_slime, entity.area_th_1, 43, 134}, {entity.type_slime, entity.area_th_1, 57, 136},
-                {entity.type_slime, entity.area_th_1, 64, 140}, {entity.type_slime, entity.area_th_1, 66, 146},
-                {entity.type_slime, entity.area_th_1, 62, 149}, {entity.type_slime, entity.area_th_1, 55, 154},
-                {entity.type_slime, entity.area_th_1, 65, 155}, {entity.type_slime, entity.area_th_1, 49, 157},
-                {entity.type_slime, entity.area_th_1, 39, 158}, {entity.type_slime, entity.area_th_1, 55, 158},
-                {entity.type_slime, entity.area_th_1, 68, 160}, {entity.type_pacmanGreen, entity.area_th_1, 61, 142}
+                {entity.type_slime, entity.area_th_1, 42, 123},
+                {entity.type_slime, entity.area_th_1, 39, 134},
+                {entity.type_slime, entity.area_th_1, 55, 139},
+                {entity.type_slime, entity.area_th_1, 64, 134},
+                {entity.type_slime, entity.area_th_1, 66, 142},
+                {entity.type_slime, entity.area_th_1, 42, 143},
+                {entity.type_slime, entity.area_th_1, 43, 151},
+                {entity.type_slime, entity.area_th_1, 54, 156},
+                {entity.type_slime, entity.area_th_1, 38, 159},
+
+                {entity.type_worm, entity.area_th_1, 49, 125},
+                {entity.type_worm, entity.area_th_1, 48, 134},
+                {entity.type_worm, entity.area_th_1, 48, 143},
+                {entity.type_worm, entity.area_th_1, 61, 150},
+                {entity.type_worm, entity.area_th_1, 50, 158},
+                {entity.type_worm, entity.area_th_1, 68, 158},
+
+                {entity.type_pacmanGreen, entity.area_th_1, 57, 145}
         };
 
+
         int[][] townHall2Positions = {
-                {entity.type_worm, entity.area_th_2, 103, 128},
-                {entity.type_worm, entity.area_th_2, 123, 129},
-                {entity.type_slime, entity.area_th_2, 96, 134},
-                {entity.type_slime, entity.area_th_2, 122, 136},
-                {entity.type_pacman, entity.area_th_2, 107, 133},
-                {entity.type_pacman, entity.area_th_2, 129, 125},
-                {entity.type_pacmanGreen, entity.area_th_2, 114, 135},
-                {entity.type_pacmanGreen, entity.area_th_2, 124, 131},
-                {entity.type_spider, entity.area_th_2, 108, 130},
-                {entity.type_spiderBrown, entity.area_th_2, 129, 135},
+                {entity.type_worm, entity.area_th_2, 106, 135},
+                {entity.type_worm, entity.area_th_2, 129, 132},
+
+                {entity.type_slime, entity.area_th_2, 99, 136},
+                {entity.type_slime, entity.area_th_2, 112, 135},
+                {entity.type_slime, entity.area_th_2, 130, 136},
+                {entity.type_slime, entity.area_th_2, 130, 124},
+
+                {entity.type_pacman, entity.area_th_2, 122, 135},
+
+                {entity.type_pacmanGreen, entity.area_th_2, 121, 125},
+
+                {entity.type_spider, entity.area_th_2, 132, 130},
+
                 {entity.type_redFly, entity.area_th_2, 118, 130}
         };
 
         int[][] townHall3Positions = {
-                {entity.type_worm, entity.area_th_3, 147, 155}, {entity.type_worm, entity.area_th_3, 156, 177},
-                {entity.type_worm, entity.area_th_3, 170, 177}, {entity.type_worm, entity.area_th_3, 161, 155},
-                {entity.type_worm, entity.area_th_3, 164, 165}, {entity.type_slime, entity.area_th_3, 160, 163},
-                {entity.type_slime, entity.area_th_3, 164, 168}, {entity.type_slime, entity.area_th_3, 154, 165},
-                {entity.type_slime, entity.area_th_3, 150, 169}, {entity.type_slime, entity.area_th_3, 162, 172},
-                {entity.type_slime, entity.area_th_3, 175, 169}, {entity.type_slime, entity.area_th_3, 175, 169},
-                {entity.type_slime, entity.area_th_3, 183, 156}, {entity.type_slime, entity.area_th_3, 164, 156},
-                {entity.type_pacman, entity.area_th_3, 164, 156}, {entity.type_pacman, entity.area_th_3, 157, 174},
-                {entity.type_pacmanGreen, entity.area_th_3, 162, 160}, {entity.type_pacmanGreen, entity.area_th_3, 148, 168},
-                {entity.type_pacmanGreen, entity.area_th_3, 153, 169}, {entity.type_spiderBrown, entity.area_th_3, 160, 176}
+                {entity.type_worm, entity.area_th_3, 146, 155},
+                {entity.type_worm, entity.area_th_3, 173, 155},
+                {entity.type_worm, entity.area_th_3, 163, 169},
+                {entity.type_worm, entity.area_th_3, 145, 177},
+                {entity.type_worm, entity.area_th_3, 175, 177},
+
+                {entity.type_slime, entity.area_th_3, 166, 163},
+                {entity.type_slime, entity.area_th_3, 159, 167},
+                {entity.type_slime, entity.area_th_3, 183, 159},
+                {entity.type_slime, entity.area_th_3, 171, 173},
+                {entity.type_slime, entity.area_th_3, 176, 182},
+                {entity.type_slime, entity.area_th_3, 143, 182},
+
+                {entity.type_spider, entity.area_th_3, 149, 170},
+                {entity.type_spider, entity.area_th_3, 183, 168},
+                {entity.type_spider, entity.area_th_3, 176, 150},
+
+                {entity.type_spiderBrown, entity.area_th_3, 144, 149},
+                {entity.type_spiderBrown, entity.area_th_3, 150, 162},
+
+                {entity.type_pacman, entity.area_th_3, 152, 180},
+                {entity.type_pacman, entity.area_th_3, 158, 151},
+
+                {entity.type_pacmanGreen, entity.area_th_3, 166, 182},
+                {entity.type_pacmanGreen, entity.area_th_3, 182, 151}
         };
 
         int[][] townHall4Positions = {
-                {entity.type_worm, entity.area_th_4, 169, 104}, {entity.type_worm, entity.area_th_4, 160, 91},
-                {entity.type_worm, entity.area_th_4, 148, 93}, {entity.type_worm, entity.area_th_4, 137, 90},
-                {entity.type_worm, entity.area_th_4, 130, 91}, {entity.type_worm, entity.area_th_4, 128, 100},
-                {entity.type_worm, entity.area_th_4, 116, 90}, {entity.type_slime, entity.area_th_4, 173, 94},
-                {entity.type_slime, entity.area_th_4, 167, 97}, {entity.type_slime, entity.area_th_4, 147, 97},
-                {entity.type_slime, entity.area_th_4, 135, 101}, {entity.type_slime, entity.area_th_4, 139, 96},
-                {entity.type_slime, entity.area_th_4, 128, 105}, {entity.type_slime, entity.area_th_4, 122, 97},
-                {entity.type_slime, entity.area_th_4, 119, 99}, {entity.type_slime, entity.area_th_4, 117, 104},
-                {entity.type_slime, entity.area_th_4, 110, 94}, {entity.type_pacman, entity.area_th_4, 157, 100},
-                {entity.type_pacman, entity.area_th_4, 151, 92}, {entity.type_pacmanGreen, entity.area_th_4, 122, 105},
-                {entity.type_pacmanGreen, entity.area_th_4, 131, 97}, {entity.type_pacmanGreen, entity.area_th_4, 127, 108},
-                {entity.type_spider, entity.area_th_4, 121, 101}
+                {entity.type_worm, entity.area_th_4, 83, 179},
+                {entity.type_worm, entity.area_th_4, 124, 174},
+
+                {entity.type_slime, entity.area_th_4, 85, 159},
+                {entity.type_slime, entity.area_th_4, 93, 164},
+                {entity.type_slime, entity.area_th_4, 81, 173},
+                {entity.type_slime, entity.area_th_4, 100, 174},
+                {entity.type_slime, entity.area_th_4, 89, 182},
+                {entity.type_slime, entity.area_th_4, 109, 159},
+                {entity.type_slime, entity.area_th_4, 119, 163},
+                {entity.type_slime, entity.area_th_4, 119, 177},
+                {entity.type_slime, entity.area_th_4, 132, 170},
+                {entity.type_slime, entity.area_th_4, 131, 182},
+
+                {entity.type_spiderBrown, entity.area_th_4, 80, 164},
+                {entity.type_spiderBrown, entity.area_th_4, 92, 174},
+
+                {entity.type_spider, entity.area_th_4, 115, 182},
+                {entity.type_spider, entity.area_th_4, 101, 161},
+                {entity.type_spider, entity.area_th_4, 125, 160},
+
+                {entity.type_pacmanGreen, entity.area_th_4, 78, 183},
+                {entity.type_pacmanGreen, entity.area_th_4, 101, 168},
+                {entity.type_pacmanGreen, entity.area_th_4, 124, 183},
+
+                {entity.type_pacman, entity.area_th_4, 114, 172}
+
         };
 
 
         // Town Hall 5
         int[][] townHall5Positions = {
-                {entity.type_worm, entity.area_th_5, 19, 173},
-                {entity.type_worm, entity.area_th_5, 43, 183},
-                {entity.type_slime, entity.area_th_5, 21, 167},
-                {entity.type_slime, entity.area_th_5, 64, 183},
-                {entity.type_pacmanGreen, entity.area_th_5, 20, 165},
-                {entity.type_pacmanGreen, entity.area_th_5, 63, 173},
-                {entity.type_pacman, entity.area_th_5, 68, 180}
+                {entity.type_worm, entity.area_th_5, 38, 170},
+                {entity.type_worm, entity.area_th_5, 58, 170},
+                {entity.type_worm, entity.area_th_5, 56, 177},
+                {entity.type_worm, entity.area_th_5, 19, 174},
+
+                {entity.type_slime, entity.area_th_5, 28, 169},
+                {entity.type_slime, entity.area_th_5, 48, 172},
+                {entity.type_slime, entity.area_th_5, 54, 165},
+                {entity.type_slime, entity.area_th_5, 56, 182},
+                {entity.type_slime, entity.area_th_5, 70, 176},
+
+                {entity.type_pacmanGreen, entity.area_th_5, 34, 165},
+                {entity.type_pacmanGreen, entity.area_th_5, 47, 168},
+                {entity.type_pacmanGreen, entity.area_th_5, 45, 176},
+                {entity.type_pacmanGreen, entity.area_th_5, 64, 178},
+
+                {entity.type_pacman, entity.area_th_5, 70, 183},
+                {entity.type_pacman, entity.area_th_5, 67, 166},
+                {entity.type_pacman, entity.area_th_5, 21, 166},
+                {entity.type_pacman, entity.area_th_5, 18, 179}
         };
 
         // Hill 1
         int[][] hill1Positions = {
-                {entity.type_slime, entity.area_hill_1, 147, 103},
-                {entity.type_slime, entity.area_hill_1, 155, 108},
+                {entity.type_worm, entity.area_hill_1, 148, 113},
+                {entity.type_worm, entity.area_hill_1, 184, 113},
+                {entity.type_worm, entity.area_hill_1, 161, 104},
+
+                {entity.type_slime, entity.area_hill_1, 152, 105},
+                {entity.type_slime, entity.area_hill_1, 172, 108},
                 {entity.type_slime, entity.area_hill_1, 154, 116},
-                {entity.type_slime, entity.area_hill_1, 161, 121},
+                {entity.type_slime, entity.area_hill_1, 161, 122},
                 {entity.type_slime, entity.area_hill_1, 174, 119},
-                {entity.type_slime, entity.area_hill_1, 171, 108},
-                {entity.type_worm, entity.area_hill_1, 161, 113},
+
                 {entity.type_redFly, entity.area_hill_1, 167, 113},
-                {entity.type_blueGhost, entity.area_hill_1, 167, 105}
+                {entity.type_blueGhost, entity.area_hill_1, 177, 104},
+
+                {entity.type_spiderBrown, entity.area_hill_1, 150, 123}
         };
 
 
         // Hill 2
         int[][] hill2Positions = {
-                {entity.type_worm, entity.area_hill_2, 128, 97},
-                {entity.type_worm, entity.area_hill_2, 106, 89},
-                {entity.type_slime, entity.area_hill_2, 131, 101},
-                {entity.type_slime, entity.area_hill_2, 102, 89},
-                {entity.type_slime, entity.area_hill_2, 107, 80},
-                {entity.type_slime, entity.area_hill_2, 123, 85},
-                {entity.type_redFly, entity.area_hill_2, 97, 80},
-                {entity.type_redFly, entity.area_hill_2, 121, 89},
-                {entity.type_redFly, entity.area_hill_2, 137, 101},
-                {entity.type_spider, entity.area_hill_2, 109, 87},
-                {entity.type_spider, entity.area_hill_2, 128, 87},
-                {entity.type_spider, entity.area_hill_2, 102, 98},
-                {entity.type_blueGhost, entity.area_hill_2, 99, 89},
-                {entity.type_blueGhost, entity.area_hill_2, 115, 86},
-                {entity.type_blueGhost, entity.area_hill_2, 119, 94},
-                {entity.type_blueGhost, entity.area_hill_2, 98, 101},
-                {entity.type_blueGhost, entity.area_hill_2, 124, 101},
-                {entity.type_blueGhost, entity.area_hill_2, 134, 89},
-                {entity.type_blueGhost, entity.area_hill_2, 128, 82},
-                {entity.type_pacmanGreen, entity.area_hill_2, 103, 96}
+                {entity.type_worm, entity.area_hill_2, 102, 89},
+                {entity.type_worm, entity.area_hill_2, 123, 89},
+                {entity.type_worm, entity.area_hill_2, 123, 97},
+
+                {entity.type_slime, entity.area_hill_2, 113, 87},
+                {entity.type_slime, entity.area_hill_2, 102, 81},
+                {entity.type_slime, entity.area_hill_2, 134, 97},
+                {entity.type_slime, entity.area_hill_2, 130, 85},
+
+                {entity.type_redFly, entity.area_hill_2, 116, 82},
+                {entity.type_redFly, entity.area_hill_2, 127, 101},
+
+                {entity.type_blueGhost, entity.area_hill_2, 97, 80},
+                {entity.type_blueGhost, entity.area_hill_2, 115, 91},
+                {entity.type_blueGhost, entity.area_hill_2, 137, 103},
+                {entity.type_blueGhost, entity.area_hill_2, 136, 81}
         };
 
         // Hill 3
         int[][] hill3Positions = {
-                {entity.type_arc, entity.area_hill_3, 89, 68},
-                {entity.type_worm, entity.area_hill_3, 81, 74},
-                {entity.type_spiderBrown, entity.area_hill_3, 77, 69},
-                {entity.type_slime, entity.area_hill_3, 74, 78},
-                {entity.type_blueGhost, entity.area_hill_3, 82, 79},
-                {entity.type_redFly, entity.area_hill_3, 87, 80},
-                {entity.type_redFly, entity.area_hill_3, 66, 74},
-                {entity.type_blueGhost, entity.area_hill_3, 61, 68},
-                {entity.type_slime, entity.area_hill_3, 59, 71},
-                {entity.type_worm, entity.area_hill_3, 52, 74},
-                {entity.type_spiderBrown, entity.area_hill_3, 60, 81},
-                {entity.type_blueGhost, entity.area_hill_3, 51, 78}
+                {entity.type_slime, entity.area_hill_3, 44, 73},
+                {entity.type_slime, entity.area_hill_3, 53, 78},
+                {entity.type_slime, entity.area_hill_3, 65, 71},
+                {entity.type_slime, entity.area_hill_3, 71, 80},
+                {entity.type_slime, entity.area_hill_3, 81, 77},
+
+                {entity.type_worm, entity.area_hill_3, 87, 74},
+                {entity.type_worm, entity.area_hill_3, 49, 74},
+
+                {entity.type_pacman, entity.area_hill_3, 73, 70},
+                {entity.type_pacman, entity.area_hill_3, 22, 76},
+
+                {entity.type_blueGhost, entity.area_hill_3, 20, 67},
+                {entity.type_blueGhost, entity.area_hill_3, 37, 78},
+                {entity.type_blueGhost, entity.area_hill_3, 58, 67},
+                {entity.type_blueGhost, entity.area_hill_3, 89, 69},
+
+                {entity.type_redFly, entity.area_hill_3, 65, 74},
+                {entity.type_redFly, entity.area_hill_3, 31, 71},
+
+                {entity.type_spider, entity.area_hill_3, 86, 81}
+
         };
 
         // Hill 4
         int[][] hill4Positions = {
                 {entity.type_redFly, entity.area_hill_4, 71, 105},
                 {entity.type_redFly, entity.area_hill_4, 29, 100},
+
                 {entity.type_spider, entity.area_hill_4, 46, 104},
-                {entity.type_blueGhost, entity.area_hill_4, 59, 106}
+
+                {entity.type_blueGhost, entity.area_hill_4, 34, 92},
+                {entity.type_blueGhost, entity.area_hill_4, 60, 93},
+                {entity.type_blueGhost, entity.area_hill_4, 59, 106},
+
+                {entity.type_slime, entity.area_hill_4, 46, 194},
+                {entity.type_slime, entity.area_hill_4, 71, 97}
         };
 
 
         // Monster Island 1
         int[][] mi1positions = {
-                {entity.type_redOrc, entity.area_mi_1, 110, 18},
-                {entity.type_spider, entity.area_mi_1, 118, 16},
-                {entity.type_spider, entity.area_mi_1, 114, 26},
-                {entity.type_redFly, entity.area_mi_1, 121, 27},
-                {entity.type_spider, entity.area_mi_1, 128, 18},
-                {entity.type_redFly, entity.area_mi_1, 131, 21},
-                {entity.type_spiderBrown, entity.area_mi_1, 140, 23},
-                {entity.type_worm, entity.area_mi_1, 131, 27},
-                {entity.type_arc, entity.area_mi_1, 139, 27},
-                {entity.type_spider, entity.area_mi_1, 130, 36}
+                {entity.type_spider, entity.area_mi_1, 110, 19},
+                {entity.type_spider, entity.area_mi_1, 118, 32},
+                {entity.type_spider, entity.area_mi_1, 140, 33},
+
+                {entity.type_sixEyes, entity.area_mi_1, 128, 23},
+                {entity.type_sixEyes, entity.area_mi_1, 114, 24},
+
+                {entity.type_redFly, entity.area_mi_1, 130, 36},
+                {entity.type_redFly, entity.area_mi_1, 138, 24},
+
+                {entity.type_redOrc, entity.area_mi_1, 123, 16},
+
+                {entity.type_arc, entity.area_mi_1, 121, 27},
+
+                {entity.type_worm, entity.area_mi_1, 134, 27}
         };
 
         // Monster Island 2
         int[][] mi2positions = {
-                {entity.type_redOrc, entity.area_mi_2, 153, 18},
-                {entity.type_blueGhost, entity.area_mi_2, 162, 18},
-                {entity.type_redFly, entity.area_mi_2, 157, 23},
-                {entity.type_arc, entity.area_mi_2, 153, 28},
-                {entity.type_redOrc, entity.area_mi_2, 158, 30},
-                {entity.type_redOrc, entity.area_mi_2, 168, 22},
-                {entity.type_blueGhost, entity.area_mi_2, 166, 27},
-                {entity.type_skeleton, entity.area_mi_2, 167, 36},
-                {entity.type_spider, entity.area_mi_2, 173, 36},
-                {entity.type_redOrc, entity.area_mi_2, 181, 35},
-                {entity.type_redOrc, entity.area_mi_2, 182, 27},
-                {entity.type_redFly, entity.area_mi_2, 182, 20},
-                {entity.type_redFly, entity.area_mi_2, 172, 27},
+                {entity.type_redOrc, entity.area_mi_2, 151, 17},
+                {entity.type_redOrc, entity.area_mi_2, 166, 21},
+                {entity.type_redOrc, entity.area_mi_2, 182, 18},
+                {entity.type_redOrc, entity.area_mi_2, 183, 36},
+
+                {entity.type_arc, entity.area_mi_2, 160, 34},
+
+                {entity.type_blueGhost, entity.area_mi_2, 157, 20},
+                {entity.type_blueGhost, entity.area_mi_2, 175, 27},
+
+                {entity.type_redFly, entity.area_mi_2, 155, 26},
+                {entity.type_redFly, entity.area_mi_2, 182, 26},
+
+                {entity.type_sixEyes, entity.area_mi_2, 167, 27},
+
+                {entity.type_skeleton, entity.area_mi_2, 175, 37},
+
+                {entity.type_worm, entity.area_mi_2, 161, 27}
+
         };
 
 
         // Monster Island 3
         int[][] mi3positions = {
-                {entity.type_blueGhost, entity.area_mi_3, 167, 42},
-                {entity.type_redOrc, entity.area_mi_3, 159, 46},
-                {entity.type_arc, entity.area_mi_3, 165, 48},
-                {entity.type_blueGhost, entity.area_mi_3, 168, 52},
-                {entity.type_skeleton, entity.area_mi_3, 164, 54},
-                {entity.type_skeleton, entity.area_mi_3, 171, 56},
-                {entity.type_redFly, entity.area_mi_3, 177, 62},
-                {entity.type_skeleton, entity.area_mi_3, 182, 60},
-                {entity.type_skeleton, entity.area_mi_3, 183, 56},
-                {entity.type_skeleton, entity.area_mi_3, 182, 49},
-                {entity.type_redFly, entity.area_mi_3, 177, 44},
-                {entity.type_redOrc, entity.area_mi_3, 177, 53}
+                {entity.type_blueGhost, entity.area_mi_3, 182, 49},
+
+                {entity.type_redOrc, entity.area_mi_3, 167, 42},
+                {entity.type_redOrc, entity.area_mi_3, 167, 53},
+                {entity.type_redOrc, entity.area_mi_3, 184, 61},
+
+                {entity.type_arc, entity.area_mi_3, 179, 43},
+                {entity.type_arc, entity.area_mi_3, 155, 42},
+
+                {entity.type_redFly, entity.area_mi_3, 177, 53},
+
+                {entity.type_skeleton, entity.area_mi_3, 160, 46},
+                {entity.type_skeleton, entity.area_mi_3, 171, 57},
+                {entity.type_skeleton, entity.area_mi_3, 180, 57},
+                {entity.type_skeleton, entity.area_mi_3, 172, 47}
         };
 
 
 
         // Monster setup without area
         int[][] noAreaPositions = {
-                {entity.type_slime, 0, 94, 110},
-                {entity.type_slime, 0, 98, 112},
-                {entity.type_slime, 0, 104, 121},
-                {entity.type_slime, 0, 110, 119},
-                {entity.type_slime, 0, 112, 123},
-                {entity.type_worm, 0, 101, 117},
-                {entity.type_worm, 0, 114, 119},
-                {entity.type_pacmanGreen, 0, 106, 118},
-
                 {entity.type_slimeMother,0,31,32},
                 {entity.type_slime, 0, 39, 34},
                 {entity.type_slime, 0, 21, 32},
@@ -598,8 +675,10 @@ public class AssetSetter {
 
 
                 // Soil area...
-                {entity.type_sixEyes, 0, 161, 71}, {entity.type_sixEyes, 0, 156, 63},
-                {entity.type_sixEyes, 0, 169, 71}, {entity.type_sixEyes, 0, 156, 77},
+                {entity.type_sixEyes, 0, 161, 71},
+                {entity.type_sixEyes, 0, 156, 63},
+                {entity.type_sixEyes, 0, 169, 71},
+                {entity.type_sixEyes, 0, 156, 77},
 
 
                 // Port area...
