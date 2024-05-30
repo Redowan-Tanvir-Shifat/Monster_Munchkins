@@ -51,53 +51,37 @@ public class UtilityTool {
             entity.direction="up";
         }
     }
-    public static Entity getInventoryItem(int itemCode){
+    public static Entity getInventoryItem(int itemCode) {
         Game game = Game.gameInstance;
-        Entity item=null;
-        if(itemCode==101){
-            item= new OBJ_Sword_Normal(game);
-        } else if (itemCode==102) {
-            item= new OBJ_Axe(game);
-        } else if (itemCode==109) {
-            item = new OBJ_Tomahawk(game);
-        }else if (itemCode==103) {
-            item= new OBJ_Shield_Wood(game);
-        } else if (itemCode==104) {
-            item= new OBJ_Shield_Blue(game);
-        } else if (itemCode==105) {
-            item= new OBJ_Sword_Special(game);
-        } else if (itemCode==106) {
-            item= new OBJ_FireSword(game);
-        } else if (itemCode==107) {
-            item= new OBJ_Fireball(game);
-        } else if (itemCode==108) {
-            item = new OBJ_IceSword(game);
-        } else if (itemCode==201) {
-            item= new OBJ_Apple(game);
-        } else if (itemCode==202) {
-            item= new OBJ_Banana(game);
-        } else if (itemCode==203) {
-            item= new OBJ_Berries(game);
-        } else if (itemCode==204) {
-            item= new OBJ_Orange(game);
-        } else if (itemCode==205) {
-            item= new OBJ_Cheese(game);
-        } else if (itemCode==206) {
-            item= new OBJ_Egg(game);
-        } else if (itemCode==207) {
-            item= new OBJ_Fish(game);
-        } else if (itemCode==208) {
-            item= new OBJ_Meat(game);
-        } else if (itemCode==303) {
-            item= new OBJ_Potion_Red(game);
-        }  else if (itemCode==304) {
-            item= new OBJ_Key(game);
-        }  else if (itemCode==305) {
-            item= new OBJ_PowerPotion(game);
-        }  else if (itemCode==306) {
-            item= new OBJ_DefensePotion(game);
-        }  else if (itemCode==307) {
-            item= new OBJ_SpeedPotion(game);
+        Entity item = null;
+
+        switch (itemCode) {
+            case 101: item = new OBJ_Sword_Normal(game);break;
+            case 102: item = new OBJ_Axe(game);break;
+            case 103: item = new OBJ_Shield_Wood(game);break;
+            case 104: item = new OBJ_Shield_Blue(game);break;
+            case 105: item = new OBJ_Sword_Special(game);break;
+            case 106: item = new OBJ_FireSword(game);break;
+            case 107: item = new OBJ_Fireball(game);break;
+            case 108: item = new OBJ_IceSword(game);break;
+            case 109: item = new OBJ_Tomahawk(game);break;
+            case 201: item = new OBJ_Apple(game);break;
+            case 202: item = new OBJ_Banana(game);break;
+            case 203: item = new OBJ_Berries(game);break;
+            case 204: item = new OBJ_Orange(game);break;
+            case 205: item = new OBJ_Cheese(game);break;
+            case 206: item = new OBJ_Egg(game);break;
+            case 207: item = new OBJ_Fish(game);break;
+            case 208: item = new OBJ_Meat(game);break;
+            case 303: item = new OBJ_Potion_Red(game);break;
+            case 304: item = new OBJ_Key(game);break;
+            case 305: item = new OBJ_PowerPotion(game);break;
+            case 306: item = new OBJ_DefensePotion(game);break;
+            case 307: item = new OBJ_SpeedPotion(game);break;
+            case 308: item = new OBJ_BlueKey(game);break;
+            default:
+                // Handle invalid itemCode if necessary
+                break;
         }
         return item;
     }

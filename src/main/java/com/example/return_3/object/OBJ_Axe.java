@@ -14,8 +14,8 @@ public class OBJ_Axe extends Entity {
         itemCode=102;
         attackValue=2;
         life=15;
-        attackArea.setWidth(25);
-        attackArea.setHeight(25);
+        attackArea.setWidth(15);
+        attackArea.setHeight(15);
         description="["+name+"]\nA bit rusty but still can \ncut some trees";
         knockBackPower = 15;
 

@@ -95,8 +95,10 @@ public class Game extends Application {
 
     public int objectType;
     public final int type_interactiveTIle=1;
+    public final int type_interactiverockBig=3;
+    public final int type_interactiverockSmall=4;
     public final int type_object=2;
-    public final int type_monster=2;
+    public final int type_monster=9;
 
 
 
