@@ -4,6 +4,7 @@ package com.example.return_3.main;
 import com.example.return_3.db.MyJDBC;
 import com.example.return_3.entity.Entity;
 import com.example.return_3.entity.NPC_Trade;
+import com.example.return_3.globalChat.Client;
 import com.example.return_3.npc.NPC_Welcome;
 import com.example.return_3.shop.StuffShop;
 import javafx.application.Platform;
@@ -20,7 +21,7 @@ import java.beans.XMLEncoder;
 public class KeyHandler {
     Game game;
     Stage stage;
-    private boolean moveUp, moveDown, moveLeft, moveRight,enterPressed, spacePressed, vKeyPressed, escapePressed,FKeyPressed;
+    private boolean moveUp, moveDown, moveLeft, moveRight,enterPressed, spacePressed, vKeyPressed, escapePressed,FKeyPressed,shiftPressed;
 
     public KeyHandler(Game game) {
         this.game = game;
@@ -45,11 +46,18 @@ public class KeyHandler {
 //        }
 
 
+
         //This is for PlayState
         if(game.gameState == game.playState){
             playState(code);
             if(code==KeyCode.L){
                 new StuffShop(game).use();
+            }if(code==KeyCode.G){
+                game.gameState=game.globalChatState;
+                if(game.isStartClient==false){
+                    game.startGlobalChat();
+                    game.isStartClient=true;
+                }
             }
             if(code==KeyCode.M){
                 game.gameState=game.mapState;
@@ -86,6 +94,10 @@ public class KeyHandler {
         }//Fisheris state
         else if (game.gameState == game.fisheriesState) {
             fisheriesState(code);
+        }
+        //GLOBAL Chat State
+        else if (game.gameState == game.globalChatState) {
+            globalChatState(code);
         }
         //MENU BAR state
         else if (game.gameState == game.menuBarState) {
@@ -507,7 +519,136 @@ public class KeyHandler {
                 game.ui.uiMainGame.commandNum=0;
             }
         }
-    }    public void fisheriesState(KeyCode code) {
+    }
+
+    //    public void globalChatState(KeyCode code){
+//        game.ui.uiMainGame.msgText="";
+//        if(code== KeyCode.ENTER ){
+//            enterPressed=true;
+//        }
+//        if(code == KeyCode.ESCAPE){
+//            game.gameState=game.playState;
+//        }
+//
+//        //now we are taking text from keyboard
+//
+//    }
+
+
+    public void globalChatState(KeyCode code) {
+        // Handle the Escape key to exit the global chat state
+        if (code == KeyCode.ESCAPE) {
+            game.gameState = game.playState;
+            return;
+        }
+        if (code == KeyCode.SHIFT) {
+            shiftPressed=true;
+            return;
+        }
+
+        // Handle the Enter key to send the message
+        if (code == KeyCode.ENTER) {
+            // Process the message in msgText
+            String message = game.ui.uiMainGame.msgText.trim();
+            if (!message.isEmpty()) {
+                // Add logic to send the message to the chat system
+                sendMessageToGlobalChat(message);
+
+                // Clear the input field after sending the message
+                game.ui.uiMainGame.msgText = "";
+            }
+            return;
+        }
+
+        // Handle Backspace key to delete the last character
+        if (code == KeyCode.BACK_SPACE) {
+            if (!game.ui.uiMainGame.msgText.isEmpty()) {
+                game.ui.uiMainGame.msgText = game.ui.uiMainGame.msgText.substring(0, game.ui.uiMainGame.msgText.length() - 1);
+            }
+            return;
+        }
+        // Handle space key to append a space character
+        if (code == KeyCode.SPACE) {
+            game.ui.uiMainGame.msgText += " ";
+            return;
+        }
+
+        // Append typed character to msgText
+        String keyText = code.getName();
+        System.out.println("keyText: " + keyText);
+        if(game.ui.uiMainGame.msgText.length()<88){
+            if (keyText.length() == 1) { // Ensure it's a single character
+                char c = keyText.charAt(0);
+
+                if (Character.isLetter(c) ) {
+                    if(shiftPressed){
+                        game.ui.uiMainGame.msgText += c;
+                    }else{
+                        c= Character.toLowerCase(c);
+                        game.ui.uiMainGame.msgText += c;
+                    }
+                    System.out.println("letter");
+                }else if(Character.isDigit(c)){
+                    System.out.println("you ate pressed " + c);
+                    System.out.println("digit");
+                    if(shiftPressed){
+                        //i want to check here
+                        switch (c) {
+                            case '1': c = '!';break;
+                            case '2': c = '@';break;
+                            case '3': c = '#';break;
+                            case '4': c = '$';break;
+                            case '5': c = '%';break;
+                            case '6': c = '^';break;
+                            case '7': c = '&';break;
+                            case '8': c = '*';break;
+                            case '9': c = '(';break;
+                            case '0': c = ')';break;
+                            default: break;
+                        }
+                    }
+                    game.ui.uiMainGame.msgText += c;
+                }
+            }else {
+                char c = 0;
+                switch (keyText) {
+                    case "Period": c = shiftPressed ? '<' : '.';break;
+                    case "Comma": c = shiftPressed ? '>' : ',';break;
+                    case "Slash": c = shiftPressed ? '?' : '/';break;
+                    case "Semicolon": c = shiftPressed ? ':' : ';';break;
+                    case "Quote": c = shiftPressed ? '"' : '\'';break;
+                    case "Back Slash": c = shiftPressed ? '|' : '\\';break;
+                    case "Open Bracket": c = shiftPressed ? '{' : '[';break;
+                    case "Close Bracket": c = shiftPressed ? '}' : ']';break;
+                    case "Minus": c = shiftPressed ? '_' : '-';break;
+                    case "Equals":c = shiftPressed ? '+' : '=';break;
+                    case "Grave": c = shiftPressed ? '~' : '`';break;
+                    default:
+                        break;
+                }
+                if (c != 0) {
+                    game.ui.uiMainGame.msgText += c;
+                }
+            }
+        }else{
+            System.out.println("Limit exceeded!");
+            System.out.println(game.ui.uiMainGame.msgText.length());
+        }
+
+    }
+    // Helper method to send a message to the global chat
+    private void sendMessageToGlobalChat(String message) {
+        Client.clientWriterThread.sendMessage(message);
+    }
+
+    // Helper method to check for special characters
+    // Helper method to check for allowed punctuation characters
+    private boolean isAllowedPunctuation(char c) {
+        // Add more special characters as needed
+        return ".,!?;:()[]{}<>-_+=/\\\"'@#$%^&*".indexOf(c) >= 0;
+    }
+
+    public void fisheriesState(KeyCode code) {
         if(code== KeyCode.ENTER ){
             enterPressed=true;
         }
@@ -550,6 +691,8 @@ public class KeyHandler {
             case SPACE:spacePressed = false; break;
             case V: vKeyPressed = false; break;
             case ESCAPE:escapePressed = false; break;
+            case SHIFT:shiftPressed = false; break;
+
         }
 
     }
