@@ -1,7 +1,5 @@
 package com.example.return_3.globalChat;
 
-import com.example.return_3.Controllers.GlobalChatController;
-
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
@@ -12,10 +10,9 @@ public class ClientWriterThread implements Runnable {
     private ObjectOutputStream oos;
     private BlockingQueue<String> messageQueue;
 
-    public ClientWriterThread(Socket socket, GlobalChatController globalChatController) throws IOException {
+    public ClientWriterThread(Socket socket) throws IOException {
         this.oos = new ObjectOutputStream(socket.getOutputStream());
         this.messageQueue = new LinkedBlockingQueue<>();
-        new Thread(this).start();
     }
 
     public void sendMessage(String message) {
@@ -29,13 +26,20 @@ public class ClientWriterThread implements Runnable {
     @Override
     public void run() {
         try {
-            while (true) {
+            while (!Thread.currentThread().isInterrupted()) {
                 String message = messageQueue.take();
                 oos.writeObject(message);
                 oos.flush();
             }
         } catch (IOException | InterruptedException e) {
-            throw new RuntimeException(e);
+            // Exit the loop if interrupted
+            Thread.currentThread().interrupt();
+        } finally {
+            try {
+                oos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
