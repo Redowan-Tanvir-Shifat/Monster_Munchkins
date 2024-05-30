@@ -615,8 +615,8 @@ public class AssetSetter {
 
 
 
-        int[][][] allPositions = {townHall1Positions,  townHall3Positions,  hill1Positions,  hill3Positions,   mi3positions, noAreaPositions};
-//        int[][][] allPositions = {townHall1Positions, townHall2Positions, townHall3Positions, townHall4Positions, townHall5Positions, hill1Positions, hill2Positions, hill3Positions, hill4Positions, mi1positions, mi2positions, mi3positions, noAreaPositions};
+//        int[][][] allPositions = {townHall1Positions,  townHall3Positions,  hill1Positions,  hill3Positions,   mi3positions, noAreaPositions};
+        int[][][] allPositions = {townHall1Positions, townHall2Positions, townHall3Positions, townHall4Positions, townHall5Positions, hill1Positions, hill2Positions, hill3Positions, hill4Positions, mi1positions, mi2positions, mi3positions, noAreaPositions};
 
         List<int[]> allMonsters = new ArrayList<>();
 

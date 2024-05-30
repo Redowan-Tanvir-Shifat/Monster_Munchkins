@@ -1,9 +1,7 @@
 package com.example.return_3.db;
 
 import com.example.return_3.entity.Entity;
-import com.example.return_3.interactiveTile.BreakableBigRock;
-import com.example.return_3.interactiveTile.InteractiveTile;
-import com.example.return_3.interactiveTile.BreakableSmallRock;
+import com.example.return_3.interactiveTile.*;
 import com.example.return_3.main.Game;
 import com.example.return_3.main.UtilityTool;
 import com.example.return_3.monster.*;
@@ -447,7 +445,7 @@ public static void removeItemFromInventory(int userId, int itemCode) {
                 // Create instance of object based on the type retrieved from the database
                 if (objectType == Game.gameInstance.type_interactiveTIle) {
                     // Interactive tile
-                    InteractiveTile cuttableTree = new BreakableBigRock(Game.gameInstance, col, row);
+                    InteractiveTile cuttableTree = new BreakableSmallRock(Game.gameInstance, col, row);
                     Game.gameInstance.iTile[mapNum][i] = cuttableTree;
                     i++;
                     System.out.println("tile number " + i  );
