@@ -7,6 +7,7 @@ sword(special) - 105
 sword(fire) - 106
 sword(Ice) - 108
 fireBall - 107
+tomahawk - 109
 
 
 

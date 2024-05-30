@@ -615,7 +615,8 @@ public class AssetSetter {
 
 
 
-        int[][][] allPositions = {townHall1Positions, townHall2Positions, townHall3Positions, townHall4Positions, townHall5Positions, hill1Positions, hill2Positions, hill3Positions, hill4Positions, mi1positions, mi2positions, mi3positions, noAreaPositions};
+        int[][][] allPositions = {townHall1Positions,  townHall3Positions,  hill1Positions,  hill3Positions,   mi3positions, noAreaPositions};
+//        int[][][] allPositions = {townHall1Positions, townHall2Positions, townHall3Positions, townHall4Positions, townHall5Positions, hill1Positions, hill2Positions, hill3Positions, hill4Positions, mi1positions, mi2positions, mi3positions, noAreaPositions};
 
         List<int[]> allMonsters = new ArrayList<>();
 
@@ -637,7 +638,7 @@ public class AssetSetter {
 //        }
 //    }
     public static void addInventoryToDB(int userId) {
-        int[] itemCodes = new int[]{101, 102, 103, 104, 105, 106, 107,108, 201, 202, 203, 204, 205, 206, 207, 208, 303, 304, 305, 306, 307,308};
+        int[] itemCodes = new int[]{101, 102, 103, 104, 105, 106, 107,108,109, 201, 202, 203, 204, 205, 206, 207, 208, 303, 304, 305, 306, 307,308};
         MyJDBC.addInventory(userId, itemCodes);
     }
 }
