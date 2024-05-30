@@ -18,11 +18,11 @@ public class Mon_BlueGhost extends Entity {
         defaultSpeed = 1;
         speed = defaultSpeed;
         type = type_monster;
-        maxLife = 20;
+        maxLife = 40;
         life = maxLife;
         attack = 15;
         defense = 0;
-        exp = 2;
+        exp = 5;
         projectile=new OBJ_Ghost_Dirt(game);
 
         //set the SOLID AREA for  collision part

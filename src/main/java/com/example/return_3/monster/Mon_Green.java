@@ -21,11 +21,11 @@ public class Mon_Green extends Entity {
         defaultSpeed = 1;
         speed = defaultSpeed;
         type = type_monster;
-        maxLife = 8;
+        maxLife = 5;
         life = maxLife;
         attack = 10;
         defense = 0;
-        exp = 2;
+        exp = 1;
 
         //set the SOLID AREA for  collision part
         solidArea.setX(1);

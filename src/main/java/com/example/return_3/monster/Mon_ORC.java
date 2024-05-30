@@ -20,11 +20,11 @@ public class Mon_ORC extends Entity {
         speed = defaultSpeed;
         type = type_OrcMonster;
         monster_type=type_arc;
-        maxLife = 30;
+        maxLife = 50;
         life = maxLife;
-        attack = 10;    // Sword power will be 5 for player...
-        defense = 2;
-        exp = 5;
+        attack = 20;    // Sword power will be 5 for player...
+        defense = 0;
+        exp = 8;
         knockBackPower = 5;
         projectile=new OBJ_Rock(game);
 

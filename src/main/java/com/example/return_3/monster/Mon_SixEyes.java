@@ -21,11 +21,11 @@ public class Mon_SixEyes extends Entity {
         defaultSpeed = 1;
         speed = defaultSpeed;
         type = type_monster;
-        maxLife = 12;
+        maxLife = 50;
         life = maxLife;
-        attack = 8;
+        attack = 15;
         defense = 0;
-        exp = 5;
+        exp = 7;
         projectile=new OBJ_Rock(game);
 
         //set the SOLID AREA for  collision part

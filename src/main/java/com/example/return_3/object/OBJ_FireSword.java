@@ -9,13 +9,13 @@ public class OBJ_FireSword extends Entity {
         type = type_fireSword;
         name = "Fire Sword";
         down1 = loadImage("/objects/sword_fire.png", game.tileSize, game.tileSize);
-        attackValue = 5;
+        attackValue = 20;
         price = 30;
         itemCode = 106;
         attackArea.setWidth(32);
         attackArea.setHeight(28);
         description="["+name+"]\nA Fire sword.";
-        knockBackPower = 15;
+        knockBackPower = 20;
 
         motion1_duration = 5;
         motion2_duration = 25;

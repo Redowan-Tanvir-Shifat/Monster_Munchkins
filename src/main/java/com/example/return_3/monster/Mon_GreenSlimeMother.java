@@ -22,11 +22,11 @@ public class Mon_GreenSlimeMother extends Entity {
         defaultSpeed = 1;
         speed = defaultSpeed;
         type = type_monster;
-        maxLife = 10;
+        maxLife = 500;
         life = maxLife;
-        attack = 10;
-        defense = 3;
-        exp = 2;
+        attack = 50;
+        defense = 0;
+        exp = 50;
         projectile=new OBJ_Rock(game);
 
         //set the SOLID AREA for  collision part
