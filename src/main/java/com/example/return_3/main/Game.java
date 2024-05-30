@@ -35,12 +35,10 @@ import javafx.stage.StageStyle;
 
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
+import java.util.*;
 
 public class Game extends Application {
+    public LinkedList<String> chatMessages = new LinkedList<>();
 
 
     // GAME SETTINGS
@@ -75,6 +73,8 @@ public class Game extends Application {
     public final int guidelineState=13;
     public final int shipTeleportState = 14;
     public final int fisheriesState = 15;
+    public final int globalChatState= 16;
+
 
     // $$$$$$$$$  GAME STATUS $$$$$$$$$
     public int gameStatus;
@@ -124,6 +124,8 @@ public class Game extends Application {
     public long lastNanoTime;
 
     public boolean isDialogueToGameState = false;
+    public boolean isStartClient = false;
+
 
     // $$$$$$$$$ INSTANTIATE $$$$$$$$$
     //instantiates new instances
@@ -407,6 +409,7 @@ Image icon;
 
 
     public static void exitGame() {
+        Client.stopClient();
         Platform.exit();
     }
     public static void exitWithConfirmation(){
@@ -978,7 +981,7 @@ Image icon;
         Parent root = loader.load();
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
-        client.startClient(loader);
+//        client.startClient(loader);
     }
 
 
@@ -998,7 +1001,14 @@ public void playMusic(int i) {
         soundEffect.play();
     }
 
-
+    public void startGlobalChat() {
+        try {
+            Client.startClient();
+            System.out.println("Client Started");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void main(String[] args) {
         launch(args);

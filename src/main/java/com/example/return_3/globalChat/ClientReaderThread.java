@@ -1,6 +1,6 @@
 package com.example.return_3.globalChat;
 
-import com.example.return_3.Controllers.GlobalChatController;
+import com.example.return_3.main.Game;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -8,36 +8,38 @@ import java.net.Socket;
 
 public class ClientReaderThread implements Runnable {
     private ObjectInputStream ois;
-    private GlobalChatController globalChatController;
+    Game game;
 
-    public ClientReaderThread(Socket socket, GlobalChatController globalChatController) throws IOException {
+    public ClientReaderThread(Socket socket) throws IOException {
+        this.game=Game.gameInstance;
         this.ois = new ObjectInputStream(socket.getInputStream());
-        this.globalChatController = globalChatController;
-        new Thread(this).start();
     }
-
 
     @Override
     public void run() {
         try {
-            String initialMessage = (String) ois.readObject();
-            System.out.println(initialMessage);
-            globalChatController.updateChat(initialMessage);
-
-            String prevMessages = (String) ois.readObject();
-            if (prevMessages != null && !prevMessages.isEmpty()) {
-                String[] prevConversation = prevMessages.split("\\$");
-                for (int i = Math.max(0, prevConversation.length - 11); i < prevConversation.length; i++) {
-                    globalChatController.updateChat(prevConversation[i]);
+            String prevMsg = (String) ois.readObject();
+            if (prevMsg != null && !prevMsg.isEmpty()) {
+                String[] prevMessages = prevMsg.split("\\$");
+                int start = Math.max(0, prevMessages.length - 11);
+                for (int i = start; i < prevMessages.length; i++) {
+                    game.ui.uiMainGame.appendChat(prevMessages[i]); // Update UI with previous messages
                 }
             }
-
-            while (true) {
+            while (!Thread.currentThread().isInterrupted()) {
                 String msg = (String) ois.readObject();
-                globalChatController.updateChat(msg);
+                if (msg != null) {
+                    game.ui.uiMainGame.appendChat(msg); // Update UI with new message
+                }
             }
         } catch (IOException | ClassNotFoundException e) {
-            throw new RuntimeException(e);
+            Thread.currentThread().interrupt();
+        } finally {
+            try {
+                ois.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

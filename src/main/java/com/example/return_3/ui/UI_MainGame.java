@@ -26,8 +26,10 @@ import java.util.ArrayList;
 
 public class UI_MainGame {
     Game game;
-    Color cream, darkCream, darkDarkCream;
+    Color cream, darkCream, darkDarkCream,lightCream;
     Entity entity;
+    public String msgText="";
+
     GraphicsContext gc;
     Font titleFont, smallFont,mediumFont,largeFont,smallFontBold,mediumFontBold,largeFontBold;
     Image heartFull, starImage, energyImage, coinImage, playerImage,guideline1,guideline2;
@@ -97,6 +99,7 @@ public class UI_MainGame {
 
         Entity coin= new OBJ_Coin(game);
         coinImage = coin.down1;
+        lightCream= Color.rgb(241,224,203);
         cream= Color.rgb(246,202,156);
         darkCream= Color.rgb(172,128,83);
         darkDarkCream= Color.rgb(97,70,42);
@@ -879,7 +882,112 @@ public class UI_MainGame {
             }
         }
     }
+    public void globalChatScreen(){
+        int x = 64;
+        int y = 48;
+        int width = game.tileSize*26;
+        int height = game.tileSize * 15;
+        drawSubWindow(x, y, width, height,cream,darkCream);
+        gc.setFill(darkDarkCream);
+        x += game.tileSize;
+        y += game.tileSize;
+        gc.setFont(largeFont);
+        String text="Global Chat";
+        int tempX=getXForCenteredText(text);
+        gc.fillText(text,tempX,y);
+        gc.setFont(mediumFontBold);
 
+        int messageY = y + game.tileSize; // Initial Y position for the messages
+        int i=0;
+        for (String msg : game.chatMessages) {
+            int loopX=x+16;
+            // Split the message into words
+            String[] words = msg.split(" ", 2);
+            String name = words[0];
+            String messageContent = words.length > 1 ? words[1] : "";
+
+            // Set the text width for the message content
+//            int textWidth = width - (game.tileSize * 2);
+            int textWidth= (int)getWidthOfText(msg)+22;
+            // Alternate background colors for messages
+            if (name.equals(game.user.getUsername())) {
+                gc.setFill(darkCream);
+                gc.fillRoundRect(loopX - 12, messageY - 20, textWidth, game.tileSize, 20, 20);
+                gc.setFill(lightCream);
+
+            } else {
+                gc.setFill(lightCream);
+                gc.fillRoundRect(loopX - 16, messageY - 20, textWidth, game.tileSize, 20, 20);
+                gc.setFill(darkDarkCream);
+            }
+
+            // Display the name and message content
+            gc.fillText(name + ": " + messageContent, loopX, messageY);
+            messageY += game.tileSize; // Move to the next line for the next message
+            i++;
+        }
+
+
+//        for (String msg : game.chatMessages) {
+////            int textWidth= (int)getWidthOfText(msg)+16;
+//            int textWidth= width-(game.tileSize*2);
+//            if(i%2==0) {
+//                gc.setFill(lightCream);
+//                gc.fillRoundRect(x-16, messageY-20,textWidth , game.tileSize, 20, 20);
+//                gc.setFill(darkDarkCream);
+//            }else {
+//                gc.setFill(darkCream);
+//                gc.fillRoundRect(x-16, messageY-20,textWidth , game.tileSize, 20, 20);
+//                gc.setFill(lightCream);
+//            }
+//
+//            gc.fillText(msg, x, messageY);
+//            messageY += game.tileSize; // Move to the next line for the next message
+//            i++;
+//        }
+        y+=(11*game.tileSize)+16;
+
+        text="send";
+        int textWidth=(int)getWidthOfText(text);
+        tempX=game.tileSize*26;
+        y+=game.tileSize;
+        int buttonX = tempX-5;
+        int buttonY = y-20;
+        int buttonWidth = textWidth+10;
+        int buttonHeight = game.tileSize;
+        gc.setFill(darkCream);
+        gc.fillRoundRect(buttonX, buttonY, buttonWidth, buttonHeight, 10, 10);
+        gc.setFill(lightCream);
+        gc.fillText(text,tempX,y);
+
+        buttonX=x;
+        buttonWidth*=17;
+//        buttonHeight=;
+        gc.setFill(Color.WHITE);
+        gc.fillRoundRect(buttonX, buttonY, buttonWidth-15, buttonHeight, 10, 10);
+        gc.setFill(darkDarkCream);
+        gc.strokeRoundRect(buttonX, buttonY, buttonWidth -15, buttonHeight, 10, 10);
+
+        gc.fillText(msgText,buttonX+10,y);
+        int limit=88;
+        String limitMsg=+ msgText.length()+"/"+limit+"";
+//        int now= msgText.length();
+        gc.setFont(smallFont);
+        gc.fillText(limitMsg,buttonX+buttonWidth-50,y-8);
+
+
+
+
+
+    }
+    public void appendChat(String message) {
+        if (game.chatMessages.size() >= 11) {
+            game.chatMessages.removeFirst(); // Remove the oldest message if we already have 11 messages
+        }
+        game.chatMessages.add(message);
+        // Logic to append message to the chat display
+        System.out.println(message); // For simplicity, just print it. Adapt as needed.
+    }
     public void fisheriesScreen(){
         int x = game.tileSize * 3;
         int y = game.tileSize / 2;
