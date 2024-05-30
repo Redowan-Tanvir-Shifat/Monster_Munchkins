@@ -228,15 +228,23 @@ public void removeCurrentWeapon() {
         if(inventory.get(i).itemCode==currentWeapon.itemCode) {
             MyJDBC.removeItemFromInventory(playerId,currentWeapon.itemCode);
             inventory.remove(i);
+            String text="";
+            if(currentWeapon instanceof OBJ_Axe){
+            text="Axe Brocked!";
+
+            }else if(currentWeapon instanceof OBJ_Tomahawk){
+             text="Tomahawk Brocked!";
+
+            }
             currentWeapon=null;
-            String text="Axe Brocked!";
+
             game.ui.uiMainGame.addMessage(text);
             break;
         }
     }
 }
     public void update(){
-        if(currentWeapon!=null && currentWeapon instanceof OBJ_Axe && currentWeapon.life<=0){
+        if(currentWeapon!=null && (currentWeapon instanceof OBJ_Axe||currentWeapon instanceof OBJ_Tomahawk) && currentWeapon.life<=0){
             removeCurrentWeapon();
         }
 
