@@ -156,6 +156,7 @@ public class Game extends Application {
     //For inventory
     HashMap<Integer, Entity> inventoryMap;
     public Entity axe = new OBJ_Axe(this);
+    public Entity tomahawkAxe = new OBJ_Tomahawk(this);
     public Entity shieldBlue = new OBJ_Shield_Blue(this);
     public Entity sword = new OBJ_Sword_Normal(this);
     public Entity specialSword = new OBJ_Sword_Special(this);
@@ -315,6 +316,7 @@ Image icon;
 
         inventoryMap = new HashMap<>();
         inventoryMapAddItem(axe.itemCode, axe);
+        inventoryMapAddItem(tomahawkAxe.itemCode, tomahawkAxe);
         inventoryMapAddItem(sword.itemCode, sword);
         inventoryMapAddItem(specialSword.itemCode, specialSword);
         inventoryMapAddItem(fireSword.itemCode, fireSword);
