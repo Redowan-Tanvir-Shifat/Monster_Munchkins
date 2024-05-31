@@ -11,15 +11,16 @@ public class OBJ_Orange extends Entity {
         //Type will erite here later
         type= type_consumable;
         name="Orange";
-        value = 20;
+        value = 50;
+        exp = 3;
         price = 10*value;
         itemCode = 204;
         down1 = uTool.loadImage("/objects/food/orange.png",game.tileSize-7,game.tileSize-7);
         description = "This is "+name;
     }
     public boolean use(Entity entity){
-        game.ui.uiMainGame.addMessage("Energy increase: "+value);
-        game.player.energy += value;
+        game.ui.uiMainGame.addMessage("Life gained: "+(int) (value * 0.10));
+        game.player.energy += (int) (value * 0.10);
         return true;
     }
 }

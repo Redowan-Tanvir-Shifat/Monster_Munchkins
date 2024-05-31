@@ -178,7 +178,8 @@ public class Player extends Entity{
         strength = game.user.getStrength();    //The more strength he has, the more damage he gives...
         dexterity = game.user.getDexterity();   // The more dexterity he has, the less damage he receives...
         exp = game.user.getExp();
-        nextLevelExp = game.user.getNextLevelExp();
+//        nextLevelExp = game.user.getNextLevelExp();
+        nextLevelExp = 50;
         coin = game.user.getCoin();
 //        coin = 50000;
         //as we are not setting current weapon and sheild at the beginning so that is why we commented it
@@ -523,8 +524,11 @@ public void removeCurrentWeapon() {
 
 
                     game.ui.uiMainGame.addMessage("Killed the " + game.monster[game.currentMap][i].name + "!");
+                    coin += game.monster[game.currentMap][i].coin;
+                    game.ui.uiMainGame.addMessage(" Coin + " + game.monster[game.currentMap][i].coin);
                     exp += game.monster[game.currentMap][i].exp;
                     game.ui.uiMainGame.addMessage(" EXP + " + game.monster[game.currentMap][i].exp);
+                    checkLevelUp();
                     if(game.monster[game.currentMap][i] instanceof Mon_Green ){
                         //then do nothing
                     }
@@ -615,8 +619,9 @@ public void removeCurrentWeapon() {
             currentWeapon.life--;
             generateParticle(game.iTile[game.currentMap][i],game.iTile[game.currentMap][i]);
 
-            if(game.iTile[game.currentMap][i].life<1){
-
+            if(game.iTile[game.currentMap][i].life < 1){
+                game.player.exp += (game.axe.exp - 1);
+                game.player.checkLevelUp();
                 int row=game.iTile[game.currentMap][i].worldY/game.tileSize;
                 int col=game.iTile[game.currentMap][i].worldX/game.tileSize;
                 MyJDBC.updateObjectDestroyedStatus(playerId,game.currentMap,row,col,game.type_interactiveTIle,true);
@@ -657,8 +662,11 @@ public void removeCurrentWeapon() {
                     //inventory.add(game.obj[game.currentMap][i]);
                     addToInventory(game.obj[game.currentMap][i]);
                     MyJDBC.addItemToInventory(playerId,game.obj[game.currentMap][i].itemCode);
-
                     game.playSoundEffect(game.soundEffect.pickUpItem);
+                    if (game.obj[game.currentMap][i] instanceof OBJ_BlueKey) {
+                        game.player.exp += game.blueKey.exp;
+                        game.player.checkLevelUp();
+                    }
                     text="Got a "+ game.obj[game.currentMap][i].name+" !";
                    // game.obj[game.currentMap][i].itemCount++;
                 }else {
@@ -683,13 +691,15 @@ public void removeCurrentWeapon() {
     public void checkLevelUp() {
         if (exp >= nextLevelExp) {
             level++;
-            nextLevelExp = nextLevelExp + 30;   // We will use fibonacci series
-            strength++;
-            dexterity++;
-            attack = getAttack();
-            defense = getDefense();
-            game.gameState = game.dialogueState;
-            game.ui.uiMainGame.currentDialogue = " Congratulations! \nYou are level in " + level + " now.";
+//            nextLevelExp = nextLevelExp + 10;   // We will use fibonacci series
+            exp = 0;
+//            strength++;
+//            dexterity++;
+//            attack = getAttack();
+//            defense = getDefense();
+//            game.gameState = game.messageState;
+//            game.ui.uiMainGame.currentDialogue = " Congratulations! \nYou are level in " + level + " now.";
+            game.gameState = game.levelUpState;
         }
     }
     public void selectItem(){

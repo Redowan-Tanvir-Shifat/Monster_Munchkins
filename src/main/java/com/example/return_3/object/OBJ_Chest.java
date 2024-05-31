@@ -16,6 +16,7 @@ public class OBJ_Chest extends Entity {
         type= type_obstacle;
         name= "chest";
         itemCode=321;
+        exp = 20;
         image1=uTool.loadImage("/objects/chest.png",game.tileSize,game.tileSize);
         image2=uTool.loadImage("/objects/chest_opened.png",game.tileSize,game.tileSize);
         down1=image1;
@@ -47,8 +48,10 @@ public class OBJ_Chest extends Entity {
                 sb.append("\nYou obtained the ").append(loot.name).append("!");
                 game.player.inventory.add(loot);
                 MyJDBC.addItemToInventory(game.player.playerId,loot.itemCode);
-                down1=image2;
-                opened=true;
+                down1 = image2;
+                opened = true;
+                game.player.exp += game.chest.exp;
+                game.player.checkLevelUp();
             }
             game.ui.uiMainGame.currentDialogue=sb.toString();
         }else{

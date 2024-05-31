@@ -5,10 +5,7 @@ import com.example.return_3.entity.Entity;
 import com.example.return_3.main.EventHandler;
 import com.example.return_3.main.Game;
 import com.example.return_3.main.UtilityTool;
-import com.example.return_3.object.OBJ_BlueKey;
-import com.example.return_3.object.OBJ_Coin;
-import com.example.return_3.object.OBJ_Heart;
-import com.example.return_3.object.OBJ_Ladi;
+import com.example.return_3.object.*;
 import com.example.return_3.object.food.OBJ_Fish;
 import com.example.return_3.shop.Shop;
 import javafx.scene.canvas.GraphicsContext;
@@ -43,6 +40,7 @@ public class UI_MainGame {
     public int commandNum = 0; // this is for showing our menu specific commands
 
     public int subState=0;
+    public boolean isBuyState = false;
 
     public Entity heart;
     public int playerSlotCol=0;
@@ -176,8 +174,8 @@ public class UI_MainGame {
     public void drawCoin(){
 
         int x = game.screenWidth - game.tileSize * 3;
-        double y = 20+game.tileSize;
-        double tempY=25+game.tileSize;
+        double y = game.tileSize / 1.5;
+        double tempY = (game.tileSize / 1.5) + 5;
 
 //        x+=game.tileSize-10;
         // Dark yellow outline
@@ -235,7 +233,11 @@ public class UI_MainGame {
         int level = game.player.level;
         gc.setFill(Color.BLACK);
         gc.setFont(mediumFontBold); // Customize font as needed
-        gc.fillText("50", 13 + x, tempY+12); // Adjust position as needed
+        if (game.player.level < 10) {
+            gc.fillText("0" + game.player.level, 13 + x, tempY+12); // Adjust position as needed
+        }else{
+            gc.fillText("" + game.player.level, 13 + x, tempY+12); // Adjust position as needed
+        }
 
         //Draw Player EXP
         String expText= game.player.exp + "/" + game.player.nextLevelExp;
@@ -270,7 +272,7 @@ public class UI_MainGame {
         gc.setFill(Color.rgb(255, 255, 255));
         gc.setFont(largeFontBold);
 
-        int calCoin = (game.player.maxLife - game.player.life) * 20;
+        int calCoin = (game.player.maxLife - game.player.life) * 5;
         text = "You need " + calCoin + " coin to heal yourself.";
         textX = game.tileSize * 8;
         textY = game.tileSize * 6;
@@ -279,7 +281,7 @@ public class UI_MainGame {
             gc.fillText("-->", textX-game.tileSize, textY);
         }
 
-        text = "You need 2000 coin to increase 10% of life.";
+        text = "You need 500 coin to increase 10% of life.";
         textX = game.tileSize * 8;
         textY = game.tileSize * 8;
         gc.fillText(text, textX, textY);
@@ -287,19 +289,12 @@ public class UI_MainGame {
             gc.fillText("-->", textX-game.tileSize, textY);
         }
 
-        text = "You need 1000 coin to get 10% energy";
-        textX = game.tileSize * 8;
-        textY = game.tileSize * 10;
-        gc.fillText(text, textX, textY);
-        if (commandNum == 2) {
-            gc.fillText("-->", textX-game.tileSize, textY);
-        }
 
         text = "Back";
         textX = game.tileSize * 8;
         textY = game.tileSize * 13;
         gc.fillText(text, textX, textY);
-        if (commandNum == 3) {
+        if (commandNum == 2) {
             gc.fillText("-->", textX-game.tileSize, textY);
         }
     }
@@ -399,7 +394,7 @@ public class UI_MainGame {
         gc.setFill(Color.rgb(255, 255, 255));
         gc.setFont(largeFontBold);
 
-        text = "Guideline";
+        text = "Settings";
         textX = getXForCenteredText(text);
         textY = game.tileSize * 6;
         gc.fillText(text, textX, textY);
@@ -407,7 +402,7 @@ public class UI_MainGame {
             gc.fillText("-->", textX-game.tileSize-8, textY);
         }
 
-        text = "Settings";
+        text = "Exit Game";
         textX = getXForCenteredText(text);
         textY = game.tileSize * 8;
         gc.fillText(text, textX, textY);
@@ -415,19 +410,11 @@ public class UI_MainGame {
             gc.fillText("-->", textX-game.tileSize-8, textY);
         }
 
-        text = "Exit Game";
-        textX = getXForCenteredText(text);
-        textY = game.tileSize * 10;
-        gc.fillText(text, textX, textY);
-        if (commandNum == 2) {
-            gc.fillText("-->", textX-game.tileSize-8, textY);
-        }
-
         text = "Logout";
         textX = getXForCenteredText(text);
-        textY = game.tileSize * 13;
+        textY = game.tileSize * 12;
         gc.fillText(text, textX, textY);
-        if (commandNum == 3) {
+        if (commandNum == 2) {
             gc.fillText("-->", textX-game.tileSize-8, textY);
         }
     }
@@ -459,6 +446,36 @@ public class UI_MainGame {
         gc.fillText(text, textX, textY);
         if (commandNum == 0) {
             gc.fillText("-->", textX-game.tileSize-8, textY);
+        }
+    }
+    public void levelUpScreen() {
+        // Create a Frame...
+        final int frameX = game.tileSize * 5;
+        final int frameY = game.tileSize * 2;
+        final int frameWidth = game.tileSize * 20;
+        final int frameHeight = game.tileSize * 14;
+
+        Color c = Color.rgb(255, 209, 184);
+        drawSubWindow(frameX, frameY, frameWidth, frameHeight);
+
+        gc.setFont(titleFont);
+        String text = "Monster MunchKins";
+        int textX = getXForCenteredText(text);
+        int textY = frameY + game.tileSize *2;
+
+        gc.setFill(Color.rgb(255, 255, 255));
+        gc.fillText(text, textX, textY);
+
+        // Menu...
+        gc.setFill(Color.rgb(255, 255, 255));
+        gc.setFont(largeFontBold);
+
+        text = " Congratulations! You've reached Level " + game.player.level + ".\nKeep pushing forward, brave hunter.";
+        textX = getXForCenteredText(text);
+        textY = game.tileSize * 9;
+        gc.fillText(text, textX, textY);
+        if (commandNum == 0) {
+            gc.fillText("", textX-game.tileSize-8, textY);
         }
     }
 
@@ -582,7 +599,7 @@ public class UI_MainGame {
             slotRow=playerSlotRow;
         }else{
             //FRAME
-            frameX=game.tileSize*18;
+            frameX=game.tileSize*16;
             frameY=game.tileSize*4;
             frameWidth=game.tileSize*7;
             frameHeight=game.tileSize*6;
@@ -675,7 +692,13 @@ public class UI_MainGame {
 //                System.out.println("Price: " + price);
                 int x=dFrameX+game.tileSize*5;
                 int y=dFrameY+game.tileSize/2;
-                drawCoinBox(coinImage,x+10,y,price);
+
+                if(isBuyState){
+                    drawCoinBox(coinImage,x+10,y,price);
+                }
+                else{
+                    drawCoinBox(coinImage,x+10,y,(int)(price*0.5));
+                }
                 gc.setFont(mediumFontBold);
                 for(String line : entity.inventory.get(itemIndex).description.split("\n")) {
                     gc.setFill(darkDarkCream);
@@ -719,6 +742,7 @@ public class UI_MainGame {
 
 
     public void drawTradeScreen(){
+        isBuyState = false;
         switch (subState){
             case 0: select();break;
             case 1: buy();break;
@@ -771,6 +795,7 @@ public class UI_MainGame {
         }
     }
     public void buy(){
+        isBuyState = true;
 //        //Draw player Inventory
         drawInventory(game.player,false,6);
 
@@ -805,21 +830,76 @@ public class UI_MainGame {
                     game.gameState=game.messageState;
                     currentDialogue="You need more coin to buy that";
                     drawDialogueScreen();
-                } else if (game.player.inventory.size()==game.player.maxInventorySize) {
+                }
+                else if (game.player.inventory.size()==game.player.maxInventorySize) {
                     subState=0;
                     game.gameState=game.messageState;
                     currentDialogue="You can not carry any more items";
                     drawDialogueScreen();
-                }else{
+                }
+                else{
+                    boolean check=checkBuy(shop.inventory.get(itemIndex));
+                    if(check){
+                        int exp=shop.inventory.get(itemIndex).exp;
+                        game.player.coin-=shop.inventory.get(itemIndex).price;
+                        game.player.exp+=exp;
+                        game.player.checkLevelUp();
+                        addMessage("Exp gained: "+exp);
+                        Entity entity= UtilityTool.getInventoryItem(shop.inventory.get(itemIndex).itemCode);
+                        game.player.inventory.add(entity);
+                        MyJDBC.addItemToInventory(game.player.playerId,shop.inventory.get(itemIndex).itemCode);
 
-                    game.player.coin-=shop.inventory.get(itemIndex).price;
-                    Entity entity= UtilityTool.getInventoryItem(shop.inventory.get(itemIndex).itemCode);
-                    game.player.inventory.add(entity);
-                    MyJDBC.addItemToInventory(game.player.playerId,shop.inventory.get(itemIndex).itemCode);
+                    }
+                    else{
+                        subState=0;
+                        commandNum=0;
+                        game.gameState=game.messageState;
+                        Entity item =shop.inventory.get(itemIndex);
+                        if(item.type==game.specialSword.type){
+                            currentDialogue="You need to level 3";
+                        }
+                        else if(item.type==game.fireBall.type || item.type==game.axe.type || item.type==game.shieldWood.type){
+                            currentDialogue="You need to level 5";
+                        }
+                        else if(item.type==game.iceSword.type || item.type==game.tomahawkAxe.type) {
+                            currentDialogue="You need to level 10";
+                        }
+                        else if(item.type==game.fireSword.type){
+                            currentDialogue="You need to level 12";
+                        }
+                        else{
+//                            return true;
+                            currentDialogue="You need to more level";
+                        }
+
+                        drawDialogueScreen();
+                    }
+
+
+
 
                 }
             }
         }
+    }
+
+    public boolean checkBuy(Entity item){
+        if(item.type==game.specialSword.type){
+            return game.player.level >= 3;
+        }
+        else if(item.type==game.fireBall.type || item.type==game.axe.type || item.type==game.shieldWood.type){
+            return game.player.level >= 5;
+        }
+        else if(item.type==game.iceSword.type || item.type==game.tomahawkAxe.type) {
+            return game.player.level >= 10;
+        }
+        else if(item.type==game.fireSword.type){
+            return game.player.level >= 12;
+        }
+        else{
+            return true;
+        }
+
     }
     public void sell(){
 //        //Draw player Inventory
@@ -871,11 +951,15 @@ public class UI_MainGame {
                     commandNum=0;
                     subState=0;
                     game.gameState=game.messageState;
-                    currentDialogue="you can not sell an equiped items";
+                    currentDialogue="you can not sell an equip items";
                 }else{
+                    int exp=(int) ((game.player.inventory.get(itemIndex).exp)*0.5);
+                    game.player.exp += exp;
+                    game.ui.uiMainGame.addMessage("Exp gained: "+exp);
+                    game.player.checkLevelUp();
                     MyJDBC.removeItemFromInventory(game.player.playerId,game.player.inventory.get(itemIndex).itemCode);
                     game.player.inventory.remove(itemIndex);
-                    game.player.coin+=price;
+                    game.player.coin += (int) (price * 0.5);
                 }
 
 
@@ -1179,6 +1263,30 @@ public class UI_MainGame {
 
     public void drawMessage(){
         int messageX = game.tileSize;
+        int messageY = game.tileSize * 5;
+
+        gc.setFont(largeFontBold);
+        gc.setFill(Color.WHITE);
+        for(int i = 0; i < message.size(); i++){
+
+            if(message.get(i) != null){
+
+                gc.fillText(message.get(i), messageX, messageY);
+
+                int counter = messageCounter.get(i) + 1;
+                messageCounter.set(i, counter);     //set the counter to the array;
+                messageY += 30;
+
+                if(messageCounter.get(i) > 240){
+                    message.remove(i);
+                    messageCounter.remove(i);
+                }
+            }
+        }
+    }
+
+    public void drawMessageRight(int size){
+        int messageX = game.tileSize*size;
         int messageY = game.tileSize * 5;
 
         gc.setFont(largeFontBold);

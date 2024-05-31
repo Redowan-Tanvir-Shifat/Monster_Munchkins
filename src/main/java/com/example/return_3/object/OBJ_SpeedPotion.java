@@ -13,6 +13,7 @@ public class OBJ_SpeedPotion extends Entity{
         name="Speed Potion";
         itemCode=307;
         value =2;
+        exp = 5;
         price=500;
         down1=loadImage("/objects/speedPotion.png",game.tileSize,game.tileSize);
         description="["+name+"]\nincreses your speed by "+value+".";

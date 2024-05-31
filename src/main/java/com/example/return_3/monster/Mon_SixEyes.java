@@ -2,8 +2,7 @@ package com.example.return_3.monster;
 
 import com.example.return_3.entity.Entity;
 import com.example.return_3.main.Game;
-import com.example.return_3.object.OBJ_Coin;
-import com.example.return_3.object.OBJ_Rock;
+import com.example.return_3.object.*;
 
 import java.util.Random;
 
@@ -22,6 +21,7 @@ public class Mon_SixEyes extends Entity {
         speed = defaultSpeed;
         type = type_monster;
         maxLife = 50;
+        coin = 50;
         life = maxLife;
         attack = 15;
         defense = 0;
@@ -106,51 +106,6 @@ public class Mon_SixEyes extends Entity {
         }
 
     }
-//    public void getRandomDirection() {
-//        actionLookCounter++;
-//        Random random= new Random();
-//        int actionLookCounterLimit = random.nextInt(50)+90;
-//
-//        if(actionLookCounter > actionLookCounterLimit){   // for two seconds it means
-//
-//            int x=random.nextInt(6)+1; //we add 1 because otherwise it will catch 0 to 99.. we want to avoid 0 here
-//            int y=random.nextInt(6)+1; //we add 1 because otherwise it will catch 0 to 99.. we want to avoid 0 here
-//            int z=random.nextInt(30)+1; //we add 1 because otherwise it will catch 0 to 99.. we want to avoid 0 here
-//            if(z%4==0){
-//                x=(-x);
-//            }
-//            else if(z%3==0){
-//                y=(-y);
-//            }else if(z%2==0){
-//                x=(-x);
-//                y=(-y);
-//            }
-//
-//            entity0.worldX=this.worldX+(x*game.tileSize);
-//            entity0.worldY=this.worldY+(y*game.tileSize);
-//            checkCollision2();
-//
-//            if(collisionOn==true){
-//                int col=entity0.worldX*game.tileSize;
-//                int row=entity0.worldY*game.tileSize;
-//                searchPath(col,row);
-//            }
-//
-//        }
-//    }
-
-//    public void checkCollision2(){
-//        collisionOn=false;
-//        //CHeching part of collision so that entity got collision and can not move
-//        game.cChecker.checkTile(entity0);
-//        game.cChecker.checkPlayer(entity0);
-////        gp.cChecker.checkObject(this,false); //its not player so its remain false
-////        game.cChecker.checkEntity(this,game.npc);
-//        game.cChecker.checkEntity(entity0,game.interactNpc);
-//        game.cChecker.checkEntity(entity0,game.monster);
-//        game.cChecker.checkEntity(entity0,game.iTile);
-//
-//    }
     public void damageReaction(){
         actionLookCounter = 0;
         switch (game.player.direction){
@@ -165,8 +120,14 @@ public class Mon_SixEyes extends Entity {
         //CAST A DIE
         int i = new Random().nextInt(100)+1;
         //SET THE MONSTER DROP
-        if (i < 50) {
-            dropItem(new OBJ_Coin(game));
+        if (i < 25){
+            dropItem(new OBJ_Potion_Red(game));
+        }else if (i < 50){
+            dropItem(new OBJ_PowerPotion(game));
+        }else if (i < 75){
+            dropItem(new OBJ_SpeedPotion(game));
+        }else if (i < 100){
+            dropItem(new OBJ_DefensePotion(game));
         }
     }
 }

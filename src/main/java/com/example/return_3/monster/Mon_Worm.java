@@ -2,10 +2,7 @@ package com.example.return_3.monster;
 
 import com.example.return_3.entity.Entity;
 import com.example.return_3.main.Game;
-import com.example.return_3.object.OBJ_Coin;
-import com.example.return_3.object.OBJ_Heart;
-import com.example.return_3.object.OBJ_Potion_Red;
-import com.example.return_3.object.OBJ_Rock;
+import com.example.return_3.object.*;
 
 import java.util.Random;
 
@@ -23,8 +20,9 @@ public class Mon_Worm extends Entity {
         speed = defaultSpeed;
         type = type_monster;
         maxLife = 3;
+        coin = 10;
         life = maxLife;
-        attack = 2;
+        attack = 3;
         defense = 0;
         exp = 2;
         projectile=new OBJ_Rock(game);
@@ -97,13 +95,4 @@ public class Mon_Worm extends Entity {
         }
     }
 
-    public void checkDrop(){
-        //CAST A DIE
-        int i = new Random().nextInt(100)+1;
-        //SET THE MONSTER DROP
-        if (i < 50){
-            dropItem(new OBJ_Coin(game));
-        }
-
-    }
 }
