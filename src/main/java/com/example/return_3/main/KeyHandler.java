@@ -3,20 +3,13 @@ package com.example.return_3.main;
 
 import com.example.return_3.db.MyJDBC;
 import com.example.return_3.entity.Entity;
-import com.example.return_3.entity.NPC_Trade;
 import com.example.return_3.globalChat.Client;
+import com.example.return_3.npc.NPC_HelplessWomen;
 import com.example.return_3.npc.NPC_Welcome;
 import com.example.return_3.shop.StuffShop;
-import javafx.application.Platform;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
-import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.beans.XMLEncoder;
 
 public class KeyHandler {
     Game game;
@@ -423,8 +416,9 @@ public class KeyHandler {
 //                game.isDialogueToGameState=true;
                 game.gameState=game.playState;
                 game.ui.uiMainGame.npc.dialogueIndex=0;
-                if(game.ui.uiMainGame.npc instanceof NPC_Welcome){
+                if(game.ui.uiMainGame.npc instanceof NPC_Welcome ||game.ui.uiMainGame.npc instanceof NPC_HelplessWomen){
                     game.ui.uiMainGame.npc.onPath=true;
+                    game.ui.uiMainGame.npc.npcGoneCommand=true;
                 }
             }else{
                 game.ui.uiMainGame.npc.speak();
