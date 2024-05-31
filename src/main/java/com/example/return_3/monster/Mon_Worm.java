@@ -23,6 +23,7 @@ public class Mon_Worm extends Entity {
         speed = defaultSpeed;
         type = type_monster;
         maxLife = 3;
+        coin = 10;
         life = maxLife;
         attack = 2;
         defense = 0;

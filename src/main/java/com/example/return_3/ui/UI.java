@@ -44,7 +44,7 @@ public class UI {
                 uiMainGame.drawPlayerLife();
                 uiMainGame.drawPlayerLevel();
                 uiMainGame.drawMessage();
-                uiMainGame.drawEnergy();
+//                uiMainGame.drawEnergy();
                 uiMainGame.drawCoin();
 
             }
@@ -63,6 +63,9 @@ public class UI {
             // <-------Pause State------>
             if (game.gameState == game.pauseState) {
                 uiMainGame.pauseScreen();
+            }
+            if (game.gameState == game.levelUpState) {
+                uiMainGame.levelUpScreen();
             }
 
 

@@ -20,6 +20,7 @@ public class Mon_Pac extends Entity {
         monster_type=type_pacman;
         name = "Pac Red";
         defaultSpeed = 1;
+        coin = 50;
         speed = defaultSpeed;
         type = type_monster;
         maxLife = 15;

@@ -201,18 +201,8 @@ public class EventHandler {
 
             // <--------School-------->
             if(hit(0,82,144,"any") || hit(0,83,144,"any")){
-                    try {
-                        gp.showSchoolScene();
-                        canTouchEvent = false;
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                        System.err.println("Error loading school.fxml: " + e.getMessage());
-                    } catch (Exception e) {
-                        throw new RuntimeException(e);
-                    }
-
-                System.out.println("welcome to school");
+                gp.gameState = gp.guidelineState;
+                canTouchEvent = false;
             }
 
 

@@ -445,7 +445,7 @@ public static void removeItemFromInventory(int userId, int itemCode) {
                 // Create instance of object based on the type retrieved from the database
                 if (objectType == Game.gameInstance.type_interactiveTIle) {
                     // Interactive tile
-                    InteractiveTile cuttableTree = new BreakableSmallRock(Game.gameInstance, col, row);
+                    InteractiveTile cuttableTree = new CuttableTree(Game.gameInstance, col, row);
                     Game.gameInstance.iTile[mapNum][i] = cuttableTree;
                     i++;
                     System.out.println("tile number " + i  );

@@ -74,6 +74,7 @@ public class Game extends Application {
     public final int shipTeleportState = 14;
     public final int fisheriesState = 15;
     public final int globalChatState= 16;
+    public final int levelUpState = 17;
 
 
     // $$$$$$$$$  GAME STATUS $$$$$$$$$

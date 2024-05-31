@@ -19,6 +19,7 @@ public class Mon_Spider extends Entity {
         speed = defaultSpeed;
         type = type_monster;
         maxLife = 15;
+        coin = 80;
         life = maxLife;
         attack = 10;
         defense = 0;

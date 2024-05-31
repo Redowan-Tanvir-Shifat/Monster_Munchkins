@@ -48,8 +48,10 @@ public class OBJ_Chest extends Entity {
                 sb.append("\nYou obtained the ").append(loot.name).append("!");
                 game.player.inventory.add(loot);
                 MyJDBC.addItemToInventory(game.player.playerId,loot.itemCode);
-                down1=image2;
-                opened=true;
+                down1 = image2;
+                opened = true;
+                game.player.exp += game.chest.exp;
+                game.player.checkLevelUp();
             }
             game.ui.uiMainGame.currentDialogue=sb.toString();
         }else{

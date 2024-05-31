@@ -12,6 +12,7 @@ public class OBJ_Key extends Entity {
         type= type_consumable;
         itemCode=304;
         name= "key";
+        exp = 20;
         down1=uTool.loadImage("/objects/key.png",game.tileSize,game.tileSize);
         description="this is "+name;
 
@@ -26,15 +27,17 @@ public class OBJ_Key extends Entity {
             int row=entity2.worldY/game.tileSize;
             int col=entity2.worldX/game.tileSize;
             MyJDBC.updateObjectDestroyedStatus(game.player.playerId,game.currentMap,row,col,game.type_object,true);
-            System.out.println("player id"+playerId);
-            System.out.println(game.currentMap);
-            System.out.println(row);
-            System.out.println(col);
-            System.out.println(game.type_object);
-            System.out.println(true);
+//            System.out.println("player id"+playerId);
+//            System.out.println(game.currentMap);
+//            System.out.println(row);
+//            System.out.println(col);
+//            System.out.println(game.type_object);
+//            System.out.println(true);
             entity2.down1=entity2.image2;
             entity2.collision=false;
             entity2.destroyed=true;
+            game.player.exp += exp;
+            game.player.checkLevelUp();
             return true;
         }
         else {

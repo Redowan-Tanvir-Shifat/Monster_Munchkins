@@ -107,9 +107,13 @@ public class KeyHandler {
             if (game.gameStatus == game.gameMainStatus) {
                 pauseState(code);
             }
-//            if (game.gameStatus == game.gameSpaceInvadersStatus) {
-//                menuBarState(code);
-//            }
+        }
+
+        // <------------Level up State---------->
+        else if (game.gameState == game.levelUpState) {
+            if (game.gameStatus == game.gameMainStatus) {
+                levelUpState(code);
+            }
         }
 
         else if (game.gameState == game.hospitalState) {
@@ -135,8 +139,8 @@ public class KeyHandler {
             }
         }if(code== KeyCode.ENTER){
             game.ui.uiMainGame.commandNum++;
-            if(game.ui.uiMainGame.commandNum >=game.guidelineScene){
-                game.gameState=game.menuBarState;
+            if(game.ui.uiMainGame.commandNum >= game.guidelineScene){
+                game.gameState = game.playState;
                 game.ui.uiMainGame.commandNum=0;
             }
         }
@@ -336,42 +340,39 @@ public class KeyHandler {
             game.ui.uiMainGame.commandNum--;
             game.playSoundEffect(9);
             if(game.ui.uiMainGame.commandNum < 0){
-                game.ui.uiMainGame.commandNum = 3;
+                game.ui.uiMainGame.commandNum = 2;
             }
         }
         if(code== KeyCode.S || code== KeyCode.DOWN){
             game.ui.uiMainGame.commandNum++;
             game.playSoundEffect(9);
-            if(game.ui.uiMainGame.commandNum > 3){
-                game.ui.uiMainGame.commandNum=0;
+            if(game.ui.uiMainGame.commandNum > 2){
+                game.ui.uiMainGame.commandNum = 0;
             }
         }
         if (code == KeyCode.ENTER) {
             if (game.ui.uiMainGame.commandNum == 0) {
-                game.gameState = game.guidelineState;
-            }
-            if (game.ui.uiMainGame.commandNum == 1) {
                 game.gameState = game.settingsState;
             }
-            if (game.ui.uiMainGame.commandNum == 2) {
+            if (game.ui.uiMainGame.commandNum == 1) {
                 MyJDBC.updateUser(game.player);
-                for ( Entity item: game.player.inventory) {
-                    int itemCode=item.itemCode;
-                    int count=item.itemCount;
-                    System.out.println("after updated:");
-                    System.out.println("itemName: "+item.name+"|| itemCount: "+count);
-                }
+//                for ( Entity item: game.player.inventory) {
+//                    int itemCode=item.itemCode;
+//                    int count=item.itemCount;
+//                    System.out.println("after updated:");
+//                    System.out.println("itemName: "+item.name+"|| itemCount: "+count);
+//                }
                 game.stopMusic();
                 Game.exitGame();
             }
-            if (game.ui.uiMainGame.commandNum == 3) {
+            if (game.ui.uiMainGame.commandNum == 2) {
                 MyJDBC.updateUser(game.player);
-                for ( Entity item: game.player.inventory) {
-                    int itemCode = item.itemCode;
-                    int count = item.itemCount;
-                    System.out.println("after updated:");
-                    System.out.println("itemName: " + item.name + "|| itemCount: " + count);
-                }
+//                for ( Entity item: game.player.inventory) {
+//                    int itemCode = item.itemCode;
+//                    int count = item.itemCount;
+//                    System.out.println("after updated:");
+//                    System.out.println("itemName: " + item.name + "|| itemCount: " + count);
+//                }
                 game.stopMusic();
                 game.logout();
             }
@@ -379,6 +380,14 @@ public class KeyHandler {
     }
 
     private void pauseState(KeyCode code) {
+        if (code == KeyCode.ENTER) {
+            if (game.ui.uiMainGame.commandNum == 0) {
+                game.gameState = game.playState;
+            }
+        }
+    }
+
+    private void levelUpState(KeyCode code) {
         if (code == KeyCode.ENTER) {
             if (game.ui.uiMainGame.commandNum == 0) {
                 game.gameState = game.playState;
