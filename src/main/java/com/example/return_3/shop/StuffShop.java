@@ -23,7 +23,7 @@ public class StuffShop extends Shop {
         inventory.add(new OBJ_Shield_Wood(game));
         inventory.add(new OBJ_Axe(game));
         inventory.add(new OBJ_Tomahawk(game));
-        inventory.add(new OBJ_Shield_Blue(game));
+//        inventory.add(new OBJ_Shield_Blue(game));
         inventory.add(new OBJ_Fireball(game));
     }
     //public void setDialogue(){

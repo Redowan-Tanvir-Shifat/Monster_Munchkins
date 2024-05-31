@@ -582,7 +582,7 @@ public class UI_MainGame {
             slotRow=playerSlotRow;
         }else{
             //FRAME
-            frameX=game.tileSize*18;
+            frameX=game.tileSize*16;
             frameY=game.tileSize*4;
             frameWidth=game.tileSize*7;
             frameHeight=game.tileSize*6;
@@ -811,8 +811,11 @@ public class UI_MainGame {
                     currentDialogue="You can not carry any more items";
                     drawDialogueScreen();
                 }else{
-
+                    int exp=shop.inventory.get(itemIndex).exp;
                     game.player.coin-=shop.inventory.get(itemIndex).price;
+                    game.player.exp+=exp;
+                    game.player.checkLevelUp();
+                    addMessage("Exp gained: "+exp);
                     Entity entity= UtilityTool.getInventoryItem(shop.inventory.get(itemIndex).itemCode);
                     game.player.inventory.add(entity);
                     MyJDBC.addItemToInventory(game.player.playerId,shop.inventory.get(itemIndex).itemCode);
@@ -871,8 +874,12 @@ public class UI_MainGame {
                     commandNum=0;
                     subState=0;
                     game.gameState=game.messageState;
-                    currentDialogue="you can not sell an equiped items";
+                    currentDialogue="you can not sell an equip items";
                 }else{
+                    int exp=(int) ((game.player.inventory.get(itemIndex).exp)*0.5);
+                    game.player.exp += exp;
+                    game.ui.uiMainGame.addMessage("Exp gained: "+exp);
+                    game.player.checkLevelUp();
                     MyJDBC.removeItemFromInventory(game.player.playerId,game.player.inventory.get(itemIndex).itemCode);
                     game.player.inventory.remove(itemIndex);
                     game.player.coin+=price;
@@ -1179,6 +1186,30 @@ public class UI_MainGame {
 
     public void drawMessage(){
         int messageX = game.tileSize;
+        int messageY = game.tileSize * 5;
+
+        gc.setFont(largeFontBold);
+        gc.setFill(Color.WHITE);
+        for(int i = 0; i < message.size(); i++){
+
+            if(message.get(i) != null){
+
+                gc.fillText(message.get(i), messageX, messageY);
+
+                int counter = messageCounter.get(i) + 1;
+                messageCounter.set(i, counter);     //set the counter to the array;
+                messageY += 30;
+
+                if(messageCounter.get(i) > 240){
+                    message.remove(i);
+                    messageCounter.remove(i);
+                }
+            }
+        }
+    }
+
+    public void drawMessageRight(int size){
+        int messageX = game.tileSize*size;
         int messageY = game.tileSize * 5;
 
         gc.setFont(largeFontBold);

@@ -10,6 +10,7 @@ public class OBJ_Tomahawk extends Entity {
         name = "Tomahawk Axe";
         down1 = loadImage("/objects/axe1.png",game.tileSize,game.tileSize);
         price = 8;
+        exp = 3;
         itemCode = 109;
         attackValue = 2;
         life = 15;

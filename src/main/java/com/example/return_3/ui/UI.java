@@ -90,6 +90,7 @@ public class UI {
             }
             if (game.gameState == game.tradeState) {
                 uiMainGame.drawTradeScreen();
+                uiMainGame.drawMessageRight(24);
             }
             if (game.gameState == game.shipTeleportState) {
                 uiMainGame.shipTeleportScreen();

@@ -18,6 +18,7 @@ public class OBJ_Fireball extends Projectile {
         itemCode=107;
         speed = 5;
         maxLife=80;
+        exp = 5;
         life = maxLife;
         mana=10;
         attack=10;

@@ -11,6 +11,7 @@ public class OBJ_FireSword extends Entity {
         down1 = loadImage("/objects/sword_fire.png", game.tileSize, game.tileSize);
         attackValue = 20;
         price = 30;
+        exp = 10;
         itemCode = 106;
         attackArea.setWidth(32);
         attackArea.setHeight(28);

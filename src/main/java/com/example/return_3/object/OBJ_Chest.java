@@ -16,6 +16,7 @@ public class OBJ_Chest extends Entity {
         type= type_obstacle;
         name= "chest";
         itemCode=321;
+        exp = 20;
         image1=uTool.loadImage("/objects/chest.png",game.tileSize,game.tileSize);
         image2=uTool.loadImage("/objects/chest_opened.png",game.tileSize,game.tileSize);
         down1=image1;

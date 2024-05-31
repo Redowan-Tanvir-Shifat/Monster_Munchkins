@@ -684,11 +684,12 @@ public void removeCurrentWeapon() {
         if (exp >= nextLevelExp) {
             level++;
             nextLevelExp = nextLevelExp + 30;   // We will use fibonacci series
-            strength++;
-            dexterity++;
-            attack = getAttack();
-            defense = getDefense();
-            game.gameState = game.dialogueState;
+            exp=0;
+//            strength++;
+//            dexterity++;
+//            attack = getAttack();
+//            defense = getDefense();
+            game.gameState = game.messageState;
             game.ui.uiMainGame.currentDialogue = " Congratulations! \nYou are level in " + level + " now.";
         }
     }

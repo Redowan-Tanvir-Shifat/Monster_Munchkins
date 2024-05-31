@@ -12,6 +12,7 @@ public class OBJ_Meat extends Entity {
         type = type_consumable;
         name ="Meat";
         value = 15;
+        exp = 3;
         itemCode = 208;
         price = 25*value;
         down1 = uTool.loadImage("/objects/food/legPiece.png",game.tileSize-7,game.tileSize-7);

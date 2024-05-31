@@ -14,6 +14,7 @@ public class OBJ_PowerPotion extends Entity {
         itemCode=305;
         value =8;
         price=500;
+        exp = 5;
         down1=loadImage("/objects/powerPotion.png",game.tileSize,game.tileSize);
         description="["+name+"]\nIncrease you Attack by "+value+".";
     }

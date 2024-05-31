@@ -10,6 +10,7 @@ public class OBJ_IceSword extends Entity {
         name = "Ice Sword";
         down1 = loadImage("/objects/sword_ice.png", game.tileSize, game.tileSize);
         attackValue = 15;
+        exp = 10;
         price = 30;
         itemCode = 108;
         attackArea.setWidth(32);
