@@ -74,7 +74,7 @@ public class UI_MainGame {
 //        Font baseFont = Font.loadFont(getClass().getResourceAsStream("/font/zekton rg.otf"), 12);
        // Font baseFont = Font.font("Dialog",FontWeight.BOLD,20);
         smallFont = Font.font(baseFont.getName(), FontWeight.NORMAL, FontPosture.REGULAR, 12); // Change size as needed
-        mediumFont = Font.font(baseFont.getName(), FontWeight.NORMAL, FontPosture.REGULAR, 16); // Change size as needed
+        mediumFont = Font.font(baseFont.getName(), FontWeight.NORMAL, FontPosture.REGULAR, 18); // Change size as needed
         largeFont = Font.font(baseFont.getName(), FontWeight.NORMAL, FontPosture.REGULAR, 24); // Change size as needed
         smallFontBold = Font.font(baseFont.getName(), FontWeight.BOLD, FontPosture.REGULAR, 12); // Change size as needed
         mediumFontBold = Font.font(baseFont.getName(), FontWeight.BOLD, FontPosture.REGULAR, 16); // Change size as needed
@@ -613,15 +613,7 @@ public class UI_MainGame {
         //Draw the frame
         drawSubWindow(frameX, frameY, frameWidth, frameHeight,cream,darkCream);
         if(entity==game.player){
-            //Title for player
-
-            //to make different columns and positions
-//            xPositon=100;
-//            r1=2;
-//            r2=5;
-//            r3=8;
             drawPlayerPropertiesBox(frameX-(game.tileSize*4),frameY,115,frameHeight);
-
         }else{
             //Title
             gc.setFont(largeFontBold);
@@ -646,7 +638,8 @@ public class UI_MainGame {
 
             //EQUIP CURSOR
             if(entity.inventory.get(i)==entity.currentWeapon||entity.inventory.get(i)==entity.currentShield){
-                gc.setFill(Color.rgb(240, 190, 90));
+                gc.setFill(Color.rgb(112, 224, 0));
+//                gc.setFill(Color.rgb(171, 255, 79));
                 gc.fillRoundRect(slotX,slotY,game.tileSize,game.tileSize,10,10);
             }
             gc.drawImage(entity.inventory.get(i).down1, slotX, slotY);
@@ -677,7 +670,7 @@ public class UI_MainGame {
             int dFrameX= frameX;
             int dFrameY= frameY+ frameHeight+8;
             int dFrameWidth= frameWidth;
-            int dFrameHeight= game.tileSize*4;
+            int dFrameHeight= game.tileSize*5;
             //DRAW DESCRIPTION TEXT
             int textX=dFrameX+20;
             int textY=dFrameY+(2*game.tileSize);
@@ -690,14 +683,17 @@ public class UI_MainGame {
                 drawSubWindow(dFrameX,dFrameY,dFrameWidth,dFrameHeight,cream,darkCream);
                 int price= entity.inventory.get(itemIndex).price;
 //                System.out.println("Price: " + price);
-                int x=dFrameX+game.tileSize*5;
+                int x=dFrameX+16;
                 int y=dFrameY+game.tileSize/2;
-
+                gc.setFont(mediumFont);
+                gc.setFill(darkDarkCream);
+                gc.fillText("->Description<-",x,y+14);
+                x=dFrameX+game.tileSize*5;
                 if(isBuyState){
-                    drawCoinBox(coinImage,x+10,y,price);
+                    drawCoinBox(coinImage,x-10,y,price);
                 }
                 else{
-                    drawCoinBox(coinImage,x+10,y,(int)(price*0.5));
+                    drawCoinBox(coinImage,x-10,y,(int)(price*0.5));
                 }
                 gc.setFont(mediumFontBold);
                 for(String line : entity.inventory.get(itemIndex).description.split("\n")) {
@@ -711,11 +707,11 @@ public class UI_MainGame {
     }
     public void drawPlayerPropertiesBox(int frameX,int frameY,int frameWidth,int frameHeight) {
         drawSubWindow(frameX, frameY, frameWidth, frameHeight,cream,darkCream);
-        gc.setFill(Color.WHITE);
-        gc.setFont(mediumFontBold);
+        gc.setFill(darkDarkCream);
+        gc.setFont(mediumFont);
         String userName=game.user.getUsername();
         int userNameX=getXForCenteredTextInFrame(userName,frameX,frameWidth);
-        gc.fillText(userName,userNameX,frameY+90);
+        gc.fillText(userName,userNameX,frameY+75);
         gc.drawImage(playerImage,frameX+20,frameY+100);
         //in here we are drawing player coin box, player coin
         drawCoinBox(coinImage,frameX+25,frameY+20,game.player.coin);
@@ -724,15 +720,15 @@ public class UI_MainGame {
     //THis method is used for showing coin box and value
     public void drawCoinBox(Image image,int x, int y,int price){
         gc.setFill(darkCream);
-        int width=54;
-        int height=16;
+        int width=58;
+        int height=20;
         int arc=20;
         gc.fillRoundRect(x,y,width,height,arc,arc);
-        String text=""+price;
-        int priceX=getXForAlignToRightText(text,x+width);
-        int priceY=y+height;
         gc.setFont(mediumFontBold);
         gc.setFill(Color.WHITE);
+        String text=""+price;
+        int priceX=getXForAlignToRightText(text,x+width-8);
+        int priceY=y+height-4;
         gc.fillText(text,priceX,priceY);
 
         gc.drawImage(image,x-16,y-4);
@@ -806,22 +802,19 @@ public class UI_MainGame {
 
 //        //Draw ShopC inventory
         drawInventory(shop,true,6);
-        System.out.println("SHOP: "+shop.inventory.get(0).price);
 
 //        //DRAW HINT WINDOWS
-        int x= game.tileSize*13;
-        int y=game.tileSize*3;
-        int width=game.tileSize*6;
+        int x= game.tileSize*11;
+        int y=game.tileSize*2;
+        int width=game.tileSize*8;
         int height=game.tileSize*2;
-        drawSubWindow(x, y, 100, 40,cream,darkCream);
-        //drawing text
-        gc.setFill(darkDarkCream);
-        gc.setFont(mediumFontBold);
-        gc.fillText("[ESC] back",x+15,y+20);
-
-
-
-
+        drawBackHint2("Press [ESC] key to back",x,y,width,height);
+//        drawSubWindow(x, y-5, width, height,cream,darkCream);
+//        //drawing text
+//        gc.setFill(darkDarkCream);
+//        gc.setFont(mediumFontBold);
+//        y+=game.tileSize;
+//        gc.fillText("Press [ESC] key to back",x+15,y);
         //DRAW PRICE WINDOWS
         int itemIndex = getItemIndexOnSlot(shopSlotCol,shopSlotRow);
         if(itemIndex<shop.inventory.size()){
@@ -888,6 +881,26 @@ public class UI_MainGame {
         }
     }
 
+    public void drawBackHint(String text,int x,int y,int width, int height){
+        drawSubWindow(x, y-5, width, height,cream,darkCream);
+        //drawing text
+        gc.setFill(darkDarkCream);
+        gc.setFont(mediumFontBold);
+        int tempX= getXForCenteredTextInFrame(text,x,width);
+        y+=game.tileSize;
+        gc.fillText(text,tempX,y);
+    }
+    public void drawBackHint2(String text,int x,int y,int width, int height){
+        drawSubWindow(x, y-5, width, height,darkCream,cream);
+        //drawing text
+        gc.setFill(Color.WHITE);
+        gc.setFont(mediumFontBold);
+        int tempX= getXForCenteredTextInFrame(text,x,width);
+        y+=game.tileSize;
+        gc.fillText(text,tempX,y);
+    }
+
+
     public boolean checkBuy(Entity item){
         if(item.type==game.specialSword.type){
             return game.player.level >= 3;
@@ -908,18 +921,20 @@ public class UI_MainGame {
     }
     public void sell(){
 //        //Draw player Inventory
-        drawInventory(game.player,true,6);
+        drawInventory(game.player,true,13);
 //        //Draw NPC inventory
       //  drawInventory(npc,true);
 
         //DRAW HINT WINDOWS
-        int x= game.tileSize*2;
-        int y=game.tileSize*9;
-        int width=game.tileSize*6;
+//        int x= game.tileSize*2;
+//        int y=game.tileSize*9;
+//        int width=game.tileSize*6;
+//        int height=game.tileSize*2;
+        int x= game.tileSize*10;
+        int y=game.tileSize*2;
+        int width=game.tileSize*9;
         int height=game.tileSize*2;
-//        drawSubWindow(x,y,width,height);
-//        //drawing text
-//        gc.fillText("[ESC] back",x+24,y+60);
+        drawBackHint2("Press [ESC] key to back",x,y,width,height);
 
 
 //        DRAW PLAYER COIN WINDOWs
