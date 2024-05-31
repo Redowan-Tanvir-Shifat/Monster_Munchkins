@@ -11,7 +11,7 @@ public class OBJ_Banana extends Entity {
         //Type will write here later
         type= type_consumable;
         name ="Banana";
-        value = 10;
+        value = 60;
         exp = 3;
         itemCode = 202;
         price = 10*value;
@@ -19,8 +19,8 @@ public class OBJ_Banana extends Entity {
         description = "This is "+name;
     }
     public boolean use(Entity entity){
-        game.ui.uiMainGame.addMessage("Energy increase: "+value);
-        game.player.energy += value;
+        game.ui.uiMainGame.addMessage("Life gained: "+ (int) (value * 0.10));
+        game.player.life += (int) (value * 0.10);
         return true;
     }
 }

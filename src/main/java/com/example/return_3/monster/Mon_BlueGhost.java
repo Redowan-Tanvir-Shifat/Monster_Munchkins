@@ -19,6 +19,7 @@ public class Mon_BlueGhost extends Entity {
         speed = defaultSpeed;
         type = type_monster;
         maxLife = 40;
+        coin = 100;
         life = maxLife;
         attack = 15;
         defense = 0;
@@ -104,9 +105,14 @@ public class Mon_BlueGhost extends Entity {
         //CAST A DIE
         int i = new Random().nextInt(100)+1;
         //SET THE MONSTER DROP
-        if (i < 50){
-            dropItem(new OBJ_Coin(game));
+        if (i < 25){
+            dropItem(new OBJ_Potion_Red(game));
+        }else if (i < 50){
+            dropItem(new OBJ_PowerPotion(game));
+        }else if (i < 75){
+            dropItem(new OBJ_SpeedPotion(game));
+        }else if (i < 100){
+            dropItem(new OBJ_DefensePotion(game));
         }
-
     }
 }

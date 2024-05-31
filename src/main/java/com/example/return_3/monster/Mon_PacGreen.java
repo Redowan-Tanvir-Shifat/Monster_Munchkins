@@ -103,12 +103,4 @@ public class Mon_PacGreen extends Entity {
         }
     }
 
-    public void checkDrop() {
-        //CAST A DIE
-        int i = new Random().nextInt(100) + 1;
-        //SET THE MONSTER DROP
-        if (i < 50) {
-            dropItem(new OBJ_Coin(game));
-        }
-    }
 }

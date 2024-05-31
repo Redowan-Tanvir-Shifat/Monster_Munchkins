@@ -601,8 +601,8 @@ public class Entity {
                 game.player.setHospitalPosition();
                 game.keyHandler.setBooleanAll(false);
                 game.player.life = game.player.maxLife;
-                if (game.player.coin >= 300) {
-                    game.player.coin -= 300;
+                if (game.player.coin >= 200) {
+                    game.player.coin -= 200;
                 }
                 else {
                     game.player.coin = 0;

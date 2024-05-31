@@ -22,6 +22,7 @@ public class OBJ_Fireball extends Projectile {
         life = maxLife;
         mana=10;
         attack=10;
+        price = 500;
         knockBackPower = 15;
         useCost=1;
         alive=false;

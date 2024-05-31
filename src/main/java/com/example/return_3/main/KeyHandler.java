@@ -42,6 +42,7 @@ public class KeyHandler {
 
         //This is for PlayState
         if(game.gameState == game.playState){
+            game.ui.uiMainGame.commandNum=0;
             playState(code);
             if(code==KeyCode.L){
                 new StuffShop(game).use();
@@ -94,31 +95,27 @@ public class KeyHandler {
         }
         //MENU BAR state
         else if (game.gameState == game.menuBarState) {
-            if (game.gameStatus == game.gameMainStatus) {
                 menuBarState(code);
             }
-//            if (game.gameStatus == game.gameSpaceInvadersStatus) {
-//                menuBarState(code);
-//            }
-        }
 
         // <------------Pause State---------->
         else if (game.gameState == game.pauseState) {
-            if (game.gameStatus == game.gameMainStatus) {
                 pauseState(code);
-            }
+
         }
 
         // <------------Level up State---------->
         else if (game.gameState == game.levelUpState) {
-            if (game.gameStatus == game.gameMainStatus) {
                 levelUpState(code);
-            }
         }
+
 
         else if (game.gameState == game.hospitalState) {
             hospitalState(code);
-        }else if (game.gameState == game.mapState) {
+        }
+
+
+        else if (game.gameState == game.mapState) {
             mapState(code);
         }
 
@@ -201,19 +198,19 @@ public class KeyHandler {
             game.ui.uiMainGame.commandNum--;
             game.playSoundEffect(9);
             if(game.ui.uiMainGame.commandNum < 0){
-                game.ui.uiMainGame.commandNum = 3;
+                game.ui.uiMainGame.commandNum = 2;
             }
         }
         if(code== KeyCode.S || code== KeyCode.DOWN){
             game.ui.uiMainGame.commandNum++;
             game.playSoundEffect(9);
-            if(game.ui.uiMainGame.commandNum > 3){
+            if(game.ui.uiMainGame.commandNum > 2){
                 game.ui.uiMainGame.commandNum=0;
             }
         }
         if (code == KeyCode.ENTER) {
             if (game.ui.uiMainGame.commandNum == 0) {
-                int calCoin = (game.player.maxLife - game.player.life) * 20;
+                int calCoin = (game.player.maxLife - game.player.life) * 5;
                 if (game.player.coin >= calCoin && game.player.life < game.player.maxLife) {
                     game.player.life = game.player.maxLife;
                     game.player.coin -= calCoin;
@@ -236,34 +233,28 @@ public class KeyHandler {
 
             }
             if (game.ui.uiMainGame.commandNum == 1) {
-                if (game.player.coin >= 2000) {
-                    game.player.maxLife += 10;
-                    game.player.coin -= 2000;
-                    game.gameState = game.playState;
-                    game.ui.uiMainGame.addMessage("Increasing Max life successful!");
+                if (game.player.level >= 10) {
+                    if (game.player.coin >= 500) {
+                        game.player.maxLife += 10;
+                        game.player.coin -= 2000;
+                        game.gameState = game.playState;
+                        game.ui.uiMainGame.addMessage("Increasing Max life successful!");
+                    }
+                    else {
+                        System.out.println("Don't have coin ");
+                        game.gameState = game.playState;
+                        game.ui.uiMainGame.addMessage("You don't have much coin!");
+                    }
                 }
                 else {
-                    System.out.println("Don't have coin ");
-                    game.gameState = game.playState;
-                    game.ui.uiMainGame.addMessage("You don't have much coin!");
+                    game.ui.uiMainGame.currentDialogue = "You need level 10 to Increase Max life...";
+                    game.gameState = game.messageState;
                 }
+
             }
+
 
             if (game.ui.uiMainGame.commandNum == 2) {
-                if (game.player.coin >= 1000) {
-                    game.player.energy += 10;
-                    game.player.coin -= 500;
-                    game.gameState = game.playState;
-                    game.ui.uiMainGame.addMessage("Increasing energy successful!");
-                }
-                else {
-                    System.out.println("Don't have coin ");
-                    game.gameState = game.playState;
-                    game.ui.uiMainGame.addMessage("You don't have much coin!");
-                }
-            }
-
-            if (game.ui.uiMainGame.commandNum == 3) {
                 game.gameState = game.playState;
             }
         }
@@ -381,17 +372,13 @@ public class KeyHandler {
 
     private void pauseState(KeyCode code) {
         if (code == KeyCode.ENTER) {
-            if (game.ui.uiMainGame.commandNum == 0) {
                 game.gameState = game.playState;
-            }
         }
     }
 
     private void levelUpState(KeyCode code) {
         if (code == KeyCode.ENTER) {
-            if (game.ui.uiMainGame.commandNum == 0) {
                 game.gameState = game.playState;
-            }
         }
     }
 
@@ -410,7 +397,7 @@ public class KeyHandler {
             case F: FKeyPressed=true;break;
             case ENTER: enterPressed = true; break;
             case SPACE: spacePressed = true; break;
-            case V: vKeyPressed = true; break;
+            case V: vKeyPressed = false; break;
             case C: game.gameState = game.characterState; break;
             case ESCAPE: game.gameState = game.menuBarState; break;
 

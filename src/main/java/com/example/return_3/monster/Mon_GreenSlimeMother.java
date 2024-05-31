@@ -2,10 +2,7 @@ package com.example.return_3.monster;
 
 import com.example.return_3.entity.Entity;
 import com.example.return_3.main.Game;
-import com.example.return_3.object.OBJ_Coin;
-import com.example.return_3.object.OBJ_Heart;
-import com.example.return_3.object.OBJ_Potion_Red;
-import com.example.return_3.object.OBJ_Rock;
+import com.example.return_3.object.*;
 
 import java.util.Random;
 
@@ -23,6 +20,7 @@ public class Mon_GreenSlimeMother extends Entity {
         speed = defaultSpeed;
         type = type_monster;
         maxLife = 500;
+        coin = 500;
         life = maxLife;
         attack = 50;
         defense = 0;
@@ -101,11 +99,6 @@ public class Mon_GreenSlimeMother extends Entity {
     }
 
     public void checkDrop() {
-        //CAST A DIE
-        int i = new Random().nextInt(100) + 1;
-        //SET THE MONSTER DROP
-        if (i < 50) {
-            dropItem(new OBJ_Coin(game));
-        }
+        dropItem(new OBJ_Fireball(game));
     }
 }

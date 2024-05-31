@@ -2,10 +2,7 @@ package com.example.return_3.monster;
 
 import com.example.return_3.entity.Entity;
 import com.example.return_3.main.Game;
-import com.example.return_3.object.OBJ_Coin;
-import com.example.return_3.object.OBJ_Heart;
-import com.example.return_3.object.OBJ_Potion_Red;
-import com.example.return_3.object.OBJ_Rock;
+import com.example.return_3.object.*;
 
 import java.util.Random;
 
@@ -119,8 +116,14 @@ public class Mon_Pac extends Entity {
         //CAST A DIE
         int i = new Random().nextInt(100)+1;
         //SET THE MONSTER DROP
-        if (i < 50) {
-            dropItem(new OBJ_Coin(game));
+        if (i < 25){
+            dropItem(new OBJ_Potion_Red(game));
+        }else if (i < 50){
+            dropItem(new OBJ_PowerPotion(game));
+        }else if (i < 75){
+            dropItem(new OBJ_SpeedPotion(game));
+        }else if (i < 100){
+            dropItem(new OBJ_DefensePotion(game));
         }
     }
 }
