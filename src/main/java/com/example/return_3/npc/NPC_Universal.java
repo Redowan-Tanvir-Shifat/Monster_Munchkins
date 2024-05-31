@@ -18,7 +18,8 @@ public class NPC_Universal extends NPC {
 //        collisionOn=false;
 
         //type= type_npc;
-        speed=(int) (65*game.targetFrameTime);        getNPCImage();
+        speed=(int) (65*game.targetFrameTime);
+        getNPCImage();
         setDialogue();
     }
     public void getNPCImage(){
@@ -36,26 +37,36 @@ public class NPC_Universal extends NPC {
     public void speak(){
 //        super.speak();
     }
-    public void draw(GraphicsContext gc){
-        super.draw(gc);
+    public void checkCollision(){
+        collisionOn=false;
+        game.cChecker.checkTile(this);
+        game.cChecker.checkEntity(this,game.npc);
+        game.cChecker.checkEntity(this,game.iTile);
+    }
+    public void update(){
+        getRandomDirection();
+        checkCollision();
 
-        if(chatOnStatus==true){
-            int screenX= worldX-game.player.worldX + game.player.screenX;
-            int screenY= worldY-game.player.worldY + game.player.screenY;
-            Image image= null;
-            //System.out.println("draw method working");
-            if(chatNum==1){
-                image= new OBJ_ChatBox(game).down1;
-            } else if (chatNum==2) {
-                image= new OBJ_ChatBox(game).up1;
-            }else if(chatNum==3){
-                image= new OBJ_ChatBox(game).left1;
-            } else if (chatNum==4) {
-                image= new OBJ_ChatBox(game).right1;
+        //if collisionOn is false then player can be able to move
+        if(collisionOn == false){
+
+            switch (direction){
+                case "up":worldY -= speed; break;
+                case "down":worldY+= speed; break;
+                case "left":worldX -= speed; break;
+                case "right":worldX += speed; break;
             }
-            gc.drawImage(image,screenX,screenY-(game.tileSize/2));
+        }
+
+        spriteCounter++;
+        if (spriteCounter > 24) {
+            if (spriteNum == 1) {
+                spriteNum = 2;
+            } else if (spriteNum == 2) {
+                spriteNum = 1;
+            }
+            spriteCounter = 0;
         }
     }
-
 }
 

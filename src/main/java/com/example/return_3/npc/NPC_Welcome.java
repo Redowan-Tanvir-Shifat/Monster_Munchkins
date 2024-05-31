@@ -4,6 +4,7 @@ import com.example.return_3.entity.NPC;
 import com.example.return_3.main.Game;
 import com.example.return_3.main.UtilityTool;
 import com.example.return_3.object.OBJ_ChatBox;
+import com.example.return_3.object.OBJ_Sword_Normal;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
@@ -50,17 +51,31 @@ public class NPC_Welcome extends NPC {
     }
     //set dialogue
     public void setDialogue(){
-        dialogue[0]="Greetings, brave hunter!\nWelcome to the island. Our island is in grave danger. Monsters have overrun our home" ;
-        dialogue[1]="Your mission is to kill all the monsters and set us free.\n Here are the guidelines to help you: " ;
-        dialogue[2]="1. Use W/A/S/D or Arrow Keys to move.\n2. Press Enter to interact with game properties.\n" ;
-        dialogue[3]="3. Press Space to attack, V to defend.\n4. Press C to see your inventory.\n" ;
-        dialogue[4]="Please, we are counting on you to save us.\n Good luck, brave hunter!";
+        dialogue[0] = "Greetings, brave hunter!\nWelcome to the island. Our island is in grave danger. Monsters have overrun our home.";
+        dialogue[1] = "Your mission is to kill all the monsters and set us free.\nHere are the guidelines to help you:";
+        dialogue[2] = "1. Use W/A/S/D or Arrow Keys to move.\n2. Press Enter to interact with game properties.";
+        dialogue[3] = "3. Press Space to attack, V to defend.\n4. Press C to see your inventory.";
+        dialogue[4] = "I will give you a sword. This sword will help you to continue your mission.\nPlease, we are counting on you to save us.\nGood luck, brave hunter!";
     }
 
     public void getRandomDirection(){
         if(npcGone==false) {
             super.getRandomDirection();
             uTool.areaSetup(this, 80 * size, 116 * size, 8 * size, 5 * size);//88,121
+        }
+        if(onPath==true){
+            dropItem(new OBJ_Sword_Normal(game));
+        }
+    }
+    public void setAction(){
+        if(onPath==true){
+            searchPath(goalCol, goalRow);
+            if(onPath==false){
+                npcGone=true;
+                System.out.println("NPC WORK DONE");
+            }
+        } else  {
+            getRandomDirection();
         }
     }
 

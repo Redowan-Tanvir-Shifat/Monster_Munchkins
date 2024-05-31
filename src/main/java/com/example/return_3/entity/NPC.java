@@ -27,20 +27,9 @@ public class NPC extends Entity{
     }
     public void getNPCImage(){
 
-//        up1=loadImage( "/npc/oldman_up_1.png",game.tileSize,game.tileSize);
-//        up2= loadImage("/npc/oldman_up_2.png",game.tileSize,game.tileSize);
-//        down1= loadImage("/npc/oldman_down_1.png",game.tileSize,game.tileSize);
-//        down2= loadImage("/npc/oldman_down_2.png",game.tileSize,game.tileSize);
-//        left1=loadImage ("/npc/oldman_left_1.png",game.tileSize,game.tileSize);
-//        left2= loadImage("/npc/oldman_left_2.png",game.tileSize,game.tileSize);
-//        right1= loadImage("/npc/oldman_right_1.png",game.tileSize,game.tileSize);
-//        right2= loadImage("/npc/oldman_right_2.png",game.tileSize,game.tileSize);
     }
     public void setDialogue(){
-        dialogue[0]="Hello";
-        dialogue[1]="So, you've come to this island to \nfind the treasure";
-        dialogue[2]="I used to be a great wizard but now... \ni'm a bit too old for taking an adventure.";
-        dialogue[3]="Well, good luck on you.";
+
     }
 
     public void setAction(){
@@ -127,9 +116,6 @@ public class NPC extends Entity{
         game.cChecker.checkEntity(this,game.npc);
 //        game.cChecker.checkEntity(this,game.monster);
         game.cChecker.checkEntity(this,game.iTile);
-
-
-
     }
 
         public void speak(){
