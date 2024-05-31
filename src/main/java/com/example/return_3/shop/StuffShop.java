@@ -8,7 +8,7 @@ public class StuffShop extends Shop {
     Game game;
     public StuffShop(Game game) {
         super(game);
-        name="stuff shop";
+        name="Stuff shop";
         this.game = game;
         setItems();
        // setDialogue();

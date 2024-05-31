@@ -625,7 +625,7 @@ public class UI_MainGame {
         }else{
             //Title
             gc.setFont(largeFontBold);
-            String titleText="Stuff parts";
+            String titleText=shop.name;
             double titlewidth= getWidthOfText(titleText);
             gc.setFill(darkDarkCream);
             gc.fillText(titleText,frameX+((frameWidth-titlewidth)/2),frameY+24);
@@ -757,7 +757,7 @@ public class UI_MainGame {
         int x=game.tileSize*8;
         int y=game.tileSize*4;
         int width=game.tileSize*14;
-        int height=(int)(game.tileSize*8);
+        int height=(game.tileSize*8);
         drawSubWindow(x, y, width, height,cream,darkCream);
         // Text....
         gc.setFill(darkDarkCream);
@@ -765,8 +765,13 @@ public class UI_MainGame {
         gc.setFont(largeFontBold);
 
         //DRAW TEXT
-        x+= game.tileSize;
+
         y+= game.tileSize;
+        String text=shop.name;
+        int tempX= getXForCenteredTextInFrame(text,x,width);
+        gc.fillText(shop.name,tempX,y);
+        x+= game.tileSize*2;
+        y+=game.tileSize*2;
         gc.fillText("Buy",x,y);
         if(commandNum==0){
             gc.fillText(">",x-24,y);
