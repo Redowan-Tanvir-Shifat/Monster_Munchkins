@@ -6,6 +6,7 @@ import com.example.return_3.entity.Entity;
 import com.example.return_3.globalChat.Client;
 import com.example.return_3.npc.NPC_HelplessWomen;
 import com.example.return_3.npc.NPC_Welcome;
+import com.example.return_3.object.OBJ_Sword_Normal;
 import com.example.return_3.shop.StuffShop;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
@@ -415,6 +416,9 @@ public class KeyHandler {
                 if(game.ui.uiMainGame.npc instanceof NPC_Welcome ||game.ui.uiMainGame.npc instanceof NPC_HelplessWomen){
                     game.ui.uiMainGame.npc.onPath=true;
                     game.ui.uiMainGame.npc.npcGoneCommand=true;
+                    if(game.ui.uiMainGame.npc instanceof NPC_Welcome ){
+                        game.ui.uiMainGame.npc.dropItem(new OBJ_Sword_Normal(game));
+                    }
                 }
             }else{
                 game.ui.uiMainGame.npc.speak();
