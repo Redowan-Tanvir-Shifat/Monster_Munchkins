@@ -1,9 +1,6 @@
 package com.example.return_3.gameCenter.spaceInvaders;
 
-import com.example.return_3.db.MyJDBC;
-import com.example.return_3.entity.NPC_Trade;
 import com.example.return_3.main.Game;
-import javafx.application.Platform;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 public class SpaceInvadersKeyHandler {
