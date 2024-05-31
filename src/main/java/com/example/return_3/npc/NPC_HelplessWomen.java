@@ -78,7 +78,7 @@ public class NPC_HelplessWomen extends NPC {
 //        }
 //    }
     public void setAction(){
-        System.out.println(onPath);
+//        System.out.println(onPath);
         if (onPath == true) {
 
             // Check if stop chasing...
@@ -89,12 +89,13 @@ public class NPC_HelplessWomen extends NPC {
 
             searchPath(getGoalCol(game.player), getGoalRow(game.player));
             uTool.areaSetup(this, 93 * size, 69 * size, 20 * size, 15 * size); //113,84
-            }else{
-                searchPath(goalCol, goalRow);
-            if(onPath==false){
-                npcGone=true;
-                System.out.println("NPC WORK DONE");
             }
+            else{
+                searchPath(goalCol, goalRow);
+                if(onPath==false){
+                    npcGone=true;
+    //                System.out.println("NPC WORK DONE");
+                }
             }
 
             // Check if shoot a projectile...

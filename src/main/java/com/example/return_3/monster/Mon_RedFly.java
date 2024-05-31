@@ -2,10 +2,7 @@ package com.example.return_3.monster;
 
 import com.example.return_3.entity.Entity;
 import com.example.return_3.main.Game;
-import com.example.return_3.object.OBJ_Coin;
-import com.example.return_3.object.OBJ_Ghost_Dirt;
-import com.example.return_3.object.OBJ_RedFly_Shots;
-import com.example.return_3.object.OBJ_Spider_Shots;
+import com.example.return_3.object.*;
 
 import java.util.Random;
 
@@ -19,6 +16,7 @@ public class Mon_RedFly extends Entity {
         monster_type=type_redFly;
         name = "Red Fly";
         defaultSpeed = 1;
+        coin = 200;
         speed = defaultSpeed;
         type = type_monster;
         maxLife = 50;
@@ -107,9 +105,14 @@ public class Mon_RedFly extends Entity {
         //CAST A DIE
         int i = new Random().nextInt(100)+1;
         //SET THE MONSTER DROP
-        if (i < 50){
-            dropItem(new OBJ_Coin(game));
+        if (i < 25){
+            dropItem(new OBJ_Potion_Red(game));
+        }else if (i < 50){
+            dropItem(new OBJ_PowerPotion(game));
+        }else if (i < 75){
+            dropItem(new OBJ_SpeedPotion(game));
+        }else if (i < 100){
+            dropItem(new OBJ_Fireball(game));
         }
-
     }
 }

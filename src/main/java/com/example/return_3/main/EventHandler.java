@@ -199,61 +199,18 @@ public class EventHandler {
 
         if (canTouchEvent) {
 
-            // <--------School-------->
+            // <--------School (GuideLine)-------->
             if(hit(0,82,144,"any") || hit(0,83,144,"any")){
-                    try {
-                        gp.showSchoolScene();
-                        canTouchEvent = false;
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                        System.err.println("Error loading school.fxml: " + e.getMessage());
-                    } catch (Exception e) {
-                        throw new RuntimeException(e);
-                    }
-
-                System.out.println("welcome to school");
+                gp.gameState = gp.guidelineState;
+                canTouchEvent = false;
             }
 
 
-            // <--------Game Center-------->
+            // <--------Global chat Center-------->
             if(hit(0,28,154,"any") || hit(0,29,154,"any")){
-                try {
-                    gp.showGameCenter();
-                    canTouchEvent = false;
-                    MyJDBC.updateUser(gp.player);
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    System.err.println("Error loading gameCenter.fxml: " + e.getMessage());
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                //System.out.println("welcome to Game Center");
+                gp.gameState = gp.globalChatState;
+                canTouchEvent = false;
             }
-
-            // <--------Global CHAT-------->
-            if(hit(0,36,161,"any" )){
-                try {
-                    canTouchEvent = false;
-                    gp.showGlobalChatScene();
-                    MyJDBC.updateUser(gp.player);
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    System.err.println("Error loading chatWindow.fxml: " + e.getMessage());
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                System.out.println("welcome to global chat Center");
-            }
-
-
-
-
-
-
-
 
 
             // <---------Hospital--------->
@@ -264,43 +221,15 @@ public class EventHandler {
             }
 
 
-
-//            if(hit(gp.currentMap,11,47,"right")){
-//
-//               if(tl){
-//                   teleport(gp.currentMap,24,20);
-//                   tl=false;
-//               }
-//                System.out.println("hit teleport");
-//            }
-//
-//            if(hit(gp.currentMap,24,20,"right")){
-//
-//               ; if(tl){
-//                    teleport(gp.currentMap,11,47);
-//                    tl=false;
-//                }
-//                System.out.println("hit teleport");
-//            }
-
-
             if(hit(gp.currentMap,128,146,"any") || hit(gp.currentMap,129,146,"any")
                 || hit(gp.currentMap,101,146,"any") || hit(gp.currentMap,102,146,"any")) {
-//                speak(gp.npc[gp.currentMap][0]);
                 new FoodShop(gp).use();
                 canTouchEvent = false;
-
-                //System.out.println("Trade Place hit");
-
             }
 
             if(hit(gp.currentMap,143,112,"any")){
-//                speak(gp.npc[gp.currentMap][0]);
                 new StuffShop(gp).use();
                 canTouchEvent = false;
-
-                //System.out.println("Stuff Shop hit");
-
             }
 
             // <---------------------Monster Island--------------------->

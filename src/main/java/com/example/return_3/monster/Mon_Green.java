@@ -20,6 +20,7 @@ public class Mon_Green extends Entity {
         name = "Green Slime";
         defaultSpeed = 1;
         speed = defaultSpeed;
+        coin = 5;
         type = type_monster;
         maxLife = 5;
         life = maxLife;
@@ -89,14 +90,5 @@ public class Mon_Green extends Entity {
             case "down": direction = "down"; break;
         }
 
-    }
-
-    public void checkDrop() {
-        //CAST A DIE
-        int i = new Random().nextInt(100) + 1;
-        //SET THE MONSTER DROP
-        if (i < 50) {
-            dropItem(new OBJ_Coin(game));
-        }
     }
 }

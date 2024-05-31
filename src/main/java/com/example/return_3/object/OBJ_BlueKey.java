@@ -11,6 +11,7 @@ public class OBJ_BlueKey extends Entity {
         this.game = game;
         type= type_consumable;
         itemCode=308;
+        exp = 20;
         name= "Blue Key";
         down1=uTool.loadImage("/objects/blueKey.png",game.tileSize,game.tileSize);
         description="this is "+name;

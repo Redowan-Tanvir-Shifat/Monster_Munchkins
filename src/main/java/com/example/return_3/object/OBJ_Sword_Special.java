@@ -10,7 +10,8 @@ public class OBJ_Sword_Special extends Entity {
         name = "Sword_Special";
         down1 = loadImage("/objects/sword_special.png", game.tileSize, game.tileSize);
         attackValue = 5;
-        price = 30;
+        price = 500;
+        exp = 10;
         itemCode = 105;
         attackArea.setWidth(32);
         attackArea.setHeight(28);

@@ -11,15 +11,16 @@ public class OBJ_Fish extends Entity{
         //Type will write here later
         type = type_consumable;
         name ="Fish";
-        value = 12;
+        value = 90;
+        exp = 3;
         itemCode = 207;
         price = 25*value;
         down1 = uTool.loadImage("/objects/food/fish.png",game.tileSize-7,game.tileSize-7);
         description = "This is " + name;
     }
     public boolean use(Entity entity){
-        game.ui.uiMainGame.addMessage("Life gain: "+value);
-        game.player.life += value;
+        game.ui.uiMainGame.addMessage("Life gained: "+(int) (value * 0.10));
+        game.player.life += (int) (value * 0.10);
         return true;
     }
 }
