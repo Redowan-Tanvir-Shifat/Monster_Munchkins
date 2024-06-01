@@ -303,20 +303,31 @@ public class AssetSetter {
         List<ObjectData> objects = new ArrayList<>();
 
         // Add objects to the list
-        addObjectToList(objects, userId, objecttype, Game.gameInstance.sword.itemCode, 93, 118, mapNum);
-        addObjectToList(objects, userId, objecttype, Game.gameInstance.redPotion.itemCode, 144, 149, mapNum);
-        addObjectToList(objects, userId, objecttype, Game.gameInstance.shieldWood.itemCode, 144, 149, mapNum);
-        addObjectToList(objects, userId, objecttype, Game.gameInstance.shieldWood.itemCode, 67, 126, mapNum);
-        addObjectToList(objects, userId, objecttype, Game.gameInstance.speedPotion.itemCode, 71, 119, mapNum);
-        addObjectToList(objects, userId, objecttype, Game.gameInstance.redPotion.itemCode, 85, 128, mapNum);
-        addObjectToList(objects, userId, objecttype, Game.gameInstance.powerPotion.itemCode, 76, 128, mapNum);
-        addObjectToList(objects, userId, objecttype, Game.gameInstance.coin.itemCode, 77, 118, mapNum);
-        addObjectToList(objects, userId, objecttype, Game.gameInstance.coin.itemCode, 47, 128, mapNum);
-        addObjectToList(objects, userId, objecttype, Game.gameInstance.key.itemCode, 93, 110, mapNum);
-        addObjectToList(objects, userId, objecttype, Game.gameInstance.blueKey.itemCode, 68, 37, mapNum);
+//        addObjectToList(objects, userId, objecttype, Game.gameInstance.sword.itemCode, 93, 118, mapNum);
+//        addObjectToList(objects, userId, objecttype, Game.gameInstance.redPotion.itemCode, 144, 149, mapNum);
+//        addObjectToList(objects, userId, objecttype, Game.gameInstance.shieldWood.itemCode, 144, 149, mapNum);
+//        addObjectToList(objects, userId, objecttype, Game.gameInstance.shieldWood.itemCode, 67, 126, mapNum);
+//        addObjectToList(objects, userId, objecttype, Game.gameInstance.speedPotion.itemCode, 71, 119, mapNum);
+//        addObjectToList(objects, userId, objecttype, Game.gameInstance.redPotion.itemCode, 85, 128, mapNum);
+//        addObjectToList(objects, userId, objecttype, Game.gameInstance.powerPotion.itemCode, 76, 128, mapNum);
+//        addObjectToList(objects, userId, objecttype, Game.gameInstance.coin.itemCode, 77, 118, mapNum);
+//        addObjectToList(objects, userId, objecttype, Game.gameInstance.coin.itemCode, 47, 128, mapNum);
+//        addObjectToList(objects, userId, objecttype, Game.gameInstance.chest.itemCode, 19, 121, mapNum);
+
+
+
+        addObjectToList(objects, userId, objecttype, Game.gameInstance.axe.itemCode, 172, 162, mapNum);
         addObjectToList(objects, userId, objecttype, Game.gameInstance.door.itemCode, 28, 161, mapNum);
-        addObjectToList(objects, userId, objecttype, Game.gameInstance.axe.itemCode, 172, 158, mapNum);
-        addObjectToList(objects, userId, objecttype, Game.gameInstance.chest.itemCode, 19, 121, mapNum);
+        addObjectToList(objects, userId, objecttype, Game.gameInstance.blueKey.itemCode, 67, 36, mapNum);
+        addObjectToList(objects, userId, objecttype, Game.gameInstance.key.itemCode, 185, 137, mapNum);
+        addObjectToList(objects, userId, objecttype, Game.gameInstance.chest.itemCode, 93, 110, mapNum); //townhall hill
+        addObjectToList(objects, userId, objecttype, Game.gameInstance.chest.itemCode, 17, 159, mapNum); //gamecenter
+        addObjectToList(objects, userId, objecttype, Game.gameInstance.chest.itemCode, 34, 40, mapNum); //Mother slime island
+        addObjectToList(objects, userId, objecttype, Game.gameInstance.chest.itemCode, 179, 80, mapNum); //hill -> near monster island
+        addObjectToList(objects, userId, objecttype, Game.gameInstance.chest.itemCode, 66, 25, mapNum); //hill
+
+
+
 
         // FOR INTERACTIVE TILE [CuttableTree]
         objecttype = Game.gameInstance.type_interactiveTreeBig;
@@ -794,7 +805,6 @@ public class AssetSetter {
         int[][][] allPositions = {townHall1Positions, townHall2Positions, townHall3Positions, townHall4Positions, townHall5Positions, hill1Positions, hill2Positions, hill3Positions, hill4Positions, mi1positions, mi2positions, mi3positions, noAreaPositions};
 
         List<int[]> allMonsters = new ArrayList<>();
-
         for (int i = 0; i < allPositions.length; i++) {
             for (int[] pos : allPositions[i]) {
                 allMonsters.add(new int[]{userId, monIndex++, pos[0], pos[1], pos[2], pos[3], mapNum});
