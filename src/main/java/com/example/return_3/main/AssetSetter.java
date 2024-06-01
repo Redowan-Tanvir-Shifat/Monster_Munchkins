@@ -55,6 +55,14 @@ public class AssetSetter {
         game.interactNpc[mapNum][i].worldX=game.tileSize*99;
         game.interactNpc[mapNum][i].worldY=game.tileSize*73;
         i++;
+        game.interactNpc[mapNum][i]= new InteractNPC_GlobalChat(game);
+        game.interactNpc[mapNum][i].worldX=game.tileSize*30;
+        game.interactNpc[mapNum][i].worldY=game.tileSize*162;
+        i++;
+        game.interactNpc[mapNum][i]= new InteractNPC_InteractiveTile(game);
+        game.interactNpc[mapNum][i].worldX=game.tileSize*169;
+        game.interactNpc[mapNum][i].worldY=game.tileSize*142;
+        i++;
         game.interactNpc[mapNum][i]= new InteractNPC_FireBallGiver(game);
         game.interactNpc[mapNum][i].worldX=game.tileSize*106;
         game.interactNpc[mapNum][i].worldY=game.tileSize*152;
