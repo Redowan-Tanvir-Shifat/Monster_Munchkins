@@ -443,13 +443,19 @@ public static void removeItemFromInventory(int userId, int itemCode) {
                 int objectType = resultSet.getInt("object_type");
 
                 // Create instance of object based on the type retrieved from the database
-                if (objectType == Game.gameInstance.type_interactiveTIle) {
+                if (objectType == Game.gameInstance.type_interactiveTreeBig) {
                     // Interactive tile
-                    InteractiveTile cuttableTree = new CuttableTree(Game.gameInstance, col, row);
+                    InteractiveTile cuttableTree = new CuttableTreeBig(Game.gameInstance, col, row);
                     Game.gameInstance.iTile[mapNum][i] = cuttableTree;
                     i++;
                     System.out.println("tile number " + i  );
-                } else if (objectType == Game.gameInstance.type_interactiverockBig) {
+                } else if (objectType == Game.gameInstance.type_interactiveTreeSmall) {
+                    // Interactive tile
+                    InteractiveTile breakableBigRock = new CuttableTreeSmall(Game.gameInstance, col, row);
+                    Game.gameInstance.iTile[mapNum][i] = breakableBigRock;
+                    i++;
+                    System.out.println("tile number " + i  );
+                }else if (objectType == Game.gameInstance.type_interactiverockBig) {
                     // Interactive tile
                     InteractiveTile breakableBigRock = new BreakableBigRock(Game.gameInstance, col, row);
                     Game.gameInstance.iTile[mapNum][i] = breakableBigRock;

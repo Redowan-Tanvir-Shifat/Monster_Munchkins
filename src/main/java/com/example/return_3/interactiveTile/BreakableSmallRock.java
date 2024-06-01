@@ -11,6 +11,7 @@ public class BreakableSmallRock extends InteractiveTile{
         super(game,col,row);
         this.game=game;
         life=3;
+        objectType=game.type_interactiverockSmall;
         this.worldX=game.tileSize*col;
         this.worldY=game.tileSize*row;
         down1=loadImage("/tiles_interactive/small_rock.png",game.tileSize,game.tileSize);

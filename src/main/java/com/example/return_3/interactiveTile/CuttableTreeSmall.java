@@ -5,15 +5,16 @@ import com.example.return_3.main.Game;
 import javafx.scene.paint.Color;
 
 
-public class CuttableTree extends InteractiveTile{
+public class CuttableTreeSmall extends InteractiveTile{
     Game game;
-    public CuttableTree(Game game, int col, int row) {
+    public CuttableTreeSmall(Game game, int col, int row) {
         super(game,col,row);
         this.game=game;
         life=3;
+        objectType=game.type_interactiveTreeSmall;
         this.worldX=game.tileSize*col;
         this.worldY=game.tileSize*row;
-        down1=loadImage("/tiles_interactive/drytree_2.png",game.tileSize,game.tileSize);
+        down1=loadImage("/tiles_interactive/drytree_3.png",game.tileSize,game.tileSize);
         destructible=true;
         life=3;
     }
