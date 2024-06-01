@@ -1,10 +1,11 @@
-package com.example.return_3.entity;
+package com.example.return_3.npc;
 
+import com.example.return_3.entity.InteractNPC;
 import com.example.return_3.main.Game;
 
-public class NPC_Wizard extends NPC{
+public class InteractNPC_Wizard extends InteractNPC {
     Game game;
-    public NPC_Wizard(Game game) {
+    public InteractNPC_Wizard(Game game) {
         super(game);
         this.game=game;
         type= type_wizard;

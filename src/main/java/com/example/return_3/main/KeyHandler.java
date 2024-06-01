@@ -2,11 +2,10 @@ package com.example.return_3.main;
 
 
 import com.example.return_3.db.MyJDBC;
-import com.example.return_3.entity.Entity;
 import com.example.return_3.globalChat.Client;
-import com.example.return_3.npc.NPC_FireBallGiver;
-import com.example.return_3.npc.NPC_HelplessWomen;
-import com.example.return_3.npc.NPC_Welcome;
+import com.example.return_3.npc.InteractNPC_FireBallGiver;
+import com.example.return_3.npc.InteractNPC_HelplessWomen;
+import com.example.return_3.npc.InteractNPC_Welcome;
 import com.example.return_3.object.OBJ_Fireball;
 import com.example.return_3.object.OBJ_Sword_Normal;
 import com.example.return_3.shop.StuffShop;
@@ -415,11 +414,11 @@ public class KeyHandler {
 //                game.isDialogueToGameState=true;
                 game.gameState=game.playState;
                 game.ui.uiMainGame.npc.dialogueIndex=0;
-                if(game.ui.uiMainGame.npc instanceof NPC_Welcome ||game.ui.uiMainGame.npc instanceof NPC_HelplessWomen||game.ui.uiMainGame.npc instanceof NPC_FireBallGiver){
+                if(game.ui.uiMainGame.npc instanceof InteractNPC_Welcome ||game.ui.uiMainGame.npc instanceof InteractNPC_HelplessWomen ||game.ui.uiMainGame.npc instanceof InteractNPC_FireBallGiver){
                     game.ui.uiMainGame.npc.onPath=true;
-                    if(game.ui.uiMainGame.npc instanceof NPC_Welcome){
+                    if(game.ui.uiMainGame.npc instanceof InteractNPC_Welcome){
                         game.ui.uiMainGame.npc.dropItem(new OBJ_Sword_Normal(game));
-                    }else if(game.ui.uiMainGame.npc instanceof NPC_FireBallGiver ){
+                    }else if(game.ui.uiMainGame.npc instanceof InteractNPC_FireBallGiver){
                         game.ui.uiMainGame.npc.dropItem(new OBJ_Fireball(game));
                     }
                     game.ui.uiMainGame.npc.npcGoneCommand=true;

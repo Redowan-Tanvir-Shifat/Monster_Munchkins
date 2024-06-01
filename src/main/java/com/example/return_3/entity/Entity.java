@@ -835,15 +835,16 @@ public class Entity {
 
     public void goneAnimation(GraphicsContext gc){
         System.out.println("transition method called");
+        if(alive){
         game.ui.uiMainGame.transitionCounter++;
-
+        }
         // Calculate opacity and ensure it stays within the valid range
         double alpha =  1.0 - ((double) game.ui.uiMainGame.transitionCounter / 40);; // This ensures the value goes from 0.0 to 1.0 over 50 steps
-
         if (alpha >= 0) {
             gc.setGlobalAlpha(alpha);
         }else{
             alive=false;
+            game.ui.uiMainGame.transitionCounter=0;
         }
     }
 

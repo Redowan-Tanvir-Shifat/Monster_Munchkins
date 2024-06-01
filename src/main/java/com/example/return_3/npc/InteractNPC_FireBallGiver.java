@@ -1,12 +1,12 @@
 package com.example.return_3.npc;
 
-import com.example.return_3.entity.NPC;
+import com.example.return_3.entity.InteractNPC;
 import com.example.return_3.main.Game;
 
-public class NPC_FireBallGiver extends NPC {
+public class InteractNPC_FireBallGiver extends InteractNPC {
     Game game;
     int size;
-    public NPC_FireBallGiver(Game game) {
+    public InteractNPC_FireBallGiver(Game game) {
         super(game);
         this.game=game;
         type= type_npc;

@@ -1,19 +1,12 @@
 package com.example.return_3.npc;
 
-import com.example.return_3.entity.NPC;
+import com.example.return_3.entity.InteractNPC;
 import com.example.return_3.main.Game;
-import com.example.return_3.main.UtilityTool;
-import com.example.return_3.object.OBJ_ChatBox;
-import com.example.return_3.object.OBJ_Sword_Normal;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 
-import java.util.Random;
-
-public class NPC_Welcome extends NPC {
+public class InteractNPC_Welcome extends InteractNPC {
     Game game;
     int size;
-    public NPC_Welcome(Game game) {
+    public InteractNPC_Welcome(Game game) {
         super(game);
         this.game=game;
         type= type_npc;

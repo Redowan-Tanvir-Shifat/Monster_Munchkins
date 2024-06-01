@@ -47,27 +47,27 @@ public class AssetSetter {
         int mapNum = 0;
         int i = 0;
 
-        game.interactNpc[mapNum][i]= new NPC_Welcome(game);
+        game.interactNpc[mapNum][i]= new InteractNPC_Welcome(game);
         game.interactNpc[mapNum][i].worldX=game.tileSize*81;
         game.interactNpc[mapNum][i].worldY=game.tileSize*117;
         i++;
-        game.interactNpc[mapNum][i]= new NPC_HelplessWomen(game);
+        game.interactNpc[mapNum][i]= new InteractNPC_HelplessWomen(game);
         game.interactNpc[mapNum][i].worldX=game.tileSize*99;
         game.interactNpc[mapNum][i].worldY=game.tileSize*73;
         i++;
-        game.interactNpc[mapNum][i]= new NPC_FireBallGiver(game);
+        game.interactNpc[mapNum][i]= new InteractNPC_FireBallGiver(game);
         game.interactNpc[mapNum][i].worldX=game.tileSize*106;
         game.interactNpc[mapNum][i].worldY=game.tileSize*152;
         i++;
-        game.interactNpc[mapNum][i]= new NPC_FisherMan(game);
+        game.interactNpc[mapNum][i]= new InteractNPC_FisherMan(game);
         game.interactNpc[mapNum][i].worldX=game.tileSize*188;
         game.interactNpc[mapNum][i].worldY=game.tileSize*113;
         i++;
-        game.interactNpc[mapNum][i]= new NPC_ShipThisSide(game);
+        game.interactNpc[mapNum][i]= new InteractNPC_ShipThisSide(game);
         game.interactNpc[mapNum][i].worldX=game.tileSize*23;
         game.interactNpc[mapNum][i].worldY=game.tileSize*85;
         i++;
-        game.interactNpc[mapNum][i]= new NPC_ShipOtherSide(game);
+        game.interactNpc[mapNum][i]= new InteractNPC_ShipOtherSide(game);
         game.interactNpc[mapNum][i].worldX=game.tileSize*29;
         game.interactNpc[mapNum][i].worldY=game.tileSize*11;
         i++;
@@ -109,16 +109,16 @@ public class AssetSetter {
 
         //set Npc
         i=0;
-        game.npc[mapNum][i] = new NPC_School(game);
+        game.npc[mapNum][i] = new NPC_Universal(game,"girl");
         game.npc[mapNum][i].worldX = game.tileSize * 40;
         game.npc[mapNum][i].worldY = game.tileSize * 134;
 
         i++;
-        game.npc[mapNum][i]= new NPC_Wizard(game);
+        game.npc[mapNum][i]= new NPC_Universal(game,"girl3");
         game.npc[mapNum][i].worldX=game.tileSize*45;
         game.npc[mapNum][i].worldY=game.tileSize*133;
         i++;
-        game.npc[mapNum][i]= new NPC_Pig(game);
+        game.npc[mapNum][i]= new NPC_Universal(game,"pig");
         game.npc[mapNum][i].worldX=game.tileSize*46;
         game.npc[mapNum][i].worldY=game.tileSize*135;
         i++;

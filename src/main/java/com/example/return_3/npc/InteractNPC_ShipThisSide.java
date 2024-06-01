@@ -1,13 +1,13 @@
 package com.example.return_3.npc;
 
-import com.example.return_3.entity.NPC;
+import com.example.return_3.entity.InteractNPC;
 import com.example.return_3.main.Game;
 
-public class NPC_ShipOtherSide extends NPC {
+public class InteractNPC_ShipThisSide extends InteractNPC {
     Game game;
-    public NPC_ShipOtherSide(Game game) {
+    public InteractNPC_ShipThisSide(Game game) {
         super(game);
-        name="otherSide";
+        name="thisSide";
         this.game=game;
         type= type_npc;
         speed=1;
@@ -18,7 +18,7 @@ public class NPC_ShipOtherSide extends NPC {
         solidAreaDefaultX=(int)(solidArea.getX());
         solidAreaDefaultY=(int)(solidArea.getY());
         getNPCImage();
-        setDialogue();
+//        setDialogue();
     }
     public void checkCollision(){
         collisionOn=false;
@@ -52,7 +52,13 @@ public class NPC_ShipOtherSide extends NPC {
     }
     //set dialogue
     public void setDialogue(){
-        dialogue[0]="Welcome hunter. Nice to see you again.";
+        if(Game.gameInstance.shipStarted==true){
+        dialogue[0]="welcome to the boat. Do you want to go the mysterious land again? it will cost you 2000 coins";
+        }else if (Game.gameInstance.shipStarted==false){
+        dialogue[0]="Greetings Hunter. I can help you sail to the mysterious island where the greatest treasures \n" +
+                "and most dangerous monsters lie. But "+"To unlock " +
+                "my ship, we need a special blue key. Unfortunately,\n it was lost somewhere on this island.";
+        }
     }
     public void update(){
         if(type==type_npc){
@@ -82,6 +88,7 @@ public class NPC_ShipOtherSide extends NPC {
         }
     }
     public void speak(){
+        setDialogue();
         game.gameState = game.shipTeleportState;
         game.ui.uiMainGame.npc=this;
         game.ui.uiMainGame.currentDialogue=dialogue[dialogueIndex];
