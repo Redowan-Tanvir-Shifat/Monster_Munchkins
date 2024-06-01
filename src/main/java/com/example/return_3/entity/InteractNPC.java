@@ -123,24 +123,12 @@ public class InteractNPC extends Entity{
             game.ui.uiMainGame.currentDialogue=dialogue[dialogueIndex];
 //             dialogueIndex++;
             switch (game.player.direction){
-                case "up":
-                    direction="down";
-                    break;
-                case "left":
-                    direction="right";
-                    break;
-                case "right":
-                    direction="left";
-                    break;
-                case "down":
-                    direction="up";
-                    break;
+                case "up": direction="down";break;
+                case "left": direction="right";break;
+                case "right": direction="left";break;
+                case "down": direction="up";break;
             }
         }
-
-
-
-
     public void draw(GraphicsContext gc){
         Image image= null;
         int screenX= worldX-game.player.worldX + game.player.screenX;
@@ -159,87 +147,17 @@ public class InteractNPC extends Entity{
 
             switch (direction) {
                 case "up":
-                    if (attacking == false) {
-                        if (spriteNum == 1){
-                            //playerImageView.setImage(up1);
-                            image = up1;
-                        }
-                        if(spriteNum == 2){
-                            image = up2;
-                        }
-                    }
-                    if (attacking == true) {
-                        tempScreenY = screenY - game.tileSize;
-                        if (spriteNum == 1){
-                            image = attackUp1;
-                        }
-                        if(spriteNum == 2){
-                            image = attackUp2;
-                        }
-                    }
-                    break;
+                    if (spriteNum == 1){image = up1;}
+                    else if(spriteNum == 2){image = up2;}break;
                 case "down":
-                    if (attacking == false) {
-                        if (spriteNum == 1){
-
-                            image = down1;
-                        }
-                        if(spriteNum == 2){
-                            image = down2;
-                        }
-                    }
-                    if (attacking == true) {
-                        if (spriteNum == 1){
-
-                            image = attackDown1;
-                        }
-                        if(spriteNum == 2){
-                            image = attackDown2;
-                        }
-                    }
-                    break;
+                    if (spriteNum == 1){image = down1;}
+                    else if(spriteNum == 2){image = down2;}break;
                 case "left":
-                    if (attacking == false) {
-                        if (spriteNum == 1){
-
-                            image = left1;
-                        }
-                        if(spriteNum == 2){
-                            image = left2;
-                        }
-                    }
-                    if (attacking == true) {
-                        tempScreenX = screenX - game.tileSize;
-                        if (spriteNum == 1){
-                            image = attackLeft1;
-                        }
-                        if(spriteNum == 2){
-                            image = attackLeft2;
-                        }
-                    }
-                    break;
+                    if (spriteNum == 1){image = left1;}
+                    else if(spriteNum == 2){image = left2;}break;
                 case "right":
-                    if (attacking == false) {
-                        if (spriteNum == 1){
-
-                            image = right1;
-                        }
-                        if(spriteNum == 2){
-                            image = right2;
-                        }
-                    }
-                    if (attacking == true) {
-                        if (spriteNum == 1){
-
-                            image = attackRight1;
-                        }
-                        if(spriteNum == 2){
-                            image = attackRight2;
-                        }
-                    }
-                    break;
-
-                // Handle other directions similarly
+                    if (spriteNum == 1){image = right1;}
+                    else if(spriteNum == 2){image = right2;}break;
             }
             if(npcGone==true) {
                 goneAnimation(gc);
@@ -268,11 +186,4 @@ public class InteractNPC extends Entity{
         }
 
     }
-    public void draw2(GraphicsContext gc){
-        //super.draw(gc);
-
-
-    }
-
-
 }
