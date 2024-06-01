@@ -318,9 +318,17 @@ public class AssetSetter {
         addObjectToList(objects, userId, objecttype, Game.gameInstance.axe.itemCode, 172, 158, mapNum);
         addObjectToList(objects, userId, objecttype, Game.gameInstance.chest.itemCode, 19, 121, mapNum);
 
-        // FOR INTERACTIVE TILE
-        objecttype = Game.gameInstance.type_interactiveTIle;
-        addInteractiveTilesToList(objects, userId, objecttype, mapNum);
+        // FOR INTERACTIVE TILE [CuttableTree]
+        objecttype = Game.gameInstance.type_interactiveTreeBig;
+        addCuttableTreeBigToList(objects, userId, objecttype, mapNum);
+        objecttype = Game.gameInstance.type_interactiveTreeSmall;
+        addCuttableTreeSmallToList(objects, userId, objecttype, mapNum);
+        // FOR INTERACTIVE TILE [breakableRockBig]
+        objecttype = Game.gameInstance.type_interactiverockBig;
+        addbreakableRockBigToList(objects, userId, objecttype, mapNum);
+        // FOR INTERACTIVE TILE [breakableRockSmall]
+        objecttype = Game.gameInstance.type_interactiverockSmall;
+        addbreakableRockSmallToList(objects, userId, objecttype, mapNum);
 
         // Insert all objects in a single batch
         MyJDBC.addObjectBatch(objects);
@@ -336,20 +344,12 @@ public class AssetSetter {
         objects.add(new ObjectData(userId, objectType, itemCode, col, row, mapNum));
     }
 
-    private static void addInteractiveTilesToList(List<ObjectData> objects, int userId, int objectType, int mapNum) {
+    private static void addCuttableTreeBigToList(List<ObjectData> objects, int userId, int objectType, int mapNum) {
         int itemCode = 0; // Assuming itemCode is 0 for interactive tiles
         int[][] tilePositions = {
-                {53, 142}, {54, 142}, // Add more positions as needed
+                // Add more positions as needed
 
                 // Key Hill Area positions
-                {95, 113}, {97, 113}, {99, 113}, {98, 114}, {101, 114},
-                {97, 115}, {98, 115}, {99, 115}, {100, 115}, {102, 115}, {105, 115},
-                {99, 116}, {100, 116}, {105, 117}, {108, 117}, {108, 118}, {112, 118},
-                {102, 119}, {103, 119}, {107, 119}, {108, 119}, {101, 120}, {102, 120},
-                {107, 120}, {112, 120}, {114, 120}, {116, 120}, {111, 121}, {112, 121},
-                {113, 121}, {115, 121}, {117, 121}, {111, 122}, {113, 122}, {114, 122},
-                {117, 122}, {111, 123}, {115, 123}, {116, 123}, {112, 124}, {113, 124},
-                {114, 124}, {115, 124},
                 // Add more positions as needed
                 //pihi
                 //port Area
@@ -366,6 +366,94 @@ public class AssetSetter {
                 {16, 112},{17, 112},{18, 112},{21, 112},{23, 112},{24, 112},{25, 112},{26, 112},{27, 112},{29, 112},{30, 112},{31, 112},{32, 112},{34, 112},{36, 112},{38, 112},{40, 112},
                 {16, 113},{31, 113},{32, 113},{33, 113},{34, 113},{35, 113},{36, 113},{37, 113},{38, 113},
                 {33, 114}, {35, 114}, {33, 115}, {34, 115}, {35, 115}, {36, 115}, {33, 116}, {34, 116}, {34, 117},
+
+                //Hill
+                {171, 98}, {167, 98}, {166, 98}, {165, 97}, {168, 97}, {170, 96}, {166, 96}, {164, 95}, {167, 95},
+
+                //another Hill
+                {108, 62}, {109, 62}, {109, 63}, {109, 60}, {110, 61}, {110, 62}, {110, 63}, {110, 64}, {111, 64}, {111, 63}, {111, 61}, {111, 60}, {111, 59}, {112, 63}, {112, 62}, {112, 61}, {113, 64}, {113, 61}, {113, 60},
+
+                //another hill
+                {88, 32}, {89, 33}, {89, 32}, {89, 31}, {89, 30}, {89, 29}, {90, 32}, {90, 30}, {90, 29}, {91, 32}, {91, 31}, {91, 30}, {91, 29}, {92, 29}, {92, 30}, {93, 28}, {94, 31}, {95, 29},
+
+
+
+        };
+        for (int[] pos : tilePositions) {
+            objects.add(new ObjectData(userId, objectType, itemCode, pos[0], pos[1], mapNum));
+        }
+    }
+    private static void addCuttableTreeSmallToList(List<ObjectData> objects, int userId, int objectType, int mapNum) {
+        int itemCode = 0; // Assuming itemCode is 0 for interactive tiles
+        int[][] tilePositions = {
+
+                // Key Hill Area positions
+                {95, 113}, {97, 113}, {99, 113}, {98, 114}, {101, 114},
+                {97, 115}, {98, 115}, {99, 115}, {100, 115}, {102, 115}, {105, 115},
+                {99, 116}, {100, 116}, {105, 117}, {108, 117}, {108, 118}, {112, 118},
+                {102, 119}, {103, 119}, {107, 119}, {108, 119}, {101, 120}, {102, 120},
+                {107, 120}, {112, 120}, {114, 120}, {116, 120}, {111, 121}, {112, 121},
+                {113, 121}, {115, 121}, {117, 121}, {111, 122}, {113, 122}, {114, 122},
+                {117, 122}, {111, 123}, {115, 123}, {116, 123}, {112, 124}, {113, 124},
+                {114, 124}, {115, 124},
+                // Add more positions as needed
+
+
+                //key guards
+                {182, 142}, {183, 142}, {184, 142}, {185, 142}, {186, 142},
+                {180, 141}, {181, 141}, {182, 141}, {183, 141}, {184, 141}, {186, 141},
+                {177, 140}, {180, 140}, {179, 140}, {182, 140}, {184, 140}, {186, 140},
+                {186, 139}, {185, 139}, {184, 139}, {183, 139}, {182, 139}, {181, 139}, {180, 139}, {179, 139}, {178, 139}, {175, 139},
+                {177, 138}, {178, 138}, {179, 138}, {181, 138}, {182, 138}, {183, 138},
+                {183, 137}, {173, 137}, {174, 137}, {175, 137}, {176, 137}, {177, 137}, {180, 137}, {181, 137}, {182, 137},
+                {172, 136}, {173, 136}, {174, 136}, {175, 136}, {177, 136}, {180, 136}, {182, 136}, {183, 136},
+                {173, 135}, {174, 135}, {175, 135}, {176, 135}, {177, 135}, {179, 135}, {180, 135}, {181, 135}, {182, 135},
+                {171, 134}, {172, 134}, {173, 134}, {175, 134}, {176, 134}, {177, 134}, {178, 134}, {179, 134}, {180, 134},
+                {171, 133}, {172, 133}, {173, 133}, {174, 133}, {175, 133}, {176, 133}, {177, 133},
+                {172, 132}, {171, 131}, {172, 131}, {170, 130}, {174, 129}, {171, 129},
+
+                //Big Slime entry area
+                {65, 87}, {67, 87}, {68, 86}, {64, 86}, {65, 86}, {66, 86}, {63, 85}, {66, 85}, {69, 85}, {70, 85}, {62, 84}, {69, 84}, {71, 84}, {64, 83}, {67, 83}, {70, 83}, {60, 82}, {62, 82}, {69, 82},{72, 82},
+        };
+        for (int[] pos : tilePositions) {
+            objects.add(new ObjectData(userId, objectType, itemCode, pos[0], pos[1], mapNum));
+        }
+    }
+    private static void addbreakableRockBigToList(List<ObjectData> objects, int userId, int objectType, int mapNum) {
+        int itemCode = 0; // Assuming itemCode is 0 for interactive tiles
+        int[][] tilePositions = {
+                //HILL
+                {53, 55}, {53, 57}, // Add more positions as needed
+                {54, 54}, {54, 55},
+
+                {89, 26}, {91, 26},
+                {90, 25}, {91, 25},
+
+
+                {145, 67}, {143, 62},{143, 63},
+
+
+        };
+        for (int[] pos : tilePositions) {
+            objects.add(new ObjectData(userId, objectType, itemCode, pos[0], pos[1], mapNum));
+        }
+    }
+    private static void addbreakableRockSmallToList(List<ObjectData> objects, int userId, int objectType, int mapNum) {
+        int itemCode = 0; // Assuming itemCode is 0 for interactive tiles
+        int[][] tilePositions = {
+                //Hill
+                {52, 58}, {53, 58}, {54, 58}, // Add more positions as needed
+                {51, 51},{52, 51},{54, 51},{55, 51},
+                {51, 55},{52, 53},{55, 54},
+
+                {89, 25},{90, 26},{92, 26},
+
+                {143, 68},{143, 65},{143, 60},
+                {142, 66}, {142, 62},
+                {144, 61}, {144, 62}, {144, 63}, {144, 66},
+                {145, 61}, {145, 63},
+
+
         };
         for (int[] pos : tilePositions) {
             objects.add(new ObjectData(userId, objectType, itemCode, pos[0], pos[1], mapNum));

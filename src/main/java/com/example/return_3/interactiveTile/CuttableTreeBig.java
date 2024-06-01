@@ -5,31 +5,24 @@ import com.example.return_3.main.Game;
 import javafx.scene.paint.Color;
 
 
-public class BreakableBigRock extends InteractiveTile{
+public class CuttableTreeBig extends InteractiveTile{
     Game game;
-    public BreakableBigRock(Game game, int col, int row) {
+    public CuttableTreeBig(Game game, int col, int row) {
         super(game,col,row);
         this.game=game;
         life=3;
-        objectType=game.type_interactiverockBig;
+        objectType=game.type_interactiveTreeBig;
         this.worldX=game.tileSize*col;
         this.worldY=game.tileSize*row;
-        down1=loadImage("/tiles_interactive/big_rock.png",game.tileSize,game.tileSize);
+        down1=loadImage("/tiles_interactive/drytree_2.png",game.tileSize,game.tileSize);
         destructible=true;
-        life=6;
-        //set solid area for set  collision
-        solidArea.setX(1);
-        solidArea.setY(7);
-        solidArea.setWidth(30);
-        solidArea.setHeight(24);
-        solidAreaDefaultX=(int)(solidArea.getX());
-        solidAreaDefaultY=(int)(solidArea.getY());
+        life=3;
     }
 
 
     public boolean isCorrectItem(Entity entity){
         boolean isCorrectItem=false;
-        if(entity.currentWeapon != null && entity.currentWeapon.type==type_tomahawkAxe){
+        if(entity.currentWeapon != null && entity.currentWeapon.type==type_axe){
             isCorrectItem=true;
         }
         return isCorrectItem;
@@ -43,7 +36,7 @@ public class BreakableBigRock extends InteractiveTile{
 //        return tile;
 //    }
     public Color getParticleColor(){ //this indicates the color of the particle
-        Color color= Color.rgb(51,56,76);
+        Color color= Color.rgb(65,50,30);
         return color;
     }
     public int getParticleSize(){// this indicates the size of the particle

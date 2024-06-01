@@ -6,6 +6,7 @@ import com.example.return_3.main.Game;
 import javafx.scene.canvas.GraphicsContext;
 
 public class InteractiveTile extends Entity {
+    public int objectType;
     Game game;
     public boolean destructible=false;
     public InteractiveTile(Game game, int col, int row) {

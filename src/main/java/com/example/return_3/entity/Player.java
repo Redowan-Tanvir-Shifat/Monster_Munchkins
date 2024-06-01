@@ -625,7 +625,7 @@ public void removeCurrentWeapon() {
                 game.player.checkLevelUp();
                 int row=game.iTile[game.currentMap][i].worldY/game.tileSize;
                 int col=game.iTile[game.currentMap][i].worldX/game.tileSize;
-                MyJDBC.updateObjectDestroyedStatus(playerId,game.currentMap,row,col,game.type_interactiveTIle,true);
+                MyJDBC.updateObjectDestroyedStatus(playerId,game.currentMap,row,col,game.iTile[game.currentMap][i].objectType,true);
                 //thogh we can simply use `null` but we did that code because if we need any destroyed form
                 game.iTile[game.currentMap][i]=game.iTile[game.currentMap][i].getDestryoedForm();
             }
