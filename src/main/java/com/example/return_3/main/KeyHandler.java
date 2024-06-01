@@ -416,15 +416,15 @@ public class KeyHandler {
 //                game.isDialogueToGameState=true;
                 game.gameState=game.playState;
                 game.ui.uiMainGame.npc.dialogueIndex=0;
-                if(game.ui.uiMainGame.npc instanceof InteractNPC_Welcome ||game.ui.uiMainGame.npc instanceof InteractNPC_HelplessWomen ||game.ui.uiMainGame.npc instanceof InteractNPC_FireBallGiver){
+//                if(game.ui.uiMainGame.npc instanceof InteractNPC_Welcome ||game.ui.uiMainGame.npc instanceof InteractNPC_HelplessWomen ||game.ui.uiMainGame.npc instanceof InteractNPC_FireBallGiver){
                     game.ui.uiMainGame.npc.onPath=true;
+                    game.ui.uiMainGame.npc.npcGoneCommand=true;
                     if(game.ui.uiMainGame.npc instanceof InteractNPC_Welcome){
                         game.ui.uiMainGame.npc.dropItem(new OBJ_Sword_Normal(game));
                     }else if(game.ui.uiMainGame.npc instanceof InteractNPC_FireBallGiver){
                         game.ui.uiMainGame.npc.dropItem(new OBJ_Fireball(game));
                     }
-                    game.ui.uiMainGame.npc.npcGoneCommand=true;
-                }
+//                }
             }else{
                 game.ui.uiMainGame.npc.speak();
             }
