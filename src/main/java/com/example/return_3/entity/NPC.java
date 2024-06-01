@@ -83,19 +83,19 @@ public class NPC extends Entity{
             }
 
             //npcGoneCommand==false
-            if( chatOnStatus==true ){
+            if(chatOnStatus){
                 chatCounter++;
                 if (chatCounter <15 ) {
                     chatNum=1;
 
 
-                } else if (chatCounter >=15&& chatCounter<30 ) {
+                } else if (chatCounter<30) {
                     chatNum=2;
 
-                } else if (chatCounter >=30&& chatCounter<45 ) {
+                } else if (chatCounter<45) {
                     chatNum=3;
 
-                } else if (chatCounter >=45&& chatCounter<60 ) {
+                } else if (chatCounter<60) {
                     chatNum=4;
 
                 }else {

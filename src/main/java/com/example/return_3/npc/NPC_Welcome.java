@@ -63,18 +63,31 @@ public class NPC_Welcome extends NPC {
             super.getRandomDirection();
             uTool.areaSetup(this, 80 * size, 116 * size, 8 * size, 5 * size);//88,121
         }
-        if(onPath==true){
-            dropItem(new OBJ_Sword_Normal(game));
-        }
     }
     public void setAction(){
-        if(onPath==true){
-            searchPath(goalCol, goalRow);
-            if(onPath==false){
-                npcGone=true;
-                System.out.println("NPC WORK DONE");
+//        System.out.println(onPath);
+        if (onPath == true) {
+            // Check if stop chasing...
+            checkStopChasingOrNot(game.player, 10, 100);
+            // Search the direction to go...
+            if(npcGoneCommand==false) {
+
+                searchPath(getGoalCol(game.player), getGoalRow(game.player));
+                uTool.areaSetup(this, 80 * size, 116 * size, 8 * size, 5 * size);//88,121
             }
-        } else  {
+            else{
+                searchPath(goalCol, goalRow);
+                if(onPath==false){
+                    npcGone=true;
+                    //                System.out.println("NPC WORK DONE");
+                }
+            }
+            // Check if shoot a projectile...
+        }
+        else {
+            // Check if it starts chasing...
+            checkStartChasingOrNot(game.player, 5, 100);
+            // Get a random direction...
             getRandomDirection();
         }
     }

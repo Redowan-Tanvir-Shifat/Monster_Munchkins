@@ -73,10 +73,8 @@ public class NPC_FireBallGiver extends NPC {
     public void setAction(){
 //        System.out.println(onPath);
         if (onPath == true) {
-
             // Check if stop chasing...
             checkStopChasingOrNot(game.player, 10, 100);
-
             // Search the direction to go...
             if(npcGoneCommand==false) {
 
@@ -90,16 +88,11 @@ public class NPC_FireBallGiver extends NPC {
     //                System.out.println("NPC WORK DONE");
                 }
             }
-
             // Check if shoot a projectile...
-
-
         }
         else {
-
             // Check if it starts chasing...
             checkStartChasingOrNot(game.player, 5, 100);
-
             // Get a random direction...
             getRandomDirection();
         }
