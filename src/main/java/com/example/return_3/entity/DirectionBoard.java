@@ -2,7 +2,7 @@ package com.example.return_3.entity;
 
 import com.example.return_3.main.Game;
 
-public class DirectionBoard extends NPC{
+public class DirectionBoard extends InteractNPC {
     Game game;
     String imgPath;
 

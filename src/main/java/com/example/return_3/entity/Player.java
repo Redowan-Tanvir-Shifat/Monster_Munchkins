@@ -439,8 +439,9 @@ public void removeCurrentWeapon() {
         if(keyHandler.isEnterPressed() == true){
             if(i != 999){
                 //attackCanceled=true;
-
+                if(game.interactNpc[game.currentMap][i].npcGoneCommand==false){
                 game.interactNpc[game.currentMap][i].speak();
+                }
             }
             //gp.playSE(7);
         }

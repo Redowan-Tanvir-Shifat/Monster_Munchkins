@@ -1,24 +1,24 @@
 package com.example.return_3.npc;
 
-import com.example.return_3.entity.NPC;
+import com.example.return_3.entity.InteractNPC;
 import com.example.return_3.main.Game;
 
-public class NPC_ShipThisSide extends NPC {
+public class InteractNPC_FisherMan extends InteractNPC {
     Game game;
-    public NPC_ShipThisSide(Game game) {
+    public InteractNPC_FisherMan(Game game) {
         super(game);
-        name="thisSide";
+        name="Fisher man";
         this.game=game;
         type= type_npc;
-        speed=1;
         solidArea.setX(0);
         solidArea.setY(0);
         solidArea.setWidth(32);
         solidArea.setHeight(32);
         solidAreaDefaultX=(int)(solidArea.getX());
         solidAreaDefaultY=(int)(solidArea.getY());
+//        speed=1;
         getNPCImage();
-//        setDialogue();
+        setDialogue();
     }
     public void checkCollision(){
         collisionOn=false;
@@ -52,13 +52,7 @@ public class NPC_ShipThisSide extends NPC {
     }
     //set dialogue
     public void setDialogue(){
-        if(Game.gameInstance.shipStarted==true){
-        dialogue[0]="welcome to the boat. Do you want to go the mysterious land again? it will cost you 2000 coins";
-        }else if (Game.gameInstance.shipStarted==false){
-        dialogue[0]="Greetings Hunter. I can help you sail to the mysterious island where the greatest treasures \n" +
-                "and most dangerous monsters lie. But "+"To unlock " +
-                "my ship, we need a special blue key. Unfortunately,\n it was lost somewhere on this island.";
-        }
+        dialogue[0]="Ahoy there, traveler! Fancy some fresh fish? I've got the best catch of the day, straight from the sea. \nCare to buy? A good meal can give you the strength to face those nasty monsters!";
     }
     public void update(){
         if(type==type_npc){
@@ -88,8 +82,7 @@ public class NPC_ShipThisSide extends NPC {
         }
     }
     public void speak(){
-        setDialogue();
-        game.gameState = game.shipTeleportState;
+        game.gameState = game.fisheriesState;
         game.ui.uiMainGame.npc=this;
         game.ui.uiMainGame.currentDialogue=dialogue[dialogueIndex];
     }

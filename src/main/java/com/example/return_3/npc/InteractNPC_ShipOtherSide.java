@@ -1,22 +1,22 @@
 package com.example.return_3.npc;
 
-import com.example.return_3.entity.NPC;
+import com.example.return_3.entity.InteractNPC;
 import com.example.return_3.main.Game;
 
-public class NPC_FisherMan extends NPC {
+public class InteractNPC_ShipOtherSide extends InteractNPC {
     Game game;
-    public NPC_FisherMan(Game game) {
+    public InteractNPC_ShipOtherSide(Game game) {
         super(game);
-        name="Fisher man";
+        name="otherSide";
         this.game=game;
         type= type_npc;
+        speed=1;
         solidArea.setX(0);
         solidArea.setY(0);
         solidArea.setWidth(32);
         solidArea.setHeight(32);
         solidAreaDefaultX=(int)(solidArea.getX());
         solidAreaDefaultY=(int)(solidArea.getY());
-//        speed=1;
         getNPCImage();
         setDialogue();
     }
@@ -52,7 +52,7 @@ public class NPC_FisherMan extends NPC {
     }
     //set dialogue
     public void setDialogue(){
-        dialogue[0]="Ahoy there, traveler! Fancy some fresh fish? I've got the best catch of the day, straight from the sea. \nCare to buy? A good meal can give you the strength to face those nasty monsters!";
+        dialogue[0]="Welcome hunter. Nice to see you again.";
     }
     public void update(){
         if(type==type_npc){
@@ -82,7 +82,7 @@ public class NPC_FisherMan extends NPC {
         }
     }
     public void speak(){
-        game.gameState = game.fisheriesState;
+        game.gameState = game.shipTeleportState;
         game.ui.uiMainGame.npc=this;
         game.ui.uiMainGame.currentDialogue=dialogue[dialogueIndex];
     }

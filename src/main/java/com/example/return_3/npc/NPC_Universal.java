@@ -1,14 +1,12 @@
 package com.example.return_3.npc;
 
-import com.example.return_3.entity.NPC;
+import com.example.return_3.entity.Entity;
 import com.example.return_3.main.Game;
-import com.example.return_3.object.OBJ_ChatBox;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 
-
-public class NPC_Universal extends NPC {
+public class NPC_Universal extends Entity {
     Game game;
     String name;
     public NPC_Universal(Game game, String name) {
@@ -20,7 +18,6 @@ public class NPC_Universal extends NPC {
         //type= type_npc;
         speed=(int) (65*game.targetFrameTime);
         getNPCImage();
-        setDialogue();
     }
     public void getNPCImage(){
         int size=game.tileSize-8;
@@ -35,7 +32,7 @@ public class NPC_Universal extends NPC {
     }
     //set dialogue
     public void speak(){
-//        super.speak();
+        //It has no use
     }
     public void checkCollision(){
         collisionOn=false;
@@ -68,5 +65,40 @@ public class NPC_Universal extends NPC {
             spriteCounter = 0;
         }
     }
+
+    public void draw(GraphicsContext gc){
+        Image image= null;
+        int screenX= worldX-game.player.worldX + game.player.screenX;
+        int screenY= worldY-game.player.worldY + game.player.screenY;
+
+
+        //this process is for not drawing the whole world map but the map tiles we needed only
+        if(worldX+ game.tileSize>game.player.worldX-game.player.screenX&&
+                worldX-game.tileSize<game.player.worldX+game.player.screenX&&
+                worldY+ game.tileSize>game.player.worldY-game.player.screenY&&
+                worldY- game.tileSize<game.player.worldY+game.player.screenY
+        ){
+            //temp variable
+            int tempScreenX = screenX;
+            int tempScreenY = screenY;
+
+            switch (direction) {
+                case "up":
+                        if (spriteNum == 1){image = up1;}
+                        else if(spriteNum == 2){image = up2;}break;
+                case "down":
+                        if (spriteNum == 1){image = down1;}
+                        else if(spriteNum == 2){image = down2;}break;
+                case "left":
+                        if (spriteNum == 1){image = left1;}
+                        else if(spriteNum == 2){image = left2;}break;
+                case "right":
+                        if (spriteNum == 1){image = right1;}
+                        else if(spriteNum == 2){image = right2;}break;
+            }
+            gc.drawImage(image,tempScreenX,tempScreenY);
+        }
+    }
+
 }
 

@@ -4,12 +4,11 @@ import com.example.return_3.main.Game;
 import com.example.return_3.object.OBJ_ChatBox;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 
-import java.util.Random;
-
-public class NPC extends Entity{
+public class InteractNPC extends Entity{
     Game game;
-    public NPC(Game game) {
+    public InteractNPC(Game game) {
         super(game);
         this.game=game;
         direction ="down";
@@ -76,26 +75,26 @@ public class NPC extends Entity{
             int yDistance=Math.abs(worldY-game.player.worldY);
             int tileDistance=(xDistance+yDistance)/game.tileSize;
 
-            if(tileDistance<3){
+            if(tileDistance<3 && npcGoneCommand==false){
                 chatOnStatus=true;
             }else{
                 chatOnStatus=false;
             }
 
-
-            if( chatOnStatus==true){
+            //npcGoneCommand==false
+            if(chatOnStatus){
                 chatCounter++;
                 if (chatCounter <15 ) {
                     chatNum=1;
 
 
-                } else if (chatCounter >=15&& chatCounter<30 ) {
+                } else if (chatCounter<30) {
                     chatNum=2;
 
-                } else if (chatCounter >=30&& chatCounter<45 ) {
+                } else if (chatCounter<45) {
                     chatNum=3;
 
-                } else if (chatCounter >=45&& chatCounter<60 ) {
+                } else if (chatCounter<60) {
                     chatNum=4;
 
                 }else {
@@ -124,41 +123,67 @@ public class NPC extends Entity{
             game.ui.uiMainGame.currentDialogue=dialogue[dialogueIndex];
 //             dialogueIndex++;
             switch (game.player.direction){
-                case "up":
-                    direction="down";
-                    break;
-                case "left":
-                    direction="right";
-                    break;
-                case "right":
-                    direction="left";
-                    break;
-                case "down":
-                    direction="up";
-                    break;
+                case "up": direction="down";break;
+                case "left": direction="right";break;
+                case "right": direction="left";break;
+                case "down": direction="up";break;
             }
         }
-
     public void draw(GraphicsContext gc){
-        super.draw(gc);
+        Image image= null;
+        int screenX= worldX-game.player.worldX + game.player.screenX;
+        int screenY= worldY-game.player.worldY + game.player.screenY;
 
-        if(chatOnStatus==true){
-            int screenX= worldX-game.player.worldX + game.player.screenX;
-            int screenY= worldY-game.player.worldY + game.player.screenY;
-            Image image= null;
-            //System.out.println("draw method working");
-            if(chatNum==1){
-                image= new OBJ_ChatBox(game).down1;
-            } else if (chatNum==2) {
-                image= new OBJ_ChatBox(game).up1;
-            }else if(chatNum==3){
-                image= new OBJ_ChatBox(game).left1;
-            } else if (chatNum==4) {
-                image= new OBJ_ChatBox(game).right1;
+
+        //this process is for not drawing the whole world map but the map tiles we needed only
+        if(worldX+ game.tileSize>game.player.worldX-game.player.screenX&&
+                worldX-game.tileSize<game.player.worldX+game.player.screenX&&
+                worldY+ game.tileSize>game.player.worldY-game.player.screenY&&
+                worldY- game.tileSize<game.player.worldY+game.player.screenY
+        ){
+            //temp variable
+            int tempScreenX = screenX;
+            int tempScreenY = screenY;
+
+            switch (direction) {
+                case "up":
+                    if (spriteNum == 1){image = up1;}
+                    else if(spriteNum == 2){image = up2;}break;
+                case "down":
+                    if (spriteNum == 1){image = down1;}
+                    else if(spriteNum == 2){image = down2;}break;
+                case "left":
+                    if (spriteNum == 1){image = left1;}
+                    else if(spriteNum == 2){image = left2;}break;
+                case "right":
+                    if (spriteNum == 1){image = right1;}
+                    else if(spriteNum == 2){image = right2;}break;
             }
-            gc.drawImage(image,screenX,screenY-(game.tileSize/2));
+            if(npcGone==true) {
+                goneAnimation(gc);
+            }
+
+            gc.drawImage(image,tempScreenX,tempScreenY);
+
+            if(chatOnStatus==true){
+                int screenX2= worldX-game.player.worldX + game.player.screenX;
+                int screenY2= worldY-game.player.worldY + game.player.screenY;
+                Image image2= null;
+                //System.out.println("draw method working");
+                if(chatNum==1){
+                    image2= new OBJ_ChatBox(game).down1;
+                } else if (chatNum==2) {
+                    image2= new OBJ_ChatBox(game).up1;
+                }else if(chatNum==3){
+                    image2= new OBJ_ChatBox(game).left1;
+                } else if (chatNum==4) {
+                    image2= new OBJ_ChatBox(game).right1;
+                }
+                gc.drawImage(image2,screenX2,screenY2-(game.tileSize/2));
+            }
+            //<<<<<RESET ALPHA>>>>>
+            gc.setGlobalAlpha(1);
         }
+
     }
-
-
 }
