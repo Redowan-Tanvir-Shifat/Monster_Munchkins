@@ -417,12 +417,12 @@ public class KeyHandler {
                 game.ui.uiMainGame.npc.dialogueIndex=0;
                 if(game.ui.uiMainGame.npc instanceof NPC_Welcome ||game.ui.uiMainGame.npc instanceof NPC_HelplessWomen||game.ui.uiMainGame.npc instanceof NPC_FireBallGiver){
                     game.ui.uiMainGame.npc.onPath=true;
-                    game.ui.uiMainGame.npc.npcGoneCommand=true;
-                    if(game.ui.uiMainGame.npc instanceof NPC_Welcome ){
+                    if(game.ui.uiMainGame.npc instanceof NPC_Welcome){
                         game.ui.uiMainGame.npc.dropItem(new OBJ_Sword_Normal(game));
                     }else if(game.ui.uiMainGame.npc instanceof NPC_FireBallGiver ){
                         game.ui.uiMainGame.npc.dropItem(new OBJ_Fireball(game));
                     }
+                    game.ui.uiMainGame.npc.npcGoneCommand=true;
                 }
             }else{
                 game.ui.uiMainGame.npc.speak();

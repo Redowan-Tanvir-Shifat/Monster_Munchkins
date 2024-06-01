@@ -76,14 +76,14 @@ public class NPC extends Entity{
             int yDistance=Math.abs(worldY-game.player.worldY);
             int tileDistance=(xDistance+yDistance)/game.tileSize;
 
-            if(tileDistance<3){
+            if(tileDistance<3 && npcGoneCommand==false){
                 chatOnStatus=true;
             }else{
                 chatOnStatus=false;
             }
 
-
-            if( chatOnStatus==true){
+            //npcGoneCommand==false
+            if( chatOnStatus==true ){
                 chatCounter++;
                 if (chatCounter <15 ) {
                     chatNum=1;
