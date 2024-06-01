@@ -709,22 +709,26 @@ public void removeCurrentWeapon() {
             Entity selectedItem=inventory.get(itemIndex);
             //We need to fix this type_sword or something else
             if(selectedItem.type==type_sword|| selectedItem.type==type_axe || selectedItem.type==type_specialSword || selectedItem.type==type_fireSword || selectedItem.type == type_iceSword || selectedItem.type == type_tomahawkAxe){
+                game.playSoundEffect(game.soundEffect.equip);
                 currentWeapon=selectedItem;
                 //update the attack method with proper power
                 attack=getAttack();
                 loadPlayerAttackImages();
             }
             if (selectedItem.type == type_fireball) {
+                game.playSoundEffect(game.soundEffect.equip);
                 currentWeapon=selectedItem;
                 System.out.println(currentWeapon.name +" ->"+currentWeapon.mana);
             }
             if(selectedItem.type==type_shield){
+                game.playSoundEffect(game.soundEffect.equip);
                 currentShield=selectedItem;
                 //update the defense method with proper defense power
                 defense=getDefense();
                 loadPlayerGuardImages();
             }
             if(selectedItem.type==type_consumable){
+                game.playSoundEffect(game.soundEffect.consume);
                 //WE are gonna use this later
                 if(selectedItem.use(this)){
                 MyJDBC.removeItemFromInventory(playerId,selectedItem.itemCode);

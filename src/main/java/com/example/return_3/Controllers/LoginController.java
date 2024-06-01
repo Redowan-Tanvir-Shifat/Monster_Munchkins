@@ -38,6 +38,8 @@ public class LoginController {
         if(MyJDBC.checkUsername(username.getText())) {
             Game.gameInstance.user= MyJDBC.validateLogin(username.getText(),password.getText());
             if (Game.gameInstance.user!=null){
+                gameInstance.playSoundEffect(gameInstance.soundEffect.click);
+                failedText.setText("");
                 try {
                     // Write user ID to file to indicate login
                     BufferedWriter writer = new BufferedWriter(new FileWriter("loginStatus.txt"));
@@ -49,31 +51,22 @@ public class LoginController {
                 //Game.showGameScene();
                 gameInstance.startGame();
             }else{
+                gameInstance.playSoundEffect(gameInstance.soundEffect.error);
                 failedText.setText("Please enter correct password!");
             }
         }else {
-            failedText.setText("Please sign up first!");
-        }
-
-
+            gameInstance.playSoundEffect(gameInstance.soundEffect.error);
+            failedText.setText("Username not found!");        }
     }
+
+
+
     public void close(ActionEvent event) {
-//        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-//        alert.setTitle("Exit");
-//        alert.setHeaderText("You are about to exit");
-//        alert.setContentText("Do you want to exit?");
-//
-//        if (alert.showAndWait().get() == ButtonType.OK) {
-//            Game.exitGame();
-//        }
+        gameInstance.playSoundEffect(gameInstance.soundEffect.click);
         Game.exitWithConfirmation();
     }
     public void signUp(ActionEvent event) throws IOException {
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/return_3/signUp.fxml"));
-//        //loader.setController(new MenuController());
-//        Parent root = loader.load();
-//        Scene scene = new Scene(root);
-//        primaryStage.setScene(scene);
+        gameInstance.playSoundEffect(gameInstance.soundEffect.click);
         Game.gameInstance.signUpPage();
 
     }

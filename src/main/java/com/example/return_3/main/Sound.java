@@ -27,6 +27,13 @@ public class Sound {
     public final int spiderSound=30;
     public final int shipWave=31;
     public final int shield = 32;
+    public final int click=33;
+    public final int equip=34;
+    public final int error=35;
+    public final int inventoryClose=36;
+    public final int inventoryOpen=37;
+    public final int messageSend=38;
+    public final int consume=39;
 
 
     public Sound() {
@@ -65,6 +72,15 @@ public class Sound {
         soundUrls[slimeDeathSound]=getClass().getResource("/sound/slimeDeathSound.wav");
         soundUrls[spiderSound]=getClass().getResource("/sound/spiderSound.wav");
         soundUrls[shield] = getClass().getResource("/sound/blocked.wav");
+
+        soundUrls[click] = getClass().getResource("/sound/click.wav");
+        soundUrls[equip] = getClass().getResource("/sound/equip.wav");
+        soundUrls[error] = getClass().getResource("/sound/error.wav");
+        soundUrls[inventoryClose] = getClass().getResource("/sound/inventoryClose.wav");
+        soundUrls[inventoryOpen] = getClass().getResource("/sound/inventoryOpen.wav");
+        soundUrls[messageSend] = getClass().getResource("/sound/messageSend.wav");
+        soundUrls[consume] = getClass().getResource("/sound/consume.wav");
+
     }
 
     public void setFile(int i) {

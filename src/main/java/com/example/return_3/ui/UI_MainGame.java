@@ -772,6 +772,7 @@ public class UI_MainGame {
         if(commandNum==0){
             gc.fillText(">",x-24,y);
             if(game.keyHandler.isEnterPressed()==true){
+                game.playSoundEffect(game.soundEffect.inventoryOpen);
                 subState=1;
             }
         }
@@ -780,6 +781,7 @@ public class UI_MainGame {
         if(commandNum==1){
             gc.fillText(">",x-24,y);
             if(game.keyHandler.isEnterPressed()==true){
+                game.playSoundEffect(game.soundEffect.inventoryOpen);
                 subState=2;
             }
         }
@@ -790,6 +792,7 @@ public class UI_MainGame {
             gc.fillText(">",x-24,y);
             if(game.keyHandler.isEnterPressed()==true){
                 commandNum=0;
+                game.playSoundEffect(game.soundEffect.inventoryClose);
                 game.gameState=game.playState;
 
             }

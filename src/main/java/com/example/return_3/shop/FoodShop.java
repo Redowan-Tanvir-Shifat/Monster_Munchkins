@@ -30,6 +30,7 @@ public class FoodShop extends Shop{
 //        dialogue[0]="He he, so you found me.\nI have some good stuff. Do you want to trade?";
 //    }
     public void use(){
+        game.playSoundEffect(game.soundEffect.inventoryOpen);
         game.gameState= game.tradeState;
         game.ui.uiMainGame.shop=this;
     }

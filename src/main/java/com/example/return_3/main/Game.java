@@ -434,6 +434,7 @@ Image icon;
 
         // Handle button actions
         alert.showAndWait().ifPresent(buttonType -> {
+                gameInstance.playSoundEffect(gameInstance.soundEffect.click);
             if (buttonType == buttonTypeYes) {
                 Platform.exit(); // Exit the application
             }
