@@ -512,40 +512,86 @@ public static void removeItemFromInventory(int userId, int itemCode) {
         }
 
 
+//        try {
+//            Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+//            PreparedStatement preparedStatement = connection.prepareStatement(
+//                    "SELECT tile_col, tile_row FROM Objects " +
+//                            "WHERE user_id = ? AND map_num = ? AND destroyed = TRUE AND item_code= 320"
+//            );
+//            preparedStatement.setInt(1, userId);
+//            preparedStatement.setInt(2, mapNum);
+//            // preparedStatement.setInt(3, objectType);
+//            ResultSet resultSet = preparedStatement.executeQuery();
+//            int i = 0;
+//
+//            int count =0;
+//            // Iterate over the result set and create instances of objects based on type
+//            while (resultSet.next()) {
+//                System.out.println("count: "+count);
+//
+////                int itemCode= resultSet.getInt("item_code");
+//                int col = resultSet.getInt("tile_col");
+//                int row = resultSet.getInt("tile_row");
+////                int objectType = resultSet.getInt("object_type");
+//
+//
+//                        Game.gameInstance.obj[mapNum][oIndex]=new OBJ_Door(Game.gameInstance);
+//                        Game.gameInstance.obj[mapNum][oIndex].down1=Game.gameInstance.obj[mapNum][oIndex].image2;
+//                        Game.gameInstance.obj[mapNum][oIndex].collision=false;
+//                        Game.gameInstance.obj[mapNum][oIndex].destroyed=true;
+//                        Game.gameInstance.obj[mapNum][oIndex].worldX=Game.gameInstance.tileSize*col;
+//                        Game.gameInstance.obj[mapNum][oIndex].worldY=Game.gameInstance.tileSize*row;
+//
+//                    oIndex++;
+//
+//
+//            }
+//            // Close resources
+//            resultSet.close();
+//            preparedStatement.close();
+//            connection.close();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+
+
         try {
             Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT tile_col, tile_row FROM Objects " +
-                            "WHERE user_id = ? AND map_num = ? AND destroyed = TRUE AND item_code= 320"
+                    "SELECT tile_col, tile_row, item_code FROM Objects " +
+                            "WHERE user_id = ? AND map_num = ? AND destroyed = TRUE AND item_code IN (320, 321)"
             );
             preparedStatement.setInt(1, userId);
             preparedStatement.setInt(2, mapNum);
-            // preparedStatement.setInt(3, objectType);
             ResultSet resultSet = preparedStatement.executeQuery();
             int i = 0;
+            int count = 0;
 
-            int count =0;
             // Iterate over the result set and create instances of objects based on type
             while (resultSet.next()) {
-                System.out.println("count: "+count);
+                System.out.println("count: " + count);
 
-//                int itemCode= resultSet.getInt("item_code");
                 int col = resultSet.getInt("tile_col");
                 int row = resultSet.getInt("tile_row");
-//                int objectType = resultSet.getInt("object_type");
+                int itemCode = resultSet.getInt("item_code");
 
+                if (itemCode == 320) {
+                    Game.gameInstance.obj[mapNum][oIndex] = new OBJ_Door(Game.gameInstance);
+                    Game.gameInstance.obj[mapNum][oIndex].collision = false;
+                } else if (itemCode == 321) {
+                    Game.gameInstance.obj[mapNum][oIndex] = new OBJ_Chest(Game.gameInstance);
+                }
 
-                        Game.gameInstance.obj[mapNum][oIndex]=new OBJ_Door(Game.gameInstance);
-                        Game.gameInstance.obj[mapNum][oIndex].down1=Game.gameInstance.obj[mapNum][oIndex].image2;
-                        Game.gameInstance.obj[mapNum][oIndex].collision=false;
-                        Game.gameInstance.obj[mapNum][oIndex].destroyed=true;
-                        Game.gameInstance.obj[mapNum][oIndex].worldX=Game.gameInstance.tileSize*col;
-                        Game.gameInstance.obj[mapNum][oIndex].worldY=Game.gameInstance.tileSize*row;
+                Game.gameInstance.obj[mapNum][oIndex].down1 = Game.gameInstance.obj[mapNum][oIndex].image2;
 
-                    oIndex++;
+                Game.gameInstance.obj[mapNum][oIndex].destroyed = true;
+                Game.gameInstance.obj[mapNum][oIndex].worldX = Game.gameInstance.tileSize * col;
+                Game.gameInstance.obj[mapNum][oIndex].worldY = Game.gameInstance.tileSize * row;
 
-
+                oIndex++;
+                count++;
             }
+
             // Close resources
             resultSet.close();
             preparedStatement.close();
@@ -553,6 +599,9 @@ public static void removeItemFromInventory(int userId, int itemCode) {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+
+
     }
     public static void updateObjectDestroyedStatus(int userId, int mapNum, int row, int col, int objectType, boolean destroyed) {
         try {

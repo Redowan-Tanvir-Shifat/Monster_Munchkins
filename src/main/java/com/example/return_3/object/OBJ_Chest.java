@@ -8,7 +8,6 @@ import com.example.return_3.main.Game;
 public class OBJ_Chest extends Entity {
     Game game;
     Entity loot;
-    boolean opened=false;
     public OBJ_Chest(Game game) {
         super(game);
         this.game = game;
@@ -38,7 +37,7 @@ public class OBJ_Chest extends Entity {
 //
 //        }
         game.gameState=game.messageState;
-        if(opened==false){
+        if(destroyed==false){
             game.playSoundEffect(3);
             StringBuilder sb=new StringBuilder();
             sb.append("You opened the chest and find a ").append(loot.name).append(" !");
@@ -49,9 +48,14 @@ public class OBJ_Chest extends Entity {
                 game.player.inventory.add(loot);
                 MyJDBC.addItemToInventory(game.player.playerId,loot.itemCode);
                 down1 = image2;
-                opened = true;
+                destroyed = true;
                 game.player.exp += game.chest.exp;
                 game.player.checkLevelUp();
+                int row=worldY/game.tileSize;
+                int col=worldX/game.tileSize;
+                MyJDBC.updateObjectDestroyedStatus(game.player.playerId,game.currentMap,row,col,game.type_object,true);
+
+
             }
             game.ui.uiMainGame.currentDialogue=sb.toString();
         }else{

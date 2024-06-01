@@ -6,6 +6,7 @@ import com.example.return_3.main.Game;
 
 public class OBJ_Door extends Entity {
     Game game;
+
     public OBJ_Door(Game game) {
         super(game);
         this.game = game;
