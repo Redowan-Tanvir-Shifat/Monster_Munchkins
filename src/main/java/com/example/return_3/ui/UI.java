@@ -82,6 +82,7 @@ public class UI {
                 uiMainGame.drawMessage();
             }// <-------Message STATE------->
             if (game.gameState == game.messageState) {
+
                 uiMainGame.drawDialogueScreen();
                 uiMainGame.drawMessage();
             }

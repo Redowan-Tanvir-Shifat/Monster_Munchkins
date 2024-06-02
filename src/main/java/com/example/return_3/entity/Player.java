@@ -693,6 +693,7 @@ public void removeCurrentWeapon() {
 
     public void checkLevelUp() {
         if (exp >= nextLevelExp) {
+
             level++;
 //            nextLevelExp = nextLevelExp + 10;   // We will use fibonacci series
             exp = 0;
@@ -702,6 +703,7 @@ public void removeCurrentWeapon() {
 //            defense = getDefense();
 //            game.gameState = game.messageState;
 //            game.ui.uiMainGame.currentDialogue = " Congratulations! \nYou are level in " + level + " now.";
+            game.playSoundEffect(game.soundEffect.levelUp);
             game.gameState = game.levelUpState;
         }
     }
