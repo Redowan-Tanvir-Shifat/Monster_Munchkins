@@ -37,12 +37,13 @@ public class Sound {
     public final int levelUp=40;
     public final int gameOver=41;
     public final int popUp=42;
+    public final int chatType=43;
 
 
     public Sound() {
         // Initialize sound URLs
-        soundUrls[0] = getClass().getResource("/sound/BlueBoyAdventure.wav");
-//        soundUrls[0] = getClass().getResource("/sound/bgMusic.wav");
+//        soundUrls[0] = getClass().getResource("/sound/BlueBoyAdventure.wav");
+        soundUrls[0] = getClass().getResource("/sound/bgMusic.wav");
         soundUrls[1] = getClass().getResource("/sound/coin.wav");
         soundUrls[2] = getClass().getResource("/sound/powerup.wav");
         soundUrls[3] = getClass().getResource("/sound/unlock.wav");
@@ -86,6 +87,7 @@ public class Sound {
         soundUrls[levelUp] = getClass().getResource("/sound/levelUpNew.wav");
         soundUrls[gameOver]= getClass().getResource("/sound/gameOver.wav");
         soundUrls[popUp]=getClass().getResource("/sound/messageState.wav");
+        soundUrls[chatType]=getClass().getResource("/sound/chatType.wav");
 
     }
 
