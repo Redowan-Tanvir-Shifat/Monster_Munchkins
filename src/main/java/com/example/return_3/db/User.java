@@ -9,7 +9,8 @@ public class User {
     private final String  username, password;
 
     private int worldX,worldY, coin, energy,maxEnergy, life,maxLife, exp,nextLevelExp, level,strength,dexterity, bullet,maxBullet;
-    public User(int userId,String  username, String password,int playerCol,int playerRow,int coin,int energy,int maxEnergy,int life,int maxLife, int exp,int nextLevelExp,int level,int strength,int dexterity,int bullet,int maxBullet ){
+    private boolean isShipStarted,npcAxe,npcFireBall,npcMotherSlime,npcWelcome,npcGlobalChat;
+    public User(int userId,String  username, String password,int playerCol,int playerRow,int coin,int energy,int maxEnergy,int life,int maxLife, int exp,int nextLevelExp,int level,int strength,int dexterity,int bullet,int maxBullet ,boolean isShipStarted, boolean npcFireBall, boolean npcGlobalChat, boolean npcMotherSlime, boolean npcWelcome, boolean npcAxe ){
         this.userId=userId;
         this.username=username;
         this.password=password;
@@ -28,6 +29,12 @@ public class User {
         this.dexterity=dexterity;
         this.bullet=bullet;
         this.maxBullet=maxBullet;
+        this.isShipStarted=isShipStarted;
+        this.npcAxe=npcAxe;
+        this.npcWelcome=npcWelcome;
+        this.npcFireBall=npcFireBall;
+        this.npcMotherSlime=npcMotherSlime;
+        this.npcGlobalChat=npcGlobalChat;
 
     }
 

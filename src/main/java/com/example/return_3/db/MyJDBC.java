@@ -98,8 +98,16 @@ public class MyJDBC {
         int maxBullet= resultSet.getInt("maxBullet");
         int worldX= resultSet.getInt("world_x");
         int worldY= resultSet.getInt("world_y");
+        boolean isShipStarted = resultSet.getBoolean("is_ship_started");
+        boolean npcFireball = resultSet.getBoolean("npc_fireball");
+        boolean npcGlobalChat = resultSet.getBoolean("npc_global_chat");
+        boolean npcMotherSlime = resultSet.getBoolean("npc_mother_slime");
+        boolean npcWelcome = resultSet.getBoolean("npc_welcome");
+        boolean npcAxe = resultSet.getBoolean("npc_axe");
+
+        // Return user object
+        return new User(userId, username, password, worldX, worldY, coin, energy, maxEnergy, life, maxLife, exp, nextLevelExp, level, strength, dexterity, bullet, maxBullet, isShipStarted, npcFireball, npcGlobalChat, npcMotherSlime, npcWelcome,npcAxe);
         //return user object
-        return  new User(userId,username,password,worldX,worldY,coin,energy,maxEnergy,life,maxLife,exp,nextLevelExp,level,strength,dexterity,bullet,maxBullet);
     }
 
     public static User getUserData(int userId) {
