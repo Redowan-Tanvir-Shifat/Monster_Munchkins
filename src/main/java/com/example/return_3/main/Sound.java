@@ -34,6 +34,9 @@ public class Sound {
     public final int inventoryOpen=37;
     public final int messageSend=38;
     public final int consume=39;
+    public final int levelUp=40;
+    public final int gameOver=41;
+    public final int popUp=42;
 
 
     public Sound() {
@@ -80,6 +83,9 @@ public class Sound {
         soundUrls[inventoryOpen] = getClass().getResource("/sound/inventoryOpen.wav");
         soundUrls[messageSend] = getClass().getResource("/sound/messageSend.wav");
         soundUrls[consume] = getClass().getResource("/sound/consume.wav");
+        soundUrls[levelUp] = getClass().getResource("/sound/levelUpNew.wav");
+        soundUrls[gameOver]= getClass().getResource("/sound/gameOver.wav");
+        soundUrls[popUp]=getClass().getResource("/sound/messageState.wav");
 
     }
 

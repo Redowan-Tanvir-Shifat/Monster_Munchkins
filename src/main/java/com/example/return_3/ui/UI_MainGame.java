@@ -1289,11 +1289,14 @@ public class UI_MainGame {
             if(npc.name.equals("thisSide")){
                     game.player.direction="down";
                     game.gameState=game.messageState;
-                    currentDialogue="Welcome to the mysterious Island";
+                game.playSoundEffect(game.soundEffect.popUp);
+
+                currentDialogue="Welcome to the mysterious Island";
 
             }else if(npc.name.equals("otherSide")){
                 game.player.direction="down";
                 game.gameState=game.messageState;
+                game.playSoundEffect(game.soundEffect.popUp);
                 currentDialogue="Welcome back to the Monster Island!";
             }else{
                 game.gameState = game.playState;
