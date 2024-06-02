@@ -272,7 +272,7 @@ public class UI_MainGame {
         gc.setFill(Color.rgb(255, 255, 255));
         gc.setFont(largeFontBold);
 
-        int calCoin = (game.player.maxLife - game.player.life) * 5;
+        int calCoin = (game.player.maxLife - game.player.life) * 2;
         text = "You need " + calCoin + " coin to heal yourself.";
         textX = game.tileSize * 8;
         textY = game.tileSize * 6;
@@ -281,7 +281,7 @@ public class UI_MainGame {
             gc.fillText("-->", textX-game.tileSize, textY);
         }
 
-        text = "You need 500 coin to increase 10% of life.";
+        text = "You need 300 coin to increase 10% of life.";
         textX = game.tileSize * 8;
         textY = game.tileSize * 8;
         gc.fillText(text, textX, textY);
@@ -469,9 +469,24 @@ public class UI_MainGame {
         gc.setFill(Color.rgb(255, 255, 255));
         gc.setFont(largeFontBold);
 
-        text = " Congratulations! You've reached Level " + game.player.level + ".\nKeep pushing forward, brave hunter.";
+        if (game.player.level == 3) {
+            text = " Congratulations! You've reached Level " + game.player.level + ".\nKeep pushing forward, brave hunter.\n\nItem unlocked: Special Sword.\nHint: Find Stuff Parts shop";
+        }
+        if (game.player.level == 5) {
+            text = " Congratulations! You've reached Level " + game.player.level + ".\nKeep pushing forward, brave hunter.\n\nItem unlocked: Fireball, Axe, Shield.\nHint: Find Stuff Parts shop";
+        }
+        if (game.player.level == 10) {
+            text = " Congratulations! You've reached Level " + game.player.level + ".\nKeep pushing forward, brave hunter.\n\nItem unlocked: Ice Sword, Tomahawk.\nHint: Find Stuff Parts shop";
+        }
+        if (game.player.level == 12) {
+            text = " Congratulations! You've reached Level " + game.player.level + ".\nKeep pushing forward, brave hunter.\n\nItem unlocked: Fire Sword.\nHint: Find Stuff Parts shop";
+        }
+        if (game.player.level != 3 || game.player.level != 5 || game.player.level !=10 || game.player.level != 12) {
+            text = " Congratulations! You've reached Level " + game.player.level + ".\nKeep pushing forward, brave hunter.";
+        }
+
         textX = getXForCenteredText(text);
-        textY = game.tileSize * 9;
+        textY = game.tileSize * 7;
         gc.fillText(text, textX, textY);
         gc.fillText("", textX-game.tileSize-8, textY);
     }
@@ -850,24 +865,22 @@ public class UI_MainGame {
 
 
             //IF BUY an ITEM
+
+
+
+
+
             if(game.keyHandler.isEnterPressed()==true){
-                if(shop.inventory.get(itemIndex).price>game.player.coin){
-                    subState=0;
-                    game.playSoundEffect(game.soundEffect.popUp);
-                    game.gameState=game.messageState;
-                    currentDialogue="You need more coin to buy that";
-                    drawDialogueScreen();
-                }
-                else if (game.player.inventory.size()==game.player.maxInventorySize) {
-                    subState=0;
-                    game.playSoundEffect(game.soundEffect.popUp);
-                    game.gameState=game.messageState;
-                    currentDialogue="You can not carry any more items";
-                    drawDialogueScreen();
-                }
-                else{
-                    boolean check=checkBuy(shop.inventory.get(itemIndex));
-                    if(check){
+                boolean check=checkBuy(shop.inventory.get(itemIndex));
+                if(check){
+                    if(shop.inventory.get(itemIndex).price>game.player.coin){
+                        subState=0;
+                        game.playSoundEffect(game.soundEffect.popUp);
+                        game.gameState=game.messageState;
+                        currentDialogue="You need more coin to buy that";
+                        drawDialogueScreen();
+                    }
+                    else {
                         int exp=shop.inventory.get(itemIndex).exp;
                         game.player.coin-=shop.inventory.get(itemIndex).price;
                         game.player.exp+=exp;
@@ -876,39 +889,106 @@ public class UI_MainGame {
                         Entity entity= UtilityTool.getInventoryItem(shop.inventory.get(itemIndex).itemCode);
                         game.player.inventory.add(entity);
                         MyJDBC.addItemToInventory(game.player.playerId,shop.inventory.get(itemIndex).itemCode);
-
                     }
-                    else{
+                    if (game.player.inventory.size()==game.player.maxInventorySize) {
                         subState=0;
-                        commandNum=0;
                         game.playSoundEffect(game.soundEffect.popUp);
                         game.gameState=game.messageState;
-                        Entity item =shop.inventory.get(itemIndex);
-                        if(item.type==game.specialSword.type){
-                            currentDialogue="You need to level 3";
-                        }
-                        else if(item.type==game.fireBall.type || item.type==game.axe.type || item.type==game.shieldWood.type){
-                            currentDialogue="You need to level 5";
-                        }
-                        else if(item.type==game.iceSword.type || item.type==game.tomahawkAxe.type) {
-                            currentDialogue="You need to level 10";
-                        }
-                        else if(item.type==game.fireSword.type){
-                            currentDialogue="You need to level 12";
-                        }
-                        else{
-//                            return true;
-                            currentDialogue="You need to more level";
-                        }
-
+                        currentDialogue="You can not carry any more items";
                         drawDialogueScreen();
                     }
+                }
+                else{
+                    subState=0;
+                    commandNum=0;
+                    game.playSoundEffect(game.soundEffect.popUp);
+                    game.gameState=game.messageState;
+                    Entity item =shop.inventory.get(itemIndex);
+                    if(item.type==game.specialSword.type){
+                        currentDialogue="You need to level 3";
+                    }
+                    else if(item.type==game.fireBall.type || item.type==game.axe.type || item.type==game.shieldWood.type){
+                        currentDialogue="You need to level 5";
+                    }
+                    else if(item.type==game.iceSword.type || item.type==game.tomahawkAxe.type) {
+                        currentDialogue="You need to level 10";
+                    }
+                    else if(item.type==game.fireSword.type){
+                        currentDialogue="You need to level 12";
+                    }
+                    else{
+//                            return true;
+                        currentDialogue="You need to more level";
+                    }
 
-
-
-
+                    drawDialogueScreen();
                 }
             }
+
+
+
+
+
+
+//            if(game.keyHandler.isEnterPressed()==true){
+//                if(shop.inventory.get(itemIndex).price>game.player.coin){
+//                    subState=0;
+//                    game.playSoundEffect(game.soundEffect.popUp);
+//                    game.gameState=game.messageState;
+//                    currentDialogue="You need more coin to buy that";
+//                    drawDialogueScreen();
+//                }
+//                else if (game.player.inventory.size()==game.player.maxInventorySize) {
+//                    subState=0;
+//                    game.playSoundEffect(game.soundEffect.popUp);
+//                    game.gameState=game.messageState;
+//                    currentDialogue="You can not carry any more items";
+//                    drawDialogueScreen();
+//                }
+//                else{
+//                    boolean check=checkBuy(shop.inventory.get(itemIndex));
+//                    if(check){
+//                        int exp=shop.inventory.get(itemIndex).exp;
+//                        game.player.coin-=shop.inventory.get(itemIndex).price;
+//                        game.player.exp+=exp;
+//                        game.player.checkLevelUp();
+//                        addMessage("Exp gained: "+exp);
+//                        Entity entity= UtilityTool.getInventoryItem(shop.inventory.get(itemIndex).itemCode);
+//                        game.player.inventory.add(entity);
+//                        MyJDBC.addItemToInventory(game.player.playerId,shop.inventory.get(itemIndex).itemCode);
+//
+//                    }
+//                    else{
+//                        subState=0;
+//                        commandNum=0;
+//                        game.playSoundEffect(game.soundEffect.popUp);
+//                        game.gameState=game.messageState;
+//                        Entity item =shop.inventory.get(itemIndex);
+//                        if(item.type==game.specialSword.type){
+//                            currentDialogue="You need to level 3";
+//                        }
+//                        else if(item.type==game.fireBall.type || item.type==game.axe.type || item.type==game.shieldWood.type){
+//                            currentDialogue="You need to level 5";
+//                        }
+//                        else if(item.type==game.iceSword.type || item.type==game.tomahawkAxe.type) {
+//                            currentDialogue="You need to level 10";
+//                        }
+//                        else if(item.type==game.fireSword.type){
+//                            currentDialogue="You need to level 12";
+//                        }
+//                        else{
+////                            return true;
+//                            currentDialogue="You need to more level";
+//                        }
+//
+//                        drawDialogueScreen();
+//                    }
+//
+//
+//
+//
+//                }
+//            }
         }
     }
 

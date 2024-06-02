@@ -11,17 +11,17 @@ public class OBJ_Berries extends Entity {
         //Type will write here later
         type= type_consumable;
         name="Berries";
-        value = 5;
+        value = 50;
         exp = 3;
         price=value;
 
         itemCode = 203;
         down1 = uTool.loadImage("/objects/food/berries.png",game.tileSize-7,game.tileSize-7);
-        description = "This is "+name;
+        description = "This is " + name + ". It can heal\nyou a little bit.";
     }
     public boolean use(Entity entity){
-        game.ui.uiMainGame.addMessage("Life gained: "+(int) (value * 0.10));
-        game.player.energy += (int) (value * 0.10);
+        game.ui.uiMainGame.addMessage("Life gained: "+(int) (value * 0.30));
+        game.player.energy += (int) (value * 0.30);
         return true;
     }
 }
