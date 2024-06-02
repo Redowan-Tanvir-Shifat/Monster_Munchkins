@@ -421,14 +421,14 @@ public class Entity {
             int i=random.nextInt(100)+1; //we add 1 because otherwise it will catch 0 to 99.. we want to avoid 0 here
             if(i<=25){
                 direction="up";
-            }
-            if(i>25&&i<=50){
+            }else
+            if(i<=50){
                 direction="down";
-            }
-            if(i>50&&i<=75){
+            }else
+            if(i<=75){
                 direction="left";
-            }
-            if(i>75&&i<=100){
+            }else
+            if(i>75){
                 direction="right";
             }
             actionLookCounter=0;

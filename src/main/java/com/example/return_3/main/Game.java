@@ -241,8 +241,8 @@ Image icon;
                 loginPage();
             }
         }
-        primaryStage.setTitle("Powered By return_3;"); //set the title of the stage
-        primaryStage.initStyle(StageStyle.UNDECORATED); //create un decorated style
+        primaryStage.setTitle("Powered By Team Defenders;"); //set the title of the stage
+        //primaryStage.initStyle(StageStyle.UNDECORATED); //create un decorated style
 //        primaryStage.setScene(menuScene);
         primaryStage.show(); //by this show method we are now showing the stage
         //primaryStage.setOnCloseRequest(windowEvent -> exit(primaryStage));
