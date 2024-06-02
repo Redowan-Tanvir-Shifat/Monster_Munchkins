@@ -32,6 +32,7 @@ powerPotion -305
 defensePotion -306
 speedPotion -307
 Blue Key -308
+HugeCoin- 309
 
 door - 320
 chest - 321

@@ -550,6 +550,7 @@ public static void removeItemFromInventory(int userId, int itemCode) {
                         case 306:   entity =new OBJ_DefensePotion(Game.gameInstance);break;
                         case 307:   entity =new OBJ_SpeedPotion(Game.gameInstance);break;
                         case 308:   entity =new OBJ_BlueKey(Game.gameInstance);break;
+                        case 309:   entity =new OBJ_HugeCoin(Game.gameInstance);break;
                         case 320:   entity =new OBJ_Door(Game.gameInstance);break;
                         case 321:   entity =new OBJ_Chest(Game.gameInstance);break;
 //                        case 321:   entity =new OBJ_Chest(Game.gameInstance);break;
