@@ -93,6 +93,54 @@ public class UtilityTool {
         return item;
     }
 
+//    public static boolean isMonUpdate(Entity entity){
+//        Game game=Game.gameInstance;
+//        int x= game.player.worldX;
+//        int y=game.player.worldY;
+//        int width= game.tileSize*34;
+//        int height= game.tileSize*22;
+//
+//        // x=   //col =30 //18  //col =34 row 22
+//
+//        x-=15*game.tileSize;
+//        y-=6*game.tileSize;
+//
+//        x-=2*game.tileSize;
+//        y-=2*game.tileSize;
+//
+//        //check
+//
+//
+//
+//        return false;
+//    }
+
+    public static boolean isMonUpdate(Entity entity) {
+        Game game = Game.gameInstance;
+        int playerX = game.player.worldX;
+        int playerY = game.player.worldY;
+        int tileSize = game.tileSize;
+
+        // Adjust the x and y coordinates based on the player's position and the given offsets
+        int x = playerX - 17 * tileSize; // 15 * tileSize + 2 * tileSize
+        int y = playerY - 8 * tileSize;  // 6 * tileSize + 2 * tileSize
+        int width = tileSize * 34;
+        int height = tileSize * 22;
+
+        // Entity's position
+        int entityX = entity.worldX;
+        int entityY = entity.worldY;
+
+        // Check if the entity's position is within the defined area
+        if (entityX >= x && entityX <= (x + width) && entityY >= y && entityY <= (y + height)) {
+            return true;
+        }
+
+        return false;
+    }
+
+
+
 //    public static void updateItemInventory(
 //
 //    )
