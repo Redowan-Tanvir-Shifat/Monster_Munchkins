@@ -72,6 +72,7 @@ public class InteractNPC_Welcome extends InteractNPC {
                 searchPath(goalCol, goalRow);
                 if(onPath==false){
                     npcGone=true;
+                    game.npcWelcome=true;
                     //                System.out.println("NPC WORK DONE");
                 }
             }

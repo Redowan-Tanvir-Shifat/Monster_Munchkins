@@ -85,6 +85,7 @@ public class InteractNPC_FireBallGiver extends InteractNPC {
                 searchPath(goalCol, goalRow);
                 if(onPath==false){
                     npcGone=true;
+                    game.npcFireball=true;
     //                System.out.println("NPC WORK DONE");
                 }
             }

@@ -22,51 +22,44 @@ public class AssetSetter {
     //setNPC
     //setMonster
     //setInteractiveTile [dry tree, breakable tree, trunk.]
-    public void setObject() {
-        int mapNum = 0; //For map 1  //to create object for map 2 then we need to ser mapNum 2 under the code.
-        int i = 0;
 
-        game.obj[mapNum][16]=new OBJ_Chest(game);
-        game.obj[mapNum][16].worldX=game.tileSize*45;
-        game.obj[mapNum][16].worldY=game.tileSize*144;
-        i=17;
-        game.obj[mapNum][18]=new OBJ_Chest(game);
-        game.obj[mapNum][18].worldX=game.tileSize*43;
-        game.obj[mapNum][18].worldY=game.tileSize*143;
-//        game.obj[mapNum][18]=new OBJ_BlueKey(game);
-//        game.obj[mapNum][18].worldX=game.tileSize*21;
-//        game.obj[mapNum][18].worldY=game.tileSize*103;
-        game.obj[mapNum][19]=new OBJ_BlueKey(game);
-        game.obj[mapNum][19].worldX=game.tileSize*21;
-        game.obj[mapNum][19].worldY=game.tileSize*101;
-        i++;
-
-
-    }
     public void setNPC(){
         int mapNum = 0;
         int i = 0;
 
-        game.interactNpc[mapNum][i]= new InteractNPC_Welcome(game);
-        game.interactNpc[mapNum][i].worldX=game.tileSize*81;
-        game.interactNpc[mapNum][i].worldY=game.tileSize*117;
-        i++;
-        game.interactNpc[mapNum][i]= new InteractNPC_HelplessWomen(game);
-        game.interactNpc[mapNum][i].worldX=game.tileSize*99;
-        game.interactNpc[mapNum][i].worldY=game.tileSize*73;
-        i++;
-        game.interactNpc[mapNum][i]= new InteractNPC_GlobalChat(game);
-        game.interactNpc[mapNum][i].worldX=game.tileSize*30;
-        game.interactNpc[mapNum][i].worldY=game.tileSize*162;
-        i++;
-        game.interactNpc[mapNum][i]= new InteractNPC_InteractiveTile(game);
-        game.interactNpc[mapNum][i].worldX=game.tileSize*169;
-        game.interactNpc[mapNum][i].worldY=game.tileSize*142;
-        i++;
-        game.interactNpc[mapNum][i]= new InteractNPC_FireBallGiver(game);
-        game.interactNpc[mapNum][i].worldX=game.tileSize*106;
-        game.interactNpc[mapNum][i].worldY=game.tileSize*152;
-        i++;
+        //Interact NPC
+        if(!game.npcWelcome){
+            game.interactNpc[mapNum][i]= new InteractNPC_Welcome(game);
+            game.interactNpc[mapNum][i].worldX=game.tileSize*81;
+            game.interactNpc[mapNum][i].worldY=game.tileSize*117;
+            i++;
+        }
+        if (!game.npcMotherSlime) {
+            game.interactNpc[mapNum][i]= new InteractNPC_HelplessWomen(game);
+            game.interactNpc[mapNum][i].worldX=game.tileSize*99;
+            game.interactNpc[mapNum][i].worldY=game.tileSize*73;
+            i++;
+        }
+        if (!game.npcGlobalChat) {
+            game.interactNpc[mapNum][i]= new InteractNPC_GlobalChat(game);
+            game.interactNpc[mapNum][i].worldX=game.tileSize*30;
+            game.interactNpc[mapNum][i].worldY=game.tileSize*162;
+            i++;
+        }
+        if (!game.npcAxe) {
+            game.interactNpc[mapNum][i]= new InteractNPC_InteractiveTile(game);
+            game.interactNpc[mapNum][i].worldX=game.tileSize*169;
+            game.interactNpc[mapNum][i].worldY=game.tileSize*142;
+            i++;
+        }
+
+        if (!game.npcFireball) {
+            game.interactNpc[mapNum][i]= new InteractNPC_FireBallGiver(game);
+            game.interactNpc[mapNum][i].worldX=game.tileSize*106;
+            game.interactNpc[mapNum][i].worldY=game.tileSize*152;
+            i++;
+        }
+
         game.interactNpc[mapNum][i]= new InteractNPC_FisherMan(game);
         game.interactNpc[mapNum][i].worldX=game.tileSize*188;
         game.interactNpc[mapNum][i].worldY=game.tileSize*113;
@@ -114,6 +107,8 @@ public class AssetSetter {
         i++;
 
 
+
+        //
 
         //set Npc
         i=0;

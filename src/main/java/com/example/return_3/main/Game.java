@@ -91,7 +91,7 @@ public class Game extends Application {
     //BOOLEAN
     public final int guidelineScene=2;
 //    public boolean isFirstTime= true;
-    public boolean shipStarted=false;
+
 
 
     //TYPE
@@ -130,8 +130,16 @@ public class Game extends Application {
     public double accumulatedTime=0.0; // accumulated time
     public long lastNanoTime;
 
+    //BOOLEAN VALUES
     public boolean isDialogueToGameState = false;
     public boolean isStartClient = false;
+
+    public  boolean isShipStarted;
+    public  boolean npcFireball;
+    public  boolean npcGlobalChat;
+    public  boolean npcMotherSlime;
+    public  boolean npcAxe;
+    public  boolean npcWelcome;
 
 
     // $$$$$$$$$ INSTANTIATE $$$$$$$$$
@@ -322,7 +330,12 @@ Image icon;
     //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     public void startGame() throws Exception {
         gameStatus=gameMainStatus;
-
+        isShipStarted= user.isShipStarted();
+        npcFireball=user.isNpcFireBall();
+        npcGlobalChat=user.isNpcGlobalChat();
+        npcMotherSlime=user.isNpcMotherSlime();
+        npcAxe=user.isNpcAxe();
+        npcWelcome=user.isNpcWelcome();
         inventoryMap = new HashMap<>();
         inventoryMapAddItem(axe.itemCode, axe);
         inventoryMapAddItem(tomahawkAxe.itemCode, tomahawkAxe);
@@ -351,7 +364,7 @@ Image icon;
          keyHandler= new KeyHandler(this);
         player = new Player(this); // KeyHandler depends on game.scene
         mainGameroot.getChildren().add(mainGameCanvas);
-        assetSetter.setObject();
+//        assetSetter.set();
         assetSetter.setNPC();
         assetSetter.setMonster();
         assetSetter.setInteractiveTile();
@@ -483,10 +496,13 @@ Image icon;
                     }
                 } //Interact NPC UPDATE
                 for(int i=0; i<interactNpc[currentMap].length; i++){
-                    if(interactNpc[currentMap][i] !=null &&UtilityTool.isEntityUpdate(npc[currentMap][i]) ){
+                    if(interactNpc[currentMap][i] !=null  ){
                         if(interactNpc[currentMap][i].alive==true){
-                        interactNpc[currentMap][i].update();
+                            if (UtilityTool.isEntityUpdate(interactNpc[currentMap][i])) {
+                                interactNpc[currentMap][i].update();
+                            }
                         }else  if(interactNpc[currentMap][i].alive==false){
+
                             interactNpc[currentMap][i]=null;
                         }
                     }

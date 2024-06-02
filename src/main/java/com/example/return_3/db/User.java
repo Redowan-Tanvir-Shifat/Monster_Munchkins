@@ -74,6 +74,54 @@ public class User {
         this.coin = coin;
     }
 
+    public boolean isShipStarted() {
+        return isShipStarted;
+    }
+
+    public void setShipStarted(boolean shipStarted) {
+        isShipStarted = shipStarted;
+    }
+
+    public boolean isNpcAxe() {
+        return npcAxe;
+    }
+
+    public void setNpcAxe(boolean npcAxe) {
+        this.npcAxe = npcAxe;
+    }
+
+    public boolean isNpcFireBall() {
+        return npcFireBall;
+    }
+
+    public void setNpcFireBall(boolean npcFireBall) {
+        this.npcFireBall = npcFireBall;
+    }
+
+    public boolean isNpcMotherSlime() {
+        return npcMotherSlime;
+    }
+
+    public void setNpcMotherSlime(boolean npcMotherSlime) {
+        this.npcMotherSlime = npcMotherSlime;
+    }
+
+    public boolean isNpcWelcome() {
+        return npcWelcome;
+    }
+
+    public void setNpcWelcome(boolean npcWelcome) {
+        this.npcWelcome = npcWelcome;
+    }
+
+    public boolean isNpcGlobalChat() {
+        return npcGlobalChat;
+    }
+
+    public void setNpcGlobalChat(boolean npcGlobalChat) {
+        this.npcGlobalChat = npcGlobalChat;
+    }
+
     public void setEnergy(int energy) {
         this.energy = energy;
     }
