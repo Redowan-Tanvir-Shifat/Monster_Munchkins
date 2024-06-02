@@ -23,6 +23,28 @@ public class AssetSetter {
     //setMonster
     //setInteractiveTile [dry tree, breakable tree, trunk.]
 
+    public void setObject() {
+        int mapNum = 0;
+        int i = 16;
+        game.obj[mapNum][i] = new OBJ_Key(game);
+        game.obj[mapNum][i].worldX = game.tileSize*17;
+        game.obj[mapNum][i].worldY = game.tileSize*163;
+        i++;
+        game.obj[mapNum][i] = new OBJ_Chest(game);
+        game.obj[mapNum][i].worldX = game.tileSize*19;
+        game.obj[mapNum][i].worldY = game.tileSize*163;
+        i++;
+        game.obj[mapNum][i] = new OBJ_Chest(game);
+        game.obj[mapNum][i].worldX = game.tileSize*17;
+        game.obj[mapNum][i].worldY = game.tileSize*169;
+        i++;
+        game.obj[mapNum][i] = new OBJ_Chest(game);
+        game.obj[mapNum][i].worldX = game.tileSize*19;
+        game.obj[mapNum][i].worldY = game.tileSize*169;
+        i++;
+
+    }
+
     public void setNPC(){
         int mapNum = 0;
         int i = 0;
@@ -194,6 +216,47 @@ public class AssetSetter {
         game.npc[mapNum][i].worldY=game.tileSize*176;
         i++;
 
+        // Hill area...
+        game.npc[mapNum][i]= new NPC_Universal(game,"oldman");
+        game.npc[mapNum][i].worldX=game.tileSize*81;
+        game.npc[mapNum][i].worldY=game.tileSize*84;
+        i++;
+        game.npc[mapNum][i]= new NPC_Universal(game,"oldman");
+        game.npc[mapNum][i].worldX=game.tileSize*153;
+        game.npc[mapNum][i].worldY=game.tileSize*106;
+        i++;
+        game.npc[mapNum][i]= new NPC_Universal(game,"boy2");
+        game.npc[mapNum][i].worldX=game.tileSize*137;
+        game.npc[mapNum][i].worldY=game.tileSize*99;
+        i++;
+        game.npc[mapNum][i]= new NPC_Universal(game,"girl2");
+        game.npc[mapNum][i].worldX=game.tileSize*83;
+        game.npc[mapNum][i].worldY=game.tileSize*64;
+        i++;
+        game.npc[mapNum][i]= new NPC_Universal(game,"boy");
+        game.npc[mapNum][i].worldX=game.tileSize*104;
+        game.npc[mapNum][i].worldY=game.tileSize*71;
+        i++;
+        game.npc[mapNum][i]= new NPC_Universal(game,"boy");
+        game.npc[mapNum][i].worldX=game.tileSize*66;
+        game.npc[mapNum][i].worldY=game.tileSize*42;
+        i++;
+        game.npc[mapNum][i]= new NPC_Universal(game,"girl");
+        game.npc[mapNum][i].worldX=game.tileSize*41;
+        game.npc[mapNum][i].worldY=game.tileSize*95;
+        i++;
+        game.npc[mapNum][i]= new NPC_Universal(game,"girl");
+        game.npc[mapNum][i].worldX=game.tileSize*53;
+        game.npc[mapNum][i].worldY=game.tileSize*97;
+        i++;
+        game.npc[mapNum][i]= new NPC_Universal(game,"oldman");
+        game.npc[mapNum][i].worldX=game.tileSize*78;
+        game.npc[mapNum][i].worldY=game.tileSize*57;
+        i++;
+        game.npc[mapNum][i]= new NPC_Universal(game,"oldman");
+        game.npc[mapNum][i].worldX=game.tileSize*133;
+        game.npc[mapNum][i].worldY=game.tileSize*71;
+        i++;
     }
     public void setMonster(){
         int mapNum=0;

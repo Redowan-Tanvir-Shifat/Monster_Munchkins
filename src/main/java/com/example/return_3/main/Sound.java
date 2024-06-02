@@ -38,8 +38,8 @@ public class Sound {
 
     public Sound() {
         // Initialize sound URLs
-        soundUrls[0] = getClass().getResource("/sound/BlueBoyAdventure.wav");
-//        soundUrls[0] = getClass().getResource("/sound/bgMusic.wav");
+//        soundUrls[0] = getClass().getResource("/sound/BlueBoyAdventure.wav");
+        soundUrls[0] = getClass().getResource("/sound/bgMusic.wav");
         soundUrls[1] = getClass().getResource("/sound/coin.wav");
         soundUrls[2] = getClass().getResource("/sound/powerup.wav");
         soundUrls[3] = getClass().getResource("/sound/unlock.wav");

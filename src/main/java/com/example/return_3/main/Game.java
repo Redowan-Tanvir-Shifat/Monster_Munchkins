@@ -364,7 +364,7 @@ Image icon;
          keyHandler= new KeyHandler(this);
         player = new Player(this); // KeyHandler depends on game.scene
         mainGameroot.getChildren().add(mainGameCanvas);
-//        assetSetter.set();
+        assetSetter.setObject();
         assetSetter.setNPC();
         assetSetter.setMonster();
         assetSetter.setInteractiveTile();

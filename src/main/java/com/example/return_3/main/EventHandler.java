@@ -221,39 +221,36 @@ public class EventHandler {
             }
 
 
+            // <--------Food Shop------->
             if(hit(gp.currentMap,128,146,"any") || hit(gp.currentMap,129,146,"any")
                 || hit(gp.currentMap,101,146,"any") || hit(gp.currentMap,102,146,"any")) {
                 new FoodShop(gp).use();
                 canTouchEvent = false;
             }
 
+
+            // <------------Stuff Parts------------>
             if(hit(gp.currentMap,143,112,"any")){
                 new StuffShop(gp).use();
                 canTouchEvent = false;
             }
 
-            // <---------------------Monster Island--------------------->
-            if(hit(gp.currentMap,145,35,"up") || hit(gp.currentMap,146,35,"up")){
-                gp.stopMusic();
-                gp.playMusic(15);
+
+            // <---------------------Global chat--------------------->
+            if(hit(gp.currentMap,28,154,"any") || hit(gp.currentMap, 29, 154, "any")){
+                gp.gameState = gp.globalChatState;
             }
-
-            if(hit(gp.currentMap,145,40,"down") || hit(gp.currentMap,146,40,"down")){
-                gp.stopMusic();
-                gp.playMusic(0);
-            }
-
-
-
         }
+
         counter++;
         if(counter > 1800){
             counter=0;
-            if(tl == false){
+            if(!tl){
                 tl = true;
             }
         }
     }
+
 
     public boolean hit(int map, int col, int row, String reqDirection) {
         boolean hit = false;
@@ -267,7 +264,7 @@ public class EventHandler {
                     row * gp.tileSize + eventRect[map][col][row].getY(), eventRect[map][col][row].getWidth(),
                     eventRect[map][col][row].getHeight());
 
-            if (playerArea.intersects(eventRectangle.getBoundsInLocal()) && eventRect[map][col][row].eventDone==false) {
+            if (playerArea.intersects(eventRectangle.getBoundsInLocal()) && !eventRect[map][col][row].eventDone) {
                 if (gp.player.direction.equals(reqDirection) || reqDirection.equals("any")) {
                     hit = true;
                     previousEventX = gp.player.worldX;
@@ -283,23 +280,16 @@ public class EventHandler {
         tempMap = map;
         tempCol = col;
         tempRow = row;
-        gp.gameState=gp.transitionState;
+        gp.gameState = gp.transitionState;
         System.out.println("after teleport record in temp the state is "+gp.gameState);
 
         canTouchEvent = false;
         gp.playSoundEffect(gp.soundEffect.shipWave);
-
-//        gp.currentMap=map;
-//        gp.player.worldX=gp.tileSize*col;
-//        gp.player.worldY=gp.tileSize*row;
-//        previousEventX=gp.player.worldX;
-//        previousEventY=gp.player.worldY;
-
     }
 
     //THis has no usage
     public void speak(Entity entity){
-        if(gp.keyHandler.isEnterPressed()==true){
+        if(gp.keyHandler.isEnterPressed()){
             gp.gameState=gp.dialogueState;
             entity.speak();
         }
