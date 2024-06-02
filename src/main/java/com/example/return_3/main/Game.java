@@ -529,7 +529,13 @@ Image icon;
                             }
                             else {
                                 monster[currentMap][i].checkDrop();
+
                                 monster[currentMap][i] = null;
+                                if(MyJDBC.areAllMonstersDestroyed(player.playerId)){
+                                    System.out.println("Game Over");
+                                    playSoundEffect(soundEffect.gameOver);
+                                    gameState=gameOverState;
+                                }
                             }
                         }
 

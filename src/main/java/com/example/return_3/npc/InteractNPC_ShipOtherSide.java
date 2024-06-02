@@ -82,6 +82,7 @@ public class InteractNPC_ShipOtherSide extends InteractNPC {
         }
     }
     public void speak(){
+        game.playSoundEffect(game.soundEffect.popUp);
         game.gameState = game.shipTeleportState;
         game.ui.uiMainGame.npc=this;
         game.ui.uiMainGame.currentDialogue=dialogue[dialogueIndex];

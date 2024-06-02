@@ -477,6 +477,9 @@ public void removeCurrentWeapon() {
                     int monsterType=game.monster[game.currentMap][i].monster_type;
                     String name= game.monster[game.currentMap][i].name;
                     game.monster[game.currentMap][i].dying = true;
+
+
+
                     if(game.monster[game.currentMap][i] instanceof Mon_Green){
                         game.playSoundEffect(game.soundEffect.slimeDeathSound);
                         System.out.println("green slime died");

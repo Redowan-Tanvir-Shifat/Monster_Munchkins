@@ -18,8 +18,9 @@ public class OBJ_BlueKey extends Entity {
 
     }
     public boolean use(Entity entity) {
-        game.gameState=game.messageState;
         game.playSoundEffect(game.soundEffect.popUp);
+        game.gameState=game.messageState;
+
         int objectIndex=getDetected(entity,game.obj,"door");
         if(objectIndex!=999 &&game.obj[game.currentMap][objectIndex].destroyed!=true){
             game.ui.uiMainGame.currentDialogue="You use the "+name+"and opened the door";

@@ -877,4 +877,35 @@ public static void setMonsters(int userId, int mapNum) {
         }
     }
 
+
+    public static boolean areAllMonstersDestroyed(int userId) {
+        boolean allDestroyed = false;
+        try {
+            // Establish a connection to the database using configuration
+            Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+
+            // Create SQL query
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT COUNT(*) FROM monsters WHERE user_id = ? AND destroyed = FALSE"
+            );
+
+            // Replace the placeholder with the user ID
+            preparedStatement.setInt(1, userId);
+
+            // Execute the query
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                int count = resultSet.getInt(1);
+                // If count is 0, all monsters are destroyed
+                allDestroyed = (count == 0);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return allDestroyed;
+    }
+
+
 }

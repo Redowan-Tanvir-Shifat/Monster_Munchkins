@@ -82,6 +82,7 @@ public class InteractNPC_FisherMan extends InteractNPC {
         }
     }
     public void speak(){
+        game.playSoundEffect(game.soundEffect.popUp);
         game.gameState = game.fisheriesState;
         game.ui.uiMainGame.npc=this;
         game.ui.uiMainGame.currentDialogue=dialogue[dialogueIndex];

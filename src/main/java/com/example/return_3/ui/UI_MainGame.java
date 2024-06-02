@@ -497,7 +497,7 @@ public class UI_MainGame {
         gc.setFill(Color.rgb(255, 255, 255));
         gc.setFont(largeFontBold);
 
-        text = "Congratulations, brave hunter! You have successfully\neliminated all the monsters on the island. The villagers\n are safe once more, thanks to your efforts.\n\n Press Enter to sail to the mysterious island and continue\n your adventure.";
+        text = "Congratulations, brave hunter! You have successfully\neliminated all the monsters on the island. The villagers\n are safe once more, thanks to your efforts.\n\n Press Enter to 'EXIT' the game.";
         textX = game.tileSize * 6;
         textY = game.tileSize * 6;
         gc.fillText(text, textX, textY);
@@ -797,7 +797,7 @@ public class UI_MainGame {
         if(commandNum==0){
             gc.fillText(">",x-24,y);
             if(game.keyHandler.isEnterPressed()==true){
-                //game.playSoundEffect(game.soundEffect.inventoryOpen);
+                game.playSoundEffect(game.soundEffect.popUp);
                 subState=1;
             }
         }
@@ -806,7 +806,7 @@ public class UI_MainGame {
         if(commandNum==1){
             gc.fillText(">",x-24,y);
             if(game.keyHandler.isEnterPressed()==true){
-                //game.playSoundEffect(game.soundEffect.inventoryOpen);
+                game.playSoundEffect(game.soundEffect.popUp);
                 subState=2;
             }
         }
@@ -853,12 +853,14 @@ public class UI_MainGame {
             if(game.keyHandler.isEnterPressed()==true){
                 if(shop.inventory.get(itemIndex).price>game.player.coin){
                     subState=0;
+                    game.playSoundEffect(game.soundEffect.popUp);
                     game.gameState=game.messageState;
                     currentDialogue="You need more coin to buy that";
                     drawDialogueScreen();
                 }
                 else if (game.player.inventory.size()==game.player.maxInventorySize) {
                     subState=0;
+                    game.playSoundEffect(game.soundEffect.popUp);
                     game.gameState=game.messageState;
                     currentDialogue="You can not carry any more items";
                     drawDialogueScreen();
@@ -879,6 +881,7 @@ public class UI_MainGame {
                     else{
                         subState=0;
                         commandNum=0;
+                        game.playSoundEffect(game.soundEffect.popUp);
                         game.gameState=game.messageState;
                         Entity item =shop.inventory.get(itemIndex);
                         if(item.type==game.specialSword.type){
@@ -998,6 +1001,7 @@ public class UI_MainGame {
                 if(game.player.inventory.get(itemIndex)==game.player.currentWeapon||game.player.inventory.get(itemIndex)==game.player.currentShield){
                     commandNum=0;
                     subState=0;
+                    game.playSoundEffect(game.soundEffect.popUp);
                     game.gameState=game.messageState;
                     currentDialogue="you can not sell an equip items";
                 }else{
@@ -1148,6 +1152,7 @@ public class UI_MainGame {
         if(commandNum==0){
             gc.fillText(">",x-24,y);
             if(game.player.keyHandler.isEnterPressed()==true){
+                game.playSoundEffect(game.soundEffect.popUp);
                 game.gameState=game.messageState;
                 if(game.player.coin>=200){
                     game.player.coin-=200;
@@ -1228,6 +1233,7 @@ public class UI_MainGame {
                     }
                 }
                 if(ok==false){
+                    game.playSoundEffect(game.soundEffect.popUp);
                     game.gameState=game.messageState;
                     if(game.isShipStarted==false){
                         currentDialogue="You do not have the Blue Key. The Key is hidden somewhere in the island.";
@@ -1288,6 +1294,7 @@ public class UI_MainGame {
 
             if(npc.name.equals("thisSide")){
                     game.player.direction="down";
+                game.playSoundEffect(game.soundEffect.popUp);
                     game.gameState=game.messageState;
                 game.playSoundEffect(game.soundEffect.popUp);
 
@@ -1295,6 +1302,7 @@ public class UI_MainGame {
 
             }else if(npc.name.equals("otherSide")){
                 game.player.direction="down";
+                game.playSoundEffect(game.soundEffect.popUp);
                 game.gameState=game.messageState;
                 game.playSoundEffect(game.soundEffect.popUp);
                 currentDialogue="Welcome back to the Monster Island!";

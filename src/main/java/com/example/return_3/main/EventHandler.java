@@ -201,20 +201,15 @@ public class EventHandler {
 
             // <--------School (GuideLine)-------->
             if(hit(0,82,144,"any") || hit(0,83,144,"any")){
+                gp.playSoundEffect(gp.soundEffect.popUp);
                 gp.gameState = gp.guidelineState;
-                canTouchEvent = false;
-            }
-
-
-            // <--------Global chat Center-------->
-            if(hit(0,28,154,"any") || hit(0,29,154,"any")){
-                gp.gameState = gp.globalChatState;
                 canTouchEvent = false;
             }
 
 
             // <---------Hospital--------->
             if(hit(gp.currentMap, 154, 135, "any") || hit(0,155,135,"any")) {
+                gp.playSoundEffect(gp.soundEffect.popUp);
                 gp.gameState = gp.hospitalState;
                 canTouchEvent = false;
                 //System.out.println("Hit Hospital");
@@ -224,6 +219,7 @@ public class EventHandler {
             // <--------Food Shop------->
             if(hit(gp.currentMap,128,146,"any") || hit(gp.currentMap,129,146,"any")
                 || hit(gp.currentMap,101,146,"any") || hit(gp.currentMap,102,146,"any")) {
+                gp.playSoundEffect(gp.soundEffect.popUp);
                 new FoodShop(gp).use();
                 canTouchEvent = false;
             }
@@ -231,6 +227,7 @@ public class EventHandler {
 
             // <------------Stuff Parts------------>
             if(hit(gp.currentMap,143,112,"any")){
+                gp.playSoundEffect(gp.soundEffect.popUp);
                 new StuffShop(gp).use();
                 canTouchEvent = false;
             }
@@ -238,7 +235,9 @@ public class EventHandler {
 
             // <---------------------Global chat--------------------->
             if(hit(gp.currentMap,28,154,"any") || hit(gp.currentMap, 29, 154, "any")){
+                gp.playSoundEffect(gp.soundEffect.popUp);
                 gp.gameState = gp.globalChatState;
+                canTouchEvent = false;
             }
         }
 

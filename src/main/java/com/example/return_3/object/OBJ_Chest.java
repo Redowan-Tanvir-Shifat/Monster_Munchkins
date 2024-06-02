@@ -29,7 +29,9 @@ public class OBJ_Chest extends Entity {
         solidAreaDefaultY = (int) solidArea.getY();
     }
     public void interact(){
+        game.playSoundEffect(game.soundEffect.popUp);
         game.gameState = game.messageState;
+
         if(!destroyed){
             game.playSoundEffect(3);
             Random random = new Random();
