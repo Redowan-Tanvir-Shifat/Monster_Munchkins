@@ -72,7 +72,9 @@ public class UI {
 
             // Level up state
             if (game.gameState == game.gameOverState) {
+                //uiMainGame.drawBackGroundGame();
                 uiMainGame.gameOverScreen();
+
             }
 
 

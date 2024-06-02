@@ -410,7 +410,7 @@ public class KeyHandler {
             case ENTER: enterPressed = true; break;
             case SPACE: spacePressed = true; break;
             case V: vKeyPressed = false; break;
-            case C: game.gameState = game.characterState; break;
+            case C: game.gameState = game.gameOverState; break;
                     //game.playSoundEffect(game.soundEffect.inventoryOpen);;break;
             case ESCAPE: game.gameState = game.menuBarState; break;
 

@@ -17,12 +17,6 @@ public class AssetSetter {
         this.game = game;
     }
 
-    //HERE IS SOME METHOD OF
-    //setObject [key, shield, weapon, etc]
-    //setNPC
-    //setMonster
-    //setInteractiveTile [dry tree, breakable tree, trunk.]
-
     public void setObject() {
         int mapNum = 0;
         int i = 16;
@@ -42,14 +36,13 @@ public class AssetSetter {
         game.obj[mapNum][i].worldX = game.tileSize*19;
         game.obj[mapNum][i].worldY = game.tileSize*169;
         i++;
-
     }
 
-    public void setNPC(){
+    public void setNPC() {
         int mapNum = 0;
         int i = 0;
 
-        //Interact NPC
+        // <-------------Interact NPC------------>
         if(!game.npcWelcome){
             game.interactNpc[mapNum][i]= new InteractNPC_Welcome(game);
             game.interactNpc[mapNum][i].worldX=game.tileSize*81;
@@ -94,7 +87,8 @@ public class AssetSetter {
         game.interactNpc[mapNum][i].worldX=game.tileSize*29;
         game.interactNpc[mapNum][i].worldY=game.tileSize*11;
         i++;
-        //Direction
+
+        // <----------Direction-------->
         game.interactNpc[mapNum][i]= new DirectionBoard(game,1);
         game.interactNpc[mapNum][i].worldX=game.tileSize*90;
         game.interactNpc[mapNum][i].worldY=game.tileSize*120;
@@ -129,15 +123,11 @@ public class AssetSetter {
         i++;
 
 
-
-        //
-
-        //set Npc
+        // <---------Set Npc--------->
         i=0;
         game.npc[mapNum][i] = new NPC_Universal(game,"girl");
         game.npc[mapNum][i].worldX = game.tileSize * 40;
         game.npc[mapNum][i].worldY = game.tileSize * 134;
-
         i++;
         game.npc[mapNum][i]= new NPC_Universal(game,"girl3");
         game.npc[mapNum][i].worldX=game.tileSize*45;
@@ -216,7 +206,7 @@ public class AssetSetter {
         game.npc[mapNum][i].worldY=game.tileSize*176;
         i++;
 
-        // Hill area...
+        // <--------Hill Area------>
         game.npc[mapNum][i]= new NPC_Universal(game,"oldman");
         game.npc[mapNum][i].worldX=game.tileSize*81;
         game.npc[mapNum][i].worldY=game.tileSize*84;
@@ -258,129 +248,25 @@ public class AssetSetter {
         game.npc[mapNum][i].worldY=game.tileSize*71;
         i++;
     }
+
+
     public void setMonster(){
-        int mapNum=0;
+        int mapNum = 0;
         MyJDBC.setMonsters(game.player.playerId,mapNum);
     }
 
 
-    //For Interactive Tile
     public void setInteractiveTile(){
-        int mapNum=0;
-//        int i=0;
+        int mapNum = 0;
         MyJDBC.setObjects(game.player.playerId,mapNum);
     }
 
 
-
-//    public static void addObjectToDB(int userId){
-//                //  FOR THE FIRST MAP
-//        int mapNum=0;
-//        int itemCode=0;
-//        // FOR OBJECT
-//        int objecttype= Game.gameInstance.type_object;
-//        MyJDBC.addObject(userId,objecttype,Game.gameInstance.sword.itemCode,93,118,mapNum);
-//        MyJDBC.addObject(userId,objecttype,Game.gameInstance.redPotion.itemCode,144,149,mapNum);
-//        MyJDBC.addObject(userId,objecttype,Game.gameInstance.shieldWood.itemCode,144,149,mapNum);
-//        MyJDBC.addObject(userId,objecttype,Game.gameInstance.shieldWood.itemCode,67,126,mapNum);
-//        MyJDBC.addObject(userId,objecttype,Game.gameInstance.speedPotion.itemCode,71,119,mapNum);
-//        MyJDBC.addObject(userId,objecttype,Game.gameInstance.redPotion.itemCode,85,128,mapNum);
-//        MyJDBC.addObject(userId,objecttype,Game.gameInstance.powerPotion.itemCode,76,128,mapNum);
-//        MyJDBC.addObject(userId,objecttype,Game.gameInstance.coin.itemCode,77,118,mapNum);
-//        MyJDBC.addObject(userId,objecttype,Game.gameInstance.coin.itemCode,47,128,mapNum);
-//        MyJDBC.addObject(userId,objecttype,Game.gameInstance.key.itemCode,93,110,mapNum);
-//        MyJDBC.addObject(userId,objecttype,Game.gameInstance.door.itemCode,28,161,mapNum);
-//        MyJDBC.addObject(userId,objecttype,Game.gameInstance.axe.itemCode,172,158,mapNum);
-//
-//
-//        //FOR INTERACTIVE TILE
-//         objecttype= Game.gameInstance.type_interactiveTIle;
-//
-//        MyJDBC.addObject(userId,objecttype,itemCode,53,142,mapNum);
-//        MyJDBC.addObject(userId,objecttype,itemCode,54,142,mapNum);
-//
-//        // Key Hill Area
-//        MyJDBC.addObject(userId,objecttype,itemCode,95,113,mapNum);
-//        MyJDBC.addObject(userId,objecttype,itemCode,97,113,mapNum);
-//        MyJDBC.addObject(userId,objecttype,itemCode,99,113,mapNum);
-//        MyJDBC.addObject(userId,objecttype,itemCode,98,114,mapNum);
-//        MyJDBC.addObject(userId,objecttype,itemCode,101,114,mapNum);
-//        MyJDBC.addObject(userId,objecttype,itemCode,97,115,mapNum);
-//        MyJDBC.addObject(userId,objecttype,itemCode,98,115,mapNum);
-//        MyJDBC.addObject(userId,objecttype,itemCode,99,115,mapNum);
-//        MyJDBC.addObject(userId,objecttype,itemCode,100,115,mapNum);
-//        MyJDBC.addObject(userId,objecttype,itemCode,102,115,mapNum);
-//        MyJDBC.addObject(userId,objecttype,itemCode,105,115,mapNum);
-//        MyJDBC.addObject(userId,objecttype,itemCode,99,116,mapNum);
-//        MyJDBC.addObject(userId,objecttype,itemCode,100,116,mapNum);
-//        MyJDBC.addObject(userId,objecttype,itemCode,105,117,mapNum);
-//        MyJDBC.addObject(userId,objecttype,itemCode,108,117,mapNum);
-//        MyJDBC.addObject(userId,objecttype,itemCode,108,118,mapNum);
-//        MyJDBC.addObject(userId,objecttype,itemCode,112,118,mapNum);
-//        MyJDBC.addObject(userId,objecttype,itemCode,102,119,mapNum);
-//        MyJDBC.addObject(userId,objecttype,itemCode,103,119,mapNum);
-//        MyJDBC.addObject(userId,objecttype,itemCode,107,119,mapNum);
-//        MyJDBC.addObject(userId,objecttype,itemCode,108,119,mapNum);
-//        MyJDBC.addObject(userId,objecttype,itemCode,101,120,mapNum);
-//        MyJDBC.addObject(userId,objecttype,itemCode,102,120,mapNum);
-//        MyJDBC.addObject(userId,objecttype,itemCode,107,120,mapNum);
-//        MyJDBC.addObject(userId,objecttype,itemCode,112,120,mapNum);
-//        MyJDBC.addObject(userId,objecttype,itemCode,114,120,mapNum);
-//        MyJDBC.addObject(userId,objecttype,itemCode,116,120,mapNum);
-//        MyJDBC.addObject(userId,objecttype,itemCode,111,121,mapNum);
-//        MyJDBC.addObject(userId,objecttype,itemCode,112,121,mapNum);
-//        MyJDBC.addObject(userId,objecttype,itemCode,113,121,mapNum);
-//        MyJDBC.addObject(userId,objecttype,itemCode,115,121,mapNum);
-//        MyJDBC.addObject(userId,objecttype,itemCode,117,121,mapNum);
-//        MyJDBC.addObject(userId,objecttype,itemCode,111,122,mapNum);
-//        MyJDBC.addObject(userId,objecttype,itemCode,113,122,mapNum);
-//        MyJDBC.addObject(userId,objecttype,itemCode,114,122,mapNum);
-//        MyJDBC.addObject(userId,objecttype,itemCode,117,122,mapNum);
-//        MyJDBC.addObject(userId,objecttype,itemCode,111,123,mapNum);
-//        MyJDBC.addObject(userId,objecttype,itemCode,115,123,mapNum);
-//        MyJDBC.addObject(userId,objecttype,itemCode,116,123,mapNum);
-//        MyJDBC.addObject(userId,objecttype,itemCode,112,124,mapNum);
-//        MyJDBC.addObject(userId,objecttype,itemCode,113,124,mapNum);
-//        MyJDBC.addObject(userId,objecttype,itemCode,114,124,mapNum);
-//        MyJDBC.addObject(userId,objecttype,itemCode,115,124,mapNum);
-//
-//
-//
-//
-//
-//
-//        // <---------- MONSTER ---------->
-//
-//
-//        // Adding monsters
-//        addMonsters(userId, mapNum);
-//
-//
-//
-//
-//    }
-
-
     public static void addObjectToDB(int userId) {
-        //  FOR THE FIRST MAP
         int mapNum = 0;
         int objecttype = Game.gameInstance.type_object;
 
         List<ObjectData> objects = new ArrayList<>();
-
-        // Add objects to the list
-//        addObjectToList(objects, userId, objecttype, Game.gameInstance.sword.itemCode, 93, 118, mapNum);
-//        addObjectToList(objects, userId, objecttype, Game.gameInstance.redPotion.itemCode, 144, 149, mapNum);
-//        addObjectToList(objects, userId, objecttype, Game.gameInstance.shieldWood.itemCode, 144, 149, mapNum);
-//        addObjectToList(objects, userId, objecttype, Game.gameInstance.shieldWood.itemCode, 67, 126, mapNum);
-//        addObjectToList(objects, userId, objecttype, Game.gameInstance.speedPotion.itemCode, 71, 119, mapNum);
-//        addObjectToList(objects, userId, objecttype, Game.gameInstance.redPotion.itemCode, 85, 128, mapNum);
-//        addObjectToList(objects, userId, objecttype, Game.gameInstance.powerPotion.itemCode, 76, 128, mapNum);
-//        addObjectToList(objects, userId, objecttype, Game.gameInstance.coin.itemCode, 77, 118, mapNum);
-//        addObjectToList(objects, userId, objecttype, Game.gameInstance.coin.itemCode, 47, 128, mapNum);
-//        addObjectToList(objects, userId, objecttype, Game.gameInstance.chest.itemCode, 19, 121, mapNum);
-
-
 
         addObjectToList(objects, userId, objecttype, Game.gameInstance.axe.itemCode, 172, 162, mapNum);
         addObjectToList(objects, userId, objecttype, Game.gameInstance.door.itemCode, 28, 161, mapNum);
@@ -392,28 +278,24 @@ public class AssetSetter {
         addObjectToList(objects, userId, objecttype, Game.gameInstance.chest.itemCode, 179, 80, mapNum); //hill -> near monster island
         addObjectToList(objects, userId, objecttype, Game.gameInstance.chest.itemCode, 66, 25, mapNum); //hill
 
-
-
-
-        // FOR INTERACTIVE TILE [CuttableTree]
+        // <----------FOR INTERACTIVE TILE [ Dry Tree ]----------->
         objecttype = Game.gameInstance.type_interactiveTreeBig;
         addCuttableTreeBigToList(objects, userId, objecttype, mapNum);
         objecttype = Game.gameInstance.type_interactiveTreeSmall;
         addCuttableTreeSmallToList(objects, userId, objecttype, mapNum);
-        // FOR INTERACTIVE TILE [breakableRockBig]
+
+        // <-----------FOR INTERACTIVE TILE [Breakable RockBig]----------->
         objecttype = Game.gameInstance.type_interactiverockBig;
         addbreakableRockBigToList(objects, userId, objecttype, mapNum);
-        // FOR INTERACTIVE TILE [breakableRockSmall]
+
+        // <-----------FOR INTERACTIVE TILE [Breakable RockSmall]----------->
         objecttype = Game.gameInstance.type_interactiverockSmall;
         addbreakableRockSmallToList(objects, userId, objecttype, mapNum);
 
-        // Insert all objects in a single batch
+        // <-----Insert all objects in a single batch------>
         MyJDBC.addObjectBatch(objects);
 
-        // <---------- MONSTER ---------->
-
-
-        // Adding monsters
+        // <---------- Insert All MONSTERS ---------->
         addMonsters(userId, mapNum);
     }
 
@@ -424,12 +306,6 @@ public class AssetSetter {
     private static void addCuttableTreeBigToList(List<ObjectData> objects, int userId, int objectType, int mapNum) {
         int itemCode = 0; // Assuming itemCode is 0 for interactive tiles
         int[][] tilePositions = {
-                // Add more positions as needed
-
-                // Key Hill Area positions
-                // Add more positions as needed
-                //pihi
-                //port Area
                 {16, 102}, {17, 102}, {19, 102}, {21, 102},
                 {17, 103}, {20, 103}, {23, 103},
                 {16, 104},{17, 104},{18, 104},{20, 104},{21, 104},{24, 104},{27, 104},{28, 104},{29, 104},
@@ -444,27 +320,27 @@ public class AssetSetter {
                 {16, 113},{31, 113},{32, 113},{33, 113},{34, 113},{35, 113},{36, 113},{37, 113},{38, 113},
                 {33, 114}, {35, 114}, {33, 115}, {34, 115}, {35, 115}, {36, 115}, {33, 116}, {34, 116}, {34, 117},
 
-                //Hill
+                // <--------Hill------->
                 {171, 98}, {167, 98}, {166, 98}, {165, 97}, {168, 97}, {170, 96}, {166, 96}, {164, 95}, {167, 95},
 
-                //another Hill
+                // <---------Another Hill---------->
                 {108, 62}, {109, 62}, {109, 63}, {109, 60}, {110, 61}, {110, 62}, {110, 63}, {110, 64}, {111, 64}, {111, 63}, {111, 61}, {111, 60}, {111, 59}, {112, 63}, {112, 62}, {112, 61}, {113, 64}, {113, 61}, {113, 60},
 
-                //another hill
+                // <-----------Another hill----------->
                 {88, 32}, {89, 33}, {89, 32}, {89, 31}, {89, 30}, {89, 29}, {90, 32}, {90, 30}, {90, 29}, {91, 32}, {91, 31}, {91, 30}, {91, 29}, {92, 29}, {92, 30}, {93, 28}, {94, 31}, {95, 29},
-
-
-
         };
+
         for (int[] pos : tilePositions) {
             objects.add(new ObjectData(userId, objectType, itemCode, pos[0], pos[1], mapNum));
         }
     }
+
+
     private static void addCuttableTreeSmallToList(List<ObjectData> objects, int userId, int objectType, int mapNum) {
         int itemCode = 0; // Assuming itemCode is 0 for interactive tiles
         int[][] tilePositions = {
 
-                // Key Hill Area positions
+                // <-------Key Hill Area positions--------->
                 {95, 113}, {97, 113}, {99, 113}, {98, 114}, {101, 114},
                 {97, 115}, {98, 115}, {99, 115}, {100, 115}, {102, 115}, {105, 115},
                 {99, 116}, {100, 116}, {105, 117}, {108, 117}, {108, 118}, {112, 118},
@@ -473,10 +349,8 @@ public class AssetSetter {
                 {113, 121}, {115, 121}, {117, 121}, {111, 122}, {113, 122}, {114, 122},
                 {117, 122}, {111, 123}, {115, 123}, {116, 123}, {112, 124}, {113, 124},
                 {114, 124}, {115, 124},
-                // Add more positions as needed
 
-
-                //key guards
+                // <-------key guards-------->
                 {182, 142}, {183, 142}, {184, 142}, {185, 142}, {186, 142},
                 {180, 141}, {181, 141}, {182, 141}, {183, 141}, {184, 141}, {186, 141},
                 {177, 140}, {180, 140}, {179, 140}, {182, 140}, {184, 140}, {186, 140},
@@ -489,36 +363,37 @@ public class AssetSetter {
                 {171, 133}, {172, 133}, {173, 133}, {174, 133}, {175, 133}, {176, 133}, {177, 133},
                 {172, 132}, {171, 131}, {172, 131}, {170, 130}, {174, 129}, {171, 129},
 
-                //Big Slime entry area
+                // <----------Big Slime entry area---------->
                 {65, 87}, {67, 87}, {68, 86}, {64, 86}, {65, 86}, {66, 86}, {63, 85}, {66, 85}, {69, 85}, {70, 85}, {62, 84}, {69, 84}, {71, 84}, {64, 83}, {67, 83}, {70, 83}, {60, 82}, {62, 82}, {69, 82},{72, 82},
         };
+
         for (int[] pos : tilePositions) {
             objects.add(new ObjectData(userId, objectType, itemCode, pos[0], pos[1], mapNum));
         }
     }
+
+
     private static void addbreakableRockBigToList(List<ObjectData> objects, int userId, int objectType, int mapNum) {
         int itemCode = 0; // Assuming itemCode is 0 for interactive tiles
         int[][] tilePositions = {
-                //HILL
-                {53, 55}, {53, 57}, // Add more positions as needed
+                // <---------HILL--------->
+                {53, 55}, {53, 57},
                 {54, 54}, {54, 55},
-
                 {89, 26}, {91, 26},
                 {90, 25}, {91, 25},
-
-
-                {145, 67}, {143, 62},{143, 63},
-
-
+                {145, 67}, {143, 62},
+                {143, 63}
         };
+
         for (int[] pos : tilePositions) {
             objects.add(new ObjectData(userId, objectType, itemCode, pos[0], pos[1], mapNum));
         }
     }
+
     private static void addbreakableRockSmallToList(List<ObjectData> objects, int userId, int objectType, int mapNum) {
         int itemCode = 0; // Assuming itemCode is 0 for interactive tiles
         int[][] tilePositions = {
-                //Hill
+                // <------------Hill---------->
                 {52, 58}, {53, 58}, {54, 58}, // Add more positions as needed
                 {51, 51},{52, 51},{54, 51},{55, 51},
                 {51, 55},{52, 53},{55, 54},
@@ -528,10 +403,9 @@ public class AssetSetter {
                 {143, 68},{143, 65},{143, 60},
                 {142, 66}, {142, 62},
                 {144, 61}, {144, 62}, {144, 63}, {144, 66},
-                {145, 61}, {145, 63},
-
-
+                {145, 61}, {145, 63}
         };
+
         for (int[] pos : tilePositions) {
             objects.add(new ObjectData(userId, objectType, itemCode, pos[0], pos[1], mapNum));
         }
@@ -640,7 +514,7 @@ public class AssetSetter {
         };
 
 
-        // Town Hall 5
+        // <----------Town Hall 5----------->
         int[][] townHall5Positions = {
                 {entity.type_worm, entity.area_th_5, 38, 170},
                 {entity.type_worm, entity.area_th_5, 58, 170},
@@ -664,7 +538,7 @@ public class AssetSetter {
                 {entity.type_pacman, entity.area_th_5, 18, 179}
         };
 
-        // Hill 1
+        // <---------Hill 1----------->
         int[][] hill1Positions = {
                 {entity.type_worm, entity.area_hill_1, 148, 113},
                 {entity.type_worm, entity.area_hill_1, 184, 113},
@@ -683,7 +557,7 @@ public class AssetSetter {
         };
 
 
-        // Hill 2
+        // <----------Hill 2----------->
         int[][] hill2Positions = {
                 {entity.type_worm, entity.area_hill_2, 102, 89},
                 {entity.type_worm, entity.area_hill_2, 123, 89},
@@ -703,7 +577,7 @@ public class AssetSetter {
                 {entity.type_blueGhost, entity.area_hill_2, 136, 81}
         };
 
-        // Hill 3
+        // <----------Hill 3---------->
         int[][] hill3Positions = {
                 {entity.type_slime, entity.area_hill_3, 44, 73},
                 {entity.type_slime, entity.area_hill_3, 53, 78},
@@ -729,7 +603,7 @@ public class AssetSetter {
 
         };
 
-        // Hill 4
+        // <--------------Hill 4---------------->
         int[][] hill4Positions = {
                 {entity.type_redFly, entity.area_hill_4, 71, 105},
                 {entity.type_redFly, entity.area_hill_4, 29, 100},
@@ -745,7 +619,7 @@ public class AssetSetter {
         };
 
 
-        // Monster Island 1
+        // <------------Monster Island 1------------>
         int[][] mi1positions = {
                 {entity.type_spider, entity.area_mi_1, 110, 19},
                 {entity.type_spider, entity.area_mi_1, 118, 32},
@@ -764,7 +638,7 @@ public class AssetSetter {
                 {entity.type_worm, entity.area_mi_1, 134, 27}
         };
 
-        // Monster Island 2
+        // <-----------Monster Island 2------------->
         int[][] mi2positions = {
                 {entity.type_redOrc, entity.area_mi_2, 151, 17},
                 {entity.type_redOrc, entity.area_mi_2, 166, 21},
@@ -788,7 +662,7 @@ public class AssetSetter {
         };
 
 
-        // Monster Island 3
+        // <----------Monster Island 3---------->
         int[][] mi3positions = {
                 {entity.type_blueGhost, entity.area_mi_3, 182, 49},
 
@@ -847,27 +721,20 @@ public class AssetSetter {
                 {entity.type_redFly, 0, 64, 40},
 
 
-                // Soil area...
+                // <-----Soil area----->
                 {entity.type_sixEyes, 0, 161, 71},
                 {entity.type_sixEyes, 0, 156, 63},
                 {entity.type_sixEyes, 0, 169, 71},
                 {entity.type_sixEyes, 0, 156, 77},
 
 
-                // Port area...
+                // <-----Port area------>
                 {entity.type_sixEyes, 0, 17, 116},
                 {entity.type_blueGhost, 0 , 24, 119},
                 {entity.type_sixEyes, 0, 31, 119},
 
         };
 
-
-
-
-
-
-
-//        int[][][] allPositions = {townHall1Positions,  townHall3Positions,  hill1Positions,  hill3Positions,   mi3positions, noAreaPositions};
         int[][][] allPositions = {townHall1Positions, townHall2Positions, townHall3Positions, townHall4Positions, townHall5Positions, hill1Positions, hill2Positions, hill3Positions, hill4Positions, mi1positions, mi2positions, mi3positions, noAreaPositions};
 
         List<int[]> allMonsters = new ArrayList<>();
@@ -880,14 +747,7 @@ public class AssetSetter {
         MyJDBC.addMonsters(allMonsters);
     }
 
-    //initial adding object in inventory
-//    public static void addInventoryToDB(int userId){
-////Now i declare all item code in an array that i will need.
-//        int itemCode[]=new int[]{101,102,103,104,105,106,107,201,202,203,204,205,206,207,208,303,304,305,306,307};
-//        for(int i=0;i<itemCode.length;i++){
-//            MyJDBC.addInventory(userId,itemCode[i]);
-//        }
-//    }
+
     public static void addInventoryToDB(int userId) {
         int[] itemCodes = new int[]{101, 102, 103, 104, 105, 106, 107,108,109, 201, 202, 203, 204, 205, 206, 207, 208, 303, 304, 305, 306, 307,308};
         MyJDBC.addInventory(userId, itemCodes);
