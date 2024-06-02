@@ -264,7 +264,7 @@ public class KeyHandler {
 
     private void characterState(KeyCode code) {
         if (code == KeyCode.C) {
-            game.playSoundEffect(game.soundEffect.inventoryClose);
+            //game.playSoundEffect(game.soundEffect.inventoryClose);
             game.gameState = game.playState;
         }
         if(code==KeyCode.ENTER){
@@ -401,8 +401,8 @@ public class KeyHandler {
             case ENTER: enterPressed = true; break;
             case SPACE: spacePressed = true; break;
             case V: vKeyPressed = false; break;
-            case C: game.gameState = game.characterState;
-                    game.playSoundEffect(game.soundEffect.inventoryOpen);;break;
+            case C: game.gameState = game.characterState; break;
+                    //game.playSoundEffect(game.soundEffect.inventoryOpen);;break;
             case ESCAPE: game.gameState = game.menuBarState; break;
 
         }
@@ -487,13 +487,13 @@ public class KeyHandler {
         if(game.ui.uiMainGame.subState==1){
             npcInventory(code);
             if(code==KeyCode.ESCAPE){
-                game.playSoundEffect(game.soundEffect.inventoryClose);
+                //game.playSoundEffect(game.soundEffect.inventoryClose);
                 game.ui.uiMainGame.subState=0;
             }
         }if(game.ui.uiMainGame.subState==2){
             playerInventory(code);
             if(code==KeyCode.ESCAPE){
-                game.playSoundEffect(game.soundEffect.inventoryClose);
+                //game.playSoundEffect(game.soundEffect.inventoryClose);
                 game.ui.uiMainGame.subState=0;
             }
         }

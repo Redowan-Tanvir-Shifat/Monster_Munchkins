@@ -341,10 +341,10 @@ public class AssetSetter {
         objecttype = Game.gameInstance.type_interactiveTreeBig;
         addCuttableTreeBigToList(objects, userId, objecttype, mapNum);
         objecttype = Game.gameInstance.type_interactiveTreeSmall;
-        //addCuttableTreeSmallToList(objects, userId, objecttype, mapNum);
+        addCuttableTreeSmallToList(objects, userId, objecttype, mapNum);
         // FOR INTERACTIVE TILE [breakableRockBig]
         objecttype = Game.gameInstance.type_interactiverockBig;
-        //addbreakableRockBigToList(objects, userId, objecttype, mapNum);
+        addbreakableRockBigToList(objects, userId, objecttype, mapNum);
         // FOR INTERACTIVE TILE [breakableRockSmall]
         objecttype = Game.gameInstance.type_interactiverockSmall;
         addbreakableRockSmallToList(objects, userId, objecttype, mapNum);
@@ -810,7 +810,7 @@ public class AssetSetter {
 
 
 //        int[][][] allPositions = {townHall1Positions,  townHall3Positions,  hill1Positions,  hill3Positions,   mi3positions, noAreaPositions};
-        int[][][] allPositions = {townHall1Positions, townHall2Positions, townHall3Positions, townHall4Positions, townHall5Positions, hill1Positions, hill2Positions, hill3Positions, hill4Positions, mi1positions, mi2positions, mi3positions, noAreaPositions};
+        int[][][] allPositions = {townHall1Positions};
 
         List<int[]> allMonsters = new ArrayList<>();
         for (int i = 0; i < allPositions.length; i++) {
