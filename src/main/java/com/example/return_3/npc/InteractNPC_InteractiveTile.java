@@ -84,6 +84,7 @@ public class InteractNPC_InteractiveTile extends InteractNPC {
                 searchPath(goalCol, goalRow);
                 if(onPath==false){
                     npcGone=true;
+                    game.npcAxe=true;
     //                System.out.println("NPC WORK DONE");
                 }
             }

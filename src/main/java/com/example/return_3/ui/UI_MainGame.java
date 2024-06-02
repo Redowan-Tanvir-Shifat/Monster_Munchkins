@@ -444,9 +444,8 @@ public class UI_MainGame {
         textX = getXForCenteredText(text);
         textY = game.tileSize * 9;
         gc.fillText(text, textX, textY);
-        if (commandNum == 0) {
-            gc.fillText("-->", textX-game.tileSize-8, textY);
-        }
+        gc.fillText("-->", textX-game.tileSize-8, textY);
+
     }
     public void levelUpScreen() {
         // Create a Frame...
@@ -474,9 +473,35 @@ public class UI_MainGame {
         textX = getXForCenteredText(text);
         textY = game.tileSize * 9;
         gc.fillText(text, textX, textY);
-        if (commandNum == 0) {
-            gc.fillText("", textX-game.tileSize-8, textY);
-        }
+        gc.fillText("", textX-game.tileSize-8, textY);
+    }
+    public void gameOverScreen() {
+        // Create a Frame...
+        final int frameX = game.tileSize * 5;
+        final int frameY = game.tileSize * 2;
+        final int frameWidth = game.tileSize * 20;
+        final int frameHeight = game.tileSize * 14;
+
+        Color c = Color.rgb(255, 209, 184);
+        drawSubWindow(frameX, frameY, frameWidth, frameHeight);
+
+        gc.setFont(titleFont);
+        String text = "Monster MunchKins";
+        int textX = getXForCenteredText(text);
+        int textY = frameY + game.tileSize *2;
+
+        gc.setFill(Color.rgb(255, 255, 255));
+        gc.fillText(text, textX, textY);
+
+        // Menu...
+        gc.setFill(Color.rgb(255, 255, 255));
+        gc.setFont(largeFontBold);
+
+        text = "Congratulations, brave hunter! You have successfully\neliminated all the monsters on the island. The villagers\n are safe once more, thanks to your efforts.\n\n Press Enter to sail to the mysterious island and continue\n your adventure.";
+        textX = game.tileSize * 6;
+        textY = game.tileSize * 6;
+        gc.fillText(text, textX, textY);
+        gc.fillText("", textX-game.tileSize-8, textY);
     }
 
     public void drawCharacterScreen() {
@@ -1173,7 +1198,7 @@ public class UI_MainGame {
     gc.setFill(darkDarkCream);
     x += game.tileSize;
     y += game.tileSize;
-    if(game.shipStarted==false){
+    if(game.isShipStarted==false){
     gc.fillText("Do you got the Blue Key?",x,y);
     }else {
     gc.fillText("Do you want to go?",x,y);
@@ -1186,7 +1211,7 @@ public class UI_MainGame {
 
             if(npc.name.equals("thisSide")){
                 Boolean ok = false;
-                if(game.shipStarted==false){
+                if(game.isShipStarted==false){
                     for(int i =0;i<game.player.inventory.size();i++){
                         if(game.player.inventory.get(i) instanceof OBJ_BlueKey){
                             game.eventHandler.teleport(game.currentMap,27,11);
@@ -1197,23 +1222,23 @@ public class UI_MainGame {
                         }
                     }
 
-                }else if(game.shipStarted==true){
+                }else if(game.isShipStarted==true){
                     if(game.player.coin>=2000){
                         ok=true;
                     }
                 }
                 if(ok==false){
                     game.gameState=game.messageState;
-                    if(game.shipStarted==false){
+                    if(game.isShipStarted==false){
                         currentDialogue="You do not have the Blue Key. The Key is hidden somewhere in the island.";
-                    }else if(game.shipStarted==true){
+                    }else if(game.isShipStarted==true){
                         currentDialogue="You do not have enough coin";
                     }
                 }else if(ok==true){
                     game.eventHandler.teleport(game.currentMap,27,11);
-                    if(game.shipStarted==false) {
-                        game.shipStarted = true;
-                    }else if(game.shipStarted==true){
+                    if(game.isShipStarted==false) {
+                        game.isShipStarted = true;
+                    }else if(game.isShipStarted==true){
                         game.player.coin-=2000;
                     }
                 }
@@ -1229,7 +1254,7 @@ public class UI_MainGame {
     if(commandNum==1){
         gc.fillText(">",x-24,y);
         if(game.keyHandler.isEnterPressed()==true){
-            if(game.shipStarted==false){
+            if(game.isShipStarted==false){
             game.gameState=game.messageState;
             currentDialogue="Your mission is to find the blue key. It is said to be hidden deep within the island, guarded by fearsome \ncreatures." +
                     "Once you find the blue key, bring it back to me. With it, we can set sail to the mysterious island \nand uncover its secrets together." +

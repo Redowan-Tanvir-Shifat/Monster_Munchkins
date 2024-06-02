@@ -103,7 +103,11 @@ public class KeyHandler {
         // <------------Pause State---------->
         else if (game.gameState == game.pauseState) {
                 pauseState(code);
+        }
 
+        // <------------Pause State---------->
+        else if (game.gameState == game.gameOverState) {
+                gameOverState(code);
         }
 
         // <------------Level up State---------->
@@ -375,7 +379,12 @@ public class KeyHandler {
 
     private void pauseState(KeyCode code) {
         if (code == KeyCode.ENTER) {
-                game.gameState = game.playState;
+            game.gameState = game.playState;
+        }
+    }
+    private void gameOverState(KeyCode code) {
+        if (code == KeyCode.ENTER) {
+            game.gameState = game.playState;
         }
     }
 

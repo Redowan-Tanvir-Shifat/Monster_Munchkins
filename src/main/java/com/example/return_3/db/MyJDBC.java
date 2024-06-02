@@ -13,6 +13,7 @@ import java.util.List;
 
 //JDBC class is used to interact with our MYSQL database to perform activites such as retrieving and updatin our db
 public class MyJDBC {
+
     //database configuration
     private static final String DB_URL ="jdbc:mysql://127.0.0.1:3306/game";
     private static final String DB_USERNAME= "root";
@@ -189,7 +190,9 @@ public class MyJDBC {
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "UPDATE users SET coin = ?, energy = ?, maxEnergy = ?, life = ?, maxLife = ?, " +
                             "exp = ?, nextLevelExp = ?, level = ?, strength = ?, dexterity = ?, " +
-                            "bullet = ?, maxBullet = ?, world_x = ?, world_y = ? WHERE user_id = ?"
+                            "bullet = ?, maxBullet = ?, world_x = ?, world_y = ?, is_ship_started = ?," +
+                            "npc_fireball = ?, npc_global_chat = ?, npc_mother_slime = ?, npc_axe = ?," +
+                            "npc_welcome = ? WHERE user_id = ?"
             );
             //, can_touch_event = ?
 
@@ -208,8 +211,14 @@ public class MyJDBC {
             preparedStatement.setInt(12, user.maxMana);
             preparedStatement.setInt(13, user.worldX);
             preparedStatement.setInt(14, user.worldY);
+            preparedStatement.setBoolean(15, Game.gameInstance.isShipStarted);
+            preparedStatement.setBoolean(16, Game.gameInstance.npcFireball);
+            preparedStatement.setBoolean(17, Game.gameInstance.npcGlobalChat);
+            preparedStatement.setBoolean(18, Game.gameInstance.npcMotherSlime);
+            preparedStatement.setBoolean(19, Game.gameInstance.npcAxe);
+            preparedStatement.setBoolean(20, Game.gameInstance.npcWelcome);
             //preparedStatement.setBoolean(15, user.can_touch_event);
-            preparedStatement.setInt(15, user.playerId); // user_id for WHERE clause
+            preparedStatement.setInt(21, user.playerId); // user_id for WHERE clause
 
             // Execute the update query
             int rowsAffected = preparedStatement.executeUpdate();
@@ -222,6 +231,55 @@ public class MyJDBC {
             e.printStackTrace();
         }
     }
+
+
+//    public static void updateUser2(Entity user) {
+//        try {
+//            // Establish a connection to the database using configuration
+//            Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+//
+//            // Create SQL query
+//            PreparedStatement preparedStatement = connection.prepareStatement(
+//                    "UPDATE users SET coin = ?, energy = ?, maxEnergy = ?, life = ?, maxLife = ?, " +
+//                            "exp = ?, nextLevelExp = ?, level = ?, strength = ?, dexterity = ?, " +
+//                            "bullet = ?, maxBullet = ?, world_x = ?, world_y = ?, is_ship_started = ?, " +
+//                            "npc_fireball = ?, npc_global_chat = ?, npc_mother_slime = ?, npc_axe = ?, " +
+//                            "npc_welcome = ? WHERE user_id = ?"
+//            );
+//
+//            // Replace the placeholders with values
+//            preparedStatement.setInt(1, user.coin);
+//            preparedStatement.setInt(2, user.energy);
+//            preparedStatement.setInt(3, user.maxEnergy);
+//            preparedStatement.setInt(4, user.life);
+//            preparedStatement.setInt(5, user.maxLife);
+//            preparedStatement.setInt(6, user.exp);
+//            preparedStatement.setInt(7, user.nextLevelExp);
+//            preparedStatement.setInt(8, user.level);
+//            preparedStatement.setInt(9, user.strength);
+//            preparedStatement.setInt(10, user.dexterity);
+//            preparedStatement.setInt(11, user.worldX);
+//            preparedStatement.setInt(12, user.worldY);
+//            preparedStatement.setBoolean(15, user.isShipStarted);
+//            preparedStatement.setBoolean(16, user.npcFireball);
+//            preparedStatement.setBoolean(17, user.npcGlobalChat);
+//            preparedStatement.setBoolean(18, user.npcMotherSlime);
+//            preparedStatement.setBoolean(19, user.npcAxe);
+//            preparedStatement.setBoolean(20, user.npcWelcome);
+//            preparedStatement.setInt(21, user.userId); // user_id for WHERE clause
+//
+//            // Execute the update query
+//            int rowsAffected = preparedStatement.executeUpdate();
+//            if (rowsAffected > 0) {
+//                System.out.println("User data updated successfully.");
+//            } else {
+//                System.out.println("No user found with the given ID.");
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
 
     //////For INVENTORY
 //we i need to check this method once again because there might be one operation and i did multiple for not knowing the

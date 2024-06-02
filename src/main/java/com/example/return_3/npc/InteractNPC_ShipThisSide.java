@@ -52,9 +52,9 @@ public class InteractNPC_ShipThisSide extends InteractNPC {
     }
     //set dialogue
     public void setDialogue(){
-        if(Game.gameInstance.shipStarted==true){
+        if(Game.gameInstance.isShipStarted==true){
         dialogue[0]="welcome to the boat. Do you want to go the mysterious land again? it will cost you 2000 coins";
-        }else if (Game.gameInstance.shipStarted==false){
+        }else if (Game.gameInstance.isShipStarted==false){
         dialogue[0]="Greetings Hunter. I can help you sail to the mysterious island where the greatest treasures \n" +
                 "and most dangerous monsters lie. But "+"To unlock " +
                 "my ship, we need a special blue key. Unfortunately,\n it was lost somewhere on this island.";
