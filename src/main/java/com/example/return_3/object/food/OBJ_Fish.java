@@ -16,11 +16,11 @@ public class OBJ_Fish extends Entity{
         itemCode = 207;
         price = value;
         down1 = uTool.loadImage("/objects/food/fish.png",game.tileSize-7,game.tileSize-7);
-        description = "This is " + name;
+        description = "This is " + name + ". It can heal\nyou a little bit.";
     }
     public boolean use(Entity entity){
-        game.ui.uiMainGame.addMessage("Life gained: "+(int) (value * 0.10));
-        game.player.life += (int) (value * 0.10);
+        game.ui.uiMainGame.addMessage("Life gained: "+(int) (value * 0.30));
+        game.player.life += (int) (value * 0.30);
         return true;
     }
 }

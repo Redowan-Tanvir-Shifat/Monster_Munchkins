@@ -14,7 +14,7 @@ public class OBJ_DefensePotion extends Entity {
         itemCode=306;
         value =2;
         exp = 5;
-        price=500;
+        price=50;
         down1=loadImage("/objects/defensePotion.png",game.tileSize,game.tileSize);
         description="["+name+"]\nadd defense by "+value+".\n for 30 second";
     }
