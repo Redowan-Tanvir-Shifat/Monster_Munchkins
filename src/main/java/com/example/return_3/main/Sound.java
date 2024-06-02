@@ -37,6 +37,7 @@ public class Sound {
     public final int levelUp=40;
     public final int gameOver=41;
     public final int popUp=42;
+    public final int chatType=43;
 
 
     public Sound() {
@@ -86,6 +87,7 @@ public class Sound {
         soundUrls[levelUp] = getClass().getResource("/sound/levelUpNew.wav");
         soundUrls[gameOver]= getClass().getResource("/sound/gameOver.wav");
         soundUrls[popUp]=getClass().getResource("/sound/messageState.wav");
+        soundUrls[chatType]=getClass().getResource("/sound/chatType.wav");
 
     }
 

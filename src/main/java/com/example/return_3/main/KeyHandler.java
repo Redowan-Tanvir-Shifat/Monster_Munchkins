@@ -566,6 +566,7 @@ public class KeyHandler {
             // Process the message in msgText
             String message = game.ui.uiMainGame.msgText.trim();
             if (!message.isEmpty()) {
+                game.playSoundEffect(game.soundEffect.messageSend);
                 // Add logic to send the message to the chat system
                 sendMessageToGlobalChat(message);
 
@@ -578,12 +579,14 @@ public class KeyHandler {
         // Handle Backspace key to delete the last character
         if (code == KeyCode.BACK_SPACE) {
             if (!game.ui.uiMainGame.msgText.isEmpty()) {
+                game.playSoundEffect(game.soundEffect.chatType);
                 game.ui.uiMainGame.msgText = game.ui.uiMainGame.msgText.substring(0, game.ui.uiMainGame.msgText.length() - 1);
             }
             return;
         }
         // Handle space key to append a space character
         if (code == KeyCode.SPACE) {
+            game.playSoundEffect(game.soundEffect.chatType);
             game.ui.uiMainGame.msgText += " ";
             return;
         }
@@ -592,7 +595,9 @@ public class KeyHandler {
         String keyText = code.getName();
         System.out.println("keyText: " + keyText);
         if(game.ui.uiMainGame.msgText.length()<88){
+
             if (keyText.length() == 1) { // Ensure it's a single character
+                game.playSoundEffect(game.soundEffect.chatType);
                 char c = keyText.charAt(0);
 
                 if (Character.isLetter(c) ) {
@@ -625,6 +630,7 @@ public class KeyHandler {
                     game.ui.uiMainGame.msgText += c;
                 }
             }else {
+
                 char c = 0;
                 switch (keyText) {
                     case "Period": c = shiftPressed ? '<' : '.';break;
@@ -642,6 +648,7 @@ public class KeyHandler {
                         break;
                 }
                 if (c != 0) {
+                    game.playSoundEffect(game.soundEffect.chatType);
                     game.ui.uiMainGame.msgText += c;
                 }
             }
