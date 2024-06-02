@@ -14,7 +14,7 @@ public class OBJ_Banana extends Entity {
         value = 60;
         exp = 3;
         itemCode = 202;
-        price = 10*value;
+        price = value;
         down1 = uTool.loadImage("/objects/food/banana.png",game.tileSize-7,game.tileSize-7);
         description = "This is "+name;
     }

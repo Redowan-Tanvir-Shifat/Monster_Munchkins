@@ -341,10 +341,10 @@ public class AssetSetter {
         objecttype = Game.gameInstance.type_interactiveTreeBig;
         addCuttableTreeBigToList(objects, userId, objecttype, mapNum);
         objecttype = Game.gameInstance.type_interactiveTreeSmall;
-        addCuttableTreeSmallToList(objects, userId, objecttype, mapNum);
+        //addCuttableTreeSmallToList(objects, userId, objecttype, mapNum);
         // FOR INTERACTIVE TILE [breakableRockBig]
         objecttype = Game.gameInstance.type_interactiverockBig;
-        addbreakableRockBigToList(objects, userId, objecttype, mapNum);
+        //addbreakableRockBigToList(objects, userId, objecttype, mapNum);
         // FOR INTERACTIVE TILE [breakableRockSmall]
         objecttype = Game.gameInstance.type_interactiverockSmall;
         addbreakableRockSmallToList(objects, userId, objecttype, mapNum);

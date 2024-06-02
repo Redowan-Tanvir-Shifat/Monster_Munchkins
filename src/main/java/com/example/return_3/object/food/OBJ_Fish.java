@@ -14,7 +14,7 @@ public class OBJ_Fish extends Entity{
         value = 90;
         exp = 3;
         itemCode = 207;
-        price = 25*value;
+        price = value;
         down1 = uTool.loadImage("/objects/food/fish.png",game.tileSize-7,game.tileSize-7);
         description = "This is " + name;
     }
