@@ -493,7 +493,9 @@ Image icon;
                 for (int i = 0; i < monster[currentMap].length; i++) {
                     if (monster[currentMap][i] != null) {
                         if (monster[currentMap][i].alive == true) {
+                            if(UtilityTool.isMonUpdate(monster[currentMap][i])){
                             monster[currentMap][i].update();
+                            }
                         }else if (monster[currentMap][i].alive == false) {
                             if(monster[currentMap][i] instanceof Mon_Green && monster[currentMap][i].slimeDeathOn==false ){
                                 //handle for green monster death here.
