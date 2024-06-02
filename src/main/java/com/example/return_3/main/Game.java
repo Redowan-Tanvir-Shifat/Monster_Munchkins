@@ -476,12 +476,12 @@ Image icon;
                 player.update();
                 //NPC UPDATE
                 for(int i=0; i<npc[currentMap].length; i++){
-                    if(npc[currentMap][i] !=null){
+                    if(npc[currentMap][i] !=null &&UtilityTool.isEntityUpdate(npc[currentMap][i]) ){
                         npc[currentMap][i].update();
                     }
                 } //Interact NPC UPDATE
                 for(int i=0; i<interactNpc[currentMap].length; i++){
-                    if(interactNpc[currentMap][i] !=null){
+                    if(interactNpc[currentMap][i] !=null &&UtilityTool.isEntityUpdate(npc[currentMap][i]) ){
                         if(interactNpc[currentMap][i].alive==true){
                         interactNpc[currentMap][i].update();
                         }else  if(interactNpc[currentMap][i].alive==false){
@@ -493,7 +493,7 @@ Image icon;
                 for (int i = 0; i < monster[currentMap].length; i++) {
                     if (monster[currentMap][i] != null) {
                         if (monster[currentMap][i].alive == true) {
-                            if(UtilityTool.isMonUpdate(monster[currentMap][i])){
+                            if(UtilityTool.isEntityUpdate(monster[currentMap][i])){
                                 monster[currentMap][i].update();
                             }
                         }else if (monster[currentMap][i].alive == false) {

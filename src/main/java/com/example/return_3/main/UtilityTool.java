@@ -115,7 +115,7 @@ public class UtilityTool {
 //        return false;
 //    }
 
-    public static boolean isMonUpdate(Entity entity) {
+    public static boolean isEntityUpdate(Entity entity) {
         Game game = Game.gameInstance;
         int playerX = game.player.worldX;
         int playerY = game.player.worldY;
