@@ -19,6 +19,8 @@ public class OBJ_Key extends Entity {
     }
     public boolean use(Entity entity) {
         game.gameState=game.messageState;
+        game.playSoundEffect(game.soundEffect.popUp);
+
         int objectIndex=getDetected(entity,game.obj,"door");
         if(objectIndex!=999 &&game.obj[game.currentMap][objectIndex].destroyed!=true){
             game.ui.uiMainGame.currentDialogue="You use the "+name+"and opened the door";
@@ -41,7 +43,7 @@ public class OBJ_Key extends Entity {
             return true;
         }
         else {
-            game.ui.uiMainGame.currentDialogue="r e vai dorjar samne use kor!";
+            game.ui.uiMainGame.currentDialogue="Find the door first to use key.";
             return false;
         }
     }

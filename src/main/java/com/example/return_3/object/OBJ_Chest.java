@@ -39,6 +39,8 @@ public class OBJ_Chest extends Entity {
 //
 //        }
         game.gameState=game.messageState;
+        game.playSoundEffect(game.soundEffect.popUp);
+
         if(destroyed==false){
             game.playSoundEffect(3);
             Random random= new Random();
