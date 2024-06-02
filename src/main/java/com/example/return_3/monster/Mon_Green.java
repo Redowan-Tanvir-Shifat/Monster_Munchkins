@@ -22,7 +22,7 @@ public class Mon_Green extends Entity {
         speed = defaultSpeed;
         coin = 5;
         type = type_monster;
-        maxLife = 5;
+        maxLife = 3;
         life = maxLife;
         attack = 10;
         defense = 0;
