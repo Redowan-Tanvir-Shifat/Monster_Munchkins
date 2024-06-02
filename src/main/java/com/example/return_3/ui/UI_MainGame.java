@@ -444,9 +444,8 @@ public class UI_MainGame {
         textX = getXForCenteredText(text);
         textY = game.tileSize * 9;
         gc.fillText(text, textX, textY);
-        if (commandNum == 0) {
-            gc.fillText("-->", textX-game.tileSize-8, textY);
-        }
+        gc.fillText("-->", textX-game.tileSize-8, textY);
+
     }
     public void levelUpScreen() {
         // Create a Frame...
@@ -474,9 +473,35 @@ public class UI_MainGame {
         textX = getXForCenteredText(text);
         textY = game.tileSize * 9;
         gc.fillText(text, textX, textY);
-        if (commandNum == 0) {
-            gc.fillText("", textX-game.tileSize-8, textY);
-        }
+        gc.fillText("", textX-game.tileSize-8, textY);
+    }
+    public void gameOverScreen() {
+        // Create a Frame...
+        final int frameX = game.tileSize * 5;
+        final int frameY = game.tileSize * 2;
+        final int frameWidth = game.tileSize * 20;
+        final int frameHeight = game.tileSize * 14;
+
+        Color c = Color.rgb(255, 209, 184);
+        drawSubWindow(frameX, frameY, frameWidth, frameHeight);
+
+        gc.setFont(titleFont);
+        String text = "Monster MunchKins";
+        int textX = getXForCenteredText(text);
+        int textY = frameY + game.tileSize *2;
+
+        gc.setFill(Color.rgb(255, 255, 255));
+        gc.fillText(text, textX, textY);
+
+        // Menu...
+        gc.setFill(Color.rgb(255, 255, 255));
+        gc.setFont(largeFontBold);
+
+        text = "Congratulations, brave hunter! You have successfully\neliminated all the monsters on the island. The villagers\n are safe once more, thanks to your efforts.\n\n Press Enter to sail to the mysterious island and continue\n your adventure.";
+        textX = game.tileSize * 6;
+        textY = game.tileSize * 6;
+        gc.fillText(text, textX, textY);
+        gc.fillText("", textX-game.tileSize-8, textY);
     }
 
     public void drawCharacterScreen() {

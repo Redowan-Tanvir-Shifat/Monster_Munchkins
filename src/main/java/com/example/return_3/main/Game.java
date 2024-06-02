@@ -60,6 +60,8 @@ public class Game extends Application {
     public final int dialogueState = 3;
     public final int wizConversationState = 4;
     public final int characterState = 5;
+    public final int gameOverState = 6;
+
 
 
 //    public final int optionState=5;
