@@ -13,7 +13,6 @@ public class OBJ_Berries extends Entity {
         name="Berries";
         value = 5;
         exp = 3;
-//        price = 10*value;
         price=value;
 
         itemCode = 203;

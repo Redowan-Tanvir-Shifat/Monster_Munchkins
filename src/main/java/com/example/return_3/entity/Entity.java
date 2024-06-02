@@ -773,23 +773,56 @@ public class Entity {
 
 
             //Monster HP Bar......
-            if ((type == type_monster || type == type_OrcMonster) && hpBarOn == true) {
-                double oneScale = (double)game.tileSize/maxLife;
-                double hpBarValue = oneScale*life;
+            if ((type == type_monster || type == type_OrcMonster) && hpBarOn) {
 
+                if (monster_type == type_slimeMother) {
+                    double oneScale = (double)game.tileSize *3 /maxLife;
+                    double hpBarValue = oneScale * life;
+                    gc.setFill(Color.RED);
+                    gc.fillRect(screenX, screenY - 5, (int)hpBarValue, 10);
+                    gc.setStroke(Color.BLACK);
+                    gc.setLineWidth(1); // Width of the outline
+                    gc.strokeRect(screenX, screenY - 5, game.tileSize * 3, 10);
 
-                gc.setFill(Color.RED);
-                gc.fillRect(screenX, screenY - 5, (int)hpBarValue, 10);
-                gc.setStroke(Color.BLACK);
-                gc.setLineWidth(1); // Width of the outline
-                gc.strokeRect(screenX, screenY - 5, game.tileSize, 10);
+                    hpBarCounter++;
+                    if (hpBarCounter > 600) {
+                        hpBarCounter = 0;
+                        hpBarOn = false;
+                    }
+                } else {
+                    double oneScale = (double)game.tileSize/maxLife;
+                    double hpBarValue = oneScale*life;
+                    gc.setFill(Color.RED);
+                    gc.fillRect(screenX, screenY - 5, (int)hpBarValue, 10);
+                    gc.setStroke(Color.BLACK);
+                    gc.setLineWidth(1); // Width of the outline
+                    gc.strokeRect(screenX, screenY - 5, game.tileSize, 10);
 
-                hpBarCounter++;
-                if (hpBarCounter > 600) {
-                    hpBarCounter = 0;
-                    hpBarOn = false;
+                    hpBarCounter++;
+                    if (hpBarCounter > 600) {
+                        hpBarCounter = 0;
+                        hpBarOn = false;
+                    }
                 }
+
             }
+//            if ((type == type_slimeMother) && hpBarOn == true) {
+//                double oneScale = (double)game.tileSize/maxLife;
+//                double hpBarValue = oneScale*life;
+//
+//
+//                gc.setFill(Color.RED);
+//                gc.fillRect(screenX, screenY - 5, (int)hpBarValue, 10);
+//                gc.setStroke(Color.BLACK);
+//                gc.setLineWidth(1); // Width of the outline
+//                gc.strokeRect(screenX, screenY - 5, game.tileSize * 3, 10);
+//
+//                hpBarCounter++;
+//                if (hpBarCounter > 600) {
+//                    hpBarCounter = 0;
+//                    hpBarOn = false;
+//                }
+//            }
 
 
             if (invincible == true) {

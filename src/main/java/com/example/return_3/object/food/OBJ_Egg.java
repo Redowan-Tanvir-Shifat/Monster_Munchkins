@@ -14,7 +14,6 @@ public class OBJ_Egg extends Entity {
         value = 80;
         exp = 3;
         itemCode = 206;
-//        price = 25*value;
         price=value;
 
         down1 = uTool.loadImage("/objects/food/egg.png",game.tileSize-7,game.tileSize-7);
