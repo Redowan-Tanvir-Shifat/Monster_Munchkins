@@ -72,7 +72,9 @@ public class UI {
 
             // Level up state
             if (game.gameState == game.gameOverState) {
+                //uiMainGame.drawBackGroundGame();
                 uiMainGame.gameOverScreen();
+
             }
 
 
@@ -80,9 +82,10 @@ public class UI {
             if (game.gameState == game.dialogueState) {
                 uiMainGame.drawDialogueScreen();
                 uiMainGame.drawMessage();
-            }// <-------Message STATE------->
-            if (game.gameState == game.messageState) {
+            }
 
+            // <-------Message STATE------->
+            if (game.gameState == game.messageState) {
                 uiMainGame.drawDialogueScreen();
                 uiMainGame.drawMessage();
             }
@@ -99,6 +102,7 @@ public class UI {
                 uiMainGame.drawCharacterScreen();
                 uiMainGame.drawInventory(game.player, true,18);
             }
+
             if (game.gameState == game.tradeState) {
                 uiMainGame.drawTradeScreen();
                 uiMainGame.drawMessageRight(24);

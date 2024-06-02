@@ -213,10 +213,10 @@ public class Player extends Entity{
     }
 
     public void setDefaultPositions(){
-        worldX= game.tileSize*  21;
-//        worldX=  game.user.getWorldX();
-        worldY= game.tileSize*  85;
-//        worldY=  game.user.getWorldY();
+//        worldX= game.tileSize*  21;
+        worldX=  game.user.getWorldX();
+//        worldY= game.tileSize*  85;
+        worldY=  game.user.getWorldY();
         direction = "down";
     }
     public void setHospitalPosition() {
@@ -477,6 +477,9 @@ public void removeCurrentWeapon() {
                     int monsterType=game.monster[game.currentMap][i].monster_type;
                     String name= game.monster[game.currentMap][i].name;
                     game.monster[game.currentMap][i].dying = true;
+
+
+
                     if(game.monster[game.currentMap][i] instanceof Mon_Green){
                         game.playSoundEffect(game.soundEffect.slimeDeathSound);
                         System.out.println("green slime died");

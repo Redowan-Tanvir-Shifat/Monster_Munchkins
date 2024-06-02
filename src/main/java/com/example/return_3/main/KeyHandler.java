@@ -47,8 +47,10 @@ public class KeyHandler {
             game.ui.uiMainGame.commandNum=0;
             playState(code);
             if(code==KeyCode.L){
+                game.playSoundEffect(game.soundEffect.popUp);
                 new StuffShop(game).use();
             }if(code==KeyCode.G){
+                game.playSoundEffect(game.soundEffect.popUp);
                 game.gameState=game.globalChatState;
                 if(game.isStartClient==false){
                     game.startGlobalChat();
@@ -254,6 +256,7 @@ public class KeyHandler {
                 }
                 else {
                     game.ui.uiMainGame.currentDialogue = "You need level 10 to Increase Max life...";
+                    game.playSoundEffect(game.soundEffect.popUp);
                     game.gameState = game.messageState;
                 }
 
@@ -350,6 +353,7 @@ public class KeyHandler {
         }
         if (code == KeyCode.ENTER) {
             if (game.ui.uiMainGame.commandNum == 0) {
+                game.playSoundEffect(game.soundEffect.popUp);
                 game.gameState = game.settingsState;
             }
             if (game.ui.uiMainGame.commandNum == 1) {
@@ -384,7 +388,7 @@ public class KeyHandler {
     }
     private void gameOverState(KeyCode code) {
         if (code == KeyCode.ENTER) {
-            game.gameState = game.playState;
+            Game.exitGame();
         }
     }
 
@@ -410,9 +414,10 @@ public class KeyHandler {
             case ENTER: enterPressed = true; break;
             case SPACE: spacePressed = true; break;
             case V: vKeyPressed = false; break;
-            case C: game.gameState = game.characterState; break;
-                    //game.playSoundEffect(game.soundEffect.inventoryOpen);;break;
-            case ESCAPE: game.gameState = game.menuBarState; break;
+            case C: game.playSoundEffect(game.soundEffect.popUp);
+                    game.gameState = game.characterState; break;
+            case ESCAPE: game.playSoundEffect(game.soundEffect.popUp);
+                         game.gameState = game.menuBarState; break;
 
         }
     }

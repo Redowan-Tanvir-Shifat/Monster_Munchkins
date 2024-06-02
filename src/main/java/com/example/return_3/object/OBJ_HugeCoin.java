@@ -15,7 +15,7 @@ public class OBJ_HugeCoin extends Entity {
         name="Coin";
         value =500;
         itemCode=309;
-        down1=uTool.loadImage("/objects/coinThree.png",game.tileSize-7,game.tileSize-7);
+        down1=uTool.loadImage("/objects/coin.png",game.tileSize-7,game.tileSize-7);
         description="this is "+name;
     }
     public boolean use(Entity entity){

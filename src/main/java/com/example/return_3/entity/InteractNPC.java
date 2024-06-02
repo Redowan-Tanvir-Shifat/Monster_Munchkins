@@ -118,6 +118,7 @@ public class InteractNPC extends Entity{
     }
 
         public void speak(){
+            game.playSoundEffect(game.soundEffect.popUp);
             game.gameState = game.dialogueState;
             game.ui.uiMainGame.npc=this;
             game.ui.uiMainGame.currentDialogue=dialogue[dialogueIndex];
