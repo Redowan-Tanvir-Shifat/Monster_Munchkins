@@ -62,8 +62,6 @@ public class Game extends Application {
     public final int characterState = 5;
     public final int gameOverState = 6;
 
-
-
 //    public final int optionState=5;
     public final int mapState=6;
     public final int transitionState=7;
@@ -461,6 +459,7 @@ Image icon;
     }
 
     public void logout(){
+        Client.stopClient();
         try {
             // Write negative number to indicate logout
             BufferedWriter writer = new BufferedWriter(new FileWriter("loginStatus.txt"));
