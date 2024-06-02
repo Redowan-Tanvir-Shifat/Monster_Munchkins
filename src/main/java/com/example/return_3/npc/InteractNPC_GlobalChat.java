@@ -87,6 +87,7 @@ public void setAction(){
             searchPath(goalCol, goalRow);
             if(onPath==false){
                 npcGone=true;
+                game.npcGlobalChat=true;
                 //                System.out.println("NPC WORK DONE");
             }
         }

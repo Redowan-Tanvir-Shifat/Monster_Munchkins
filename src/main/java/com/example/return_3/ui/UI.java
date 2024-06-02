@@ -64,8 +64,15 @@ public class UI {
             if (game.gameState == game.pauseState) {
                 uiMainGame.pauseScreen();
             }
+
+            // Level up state
             if (game.gameState == game.levelUpState) {
                 uiMainGame.levelUpScreen();
+            }
+
+            // Level up state
+            if (game.gameState == game.gameOverState) {
+                uiMainGame.gameOverScreen();
             }
 
 

@@ -88,6 +88,7 @@ public class InteractNPC_HelplessWomen extends InteractNPC {
                 searchPath(goalCol, goalRow);
                 if(onPath==false){
                     npcGone=true;
+                    game.npcMotherSlime=true;
     //                System.out.println("NPC WORK DONE");
                 }
             }
