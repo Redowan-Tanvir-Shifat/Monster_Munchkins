@@ -1040,27 +1040,32 @@ public class UI_MainGame {
             // Split the message into words
             String[] words = msg.split(" ", 2);
             String name = words[0];
-            String messageContent = words.length > 1 ? words[1] : "";
+            String messageContent ;
+            if(words.length>1){
+                messageContent=words[1];
+                int textWidth= (int)getWidthOfText(msg)+22;
+                // Alternate background colors for messages
+                if (name.equals(game.user.getUsername())) {
+                    gc.setFill(darkCream);
+                    gc.fillRoundRect(loopX - 12, messageY - 20, textWidth, game.tileSize, 20, 20);
+                    gc.setFill(lightCream);
+
+                } else {
+                    gc.setFill(lightCream);
+                    gc.fillRoundRect(loopX - 16, messageY - 20, textWidth, game.tileSize, 20, 20);
+                    gc.setFill(darkDarkCream);
+                }
+
+                // Display the name and message content
+                gc.fillText(name + ": " + messageContent, loopX, messageY);
+                messageY += game.tileSize; // Move to the next line for the next message
+                i++;
+            }
+//            = words.length > 1 ? words[1] : "";
 
             // Set the text width for the message content
 //            int textWidth = width - (game.tileSize * 2);
-            int textWidth= (int)getWidthOfText(msg)+22;
-            // Alternate background colors for messages
-            if (name.equals(game.user.getUsername())) {
-                gc.setFill(darkCream);
-                gc.fillRoundRect(loopX - 12, messageY - 20, textWidth, game.tileSize, 20, 20);
-                gc.setFill(lightCream);
 
-            } else {
-                gc.setFill(lightCream);
-                gc.fillRoundRect(loopX - 16, messageY - 20, textWidth, game.tileSize, 20, 20);
-                gc.setFill(darkDarkCream);
-            }
-
-            // Display the name and message content
-            gc.fillText(name + ": " + messageContent, loopX, messageY);
-            messageY += game.tileSize; // Move to the next line for the next message
-            i++;
         }
 
 
