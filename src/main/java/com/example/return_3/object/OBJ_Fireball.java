@@ -26,6 +26,7 @@ public class OBJ_Fireball extends Projectile {
         knockBackPower = 15;
         useCost=1;
         alive=false;
+        description="["+name+"]\nIt can destroy Red Fly";
         getImage();
         solidArea.setX(11);
         solidArea.setY(13);
