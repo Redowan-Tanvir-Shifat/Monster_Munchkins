@@ -12,8 +12,8 @@ public class OBJ_Potion_Red extends Entity {
         type= type_consumable;
         name="Red Potion";
         itemCode=303;
-        value =50;
-        price=500;
+        value =20;
+        price=50;
         exp = 5;
         down1=loadImage("/objects/potion_red.png",game.tileSize,game.tileSize);
         description="["+name+"]\nHeals your life by "+value+".";

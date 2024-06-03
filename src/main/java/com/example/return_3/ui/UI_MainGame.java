@@ -512,7 +512,7 @@ public class UI_MainGame {
         gc.setFill(Color.rgb(255, 255, 255));
         gc.setFont(largeFontBold);
 
-        text = "Congratulations, brave hunter! You have successfully\neliminated all the monsters on the island. The villagers\n are safe once more, thanks to your efforts.\n\n Press Enter to 'EXIT' the game.";
+        text = "Congratulations, brave hunter! You have successfully\neliminated all the monsters on the island. The villagers\n are safe once more, thanks to your efforts.\n\n Press 'ENTER' to play NEW GAME.\nPress 'ESCAPE' to EXIT the game.";
         textX = game.tileSize * 6;
         textY = game.tileSize * 6;
         gc.fillText(text, textX, textY);

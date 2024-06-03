@@ -543,6 +543,7 @@ Image icon;
                                     System.out.println("Game Over");
                                     playSoundEffect(soundEffect.gameOver);
                                     gameState=gameOverState;
+                                    gameOver=true;
                                 }
                             }
                         }
