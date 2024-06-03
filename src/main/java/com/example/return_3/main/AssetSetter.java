@@ -18,24 +18,24 @@ public class AssetSetter {
     }
 
     public void setObject() {
-        int mapNum = 0;
-        int i = 16;
-        game.obj[mapNum][i] = new OBJ_Key(game);
-        game.obj[mapNum][i].worldX = game.tileSize*17;
-        game.obj[mapNum][i].worldY = game.tileSize*163;
-        i++;
-        game.obj[mapNum][i] = new OBJ_Chest(game);
-        game.obj[mapNum][i].worldX = game.tileSize*19;
-        game.obj[mapNum][i].worldY = game.tileSize*163;
-        i++;
-        game.obj[mapNum][i] = new OBJ_Chest(game);
-        game.obj[mapNum][i].worldX = game.tileSize*17;
-        game.obj[mapNum][i].worldY = game.tileSize*169;
-        i++;
-        game.obj[mapNum][i] = new OBJ_Chest(game);
-        game.obj[mapNum][i].worldX = game.tileSize*19;
-        game.obj[mapNum][i].worldY = game.tileSize*169;
-        i++;
+//        int mapNum = 0;
+//        int i = 16;
+//        game.obj[mapNum][i] = new OBJ_Key(game);
+//        game.obj[mapNum][i].worldX = game.tileSize*17;
+//        game.obj[mapNum][i].worldY = game.tileSize*163;
+//        i++;
+//        game.obj[mapNum][i] = new OBJ_Chest(game);
+//        game.obj[mapNum][i].worldX = game.tileSize*19;
+//        game.obj[mapNum][i].worldY = game.tileSize*163;
+//        i++;
+//        game.obj[mapNum][i] = new OBJ_Chest(game);
+//        game.obj[mapNum][i].worldX = game.tileSize*17;
+//        game.obj[mapNum][i].worldY = game.tileSize*169;
+//        i++;
+//        game.obj[mapNum][i] = new OBJ_Chest(game);
+//        game.obj[mapNum][i].worldX = game.tileSize*19;
+//        game.obj[mapNum][i].worldY = game.tileSize*169;
+//        i++;
     }
 
     public void setNPC() {

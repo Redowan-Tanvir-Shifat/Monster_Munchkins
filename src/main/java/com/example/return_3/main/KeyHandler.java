@@ -2,6 +2,7 @@ package com.example.return_3.main;
 
 
 import com.example.return_3.db.MyJDBC;
+import com.example.return_3.db.User;
 import com.example.return_3.globalChat.Client;
 import com.example.return_3.npc.InteractNPC_FireBallGiver;
 import com.example.return_3.npc.InteractNPC_HelplessWomen;
@@ -20,11 +21,17 @@ public class KeyHandler {
 
     public KeyHandler(Game game) {
         this.game = game;
-        Game.gameScene.setOnKeyPressed(event -> handleKeyPress(event.getCode()));
+        Game.gameScene.setOnKeyPressed(event -> {
+            try {
+                handleKeyPress(event.getCode());
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
         Game.gameScene.setOnKeyReleased(event -> handleKeyRelease(event.getCode()));
     }
 
-    private void handleKeyPress(KeyCode code) {
+    private void handleKeyPress(KeyCode code) throws Exception {
 
 //        if (code == KeyCode.Q) {
 //            try {
@@ -58,7 +65,7 @@ public class KeyHandler {
                 }
             }
             if(code==KeyCode.M){
-                game.gameState=game.mapState;
+                game.gameState=game.gameOverState;
             }if(code==KeyCode.K){
                 System.out.println("Pressing K in KeyHandler");
 
@@ -386,9 +393,18 @@ public class KeyHandler {
             game.gameState = game.playState;
         }
     }
-    private void gameOverState(KeyCode code) {
+    private void gameOverState(KeyCode code) throws Exception {
         if (code == KeyCode.ENTER) {
-            Game.exitGame();
+//            Game.exitGame();
+            String username=game.user.getUsername();
+            String password=game.user.getPassword();
+            MyJDBC.deleteUserById(game.player.playerId);
+            int id=MyJDBC.register(username, password);
+            game.user=null;
+            game.user =MyJDBC.getUserData(id);
+            game.gameState=game.playState;
+            game.gameOver=false;
+            game.startGame();
         }
     }
 

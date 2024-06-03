@@ -105,9 +105,10 @@ public class MyJDBC {
         boolean npcMotherSlime = resultSet.getBoolean("npc_mother_slime");
         boolean npcWelcome = resultSet.getBoolean("npc_welcome");
         boolean npcAxe = resultSet.getBoolean("npc_axe");
+        boolean gameOver = resultSet.getBoolean("game_over");
 
         // Return user object
-        return new User(userId, username, password, worldX, worldY, coin, energy, maxEnergy, life, maxLife, exp, nextLevelExp, level, strength, dexterity, bullet, maxBullet, isShipStarted, npcFireball, npcGlobalChat, npcMotherSlime, npcWelcome,npcAxe);
+        return new User(userId, username, password, worldX, worldY, coin, energy, maxEnergy, life, maxLife, exp, nextLevelExp, level, strength, dexterity, bullet, maxBullet, isShipStarted, npcFireball, npcGlobalChat, npcMotherSlime, npcWelcome,npcAxe,gameOver);
         //return user object
     }
 
@@ -192,7 +193,7 @@ public class MyJDBC {
                             "exp = ?, nextLevelExp = ?, level = ?, strength = ?, dexterity = ?, " +
                             "bullet = ?, maxBullet = ?, world_x = ?, world_y = ?, is_ship_started = ?," +
                             "npc_fireball = ?, npc_global_chat = ?, npc_mother_slime = ?, npc_axe = ?," +
-                            "npc_welcome = ? WHERE user_id = ?"
+                            "npc_welcome = ?, game_over = ? WHERE user_id = ?"
             );
             //, can_touch_event = ?
 
@@ -217,8 +218,9 @@ public class MyJDBC {
             preparedStatement.setBoolean(18, Game.gameInstance.npcMotherSlime);
             preparedStatement.setBoolean(19, Game.gameInstance.npcAxe);
             preparedStatement.setBoolean(20, Game.gameInstance.npcWelcome);
+            preparedStatement.setBoolean(21, Game.gameInstance.gameOver);
             //preparedStatement.setBoolean(15, user.can_touch_event);
-            preparedStatement.setInt(21, user.playerId); // user_id for WHERE clause
+            preparedStatement.setInt(22, user.playerId); // user_id for WHERE clause
 
             // Execute the update query
             int rowsAffected = preparedStatement.executeUpdate();
@@ -232,6 +234,62 @@ public class MyJDBC {
         }
     }
 
+    public static boolean deleteUserById(int userId) {
+        Connection connection = null;
+        PreparedStatement deleteMonstersStmt = null;
+        PreparedStatement deleteObjectsStmt = null;
+        PreparedStatement deleteInventoryStmt = null;
+        PreparedStatement deleteUserStmt = null;
+
+        try {
+            connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+            connection.setAutoCommit(false); // Begin transaction
+
+            // Delete related entries in the Monsters table
+            deleteMonstersStmt = connection.prepareStatement("DELETE FROM game.Monsters WHERE user_id = ?");
+            deleteMonstersStmt.setInt(1, userId);
+            deleteMonstersStmt.executeUpdate();
+
+            // Delete related entries in the Objects table
+            deleteObjectsStmt = connection.prepareStatement("DELETE FROM game.Objects WHERE user_id = ?");
+            deleteObjectsStmt.setInt(1, userId);
+            deleteObjectsStmt.executeUpdate();
+
+            // Delete related entries in the Inventory table
+            deleteInventoryStmt = connection.prepareStatement("DELETE FROM game.Inventory WHERE user_id = ?");
+            deleteInventoryStmt.setInt(1, userId);
+            deleteInventoryStmt.executeUpdate();
+
+            // Finally, delete the user from the Users table
+            deleteUserStmt = connection.prepareStatement("DELETE FROM game.Users WHERE user_id = ?");
+            deleteUserStmt.setInt(1, userId);
+            deleteUserStmt.executeUpdate();
+
+            connection.commit(); // Commit transaction
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            if (connection != null) {
+                try {
+                    connection.rollback(); // Rollback transaction on error
+                } catch (SQLException rollbackEx) {
+                    rollbackEx.printStackTrace();
+                }
+            }
+            return false;
+        } finally {
+            // Close resources
+            try {
+                if (deleteMonstersStmt != null) deleteMonstersStmt.close();
+                if (deleteObjectsStmt != null) deleteObjectsStmt.close();
+                if (deleteInventoryStmt != null) deleteInventoryStmt.close();
+                if (deleteUserStmt != null) deleteUserStmt.close();
+                if (connection != null) connection.close();
+            } catch (SQLException closeEx) {
+                closeEx.printStackTrace();
+            }
+        }
+    }
 
 //    public static void updateUser2(Entity user) {
 //        try {
