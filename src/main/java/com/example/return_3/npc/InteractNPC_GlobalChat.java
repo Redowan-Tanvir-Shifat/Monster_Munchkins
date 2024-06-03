@@ -44,12 +44,14 @@ public class InteractNPC_GlobalChat extends InteractNPC {
     }
     //set dialogue
     public void setDialogue(){
-        dialogue[0] = "Greetings, brave hunter! This door behind me leads to a special area where you can communicate \nwith other players."+
+        dialogue[0] = "Greetings, brave hunter! This door behind me leads to a special area where you can some loot\n"+
         "Unfortunately, the door is locked and requires a Yellow Key to open."+
          "\nThe key was lost somewhere on this island. Many have searched for it, but none have succeeded so far.";
         dialogue[1] = "If you manage to find the Yellow Key, you will be able to unlock the door and chat with others inside."+
-         "\nKeep your eyes peeled and explore every corner of the island. The key could be hidden anywhere."+
-        "\nGood luck on your search! And be cautious—the island is filled with dangerous creatures. Stay safe, hunter!";
+                "\nYou can communicate with other hunter by pressing 'G'"+
+         "\nKeep your eyes peeled and explore every corner of the island. The key could be hidden anywhere.";
+
+                dialogue[2]="\nGood luck on your search! And be cautious—the island is filled with dangerous creatures. Stay safe, hunter!";
     }
 
 

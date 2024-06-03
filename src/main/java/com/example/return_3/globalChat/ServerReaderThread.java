@@ -23,7 +23,7 @@ public class ServerReaderThread implements Runnable {
                 String msg = (String) ois.readObject();
                 if (msg == null) break;
 
-                String msgToSend = name + " : " + msg;
+                String msgToSend = name + "  " + msg;
                 System.out.println(msgToSend);
                 Server.prevConversation += "$" + msgToSend;
 

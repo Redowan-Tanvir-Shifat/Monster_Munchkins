@@ -138,6 +138,7 @@ public class Game extends Application {
     public  boolean npcMotherSlime;
     public  boolean npcAxe;
     public  boolean npcWelcome;
+    public  boolean gameOver;
 
 
     // $$$$$$$$$ INSTANTIATE $$$$$$$$$
@@ -335,6 +336,7 @@ Image icon;
         npcMotherSlime=user.isNpcMotherSlime();
         npcAxe=user.isNpcAxe();
         npcWelcome=user.isNpcWelcome();
+        gameOver=user.isGameOver();
         inventoryMap = new HashMap<>();
         inventoryMapAddItem(axe.itemCode, axe);
         inventoryMapAddItem(tomahawkAxe.itemCode, tomahawkAxe);
@@ -378,7 +380,11 @@ Image icon;
 //        if(isFirstTime){
 //            gameState=guidelineState;
 //        }else{gameState=playState;}
+        if(gameOver){
+            gameState= gameOverState;
+        }else{
         gameState = pauseState;
+        }
     }
 
 
@@ -478,6 +484,9 @@ Image icon;
         }
         //To reset the player properties
         obj= new Entity[maxMap][20];
+        interactNpc= new Entity[maxMap][20]; //set the number of 10 NPC Number
+        isStartClient=false;
+        chatMessages = new LinkedList<>();
         npc= new Entity[maxMap][100]; //set the number of 10 NPC Number
         monster = new Entity[maxMap][500];
         iTile= new InteractiveTile[maxMap][500];
