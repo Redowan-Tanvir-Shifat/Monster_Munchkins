@@ -20,7 +20,7 @@ public class Mon_Pac extends Entity {
         coin = 50;
         speed = defaultSpeed;
         type = type_monster;
-        maxLife = 15;
+        maxLife = 10;
         life = maxLife;
         attack = 10;
         defense = 0;

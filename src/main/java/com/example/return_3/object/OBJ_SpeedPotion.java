@@ -12,9 +12,9 @@ public class OBJ_SpeedPotion extends Entity{
         type= type_consumable;
         name="Speed Potion";
         itemCode=307;
-        value =2;
+        value =1;
         exp = 5;
-        price=500;
+        price=50;
         down1=loadImage("/objects/speedPotion.png",game.tileSize,game.tileSize);
         description="["+name+"]\nincreses your speed by "+value+".";
     }
@@ -22,7 +22,7 @@ public class OBJ_SpeedPotion extends Entity{
     public boolean use(Entity entity) {
         game.gameState = game.playState;
 //        game.ui.uiMainGame.currentDialogue="You drink the "+name+"!\nYour life has been recovered by "+value+",";
-        game.ui.uiMainGame.addMessage("You drink the "+name+"!\nYour speed has been increased by "+value+",\n for 30 second");
+        game.ui.uiMainGame.addMessage("You drink the "+name+"!\nYour speed has been increased by "+value+",\n for 10 second");
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -30,7 +30,7 @@ public class OBJ_SpeedPotion extends Entity{
                entity.speed+=value;
 
                 try {
-                    Thread.sleep(30000);
+                    Thread.sleep(10000);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }finally {
