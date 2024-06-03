@@ -13,6 +13,10 @@ import com.example.return_3.shop.StuffShop;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
 
 public class KeyHandler {
     Game game;
@@ -404,7 +408,18 @@ public class KeyHandler {
             game.user =MyJDBC.getUserData(id);
             game.gameState=game.playState;
             game.gameOver=false;
+            try {
+                // Write user ID to file to indicate login
+                BufferedWriter writer = new BufferedWriter(new FileWriter("loginStatus.txt"));
+                writer.write(String.valueOf(Game.gameInstance.user.getUserId()));
+                writer.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             game.startGame();
+        }
+        if (code == KeyCode.ESCAPE) {
+            Game.exitGame();
         }
     }
 
