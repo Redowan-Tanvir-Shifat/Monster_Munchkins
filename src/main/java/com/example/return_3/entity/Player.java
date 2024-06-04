@@ -570,6 +570,8 @@ public void removeCurrentWeapon() {
         if (currentWeapon instanceof OBJ_Fireball){
             if(game.keyHandler.isSpacePressed() && projectile.alive==false
                     && shotAvailableCounter==30 && projectile.haveResource(this)==true){
+
+                game.playSoundEffect(game.soundEffect.burning);
                 //Set default COORDINATES, DIRECTION AND USER
                 projectile.set(worldX,worldY,direction, true, this);
 
@@ -620,6 +622,13 @@ public void removeCurrentWeapon() {
     public void damageInteractiveTiles(int i){
         if(i!=999 && game.iTile[game.currentMap][i].destructible==true
                 && game.iTile[game.currentMap][i].isCorrectItem(this)==true &&game.iTile[game.currentMap][i].invincible==false){
+
+            if(game.iTile[game.currentMap][i].type==type_tree){
+
+            game.playSoundEffect(game.soundEffect.treeCut);
+            }else if(game.iTile[game.currentMap][i].type==type_rock){
+            game.playSoundEffect(game.soundEffect.rockBreak);
+            }
             game.iTile[game.currentMap][i].life--;
             game.iTile[game.currentMap][i].invincible=true;
             currentWeapon.life--;

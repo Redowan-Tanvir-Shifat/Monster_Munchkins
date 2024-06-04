@@ -17,6 +17,7 @@ public class BreakableBigRock extends InteractiveTile{
         down1=loadImage("/tiles_interactive/big_rock.png",game.tileSize,game.tileSize);
         destructible=true;
         life=6;
+        type=type_rock;
         //set solid area for set  collision
         solidArea.setX(1);
         solidArea.setY(7);

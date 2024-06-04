@@ -886,6 +886,7 @@ public class UI_MainGame {
                         game.player.exp+=exp;
                         game.player.checkLevelUp();
                         addMessage("Exp gained: "+exp);
+                        game.playSoundEffect(game.soundEffect.buy);
                         Entity entity= UtilityTool.getInventoryItem(shop.inventory.get(itemIndex).itemCode);
                         game.player.inventory.add(entity);
                         MyJDBC.addItemToInventory(game.player.playerId,shop.inventory.get(itemIndex).itemCode);
@@ -1085,6 +1086,7 @@ public class UI_MainGame {
                     game.gameState=game.messageState;
                     currentDialogue="you can not sell an equip items";
                 }else{
+                    game.playSoundEffect(game.soundEffect.sell);
                     int exp=(int) ((game.player.inventory.get(itemIndex).exp)*0.5);
                     game.player.exp += exp;
                     game.ui.uiMainGame.addMessage("Exp gained: "+exp);
@@ -1399,6 +1401,7 @@ public class UI_MainGame {
 
 
     public void addMessage(String text){
+        game.playSoundEffect(game.soundEffect.addMessage);
 //        message = text;
 //        messageOn = true;
         message.add(text);

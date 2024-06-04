@@ -159,6 +159,8 @@ public class Entity {
     public final int type_iceSword = 13;
     public final int type_fireball = 14;
     public final int type_tomahawkAxe = 15;
+    public final int type_tree = 16;
+    public final int type_rock = 17;
 
 
     // <---------Type of NPC--------->
@@ -597,6 +599,7 @@ public class Entity {
                 game.ui.uiMainGame.addMessage( "Careful, " + game.player.life + " % Life left!");
             }
             if (game.player.life <= 0) {
+                game.playSoundEffect(game.soundEffect.playerDeath);
                 game.player.dying = true;
                 game.player.setHospitalPosition();
                 game.keyHandler.setBooleanAll(false);
@@ -651,6 +654,9 @@ public class Entity {
             }
             if (game.player.life <= 0) {
                 game.player.dying = true;
+                game.playSoundEffect(game.soundEffect.playerDeath);
+
+
                 game.player.setHospitalPosition();
                 game.keyHandler.setBooleanAll(false);
                 game.player.life = game.player.maxLife;
