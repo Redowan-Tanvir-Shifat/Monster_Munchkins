@@ -10,13 +10,13 @@ public class CuttableTreeBig extends InteractiveTile{
     public CuttableTreeBig(Game game, int col, int row) {
         super(game,col,row);
         this.game=game;
-        life=3;
+        life=5;
         objectType=game.type_interactiveTreeBig;
         this.worldX=game.tileSize*col;
         this.worldY=game.tileSize*row;
         down1=loadImage("/tiles_interactive/drytree_2.png",game.tileSize,game.tileSize);
         destructible=true;
-        life=3;
+
     }
 
 
