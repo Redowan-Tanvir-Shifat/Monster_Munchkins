@@ -9,6 +9,7 @@ public class Sound {
     FloatControl fc;
     public float volume = 0.6f; // Default volume
     public int  volumeScale = 3;
+    public int  burning = 10;
     public final int pickUpItem=16;
     public final int doorOpened=17;
     public final int doorLocked=18;
@@ -38,7 +39,12 @@ public class Sound {
     public final int gameOver=41;
     public final int popUp=42;
     public final int chatType=43;
-
+    public final int buy=44;
+    public final int sell=45;
+    public final int rockBreak=46;
+    public final int playerDeath=47;
+    public final int treeCut=48;
+    public final int addMessage=49;
 
     public Sound() {
         // Initialize sound URLs
@@ -53,7 +59,7 @@ public class Sound {
         soundUrls[7] = getClass().getResource("/sound/swordswing.wav");
         soundUrls[8] = getClass().getResource("/sound/levelup.wav");
         soundUrls[9] = getClass().getResource("/sound/cursor.wav");
-        soundUrls[10] = getClass().getResource("/sound/burning.wav");
+        soundUrls[burning] = getClass().getResource("/sound/burning.wav");
         soundUrls[11] = getClass().getResource("/sound/cuttree.wav");
         soundUrls[12] = getClass().getResource("/sound/gameover.wav");
         soundUrls[13] = getClass().getResource("/sound/stairs.wav");
@@ -88,6 +94,12 @@ public class Sound {
         soundUrls[gameOver]= getClass().getResource("/sound/gameOver.wav");
         soundUrls[popUp]=getClass().getResource("/sound/messageState.wav");
         soundUrls[chatType]=getClass().getResource("/sound/chatType.wav");
+        soundUrls[buy]=getClass().getResource("/sound/buy.wav");
+        soundUrls[sell]=getClass().getResource("/sound/sell.wav");
+        soundUrls[playerDeath]=getClass().getResource("/sound/playerDeath.wav");
+        soundUrls[rockBreak]=getClass().getResource("/sound/rockBreak.wav");
+        soundUrls[treeCut]=getClass().getResource("/sound/treeCut.wav");
+        soundUrls[addMessage]=getClass().getResource("/sound/addMessage.wav");
 
     }
 

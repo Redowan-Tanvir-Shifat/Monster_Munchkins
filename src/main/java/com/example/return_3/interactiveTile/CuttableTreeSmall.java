@@ -17,6 +17,8 @@ public class CuttableTreeSmall extends InteractiveTile{
         down1=loadImage("/tiles_interactive/drytree_3.png",game.tileSize,game.tileSize);
         destructible=true;
         life=3;
+        type=type_tree;
+
     }
 
 
