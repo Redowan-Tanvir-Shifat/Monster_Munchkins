@@ -172,16 +172,18 @@ public class Player extends Entity{
 
         // <---------Player Status--------->
         playerId=game.user.getUserId();
-        level = game.user.getLevel();
+//        level = game.user.getLevel();
+        level = 15;
         maxLife = game.user.getMaxLife();
         life = game.user.getLife();
         strength = game.user.getStrength();    //The more strength he has, the more damage he gives...
         dexterity = game.user.getDexterity();   // The more dexterity he has, the less damage he receives...
-        exp = game.user.getExp();
+        exp = 40;
+//        exp = game.user.getExp();
 //        nextLevelExp = game.user.getNextLevelExp();
         nextLevelExp = 50;
-        coin = game.user.getCoin();
-//        coin = 50000;
+//        coin = game.user.getCoin();
+        coin = 5000;
         //as we are not setting current weapon and sheild at the beginning so that is why we commented it
         //currentWeapon = new OBJ_Sword_Normal(game);
         //currentShield = new OBJ_Shield_Wood(game);

@@ -153,7 +153,7 @@ public class Game extends Application {
     public UI ui= new UI(this);
     public static GameAnimationTimer gameTimer;
 
-    public Entity obj[][]= new Entity[maxMap][20];
+    public Entity obj[][]= new Entity[maxMap][30];
     public Entity npc[][]= new Entity[maxMap][100]; //set the number of 10 NPC Number
     public Entity interactNpc[][]= new Entity[maxMap][20]; //set the number of 10 NPC Number
     public Entity[][] monster = new Entity[maxMap][500];
@@ -243,7 +243,7 @@ Image icon;
             }
         }
         primaryStage.setTitle("Powered By Team Defenders;"); //set the title of the stage
-        //primaryStage.initStyle(StageStyle.UNDECORATED); //create un decorated style
+//        primaryStage.initStyle(StageStyle.UNDECORATED); //create un decorated style
 //        primaryStage.setScene(menuScene);
         primaryStage.show(); //by this show method we are now showing the stage
         //primaryStage.setOnCloseRequest(windowEvent -> exit(primaryStage));
@@ -542,8 +542,8 @@ Image icon;
                                 if(MyJDBC.areAllMonstersDestroyed(player.playerId)){
                                     System.out.println("Game Over");
                                     playSoundEffect(soundEffect.gameOver);
-                                    gameState=gameOverState;
                                     gameOver=true;
+                                    gameState=gameOverState;
                                 }
                             }
                         }

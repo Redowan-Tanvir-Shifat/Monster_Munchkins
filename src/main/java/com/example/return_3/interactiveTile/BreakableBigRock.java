@@ -10,7 +10,7 @@ public class BreakableBigRock extends InteractiveTile{
     public BreakableBigRock(Game game, int col, int row) {
         super(game,col,row);
         this.game=game;
-        life=3;
+        life=5;
         objectType=game.type_interactiverockBig;
         this.worldX=game.tileSize*col;
         this.worldY=game.tileSize*row;
