@@ -647,20 +647,20 @@ public class AssetSetter {
 
         // <----------Monster Island 3---------->
         int[][] mi3positions = {
-                {entity.type_blueGhost, entity.area_mi_3, 182, 49},
+//                {entity.type_blueGhost, entity.area_mi_3, 182, 49},
 
-                {entity.type_redOrc, entity.area_mi_3, 167, 42},
-                {entity.type_redOrc, entity.area_mi_3, 167, 53},
+//                {entity.type_redOrc, entity.area_mi_3, 167, 42},
+//                {entity.type_redOrc, entity.area_mi_3, 167, 53},
                 {entity.type_redOrc, entity.area_mi_3, 184, 61},
 
-                {entity.type_arc, entity.area_mi_3, 179, 43},
-                {entity.type_arc, entity.area_mi_3, 155, 42},
+//                {entity.type_arc, entity.area_mi_3, 179, 43},
+//                {entity.type_arc, entity.area_mi_3, 155, 42},
 
                 {entity.type_redFly, entity.area_mi_3, 177, 53},
 
-                {entity.type_skeleton, entity.area_mi_3, 160, 46},
-                {entity.type_skeleton, entity.area_mi_3, 171, 57},
-                {entity.type_skeleton, entity.area_mi_3, 180, 57},
+//                {entity.type_skeleton, entity.area_mi_3, 160, 46},
+//                {entity.type_skeleton, entity.area_mi_3, 171, 57},
+//                {entity.type_skeleton, entity.area_mi_3, 180, 57},
                 {entity.type_skeleton, entity.area_mi_3, 172, 47}
         };
 
@@ -718,7 +718,8 @@ public class AssetSetter {
 
         };
 
-        int[][][] allPositions = {townHall1Positions, townHall2Positions, townHall3Positions, townHall4Positions, townHall5Positions, hill1Positions, hill2Positions, hill3Positions, hill4Positions, mi1positions, mi2positions, mi3positions, noAreaPositions};
+//        int[][][] allPositions = {townHall1Positions, townHall2Positions, townHall3Positions, townHall4Positions, townHall5Positions, hill1Positions, hill2Positions, hill3Positions, hill4Positions, mi1positions, mi2positions, mi3positions, noAreaPositions};
+        int[][][] allPositions = {mi3positions};
 
         List<int[]> allMonsters = new ArrayList<>();
         for (int i = 0; i < allPositions.length; i++) {
