@@ -26,7 +26,7 @@ public class MyJDBC {
             Connection connection= DriverManager.getConnection(DB_URL,DB_USERNAME,DB_PASSWORD);
             //create sql query
             PreparedStatement preparedStatement= connection.prepareStatement(
-                    "SELECT * FROM users WHERE username = ? AND password= ?"
+                    "SELECT * FROM game.Users WHERE username = ? AND password= ?"
             );
             //replace the ? with values
             preparedStatement.setString(1,username);
@@ -57,7 +57,7 @@ public class MyJDBC {
             Connection connection= DriverManager.getConnection(DB_URL,DB_USERNAME,DB_PASSWORD);
             //create sql query
             PreparedStatement preparedStatement= connection.prepareStatement(
-                    "SELECT * FROM users WHERE username = ?"
+                    "SELECT * FROM game.Users WHERE username = ?"
             );
             //replace the ? with values
             preparedStatement.setString(1,username);
@@ -116,7 +116,7 @@ public class MyJDBC {
         try {
             Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT * FROM users WHERE user_id = ?"
+                    "SELECT * FROM game.Users WHERE user_id = ?"
             );
             preparedStatement.setInt(1, userId);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -140,7 +140,7 @@ public class MyJDBC {
             if (!checkUser(username)) {
                 Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
                 PreparedStatement preparedStatement = connection.prepareStatement(
-                        "INSERT INTO users(username,password)" + "VALUES(? , ?)", Statement.RETURN_GENERATED_KEYS
+                        "INSERT INTO game.Users(username,password)" + "VALUES(? , ?)", Statement.RETURN_GENERATED_KEYS
                 );
                 preparedStatement.setString(1, username);
                 preparedStatement.setString(2, password);
@@ -166,7 +166,7 @@ public class MyJDBC {
         try{
             Connection connection= DriverManager.getConnection(DB_URL,DB_USERNAME,DB_PASSWORD);
             PreparedStatement preparedStatement= connection.prepareStatement(
-                    "SELECT * FROM users WHERE username = ?"
+                    "SELECT * FROM game.Users WHERE username = ?"
             );
             preparedStatement.setString(1,username);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -189,7 +189,7 @@ public class MyJDBC {
 
             // Create SQL query
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "UPDATE users SET coin = ?, energy = ?, maxEnergy = ?, life = ?, maxLife = ?, " +
+                    "UPDATE game.Users SET coin = ?, energy = ?, maxEnergy = ?, life = ?, maxLife = ?, " +
                             "exp = ?, nextLevelExp = ?, level = ?, strength = ?, dexterity = ?, " +
                             "bullet = ?, maxBullet = ?, world_x = ?, world_y = ?, is_ship_started = ?," +
                             "npc_fireball = ?, npc_global_chat = ?, npc_mother_slime = ?, npc_axe = ?," +
@@ -359,7 +359,7 @@ public class MyJDBC {
 //    }
 
     public static void addInventory(int userId, int[] itemCodes) {
-        String query = "INSERT INTO Inventory (user_id, item_code, item_count) VALUES ";
+        String query = "INSERT INTO game.Inventory (user_id, item_code, item_count) VALUES ";
         StringBuilder values = new StringBuilder();
 
         for (int i = 0; i < itemCodes.length; i++) {
@@ -394,7 +394,7 @@ public class MyJDBC {
         try {
             Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT * FROM Inventory WHERE user_id = ?"
+                    "SELECT * FROM game.Inventory WHERE user_id = ?"
             );
             preparedStatement.setInt(1, userId);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -429,7 +429,7 @@ public class MyJDBC {
 //    }
 
     public static void addItemToInventory(int userId, int itemCode) {
-        String sql = "UPDATE Inventory SET item_count = item_count + 1 WHERE user_id = ? AND item_code = ?";
+        String sql = "UPDATE game.Inventory SET item_count = item_count + 1 WHERE user_id = ? AND item_code = ?";
 
         try (Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -462,7 +462,7 @@ public class MyJDBC {
 //        }
 //    }
 public static void removeItemFromInventory(int userId, int itemCode) {
-    String sql = "UPDATE Inventory SET item_count = item_count - 1 WHERE user_id = ? AND item_code = ? AND item_count > 0";
+    String sql = "UPDATE game.Inventory SET item_count = item_count - 1 WHERE user_id = ? AND item_code = ? AND item_count > 0";
 
     try (Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
          PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -510,7 +510,7 @@ public static void removeItemFromInventory(int userId, int itemCode) {
     public static void addObjectBatch(List<ObjectData> objects) {
         try (Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD)) {
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "INSERT INTO Objects (user_id, object_type, item_code, tile_col, tile_row, map_num) " +
+                    "INSERT INTO game.Objects (user_id, object_type, item_code, tile_col, tile_row, map_num) " +
                             "VALUES (?, ?, ?, ?, ?, ?)"
             );
             for (ObjectData object : objects) {
@@ -547,7 +547,7 @@ public static void removeItemFromInventory(int userId, int itemCode) {
         try {
             Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT tile_col, tile_row, item_code,object_type FROM Objects " +
+                    "SELECT tile_col, tile_row, item_code,object_type FROM  game.Objects " +
                             "WHERE user_id = ? AND map_num = ? AND destroyed = FALSE"
             );
             preparedStatement.setInt(1, userId);
@@ -683,7 +683,7 @@ public static void removeItemFromInventory(int userId, int itemCode) {
         try {
             Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT tile_col, tile_row, item_code FROM Objects " +
+                    "SELECT tile_col, tile_row, item_code FROM  game.Objects " +
                             "WHERE user_id = ? AND map_num = ? AND destroyed = TRUE AND item_code IN (320, 321)"
             );
             preparedStatement.setInt(1, userId);
@@ -757,7 +757,7 @@ public static void removeItemFromInventory(int userId, int itemCode) {
 
 ////  <------------  MONSTER
 public static void addMonsters(List<int[]> monsters) {
-    String sql = "INSERT INTO monsters (user_id, indexNum, monster_type, area_type, tile_col, tile_row, map_num) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    String sql = "INSERT INTO game.Monsters (user_id, indexNum, monster_type, area_type, tile_col, tile_row, map_num) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
     try (Connection conn = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
          PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -808,7 +808,7 @@ public static void setMonsters(int userId, int mapNum) {
         try {
             Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT tile_col, tile_row, area_type, monster_type, indexNum FROM Monsters " +
+                    "SELECT tile_col, tile_row, area_type, monster_type, indexNum FROM game.Monsters " +
                             "WHERE user_id = ? AND map_num = ? AND destroyed = FALSE"
             );
             preparedStatement.setInt(1, userId);
@@ -875,7 +875,7 @@ public static void setMonsters(int userId, int mapNum) {
         try {
             Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "UPDATE Monsters SET destroyed = ? " +
+                    "UPDATE game.Monsters SET destroyed = ? " +
                             "WHERE user_id = ? AND indexNum = ? AND monster_type = ? AND map_num = ?"
             );
             preparedStatement.setBoolean(1, destroyed);
@@ -898,7 +898,7 @@ public static void setMonsters(int userId, int mapNum) {
         try {
             Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "UPDATE Monsters SET tile_col = ?, tile_row = ? WHERE user_id = ? AND map_num = ? AND indexNum = ?"
+                    "UPDATE game.Monsters SET tile_col = ?, tile_row = ? WHERE user_id = ? AND map_num = ? AND indexNum = ?"
             );
 
             // Iterate over the monsters array and update their positions in the database
@@ -921,7 +921,7 @@ public static void setMonsters(int userId, int mapNum) {
     }
 
     public static void setDestroyedForSlimes() {
-        String sql = "UPDATE monsters SET destroyed = TRUE WHERE monster_type = ?";
+        String sql = "UPDATE game.Monsters SET destroyed = TRUE WHERE monster_type = ?";
 
         try (Connection conn = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -944,7 +944,7 @@ public static void setMonsters(int userId, int mapNum) {
 
             // Create SQL query
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT COUNT(*) FROM monsters WHERE user_id = ? AND destroyed = FALSE"
+                    "SELECT COUNT(*) FROM game.Monsters WHERE user_id = ? AND destroyed = FALSE"
             );
 
             // Replace the placeholder with the user ID
