@@ -19,13 +19,13 @@ public class Mon_GreenSlimeMother extends Entity {
         defaultSpeed = 1;
         speed = defaultSpeed;
         type = type_monster;
-        maxLife = 500;
+        maxLife = 100;
         coin = 500;
         life = maxLife;
-        attack = 50;
+        attack = 10;
         defense = 0;
         exp = 50;
-        projectile=new OBJ_Rock(game);
+        //projectile=new OBJ_Rock(game);
 
         //set the SOLID AREA for  collision part
         solidArea.setX(4);
@@ -70,7 +70,7 @@ public class Mon_GreenSlimeMother extends Entity {
     public void setAction(){
         // Get a random direction...
         getRandomDirection();
-        checkShootOrNot(100, 30);
+        //checkShootOrNot(100, 30);
         speedCounter++;
         if(speedCounter>185&&speedCounter<200){
             speed=2;
