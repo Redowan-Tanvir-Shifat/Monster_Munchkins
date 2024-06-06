@@ -1,3 +1,4 @@
+
 package com.example.return_3.db;
 
 import com.example.return_3.entity.Entity;
@@ -15,9 +16,14 @@ import java.util.List;
 public class MyJDBC {
 
     //database configuration
-    private static final String DB_URL ="jdbc:mysql://127.0.0.1:3306/game";
-    private static final String DB_USERNAME= "root";
-    private static  final String DB_PASSWORD="password";
+    //%%%%%%%%%%------->For OFFLINE DB<----------%%%%%%%%%%
+    // private static final String DB_URL ="jdbc:mysql://127.0.0.1:3306/game";
+    // private static final String DB_USERNAME= "root";
+    // private static  final String DB_PASSWORD="password";
+    //%%%%%%%%%%------->For Online DB<----------%%%%%%%%%%
+    private static final String DB_URL = "jdbc:mysql://SG-Monster-Munchkins-8715-mysql-master.servers.mongodirector.com:3306/game";
+    private static final String DB_USERNAME = "sgroot";
+    private static final String DB_PASSWORD = "8cDE6XrDHO5Wv+6m";
 
     //if valid return an object with the user's information
     public static User validateLogin(String username, String password){
@@ -404,7 +410,7 @@ public class MyJDBC {
                 int itemCode = resultSet.getInt("item_code");
                 int count = resultSet.getInt("item_count");
                 for(int i=0;i<count;i++){
-                inventory.add(UtilityTool.getInventoryItem(itemCode));
+                    inventory.add(UtilityTool.getInventoryItem(itemCode));
                 }
             }
             return inventory;
@@ -448,7 +454,7 @@ public class MyJDBC {
     }
 
 
-//    public static void removeItemFromInventory(int userId, int itemCode) {
+    //    public static void removeItemFromInventory(int userId, int itemCode) {
 //        try {
 //            Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
 //            PreparedStatement preparedStatement = connection.prepareStatement(
@@ -461,24 +467,24 @@ public class MyJDBC {
 //            e.printStackTrace();
 //        }
 //    }
-public static void removeItemFromInventory(int userId, int itemCode) {
-    String sql = "UPDATE game.Inventory SET item_count = item_count - 1 WHERE user_id = ? AND item_code = ? AND item_count > 0";
+    public static void removeItemFromInventory(int userId, int itemCode) {
+        String sql = "UPDATE game.Inventory SET item_count = item_count - 1 WHERE user_id = ? AND item_code = ? AND item_count > 0";
 
-    try (Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
-         PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
-        preparedStatement.setInt(1, userId);
-        preparedStatement.setInt(2, itemCode);
-        int rowsUpdated = preparedStatement.executeUpdate();
+            preparedStatement.setInt(1, userId);
+            preparedStatement.setInt(2, itemCode);
+            int rowsUpdated = preparedStatement.executeUpdate();
 
-        if (rowsUpdated == 0) {
-            System.out.println("No item found or item count is already 0 for user_id " + userId + " and item_code " + itemCode);
+            if (rowsUpdated == 0) {
+                System.out.println("No item found or item count is already 0 for user_id " + userId + " and item_code " + itemCode);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-
-    } catch (SQLException e) {
-        e.printStackTrace();
     }
-}
 
 
     // <----------------OBJECT LINE------------------->
@@ -552,7 +558,7 @@ public static void removeItemFromInventory(int userId, int itemCode) {
             );
             preparedStatement.setInt(1, userId);
             preparedStatement.setInt(2, mapNum);
-           // preparedStatement.setInt(3, objectType);
+            // preparedStatement.setInt(3, objectType);
             ResultSet resultSet = preparedStatement.executeQuery();
             int i = 0;
 
@@ -755,28 +761,28 @@ public static void removeItemFromInventory(int userId, int itemCode) {
 
 
 
-////  <------------  MONSTER
-public static void addMonsters(List<int[]> monsters) {
-    String sql = "INSERT INTO game.Monsters (user_id, indexNum, monster_type, area_type, tile_col, tile_row, map_num) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    ////  <------------  MONSTER
+    public static void addMonsters(List<int[]> monsters) {
+        String sql = "INSERT INTO game.Monsters (user_id, indexNum, monster_type, area_type, tile_col, tile_row, map_num) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-    try (Connection conn = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
-         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try (Connection conn = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-        for (int[] monster : monsters) {
-            pstmt.setInt(1, monster[0]);
-            pstmt.setInt(2, monster[1]);
-            pstmt.setInt(3, monster[2]);
-            pstmt.setInt(4, monster[3]);
-            pstmt.setInt(5, monster[4]);
-            pstmt.setInt(6, monster[5]);
-            pstmt.setInt(7, monster[6]);
-            pstmt.addBatch();
+            for (int[] monster : monsters) {
+                pstmt.setInt(1, monster[0]);
+                pstmt.setInt(2, monster[1]);
+                pstmt.setInt(3, monster[2]);
+                pstmt.setInt(4, monster[3]);
+                pstmt.setInt(5, monster[4]);
+                pstmt.setInt(6, monster[5]);
+                pstmt.setInt(7, monster[6]);
+                pstmt.addBatch();
+            }
+            pstmt.executeBatch();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        pstmt.executeBatch();
-    } catch (SQLException e) {
-        e.printStackTrace();
     }
-}
 
 
 //public static void addMonster(int userId, int monsterType, int areaType, int col, int row, int mapNum, int indexNum) {
@@ -802,7 +808,7 @@ public static void addMonsters(List<int[]> monsters) {
 //
 
 
-public static void setMonsters(int userId, int mapNum) {
+    public static void setMonsters(int userId, int mapNum) {
         Game game = Game.gameInstance;
         Entity entity00 = new Entity(game);
         try {
