@@ -15,9 +15,14 @@ import java.util.List;
 public class MyJDBC {
 
     //database configuration
-    private static final String DB_URL ="jdbc:mysql://127.0.0.1:3306/game";
-    private static final String DB_USERNAME= "root";
-    private static  final String DB_PASSWORD="password";
+     //%%%%%%%%%%------->For OFFLINE DB<----------%%%%%%%%%%
+    // private static final String DB_URL ="jdbc:mysql://127.0.0.1:3306/game";
+    // private static final String DB_USERNAME= "root";
+    // private static  final String DB_PASSWORD="password";
+    //%%%%%%%%%%------->For Online DB<----------%%%%%%%%%%
+    private static final String DB_URL = "jdbc:mysql://SG-Monster-Munchkins-8715-mysql-master.servers.mongodirector.com:3306/game";
+    private static final String DB_USERNAME = "sgroot";
+    private static final String DB_PASSWORD = "8cDE6XrDHO5Wv+6m";
 
     //if valid return an object with the user's information
     public static User validateLogin(String username, String password){
